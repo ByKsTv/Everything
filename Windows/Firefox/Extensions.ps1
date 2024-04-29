@@ -406,12 +406,12 @@ public class Clicker
     Start-Sleep 1
     Write-Host 'Tampermonkey > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(310, 297)
-    Start-Sleep 5
+    Start-Sleep 15
     Write-Host 'AdsBypasser' -ForegroundColor green -BackgroundColor black
     $OpenWithFirefox.StartInfo.Arguments = 'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js'
     [System.Windows.Forms.SendKeys]::SendWait('^w')
     $OpenWithFirefox.start()
-    Start-Sleep 5
+    Start-Sleep 10
     Get-Process firefox | Set-Window -x 0 -y 0 -Width 500 -Height 400
     Start-Sleep 1
     Write-Host 'Tampermonkey > AdsBypasser > Install' -ForegroundColor green -BackgroundColor black
