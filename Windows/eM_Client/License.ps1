@@ -18,3 +18,4 @@ else {
     Register-ScheduledTask @eM_Client_License_Fix_Parameters -Force
 }
 Start-ScheduledTask -TaskName $eM_Client_License_Fix
+exit
