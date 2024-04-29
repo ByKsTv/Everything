@@ -12,7 +12,7 @@
 1. [Buster: Captcha Solver for Humans](https://addons.mozilla.org/en-US/firefox/addon/buster-captcha-solver/)
 1. [The Camelizer](https://addons.mozilla.org/en-US/firefox/addon/the-camelizer-price-history-ch/)
 
-## Arkenfox Setup
+## Arkenfox Setup - PowerShell Script (Admin)
 
 ```powershell
 $CurrentFireFoxProfilePath0 = Get-ChildItem -Directory -Path "$env:APPDATA\Mozilla\Firefox\Profiles" -Filter '*.default-release'
