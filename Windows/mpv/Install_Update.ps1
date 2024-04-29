@@ -1,3 +1,4 @@
+Add-Type -AssemblyName System.Windows.Forms
 $CurrentMPVPath = Get-Location
 $MPV_Updater = 'MPV Updater'
 $MPV_Updater_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $MPV_Updater }
@@ -20,12 +21,9 @@ else {
 }
 Start-ScheduledTask -TaskName $MPV_Updater
 Start-Sleep 2
-$WshShell = New-Object -ComObject WScript.Shell
-$WshShell.SendKeys('{Y}')
+[System.Windows.Forms.SendKeys]::SendWait('{Y 2}')
 Start-Sleep 1
-$WshShell.SendKeys('{Y}')
-Start-Sleep 1
-$WshShell.SendKeys('{1}')
+[System.Windows.Forms.SendKeys]::SendWait('{1}')
 Start-Sleep 10
 Start-Process -FilePath $CurrentMPVPath\installer\mpv-install.bat -ArgumentList /u
 if ((Test-Path -LiteralPath "$CurrentMPVPath\Install_Update.ps1") -eq $true) {

@@ -10,7 +10,7 @@ local function read_time1(_, time_pos)
                         'powershell', 
                         '-NoProfile',
                         '-Command', 
-                        '$wshell = New-Object -ComObject wscript.shell; $wshell.SendKeys(\'%{TAB}\')' 
+                        'Add-Type -AssemblyName System.Windows.Forms;[System.Windows.Forms.SendKeys]::SendWait(\'%{TAB}\')'
                     }
                 })
                 mp.unobserve_property(read_time1)

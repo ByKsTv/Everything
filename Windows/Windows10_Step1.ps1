@@ -178,10 +178,6 @@ if ($BrowserSelectionAnswer -eq [System.Windows.Forms.DialogResult]::OK) {
 			Write-Host 'Firefox Setup' -ForegroundColor green -BackgroundColor black
 			Invoke-WebRequest -Uri https://download.mozilla.org/?product=firefox-stub -OutFile $env:TEMP\firefox-stub.exe
 			Start-Process $env:TEMP\firefox-stub.exe
-			Start-Job -ScriptBlock {
-				$FirefoxNotification = New-Object -ComObject Wscript.Shell
-				$FirefoxNotification.Popup("Uncheck 'Import from previous browser' > 'Save and continue' > 'Skip this step' > 'Skip this step' > 'Start browsing' > Login to Firefox account and sync.", 64 + 0, 'Firefox Setup')
-			}
 		}
 	}
 	if ($BrowserSelectionSelected -eq 'Chrome') {

@@ -1,15 +1,15 @@
+Add-Type -AssemblyName System.Windows.Forms
 $CurrentFireFoxProfilePath0 = Get-ChildItem -Directory -Path "$env:APPDATA\Mozilla\Firefox\Profiles" -Filter '*.default-release'
 $CurrentFireFoxProfilePath = "$env:APPDATA\Mozilla\Firefox\Profiles\$CurrentFireFoxProfilePath0"
 if ((Test-Path -LiteralPath $CurrentFireFoxProfilePath) -eq $true) {
     Write-Host 'Firefox Extensions Setup' -ForegroundColor green -BackgroundColor black
-    Write-Host 'Setting Scale to 100%' -ForegroundColor green -BackgroundColor black
+    Write-Host 'Scale 100%' -ForegroundColor green -BackgroundColor black
     explorer ms-settings:display
     Start-Sleep 3
-    $WshShell = New-Object -ComObject WScript.Shell
     Start-Sleep 1
-    $WshShell.SendKeys('{TAB 2}{UP 5}')
+    [System.Windows.Forms.SendKeys]::SendWait('{TAB 2}{UP 5}')
     Start-Sleep 1
-    $WshShell.SendKeys('%{F4}')
+    [System.Windows.Forms.SendKeys]::SendWait('%{F4}')
     Write-Host 'Set-Window Function' -ForegroundColor green -BackgroundColor black
     Function Set-Window {
         <#
@@ -305,33 +305,48 @@ public class Clicker
     [Clicker]::LeftClickAtPoint(430, 60)
     Start-Sleep 2
     Write-Host 'uBlock Origin > Open the dashboard' -ForegroundColor green -BackgroundColor black
-    $WshShell.SendKeys('+{TAB}')
+    [System.Windows.Forms.SendKeys]::SendWait('+{TAB}')
     Start-Sleep 1
-    $WshShell.SendKeys('{ENTER}')
+    [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
     Start-Sleep 5
-    Write-Host 'uBlock Origin > Restore from file' -ForegroundColor green -BackgroundColor black
-    $WshShell.SendKeys('+{TAB 2}')
+    #
+    Write-Host 'uBlock Origin > Settings.html' -ForegroundColor green -BackgroundColor black
     Start-Sleep 1
-    $WshShell.SendKeys('{ENTER}')
+    [System.Windows.Forms.SendKeys]::SendWait("{F6}") 
+    Start-Sleep 1
+    [System.Windows.Forms.SendKeys]::SendWait("^{c}")
+    Start-Sleep 1
+    $ublockhtml = 'dashboard.html.*'
+    (Get-Clipboard) -replace $ublockhtml, 'dashboard.html#settings.html' | Set-Clipboard
+    Start-Sleep 1
+    [System.Windows.Forms.SendKeys]::SendWait("^{v}")
+    Start-Sleep 1
+    [System.Windows.Forms.SendKeys]::SendWait("^{ENTER}")
+    Start-Sleep 1
+    #
+    Write-Host 'uBlock Origin > Restore from file' -ForegroundColor green -BackgroundColor black
+    [System.Windows.Forms.SendKeys]::SendWait('+{TAB 2}')
+    Start-Sleep 1
+    [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
     Start-Sleep 1
     Write-Host 'uBlock Origin > Restore from file > Select folder' -ForegroundColor green -BackgroundColor black
-    $WshShell.SendKeys('{F4}')
+    [System.Windows.Forms.SendKeys]::SendWait('{F4}')
     Start-Sleep 2
-    $WshShell.SendKeys('^A')
+    [System.Windows.Forms.SendKeys]::SendWait('^a')
     Start-Sleep 1
     Write-Host "uBlock Origin > Restore from file > Select folder > $DesktopFolder" -ForegroundColor green -BackgroundColor black
-    $WshShell.SendKeys($DesktopFolder)
+    [System.Windows.Forms.SendKeys]::SendWait($DesktopFolder)
     Start-Sleep 1
-    $WshShell.SendKeys('{ENTER}')
+    [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
     Start-Sleep 1
-    $WshShell.SendKeys('{TAB 6}')
+    [System.Windows.Forms.SendKeys]::SendWait('{TAB 6}')
     Start-Sleep 1
     Write-Host "uBlock Origin > Restore from file $DesktopFolder > uBlock_Origin_Backup.txt" -ForegroundColor green -BackgroundColor black
-    $WshShell.SendKeys('uBlock_Origin_Backup.txt')
+    [System.Windows.Forms.SendKeys]::SendWait('uBlock_Origin_Backup.txt')
     Start-Sleep 1
-    $WshShell.SendKeys('{ENTER}')
+    [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
     Start-Sleep 1
-    $WshShell.SendKeys('{ENTER}')
+    [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
     Start-Sleep 1
     if ((Test-Path -LiteralPath "$DesktopFolder\uBlock_Origin_Backup.txt") -eq $true) {
         Remove-Item -Path ("$DesktopFolder\uBlock_Origin_Backup.txt") -Force -Recurse
@@ -388,5 +403,5 @@ public class Clicker
     $OpenWithFirefox.start()
     Start-Sleep 4
     Write-Host 'Tampermonkey > AdsBypasser > Install' -ForegroundColor green -BackgroundColor black
-    $WshShell.SendKeys('{ENTER}')
+    [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
 }
