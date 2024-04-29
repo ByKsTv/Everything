@@ -352,8 +352,6 @@ public class Clicker
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\clearurls.xpi"
     $OpenWithFirefox.start()
     Start-Sleep 5
-    Get-Process firefox | Set-Window -x 0 -y 0 -Width 500 -Height 400
-    Start-Sleep 1
     Write-Host 'ClearURLs > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(305, 263)
     Start-Sleep 2
@@ -362,8 +360,6 @@ public class Clicker
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\i_m_not_robot_captcha_clicker.xpi"
     $OpenWithFirefox.start()
     Start-Sleep 5
-    Get-Process firefox | Set-Window -x 0 -y 0 -Width 500 -Height 400
-    Start-Sleep 1
     Write-Host 'Im not robot captcha clicker > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(306, 215)
     Start-Sleep 2
@@ -372,8 +368,6 @@ public class Clicker
     Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4044701/buster_captcha_solver-2.0.1.xpi -OutFile $env:TEMP\buster_captcha_solver.xpi
     $OpenWithFirefox.start()
     Start-Sleep 5
-    Get-Process firefox | Set-Window -x 0 -y 0 -Width 500 -Height 400
-    Start-Sleep 1
     Write-Host 'Buster > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(310, 263)
     Start-Sleep 2
@@ -382,8 +376,6 @@ public class Clicker
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\the_camelizer_price_history_ch.xpi"
     $OpenWithFirefox.start()
     Start-Sleep 5
-    Get-Process firefox | Set-Window -x 0 -y 0 -Width 500 -Height 400
-    Start-Sleep 1
     Write-Host 'Camelizer > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(310, 294)
     Start-Sleep 2
