@@ -301,9 +301,10 @@ public class Clicker
     Start-Sleep 2
     Write-Host 'uBlock Origin > Okay' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(450, 210)
+    Start-Sleep 2
     Write-Host 'uBlock Origin > Icon' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(430, 60)
-    Start-Sleep 5
+    Start-Sleep 2
     Write-Host 'uBlock Origin > Open the dashboard' -ForegroundColor green -BackgroundColor black
     [System.Windows.Forms.SendKeys]::SendWait('+{TAB}')
     Start-Sleep 1
