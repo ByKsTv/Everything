@@ -357,8 +357,6 @@ public class Clicker
     Write-Host 'ClearURLs > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(305, 263)
     Start-Sleep 2
-    taskkill /IM firefox.exe /F
-    Start-Sleep 1
     Write-Host 'Im not robot captcha clicker' -ForegroundColor green -BackgroundColor black
     Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/3897119/i_m_not_robot_captcha_clicker-1.3.1.xpi -OutFile $env:TEMP\i_m_not_robot_captcha_clicker.xpi
     
@@ -368,8 +366,6 @@ public class Clicker
     Write-Host 'Im not robot captcha clicker > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(306, 215)
     Start-Sleep 2
-    taskkill /IM firefox.exe /F
-    Start-Sleep 1
     Write-Host 'Buster' -ForegroundColor green -BackgroundColor black
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\buster_captcha_solver.xpi"
     Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4044701/buster_captcha_solver-2.0.1.xpi -OutFile $env:TEMP\buster_captcha_solver.xpi
@@ -378,8 +374,6 @@ public class Clicker
     Write-Host 'Buster > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(310, 263)
     Start-Sleep 2
-    taskkill /IM firefox.exe /F
-    Start-Sleep 1
     Write-Host 'Camelizer' -ForegroundColor green -BackgroundColor black
     Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4075638/the_camelizer_price_history_ch-3.0.15.xpi -OutFile $env:TEMP\the_camelizer_price_history_ch.xpi
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\the_camelizer_price_history_ch.xpi"
@@ -388,8 +382,6 @@ public class Clicker
     Write-Host 'Camelizer > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(310, 294)
     Start-Sleep 2
-    taskkill /IM firefox.exe /F
-    Start-Sleep 1
     Write-Host 'Tampermonkey' -ForegroundColor green -BackgroundColor black
     Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4250678/tampermonkey-5.1.0.xpi -OutFile $env:TEMP\tampermonkey.xpi
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\tampermonkey.xpi"
@@ -398,8 +390,6 @@ public class Clicker
     Write-Host 'Tampermonkey > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(310, 297)
     Start-Sleep 2
-    taskkill /IM firefox.exe /F
-    Start-Sleep 1
     Write-Host 'AdsBypasser' -ForegroundColor green -BackgroundColor black
     $OpenWithFirefox.StartInfo.Arguments = 'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js'
     $OpenWithFirefox.start()
