@@ -336,7 +336,7 @@ public class Clicker
     Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
     Start-Sleep 2
-    [System.Windows.Forms.SendKeys]::SendWait('{TAB 6}')
+    [System.Windows.Forms.SendKeys]::SendWait('%{n}')
     Start-Sleep 2
     Write-Host "uBlock Origin > Restore from file > $DesktopFolder > uBlock_Origin_Backup.txt" -ForegroundColor green -BackgroundColor black
     [System.Windows.Forms.SendKeys]::SendWait('uBlock_Origin_Backup.txt')
