@@ -1,4 +1,3 @@
-Add-Type -AssemblyName System.Windows.Forms
 Write-Host 'IPv4 > MTU > 1500' -ForegroundColor green -BackgroundColor black
 $AdapterName = $(Get-NetAdapter | Where-Object { $_.Status -eq 'Up' }).Name
 netsh interface ipv4 set subinterface "$AdapterName" mtu=1500 store=persistent
@@ -271,6 +270,7 @@ Write-Host 'TcpDelAckTicks > Disabled' -ForegroundColor green -BackgroundColor b
 New-ItemProperty -LiteralPath HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\$NetworkGUID -Name 'TcpDelAckTicks' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
 Write-Host 'TCPNoDelay > Enabled' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -LiteralPath HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\$NetworkGUID -Name 'TCPNoDelay' -Value 1 -PropertyType DWord -Force -ea SilentlyContinue
+Add-Type -AssemblyName System.Windows.Forms
 $WakeOnLanAnswer = [System.Windows.Forms.MessageBox]::Show('Enable Wake-On-Lan?
 
 Wake-on-LAN is an Ethernet computer networking standard that allows this PC to be turned on by a network message.
