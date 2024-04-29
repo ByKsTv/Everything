@@ -302,12 +302,12 @@ public class Clicker
     Start-Sleep 5
     Write-Host 'uBlock Origin > Icon' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(430, 60)
-    Start-Sleep 10
+    Start-Sleep 5
     Write-Host 'uBlock Origin > Open the dashboard' -ForegroundColor green -BackgroundColor black
     [System.Windows.Forms.SendKeys]::SendWait('+{TAB}')
     Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
-    Start-Sleep 5
+    Start-Sleep 3
     Write-Host 'uBlock Origin > Settings.html' -ForegroundColor green -BackgroundColor black
     [System.Windows.Forms.SendKeys]::SendWait('{F6}') 
     Start-Sleep 1
@@ -327,23 +327,23 @@ public class Clicker
     Start-Sleep 1
     Write-Host 'uBlock Origin > Restore from file > Select folder' -ForegroundColor green -BackgroundColor black
     [System.Windows.Forms.SendKeys]::SendWait('{F4}')
-    Start-Sleep 2
+    Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('^a')
     Start-Sleep 1
     Write-Host "uBlock Origin > Restore from file > Select folder > $DesktopFolder" -ForegroundColor green -BackgroundColor black
     [System.Windows.Forms.SendKeys]::SendWait($DesktopFolder)
     Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
-    Start-Sleep 2
+    Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('%n')
-    Start-Sleep 2
+    Start-Sleep 1
     Write-Host "uBlock Origin > Restore from file > $DesktopFolder > uBlock_Origin_Backup.txt" -ForegroundColor green -BackgroundColor black
     [System.Windows.Forms.SendKeys]::SendWait('uBlock_Origin_Backup.txt')
     Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
     Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
-    Start-Sleep 15
+    Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('^w')
     Start-Sleep 1
     if ((Test-Path -LiteralPath "$DesktopFolder\uBlock_Origin_Backup.txt") -eq $true) {
