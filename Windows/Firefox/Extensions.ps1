@@ -292,25 +292,25 @@ public class Clicker
     Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.txt -OutFile $DesktopFolder\uBlock_Origin_Backup.txt
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\ublock_origin.xpi"
     $OpenWithFirefox.start()
-    Start-Sleep 2
+    Start-Sleep 1
     Get-Process firefox | Set-Window -x 0 -y 0 -Width 500 -Height 400
-    Start-Sleep 2
+    Start-Sleep 1
     Write-Host 'uBlock Origin > Add (If not previously installed)' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(300, 240)
     Write-Host 'uBlock Origin > Add (If previously installed)' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(350, 240)
-    Start-Sleep 5
+    Start-Sleep 1
     Write-Host 'uBlock Origin > Okay' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(440, 210)
-    Start-Sleep 2
+    Start-Sleep 1
     Write-Host 'uBlock Origin > Icon' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(430, 60)
-    Start-Sleep 5
+    Start-Sleep 2
     Write-Host 'uBlock Origin > Open the dashboard' -ForegroundColor green -BackgroundColor black
     [System.Windows.Forms.SendKeys]::SendWait('+{TAB}')
     Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
-    Start-Sleep 3
+    Start-Sleep 1
     Write-Host 'uBlock Origin > Settings.html' -ForegroundColor green -BackgroundColor black
     [System.Windows.Forms.SendKeys]::SendWait('{F6}') 
     Start-Sleep 1
@@ -354,80 +354,80 @@ public class Clicker
     Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4064884/clearurls-1.26.1.xpi -OutFile $env:TEMP\clearurls.xpi
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\clearurls.xpi"
     $OpenWithFirefox.start()
-    Start-Sleep 5
+    Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
     Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
-    Start-Sleep 5
+    Start-Sleep 1
     Write-Host 'ClearURLs > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(305, 263)
-    Start-Sleep 2
+    Start-Sleep 1
     Write-Host 'ClearURLs > Okay' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(440, 210)
-    Start-Sleep 2
+    Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('^w')
     Write-Host 'Im not robot captcha clicker' -ForegroundColor green -BackgroundColor black
     Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/3897119/i_m_not_robot_captcha_clicker-1.3.1.xpi -OutFile $env:TEMP\i_m_not_robot_captcha_clicker.xpi
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\i_m_not_robot_captcha_clicker.xpi"
     $OpenWithFirefox.start()
-    Start-Sleep 5
+    Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
     Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
     Start-Sleep 1
     Write-Host 'Im not robot captcha clicker > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(306, 215)
-    Start-Sleep 2
+    Start-Sleep 1
     Write-Host 'Im not robot captcha clicker > Okay' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(440, 210)
-    Start-Sleep 2
+    Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('^w')
     Write-Host 'Buster' -ForegroundColor green -BackgroundColor black
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\buster_captcha_solver.xpi"
     Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4044701/buster_captcha_solver-2.0.1.xpi -OutFile $env:TEMP\buster_captcha_solver.xpi
     $OpenWithFirefox.start()
-    Start-Sleep 5
+    Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
     Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
     Start-Sleep 1
     Write-Host 'Buster > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(310, 263)
-    Start-Sleep 2
+    Start-Sleep 1
     Write-Host 'Buster > Okay' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(440, 210)
-    Start-Sleep 2
+    Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('^w')
     Write-Host 'Camelizer' -ForegroundColor green -BackgroundColor black
     Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4075638/the_camelizer_price_history_ch-3.0.15.xpi -OutFile $env:TEMP\the_camelizer_price_history_ch.xpi
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\the_camelizer_price_history_ch.xpi"
     $OpenWithFirefox.start()
-    Start-Sleep 5
+    Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
     Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
     Start-Sleep 1
     Write-Host 'Camelizer > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(310, 294)
-    Start-Sleep 2
+    Start-Sleep 1
     Write-Host 'Camelizer > Okay' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(440, 210)
-    Start-Sleep 2
+    Start-Sleep 1
     Write-Host 'Tampermonkey' -ForegroundColor green -BackgroundColor black
     Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4250678/tampermonkey-5.1.0.xpi -OutFile $env:TEMP\tampermonkey.xpi
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\tampermonkey.xpi"
     [System.Windows.Forms.SendKeys]::SendWait('^w')
     [System.Windows.Forms.SendKeys]::SendWait('^w')
-    Start-Sleep 5
+    Start-Sleep 1
     $OpenWithFirefox.start()
-    Start-Sleep 5
+    Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
     Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
     Start-Sleep 1
     Write-Host 'Tampermonkey > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(310, 297)
-    Start-Sleep 2
+    Start-Sleep 1
     Write-Host 'Tampermonkey > Okay' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(440, 210)
     Start-Sleep 5
@@ -435,9 +435,9 @@ public class Clicker
     $OpenWithFirefox.StartInfo.Arguments = 'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js'
     [System.Windows.Forms.SendKeys]::SendWait('^w')
     [System.Windows.Forms.SendKeys]::SendWait('^w')
-    Start-Sleep 5
+    Start-Sleep 1
     $OpenWithFirefox.start()
-    Start-Sleep 5
+    Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
     Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
