@@ -10,10 +10,6 @@
 > [!CAUTION]
 > Update TV Firmware at night hours to avoid power loss.
 
-<details>
-
-<summary>Samsung TV (Click to expand):</summary>
-
 1. Factory Reset.
 1. (SmartThings Setup) Remote Control > Left arrow > Left arrow.
 1. (Connection Guide Setup) `Next`.
@@ -33,5 +29,3 @@
 1. `Settings`> `General` > `Eco Solution` > `Ambient Light Detection` > `Off`
 1. `Settings` > `General` > `Smart Features` > `Autorun Smart Hub: Off` > `Autorun Last App: Off` > `Autorun Multi View Casting: Off`.
 1. Enable HDR: `Settings` > `Picture` > `Expert Settings` > `Picture Clarity Settings` > `Custom` > `Blur Reduction: 0` > `Judder Reduction: 0`.
-
-</details>
