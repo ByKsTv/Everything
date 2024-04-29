@@ -1199,39 +1199,39 @@ public class Clicker
 	Start-Sleep 2
 	Get-Process firefox | Set-Window -x 0 -y 0 -Width 500 -Height 400
 	Start-Sleep 2
-	Write-Host "'uBlock Origin' > 'Add' (If not previously installed)" -ForegroundColor green -BackgroundColor black
+	Write-Host 'uBlock Origin > Add (If not previously installed)' -ForegroundColor green -BackgroundColor black
 	[Clicker]::LeftClickAtPoint(300, 240)
-	Write-Host "'uBlock Origin' > 'Add' (If previously installed)" -ForegroundColor green -BackgroundColor black
+	Write-Host 'uBlock Origin > Add (If previously installed)' -ForegroundColor green -BackgroundColor black
 	[Clicker]::LeftClickAtPoint(350, 240)
 	Start-Sleep 2
-	Write-Host "'uBlock Origin' > 'Okay'" -ForegroundColor green -BackgroundColor black
+	Write-Host 'uBlock Origin > Okay' -ForegroundColor green -BackgroundColor black
 	[Clicker]::LeftClickAtPoint(450, 210)
-	Write-Host "'uBlock Origin' > Icon" -ForegroundColor green -BackgroundColor black
+	Write-Host 'uBlock Origin > Icon' -ForegroundColor green -BackgroundColor black
 	[Clicker]::LeftClickAtPoint(430, 60)
 	Start-Sleep 2
-	Write-Host "'uBlock Origin' > 'Open the dashboard'" -ForegroundColor green -BackgroundColor black
+	Write-Host 'uBlock Origin > Open the dashboard' -ForegroundColor green -BackgroundColor black
 	$WshShell.SendKeys('+{TAB}')
 	Start-Sleep 1
 	$WshShell.SendKeys('{ENTER}')
 	Start-Sleep 5
-	Write-Host "'uBlock Origin' > 'Restore from file'" -ForegroundColor green -BackgroundColor black
+	Write-Host 'uBlock Origin > Restore from file' -ForegroundColor green -BackgroundColor black
 	$WshShell.SendKeys('+{TAB 2}')
 	Start-Sleep 1
 	$WshShell.SendKeys('{ENTER}')
 	Start-Sleep 1
-	Write-Host "'uBlock Origin' > 'Restore from file' > Select folder" -ForegroundColor green -BackgroundColor black
+	Write-Host 'uBlock Origin > Restore from file > Select folder' -ForegroundColor green -BackgroundColor black
 	$WshShell.SendKeys('{F4}')
 	Start-Sleep 2
 	$WshShell.SendKeys('^A')
 	Start-Sleep 1
-	Write-Host "'uBlock Origin' > 'Restore from file' > Select folder > $DesktopFolder" -ForegroundColor green -BackgroundColor black
+	Write-Host "uBlock Origin > Restore from file > Select folder > $DesktopFolder" -ForegroundColor green -BackgroundColor black
 	$WshShell.SendKeys($DesktopFolder)
 	Start-Sleep 1
 	$WshShell.SendKeys('{ENTER}')
 	Start-Sleep 1
 	$WshShell.SendKeys('{TAB 6}')
 	Start-Sleep 1
-	Write-Host "'uBlock Origin' > 'Restore from file' $DesktopFolder > 'Backup.txt'" -ForegroundColor green -BackgroundColor black
+	Write-Host "uBlock Origin > Restore from file $DesktopFolder > Backup.txt" -ForegroundColor green -BackgroundColor black
 	$WshShell.SendKeys('Backup.txt')
 	Start-Sleep 1
 	$WshShell.SendKeys('{ENTER}')
@@ -1245,54 +1245,54 @@ public class Clicker
 	$OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\clearurls.xpi"
 	$OpenWithFirefox.start()
 	Start-Sleep 2
-	Write-Host "'ClearURLs' > 'Add'" -ForegroundColor green -BackgroundColor black
+	Write-Host 'ClearURLs > Add' -ForegroundColor green -BackgroundColor black
 	[Clicker]::LeftClickAtPoint(305, 263)
 	Start-Sleep 2
-	Write-Host "'ClearURLs' > 'Okay'" -ForegroundColor green -BackgroundColor black
+	Write-Host 'ClearURLs > Okay' -ForegroundColor green -BackgroundColor black
 	[Clicker]::LeftClickAtPoint(450, 210)
 	Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/3897119/i_m_not_robot_captcha_clicker-1.3.1.xpi -OutFile $env:TEMP\i_m_not_robot_captcha_clicker.xpi
 	$OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\i_m_not_robot_captcha_clicker.xpi"
 	$OpenWithFirefox.start()
 	Start-Sleep 2
-	Write-Host "'I'm not robot captcha clicker' > 'Add'" -ForegroundColor green -BackgroundColor black
+	Write-Host "I'm not robot captcha clicker > Add" -ForegroundColor green -BackgroundColor black
 	[Clicker]::LeftClickAtPoint(306, 215)
 	Start-Sleep 2
-	Write-Host "'I'm not robot captcha clicker' > 'Okay'" -ForegroundColor green -BackgroundColor black
+	Write-Host "I'm not robot captcha clicker > Okay" -ForegroundColor green -BackgroundColor black
 	[Clicker]::LeftClickAtPoint(450, 210)
 	$OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\buster_captcha_solver.xpi"
 	Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4044701/buster_captcha_solver-2.0.1.xpi -OutFile $env:TEMP\buster_captcha_solver.xpi
 	$OpenWithFirefox.start()
 	Start-Sleep 2
-	Write-Host "'Buster' > 'Add'" -ForegroundColor green -BackgroundColor black
+	Write-Host 'Buster > Add' -ForegroundColor green -BackgroundColor black
 	[Clicker]::LeftClickAtPoint(310, 263)
 	Start-Sleep 2
-	Write-Host "'Buster' > 'Okay'" -ForegroundColor green -BackgroundColor black
+	Write-Host 'Buster > Okay' -ForegroundColor green -BackgroundColor black
 	[Clicker]::LeftClickAtPoint(450, 210)
 	Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4075638/the_camelizer_price_history_ch-3.0.15.xpi -OutFile $env:TEMP\the_camelizer_price_history_ch.xpi
 	$OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\the_camelizer_price_history_ch.xpi"
 	$OpenWithFirefox.start()
 	Start-Sleep 2
-	Write-Host "'Camelizer' > 'Add'" -ForegroundColor green -BackgroundColor black
+	Write-Host 'Camelizer > Add' -ForegroundColor green -BackgroundColor black
 	[Clicker]::LeftClickAtPoint(310, 294)
 	Start-Sleep 1
 	[Clicker]::LeftClickAtPoint(310, 294)
-	Write-Host "'Camelizer' > 'Okay'" -ForegroundColor green -BackgroundColor black
+	Write-Host 'Camelizer > Okay' -ForegroundColor green -BackgroundColor black
 	[Clicker]::LeftClickAtPoint(450, 210)
 	Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4250678/tampermonkey-5.1.0.xpi -OutFile $env:TEMP\tampermonkey.xpi
 	$OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\tampermonkey.xpi"
 	$OpenWithFirefox.start()
 	Start-Sleep 2
-	Write-Host "'Tampermonkey' > 'Add'" -ForegroundColor green -BackgroundColor black
+	Write-Host 'Tampermonkey > Add' -ForegroundColor green -BackgroundColor black
 	[Clicker]::LeftClickAtPoint(310, 297)
 	Start-Sleep 1
 	[Clicker]::LeftClickAtPoint(310, 297)
 	Start-Sleep 4
-	Write-Host "'Tampermonkey' > 'Okay'" -ForegroundColor green -BackgroundColor black
+	Write-Host 'Tampermonkey > Okay' -ForegroundColor green -BackgroundColor black
 	[Clicker]::LeftClickAtPoint(450, 210)
 	$OpenWithFirefox.StartInfo.Arguments = 'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js'
 	$OpenWithFirefox.start()
 	Start-Sleep 4
-	Write-Host "'Tampermonkey' > 'AdsBypasser' > 'Install'" -ForegroundColor green -BackgroundColor black
+	Write-Host 'Tampermonkey > AdsBypasser > Install' -ForegroundColor green -BackgroundColor black
 	$WshShell.SendKeys('{ENTER}')
 }
 $EdgeUninstallAnswer = [System.Windows.Forms.MessageBox]::Show('Uninstall Edge?' , 'Uninstall Edge' , 4, 32)
