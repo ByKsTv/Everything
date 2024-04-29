@@ -21,7 +21,7 @@ else {
 }
 Start-ScheduledTask -TaskName $MPV_Updater
 Start-Sleep 2
-[System.Windows.Forms.SendKeys]::SendWait('{Y 2}')
+[System.Windows.Forms.SendKeys]::SendWait('{y 2}')
 Start-Sleep 1
 [System.Windows.Forms.SendKeys]::SendWait('{1}')
 Start-Sleep 10
