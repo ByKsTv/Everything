@@ -3,7 +3,21 @@
 > [!NOTE]
 > Everything about Firefox.
 
+## Arkenfox Setup - PowerShell Script (Admin)
+
+```powershell
+Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Arkenfox.ps1 | Invoke-Expression
+
+```
+
 ## Firefox Extensions
+
+### Auto Install
+
+```powershell
+Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Extensions.ps1 | Invoke-Expression
+
+```
 
 ### Manual Install
 
@@ -13,15 +27,3 @@
 1. [I'm not robot captcha clicker](https://addons.mozilla.org/en-US/firefox/addon/i-m-not-robot-captcha-clicker/)
 1. [Buster: Captcha Solver for Humans](https://addons.mozilla.org/en-US/firefox/addon/buster-captcha-solver/)
 1. [The Camelizer](https://addons.mozilla.org/en-US/firefox/addon/the-camelizer-price-history-ch/)
-
-### Auto Install
-
-```powershell
-Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Extensions.ps1 | Invoke-Expression
-```
-
-## Arkenfox Setup - PowerShell Script (Admin)
-
-```powershell
-Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Arkenfox.ps1 | Invoke-Expression
-```

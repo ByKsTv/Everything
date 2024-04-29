@@ -309,9 +309,7 @@ public class Clicker
     Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
     Start-Sleep 5
-    #
     Write-Host 'uBlock Origin > Settings.html' -ForegroundColor green -BackgroundColor black
-    Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait("{F6}") 
     Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait("^{c}")
@@ -323,7 +321,6 @@ public class Clicker
     Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait("^{ENTER}")
     Start-Sleep 1
-    #
     Write-Host 'uBlock Origin > Restore from file' -ForegroundColor green -BackgroundColor black
     [System.Windows.Forms.SendKeys]::SendWait('+{TAB 2}')
     Start-Sleep 1
