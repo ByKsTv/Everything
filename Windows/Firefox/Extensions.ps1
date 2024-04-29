@@ -344,7 +344,7 @@ public class Clicker
     Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
     Start-Sleep 15
-    taskkill /IM firefox.exe /F
+    [System.Windows.Forms.SendKeys]::SendWait('^w')
     Start-Sleep 1
     if ((Test-Path -LiteralPath "$DesktopFolder\uBlock_Origin_Backup.txt") -eq $true) {
         Remove-Item -Path ("$DesktopFolder\uBlock_Origin_Backup.txt") -Force -Recurse
@@ -363,8 +363,11 @@ public class Clicker
     Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/3897119/i_m_not_robot_captcha_clicker-1.3.1.xpi -OutFile $env:TEMP\i_m_not_robot_captcha_clicker.xpi
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\i_m_not_robot_captcha_clicker.xpi"
     [System.Windows.Forms.SendKeys]::SendWait('^w')
+    Start-Sleep 1
     $OpenWithFirefox.start()
     Start-Sleep 5
+    Get-Process firefox | Set-Window -x 0 -y 0 -Width 500 -Height 400
+    Start-Sleep 1
     Write-Host 'Im not robot captcha clicker > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(306, 215)
     Start-Sleep 2
@@ -372,8 +375,11 @@ public class Clicker
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\buster_captcha_solver.xpi"
     Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4044701/buster_captcha_solver-2.0.1.xpi -OutFile $env:TEMP\buster_captcha_solver.xpi
     [System.Windows.Forms.SendKeys]::SendWait('^w')
+    Start-Sleep 1
     $OpenWithFirefox.start()
     Start-Sleep 5
+    Get-Process firefox | Set-Window -x 0 -y 0 -Width 500 -Height 400
+    Start-Sleep 1
     Write-Host 'Buster > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(310, 263)
     Start-Sleep 2
@@ -381,8 +387,11 @@ public class Clicker
     Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4075638/the_camelizer_price_history_ch-3.0.15.xpi -OutFile $env:TEMP\the_camelizer_price_history_ch.xpi
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\the_camelizer_price_history_ch.xpi"
     [System.Windows.Forms.SendKeys]::SendWait('^w')
+    Start-Sleep 1
     $OpenWithFirefox.start()
     Start-Sleep 5
+    Get-Process firefox | Set-Window -x 0 -y 0 -Width 500 -Height 400
+    Start-Sleep 1
     Write-Host 'Camelizer > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(310, 294)
     Start-Sleep 2
@@ -390,8 +399,11 @@ public class Clicker
     Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4250678/tampermonkey-5.1.0.xpi -OutFile $env:TEMP\tampermonkey.xpi
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\tampermonkey.xpi"
     [System.Windows.Forms.SendKeys]::SendWait('^w')
+    Start-Sleep 1
     $OpenWithFirefox.start()
     Start-Sleep 5
+    Get-Process firefox | Set-Window -x 0 -y 0 -Width 500 -Height 400
+    Start-Sleep 1
     Write-Host 'Tampermonkey > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(310, 297)
     Start-Sleep 2
@@ -400,6 +412,8 @@ public class Clicker
     [System.Windows.Forms.SendKeys]::SendWait('^w')
     $OpenWithFirefox.start()
     Start-Sleep 5
+    Get-Process firefox | Set-Window -x 0 -y 0 -Width 500 -Height 400
+    Start-Sleep 1
     Write-Host 'Tampermonkey > AdsBypasser > Install' -ForegroundColor green -BackgroundColor black
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
 }
