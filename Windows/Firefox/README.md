@@ -20,7 +20,6 @@
 Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Extensions.ps1 | Invoke-Expression
 ```
 
-
 ## Arkenfox Setup - PowerShell Script (Admin)
 
 ```powershell
