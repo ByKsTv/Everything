@@ -358,6 +358,8 @@ public class Clicker
     Write-Host 'ClearURLs > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(305, 263)
     Start-Sleep 2
+    [Clicker]::LeftClickAtPoint(305, 263)
+    Start-Sleep 2
     Write-Host 'ClearURLs > Okay' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(450, 210)
     Write-Host 'Im not robot captcha clicker' -ForegroundColor green -BackgroundColor black
@@ -368,6 +370,8 @@ public class Clicker
     Write-Host 'Im not robot captcha clicker > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(306, 215)
     Start-Sleep 2
+    [Clicker]::LeftClickAtPoint(306, 215)
+    Start-Sleep 2
     Write-Host 'Im not robot captcha clicker > Okay' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(450, 210)
     Write-Host 'Buster' -ForegroundColor green -BackgroundColor black
@@ -376,6 +380,8 @@ public class Clicker
     $OpenWithFirefox.start()
     Start-Sleep 2
     Write-Host 'Buster > Add' -ForegroundColor green -BackgroundColor black
+    [Clicker]::LeftClickAtPoint(310, 263)
+    Start-Sleep 2
     [Clicker]::LeftClickAtPoint(310, 263)
     Start-Sleep 2
     Write-Host 'Buster > Okay' -ForegroundColor green -BackgroundColor black
@@ -389,6 +395,8 @@ public class Clicker
     [Clicker]::LeftClickAtPoint(310, 294)
     Start-Sleep 1
     [Clicker]::LeftClickAtPoint(310, 294)
+    Start-Sleep 1
+    [Clicker]::LeftClickAtPoint(310, 294)
     Write-Host 'Camelizer > Okay' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(450, 210)
     Write-Host 'Tampermonkey' -ForegroundColor green -BackgroundColor black
@@ -397,6 +405,8 @@ public class Clicker
     $OpenWithFirefox.start()
     Start-Sleep 2
     Write-Host 'Tampermonkey > Add' -ForegroundColor green -BackgroundColor black
+    [Clicker]::LeftClickAtPoint(310, 297)
+    Start-Sleep 1
     [Clicker]::LeftClickAtPoint(310, 297)
     Start-Sleep 1
     [Clicker]::LeftClickAtPoint(310, 297)
