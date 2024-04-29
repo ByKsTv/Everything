@@ -398,7 +398,8 @@ public class Clicker
     Write-Host 'Tampermonkey' -ForegroundColor green -BackgroundColor black
     Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4250678/tampermonkey-5.1.0.xpi -OutFile $env:TEMP\tampermonkey.xpi
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\tampermonkey.xpi"
-    [System.Windows.Forms.SendKeys]::SendWait('^w 2')
+    [System.Windows.Forms.SendKeys]::SendWait('^w')
+    [System.Windows.Forms.SendKeys]::SendWait('^w')
     Start-Sleep 1
     $OpenWithFirefox.start()
     Start-Sleep 5
@@ -409,7 +410,8 @@ public class Clicker
     Start-Sleep 15
     Write-Host 'AdsBypasser' -ForegroundColor green -BackgroundColor black
     $OpenWithFirefox.StartInfo.Arguments = 'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js'
-    [System.Windows.Forms.SendKeys]::SendWait('^w 2')
+    [System.Windows.Forms.SendKeys]::SendWait('^w')
+    [System.Windows.Forms.SendKeys]::SendWait('^w')
     $OpenWithFirefox.start()
     Start-Sleep 15
     Get-Process firefox | Set-Window -x 0 -y 0 -Width 500 -Height 400
