@@ -8,7 +8,7 @@
 1. PowerShell (Admin) (Same folder as mpv):
 
    ```powershell
-   Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/Windows/mpv/master/Install_Update.ps1 | Invoke-Expression
+   Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/Install_Update.ps1 | Invoke-Expression
 
    ```
 

@@ -2,7 +2,7 @@
   "timeStamp": 1714292670994,
   "version": "1.57.2",
   "userSettings": {
-    "externalLists": "https://filters.adtidy.org/extension/ublock/filters/14.txt\nhttps://malware-filter.gitlab.io/pup-filter/pup-filter.txt\nhttps://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt\nhttps://raw.githubusercontent.com/Spam404/lists/master/adblock-list.txt\nhttps://raw.githubusercontent.com/bogachenko/fuckfuckadblock/master/fuckfuckadblock.txt\nhttps://raw.githubusercontent.com/gijsdev/ublock-hide-yt-shorts/master/list.txt\nhttps://raw.githubusercontent.com/ByKsTv/Everything/Windows/uBlock_Origin/master/Website_Debloater.txt\nhttps://secure.fanboy.co.nz/fanboy-annoyance_ubo.txt",
+    "externalLists": "https://filters.adtidy.org/extension/ublock/filters/14.txt\nhttps://malware-filter.gitlab.io/pup-filter/pup-filter.txt\nhttps://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt\nhttps://raw.githubusercontent.com/Spam404/lists/master/adblock-list.txt\nhttps://raw.githubusercontent.com/bogachenko/fuckfuckadblock/master/fuckfuckadblock.txt\nhttps://raw.githubusercontent.com/gijsdev/ublock-hide-yt-shorts/master/list.txt\nhttps://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Website_Debloater.txt\nhttps://secure.fanboy.co.nz/fanboy-annoyance_ubo.txt",
     "firewallPaneMinimized": false,
     "importedLists": [
       "https://filters.adtidy.org/extension/ublock/filters/14.txt",
@@ -11,7 +11,7 @@
       "https://raw.githubusercontent.com/Spam404/lists/master/adblock-list.txt",
       "https://raw.githubusercontent.com/bogachenko/fuckfuckadblock/master/fuckfuckadblock.txt",
       "https://raw.githubusercontent.com/gijsdev/ublock-hide-yt-shorts/master/list.txt",
-      "https://raw.githubusercontent.com/ByKsTv/Everything/Windows/uBlock_Origin/master/Website_Debloater.txt",
+      "https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Website_Debloater.txt",
       "https://secure.fanboy.co.nz/fanboy-annoyance_ubo.txt"
     ],
     "popupPanelSections": 63,
@@ -91,7 +91,7 @@
     "https://secure.fanboy.co.nz/fanboy-annoyance_ubo.txt",
     "https://raw.githubusercontent.com/bogachenko/fuckfuckadblock/master/fuckfuckadblock.txt",
     "https://raw.githubusercontent.com/gijsdev/ublock-hide-yt-shorts/master/list.txt",
-    "https://raw.githubusercontent.com/ByKsTv/Everything/Windows/uBlock_Origin/master/Website_Debloater.txt",
+    "https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Website_Debloater.txt",
     "https://malware-filter.gitlab.io/pup-filter/pup-filter.txt",
     "https://raw.githubusercontent.com/Spam404/lists/master/adblock-list.txt"
   ],

@@ -5,8 +5,8 @@ if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Mozilla Firefox") -eq $tru
 	$CurrentFireFoxProfilePath = "$env:APPDATA\Mozilla\Firefox\Profiles\$CurrentFireFoxProfilePath0"
 	if ((Test-Path -LiteralPath $CurrentFireFoxProfilePath) -eq $true) {
 		Write-Host 'Arkenfox Setup' -ForegroundColor green -BackgroundColor black
-		Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/Windows/Firefox/master/user-overrides.js -OutFile $CurrentFireFoxProfilePath\user-overrides.js
-		Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/Windows/Firefox/master/search.json.mozlz4 -OutFile $CurrentFireFoxProfilePath\search.json.mozlz4
+		Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/user-overrides.js -OutFile $CurrentFireFoxProfilePath\user-overrides.js
+		Invoke-WebRequest -Uri https://github.com/ByKsTv/Everything/raw/main/Windows/Firefox/search.json.mozlz4 -OutFile $CurrentFireFoxProfilePath\search.json.mozlz4
 		Invoke-WebRequest -Uri https://raw.githubusercontent.com/arkenfox/user.js/master/updater.bat -OutFile $CurrentFireFoxProfilePath\updater.bat
 		Invoke-WebRequest -Uri https://raw.githubusercontent.com/arkenfox/user.js/master/prefsCleaner.bat -OutFile $CurrentFireFoxProfilePath\prefsCleaner.bat
 		Invoke-WebRequest -Uri https://raw.githubusercontent.com/arkenfox/user.js/master/user.js -OutFile $CurrentFireFoxProfilePath\user.js
@@ -55,7 +55,7 @@ if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Mozilla Firefox") -eq $tru
 		else {
 			Write-Host "Task Scheduler > $Arkenfox_Overrides" -ForegroundColor green -BackgroundColor black
 			$Arkenfox_Overrides_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-			$Arkenfox_Overrides_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/Windows/Firefox/master/user-overrides.js -OutFile $CurrentFireFoxProfilePath\user-overrides.js"
+			$Arkenfox_Overrides_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/user-overrides.js -OutFile $CurrentFireFoxProfilePath\user-overrides.js"
 			$Arkenfox_Overrides_Trigger = New-ScheduledTaskTrigger -AtLogOn
 			$Arkenfox_Overrides_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
 			$Arkenfox_Overrides_Parameters = @{
@@ -1193,7 +1193,7 @@ public class Clicker
 	$OpenWithFirefox.StartInfo.Filename = 'firefox.exe'
 	Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4261710/ublock_origin-1.57.2.xpi -OutFile $env:TEMP\ublock_origin.xpi
 	$DesktopFolder = [Environment]::GetFolderPath('Desktop')
-	Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/Windows/uBlock_Origin/master/Backup.txt -OutFile $DesktopFolder\Backup.txt
+	Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.txt -OutFile $DesktopFolder\Backup.txt
 	$OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\ublock_origin.xpi"
 	$OpenWithFirefox.start()
 	Start-Sleep 2

@@ -45,7 +45,7 @@
 1. PowerShell (Admin):
 
    ```powershell
-   Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/Windows/master/Windows/Windows10_Step1.ps1 | Invoke-Expression
+   Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Windows10_Step1.ps1 | Invoke-Expression
 
    ```
 
@@ -53,7 +53,7 @@
 
 #### Step 5.1.1 - Chrome Extensions
 
-1. [uBlock Origin](https://chromewebstore.google.com/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm) > `Settings` > [Restore from file](https://raw.githubusercontent.com/ByKsTv/Everything/Windows/uBlock_Origin/master/Backup.txt).
+1. [uBlock Origin](https://chromewebstore.google.com/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm) > `Settings` > [Restore from file](https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.txt).
 2. [Tampermonkey](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) > [adsbypasser](https://adsbypasser.github.io/) > `Install Full Edition`.
 3. [ClearURLs](https://chromewebstore.google.com/detail/clearurls/lckanjgmijmafbedllaakclkaicjfmnk)
 4. [I'm not robot captcha clicker](https://chromewebstore.google.com/detail/im-not-robot-captcha-clic/ceipnlhmjohemhfpbjdgeigkababhmjc)
@@ -114,7 +114,7 @@
 ```
 
 - [7-Zip](https://www.7-zip.org)
-- mpv + [config](https://github.com/ByKsTv/Everything/Windows/tree/master/mpv)
+- mpv + [config](https://github.com/ByKsTv/Everything/tree/main/Windows/mpv)
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp/releases/latest)
 - [Razer Synapse](https://www.razer.com/synapse-3)
 - [Logitech G HUB](https://www.logitechg.com/en-us/innovation/g-hub.html)

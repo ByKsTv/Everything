@@ -1,6 +1,6 @@
 Unregister-ScheduledTask -TaskName Windows10_Step2 -Confirm:$false
 $Windows10Step3 = 'Windows10_Step3'
-Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/Windows/master/$Windows10Step3.ps1 -OutFile $env:TEMP\$Windows10Step3.ps1
+Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/$Windows10Step3.ps1 -OutFile $env:TEMP\$Windows10Step3.ps1
 Write-Host "Task Scheduler > $Windows10Step3" -ForegroundColor green -BackgroundColor black
 $Windows10Step3_Principal = New-ScheduledTaskPrincipal -UserId $env:computername\$env:USERNAME -RunLevel Highest
 $Windows10Step3_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "-WindowStyle Maximized -ExecutionPolicy Bypass -File $env:TEMP\$Windows10Step3.ps1"

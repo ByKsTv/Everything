@@ -1,7 +1,7 @@
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 $Windows10Step2 = 'Windows10_Step2'
-Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/Windows/master/$Windows10Step2.ps1 -OutFile $env:TEMP\$Windows10Step2.ps1
+Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/$Windows10Step2.ps1 -OutFile $env:TEMP\$Windows10Step2.ps1
 Write-Host "Task Scheduler > $Windows10Step2" -ForegroundColor green -BackgroundColor black
 $Windows10Step2_Principal = New-ScheduledTaskPrincipal -UserId $env:computername\$env:USERNAME -RunLevel Highest
 $Windows10Step2_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "-WindowStyle Maximized -ExecutionPolicy Bypass -File $env:TEMP\$Windows10Step2.ps1"
@@ -21,7 +21,7 @@ $powerSchemeGuid = 'e9a42b02-d5df-448d-aa00-03f14749eb61'
 $schemes = powercfg /list | Out-String -Stream
 $ultimateScheme = $schemes | Where-Object { $_ -match $powerSchemeName }
 if ($null -eq $ultimateScheme) {
-	Invoke-WebRequest -Uri https://github.com/ByKsTv/Everything/Windows/raw/master/Windows10_Step1_UltimatePerformance.pow -OutFile $env:TEMP\UltimatePerformance.pow
+	Invoke-WebRequest -Uri https://github.com/ByKsTv/Everything/raw/main/Windows/Windows10_Step1_UltimatePerformance.pow -OutFile $env:TEMP\UltimatePerformance.pow
 	powercfg -import $env:TEMP\UltimatePerformance.pow $powerSchemeGuid
 }
 powercfg /S $powerSchemeGuid
