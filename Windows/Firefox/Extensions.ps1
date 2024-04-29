@@ -350,8 +350,6 @@ public class Clicker
     Write-Host 'ClearURLs' -ForegroundColor green -BackgroundColor black
     Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4064884/clearurls-1.26.1.xpi -OutFile $env:TEMP\clearurls.xpi
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\clearurls.xpi"
-    [System.Windows.Forms.SendKeys]::SendWait('^w')
-    Start-Sleep 5
     $OpenWithFirefox.start()
     Start-Sleep 5
     Get-Process firefox | Set-Window -x 0 -y 0 -Width 500 -Height 400
@@ -362,8 +360,6 @@ public class Clicker
     Write-Host 'Im not robot captcha clicker' -ForegroundColor green -BackgroundColor black
     Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/3897119/i_m_not_robot_captcha_clicker-1.3.1.xpi -OutFile $env:TEMP\i_m_not_robot_captcha_clicker.xpi
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\i_m_not_robot_captcha_clicker.xpi"
-    [System.Windows.Forms.SendKeys]::SendWait('^w')
-    Start-Sleep 5
     $OpenWithFirefox.start()
     Start-Sleep 5
     Get-Process firefox | Set-Window -x 0 -y 0 -Width 500 -Height 400
@@ -374,8 +370,6 @@ public class Clicker
     Write-Host 'Buster' -ForegroundColor green -BackgroundColor black
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\buster_captcha_solver.xpi"
     Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4044701/buster_captcha_solver-2.0.1.xpi -OutFile $env:TEMP\buster_captcha_solver.xpi
-    [System.Windows.Forms.SendKeys]::SendWait('^w')
-    Start-Sleep 5
     $OpenWithFirefox.start()
     Start-Sleep 5
     Get-Process firefox | Set-Window -x 0 -y 0 -Width 500 -Height 400
@@ -386,8 +380,6 @@ public class Clicker
     Write-Host 'Camelizer' -ForegroundColor green -BackgroundColor black
     Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4075638/the_camelizer_price_history_ch-3.0.15.xpi -OutFile $env:TEMP\the_camelizer_price_history_ch.xpi
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\the_camelizer_price_history_ch.xpi"
-    [System.Windows.Forms.SendKeys]::SendWait('^w')
-    Start-Sleep 5
     $OpenWithFirefox.start()
     Start-Sleep 5
     Get-Process firefox | Set-Window -x 0 -y 0 -Width 500 -Height 400
