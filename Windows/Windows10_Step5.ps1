@@ -903,7 +903,7 @@ if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Mozilla Firefox") -eq $tru
 	Write-Host 'Firefox Extensions Setup' -ForegroundColor green -BackgroundColor black
 	Write-Host 'Setting Scale to 100%' -ForegroundColor green -BackgroundColor black
 	explorer ms-settings:display
-	Start-Sleep 2
+	Start-Sleep 3
 	$WshShell = New-Object -ComObject WScript.Shell
 	Start-Sleep 1
 	$WshShell.SendKeys('{TAB 2}{UP 5}')
@@ -1244,7 +1244,7 @@ public class Clicker
 	Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4064884/clearurls-1.26.1.xpi -OutFile $env:TEMP\clearurls.xpi
 	$OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\clearurls.xpi"
 	$OpenWithFirefox.start()
-	Start-Sleep 2
+	Start-Sleep 3
 	Write-Host 'ClearURLs > Add' -ForegroundColor green -BackgroundColor black
 	[Clicker]::LeftClickAtPoint(305, 263)
 	Start-Sleep 2
