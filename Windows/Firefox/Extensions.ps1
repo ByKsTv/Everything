@@ -300,9 +300,6 @@ public class Clicker
     Write-Host 'uBlock Origin > Add (If previously installed)' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(350, 240)
     Start-Sleep 2
-    Write-Host 'uBlock Origin > Okay' -ForegroundColor green -BackgroundColor black
-    [Clicker]::LeftClickAtPoint(450, 210)
-    Start-Sleep 2
     Write-Host 'uBlock Origin > Icon' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(430, 60)
     Start-Sleep 2
@@ -347,6 +344,8 @@ public class Clicker
     Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
     Start-Sleep 15
+    taskkill /IM firefox.exe /F
+    Start-Sleep 1
     if ((Test-Path -LiteralPath "$DesktopFolder\uBlock_Origin_Backup.txt") -eq $true) {
         Remove-Item -Path ("$DesktopFolder\uBlock_Origin_Backup.txt") -Force -Recurse
     }
@@ -354,66 +353,53 @@ public class Clicker
     Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4064884/clearurls-1.26.1.xpi -OutFile $env:TEMP\clearurls.xpi
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\clearurls.xpi"
     $OpenWithFirefox.start()
-    Start-Sleep 3
+    Start-Sleep 5
     Write-Host 'ClearURLs > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(305, 263)
     Start-Sleep 2
-    [Clicker]::LeftClickAtPoint(305, 263)
-    Start-Sleep 2
-    Write-Host 'ClearURLs > Okay' -ForegroundColor green -BackgroundColor black
-    [Clicker]::LeftClickAtPoint(450, 210)
+    taskkill /IM firefox.exe /F
+    Start-Sleep 1
     Write-Host 'Im not robot captcha clicker' -ForegroundColor green -BackgroundColor black
     Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/3897119/i_m_not_robot_captcha_clicker-1.3.1.xpi -OutFile $env:TEMP\i_m_not_robot_captcha_clicker.xpi
+    
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\i_m_not_robot_captcha_clicker.xpi"
     $OpenWithFirefox.start()
-    Start-Sleep 2
+    Start-Sleep 5
     Write-Host 'Im not robot captcha clicker > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(306, 215)
     Start-Sleep 2
-    [Clicker]::LeftClickAtPoint(306, 215)
-    Start-Sleep 2
-    Write-Host 'Im not robot captcha clicker > Okay' -ForegroundColor green -BackgroundColor black
-    [Clicker]::LeftClickAtPoint(450, 210)
+    taskkill /IM firefox.exe /F
+    Start-Sleep 1
     Write-Host 'Buster' -ForegroundColor green -BackgroundColor black
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\buster_captcha_solver.xpi"
     Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4044701/buster_captcha_solver-2.0.1.xpi -OutFile $env:TEMP\buster_captcha_solver.xpi
     $OpenWithFirefox.start()
-    Start-Sleep 2
+    Start-Sleep 5
     Write-Host 'Buster > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(310, 263)
     Start-Sleep 2
-    [Clicker]::LeftClickAtPoint(310, 263)
-    Start-Sleep 2
-    Write-Host 'Buster > Okay' -ForegroundColor green -BackgroundColor black
-    [Clicker]::LeftClickAtPoint(450, 210)
+    taskkill /IM firefox.exe /F
+    Start-Sleep 1
     Write-Host 'Camelizer' -ForegroundColor green -BackgroundColor black
     Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4075638/the_camelizer_price_history_ch-3.0.15.xpi -OutFile $env:TEMP\the_camelizer_price_history_ch.xpi
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\the_camelizer_price_history_ch.xpi"
     $OpenWithFirefox.start()
-    Start-Sleep 2
+    Start-Sleep 5
     Write-Host 'Camelizer > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(310, 294)
+    Start-Sleep 2
+    taskkill /IM firefox.exe /F
     Start-Sleep 1
-    [Clicker]::LeftClickAtPoint(310, 294)
-    Start-Sleep 1
-    [Clicker]::LeftClickAtPoint(310, 294)
-    Write-Host 'Camelizer > Okay' -ForegroundColor green -BackgroundColor black
-    [Clicker]::LeftClickAtPoint(450, 210)
     Write-Host 'Tampermonkey' -ForegroundColor green -BackgroundColor black
     Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4250678/tampermonkey-5.1.0.xpi -OutFile $env:TEMP\tampermonkey.xpi
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\tampermonkey.xpi"
     $OpenWithFirefox.start()
-    Start-Sleep 2
+    Start-Sleep 5
     Write-Host 'Tampermonkey > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(310, 297)
-    Start-Sleep 1
-    [Clicker]::LeftClickAtPoint(310, 297)
-    Start-Sleep 1
-    [Clicker]::LeftClickAtPoint(310, 297)
     Start-Sleep 2
-    Write-Host 'Tampermonkey > Okay' -ForegroundColor green -BackgroundColor black
-    [Clicker]::LeftClickAtPoint(450, 210)
-    Start-Sleep 10
+    taskkill /IM firefox.exe /F
+    Start-Sleep 1
     Write-Host 'AdsBypasser' -ForegroundColor green -BackgroundColor black
     $OpenWithFirefox.StartInfo.Arguments = 'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js'
     $OpenWithFirefox.start()
