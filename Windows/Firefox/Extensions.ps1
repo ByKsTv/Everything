@@ -363,6 +363,8 @@ public class Clicker
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\i_m_not_robot_captcha_clicker.xpi"
     $OpenWithFirefox.start()
     Start-Sleep 5
+    Get-Process firefox | Set-Window -x 0 -y 0 -Width 500 -Height 400
+    Start-Sleep 1
     Write-Host 'Im not robot captcha clicker > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(306, 215)
     Start-Sleep 2
