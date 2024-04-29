@@ -435,5 +435,4 @@ public class Clicker
     Start-Sleep 1
     Write-Host 'Tampermonkey > AdsBypasser > Install' -ForegroundColor green -BackgroundColor black
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
-    Start-Sleep 1
 }
