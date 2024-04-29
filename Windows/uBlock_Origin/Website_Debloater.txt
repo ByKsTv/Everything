@@ -1,5 +1,5 @@
 ! Expires: 1 hours
-! Homepage: https://github.com/ByKsTv/Everything/Windows/uBlock_Origin/blob/master/Website_Debloater.txt
+! Homepage: https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Website_Debloater.txt
 ! Title: Website Debloater
 1337x.to##footer
 192.*##.col-sm-6.col-xs-12
