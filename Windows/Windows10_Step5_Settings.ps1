@@ -1,3 +1,21 @@
+Write-Host 'Bing Search > Off' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search') -ne $true) { New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search' -Force -ea SilentlyContinue }
+New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search' -Name 'BingSearchEnabled' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
+Write-Host 'Indexing Service > Off' -ForegroundColor green -BackgroundColor black
+Stop-Service -Name WSearch
+Set-Service -Name WSearch -StartupType Disabled
+Write-Host 'Folder Properties > Customize > Optimize all folders > General items' -ForegroundColor green -BackgroundColor black
+$BasePath = 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell'
+if (Test-Path -Path $BasePath\Bags) {
+	Remove-Item -Path $BasePath\Bags -Recurse -Force
+}
+if (Test-Path -Path $BasePath\BagMRU) {
+	Remove-Item -Path $BasePath\BagMRU -Recurse -Force
+}
+$Bags = New-Item -Path $BasePath -Name 'Bags' -Force
+$AllFolders = New-Item -Path $Bags.PSPath -Name 'AllFolders' -Force
+$Shell = New-Item -Path $AllFolders.PSPath -Name 'Shell' -Force
+New-ItemProperty -Path $Shell.PSPath -Name 'FolderType' -Value 'NotSpecified' -PropertyType String -Force
 Write-Host 'Settings > Personalization > Start > Choose which folders appears on Start > Settings + Explorer' -ForegroundColor green -BackgroundColor black
 $itemsToDisplay = @('explorer', 'settings')
 $key = Get-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\CloudStore\Store\Cache\DefaultAccount\*windows.data.unifiedtile.startglobalproperties\Current'
@@ -83,24 +101,6 @@ if ((Test-Path -LiteralPath 'HKCU:\Control Panel\Mouse') -ne $true) { New-Item '
 New-ItemProperty -LiteralPath 'HKCU:\Control Panel\Mouse' -Name 'MouseSpeed' -Value '0' -PropertyType String -Force -ea SilentlyContinue
 New-ItemProperty -LiteralPath 'HKCU:\Control Panel\Mouse' -Name 'MouseThreshold1' -Value '0' -PropertyType String -Force -ea SilentlyContinue
 New-ItemProperty -LiteralPath 'HKCU:\Control Panel\Mouse' -Name 'MouseThreshold2' -Value '0' -PropertyType String -Force -ea SilentlyContinue
-Write-Host 'Bing Search > Off' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search') -ne $true) { New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search' -Force -ea SilentlyContinue }
-New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search' -Name 'BingSearchEnabled' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
-Write-Host 'Indexing Service > Off' -ForegroundColor green -BackgroundColor black
-Stop-Service -Name WSearch
-Set-Service -Name WSearch -StartupType Disabled
-Write-Host 'Folder Properties > Customize > Optimize all folders > General items' -ForegroundColor green -BackgroundColor black
-$BasePath = 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell'
-if (Test-Path -Path $BasePath\Bags) {
-	Remove-Item -Path $BasePath\Bags -Recurse -Force
-}
-if (Test-Path -Path $BasePath\BagMRU) {
-	Remove-Item -Path $BasePath\BagMRU -Recurse -Force
-}
-$Bags = New-Item -Path $BasePath -Name 'Bags' -Force
-$AllFolders = New-Item -Path $Bags.PSPath -Name 'AllFolders' -Force
-$Shell = New-Item -Path $AllFolders.PSPath -Name 'Shell' -Force
-New-ItemProperty -Path $Shell.PSPath -Name 'FolderType' -Value 'NotSpecified' -PropertyType String -Force
 Write-Host 'Settings > Date & time > Time zone > Jerusalem' -ForegroundColor green -BackgroundColor black
 Set-TimeZone -Id 'Israel Standard Time'
 Write-Host 'Settings > Time & Language > Region > Regional format data > Change data format > Short date > dd/MM/yyyy' -ForegroundColor green -BackgroundColor black
@@ -398,18 +398,6 @@ New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\P
 Write-Host 'Settings > Personalization > Taskbar > People > Show contacts on the taskbar > Off' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People') -ne $true) { New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People' -Force -ea SilentlyContinue }
 New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People' -Name 'PeopleBand' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
-Write-Host 'Task Scheduler > Microsoft\Windows\Application Experience\PcaPatchDbTask > Disable' -ForegroundColor green -BackgroundColor black
-Disable-ScheduledTask -TaskName PcaPatchDbTask -TaskPath '\Microsoft\Windows\Application Experience'
-Write-Host 'Task Scheduler > Microsoft\Windows\Maintenance\WinSAT > Disable' -ForegroundColor green -BackgroundColor black
-Disable-ScheduledTask -TaskName WinSAT -TaskPath '\Microsoft\Windows\Maintenance'
-Write-Host 'Windows Security Notification Icon > Off' -ForegroundColor green -BackgroundColor black
-if ($null -ne (Get-Item -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run').GetValue('SecurityHealth')) {
-	Remove-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'SecurityHealth'
-}
-Write-Host 'Firefox Desktop Icon > Off' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath "$env:PUBLIC\Desktop\Firefox.lnk") -eq $true) {
-	Remove-Item -Path ("$env:PUBLIC\Desktop\Firefox.lnk") -Force -Recurse
-}
 Write-Host 'Windows Security > Virus & threat protection > Manage settings > Change notification settings > Recent activity and scan results > Off' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -LiteralPath 'HKLM:\Software\Microsoft\Windows Defender Security Center\Virus and threat protection') -ne $true) { New-Item 'HKLM:\Software\Microsoft\Windows Defender Security Center\Virus and threat protection' -Force -ea SilentlyContinue }
 New-ItemProperty -LiteralPath 'HKLM:\Software\Microsoft\Windows Defender Security Center\Virus and threat protection' -Name 'SummaryNotificationDisabled' -Value 1 -PropertyType DWord -Force -ea SilentlyContinue
@@ -473,7 +461,19 @@ New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\Windows NT\Curr
 Write-Host 'O&O ShutUp10++ > Local Machine > Miscellaneous > Disable Installation of PC Health Check > On' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -LiteralPath 'HKLM:\Software\Microsoft\PCHC') -ne $true) { New-Item 'HKLM:\Software\Microsoft\PCHC' -Force -ea SilentlyContinue }
 New-ItemProperty -LiteralPath 'HKLM:\Software\Microsoft\PCHC' -Name 'PreviousUninstall' -Value 1 -PropertyType DWord -Force -ea SilentlyContinue
-Write-Host 'Desktop > Microsoft Edge Shortcut > Off' -ForegroundColor green -BackgroundColor black
+Write-Host 'Task Scheduler > Microsoft\Windows\Application Experience\PcaPatchDbTask > Disable' -ForegroundColor green -BackgroundColor black
+Disable-ScheduledTask -TaskName PcaPatchDbTask -TaskPath '\Microsoft\Windows\Application Experience'
+Write-Host 'Task Scheduler > Microsoft\Windows\Maintenance\WinSAT > Disable' -ForegroundColor green -BackgroundColor black
+Disable-ScheduledTask -TaskName WinSAT -TaskPath '\Microsoft\Windows\Maintenance'
+Write-Host 'Desktop > Microsoft Edge > Off' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -LiteralPath 'C:\Users\Public\Desktop\Microsoft Edge.lnk') -eq $true) {
 	Remove-Item -LiteralPath 'C:\Users\Public\Desktop\Microsoft Edge.lnk'
+}
+Write-Host 'Desktop > Firefox > Off' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath "$env:PUBLIC\Desktop\Firefox.lnk") -eq $true) {
+	Remove-Item -Path ("$env:PUBLIC\Desktop\Firefox.lnk") -Force -Recurse
+}
+Write-Host 'Windows Security Notification Icon > Off' -ForegroundColor green -BackgroundColor black
+if ($null -ne (Get-Item -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run').GetValue('SecurityHealth')) {
+	Remove-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'SecurityHealth'
 }
