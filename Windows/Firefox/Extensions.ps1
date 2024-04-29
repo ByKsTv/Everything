@@ -355,6 +355,10 @@ public class Clicker
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\clearurls.xpi"
     $OpenWithFirefox.start()
     Start-Sleep 5
+    [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
+    Start-Sleep 1
+    [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
+    Start-Sleep 5
     Write-Host 'ClearURLs > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(305, 263)
     Start-Sleep 2
