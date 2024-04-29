@@ -393,7 +393,7 @@ public class Clicker
     [Clicker]::LeftClickAtPoint(310, 297)
     Start-Sleep 1
     [Clicker]::LeftClickAtPoint(310, 297)
-    Start-Sleep 4
+    Start-Sleep 5
     Write-Host 'Tampermonkey > Okay' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(450, 210)
     $OpenWithFirefox.StartInfo.Arguments = 'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js'
