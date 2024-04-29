@@ -1,0 +1,2075 @@
+! Expires: 1 hours
+! Homepage: https://github.com/ByKsTv/Everything/Windows/uBlock_Origin/blob/master/Website_Debloater.txt
+! Title: Website Debloater
+1337x.to##footer
+192.*##.col-sm-6.col-xs-12
+192.*##.login-donate
+192.*##.menu-donate
+4pda.ru##.copyright
+4pda.ru##noindex > .borderwrap
+4pda.to###go_1
+4pda.to###logostrip
+4pda.to##.copyright
+4pda.to##.ddb-ft-wrap
+9gag.com##.above-comment.salt-section
+9gag.com##.btn-color-primary.ui-btn
+9gag.com##.comment-community__guideline
+9gag.com##.fixed.post-tab-bar__wrapper
+9gag.com##.footer
+9gag.com##.photo.post-cell > .post-action > .post-award-btn
+9gag.com##.post-action-btn
+9gag.com##.post-award-btn
+9gag.com##.post-award-users
+9gag.com##.text-center.inline-banner
+9gag.com##section.salt-section
+9to5google.com###after_disclaimer_placement
+9to5google.com###content > .post-content > div.elastic-container > .post-meta > .tags
+9to5google.com##.author-gear
+9to5google.com##.author_ad.adsbygoogle
+9to5google.com##.infinite-view-2.infinite-wrap
+9to5google.com##.no-prev.has-next.primary-menu
+9to5google.com##.related-guides-container
+9to5mac.com###infinite-view-1
+9to5mac.com###infinite-view-3
+9to5mac.com###infinite-view-4
+9to5mac.com###infinite-view-5
+9to5mac.com###infinite-view-7
+9to5mac.com##.infinite-view-2.infinite-wrap
+9to5mac.com##.infinite-view-6.infinite-wrap
+9to5mac.com##.powered-by-wpcom
+9to5mac.com##.related-guides-container
+9to5mac.com##.show-promo.visitor-promo
+9to5mac.com##.trending-wrapper
+@@||googleads.github.io/videojs-ima/dist/videojs.ima.js$script,domain=mobile.mako.co.il
+@@||web.vortex.data.microsoft.com^$script,domain=mediastream.microsoft.com
+@@||www.ynet.co.il/Common/Api/Scripts/video/videojs.ima.js$script,domain=m.ynet.co.il
+account.battle.net##.NavbarFooter-copyright
+account.battle.net##.NavbarFooter-legal
+account.battle.net##.NavbarFooter-logoContainer
+account.battle.net##.NavbarFooter-mainLinks.NavbarFooter-links
+account.battle.net##.NavbarFooter-subLinks.NavbarFooter-links
+account.battle.net##.NavbarFooter-trademark.NavbarFooter-doNotSell
+account.battle.net##div.NavbarFooter-trademark:nth-of-type(6)
+account.live.com##.c-uhff-base
+account.microsoft.com##.c-uhff-base
+account.microsoft.com##.help-footer
+acg.rip##.footer
+acrobat.adobe.com###gnav_711 > .feds-navList
+acrobat.adobe.com##.gnavFooter > .feds-navBar-wrapper
+aliexpress.*###magnet-order-list
+aliexpress.*###mobile-download
+aliexpress.*###related-searches
+aliexpress.*##.banner-container
+aliexpress.*##.bottom-recommendation
+aliexpress.*##.container.Pd-zt
+aliexpress.*##.container.detail-main-detail
+aliexpress.*##.container.you-may-also-like
+aliexpress.*##.footer-copywrite
+aliexpress.*##.gps-recommend-dialog-title
+aliexpress.*##.gps-recommend-wrap.next-slick-hoz.next-slick-outer.next-slick
+aliexpress.*##.hot-words
+aliexpress.*##.just-for-you-entrance.container
+aliexpress.*##.main-content.page-content.seo-page-content
+aliexpress.*##.mobile-app.me-ui-box
+aliexpress.*##.next-slick-hoz.next-slick-outer.next-slick
+aliexpress.*##.product-recomment
+aliexpress.*##.recommend-container.card-container
+aliexpress.*##.related-products
+aliexpress.*##.search-feedback-wrap
+aliexpress.*##.site-footer
+aliexpress.*##.site-server-box
+aliexpress.*##.user-helper-footer
+aliexpress.*##div.may-like:nth-of-type(4)
+aliexpress.*#.detailProductTopWarp
+aliexpress.*#.recommendBg
+android.stackexchange.com##.ai-center.site-footer--extra
+android.stackexchange.com##.bottom-notice
+android.stackexchange.com##.privacy-policy-agreement
+android.stackexchange.com##.site-footer--container
+anidb.net###layout-footer
+anidex.info##.footer
+animetosho.org###comment_reply_placeholder_0
+animetosho.org##.comment_buttons
+anonfiles.com##.notice-top.alert-maintenance.text-center.alert-warning.alert.small
+anonfiles.com##.text-center.col-md-6.col-xs-12
+arstechnica.com###article-footer-wrap
+arstechnica.com###page-footer
+arstechnica.com##.bookmark-login.bookmark
+arstechnica.com##.footer-copyright-terms
+arstechnica.com##.superscroll-ad
+aws.pairzon.com###gdpr-cookie-message
+blog.google###jump-content > .uni-related-articles-cards
+blog.google##.h-has-social.h-c-footer--standard.h-c-footer--topmargin.h-c-footer
+blog.google##.uni-blog-article-no-hero.h-c-page
+blog.google##.uni-blog-article-tags
+blog.google##.uni-related-articles-cards > .uni-related-articles-cards
+blog.google##.uni-social-share--desktop.uni-social-share
+bmail.bezeq.co.il###bezeq_search_social
+bmail.bezeq.co.il###bezeq_social_container
+bmail.bezeq.co.il##.bezeq_search_footer
+bmail.bezeq.co.il##.clearfix.bezeq_blue_footer
+bmy.bezeq.co.il###bezeq_search_social
+bmy.bezeq.co.il###bezeq_social_container
+bmy.bezeq.co.il##.bezeq_blue_footer_container
+bmy.bezeq.co.il##.bezeq_search_footer
+bmy.bezeq.co.il##.in.customerMessages-Modal.ng-isolate-scope.modal
+bmy.bezeq.co.il##.in.modal-backdrop
+bmy.bezeq.co.il##div.cookiesMessage
+bstore.bezeq.co.il##.clearfix.bezeq_blue_footer
+bstore.bezeq.co.il##div.cookiesMessage
+camelcamelcamel.com###banner_ad_test
+camelcamelcamel.com###watform_notice
+camelcamelcamel.com##.ad.collapse.expanded.column.row
+camelcamelcamel.com##.margined.padded > div.column.row
+camelcamelcamel.com##.show-for-large.column.row
+camelcamelcamel.com##div.content_border.collapse.expanded.column.row
+camelcamelcamel.com##footer
+chaturbate.com##.footer-holder
+cloud.reolink.com##.footer-mod-2.footer
+cloud.reolink.com##.notice-cookies
+code.videolan.org##.footer-message
+code.videolan.org##.js-comment-form > .text-center.disabled-comment
+community.oneplus.com##.cookie-bottom-wap
+couponfollow.com###alerts-subscribe-membership
+couponfollow.com###data
+couponfollow.com###popup-ux
+couponfollow.com##.default-footer
+couponfollow.com##.footer
+couponfollow.com##.labor-day.top-banner
+couponfollow.com##.offer-cta.link-button.link-button-primary.link
+couponfollow.com##.type-cashback.regular-offer.offer-card
+cracked.io##.footer-back
+cracked.to##.footer-back
+cracked.to##[href="https://ping.fo"]
+cracked.to##[href="https://t.me/accountvaultupdates"]
+crackingpatching.com###wrapper-footer
+danbooru.donmai.us##.gap-1.justify-center.items-center.flex-wrap.flex.border-t.w-full.py-3.mt-4.flex-initial.text-center.text-sm
+danbooru.donmai.us##.hidden-posts-notice.fineprint
+ddownload.com##.plans-wrapper
+ddownload.com##.position-absolute.p-4.footer
+deliveries.orrs.de##.mdl-mega-footer
+deliveries.orrs.de##.mdl-mega-footer--bottom-section
+deltalabsproject.blogspot.com###copyright
+deltalabsproject.blogspot.com###disqus_recommendations
+deltalabsproject.blogspot.com###shareblanter
+deltalabsproject.blogspot.com###subscribe-box
+deltalabsproject.blogspot.com##.idb-pager
+deltalabsproject.blogspot.com##.pesan-komentar
+deltalabsproject.blogspot.com##.post-outer > .spanshare
+deltalabsproject.blogspot.com##.related-post
+deltalabsproject.blogspot.com##a#close-nav[href="javascript:void"]
+dev.miuiflash.com##.position-absolute.p-5.footer
+dev.miuiflash.com##.report
+dev.miuiflash.com##div.mb-4.aboutFile.col-md-12.col-lg-6
+diakov.net###dle-content > table > tbody > tr
+diakov.net###thx
+diakov.net##.FiveStarsTd
+diakov.net##.btn-sm.btn-secondary.btn
+diakov.net##.buyAction
+diakov.net##.container.footer
+diakov.net##.fa-slack.fa
+diakov.net##.rating
+diakov.net##.related
+diakov.net##.relatedrate
+diakov.net##.reset.isicons
+diakov.net##.stags
+diakov.net##.subscr-left
+diakov.net##.zvcwers > span > font:nth-of-type(1) > font:nth-of-type(1)
+diakov.net##div#dle-content > div.col-lg-12.my > div.card.mb15 > div.card-body.sh > div.zvcwers > span > div.quote
+diakov.net##td > .card-body
+diakov.net#@#.subscr-lazydev
+diggingpermits.bezeq.co.il##div.cookiesMessage
+discourse.pi-hole.net##.suggested-topics
+djxmaza.in##.position-absolute.p-5.footer
+djxmaza.in##.report
+dl-deltalabs.blogspot.com##.center.white-text.darken-2.black
+docs.github.com##.mb-xl-0.mb-2.flex-xl-justify-between.flex-justify-center.col-12.flex-wrap.d-flex.list-style-none
+download.oxy.st###abuse
+download.oxy.st##.section-padding_bottom_m.section-padding_top_none.section-padding.text-block_align_center.text-block
+download.oxy.st##.section-padding_bottom_s.section-padding_top_s.section-padding.text-block_align_center.text-block
+drive.google.com##.uc-footer
+dropgalaxy.com###TR-65576855-f635-11ed-b912-3da067a1b6d8
+dropgalaxy.com###adm-container-4010
+dropgalaxy.com###fetchhh
+dropgalaxy.com###protag-header
+dropgalaxy.com###protag-in_content
+dropgalaxy.com###tokenstatus
+dropgalaxy.com###vi-smartbanner
+dropgalaxy.com##.btn-danger.btn-lg.btn-block.btn
+dropgalaxy.com##.fa-flag.fas
+dropgalaxy.com##.footer
+dropgalaxy.com##.m-auto.alert-danger.alert
+dropgalaxy.com##.mb-1.pr-5.btn-block.btn-danger.btn
+dropgalaxy.com##.mb-4.m-0.sharetabs
+dropgalaxy.com##.mt-5.col-md-12
+dropgalaxy.com##.py-3.col-md-12
+dropgalaxy.com##.text-primary
+dropgalaxy.com##.whatFor.features
+dropgalaxy.com##[src="/images/dgpromo.jpg"]
+dropgalaxy.com##[src="https://cdn.jsdelivr.net/gh/drpglxy/assets/images/dgpromo.jpg"]
+dropgalaxy.com##a#downloadBtnClick.mt-3.btn-lg.btn-primary.btn-block.btn
+dropgalaxy.com##div.downloadPage.premium.page.pt-5.container:nth-of-type(9)
+dropgalaxy.com##span > [href^="https://dropgalaxy.com/"]
+dropgalaxy.com##span:nth-of-type(3)
+duckduckgo.com###bottom_spacing2
+duckduckgo.com##.at-bottom.t-m.related-searches
+duckduckgo.com##.feedback-prompt
+duckduckgo.com##.footer
+duckduckgo.com##.header__label.showcase.header--aside__item
+duckduckgo.com##.js-feedback-btn-wrap
+duckduckgo.com##.js-sidebar-ads
+duckduckgo.com##.js-tagline.tag-home__item
+duckduckgo.com##.social.header__label.header--aside__social.header--aside__item
+duckduckgo.com##.t-m.related-searches
+dxracer.co.il##.first.hide-on-second-switch.near-logo-first-switch.show-on-desktop.text-area > p > [href="https://www.facebook.com/dxracer.co.il/"]
+dxracer.co.il##.light-icon-hover-color.custom-icon-color.light-hover-bg.light-bg.wf-container.benefits-grid
+dxracer.co.il##.sidebar
+dxracer.co.il##.textwidget > .dt-default.vc_row-fluid.wpb_row.vc_row > .vc_col-sm-12.vc_column_container.wpb_column
+dxracer.co.il##.vc_row-fluid.vc_inner.wpb_row.vc_row
+dxracer.co.il##.wf-container-bottom
+dxracer.co.il##.wf-container-footer
+dxracer.co.il##.wf-container-footer > .wf-container
+dxracer.co.il##.wf-float-right
+e-hentai.org###i2
+e-hentai.org##.dp
+e-hentai.org##h1
+en.wikipedia.org###footer-info-copyright
+en.wikipedia.org###footer-places
+eu.community.samsung.com##.black.samsung-footer
+eu.community.samsung.com##.lia-quilt-column-side-content.lia-quilt-column-right.lia-quilt-column-06.lia-quilt-column
+excavationpermits.bezeq.co.il##div.cookiesMessage
+eyeplus.closeli.com##.browser-hint
+f-droid.org###latest > .package-version-permissions
+f-droid.org##.site-title
+fastpic.org##.bg-dark.rounded.mt-1.py-1.footer
+fastpic.org##.m-2.text-white-50.resolution
+fastpic.org##.mt-1.h5
+filelisting.com##.similar-box.box-with-title
+filelisting.com##.text-center
+finance.walla.co.il##.facebook-share-wrapper
+finance.walla.co.il##.no-mobile-app.email-share-wrapper
+finance.walla.co.il##.noprint-hidden.wide.css-17egtz8
+finance.walla.co.il##.share-twitter.css-1ud99h7
+finance.walla.co.il##.tags-and-breadcrumbs
+finance.walla.co.il##.talkbacks-share-wrapper
+finance.walla.co.il##.whatsapp-share-wrapper
+financemonk.net##.btn-danger.btn-lg.btn-block.btn
+financemonk.net##.footer
+financemonk.net##.modalpop
+forum.mobilism.me##.space10
+forum.mobilism.me##.welcome-bar
+forum.mobilism.me##footer
+forum.mobilism.org###jumpbox2
+forum.mobilism.org##.hidden-phone.pull-right.inline
+forum.mobilism.org##.topstyle
+forum.mobilism.org##.welcome-bar
+forum.mobilism.org##.widget-collapsible.well-qr.well
+forum.mobilism.org##div.row-fluid > .muted
+forum.mobilism.org##footer
+forum.mobilism.org##span.pull-right
+forum.oszone.net###collapseobj_similarthreads
+forum.oszone.net###footer_c
+forum.oszone.net##.page > div > .smallfont
+forum.ru-board.com##.sing
+forum.videohelp.com###Bottomlist2
+forum.videohelp.com###Bottomlist3
+forum.videohelp.com##.below_body
+forum.videohelp.com##.below_postlist
+forum.videohelp.com##.footer.floatcontainer
+forum.videohelp.com##.footer_copyright.shade
+forum.videohelp.com##.thread_info
+forums.thinkbroadband.com###footer
+frdl.to##.copyright
+frdl.to##.position-absolute.p-5.footer
+frdl.to##.report
+freepaste.link##.bg-dark.navbar-light.navbar
+freepaste.link##.pt-4.mt-0.text-md-left.text-center.page-footer
+fs0.releaseload.com##.copyright.dark-bluish-grey-bg
+ftuapps.dev###custom_html-12
+ftuapps.dev###super_rss_reader-2
+ftuapps.dev###super_rss_reader-3
+ftuapps.dev##.adsbygoogle
+ftuapps.dev##.ai-viewport-1.code-block-1.code-block > .adsbygoogle
+ftuapps.dev##.code-block-6.code-block > .adsbygoogle
+ftuapps.dev##.code-block-7.code-block > .adsbygoogle
+ftuapps.dev##.copyrights
+ftuapps.dev##.widget-simpletags.sidebar-widget.widget
+ftuapps.dev##div.code-block-4.code-block > .adsbygoogle
+ftuapps.dev##div.code-block-5.code-block > .adsbygoogle
+gaming.walla.co.il##.facebook-share-wrapper
+gaming.walla.co.il##.no-mobile-app.email-share-wrapper
+gaming.walla.co.il##.no-mobile-app.twitter-share-wrapper
+gaming.walla.co.il##.noprint-hidden.wide.css-17egtz8
+gaming.walla.co.il##.tags-and-breadcrumbs
+gaming.walla.co.il##.talkbacks-share-wrapper
+gaming.walla.co.il##.whatsapp-share-wrapper
+get.rahim-soft.com###footer2
+get.rahim-soft.com###news_last
+get.rahim-soft.com##.banner1
+get.rahim-soft.com##.banner2
+get.rahim-soft.com##.banner3
+get.rahim-soft.com##.btn-lg.btn-info.btn
+get.rahim-soft.com##.menufooter
+get.rahim-soft.com##.report
+get.rahim-soft.com##.sharefile
+get.rahim-soft.com##.txt
+get.rahim-soft.com##footer
+github.com###sponsor-profile-button
+github.com##.BorderGrid-cell > .btn-block.btn
+github.com##.Details.js-details-container.branch-action-item
+github.com##.Details.js-details-container.mergeability-details
+github.com##.blankslate-container
+github.com##.blankslate-spacious.blankslate-large.blankslate
+github.com##.color-fg-muted.text-center.mt-3
+github.com##.d-block.border-gray-light.border.rounded-1.text-center.p-4.content
+github.com##.d-md-block.d-none.mt-3.pt-3.color-border-muted.border-top > .mt-2
+github.com##.f6.mt-6.py-6.p-responsive.container-lg.footer
+github.com##.flex-items-center.flex-justify-between.d-flex.my-3.p-3.Box
+github.com##.js-notice.mb-4
+github.com##.js-pull-refresh-on-pjax.js-updatable-content.js-socket-channel.js-pull-merging.pull-merging
+github.com##.mb-2.mt-md-2.mt-3.color-fg-muted.text-small
+github.com##.mt-3.mb-2.mt-md-2.mx-md-2.color-fg-muted.text-small
+github.com##.mt-3.mb-2.mt-md-2.mx-md-2.color-text-secondary.text-small
+github.com##.mt-3.mb-2.mt-md-2.mx-md-2.text-gray.text-small
+github.com##.mt-3.text-small > [href]
+github.com##.mt-4.f6.color-fg-muted
+github.com##.open.Details.js-details-container.branch-action-item
+github.com##.p-responsive.color-fg-muted.f6.pb-6.pt-8.footer
+github.com##.p-responsive.container-lg.width-full.footer
+github.com##.p-responsive.width-full.container-xl.footer
+github.com##.protip
+github.com##.pt-3.pl-1 > .Link--muted
+github.com##.px-0.my-5.container-lg.footer.flex-items-between.d-flex
+github.com##.px-1.mt-1.mr-1.Label--inline.Label--success.Label
+github.com##.px-3.width-full.container-xl.footer
+github.com##.rounded-2.px-3.pt-3.color-shadow-small.border
+hanime.tv##.footer
+hanime.tv##.footer__main
+hanime.tv##.inter
+hanime.tv##.site-description
+harb.cma.gov.il##footer.bgBlue.full-width.col-xs-12
+healthy.walla.co.il##.bottom-share-panel.only-mobile.vertical-view.css-kxiwjn.noprint.share-panel
+healthy.walla.co.il##.no-wide-desktop.vertical-view.css-kxiwjn.noprint.share-panel
+healthy.walla.co.il##.noprint-hidden.wide.css-17egtz8
+healthy.walla.co.il##.tags-and-breadcrumbs
+help.orrs.de##.qa-footer
+help.orrs.de##.wet-asphalt.qa-sidebar
+hi10anime.com##.ABD_display_adblock.ABD_display > [href]
+hi10anime.com##.ABD_display_adblock.ABD_display > strong
+hi10anime.com##.donateImage
+hi10anime.com##.entry-content > .rw-no-labels.rw-left.rw-ltr.rw-rating-table > tbody > tr
+hi10anime.com##.modal-content
+hi10anime.com##.post-navigation.navigation
+hi10anime.com##.rw-no-labels.rw-left.rw-ltr.rw-rating-table
+hi10anime.com##.show.fade.modal
+hi10anime.com##.show.fade.modal-backdrop
+hi10anime.com##.site-footer
+hi10anime.com##.tag-links
+hi10anime.com##.widget_tag_cloud.widget
+hi10anime.com##div > [href="https://hi10anime.com/donate"]
+hitfile.net##.footer
+hwzone.co.il###above_header_banner
+hwzone.co.il###forumFooterToWebsite
+hwzone.co.il###ipsLayout_footer
+hwzone.co.il###ipsLayout_mainArea > div.cWidgetContainer > .ipsList_reset
+hwzone.co.il###skyscraper_banner_left
+hwzone.co.il###skyscraper_banner_right
+hwzone.co.il##.cGuestTeaser.ipsMargin_bottom.ipsBorder_bottom.ipsPadding_bottom
+hwzone.co.il##.elementor-section-height-default.elementor-section-full_width.elementor-element-66b00a0.elementor-element.elementor-top-section.elementor-section > .elementor-column-gap-default.elementor-container
+hwzone.co.il##.elementor-section-height-default.elementor-section-full_width.elementor-element-93bed2d.elementor-element.elementor-top-section.elementor-section
+hwzone.co.il##.footer-holder
+hwzone.co.il##.ipsFaded_withHover.ipsBreadcrumb_bottom.ipsBreadcrumb
+hwzone.co.il##.ipsLayout_sidebarright
+hwzone.co.il##.ipsPager_prev
+hwzone.co.il##.ipsSpacer_top.ipsMessage_general.ipsMessage
+hwzone.co.il##.jeg_block_container.jeg_posts
+hwzone.co.il##.jeg_content
+hwzone.co.il##.jeg_post_tags
+hwzone.co.il##.jeg_vc_content
+hwzone.co.il##.jnews_related_post_container
+hwzone.co.il##.widget_jnews_tab_post.widget
+hwzone.co.il##[src="https://ad.plus/adplus-advertising.svg"]
+hwzone.co.il#@#.jeg_content
+ibit.to##.footer-copyright
+ibit.to##.page-footer
+il.shein.com##.c-recommend-goodsd
+il.shein.com##.j-footer.container-fluid.c-footer
+il.shein.com##.j-recommend-list
+ilfiber.co.il##.elementor-location-footer.elementor-2000.elementor
+ilfiber.co.il##.elementor-section-height-default.elementor-section-boxed.elementor-section-content-middle.elementor-element-4a04af14.elementor-element.elementor-top-section.elementor-section
+ilfiber.co.il##.elementor-widget-button.elementor-widget.elementor-align-center.elementor-element-7eef686e.elementor-element > .elementor-widget-container > .elementor-button-wrapper > .elementor-size-sm.elementor-button.elementor-button-link
+ilfiber.co.il##.elementor-widget-spacer.elementor-widget.elementor-element-f7646fb.elementor-element > .elementor-widget-container > .elementor-spacer > .elementor-spacer-inner
+ilfiber.co.il##.elementor-widget-testimonial.elementor-widget.elementor-element-74c510c.elementor-element
+ilfiber.co.il##.elementor-widget-testimonial.elementor-widget.elementor-element-e0be8c6.elementor-element
+ilfiber.co.il##.fb-comments.elementor-facebook-widget
+ipv6-test.com##div.container > .small
+israelpost.co.il##.cookie-agreement-expanded.cookie-agreement
+israelpost.co.il##.footer
+israelpost.co.il##.form-body-extraText
+israelpost.co.il##.u1st-accBtnColor-blue.u1st-accButton
+itel.com##.et_pb_row--with-menu.et_pb_gutters2.et_pb_row_0_tb_footer.et_pb_row
+itel.com##.et_section_regular.et_pb_section_0_tb_header.et_pb_section
+itel.com##.et_section_regular.et_pb_section_3_tb_body.et_pb_section
+itel.com##.et_section_regular.et_pb_with_background.et_pb_section_1_tb_footer.et_pb_section
+itel.com##.et_section_regular.et_pb_with_background.et_pb_section_5_tb_body.et_pb_section
+itel.com##.et_section_regular.et_pb_with_background.nohero.et_pb_section_4_tb_body.et_pb_section
+jav-torrent.org##.footer
+javball.com###protection
+justpaste.it##.bg-light.py-1.mt-auto.footer
+justpaste.it##.btn-default.btn-sm.btn
+katfile.com##.page-buffer
+katfile.com##.premium
+katfile.com##footer
+ksp.co.il###compare-prices-modal-trigger
+ksp.co.il###footer > div > .container-fluid
+ksp.co.il###footerGlobal
+ksp.co.il###item-action-3
+ksp.co.il###item-share
+ksp.co.il###static-footer
+ksp.co.il###tiny-message
+ksp.co.il##.benefits-container.no-print.container_style.container
+ksp.co.il##.footer-content-container
+ksp.co.il##.footer-statement-container
+ksp.co.il##.testimonial-group
+leitup.com##.col-12
+leitup.com##.col-md-7.brand
+leitup.com##.flex
+leitup.com##.mt-3
+lineageosroms.com##.chlebek
+linkvertise.com##.d-none.d-md-block
+linkvertise.com##.redirect-inner-block > .text-center.headline
+linkvertise.com##.suggestion-item-wrapper.container > .text-center.headline
+linkvertise.com##.suggestions-full-wrapper
+linkvertise.com##.suggestions-half-wrapper
+linkvertise.com##.text-center.block-2 > .mt-2 > .no-border.lv-btn-scale.mt-2.lv-button-component
+linkvertise.com##.text-center.block-2 > span.credentials
+linkvertise.com##.text-center.container
+linkvertise.com##lv-footer-mobile
+linkvertise.com##lv-redirect-head
+linkvertise.com##lv-redirect-second-page
+linkvertise.com##lv-search-suggestions
+linkvertise.com##lv-user-based-link-suggestions
+linkvertise.com##ngx-typed-js
+linustechtips.com###ipsLayout_footer
+linustechtips.com###sidebar-contrib
+linustechtips.com###sidebar-floatplane
+linustechtips.com##.ipsFaded_withHover.ipsBreadcrumb_bottom.ipsBreadcrumb
+linustechtips.com##.ipsList_noSpacing.ipsList_reset.ipsType_center.ipsList_inline
+linustechtips.com##.ipsSpacer_top.ipsPager
+linustechtips.com##.lmg-card.ipsPad.ipsWidget_inner
+login.aliexpress.com##.fm-new-header
+login.aliexpress.com##.fm-new-header-app
+login.aliexpress.com##.fm-new-header-logo-buyer
+login.aliexpress.com##.fm-new-header-logo-protection
+login.aliexpress.com##.fm-new-header-logo-safe
+login.teamviewer.com###copyrightLink
+login.teamviewer.com###footerLinks
+lp.vp4.me##.credit
+lrepacks.net###content > .columns.large-4.medium-4
+lrepacks.net###navigation > .donate.large.button
+lrepacks.net##.account > .donate.large.button
+lrepacks.net##.berrors.clr
+lrepacks.net##.cat-links
+lrepacks.net##.copyright
+lrepacks.net##.donat-cont
+lrepacks.net##.error-block
+lrepacks.net##.footer-bottom
+lrepacks.net##.footer-top
+m.aliexpress.com##.cart-recommend
+m.calcalist.co.il##.NewsletterGroups
+m.calcalist.co.il##.c-article-device__bullets
+m.calcalist.co.il##.c-article-device__footer-share
+m.calcalist.co.il##.c-article-device__share
+m.calcalist.co.il##.c-article-device__tags
+m.calcalist.co.il##.c-footer__links
+m.calcalist.co.il##.c-terms__info
+m.calcalist.co.il##.fc-consent-root
+m.calcalist.co.il##.poloriz-widget
+m.calcalist.co.il##.s-thirdparties-content
+m.calcalist.co.il##.t-terms__gdprx.c-terms__gdpr
+m.calcalist.co.il##.t-terms__gdprx.c-terms__gdpr > div
+m.facebook.com##.above-bottom.fixed-container.m
+m.gsmarena.com###container > .container_12.secondary-menu
+m.gsmarena.com###header > .alpha.grid_12
+m.gsmarena.com###related-news-container
+m.gsmarena.com##.popularity-list.general-menu
+m.gsmarena.com##.popularity-list.material-card.homepage-news-list
+m.gsmarena.com##footer.grid_12
+m.gsmarena.com##h2.material-card.section.lower
+m.gsmarena.com##h2.section:nth-of-type(1)
+m.gsmarena.com##h2.section:nth-of-type(3)
+m.gsmarena.com##h2.section:nth-of-type(5)
+m.gsmarena.com##h2.section:nth-of-type(6)
+m.maariv.co.il##.footer
+m.maariv.co.il##.mm-article-tags
+m.ynet.co.il###rJYuZlZTcpd > span > span
+m.ynet.co.il###share-bar
+m.ynet.co.il###share-icons-wrapper-android
+m.ynet.co.il###ynet_premium_blocked
+m.ynet.co.il##.SiteArticleContact
+m.ynet.co.il##.article-header-firma
+m.ynet.co.il##.article-header-menu
+m.ynet.co.il##.ct-toast-info.ct-toast
+m.ynet.co.il##.dont-miss-notify
+m.ynet.co.il##.explore-more-wrapper
+m.ynet.co.il##.originalLaunchDate
+m.ynet.co.il##.share-image
+m.ynet.co.il##.sticky-adunit._adunit_
+m.ynet.co.il##.text_editor_contact_us_link
+m.ynet.co.il##div.rtl.text_editor_paragraph:nth-of-type(2) > .public-DraftStyleDefault-rtl.public-DraftStyleDefault-block > span:nth-of-type(1) > span
+m.ynet.co.il##p:nth-of-type(2)
+m.ynet.co.il##p:nth-of-type(3)
+m.ynet.co.il##ul
+manhwaplus.net##.banner.text-center.mt-2rem.container
+manhwaplus.net##.main-footer
+maplestory.nexon.net##.global-footer
+maplestory.nexon.net##.row.footer-main
+mega4upload.com##.app-footer
+mega4upload.com##.compare_table.row
+mega4upload.com##.d-md-block.d-none.my-3
+mega4upload.com##.label-danger.label-group
+mega4upload.com##.mb-4.card > .card
+mega4upload.com##.mb-4.card > .card > .card-body
+mega4upload.com##.social
+mega4upload.com##.text-center.py-3.footer-copyright
+members.nubiles-porn.com##.mt-5.bottom-banners.container
+members.nubiles-porn.com##.py-3.footer-container
+members.nubiles-porn.com##.survey-row.row
+minecraft.fandom.com###WikiaBar
+minecraft.fandom.com###mixed-content-footer
+minecraft.fandom.com##.global-footer
+minecraft.fandom.com##.global-footer__bottom
+minecraft.fandom.com##.license-description
+ministryofcommunication.force.com##.uiOutputRichText
+miraculoushub.ml###animatedshowsblock
+mobile.mako.co.il##.mistake-title
+mobile.mako.co.il##.not-for-print.status-bar
+mobile.mako.co.il##footer
+msfreemicrosoft.ru##.online-list.stat-block
+msfreemicrosoft.ru##.page-footer
+msfreemicrosoft.ru##.permissions.stat-block
+msfreemicrosoft.ru##.statistics.stat-block
+msfreemicrosoft.ru##.thanks-list.stat-block
+msfreemicrosoft.ru##.yandexpayment
+msfreemicrosoft.ru##form > input
+myanimelist.net###copyright
+myanimelist.net###footer-block
+myanimelist.net##.ac.footer-recommended
+myanimelist.net##.banner-header-anime-straming
+myanimelist.net##.di-b.footer-container
+myanimelist.net##.fade-in.popup-background.welcome-back
+myanimelist.net##.floatRightHeader > [href^="/dbchanges.php"]
+myanimelist.net##.footer-link-block
+myanimelist.net##.footer-ranking
+myanimelist.net##.ga-impression.bottom-bar
+myanimelist.net##.ga-impression.ga-click.text-ribbon
+myanimelist.net##.ga-impression.top_signup
+myanimelist.net##.js-anime-edit-info-button
+myanimelist.net##.mal-tooltip-layer
+myanimelist.net##.pt24.clearfix.mauto
+myanimelist.net##.pt4.notice_open_public
+myanimelist.net##.ranking-container
+myanimelist.net##div.footer-link-icon-block:nth-of-type(1)
+myanimelist.net##div.va-t.di-tc > div > .floatRightHeader
+newmedia.calcalist.co.il##.footer-symbol-2
+newmedia.calcalist.co.il##.hafnaya-sof
+news.walla.co.il##.facebook-share-wrapper
+news.walla.co.il##.no-mobile-app.email-share-wrapper
+news.walla.co.il##.no-mobile-app.twitter-share-wrapper
+news.walla.co.il##.tags-and-breadcrumbs
+news.walla.co.il##.whatsapp-share-wrapper
+newschannel.co.il###footer-copyright
+newschannel.co.il###footer-widgets
+newschannel.co.il##.col-md-4.col-sm-12
+nitro.download###beforeReCaptcha > div > .purchaseNoWaiting
+nitro.download###copyrights
+nitro.download###footer
+nitro.download###footerCredits
+nitro.download###report
+nitro.download##.good.table2
+nitro.download##.noticeMessage
+nitro.download##[href="https://t.me/nitroflarecom"]
+nitro.download##[src="img/swf/HighSpeedMeter.png"]
+nitro.download##div > .bootstrapButton
+nitroflare.com###beforeReCaptcha > div > .purchaseNoWaiting
+nitroflare.com###copyrights
+nitroflare.com###footer
+nitroflare.com###footerCredits
+nitroflare.com###reCaptcha > div > .purchaseNoWaiting
+nitroflare.com###report
+nitroflare.com##.noticeMessage
+ouo.io##.about
+ouo.io##.footer-copy
+ouo.io##.join-now
+ouo.press##.about
+ouo.press##.footer-copy > .container
+ouo.press##.join-now
+outlook.live.com##.content-171.ms-Layer-content.ms-Fabric
+outlook.live.com##.root-195.ms-Dialog.is-open.ms-Modal
+oxy.st###abuse
+oxy.st##.footer-main
+oxy.st##.footer-single-item
+oxy.st##.foter-botom
+oxy.st##.margin-right.single-footer
+oxy.st##.section-padding_bottom_m.section-padding_top_none.section-padding.text-block_align_center.text-block
+oxy.st##.single-footer
+oxy.st##.solution-area
+oxy.st##.text-block__text.text_font_text.text_typeface_regular.text_align_center.text_size_s12.text
+pastebin.com##.-on.sidebar__sticky
+pastebin.com##.-post-view.notice
+pastebin.com##.footer
+pastebin.com##.footer__left
+pastebin.com##.h_800.share
+pastebin.com##.top-footer
+pastebin.com##a.-small.btn:nth-of-type(6)
+pastebin.com#@#.adsbyvli:upward(1)
+patchwork.ffmpeg.org###footer
+pcpartpicker.com###disclosure
+pcpartpicker.com##.footer__copyright
+pcpartpicker.com##body > .clearfix
+pi.hole##.col-sm-6.col-xs-12
+pi.hole##li > [href="https://pi-hole.net/donate/"]
+piitel.co.il##.copyright-footer
+piitel.co.il##.cross-sells
+piitel.co.il##.flex-has-center.nav-dark.hide-for-sticky.header-top
+pornolab.net###cookieNotice
+pornolab.net###logo
+pornolab.net###main_content_wrap > table > tbody > tr > .nav
+pornolab.net###moderators
+pornolab.net###page_footer
+pornolab.net###tor_blocked
+pornolab.net##.bold.mrg_2
+pornolab.net##.bypass-alert
+pornolab.net##.copyright
+pornolab.net##.hide-for-print.ta-inf2.top-alert
+pornolab.net##.inited.thx-list.sp-body
+pornolab.net##.jumpbox
+pornolab.net##.pad_2.gen
+pornolab.net##.pad_4.med.catBottom
+pornolab.net##.pad_4.row3
+pornolab.net##.pad_4.tCenter.bold.med
+pornolab.net##.post_btn_1
+pornolab.net##.signature
+pornolab.net##.thx-form
+pornolab.net##[href^="https://bongacams2.com/track"]
+pornolab.net##div.spacer_12
+pornolab.net##table.w100:nth-of-type(6)
+pornolab.net##tr.tCenter.row3 > .med
+prnt.sc##.footer
+prnt.sc##body > .page-constrain
+qbforums.shiki.hu##.copyright
+rapidgator.net##.footer
+rarbgto.org##.lista-rounded > tbody > tr:nth-of-type(4)
+rarbgto.org##.lista-rounded > tbody > tr:nth-of-type(4) > td
+rarbgto.org##body > div:nth-of-type(2)
+rarbgto.org##body > div:nth-of-type(3)
+rarbgto.org##body > div:nth-of-type(4)
+rarbgto.org##tr:nth-of-type(6) > .block
+receipts.weezmo.com##.ant-form-horizontal.ant-form
+receipts.weezmo.com##.ant-modal
+receipts.weezmo.com##.boom.ant-modal-wrap
+rentry.co##.mb-3.w-100.text-center
+reolink.com###bottom-support
+reolink.com###footer
+reolink.com##.copyright-worktime-box
+reolink.com##.faq-tab.banner-help
+reolink.com##.last-bottom-box
+reolink.com##.logo-left-content
+reolink.com##.main-infor-content
+reolink.com##.new-added-box
+reolink.com##.new-added-content
+reolink.com##.note-description-content
+reolink.com##.overview-tab.reo-component.note-description-wrap
+reolink.com##.pr-40.pb-130
+reolink.com##.pre-subscribe.reo-subscription-box
+reolink.com##.reolink-logo-icons
+reolink.com##.z-10000.reo-float-wrap-left-bottom
+rog-forum.asus.com###cookie-policy-info
+rutor.info###down
+rutor.info##[src="//cdnbunny.org/t/top.gif"]
+rutracker.org###footer-info-links
+rutracker.org###forum-moderators
+rutracker.org###jumpbox-wrap
+rutracker.org###logo
+rutracker.org###logo-td
+rutracker.org###main_content_wrap > .pad_2.w100 .w100.nav
+rutracker.org###page_footer
+rutracker.org###quick-search
+rutracker.org###thx-block
+rutracker.org###thx-block > .sp-wrap
+rutracker.org###thx-btn-div .bold
+rutracker.org##.footer-bottom-links
+rutracker.org##.hide-for-print.bottom_info
+rutracker.org##.hide-for-print.signature
+rutracker.org##.hide-for-print.topic
+rutracker.org##.hide-for-print.w100
+rutracker.org##.input-buttons.tCenter.pad_4.med.row2
+rutracker.org##.med.catBottom
+rutracker.org##.mrg_2 > .middot-separated.inlined
+rutracker.org##.nav-hidden-arrow.hide-for-print
+rutracker.org##.pad_4.row3
+rutracker.org##.sig-body
+rutracker.org##div.hide-for-print.small
+rutracker.org##div.hide-for-print.small:nth-of-type(2)
+rutracker.org##tr.tCenter.row3
+rutracker.org##tr.tCenter.row3:nth-of-type(1) > td > .middot-separated.inlined
+sarig.com##.homepop.elementor-popup-modal.dialog-type-lightbox.dialog-type-buttons.dialog-lightbox-widget.dialog-widget
+secure.konimbo.co.il###active_popupo_81733
+secure.konimbo.co.il###fixed_form_23469_holder
+secure.konimbo.co.il###popupo_container_81733
+security.stackexchange.com##.fd-column.gsy.gs4.grid.post-taglist
+security.stackexchange.com##.privacy-policy-agreement
+security.stackexchange.com##.ps-relative.js-freemium-cta
+security.stackexchange.com##.site-footer--container
+selfservice.bezeqint.net###agreement-modal
+selfservice.bezeqint.net##.footerLogos
+selfservice.bezeqint.net##.regulation.info-links
+selfservice.bezeqint.net##.tzurLogo
+selfservice.bezeqint.net#@#.goToTop
+selfservice.hot.net.il##.footerContent
+selfservice.hot.net.il##.footerLogos
+selfservice.hot.net.il##.headerLogo
+selfservice.hot.net.il##.headerTop
+selfservice.hot.net.il##.ng-star-inserted.ng-tns-c25-0.personalPage_login > .ng-tns-c25-0.personalPage_centered
+send.bezeq.co.il##.bezeq_footer_container
+send.bezeq.co.il##div.cookiesMessage
+share.dmhy.org###ddplay
+share.dmhy.org###tabs-1 > p:nth-of-type(4)
+share.dmhy.org##.announce
+share.dmhy.org##.declaration
+share.dmhy.org##.download-pp
+share.dmhy.org##.fl.table
+share.dmhy.org##.footer
+share.dmhy.org##.nocontent.ui-corner-all.box.topics_cult
+share.dmhy.org##.right.resource-info.info > ul > li:nth-of-type(4)
+share.dmhy.org##.right.resource-info.info > ul > li:nth-of-type(6)
+share.dmhy.org##.share
+share.dmhy.org##[href^="http://www.dandanplay.com/"]
+share.dmhy.org##div.table:nth-of-type(8)
+share.dmhy.org##div.table:nth-of-type(9)
+share.dmhy.org##div.ui-corner-all.box:nth-of-type(3)
+share.dmhy.org##div:nth-of-type(10)
+share.dmhy.org##div:nth-of-type(12)
+share.dmhy.org##div:nth-of-type(13)
+share.dmhy.org##div:nth-of-type(9)
+skidrowcodex.co###footer
+softwarekeep.com##.banner-item
+sourceforge.net###cmpbox
+sourceforge.net###cmpbox2
+sourceforge.net###nels
+sourceforge.net###report-inappropriate
+sourceforge.net##.l-gutter
+sourceforge.net##.l-nav-bottom
+sourceforge.net##.l-nav-top
+sourceforge.net##.l-side-column
+sourceforge.net##.m-project-list.m-sidebar-widget
+sourceforge.net##.m-project-related-keywords.m-sidebar-widget
+sourceforge.net##.m-rate-project.row
+sourceforge.net##.scroll-fixable
+sourceforge.net##aside.m-wide-projects-widget.m-wide-widget
+sourceforge.net##footer.sandiego
+stackoverflow.com###announcement-banner
+stackoverflow.com###notice-sidebar-popover
+staslang.wixsite.com###SITE_FOOTER_WRAPPER
+steamcommunity.com###footer
+steamcommunity.com###footerLogo
+steamcommunity.com###footerText
+steamcommunity.com###footer_spacer
+steamunlocked.net##.col-lg-12.copyright
+steamunlocked.net##.col-lg-4.footer_widget
+subscene.com###downloading
+subscene.com##[href^="https://widget.watchmondo.com/home/redirectto"]
+subscene.com##footer
+superuser.com##.bottom-notice
+superuser.com##.fd-column.gsy.gs4.grid.post-taglist
+superuser.com##.footer
+superuser.com##.fs-fine.site-footer--copyright
+superuser.com##.privacy-policy-agreement
+superuser.com##.ps-relative.js-freemium-cta
+superuser.com##.site-footer--container
+superuser.com##.site-footer--nav
+superuser.com##.tex2jax_ignore.module
+support-en.wd.com##.footer-lower
+support-en.wd.com##footer
+support-maplestory.nexon.net##.footer
+support-maplestory.nexon.net##.footer-inner
+support-maplestory.nexon.net##.footer-links
+support.logi.com##.footer-inner
+support.logi.com##.footer-link-container
+support.logi.com##.rights-reserve
+tech.co##.article-voting.quote
+tech.co##.consent-show.consent-holder
+tech.co##.footer.site-footer
+tech.co##.no-lazy-loading.cta-area.cta
+tech.co##.recent-posts
+tech.co##.widget-area.col-lg-3.offset-lg-1.col-md-4.col-12
+tech.walla.co.il###xlandingzone > h3
+tech.walla.co.il##.bottom-share-panel.only-mobile.vertical-view.css-kxiwjn.noprint.share-panel
+tech.walla.co.il##.icon-buttons
+tech.walla.co.il##.no-mobile-app.tags-list.css-1innaux
+tech.walla.co.il##.no-wide-desktop.vertical-view.css-kxiwjn.noprint.share-panel
+tech.walla.co.il##.noprint-hidden.wide.css-17egtz8
+tech.walla.co.il##.noprint.css-1vragmb
+tech.walla.co.il##.only-mobile.css-13oxhn3.css-1u5pva.slot
+tech.walla.co.il##.only-mobile.noprint.no-mobile-app.css-icq85b
+tech.walla.co.il##.report
+tech.walla.co.il##.tags-and-breadcrumbs
+tech.walla.co.il##.walla-icon-magnifier
+tech.walla.co.il##.walla-icon-printer.no-mobile.noprint.css-10e7vqz
+techviral.net##.td_block_bot_line.td_block_padding.td-column-1.td_block_template_9.td-pb-border-top.tdi_7.td_block_widget.td_block_9.td_block_wrap
+techviral.net##.td_block_template_9.td-pb-border-top.td_with_ajax_pagination.tdi_3.td_block_related_posts.td_block_wrap
+techviral.net##.tdc-footer-wrap
+techviral.net##.widget_text.text-21.widget.td_block_template_9
+thepiratebay.org##.align-center.flow-column.flow-root.row
+theverifier.co.il###disqus_recommendations
+theverifier.co.il##.clearfix.jeg_footer_primary
+theverifier.co.il##.col-md-4.jeg_sticky_sidebar.jeg_sidebar
+theverifier.co.il##.jeg_post_tags
+theverifier.co.il##.jnews_author_box_container
+threatpost.com##.gdprPopup
+to-do.live.com##.obf-Visible.obf-Toast
+torrentgalaxy.to###intblockslide > center > .txdark.panel-primary.panel
+torrentgalaxy.to###intblockslide > center > .txlight.panel-primary.panel
+torrentgalaxy.to##.loaded.entered.lazy.sitefriendbanner.img-responsive
+torrentgalaxy.to##.sitefriendbanner.img-responsive
+torrentgalaxy.to##.txdark.hotlist
+torrentgalaxy.to##.txlight.hotlist
+torrentgalaxy.to##footer
+trac.ffmpeg.org###altlinks
+trac.ffmpeg.org###footer
+trac.ffmpeg.org##.trac-help
+track.aliexpress.com##.footer-copywrite
+track.aliexpress.com##.site-footer
+tst-israel.co.il##.at_bottom.l-subfooter
+tst-israel.co.il##.cart100.wpb_text_column
+tst-israel.co.il##.cross-sells
+tst-israel.co.il##.products.upsells.up-sells
+tst-israel.co.il##.w-copyright
+turbobit.net###copyright-block
+turbobit.net##.btn-red
+turbobit.net##.max-speed-time
+turbobit.net##.row.footer-links
+turbobit.net##td.minus-ok-cell:nth-of-type(3)
+up-load.io##.buyPremium.alert-success.alert
+up-load.io##.col-md-8 > li
+up-load.io##.footer-sub
+up-load.io##.footer-sub > .container
+up-load.io##.pt30.col-md-12
+up-load.io##.report
+up-load.io##.share
+up-load.io##.share-info
+up-load.io##.text-center.col-md-8
+up-load.io##center > li
+up-load.io##footer
+up-load.io##footer > .container
+up-load.one###cookie-pop
+up-load.one##.copyright-container
+up-load.one##.text-left
+uploadev.org###footer2
+uploadev.org##footer
+uploadhive.com##footer > .container1
+uploadrar.com###footer2
+uploadrar.com###gdpr-cookie-notice
+uploadrar.com###news_last
+uploadrar.com##.aboutus
+uploadrar.com##.col-md-offset-2.col-lg-4.col-md-4.col-sm-12.col-xs-12
+uploadrar.com##.copyrights
+uploadrar.com##.menufooter
+uploadrar.com##.sharefile
+uploadrar.com##.socialmedia
+uploadrar.com##.txt
+uploadrar.com##footer
+uploady.io##.mt-4.col-md-12 > .mb-4.premium-page
+uploady.io##.position-absolute.p-5.footer
+uploady.io##.rounded.page-content.mb-3.shadow-sm.rounded-lg.border.bg-white.col-md-12
+uploady.io##tbody > tr > .table-success.text-center
+uploady.io##thead > tr > .table-success.text-center
+usb4.co.il##.copyright-footer
+usb4.co.il##.dark.footer-2.footer.footer-widgets
+usb4.co.il##.footer-1.footer.footer-widgets
+usb4.co.il##.product-footer
+usb4.co.il##.text-center.medium-text-center.dark.absolute-footer
+usb4.co.il##.widget_products.woocommerce.widget.pb-0.col
+usersdrive.com##.pro
+userupload.in##.mb-4.aboutFile.col-md-12.col-lg-6
+userupload.in##.position-absolute.p-4.footer
+userupload.in##.report
+userupload.net##.mb-4.aboutFile.col-md-12.col-lg-6
+userupload.net##.position-absolute.p-4.footer
+userupload.net##.report
+videocardz.com###search-wrapper
+videocardz.com###vc-maincontainer > .clearfix
+videocardz.com###vc-maincontainer-ad
+videocardz.com###vc-maincontainer-disqus-policy
+videocardz.com###vc-maincontainer-midad
+videocardz.com###vc-maincontainer-related
+videocardz.com###vc-masterfooter-footer-inner
+videocardz.com##.clearfix.socialbar
+videocardz.com##.comment-policy-hider
+videocardz.com##div.relatedblock
+vpn5.health.gov.il###page_footer
+walla.*###main-footer
+walla.*##.css-12flape > aside
+walla.*##.no-mobile-app.tags-list.css-1234ruv
+walla.*##.noprint.css-bsazcg
+walla.*##.noprint.no-mobile-app.css-1ra4wk
+walla.*##.noprint.no-mobile-app.css-1ra4wkk
+walla.*##.undefined.section-links.css-114l8a5
+walla.*##.walla-icon-printer.no-mobile.noprint.css-b3wih4
+wiki.sponsor.ajay.app###footer > .noprint
+wiki.sponsor.ajay.app###footer-copyrightico
+wiki.sponsor.ajay.app###footer-info-copyright
+wiki.sponsor.ajay.app###footer-places
+wiki.sponsor.ajay.app###footer-poweredbyico
+windows.tips.net###lightbox_backdrop
+windows.tips.net###pop1_s
+www.0404.co.il###footer
+www.0404.co.il##.news-ticker-ntb
+www.0404.co.il##.news_mobile
+www.0404.co.il##.right_content > .cf
+www.0404.co.il##.rtitle
+www.0404.co.il##.social-email
+www.0404.co.il##.social-facebook
+www.0404.co.il##.social-twitter
+www.0404.co.il##.social-whatsapp
+www.4download.net##.berrors
+www.4download.net##.clearfix.carousel-wr2
+www.4download.net##.clearfix.carousel-wr3
+www.4download.net##.clearfix.foot
+www.4download.net##.col-left > .dark.side-box
+www.4download.net##.nowrap.icon-left.clearfix.short-bottom
+www.4download.net##.player-section > .player-section
+www.4download.net##.rel-cont
+www.4download.net##article > .player-section
+www.4download.net##div.green.side-box:nth-of-type(2)
+www.4download.net##div.green.side-box:nth-of-type(4)
+www.4download.net##div.yellow.side-box:nth-of-type(3)
+www.4download.net##div.yellow.side-box:nth-of-type(5)
+www.ace.co.il##.bottom
+www.ace.co.il##.bottom > .container
+www.ace.co.il##.top
+www.ace.co.il##.top > .container
+www.alexandertowels.com##.site-footer
+www.aliexpress.com###fbbox-pc-pay-result > div
+www.aliexpress.com###nav-moretolove
+www.aliexpress.com##.MoreToLove--moretoloveContainer--3pOnhh3
+www.aliexpress.com##._1wVX7
+www.aliexpress.com##.account-recommend
+www.aliexpress.com##.card--out-wrapper.SeJ8l
+www.aliexpress.com##.cart-recommend
+www.aliexpress.com##.cart-summary-suggestion
+www.aliexpress.com##.cross-link--breadcrumb--JetwXJA
+www.aliexpress.com##.cross-link--crossLink--jlDx0Lb
+www.aliexpress.com##.cross-link--item--JIRJcBw
+www.aliexpress.com##.cross-link--title--Xe0HZ0f
+www.aliexpress.com##.description--report--yOtUhBm
+www.aliexpress.com##.down-load-app--simpleMenuItem--griCxPc
+www.aliexpress.com##.footer-copywrite
+www.aliexpress.com##.hm-right
+www.aliexpress.com##.instore-info-container
+www.aliexpress.com##.item-not-found-recommend
+www.aliexpress.com##.order-add-cart .slick-initialized._2vJwD.slick-slider > .slick-list
+www.aliexpress.com##.order-add-cart > div:nth-of-type(4)
+www.aliexpress.com##.order-add-cart-more-tip
+www.aliexpress.com##.order-block.order-recommend
+www.aliexpress.com##.pdp-body-top-left > div.split-line--wrap--uquPC9W.comet-v2-divider-small.comet-v2-divider
+www.aliexpress.com##.pdp-body-top-left > div:nth-of-type(5) > .title--wrap--wDzGayX
+www.aliexpress.com##.pdp-body-top-left > div:nth-of-type(5) > .title--wrap--wDzGayX > .title--text--Lx66GPw > .title--title--RN9Pt03
+www.aliexpress.com##.product-recommend-pc.product-recommend
+www.aliexpress.com##.product-store-banner.store-banner
+www.aliexpress.com##.recommend--container--iTd8RYN
+www.aliexpress.com##.recommend--gallery--Oa6BnRy._1nker
+www.aliexpress.com##.recommend--header--LzSMuBT
+www.aliexpress.com##.recommend-topselling--wrap--EpeGxvV
+www.aliexpress.com##.report-item.tab-item
+www.aliexpress.com##.result-download-app--container--1_KNRHr
+www.aliexpress.com##.share-and-wish--share--wb_tVHz
+www.aliexpress.com##.share-and-wish--wish--YLkM4wZ
+www.aliexpress.com##.sidebar-tab-survey.sidebar-tab
+www.aliexpress.com##.site-footer
+www.aliexpress.com##.slick-initialized._2vJwD.slick-slider
+www.aliexpress.com##.survey--wrap--uYCxzu4
+www.aliexpress.com##.survey-link
+www.aliexpress.com##.y2023.footer-copywrite
+www.aliexpress.com##.y2023.site-footer
+www.aliexpress.com##a.comet-v2-anchor-link:nth-of-type(4)
+www.aliexpress.com##div.pdp-wrap:nth-of-type(4) > .title--wrap--wDzGayX
+www.aliexpress.com##div.pdp-wrap:nth-of-type(4) > .title--wrap--wDzGayX > .title--text--Lx66GPw > .title--title--RN9Pt03
+www.aliexpress.com##div.pdp-wrap:nth-of-type(5) > .title--wrap--wDzGayX
+www.aliexpress.com##div.split-line--block--Nqy2Vhw
+www.aliexpress.com##div.split-line--wrap--uquPC9W.comet-v2-divider-small.comet-v2-divider
+www.aliexpress.com##div.top-sell-rcmd-item.recommend-item
+www.aliexpress.com##div.tracking-wrap:nth-of-type(4)
+www.aliexpress.com##div.tracking-wrap:nth-of-type(5)
+www.aliexpress.com##span.pc-header--line--2wkkKjf
+www.amazon.com###centerCol > hr
+www.amazon.com###desktop-yo-orderdetails_ALL_desktop-yo-orderdetails_0_container
+www.amazon.com###digitalDashHighProminence_feature_div
+www.amazon.com###hover-zoom-end
+www.amazon.com###image-canvas-caption > .a-text-center.a-span12.a-column > .a-color-secondary
+www.amazon.com###importantInformation_feature_div
+www.amazon.com###moreBuyingChoices_feature_div
+www.amazon.com###nav-flyout-ewc
+www.amazon.com###pricingFeedbackDiv
+www.amazon.com###product-comparison_feature_div
+www.amazon.com###sc-cart-column > .a-size-small.a-row
+www.amazon.com###sc-secondary-list
+www.amazon.com###sellYoursHere_feature_div
+www.amazon.com###simpleBundleV2_feature_div
+www.amazon.com###smart-wagon-recommendations-btf
+www.amazon.com###suggested-qna
+www.amazon.com###tellAmazon_feature_div
+www.amazon.com##.a-divider-inner
+www.amazon.com##.a-divider-normal
+www.amazon.com##.aok-float-right.a-declarative
+www.amazon.com##.bia-content.a-box
+www.amazon.com##.copilot-secure-display
+www.amazon.com##.gridgetContainer.leftCol
+www.amazon.com##.nav-flyout.nav-coreFlyout.glow-toaster-slot-default.glow-toaster-theme-default.glow-toaster.a-section
+www.amazon.com##.nav-sprite-v1.navLeftFooter
+www.amazon.com##.navAccessibility.navFooterVerticalColumn
+www.amazon.com##.navFooterCopyright.navFooterPadItemLine.navFooterLinkLine.navFooterLine
+www.amazon.com##.navFooterDescLine.navFooterLinkLine.navFooterLine
+www.amazon.com##.prime-cart-upsell__box.a-box
+www.amazon.com##.prime-ctyp-upsell-container.a-box
+www.amazon.com##.recommendation-widget.a-section
+www.amazon.com##.right-rail-top-content.a-box
+www.amazon.com##.s-widget-spacing-large.sg-col-12-of-16.sg-col.s-widget.sg-col-16-of-20.sg-col-0-of-12.s-result-item.sg-col-20-of-24
+www.amazon.com##.widgetId\=feedback.template\=FEEDBACK.slot\=MAIN.celwidget.s-widget-container-height-medium.s-spacing-medium.s-widget-container
+www.amazon.com##div#similarities_feature_div.celwidget
+www.amazon.com##div.navFooterPadItemLine.navFooterLinkLine.navFooterLine
+www.amazon.com##hr
+www.androidauthority.com##.advertise-button
+www.androidauthority.com##.buttons
+www.androidauthority.com##.post-sidebar
+www.androidauthority.com##.socials-holder
+www.androidauthority.com##.wrapper
+www.androidauthority.com##ul
+www.androidheadlines.com###wrapper-footer
+www.androidheadlines.com##.footer-row3.pb-4.pt-1.row
+www.androidheadlines.com##.post-copyright
+www.androidheadlines.com##.related-posts.row
+www.androidpolice.com###disqus_recommendations
+www.androidpolice.com##.adsninja-ad-zone
+www.androidpolice.com##.article-nav
+www.androidpolice.com##.article-tags
+www.androidpolice.com##.bottom.sharing
+www.androidpolice.com##.categories
+www.androidpolice.com##.column.secondary
+www.androidpolice.com##.comment-btn
+www.androidpolice.com##.footer.band
+www.androidpolice.com##.heading_sharing
+www.androidpolice.com##.next-btn.sentinel-article-nextArticle
+www.androidpolice.com##.post-hotness-meter
+www.androidpolice.com##.sidebar-poll.w-sidebar-tabs
+www.androidpolice.com##.sidebar-tabs
+www.androidpolice.com##.single-post-widget
+www.androidpolice.com##.w-article-author-bio
+www.androidpolice.com##.w-article-author-bio-expand
+www.androidpolice.com##.w-article-related
+www.androidpolice.com##.w-footer
+www.animencodes.com###HTML4
+www.animencodes.com##.footer-inner.region-inner
+www.animencodes.com##.footer-outer
+www.anirena.com##[src="./styles/tracker/imageset/exclamation.png"]
+www.anirena.com##[src="./styles/tracker/imageset/magnet.png"]
+www.apkmirror.com###sidebar
+www.apkmirror.com##.footer
+www.apkmirror.com##.indented-text
+www.aramex.com##footer
+www.bconnect.co.il##.footer-box
+www.bezeq.co.il###bezeq_search_social
+www.bezeq.co.il##.bezeq_blue_footer_container
+www.bezeq.co.il##div.cookiesMessage
+www.bizportal.co.il###mistake-in-article > .title
+www.bizportal.co.il###most-read-cube
+www.bizportal.co.il##.bottom-links
+www.bizportal.co.il##.footer-body.item
+www.bizportal.co.il##.last-item.item
+www.bizportal.co.il##.newsletter-register.item
+www.bleepingcomputer.com###footer
+www.bleepingcomputer.com###pop_stories
+www.bleepingcomputer.com##.cz-full-bio-wrapp
+www.bleepingcomputer.com##.cz-like-wrapper
+www.bleepingcomputer.com##.cz-news-like-right-area
+www.bleepingcomputer.com##.cz-news-tags-wrap
+www.bleepingcomputer.com##.cz-related-article-wrapp
+www.bleepingcomputer.com##.cz-toa-wrapp
+www.blizzard.com##.NavbarFooter-copyright
+www.blizzard.com##.NavbarFooter-downloadCta
+www.blizzard.com##.NavbarFooter-legal
+www.blizzard.com##.NavbarFooter-logoContainer
+www.blizzard.com##.NavbarFooter-mainLinks.NavbarFooter-links
+www.blizzard.com##.NavbarFooter-subLinks.NavbarFooter-links
+www.blizzard.com##.NavbarFooter-trademark.NavbarFooter-doNotSell
+www.blizzard.com##div.NavbarFooter-trademark:nth-of-type(6)
+www.blizzard.com##div.space-adaptive-large
+www.bug.co.il###footer
+www.bug.co.il##.hide-in-mobile.brd-btm-0.rtl.products.section7
+www.bug.co.il##.rtl.footer-bottom
+www.bug.co.il##.rtl.section6
+www.calcalist.co.il###f_logo
+www.calcalist.co.il###more\.article
+www.calcalist.co.il##.CalcalistFooter
+www.calcalist.co.il##.CdaCalcalistToday890
+www.calcalist.co.il##.CdaMostViews
+www.calcalist.co.il##.CdaRecomendedMovies
+www.calcalist.co.il##.ToSiber
+www.calcalist.co.il##.art-action-wrp
+www.calcalist.co.il##.art-tags-wrp
+www.calcalist.co.il##.calcalist-article-carusle.layoutItem
+www.calcalist.co.il##.calcalist-sub-navigation.layoutItem
+www.calcalist.co.il##.calcalistArticleTopSpace
+www.calcalist.co.il##.calcalistReadMoreBullets
+www.calcalist.co.il##.calcalistTags.ArticleTagsComponent
+www.calcalist.co.il##.col-last-child.W4_wrp
+www.calcalist.co.il##.commertial-calcalist.layoutItem
+www.calcalist.co.il##.ct-bottomPart
+www.calcalist.co.il##.footer-logos
+www.calcalist.co.il##.left-photo-content
+www.calcalist.co.il##.leftLinksWrp
+www.calcalist.co.il##.ms-mrg
+www.calcalist.co.il##.right-photo-content
+www.calcalist.co.il##.rightLinksRow
+www.calcalist.co.il##.tv-seo-links
+www.calcalist.co.il##.tv-seo-links-title
+www.calcalist.co.il##div.art-top-mrg.clearFix > .art-top-mrg.clearFix
+www.calcalist.co.il##div.art-top-mrg.clearFix:nth-of-type(3)
+www.calcalist.co.il##div.art-top-mrg.clearFix:nth-of-type(8)
+www.calcalist.co.il##div.art-top-mrg.clearFix:nth-of-type(9)
+www.calcalist.co.il##div.banner.new.General.layoutItem
+www.calcalist.co.il##div.calcalist-most-viewed-auto.layoutItem
+www.citydeal.co.il###designbox_907
+www.citydeal.co.il###designbox_913
+www.citydeal.co.il###designbox_915
+www.citydeal.co.il###eshop-footer
+www.citydeal.co.il###floating-icons
+www.citydeal.co.il###footer
+www.citydeal.co.il##.product_product_bundle.designbox
+www.cnet.com##.-reversed.container.c-trendingBar
+www.cnet.com##.ad-slot.ad-mobile-incontent-all
+www.cnet.com##.ad-slot.ad-mobile-incontent-mpu-bottom
+www.cnet.com##.ad-slot.ad-mobile-mpu-native
+www.cnet.com##.c-head_disclosure
+www.cnet.com##.float_none.related-links.shortcode
+www.cnet.com##.gallery.shortcode
+www.cnet.com##.skybox-inContent.ad-slot.ad-mobile-incontent-all-bottom
+www.cnet.com##div.ad-slot.ad-mobile-mpu
+www.cnet.com##div.skybox-inContent.ad-slot.ad-mobile-incontent-ad-plus
+www.consumers.org.il##.four-in-line
+www.consumers.org.il##div > .copyright
+www.daganm.co.il##.footer-bottom > .container
+www.daganm.co.il##.height-matched.match-height.items-in-row-1.margin-top-sm.template-pages_rows.widget-index.widget
+www.demonoid.is###details > .card > div.card-body:nth-of-type(2)
+www.demonoid.is###details > .card > div.card-body:nth-of-type(3)
+www.demonoid.is###rss_feed_link2
+www.demonoid.is##.banner_bottom
+www.demonoid.is##.bg-black.py-5.footer
+www.demonoid.is##.bottom_bar
+www.demonoid.is##.clipboard.text-center.p-1.m-2.shadow
+www.demonoid.is##.ending_bottom_left
+www.demonoid.is##.ending_bottom_right
+www.demonoid.is##.ending_disclaimer
+www.demonoid.is##.ending_tile_bottom
+www.demonoid.is##.ending_tile_top
+www.demonoid.is##.ending_top_left
+www.demonoid.is##.ending_top_right
+www.demonoid.is##.te5f35e
+www.demonoid.is##.text-center.details_support
+www.demonoid.is##div.pfooter
+www.demonoid.is##font.pfooter
+www.diffchecker.com##.footer-content.jsx-2279016371
+www.diffchecker.com##.footer.jsx-2279016371
+www.digitaltrends.com##.b-foot
+www.digitaltrends.com##.b-headline__note
+www.digitaltrends.com##.b-single__grid.b-grid
+www.digitaltrends.com##.b-sub
+www.digitaltrends.com##.h-editors-recs.b-editors-recs
+www.digitaltrends.com##.h-modal-it.b-share
+www.dlink.co.il##.clearfix.width.footer-navigation.accordion
+www.dlink.co.il##.copyright
+www.dlink.ru##.copyright
+www.driverscape.com##.footer
+www.dvdcenter.co.il###eshop-footer
+www.dvdcenter.co.il###footer
+www.electra-trade.co.il###credits
+www.engadget.com##.Bgc\(\#fff\).Jc\(sa\).D\(f\).W\(100vw\).rwd-outer-container
+www.engadget.com##.Bgc\(engadgetSteelGray\)--md.Bgc\(engadgetGray\).Jc\(sa\).D\(f\).W\(100vw\).rwd-outer-container
+www.engadget.com##.C\(engadgetGray\).Lh\(24px\).Fz\(16px\).Mt\(20px\)
+www.engadget.com##.D\(n\)--md.Mend\(30px\).Miw\(200px\).W\(200px\) > .Ai\(c\).Jc\(sa\).D\(f\)
+www.engadget.com##.Fz\(15px\) > .D\(n\)--md.Bgc\(engadgetSteelGray\).Jc\(sa\).D\(f\).W\(100vw\).rwd-outer-container
+www.engadget.com##.M\(0\).Pend\(25px\).Pstart\(0\).List\(n\).Ai\(c\).D\(n\)\!--lg.D\(f\)
+www.engadget.com##.M\(MarginCenter\).Jc\(c\).Z\(1\).Pos\(r\).Ai\(st\).D\(f\).W\(100vw\).Bgc\(engadgetSteelGray\)
+www.engadget.com##.M\(MarginCenter\).Jc\(c\).Z\(1\).Pos\(r\).Ai\(st\).D\(f\).W\(100vw\).Bgc\(white\)
+www.engadget.com##.Maw\(905px\) > section
+www.engadget.com##.Py\(20px\).Py\(15px\)\!--sm.Jc\(sa\).D\(f\).W\(100vw\)
+www.epicgames.com##.copyright.row
+www.epicgames.com##.epic_games.mobile-border-color.bg-color.container-fluid.egf
+www.epicgames.com##.footer-legal.row
+www.epicgames.com##.footer-links-container.row
+www.erai-raws.info###image_ads
+www.erai-raws.info###smart_push_smio_overlay
+www.erai-raws.info###smart_push_smio_window
+www.erai-raws.info##.copyright-bar
+www.erai-raws.info##.last.twelvecol
+www.erai-raws.info##[href="/donate/"]
+www.facebook.com###pageFooterChildren
+www.facebook.com###reg_pages_msg
+www.facebook.com##.copyright.mvl
+www.facebook.com##footer
+www.foodappeal-online.com###designbox_2024
+www.foodappeal-online.com###designbox_2039
+www.foodappeal-online.com###eshop-footer-credit
+www.foodappeal-online.com###floating-icons
+www.foodappeal-online.com##.col-md-3.col-12.order-md-1.order-3.column
+www.foodappeal-online.com##.pb-md-0.pb-4.col-md-6.col-12.order-md-2.order-1.column
+www.foodappeal-online.com##.text-md-right.text-center.col-md-3.col-12.order-md-3.order-2.column
+www.fosshub.com###fh-sd
+www.fosshub.com###fh-ss
+www.fosshub.com##.block--center.lm
+www.fosshub.com##.fm__p > .block--center.nm
+www.fxp.co.il###big-wap
+www.fxp.co.il###first-post-location
+www.fxp.co.il###footer
+www.fxp.co.il###footer_links
+www.fxp.co.il###gpt-top
+www.fxp.co.il###imageholderfr
+www.fxp.co.il###my2
+www.fxp.co.il##.additional-links
+www.fxp.co.il##.additional-links-bottom
+www.fxp.co.il##.cats2
+www.fxp.co.il##.divmainfav
+www.fxp.co.il##.favcontainer-n1
+www.fxp.co.il##.favswipecontent-n1
+www.fxp.co.il##.footer
+www.fxp.co.il##.footer__addr
+www.fxp.co.il##.footer__nav
+www.fxp.co.il##.footer_copyright.shade
+www.fxp.co.il##.microphone-tooltip
+www.fxp.co.il##.mobile-fav-down
+www.fxp.co.il##.navbar_notice.navbar_notice_32.ui-body
+www.fxp.co.il##.navlinks
+www.fxp.co.il##.quicktr
+www.fxp.co.il##.settings-tooltip
+www.fxp.co.il##.voice-change-info
+www.fxp.co.il##div.gu.dargot
+www.gadgety.co.il###bottomLine
+www.gadgety.co.il###footer
+www.gadgety.co.il###mobile-header-gallery > .color6.heroGallery
+www.gadgety.co.il###site-footer
+www.gadgety.co.il##.area
+www.gadgety.co.il##.article-meta-sources
+www.gadgety.co.il##.cLeft.cell
+www.gadgety.co.il##.category-holder
+www.gadgety.co.il##.content-boxes
+www.gadgety.co.il##.copyrights
+www.gadgety.co.il##.float-social
+www.gadgety.co.il##.line-tags
+www.gadgety.co.il##.messenger.post-bottom > div
+www.gadgety.co.il##.mobile-only > .spacing.gadgety-ad-wrapper
+www.gadgety.co.il##.read-more-widget
+www.gadgety.co.il##.resizableText > span
+www.gadgety.co.il##.telegram-promotion
+www.gadgety.co.il##article.entry
+www.gadgety.co.il##body > div:nth-of-type(2)
+www.gamestorm.co.il###mg_accessibility
+www.gamestorm.co.il###social_line
+www.gamestorm.co.il##.margin_widget_box
+www.gamestorm.co.il##.product_recommendations
+www.gametracker.com##.blocknewnopad.blocknew162.blocknew
+www.gametracker.com##.blocknewnopad.blocknew302.blocknew
+www.gametracker.com##.blocknewnopad.blocknew666.blocknew
+www.gametracker.com##.page_content > .item_float_right > [href]
+www.gametracker.com##.sitefooter.blocknew980.blocknew
+www.geektime.co.il###enable-toolbar-trigger
+www.geektime.co.il###gtf-form-newsletter
+www.geektime.co.il##.all-rights-reserved
+www.geektime.co.il##.author
+www.geektime.co.il##.clearfix.hasut-post
+www.geektime.co.il##.clearfix.post-socials
+www.geektime.co.il##.clearfix.suggestions
+www.geektime.co.il##.flex-text.gtf-widget
+www.geektime.co.il##.gtbc-comment-terms-text
+www.geektime.co.il##.gtf-break-text-lines.gtf-margin-right.gtf-widget
+www.geektime.co.il##.gtf-subtitle-margin-right.gtf-widget
+www.geektime.co.il##.hasut-logo
+www.geektime.co.il##.left.sidebar
+www.geektime.co.il##.post-content > .clearfix.post-socials
+www.geektime.co.il##.post-content > .gt-mobile-item.content-banner.banner
+www.geektime.co.il##.post-content > .gtf-form-newsletter.gt-rtl.gt-post-form-wrapper
+www.geektime.co.il##.post-specs > h4
+www.geektime.co.il##.tags.categories
+www.geektime.co.il##.wc-comment-bar
+www.geektime.co.il##.wc-comment-link
+www.geektime.co.il##div.clearfix.shell:nth-of-type(1)
+www.geektime.co.il##section.gt-mobile-item.top-banner.banner
+www.geektime.co.il##section.gt-mobile-item.top-banner.banner > .poloriz-widget
+www.getpcsofts.net###footer > .container
+www.getpcsofts.net##.group.post-nav
+www.getpcsofts.net##.group.related-posts
+www.getpcsofts.net##.heading
+www.getpcsofts.net##.post-tags
+www.getpcsofts.net##[src="//i1.wp.com/www.getpcsofts.net/wp-content/uploads/2020/01/download-button-white.png"]
+www.ghacks.net###ghacks_hot_discussions-2
+www.ghacks.net###ghacks_taxonomy_last_news-2
+www.ghacks.net###ghacks_taxonomy_popular-2
+www.ghacks.net###post-author
+www.ghacks.net###site-footer
+www.ghacks.net###snippet-box
+www.ghacks.net##.ghacks-sidebar
+www.ghacks.net##.pt--40.mt--40.border--top--gray.the_related_part
+www.ghacks.net##.pt--40.mt--40.border--top--gray.the_related_part > .mb--20.heading--small
+www.ghacks.net##.related-posts-box
+www.gigabyte.com##footer
+www.globes.co.il###F_Content > .tags
+www.globes.co.il###GPage_main > .sticky.fixed
+www.globes.co.il###comp1
+www.globes.co.il###passMadadim
+www.globes.co.il###readMoreList
+www.globes.co.il##.articleB
+www.globes.co.il##.asideContent
+www.globes.co.il##.bigTextIcon.Article_Icon
+www.globes.co.il##.compBanner
+www.globes.co.il##.compNewsletter
+www.globes.co.il##.compReadMore
+www.globes.co.il##.fNumber
+www.globes.co.il##.fixed.sticky
+www.globes.co.il##.icons
+www.globes.co.il##.marketingContent
+www.globes.co.il##.print
+www.globes.co.il##.readMoreTitle
+www.globes.co.il##.smallTextIcon.Article_Icon
+www.globes.co.il##.social
+www.globes.co.il##.tagit
+www.globes.co.il##.wr > section
+www.globes.co.il##footer
+www.google.com###botstuff
+www.google.com###footcnt
+www.gov.il###load_footer_insite
+www.gov.il###load_footer_insite > footer
+www.gov.il##.col-xs-12.col-lg
+www.gov.il##.d-print-none.lg-pt-0.xs-pt-10.border-top.second-strip
+www.gov.il##.nowrap.social-icons
+www.gov.il##.order-md-2.flex-wrap.d-flex.flex-footer-logo-and-list.col-12
+www.gsmarena.com###footer
+www.gsmarena.com##.clearfix.article-tags > .float-right
+www.gsmarena.com##.gsma-RelatedArticles
+www.guru3d.com###rateform
+www.guru3d.com##.pagefooter
+www.haaretz.co.il##.interstitial.c-dfp-ad
+www.haaretz.co.il##.u-autospace--2.c-lists-wrapper
+www.haaretz.co.il##.u-pos--r.u-mv--6.u-ph--2.u-ta--c.u-bdb--2px\(4\,solid\,primary\).u-bdt--2px\(4\,solid\,primary\).c-quick-nl-reg
+www.haaretz.co.il##.u-type--zeta.u-autospace--2.u-ms--1em.u-c--text-related.c-related-article-text-only
+www.haaretz.co.il##section > .u-autospace--4.c-article-entry.b-entry > div
+www.hachvana.mod.gov.il##.footerEn
+www.hachvana.mod.gov.il##.footerHe
+www.hachvana.mod.gov.il##.hidden-xs.col-md-4.col-sm-6.footerIcons
+www.homecenter.co.il##.cms-filter-bottom
+www.homecenter.co.il##.rights
+www.hot.net.il###LeftColumn_ctrlText_3883_ControlTitle
+www.hot.net.il##.footerContent
+www.hot.net.il##.footerLinks
+www.hot.net.il##.footerLogos
+www.hot.net.il##.footerLogos_left
+www.hot.net.il##.footerLogos_right
+www.hot.net.il##.helpfulLinks
+www.hot.net.il##.myHot_hatava_helpfulLinks
+www.hot.net.il##.myHot_socialPanel
+www.hot.net.il##.ng-scope.footerSEO_links
+www.hot.net.il##.widgetHP
+www.how2shout.com##.copyrights
+www.how2shout.com##.horizontal-small.widget_mts_popular_posts_widget.widget
+www.how2shout.com##.horizontal-small.widget_mts_recent_posts_widget.widget
+www.how2shout.com##.related-posts
+www.how2shout.com##.widgets-num-4.first-footer-widgets.footer-widgets
+www.howtogeek.com##.affiliate-disclosure
+www.howtogeek.com##.amp-social-sharing
+www.howtogeek.com##.amp-wp-tax-tag.amp-wp-meta
+www.howtogeek.com##.e-content.entry-content strong
+www.howtogeek.com##.entry-footer
+www.howtogeek.com##.header-commission-statement
+www.howtogeek.com##.message
+www.howtogeek.com##.message > span
+www.howtogeek.com##.nextup
+www.howtogeek.com##.shortbioauthordiv
+www.howtogeek.com##.sidebar-article.widget-area
+www.howtogeek.com##.site-footer
+www.howtogeek.com##.social-media-buttons
+www.howtogeek.com##.social-share.discourse
+www.howtogeek.com##em
+www.hyperxgaming.com###notification-51525 > .c-notification--small.c-notification
+www.hyperxgaming.com###notification-51525 > .c-notification--small.c-notification > .c-notification__content.l-inner > .c-notification__copy.notification__text
+www.hyperxgaming.com##.c-notification__bg
+www.hyperxgaming.com##.l-1\/5\@lg.l-1\/3\@md.l-row__col
+www.hyperxgaming.com##.l-4\/5\@lg.l-2\/3\@md.l-row__col
+www.hyperxgaming.com##.s-copyright__social.u-m0.u-p0.u-list-horizontal.u-list-unstyled
+www.hyperxgaming.com##.s-copyright__text
+www.hyperxgaming.com##.s-footer__email
+www.hyperxgaming.com##.s-footer__links
+www.hyperxgaming.com##.t-black.s-footer.section-footer > .u-max\+.l-inner
+www.hyperxgaming.com##.t-darkgrey.s-copyright
+www.ice.co.il###enable-toolbar-trigger
+www.ice.co.il##.ReactModalPortal
+www.ice.co.il##.bottom-bordered.content-area.category-block
+www.ice.co.il##.footer
+www.ice.co.il##.form.col-lg-12
+www.ice.co.il##.relatedArticlePreview
+www.ice.co.il##.tags-container
+www.ice.co.il##div.item > .newsletter-register
+www.iec.co.il##.bottom
+www.iec.co.il##app-sticky-banner
+www.imdb.com###contribute-main-section
+www.imdb.com###sidebar
+www.imdb.com##.VUGIPjGgHtzvbHiU19iTQ.imdb-footer
+www.imdb.com##.bWXzhq.StyledComponents__CastProUpsell-y9ygcu-12.pro-upsell--light.pro-upsell.gNIoRJ.IMDbProUpsell__IMDbProUpsellLink-sc-157l2gk-0
+www.imdb.com##.baseAlt.cVHfkP.SubNavTopicLinks__StyledTopicLinks-sc-5szx1d-0.ipc-inline-list--show-dividers.ipc-inline-list > li.ipc-inline-list__item:nth-of-type(3)
+www.imdb.com##.baseAlt.cVHfkP.SubNavTopicLinks__StyledTopicLinks-sc-5szx1d-0.ipc-inline-list--show-dividers.ipc-inline-list > li.ipc-inline-list__item:nth-of-type(3) > .ipc-link--inherit-color.ipc-link--baseAlt.ipc-link
+www.imdb.com##.baseAlt.cVHfkP.SubNavTopicLinks__StyledTopicLinks-sc-5szx1d-0.ipc-inline-list--show-dividers.ipc-inline-list > li.ipc-inline-list__item:nth-of-type(4)
+www.imdb.com##.baseAlt.cVHfkP.SubNavTopicLinks__StyledTopicLinks-sc-5szx1d-0.ipc-inline-list--show-dividers.ipc-inline-list > li.ipc-inline-list__item:nth-of-type(4) > .ipc-link--inherit-color.ipc-link--baseAlt.ipc-link
+www.imdb.com##.bhTVMj.TitleBlock__HideableRatingBar-sc-1nlhx7j-4.hNqCJh.RatingBar__RatingContainer-sc-85l9wd-0 > .idYUsR.RatingBar__ButtonContainer-sc-85l9wd-1 > div.rating-bar__base-button.jQXoLQ.RatingBarButtonBase__ContentWrap-sc-15v8ssr-0:nth-of-type(2)
+www.imdb.com##.cECatH.Root__Separator-sc-7p0yen-1
+www.imdb.com##.eFCUps.Hero__ProLinkAboveLarge-kvkd64-13.ipc-metadata-list__item
+www.imdb.com##.eSpONj.NavProFlyout-sc-1cjctnc-0.navbar__imdbpro
+www.imdb.com##.hdzTXK.SubNav__ShareButtonWrapper-sc-11106ua-0
+www.imdb.com##.hero-media__watchlist.ipc-poster__watchlist-ribbon.ipc-watchlist-ribbon--onImage.ipc-watchlist-ribbon--baseAlt.ipc-watchlist-ribbon--l.ipc-focusable.ipc-watchlist-ribbon
+www.imdb.com##.hoAGyu.NavProFlyout-sc-1cjctnc-0.navbar__imdbpro
+www.imdb.com##.htSMJL.Root__Separator-sc-7p0yen-1
+www.imdb.com##.iWbYZg.Contribution__ButtonSection-rw6l0w-0
+www.imdb.com##.ipc-icon-button--onBase.ipc-icon-button--baseAlt.sharemenu-iconbutton.ipc-icon-button
+www.imdb.com##.ipc-page-grid__item--span-1.ipc-page-grid__item.hUyfgB.TitleMainBelowTheFoldGroup__SidebarContainer-sc-1vpywau-2
+www.imdb.com##.ipc-title__actions
+www.imdb.com##.ipl-rating-interactive--no-rating.small.ipl-rating-interactive
+www.imdb.com##.jyOOmk.BoxOffice__ImdbProUpsellBoxOffice-sc-40s2pl-1.pro-upsell--light.pro-upsell.gNIoRJ.IMDbProUpsell__IMDbProUpsellLink-sc-157l2gk-0
+www.imdb.com##.ktUycW.AddReviewActionButton__AddReviewButton-sc-11e8do2-0.ipc-text-button.ipc-button--on-accent2.ipc-button--theme-base.ipc-button--core-base.ipc-button--default-height.ipc-button--center-align-content.ipc-button--single-padding.ipc-button
+www.imdb.com##.recently-viewed
+www.imdb.com##.recently-viewed.jUAGsa.RecentlyViewedItems__RecentlyViewedContainer-sc-1kscdxa-0
+www.imdb.com##.watchlistColumn
+www.imdb.com##li.ipc-metadata-list-item--link.ipc-metadata-list__item:nth-of-type(8)
+www.imdb.com##p.text-small.text-muted:nth-of-type(4)
+www.imdb.com##section.celwidget.ipc-page-section--base.ipc-page-section:nth-of-type(14) > .cgqHBf.styles__MetaDataContainer-sc-12uhu9s-0 > .ipc-metadata-list--base.ipc-metadata-list--dividers-all.ipc-metadata-list > li.ipc-metadata-list-item--link.ipc-metadata-list__item:nth-of-type(1)
+www.imdb.com##section.celwidget.ipc-page-section--base.ipc-page-section:nth-of-type(14) > .cgqHBf.styles__MetaDataContainer-sc-12uhu9s-0 > .ipc-metadata-list--base.ipc-metadata-list--dividers-all.ipc-metadata-list > li.ipc-metadata-list-item--link.ipc-metadata-list__item:nth-of-type(1) > .ipc-metadata-list-item__icon-link
+www.imdb.com##section.celwidget.ipc-page-section--base.ipc-page-section:nth-of-type(14) > .cgqHBf.styles__MetaDataContainer-sc-12uhu9s-0 > .ipc-metadata-list--base.ipc-metadata-list--dividers-all.ipc-metadata-list > li.ipc-metadata-list-item--link.ipc-metadata-list__item:nth-of-type(1) > .ipc-metadata-list-item__label--link.ipc-metadata-list-item__label
+www.imdb.com##section.celwidget.ipc-page-section--base.ipc-page-section:nth-of-type(14) > .cgqHBf.styles__MetaDataContainer-sc-12uhu9s-0 > .ipc-metadata-list--base.ipc-metadata-list--dividers-all.ipc-metadata-list > li.ipc-metadata-list-item--link.ipc-metadata-list__item:nth-of-type(2)
+www.imdb.com##section.celwidget.ipc-page-section--base.ipc-page-section:nth-of-type(14) > .cgqHBf.styles__MetaDataContainer-sc-12uhu9s-0 > .ipc-metadata-list--base.ipc-metadata-list--dividers-all.ipc-metadata-list > li.ipc-metadata-list-item--link.ipc-metadata-list__item:nth-of-type(2) > .ipc-metadata-list-item__icon-link
+www.imdb.com##td.ratingColumn:nth-of-type(4)
+www.imdb.com##th:nth-of-type(4)
+www.imdb.com##th:nth-of-type(5)
+www.isfar.co.il##.fix.col-3.footer-widgets
+www.isfar.co.il##.site-footer
+www.isfar.co.il##.site-info
+www.israelhayom.co.il###footer
+www.israelhayom.co.il###footer_message
+www.israelhayom.co.il###go-to-app-message
+www.israelhayom.co.il###mini-panel-footer > .panel-col.panel-panel
+www.israelhayom.co.il##.clear-block.panel-onecol-row-stack.panel-display
+www.israelhayom.co.il##.even.field-item > div:nth-of-type(5) > div:nth-of-type(1) > div > div
+www.israelhayom.co.il##.link-list
+www.israelhayom.co.il##.share-icon
+www.israelhayom.co.il##.single-post-meta-toolbar__comments.single-post-meta-toolbar_tool
+www.israelhayom.co.il##.slick-list
+www.israelhayom.co.il##.social-share
+www.israelhayom.co.il##.sticky-header
+www.israelhayom.co.il##.tags-list
+www.israelhayom.co.il##[href^="mailto:error@israelhayom.co.il"]
+www.israelhayom.co.il##a.single-post-tag
+www.ivory.co.il##.hide-print.mb-0.mt-0.row
+www.ivory.co.il##.noSideMargins.mb-5.align-items-center.d-flex.justify-content-between.row
+www.ivory.co.il##.siyagim
+www.joinhoney.com###Storefrontv3-Desktop-CouponModal-NoExtension
+www.joinhoney.com###exit-modal
+www.joinhoney.com##.body2.honeyName-0-2-175
+www.joinhoney.com##.body2.honeyName-0-2-355
+www.joinhoney.com##.container-0-2-418
+www.joinhoney.com##.container-0-2-423
+www.joinhoney.com##.cookieConsentBannerContainer-0-2-304
+www.joinhoney.com##.footerButtonsContainer-0-2-210
+www.joinhoney.com##.gdprCookieBanner_container
+www.joinhoney.com##.links-0-2-173
+www.joinhoney.com##.links-0-2-353
+www.joinhoney.com##.linksLeft-0-2-354
+www.joinhoney.com##.mainPadding-0-2-167
+www.joinhoney.com##.mainPadding-0-2-347
+www.joinhoney.com##.phDisclaimer-0-2-91
+www.joinhoney.com##.productFlaggingButtonDesktop-0-2-408 > .button-0-2-409
+www.king-pc.co.il##.fancybox-opened.fancybox-type-iframe.fancybox-desktop.fancybox-wrap
+www.king-pc.co.il##.fancybox-overlay
+www.ktuvit.me##.footer-bottom
+www.ktuvit.me##footer
+www.levhabait.co.il###element_general_footer_payments
+www.levhabait.co.il###footer_group1
+www.levhabait.co.il###footer_middle_groups
+www.lifewire.com##.footer-inner
+www.lifewire.com##.footer.comp
+www.lifewire.com##.mntl-article-feedback.article-feedback.comp
+www.lifewire.com##.mntl-block.masonry-list-section.comp
+www.lifewire.com##.mntl-dotdash-universal-nav__content
+www.limetorrents.pro###footer
+www.limetorrents.pro##center > div
+www.lnk.co.il###copy_area > .content_wrapper
+www.lnk.co.il##.featured_image_sidebar
+www.lnk.co.il##.full_width.copy_area
+www.lnk.co.il##.left.sidebar
+www.lnk.co.il##.meta-tags
+www.lnk.co.il##.post-box.author-box.related-box
+www.maariv.co.il##.article-left-side-container
+www.maariv.co.il##.article-left-side-sport1-iframe
+www.maariv.co.il##.article-print-icon
+www.maariv.co.il##.article-random-link-ul
+www.maariv.co.il##.article-tags
+www.maariv.co.il##.category-one-link-wrap.category-three-articles-wrap
+www.maariv.co.il##.footer-top-msg
+www.maariv.co.il##.footer-wrap
+www.maariv.co.il##.grid-row.footer-rights
+www.maariv.co.il##.grid-row.footer-service
+www.macrodroidforum.com##.p-footer-copyright
+www.mako.co.il###mako_main_glideDiv
+www.mako.co.il##.not-for-print.footer
+www.mako.co.il##.not-for-print.icons-bar
+www.mako.co.il##.not-for-print.share-bar
+www.mako.co.il##.not-for-print.side-bar
+www.mako.co.il##.tags
+www.mako.co.il##footer
+www.mazda3revolution.com##.p-footer
+www.mazda6club.com###thread-recommended-reading
+www.mazda6club.com##.p-footer
+www.mediafire.com##.DLExtraInfo-additional.DLExtraInfo
+www.mediafire.com##.DLExtraInfo-column.DLExtraInfo-upload
+www.mediafire.com##.footer
+www.metropark.co.il###footer
+www.metropark.co.il##.footer-content.table
+www.metropark.co.il##.footer-rights
+www.mirrored.to##.dl-width.foo-con
+www.mirrored.to##.extra-top.bordered.col-sm
+www.mirrored.to##footer
+www.mpgh.net##.footer_copyright.shade
+www.mpgh.net##.footer_morecopyright.shade
+www.neowin.net##.article-share
+www.neowin.net##.article-tags
+www.neowin.net##.footer-bot
+www.neowin.net##.header-banner-advertising
+www.neowin.net##.related-news
+www.neowin.net##.widget-community.widget
+www.neowin.net##div.post-nav
+www.neowin.net##em
+www.netgear.com##.show.focus-box.cookiealert.text-center.alert
+www.netoneto.co.il###eshop-footer
+www.netoneto.co.il###footer
+www.netoneto.co.il##.bundlesale
+www.netoneto.co.il##.footer_footer_banner3.designbox
+www.netoneto.co.il##.header_header_banner3.designbox
+www.netoneto.co.il##.jcarousel.banners.block.item-productfromcategories
+www.netoneto.co.il##.product-contact-form
+www.newpangourmet.co.il##.footer-lower
+www.newpangourmet.co.il##.footer-lower-center
+www.newpangourmet.co.il##.footer-middle
+www.newpangourmet.co.il##.nivo-main-image
+www.next.co.il###cookie-consent
+www.oan.cl###copyright
+www.oan.cl###footer
+www.oan.cl##.wp_rp_vertical_m.wp_rp_wrap
+www.oneplus.com###footer
+www.oneplus.com##.copy-right
+www.oneplus.com##.footer-nav
+www.oneplus.com##.hidden-in-store-app.nav-bread
+www.oneplus.com##.self-help
+www.opensubtitles.com###copyright
+www.opensubtitles.com###links-languages
+www.opensubtitles.com###main-footer
+www.opensubtitles.org###\38 k2faTee\+
+www.opensubtitles.org###footerlinks
+www.opensubtitles.org###lang_footer
+www.opensubtitles.org###moviehash > p
+www.opensubtitles.org###n3twork
+www.opensubtitles.org###n3twork_links
+www.opensubtitles.org##.a_1.a.p
+www.opensubtitles.org##.a_2.a.p
+www.opensubtitles.org##.bt-dwl
+www.opensubtitles.org##.content > div > fieldset
+www.opensubtitles.org##.hint.msg
+www.opensubtitles.org##.msg > div > [href]
+www.opensubtitles.org##.msgarrow
+www.opensubtitles.org##.site
+www.opensubtitles.org##.upfooter.footer
+www.opensubtitles.org##[href^="https://www.amazon.*/gp/search"]
+www.opensubtitles.org##div.footer
+www.opensubtitles.org##div.footer:nth-of-type(13)
+www.opensubtitles.org##div.msg:nth-of-type(11) > div:nth-of-type(1) > div
+www.opensubtitles.org##div:nth-of-type(2) > div:nth-of-type(6)
+www.opensubtitles.org##div:nth-of-type(4) > fieldset > div:nth-of-type(2)
+www.opensubtitles.org##div:nth-of-type(6) > p:nth-of-type(1)
+www.opensubtitles.org##h2
+www.opensubtitles.org##span:nth-of-type(1) > [href="#"]
+www.or-shay.com###active_popupo_81733
+www.or-shay.com###fixed_form_23469_holder
+www.or-shay.com###popupo_container_81733
+www.or-shay.com##.fixed_form_mobile_holder
+www.partner.co.il##.copyright
+www.payngo.co.il###subscriptionForm
+www.payngo.co.il##.bottom
+www.payngo.co.il##.slick-slider.slick-initialized.upsell.items-carousel
+www.payngo.co.il##.upsell-Title
+www.pc.co.il##.bg-white.left.top.p-fixed.h-100.w-100.over-page
+www.pc.co.il##.copyright
+www.pc.co.il##.navigation
+www.pc.co.il##.post_tags
+www.pc.co.il##.sidebar.sec_sidebar
+www.pc.co.il##.tags.row
+www.pc.co.il##.widget-10.widget-even.shortcode_widget.widget
+www.pc.co.il##aside.sidebar
+www.pc.co.il##footer
+www.pcgamer.com###affiliate-disclaimer
+www.pcgamer.com###affiliateDisclaimer
+www.pcgamer.com###articleTag
+www.pcgamer.com###document-footer-content
+www.pcgamer.com###popularcontent
+www.pcgamer.com##.fancy-box
+www.pcgamer.com##.full.container.trending-bar
+www.pcgamer.com##.popularBox.popular-box-slice.slice-container
+www.pcgamer.com##.read-more-container
+www.pcgamer.com##.recommendation-container
+www.pcgamer.com##.related-articles-block
+www.pcgamer.com##.vid-present.van_vid_carousel
+www.pcgamesn.com##.articles_container.next_page_placeholder
+www.pcgamesn.com##.mobile-info--active.game_info_panel
+www.pcgamesn.com##.mobile-tax--active.nn_taxonomy_section
+www.pcmag.com###trust-badge
+www.pcmag.com##.bg-gray-lightest
+www.pcmag.com##.border-l-0.border-r-0.border-b.border-t.border-gray-light.border.py-4.md\:mr-24.md\:ml-8.mx-0
+www.pcmag.com##.container-xs
+www.pcmag.com##.container.text-white.md\:flex-row.flex-col.flex
+www.pcmag.com##.items-end.flex
+www.pcmag.com##.leading-tight.mb-4.-mt-4.p-4.w-full.text-center.text-xs
+www.pcmag.com##.lg\:justify-center.mb-8.flex-wrap.flex.lg\:overflow-initial.overflow-x-auto
+www.pcmag.com##.lg\:px-24.lg\:py-12.p-6.text-white.bg-gray-darkest
+www.pcmag.com##.lg\:px-24.lg\:py-12.p-6.text-white.bg-gray-darkest > .container
+www.pcmag.com##.lg\:text-lg.leading-loose.list-disc.pl-8.mb-4
+www.pcmag.com##.lg\:text-lg.leading-loose.mt-2.rich-text.author-bio
+www.pcmag.com##.md\:container.w-full
+www.pcmag.com##.py-16.border-gray-darker.border-b.lg\:text-left.text-center.flex-col.flex
+www.pcmag.com##.py-8
+www.pcmag.com##.relative.text-center.text-gray-base.leading-tight.pb-8.text-sm.border-gray-darker.border-b.mt-6
+www.pcmag.com##.xl\:mb-0.mb-16.flex-shrink-0.block.upper-sidebar.xl\:px-0.xl\:container-right-rail.md\:mx-auto.md\:container
+www.pcmag.com##.z-10.cursor-pointer.right-0.left-0.bottom-0.fixed
+www.pcworld.com##.affiliate-disclaimer
+www.pcworld.com##.article-author-box
+www.pcworld.com##.entry-bio
+www.pcworld.com##.footer-base
+www.pcworld.com##.primaryFooter
+www.pcworld.com##.secondaryNav-wrap
+www.pcworld.com##.share-icons--wrapper
+www.pcworld.com##.tag-list
+www.planetminecraft.com###footer
+www.pornhub.com###channel_flag
+www.pornhub.com###footer
+www.pornhub.com###under-player-playlists
+www.pornhub.com##.categoriesWrapper > .suggestBtn.tooltipTrig
+www.pornhub.com##.categoryTerms.relatedSearchTermsBottom.sectionWrapper
+www.pornhub.com##.copyright
+www.pornhub.com##.extraMargin.languages.pornInLangWrapper.sectionWrapper
+www.pornhub.com##.footer
+www.pornhub.com##.footer-title
+www.pornhub.com##.footerContent
+www.pornhub.com##.footerContentWrapper
+www.pornhub.com##.homePageFooter.logoFooterWrapper
+www.pornhub.com##.modelWithCategories.sectionWrapper
+www.pornhub.com##.pornstarsLang.sectionWrapper.sectionRelatedStars
+www.pornhub.com##.relatedSearchTermsBottom.sectionWrapper
+www.pornhub.com##.relatedSearchTermsContainer
+www.pornhub.com##.suggestBtn.tooltipTrig
+www.pornhub.com##.tagsForWomen
+www.pornhubpremium.com###channel_flag
+www.pornhubpremium.com###footer
+www.pornhubpremium.com###js-trialExpireReminder
+www.pornhubpremium.com###pornportal-wrapper
+www.pornhubpremium.com###recommendations
+www.pornhubpremium.com###welcomePremium
+www.pornhubpremium.com##.categoryPagePopularChannels.popularChannelList
+www.pornhubpremium.com##.categoryTerms.relatedSearchTermsBottom.sectionWrapper
+www.pornhubpremium.com##.emailVerHomepageContainer > p
+www.pornhubpremium.com##.footerContent
+www.pornhubpremium.com##.footerContentWrapper
+www.pornhubpremium.com##.joinWrapper
+www.pornhubpremium.com##.js_dropdownBound.languageWrapper
+www.pornhubpremium.com##.languages.pornInLangWrapper.sectionWrapper
+www.pornhubpremium.com##.logoFooterWrapper
+www.pornhubpremium.com##.membershipCo
+www.pornhubpremium.com##.relatedChannelsWrapper
+www.pornhubpremium.com##.relatedSearchTermsBottom.sectionWrapper
+www.pornhubpremium.com##.relatedSearchTermsChannels
+www.pornhubpremium.com##.tagsForWomen
+www.pornhubpremium.com##.upsellWrapper
+www.pornhubpremium.com##footer
+www.qbittorrent.org##.copyright
+www.rami-levy.co.il##.banner-img.mb-3
+www.rami-levy.co.il##.mt-3.py-2.px-3.border-radius-15.bg-gray-100
+www.rami-levy.co.il##.p-2.justify-content-center.align-items-center.d-flex.kashrut-item
+www.rami-levy.co.il##.p-3.justify-content-center.align-items-center.d-flex.border-radius-10.bg-gray-100
+www.rami-levy.co.il##.px-1.position-absolute.plus-minus
+www.rami-levy.co.il##.related-products
+www.rami-levy.co.il##.warning-text.no-select.pb-2.mx-3.my-3.xs-text
+www.razer.com##.footer-container.container
+www.ret.co.il##footer
+www.reviewgeek.com##.amp-wp-tax-tag
+www.reviewgeek.com##.container
+www.reviewgeek.com##.copyright
+www.reviewgeek.com##.logo
+www.reviewgeek.com##.site-footer
+www.rtings.com##.best_bar
+www.rtings.com##.footer
+www.rtings.com##.recommendation_banner
+www.safer-networking.org##.address
+www.safer-networking.org##.copyright
+www.samline.co.il##.copyright
+www.semicom.co.il###page_content > .cms_content_area
+www.semicom.co.il##.footer_copyright
+www.semicom.co.il##.home_footer_text
+www.semicom.co.il##.shipping-info
+www.sendspace.com###footer_menu
+www.sendspace.com###signature
+www.sendspace.com##.tac.text
+www.snbforums.com##.js-bottomFixTarget.u-bottomFixer
+www.solidfiles.com##.premium-promo.box
+www.spaste.com##.btn-small.btn-danger.btn
+www.spaste.com##.footer-below
+www.speedtest.net##.footer
+www.speedtest.net##.footer > .container > .pure-g
+www.speedtest.net##.lower-content-blend.lower-content > .container
+www.speedtest.net##.lower-content-blend.lower-content > .container > .pure-g
+www.speedtest.net##.menu-footer-inline.menu-footer-sm.menu-footer
+www.speedtest.net##.mobile-pretest-2
+www.speedtest.net##.modal-overlay-dark.modal-overlay
+www.speedtest.net##.notification.error-container
+www.speedtest.net##.pure-g.content-devices
+www.speedtest.net##.u-align-center.u-c.pure-u-md-2-3.pure-u-1
+www.speedtest.net##.u-c.pure-u-custom-ad-rectangle
+www.speedtest.net##.u-c.pure-u-custom-ad-skyscraper
+www.spotify.com###mh-footer
+www.spotify.com#@##fb-root:not(body):not(html)
+www.spotify.com#@#.grecaptcha-badge
+www.spotify.com#@#div > div[aria-live="polite"]
+www.support.dlink.co.il###SITE_FOOTER_WRAPPER
+www.surveymonkey.com##.anon-footer.base-footer
+www.surveymonkey.com##.bottom.survey-footer
+www.tapatalk.com###recommend_topics
+www.tapatalk.com###related-topic-list-expand
+www.tapatalk.com###relatedtopicbar
+www.tapatalk.com##.bar-bottom.action-bar > .action-bar
+www.tapatalk.com##.bar-bottom.action-bar > .dropdown-loaded.dropdown-container.sr-b.fl
+www.tapatalk.com##.dot-com-frame-ready
+www.tapatalk.com##.endoftopicbar-only-share.bg1.flex.share_icon_area
+www.tapatalk.com##.no-padding.container
+www.tapatalk.com##.postprofile_Left.postprofile_container > .bar-bottom.action-bar
+www.techradar.com###affiliateDisclaimer
+www.techradar.com###document-footer-content
+www.techradar.com###expanding-articles
+www.techradar.com###popularcontent
+www.techradar.com###slice-container-affiliateDisclaimerBar
+www.techradar.com###slice-container-trendingbar
+www.techradar.com###taboola-mobile-below-article-thumbnails
+www.techradar.com##.ad-unit
+www.techradar.com##.author-block-with-borders.author-block
+www.techradar.com##.full.block-link
+www.techradar.com##.full.container.trending-bar
+www.techradar.com##.popularBox.popular-box-slice.slice-container
+www.techradar.com##.read-more-container
+www.techradar.com##.related-articles-block
+www.techradar.com##.vid-present.van_vid_carousel
+www.techradar.com##hr
+www.techspot.com##.copyright
+www.techspot.com##footer
+www.teldor.com##.active.cookies-agreements
+www.tgspot.co.il###fixedban
+www.tgspot.co.il###widget-area
+www.tgspot.co.il##.author-box-wrap
+www.tgspot.co.il##.centerad.adsbygoogle
+www.tgspot.co.il##.hide-like-count.post-share.social-align-default.tags-share-box-2_3.tags-share-box-s3.single-post-share.tags-share-box
+www.tgspot.co.il##.i-amphtml-next-page-document-container
+www.tgspot.co.il##.lazyloaded.footer-social-drop-line.penci-lazy.penci-footer-social-media
+www.tgspot.co.il##.mrf-homeAnchor.mrf-adDensityBodySentinel.mrf-sectionPart
+www.tgspot.co.il##.mrf-lazyDetails--extras
+www.tgspot.co.il##.mrf-scrollViewContainer.mrf-item-related-links.mrf-sectionPreview
+www.tgspot.co.il##.mrf-snapperElement--stopper.mrf-footer
+www.tgspot.co.il##.mrf-todayInHome
+www.tgspot.co.il##.penci_related_news_widget.widget
+www.tgspot.co.il##.post-tags
+www.tgspot.co.il##.td-block-title.td-related-title
+www.tgspot.co.il##.td-footer-template-9.td-container-wrap.td-footer-wrapper > .td-container
+www.tgspot.co.il##.td-post-content > ul
+www.tgspot.co.il##.td-post-source-tags
+www.tgspot.co.il##.td-related-row
+www.tgspot.co.il##.td-ss-main-sidebar
+www.tgspot.co.il##.yarpp-template-list.yarpp-related-website.yarpp-related.yarpp
+www.tgspot.co.il##[href="https://t.me/tgspotcoil"]
+www.tgspot.co.il##[href="https://t.me/tgspotcoil/"]
+www.tgspot.co.il##div.mrf-heightLocked.mrf-adv__wrapper
+www.themarker.com##.u-autospace--4.p-article__aside
+www.themarker.com##.u-mb--4.u-pb--2.o-card > .u-ta--c > .i-amphtml-layout.i-amphtml-built.i-amphtml-layout-size-defined.i-amphtml-layout-fixed.i-amphtml-element
+www.themarker.com##.u-mv--5.c-related-article-text-only-wrapper
+www.themarker.com##.u-pos--r.u-mv--6.u-ph--2.u-ta--c.u-bdb--1px\(4\,solid\,primary\).u-bdt--1px\(4\,solid\,primary\).c-quick-nl-reg
+www.themarker.com##.u-w--360px.c-web-push-subscribe
+www.themarker.com##article.ah
+www.themarker.com##div.g.f:nth-of-type(5)
+www.themarker.com##div.h.g:nth-of-type(6)
+www.themarker.com##section > .u-autospace--4.c-article-entry.b-entry > div > .u-w--300px.u-mr--auto.u-ml--auto.c-dfp-ad
+www.theverge.com###privacyConsent
+www.theverge.com##.c-group-disclosure-ecomm
+www.theverge.com##.c-read-more
+www.theverge.com##.c-related-list
+www.theverge.com##.connatix-container
+www.theverge.com##.remixd-wrapper
+www.theverge.com##footer
+www.tiktok.com##.matrix-smart-banner
+www.tiktok.com##footer
+www.tomsguide.com###affiliate-disclaimer
+www.tomsguide.com###article-body > ul
+www.tomsguide.com###document-footer
+www.tomsguide.com###quantcast
+www.tomsguide.com###slice-container-trendingbar
+www.tomsguide.com###taboola-mobile-below-article-thumbnails
+www.tomsguide.com##.after-article-tags
+www.tomsguide.com##.author-block
+www.tomsguide.com##.popularBox.popular-box-slice.slice-container
+www.tomsguide.com##.read-more-container
+www.tomsguide.com##.related-articles-block
+www.tomsguide.com##.xenforo-comments-see-all
+www.tomsguide.com##aside.hawk-processed.hawk-nest
+www.tomshardware.com###document-footer
+www.tomshardware.com###sidebar
+www.tomshardware.com##.affiliateDisclaimerBar.affiliate-disclaimer-bar-slice.slice-container
+www.tomshardware.com##.after-article-tags
+www.tomshardware.com##.author-block
+www.tomshardware.com##.read-more-container
+www.tomshardware.com##.related-articles-block
+www.tomshardware.com##.trending-wrapper
+www.tomshardware.com##.xenforo-comments-see-all
+www.tp-link.com###linkedin-follow
+www.tukero.org###footer
+www.tukero.org##.post-text > div > form
+www.tukero.org##.post-text input
+www.tvtime.com###get-the-app
+www.tvtime.com##.credits > p
+www.tvtime.com##.social
+www.tvtime.com#@#.banner
+www.tvtime.com#@#.follow-btn
+www.unknowncheats.me###collapseobj_similarthreads
+www.unknowncheats.me##.fixedsig
+www.unknowncheats.me##.smallfont.alt1
+www.up-4ever.net##.mb-2.border-right.col-sm-10.col-md-12.col-lg > div > [href^="https://www.up-4ever.net/"]
+www.up-4ever.net##.mb-5.text-center.content-section.col-sm-12
+www.up-4ever.net##.pt-0.lighten-5.blue-grey.page-footer
+www.up-4ever.net##.text-center.p-5.border.col-12 > a:nth-of-type(2)
+www.up-4ever.net##.text-center.py-3.footer-copyright
+www.up-4ever.net##span.waves-light.waves-effect.waves-input-wrapper:nth-of-type(1) > .btn-sm.btn-primary.btn
+www.upload-4ever.com##.mb-5.text-center.content-section.col-sm-12
+www.upload-4ever.com##.pt-0.lighten-5.blue-grey.page-footer
+www.upload-4ever.com##.text-center.col-12 > .my-5
+www.upload-4ever.com##.text-center.py-3.footer-copyright
+www.upload-4ever.com##span.waves-light.waves-effect.waves-input-wrapper:nth-of-type(1)
+www.videohelp.com###Bottomlist2
+www.videohelp.com###Bottomlist3
+www.videohelp.com###searchbrowsebox2 > table > tbody > .row1searchbox > td
+www.videohelp.com##[href^="http://reddit.com/submit"]
+www.videohelp.com##[href^="http://twitter.com/share"]
+www.videohelp.com##[href^="http://www.facebook.com/sharer.php"]
+www.videohelp.com##[href^="http://www.linkedin.com/shareArticle"]
+www.videohelp.com##[href^="https://plus.google.com/share"]
+www.videohelp.com##[href^="mailto:"]
+www.videohelp.com##[src="/images/500x500/social-logo-pinterest.jpg"]
+www.videohelp.com##div.rowbackground > .divTableborder.divTable > .divTableBody > .divTableRow > div.divTableCell
+www.videohelp.com##div.rowbackground > div.rowbackground
+www.videohelp.com##div.rowbackground:nth-of-type(3)
+www.videohelp.com##div.rowbackground:nth-of-type(3) > b
+www.wagnardsoft.com###footer
+www.wagnardsoft.com###footer-bottom
+www.wagnardsoft.com##.copyright
+www.wagnardsoft.com##.even.field-item > div > form > input
+www.wagnardsoft.com##.field-label-above.field-type-fivestar.field-name-field-fivestar.field
+www.wagnardsoft.com##.line
+www.wagnardsoft.com##[href="https://www.patreon.com/wagnardsoft"]
+www.whathifi.com###document-footer
+www.whathifi.com###in-article
+www.whathifi.com###sidebar > .hawk-processed
+www.whathifi.com##.affiliateDisclaimerBar.affiliate-disclaimer-bar-slice.slice-container
+www.whathifi.com##.author-block
+www.whathifi.com##.popularBox.popular-box-slice.slice-container
+www.whathifi.com##.trendingbar.trending-bar-container.slice-container
+www.whathifi.com##.vid-present.van_vid_carousel
+www.whathifi.com##aside#sidebar
+www.whathifi.com##aside.hawk-processed.hawk-nest
+www.windowscentral.com###articleTag
+www.windowscentral.com###document-footer
+www.windowscentral.com###newsletter
+www.windowscentral.com###slice-container-affiliateDisclaimerBar
+www.windowscentral.com###slice-container-trendingbar
+www.windowscentral.com##.ad-unit
+www.windowscentral.com##.author-block-with-borders.author-block
+www.windowscentral.com##.future__jwplayer--carousel
+www.windowscentral.com##.jw-carousel
+www.windowscentral.com##.nav-subscribe
+www.windowscentral.com##.popular-box
+www.windowscentral.com##.read-more-container
+www.windowscentral.com##.related-articles-block
+www.windowscentral.com##.van_vid_carousel__container
+www.windowscentral.com##.van_vid_carousel__padding
+www.wisebuy.co.il###uc_Footer_Footer
+www.wisebuy.co.il##.BidsBoxes > .TitleRow
+www.wisebuy.co.il##.BidsBoxes > div.StoreBox
+www.wisebuy.co.il##.BuyingGuides
+www.wisebuy.co.il##.Dictionary
+www.wisebuy.co.il##.bid.store-box
+www.xda-developers.com###about-author-wrapper
+www.xda-developers.com###footer
+www.xda-developers.com###footer-left
+www.xda-developers.com###footer-right
+www.xda-developers.com###post-tags-wrapper
+www.xda-developers.com###sidepanel > .widget.widget-2
+www.xda-developers.com##.adsninja-ad-zone
+www.xda-developers.com##.entry_tags
+www.xda-developers.com##.tagbar
+www.xda-developers.com##.xda_suggested_apps.widget
+www.xvideos.com###footer
+www.xvideos.com##footer
+www.xvideos.red##footer
+www.yad2.co.il###contact_us_mistake
+www.yad2.co.il##.isWideInsights.recommended_ads_wrapper.vehicles_right_side.size_x1_3.dynamic_cmp_wrapper
+www.yad2.co.il##.promo_container
+www.yad2.co.il##.recommended_ads
+www.ynet.co.il###mainAccessibilityButton
+www.ynet.co.il###main_search_weather
+www.ynet.co.il###ynet_premium_blocked
+www.ynet.co.il##.Article.YnetMutamHeader
+www.ynet.co.il##.ArticleTagsComponent
+www.ynet.co.il##.CreditLogos
+www.ynet.co.il##.FooterLogos
+www.ynet.co.il##.SiteArticleSocialBottomShare1280
+www.ynet.co.il##.SiteArticleSocialBottomShare1280 > .iconsWrapper
+www.ynet.co.il##.SiteArticleSocialShare1280
+www.ynet.co.il##.SiteArticleSocialShareNew1280
+www.ynet.co.il##.ToolsAndAbout
+www.ynet.co.il##.access
+www.ynet.co.il##.article-bottom-share-1280.layoutItem
+www.ynet.co.il##.article-tags-1280.layoutItem
+www.ynet.co.il##.articleShareButtons
+www.ynet.co.il##.foundMistake
+www.ynet.co.il##.foundMistake-pf
+www.ynet.co.il##.mobileShareBtn.topBtns
+www.ynet.co.il##.multi-images-gallery.layoutItem
+www.ynet.co.il##.public-DraftStyleDefault-ul
+www.ynet.co.il##.tab
+www.ynet.co.il##.termsOfService
+www.ynet.co.il##.text_editor_contact_us_link
+www.ynet.co.il##.yad2
+www.ynet.co.il##.ynet-footer.layoutItem
+www.ynet.co.il##.ynet-header.layoutItem
+www.ynet.co.il##[src="https://w.ynet.co.il/iframes/ycar"]
+www.ynet.co.il##div.layoutContainer:nth-of-type(5)
+www.ynet.co.il##div.rtl.text_editor_paragraph:nth-of-type(2) > .public-DraftStyleDefault-rtl.public-DraftStyleDefault-block
+www.ynet.co.il##div.rtl.text_editor_paragraph:nth-of-type(2) > .public-DraftStyleDefault-rtl.public-DraftStyleDefault-block > span > span
+www.youtube.com###copyright
+www.youtube.com###guide-links-primary
+www.youtube.com###guide-links-secondary
+www.youtube.com###share-targets
+www.youtube.com##.ytd-rich-item-renderer.style-scope > .ytd-feed-nudge-renderer.style-scope
+www.youtube.com##ytd-rich-section-renderer.ytd-rich-grid-renderer.style-scope
+www.zap.co.il###ModelPage > .BannerBoxNew
+www.zap.co.il###ModelsPage > .BannerBoxNew
+www.zap.co.il###ZapHomepageFooter
+www.zap.co.il###_google-one-tap
+www.zap.co.il###androidStrip
+www.zap.co.il###bannerBelowModelFooter
+www.zap.co.il###bannerBelowProductDetails
+www.zap.co.il##.Advertisement
+www.zap.co.il##.AdvertisementBlock
+www.zap.co.il##.BackToTopLink
+www.zap.co.il##.BidsContainer
+www.zap.co.il##.BottomComment
+www.zap.co.il##.FundedAds
+www.zap.co.il##.MashlimimCat
+www.zap.co.il##.MiddleBanner5.MiddleBanner
+www.zap.co.il##.ModelCats
+www.zap.co.il##.RelatedProducts
+www.zap.co.il##.SearchResultsMain > div.BannerBoxNew
+www.zap.co.il##.SliderRow
+www.zap.co.il##.ZapHomepageFooter
+www.zap.co.il##.compareSimilarProducts
+www.zap.co.il##.footer-model
+www.zap.co.il##.footer-wrapper
+www.zap.co.il##.last-products-carousel
+www.zap.co.il##.marginTop.recaptcha
+www.zap.co.il##.mashlimim
+www.zap.co.il##.mobile-footer
+www.zap.co.il##.model-page-bids
+www.zap.co.il##.my-zap-icons
+www.zap.co.il##.ph_Personalization
+www.zap.co.il##div.Archive > [href^="/modelsstore.aspx"]
+www.zdnet.com##.ad-disclosure
+www.zdnet.com##.breaking-news-container
+www.zdnet.com##.placeholder.mobile-nav-ad-plus-banner
+www.zdnet.com##.social-links
+www2.bittools.net###USSE > .container > .row
+www2.bittools.net###footer2
+www2.bittools.net###footer2 > .container
+www2.bittools.net##.UPFSR
+www2.bittools.net##.antivirus
+www2.bittools.net##.btn-gomc.btn-go.btn
+www2.bittools.net##.col-md-offset-2.col-lg-8.col-md-8.col-sm-12.col-xs-12 > .blocktxt
+www2.bittools.net##.cp
+www2.bittools.net##.page-box
+www2.bittools.net##.pageSuccess
+www2.bittools.net##.pricing > .file-box
+www2.bittools.net##.pricing > div > div.file-box
+www2.bittools.net##.pricing > div > div.file-box > .fa-ul > li
+www2.bittools.net##.share
+www2.bittools.net##.table-striped.table-bordered.table.ppdRateTable
+www2.bittools.net##.visible.fadeInUp.animated
+www2.bittools.net##[href="mailto:support@bittools.net"] > .BitToolsI
+www2.bittools.net##center > div > .col-md-offset-2.col-lg-8.col-sm-12.col-xs-12 > .blocktxt
+www2.bittools.net##div.row > .btcblocktxt.blocktxt > .content
+www2.bittools.net##footer > .container
+www2.kickassanime.rs###adultVerify___BV_modal_outer_
+www2.kickassanime.rs##.col-md-12
+www2.kickassanime.rs##.justify-content-end.d-flex.mb-0.list-inline
+www87.zippyshare.com###bottom
+||ad.plus/adplus-advertising.svg$image
+||bringthemhomenow.net^
+||cdnbunny.org/t/top.gif$image
+||disqus.com/api/3.0/threadReactions/*$xhr,1p,important
+||disqus.com/recommendations/$subdocument
+||dropgalaxy.com/images/dgpromo.jpg$image
+||ds-assets.cdn.devapps.ru^$image,domain=4pda.to,important
+||finance.walla.co.il/public/assets/item/share/*.png$image
+||finance.walla.co.il/public/assets/item/share/mail.png$image
+||graphql.themarker.com^$xhr,domain=www.themarker.com,important
+||i0.wp.com/www.getpcsofts.net/wp-content/uploads/2018/10/download_green_secure_direct.png$image
+||i1.wp.com/goo.gl/kud8Zc$image
+||i1.wp.com/www.getpcsofts.net/wp-content/uploads/2020/01/download-button-white.png$image
+||images-na.ssl-images-amazon.com/images/G/01/pxd/marketing/diamond/ILMs/non-incentive/Diamond_Center-28_650X45_Text1._CB419094158_.png$image
+||img.ksp.co.il/desctop_site/clipboard.svg$image
+||img.ksp.co.il/desctop_site/facebook.svg$image
+||img.ksp.co.il/desctop_site/ksp-app-qr-code.svg$image
+||img.ksp.co.il/desctop_site/print.svg$image
+||katfile.com/vp.jpg$image
+||ksp.co.il/m_action/api/footer-items$1p,important
+||ksp.co.il/m_action/api/promotion/*$1p,important
+||lps.ynet.co.il/yframe/newsletter_article/$subdocument
+||pi.hole/admin/img/donate.gif$image
+||s3.amazonaws.com/neowin/news/images/uploaded/2017/07/1501235643_twitter_software.jpg$image
+||services.themarker.com^$1p,important
+||static.pornolab.net/templates/default/images/post.gif$image
+||static.pornolab.net/templates/default/images/reply.gif$image
+||static.t-ru.org/templates/v1/images/post.gif$image
+||static.t-ru.org/templates/v1/images/reply.gif$image
+||turbobit.net/fd1/img/main/rocketship.png$image
+||up-load.one/modern_theme/build/img/footer.jpg$image
+||www.androidheadlines.com/wp-content/uploads/2020/0*/AH-*.webp$image
+||www.anirena.com/styles/tracker/imageset/exclamation.png$image
+||www.anirena.com/styles/tracker/imageset/magnet.png$image
+||www.d.co.il/Content/Css/CustomersCarousel/*$stylesheet,domain=www.d.co.il,important
+||www.driverscape.com/images/scan.png$image
+||www.israelhayom.co.il/adframe.js$important
+||www.israelhayom.co.il/graphql/linklist$important
+||www.israelhayom.co.il/graphql/loadmore$xhr,domain=www.israelhayom.co.il,important
+||www.netoneto.co.il/images/itempics/BN_252.png$image
+||www.themarker.com/logger/*$1p,important
+||www.themarker.com/static/tm/images/i_gold_banner.png$image,1p,important
+||www2.bittools.net/themes/pro/bittools/images/FTBG.png$image
