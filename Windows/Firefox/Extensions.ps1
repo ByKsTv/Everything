@@ -371,6 +371,10 @@ public class Clicker
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\i_m_not_robot_captcha_clicker.xpi"
     $OpenWithFirefox.start()
     Start-Sleep 5
+    [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
+    Start-Sleep 1
+    [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
+    Start-Sleep 1
     Write-Host 'Im not robot captcha clicker > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(306, 215)
     Start-Sleep 2
