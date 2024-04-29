@@ -33,6 +33,7 @@
 - [Diakov](https://diakov.net/) - Software
 - [LRepacks](https://lrepacks.net/) - Software
 - [monkrus](https://w14.monkrus.ws/) - Software
+- [monkrus](https://w14.monkrus.ws/) - Adobe Software
 - [AnimeTosho](https://animetosho.org/) - Anime Subtitles
 - [OpenSubtitles](https://www.opensubtitles.org/en/search/subs) - Subtitles
 - [Subscene](https://subscene.com/) - Subtitles
