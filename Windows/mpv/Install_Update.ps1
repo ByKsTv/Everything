@@ -28,8 +28,8 @@ Start-Sleep 1
 $WshShell.SendKeys('{1}')
 Start-Sleep 10
 Start-Process -FilePath $CurrentMPVPath\installer\mpv-install.bat -ArgumentList /u
-if ((Test-Path -LiteralPath "$CurrentMPVPath\nstall_Update.ps1") -eq $true) {
-    Remove-Item -Path ("$CurrentMPVPath\nstall_Update.ps1") -Force
+if ((Test-Path -LiteralPath "$CurrentMPVPath\Install_Update.ps1") -eq $true) {
+    Remove-Item -Path ("$CurrentMPVPath\Install_Update.ps1") -Force
 }
 if ((Test-Path -LiteralPath "$CurrentMPVPath\README.md") -eq $true) {
     Remove-Item -Path ("$CurrentMPVPath\README.md") -Force
