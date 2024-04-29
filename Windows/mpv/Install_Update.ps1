@@ -34,3 +34,4 @@ if ((Test-Path -LiteralPath "$CurrentMPVPath\Install_Update.ps1") -eq $true) {
 if ((Test-Path -LiteralPath "$CurrentMPVPath\README.md") -eq $true) {
     Remove-Item -Path ("$CurrentMPVPath\README.md") -Force
 }
+exit
