@@ -299,7 +299,7 @@ public class Clicker
     [Clicker]::LeftClickAtPoint(300, 240)
     Write-Host 'uBlock Origin > Add (If previously installed)' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(350, 240)
-    Start-Sleep 2
+    Start-Sleep 5
     Write-Host 'uBlock Origin > Icon' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(430, 60)
     Start-Sleep 2
