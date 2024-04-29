@@ -398,7 +398,7 @@ public class Clicker
     Write-Host 'Tampermonkey' -ForegroundColor green -BackgroundColor black
     Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4250678/tampermonkey-5.1.0.xpi -OutFile $env:TEMP\tampermonkey.xpi
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\tampermonkey.xpi"
-    [System.Windows.Forms.SendKeys]::SendWait('^w')
+    [System.Windows.Forms.SendKeys]::SendWait('^w 2')
     Start-Sleep 1
     $OpenWithFirefox.start()
     Start-Sleep 5
