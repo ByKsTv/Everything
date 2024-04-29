@@ -344,7 +344,7 @@ public class Clicker
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
     Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
-    Start-Sleep 1
+    Start-Sleep 10
     if ((Test-Path -LiteralPath "$DesktopFolder\uBlock_Origin_Backup.txt") -eq $true) {
         Remove-Item -Path ("$DesktopFolder\uBlock_Origin_Backup.txt") -Force -Recurse
     }
