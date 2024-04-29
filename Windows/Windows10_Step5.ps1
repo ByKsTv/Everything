@@ -1193,7 +1193,7 @@ public class Clicker
 	$OpenWithFirefox.StartInfo.Filename = 'firefox.exe'
 	Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4261710/ublock_origin-1.57.2.xpi -OutFile $env:TEMP\ublock_origin.xpi
 	$DesktopFolder = [Environment]::GetFolderPath('Desktop')
-	Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.txt -OutFile $DesktopFolder\Backup.txt
+	Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.txt -OutFile $DesktopFolder\uBlock_Origin_Backup.txt
 	$OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\ublock_origin.xpi"
 	$OpenWithFirefox.start()
 	Start-Sleep 2
@@ -1231,15 +1231,15 @@ public class Clicker
 	Start-Sleep 1
 	$WshShell.SendKeys('{TAB 6}')
 	Start-Sleep 1
-	Write-Host "uBlock Origin > Restore from file $DesktopFolder > Backup.txt" -ForegroundColor green -BackgroundColor black
-	$WshShell.SendKeys('Backup.txt')
+	Write-Host "uBlock Origin > Restore from file $DesktopFolder > uBlock_Origin_Backup.txt" -ForegroundColor green -BackgroundColor black
+	$WshShell.SendKeys('uBlock_Origin_Backup.txt')
 	Start-Sleep 1
 	$WshShell.SendKeys('{ENTER}')
 	Start-Sleep 1
 	$WshShell.SendKeys('{ENTER}')
 	Start-Sleep 1
-	if ((Test-Path -LiteralPath "$DesktopFolder\Backup.txt") -eq $true) {
-		Remove-Item -Path ("$DesktopFolder\Backup.txt") -Force -Recurse
+	if ((Test-Path -LiteralPath "$DesktopFolder\uBlock_Origin_Backup.txt") -eq $true) {
+		Remove-Item -Path ("$DesktopFolder\uBlock_Origin_Backup.txt") -Force -Recurse
 	}
 	Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4064884/clearurls-1.26.1.xpi -OutFile $env:TEMP\clearurls.xpi
 	$OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\clearurls.xpi"
