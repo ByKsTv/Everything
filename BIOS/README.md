@@ -5,18 +5,26 @@
 
 ## BIOS Update
 
+> [!TIP]
+> Motherboard Model Can Be Found On `System Information` > `BaseBoard Product`.
+
 1. Download Motherboard BIOS to USB.
 1. Boot to BIOS.
-1. Install Motherboard BIOS.
+
+> [!TIP]
+> Restart to BIOS using CMD (Admin):
+>
+> ```cmd
+> shutdown /r /fw /t 00
+>
+> ```
 
 > [!CAUTION]
 > Update PC BIOS at night hours to avoid power loss.
 
 ## BIOS Settings
 
-<details>
-
-<summary>Asus Motherboard (Click to expand):</summary>
+### Asus Motherboard
 
 1. `Ai Tweaker` > `ASUS MultiCore Enhancement` > `Disabled - Enforce All limits`.
 1. `Advanced` > `Platform Misc Configuration` > `PCI Express Native Power Management` > `Enabled` (Wake-On-Lan).
@@ -26,5 +34,3 @@
 1. `Advanced` > `Onboard Devices Configuration` > `Bluetooth Controller` > `Disabled`.
 1. `Advanced` > `Onboard Devices Configuration` > `LED lighting When system is in working state` > `Stealth Mode`.
 1. `Tool` > `ASUS Armoury Crate` > `Download & Install ARMOURY CRATE app` > `Disabled`.
-
-</details>
