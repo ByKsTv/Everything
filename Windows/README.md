@@ -49,25 +49,14 @@ Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windo
 
 ```
 
-### Step 5.1 - Browser Extensions
-
-#### Step 5.1.1 - Chrome Extensions
-
-1. [uBlock Origin](https://chromewebstore.google.com/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm) > `Settings` > [Restore from file](https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.txt).
-2. [Tampermonkey](https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) > [adsbypasser](https://adsbypasser.github.io/) > `Install Full Edition`.
-3. [ClearURLs](https://chromewebstore.google.com/detail/clearurls/lckanjgmijmafbedllaakclkaicjfmnk)
-4. [I'm not robot captcha clicker](https://chromewebstore.google.com/detail/im-not-robot-captcha-clic/ceipnlhmjohemhfpbjdgeigkababhmjc)
-5. [Buster: Captcha Solver for Humans](https://chromewebstore.google.com/detail/buster-captcha-solver-for/mpbjkejclgfgadiemmefgebjfooflfhl)
-6. [The Camelizer](https://chromewebstore.google.com/detail/the-camelizer/ghnomdcacenbmilgjigehppbamfndblo)
-
-### Step 5.2 - NVCleanstall
+### Step 5.1 - NVCleanstall
 
 1. Download and Install [NVCleanstall](https://www.techpowerup.com/download/techpowerup-nvcleanstall/) `On this machine` + `Check for updates`.
 2. Download [Display Driver Uninstaller](https://www.wagnardsoft.com/display-driver-uninstaller-DDU-) `Portable`.
 3. Restart to Safe Mode (Shift+Restart) `Troubleshoot` > `Advanced options` > `Startup Settings` > `Restart` > Disconnect Ethernet Cable > Open Display Driver Uninstaller (Admin) > `OK` > Disable `Show offers from out partners` > Enable `Remove PhysX` > `Close` > `OK` > `---Select device type---` > `GPU` > `Clean and restart`.
 4. Open NVCleanstall (Admin) > Connect Ethernet Cable > `Refresh` > `Manually select a driver version` > `Studio` > `Next` > `Recommended` > `Next` > Disable `Installer Telemetry & Advertising` > Enable `Unattended Express Installation` > `Next` > `Install`.
 
-### Step 5.3 - NVIDIA Control Panel
+### Step 5.2 - NVIDIA Control Panel
 
 1. `NVIDIA Control Panel` > `3D Settings` > `Manage 3D settings`:
 2. `Texture filtering - Quality` > `High quality`.
@@ -80,19 +69,19 @@ Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windo
 9. `Change resolution` > `Output color depth` > `12bpc`.
 10. `Adjust desktop size and postion` > `Full-Screen`.
 
-### Step 5.4 - Sounds
+### Step 5.3 - Sounds
 
 1. Speaker setup > `5.1 (side)`.
 2. Default Format > `24 bit, 192000 Hz (Studio Quality)`.
 
-### Step 5.5 - Drivers
+### Step 5.4 - Drivers
 
 1. Download and Install Motherboard Drivers.
 
 > [!NOTE]
 > Download and Install only what's needed such as LAN and Chipset drivers.
 
-### Step 5.6 - Printers
+### Step 5.5 - Printers
 
 1. `Settings` > `Devices` > `Printers & scanners` > `Add a printer or scanner` > `The printer that I want isn't listed` > `My printer is a little older. Help me find it.` > `Next`.
 2. Select the correct printer > `Next` > `Windows Update`.
