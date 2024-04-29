@@ -312,16 +312,16 @@ public class Clicker
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
     Start-Sleep 5
     Write-Host 'uBlock Origin > Settings.html' -ForegroundColor green -BackgroundColor black
-    [System.Windows.Forms.SendKeys]::SendWait("{F6}") 
+    [System.Windows.Forms.SendKeys]::SendWait('{F6}') 
     Start-Sleep 1
-    [System.Windows.Forms.SendKeys]::SendWait("^{c}")
+    [System.Windows.Forms.SendKeys]::SendWait('^{c}')
     Start-Sleep 1
     $ublockhtml = 'dashboard.html.*'
     (Get-Clipboard) -replace $ublockhtml, 'dashboard.html#settings.html' | Set-Clipboard
     Start-Sleep 1
-    [System.Windows.Forms.SendKeys]::SendWait("^{v}")
+    [System.Windows.Forms.SendKeys]::SendWait('^{v}')
     Start-Sleep 1
-    [System.Windows.Forms.SendKeys]::SendWait("^{ENTER}")
+    [System.Windows.Forms.SendKeys]::SendWait('^{ENTER}')
     Start-Sleep 1
     Write-Host 'uBlock Origin > Restore from file' -ForegroundColor green -BackgroundColor black
     [System.Windows.Forms.SendKeys]::SendWait('+{TAB 2}')
@@ -365,10 +365,10 @@ public class Clicker
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\i_m_not_robot_captcha_clicker.xpi"
     $OpenWithFirefox.start()
     Start-Sleep 2
-    Write-Host "Im not robot captcha clicker > Add" -ForegroundColor green -BackgroundColor black
+    Write-Host 'Im not robot captcha clicker > Add' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(306, 215)
     Start-Sleep 2
-    Write-Host "Im not robot captcha clicker > Okay" -ForegroundColor green -BackgroundColor black
+    Write-Host 'Im not robot captcha clicker > Okay' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(450, 210)
     Write-Host 'Buster' -ForegroundColor green -BackgroundColor black
     $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\buster_captcha_solver.xpi"
