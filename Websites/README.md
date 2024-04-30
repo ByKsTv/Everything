@@ -1,7 +1,7 @@
 # Information
 
 > [!NOTE]
-> Everything about websites.
+> Everything about websites..
 
 ## Movies & TV Shows
 
