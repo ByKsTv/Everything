@@ -12,6 +12,7 @@
 - [Nyaa BDREMUX](https://nyaa.si/?f=0&c=0_0&q=BDRemux)
 - [RuTracker.org BDREMUX](https://rutracker.org/forum/tracker.php?f=1105&nm=BDRemux)
 - [DMHY BDMV](https://share.dmhy.org/topics/list?keyword=BDMV)
+- [Watch Order](https://www.reddit.com/r/anime/wiki/watch_order/)
 
 ### Non-Anime
 
