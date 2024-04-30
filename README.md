@@ -1,4 +1,4 @@
 # Information
 
 > [!NOTE]
-> Everything about Everything..
+> Everything about Everything.
