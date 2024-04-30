@@ -40,6 +40,7 @@
 - [OpenSubtitles](https://www.opensubtitles.org/en/search/subs) - Subtitles
 - [Subscene](https://subscene.com/) - Subtitles
 - [Ktuvit](https://www.ktuvit.me/) - Hebrew Subtitles
+- [awesome-piracy](https://github.com/Shakil-Shahadat/awesome-piracy) - Piracy
 
 ## Coupons
 
