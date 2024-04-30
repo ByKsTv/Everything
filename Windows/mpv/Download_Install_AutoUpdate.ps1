@@ -106,12 +106,12 @@ Delete key deletes current video file.
 if ($deletefileanswer -eq 'Yes') {
     Write-Host 'mpv > scripts > delete_file.lua' -ForegroundColor green -BackgroundColor black
     Invoke-WebRequest -Uri https://raw.githubusercontent.com/zenyd/mpv-scripts/master/delete_file.lua -OutFile $env:ProgramFiles/mpv/scripts/delete_file.lua
-}
-$autodeletefileanswer = [System.Windows.Forms.MessageBox]::Show('Add auto delete file?
+    $autodeletefileanswer = [System.Windows.Forms.MessageBox]::Show('Add auto delete file?
 
 Auto deletes current video file when 15 seconds remaining.
 ' , 'mpv scripts' , 4, 48)
-if ($autodeletefileanswer -eq 'Yes') {
-    Write-Host 'mpv > scripts > delete_file_auto.lua' -ForegroundColor green -BackgroundColor black
-    Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/delete_file_auto.lua -OutFile $env:ProgramFiles/mpv/scripts/delete_file_auto.lua
+    if ($autodeletefileanswer -eq 'Yes') {
+        Write-Host 'mpv > scripts > delete_file_auto.lua' -ForegroundColor green -BackgroundColor black
+        Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/delete_file_auto.lua -OutFile $env:ProgramFiles/mpv/scripts/delete_file_auto.lua
+    }
 }
