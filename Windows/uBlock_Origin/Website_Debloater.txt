@@ -1475,7 +1475,6 @@ www.israelhayom.co.il##a.single-post-tag
 www.ivory.co.il##.hide-print.mb-0.mt-0.row
 www.ivory.co.il##.noSideMargins.mb-5.align-items-center.d-flex.justify-content-between.row
 www.ivory.co.il##.siyagim
-www.joinhoney.com###Storefrontv3-Desktop-CouponModal-NoExtension
 www.joinhoney.com###exit-modal
 www.joinhoney.com##.body2.honeyName-0-2-175
 www.joinhoney.com##.body2.honeyName-0-2-355
