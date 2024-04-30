@@ -1,4 +1,4 @@
-# Informationn
+# Information
 
 > [!NOTE]
 > Everything about Pi-Hole.
