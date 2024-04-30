@@ -14,7 +14,7 @@
 - [DMHY BDMV](https://share.dmhy.org/topics/list?keyword=BDMV)
 
 > [!TIP]
-> [Watch Order](https://www.reddit.com/r/anime/wiki/watch_order/)
+> Watch Order: https://www.reddit.com/r/anime/wiki/watch_order/
 
 ### Non-Anime
 
