@@ -3,12 +3,12 @@
 > [!NOTE]
 > Everything about Windows.
 
-## Step 1 - Backup
+## Backup
 
 > [!WARNING]
 > Backup everything including usernames, passwords, videos, photos, software, desktop layout, macros, mpv settings, firefox profile folder, app data, wallpaper engine, servers.
 
-## Step 2 - Download
+## Download
 
 1. Download [Windows 10 Iot Enterprise LTSC 2021](https://massgrave.dev/windows_ltsc_links#win10-iot-enterprise-ltsc-2021).
 1. Connect USB with at least 8GB.
@@ -18,7 +18,7 @@
 > [!TIP]
 > Motherboard Model Can Be Found On `System Information` > `BaseBoard Product`.
 
-## Step 3 - Pre Installation
+## Pre Installation
 
 1. Power off PC.
 1. Disconnect Ethernet Cable.
@@ -33,14 +33,14 @@
 >
 > ```
 
-## Step 4 - Installation
+## Installation
 
 1. `Next` > `Install now` > `I don't have a product key` > `Windows 10 IoT Enterprise LTSC` > `Next` > `I accept the license terms` > `Next` > `Custom: Install Windows only (advanced)` > Delete all > `Next`.
 1. `Yes` > `Yes` > `Skip` > `I don't have internet` > `Continue with limited setup`.
 1. Connect Ethernet Cable (After Windows Boots Up).
 1. `Do you want to allow your PC to be discoverable by other PCs and devices on this network?` > Yes.
 
-## Step 5 - Initial Setup
+## Initial Setup
 
 1. PowerShell (Admin):
 
@@ -49,14 +49,14 @@ Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windo
 
 ```
 
-### Step 5.1 - NVCleanstall
+### NVCleanstall
 
 1. Download and Install [NVCleanstall](https://www.techpowerup.com/download/techpowerup-nvcleanstall/) `On this machine` + `Check for updates`.
 2. Download [Display Driver Uninstaller](https://www.wagnardsoft.com/display-driver-uninstaller-DDU-) `Portable`.
 3. Restart to Safe Mode (Shift+Restart) `Troubleshoot` > `Advanced options` > `Startup Settings` > `Restart` > Disconnect Ethernet Cable > Open Display Driver Uninstaller (Admin) > `OK` > Disable `Show offers from out partners` > Enable `Remove PhysX` > `Close` > `OK` > `---Select device type---` > `GPU` > `Clean and restart`.
 4. Open NVCleanstall (Admin) > Connect Ethernet Cable > `Refresh` > `Manually select a driver version` > `Studio` > `Next` > `Recommended` > `Next` > Disable `Installer Telemetry & Advertising` > Enable `Unattended Express Installation` > `Next` > `Install`.
 
-### Step 5.2 - NVIDIA Control Panel
+### NVIDIA Control Panel
 
 1. `NVIDIA Control Panel` > `3D Settings` > `Manage 3D settings`:
 2. `Texture filtering - Quality` > `High quality`.
@@ -69,19 +69,19 @@ Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windo
 9. `Change resolution` > `Output color depth` > `12bpc`.
 10. `Adjust desktop size and postion` > `Full-Screen`.
 
-### Step 5.3 - Sounds
+### Sounds
 
 1. Speaker setup > `5.1 (side)`.
 2. Default Format > `24 bit, 192000 Hz (Studio Quality)`.
 
-### Step 5.4 - Drivers
+### Drivers
 
 1. Download and Install Motherboard Drivers.
 
 > [!NOTE]
 > Download and Install only what's needed such as LAN and Chipset drivers.
 
-### Step 5.5 - Printers
+### Printers
 
 1. `Settings` > `Devices` > `Printers & scanners` > `Add a printer or scanner` > `The printer that I want isn't listed` > `My printer is a little older. Help me find it.` > `Next`.
 2. Select the correct printer > `Next` > `Windows Update`.
@@ -93,7 +93,7 @@ Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windo
 > [!NOTE]
 > HP Printer: Original Ink Cartridges.
 
-## Step 6 - Extra Software
+## Extra Software
 
 - [Office](https://gravesoft.dev/download_windows_office/office_c2r_links/#english-en-us) + PowerShell (Admin):
 
@@ -134,10 +134,15 @@ Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windo
 - Adobe Acrobat Pro [m0nkrus](https://www.monkrus.ws/) / [RuTracker.org](https://rutracker.org/forum/tracker.php?nm=Adobe%20Acrobat) / [RuTracker.ru](http://rutracker.ru/viewforum.php?f=220)
 - [VMware Workstation](https://rutracker.org/forum/tracker.php?nm=VMware%20Workstation) (Download 17.0.2 to avoid [High CPU Usage](https://communities.vmware.com/t5/VMware-Workstation-Pro/High-CPU-usage-by-vmnat-exe-after-upgrade-to-VMware-Workstation/m-p/2992080/highlight/true#M183202))
 - [Plex](https://www.plex.tv/media-server-downloads/#plex-media-server)
+- [Jellyfin](https://jellyfin.org/downloads/windows)
+- eM Client [LRepacks](https://lrepacks.net/repaki-programm-dlya-interneta/364-repack-em-client-amp-portable.html) / [Diakov](https://diakov.net/14616-em-client-pro-9222300-portable.html) + PowerShell (Admin):
 
-<details>
+```powershell
+Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/eM_Client/License.ps1 | Invoke-Expression
 
-<summary>Plex Settings (Click to expand):</summary>
+```
+
+## Plex Settings
 
 1. `Got it!`.
 2. `Plex Pass` > `X`.
@@ -157,21 +162,6 @@ Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windo
 16. `Settings` > `Scheduled Tasks` > `Update all libraries during maintenance` > On > `Save Changes`.
 17. [Optional Playback Data](https://www.plex.tv/about/privacy-legal/privacy-preferences/#opd) > `Send playback data to Plex` > Off.
 
-</details>
-
-- [Jellyfin](https://jellyfin.org/downloads/windows)
-
-<details>
-
-<summary>Jellyfin Settings (Click to expand):</summary>
+## Jellyfin Settings
 
 1. Use OpenSubtitles Plugin to Auto Download Subtitles Hebrew
-
-</details>
-
-- eM Client [LRepacks](https://lrepacks.net/repaki-programm-dlya-interneta/364-repack-em-client-amp-portable.html) / [Diakov](https://diakov.net/14616-em-client-pro-9222300-portable.html) + PowerShell (Admin):
-
-```powershell
-Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/eM_Client/License.ps1 | Invoke-Expression
-
-```
