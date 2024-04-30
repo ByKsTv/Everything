@@ -7,31 +7,9 @@
 
 - [UAD-ng](https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/releases/latest) - Android Debloater
 - [Mull](https://f-droid.org/packages/us.spotco.fennec_dos/) - Firefox mobile browser
-
-<details>
-
-<summary>Mull Settings (Click to expand):</summary>
-
-1. `Set as default browser` > `Sign in` > `Not Now`.
-2. `Settings` > `Search` > `Default search engine` > `Google`.
-3. `Settings` > `Search` > Disable all except `Search browsing history` and `Search bookmarks`.
-4. `Settings` > `Tabs` > `List`.
-5. `Settings` > `Tabs` > `Tabs you haven't viewed for two weeks get moved to the inactive section.` > Off.
-6. `Settings` > `Homepage` > Disable all.
-7. `Settings` > `Homepage` > `Last tab`.
-8. `Settings` > `Customise` > `Buttom`.
-9. `Settings` > `Add-ons` > Add `uBlock Origin` > `Settings` > [Restore from file](https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.txt).
-10. `Settings` > `Add-ons` > Add `ClearURLs`.
-11. `about:config` > `browser.cache.disk.enable` > `false`.
-12. `about:config` > `webgl.disabled` > `false`.
-
-</details>
-
 - [Nova Launcher](https://4pda.to/forum/index.php?act=findpost&pid=10706661&anchor=Spoil-10706661-8) - Prime by Balatan
 - [Sesame Shortcuts](https://4pda.to/forum/index.php?showtopic=921566#entry77882334) - Search add-ons for Nova Launcher
-
-~~[WhatsApp](https://4pda.to/forum/index.php?showtopic=186375#Spoil-5125511-12) - FouadWhatsApp~~
-
+~~-[WhatsApp](https://4pda.to/forum/index.php?showtopic=186375#Spoil-5125511-12) - FouadWhatsApp~~
 - [YouTube ReVanced](https://4pda.to/forum/index.php?act=findpost&pid=115638129&anchor=Spoil-115638129-4)
 - [Spotify](https://4pda.to/forum/index.php?act=findpost&pid=8030514&anchor=Spoil-8030514-11) - Mod Lite by Balatan.
 - [Truecaller](https://4pda.to/forum/index.php?showtopic=417409#Spoil-18455027-5) - Mod Lite by Balatan
@@ -50,3 +28,18 @@
 - [MacroDroid](https://4pda.to/forum/index.php?act=findpost&pid=15401143&anchor=Spoil-15401143-14) - Pro by Alex.Strannik
 - [Symbolab: AI Math Photo Solver](https://4pda.to/forum/index.php?showtopic=702296&view=findpost&p=44337245)
 - [Autel MaxiAP200](https://4pda.to/forum/index.php?showtopic=961129&st=2400#entry93164749) + [AliExpress](https://www.aliexpress.com/item/32991837323.html)
+
+## Mull Settings
+
+1. `Set as default browser` > `Sign in` > `Not Now`.
+2. `Settings` > `Search` > `Default search engine` > `Google`.
+3. `Settings` > `Search` > Disable all except `Search browsing history` and `Search bookmarks`.
+4. `Settings` > `Tabs` > `List`.
+5. `Settings` > `Tabs` > `Tabs you haven't viewed for two weeks get moved to the inactive section.` > Off.
+6. `Settings` > `Homepage` > Disable all.
+7. `Settings` > `Homepage` > `Last tab`.
+8. `Settings` > `Customise` > `Buttom`.
+9. `Settings` > `Add-ons` > Add `uBlock Origin` > `Settings` > [Restore from file](https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.txt).
+10. `Settings` > `Add-ons` > Add `ClearURLs`.
+11. `about:config` > `browser.cache.disk.enable` > `false`.
+12. `about:config` > `webgl.disabled` > `false`.
