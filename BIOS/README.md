@@ -5,10 +5,11 @@
 
 ## BIOS Update
 
+1. Download Motherboard BIOS to USB.
+
 > [!TIP]
 > Motherboard Model Can Be Found On `System Information` > `BaseBoard Product`.
 
-1. Download Motherboard BIOS to USB.
 1. Boot to BIOS.
 
 > [!TIP]
@@ -18,6 +19,8 @@
 > shutdown /r /fw /t 00
 >
 > ```
+
+1. Update BIOS Firmware.
 
 > [!CAUTION]
 > Update PC BIOS at night hours to avoid power loss.
