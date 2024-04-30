@@ -3,12 +3,12 @@
 > [!NOTE]
 > Everything about mpv.
 
-## Install & Auto Update
+## Download, Install & Auto Update
 
-1. PowerShell (Admin) (Same folder as mpv):
+1. PowerShell (Admin):
 
 ```powershell
-Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/Install_Update.ps1 | Invoke-Expression
+Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/Download_Install_AutoUpdate.ps1 | Invoke-Expression
 
 ```
 

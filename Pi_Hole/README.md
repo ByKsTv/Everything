@@ -3,19 +3,19 @@
 > [!NOTE]
 > Everything about Pi-Hole.
 
-## Step 1 - Pre Installation
+## Pre Installation
 
 1. Download and Open [Raspberry Pi Imager](https://www.raspberrypi.com/software/).
 2. Enable SSH.
 3. Set Locale.
 4. Disable Telemetry.
 
-## Step 2 - Login
+## Login
 
 1. Download and Open [PuTTY](https://www.putty.org/).
 2. Login to Raspberry Pi IP.
 
-## Step 3 - Installation
+## Installation
 
 1. Install Pi-Hole:
 
@@ -35,9 +35,9 @@
    sudo apt install unbound -y
    ```
 
-## Step 4 - Initial Setup
+## Initial Setup
 
-### Step 4.1 - Unbound Setup
+### Unbound Setup
 
 1. Edit `/etc/unbound/unbound.conf.d/pi-hole.conf`:
 
@@ -155,7 +155,7 @@
 > [!NOTE]  
 > Source: <https://docs.pi-hole.net/guides/dns/unbound/>
 
-### Step 4.2 - Auto-Update Setup
+### Auto-Update Setup
 
 1. Set scheduled tasks:
 
@@ -176,7 +176,7 @@
    30 05 * * * sudo pihole -g
    ```
 
-### Step 4.3 - Argon ONE
+### Argon ONE
 
 1. If user have Argon ONE Case:
 
@@ -184,7 +184,7 @@
    curl https://download.argon40.com/argon1.sh | sudo bash
    ```
 
-### Step 4.4 - Pi-Hole Setup
+### Pi-Hole Setup
 
 1. Browser > Pi-Hole IP > Login to Pi-Hole WebUI.
 1. `Settings` > `DNS` > `Upstream DNS Servers` > `127.0.0.1#5335`
@@ -194,13 +194,13 @@
 1. `Settings` > `DNS` > `Advanced DNS settings` > `Rate-limiting` > `Block clients making more than 0 queries within 0 seconds`.
 1. `Settings` > `Web interface` > `Pi-hole deep-midnight theme (dark)`.
 
-## Step 4.5 - Adlists
+## Adlists
 
 ```text
 https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts https://raw.githubusercontent.com/PolishFiltersTeam/KADhosts/master/KADhosts.txt https://raw.githubusercontent.com/FadeMind/hosts.extras/master/add.Spam/hosts https://v.firebog.net/hosts/static/w3kbl.txt https://adaway.org/hosts.txt https://v.firebog.net/hosts/AdguardDNS.txt https://v.firebog.net/hosts/Admiral.txt https://raw.githubusercontent.com/anudeepND/blacklist/master/adservers.txt https://s3.amazonaws.com/lists.disconnect.me/simple_ad.txt https://v.firebog.net/hosts/Easylist.txt https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext https://raw.githubusercontent.com/FadeMind/hosts.extras/master/UncheckyAds/hosts https://raw.githubusercontent.com/bigdargon/hostsVN/master/hosts https://v.firebog.net/hosts/Easyprivacy.txt https://v.firebog.net/hosts/Prigent-Ads.txt https://raw.githubusercontent.com/FadeMind/hosts.extras/master/add.2o7Net/hosts https://raw.githubusercontent.com/crazy-max/WindowsSpyBlocker/master/data/hosts/spy.txt https://hostfiles.frogeye.fr/firstparty-trackers-hosts.txt https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Alternate%20versions%20Anti-Malware%20List/AntiMalwareHosts.txt https://osint.digitalside.it/Threat-Intel/lists/latestdomains.txt https://s3.amazonaws.com/lists.disconnect.me/simple_malvertising.txt https://v.firebog.net/hosts/Prigent-Crypto.txt https://bitbucket.org/ethanr/dns-blacklists/raw/8575c9f96e5b4a1308f2f12394abd86d0927a4a0/bad_lists/Mandiant_APT1_Report_Appendix_D.txt https://phishing.army/download/phishing_army_blocklist_extended.txt https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-malware.txt https://raw.githubusercontent.com/Spam404/lists/master/main-blacklist.txt https://raw.githubusercontent.com/FadeMind/hosts.extras/master/add.Risk/hosts https://urlhaus.abuse.ch/downloads/hostfile/ https://zerodot1.gitlab.io/CoinBlockerLists/hosts_browser https://www.github.developerdan.com/hosts/lists/hate-and-junk-extended.txt https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt https://raw.githubusercontent.com/jdlingyu/ad-wars/master/hosts https://raw.githubusercontent.com/matomo-org/referrer-spam-blacklist/master/spammers.txt https://someonewhocares.org/hosts/zero/hosts https://raw.githubusercontent.com/VeleSila/yhosts/master/hosts https://winhelp2002.mvps.org/hosts.txt https://v.firebog.net/hosts/neohostsbasic.txt https://raw.githubusercontent.com/RooneyMcNibNug/pihole-stuff/master/SNAFU.txt https://paulgb.github.io/BarbBlock/blacklists/hosts-file.txt https://hostfiles.frogeye.fr/multiparty-trackers-hosts.txt https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/android-tracking.txt https://raw.githubusercontent.com/Perflyst/PiHoleBlocklist/master/AmazonFireTV.txt https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-blocklist.txt https://v.firebog.net/hosts/Prigent-Malware.txt https://blocklistproject.github.io/Lists/ads.txt https://zerodot1.gitlab.io/CoinBlockerLists/hosts https://raw.githubusercontent.com/anudeepND/blacklist/master/CoinMiner.txt https://gitlab.com/ZeroDot1/CoinBlockerLists/-/raw/master/hosts https://blocklistproject.github.io/Lists/tracking.txt https://blocklistproject.github.io/Lists/ransomware.txt https://blocklistproject.github.io/Lists/phishing.txt https://blocklistproject.github.io/Lists/crypto.txt https://blocklistproject.github.io/Lists/fraud.txt https://blocklistproject.github.io/Lists/redirect.txt https://someonewhocares.org/hosts/hosts https://v.firebog.net/hosts/RPiList-Malware.txt https://v.firebog.net/hosts/RPiList-Phishing.txt https://raw.githubusercontent.com/AssoEchap/stalkerware-indicators/master/generated/hosts https://malware-filter.gitlab.io/malware-filter/phishing-filter-hosts.txt https://www.github.developerdan.com/hosts/lists/ads-and-tracking-extended.txt https://raw.githubusercontent.com/im-sm/Pi-hole-Torrent-Blocklist/main/all-torrent-websites.txt https://raw.githubusercontent.com/im-sm/Pi-hole-Torrent-Blocklist/main/all-torrent-trackres.txt https://github.com/matomo-org/referrer-spam-blacklist/raw/master/spammers.txt https://raw.githubusercontent.com/stamparm/blackbook/master/blackbook.txt https://raw.githubusercontent.com/FadeMind/hosts.extras/master/add.Dead/hosts https://s3.amazonaws.com/lists.disconnect.me/simple_malware.txt https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/EasyPrivacyCNAME.txt https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardTracking.txt https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardCNAME.txt https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardMobileAds.txt https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardMobileSpyware.txt https://raw.githubusercontent.com/infinitytec/blocklists/master/ads-and-trackers.txt https://raw.githubusercontent.com/infinitytec/blocklists/master/scams-and-phishing.txt https://raw.githubusercontent.com/mitchellkrogza/Badd-Boyz-Hosts/master/domains https://raw.githubusercontent.com/mitchellkrogza/The-Big-List-of-Hacked-Malware-Web-Sites/master/hacked-domains.list https://raw.githubusercontent.com/nextdns/cname-cloaking-blocklist/master/domains https://raw.githubusercontent.com/paulgb/BarbBlock/master/blacklists/domain-list.txt https://raw.githubusercontent.com/StevenBlack/hosts/master/data/StevenBlack/hosts https://raw.githubusercontent.com/lightswitch05/hosts/master/docs/lists/ads-and-tracking-extended.txt https://raw.githubusercontent.com/yous/YousList/master/hosts.txt https://raw.githubusercontent.com/bkrcrc/turk-adlist/master/hosts https://raw.githubusercontent.com/omicron-b/custom-filters/master/domains_imported.txt https://raw.githubusercontent.com/Dawsey21/Lists/master/main-blacklist.txt https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/stalkerware/domains https://blocklistproject.github.io/Lists/alt-version/ransomware-nl.txt https://blocklistproject.github.io/Lists/alt-version/scam-nl.txt https://blocklistproject.github.io/Lists/alt-version/tracking-nl.txt https://urlhaus.abuse.ch/downloads/rpz/ https://raw.githubusercontent.com/Yhonay/antipopads/master/hosts https://raw.githubusercontent.com/PoorPocketsMcNewHold/SteamScamSites/master/steamscamsite.txt https://big.oisd.nl https://raw.githubusercontent.com/ByKsTv/Everything/main/Pi_Hole/Blacklist.txt
 ```
 
-## Step 4.6 - Domains Regex Blacklist
+## Domains Regex Blacklist
 
 ```regex
 ^ad([sxv]?[0-9]*|system)[_.-]([^.[:space:]]+\.){1,}|[_.-]ad([sxv]?[0-9]*|system)[_.-]
@@ -219,7 +219,7 @@ https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts https://raw.git
 ^stat(s|istics)?[0-9]*[_.-]
 ```
 
-## Step 4.7 - Domains Whitelist
+## Domains Whitelist
 
 ### Kan11
 
