@@ -9,6 +9,7 @@ if ($MPVAnswer -eq 'Yes') {
 	Write-Host 'mpv > Install' -ForegroundColor green -BackgroundColor black
 	Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/Download_Install_AutoUpdate.ps1 | Invoke-Expression
 }
+Start-Sleep 20
 $EdgeUninstallAnswer = [System.Windows.Forms.MessageBox]::Show('Uninstall Edge?' , 'Edge' , 4, 32)
 if ($EdgeUninstallAnswer -eq 'Yes') {
 	Write-Host 'Microsoft Edge > Uninstall' -ForegroundColor green -BackgroundColor black
