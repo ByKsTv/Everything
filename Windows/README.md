@@ -51,10 +51,15 @@ Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windo
 
 > [!NOTE]
 > Total time to finish initial setup: 44:36.
+>
 > Step 1: 27:33.
+>
 > Step 2: 04:41.
+>
 > Step 3: 01:06.
+>
 > Step 4: 03:47.
+>
 > Step 5: 07:26.
 
 ### NVCleanstall
