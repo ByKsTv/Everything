@@ -302,9 +302,8 @@ public class Clicker
     Write-Host 'uBlock Origin > Okay' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(440, 210)
     Start-Sleep 2
-    $uBlockRegex = '(?<=uBlock0@raymondhill.net.....)....................................'
-    $FirefoxPrefsjs = Get-Content "$CurrentFirefoxProfile\prefs.js"
-    $uBlockUUID = $FirefoxPrefsjs | Select-String -Pattern $uBlockRegex | ForEach-Object { $_.matches.value }
+    $uBlockPattern = 'uBlock.+?([a-f0-9]{8}-([a-f0-9]{4}-){3}[a-f0-9]{12})\\'
+    $uBlockUUID=(Select-String -Pattern $uBlockPattern -Path $CurrentFirefoxProfile\prefs.js).Matches.Groups[1].Value
     $OpenWithFirefox.StartInfo.Arguments = "moz-extension://$uBlockUUID/dashboard.html#settings.html"
     $OpenWithFirefox.start()
     Start-Sleep 2
