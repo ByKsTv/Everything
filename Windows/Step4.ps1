@@ -4,7 +4,9 @@ Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windo
 Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Step4_Network.ps1 | Invoke-Expression
 Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Extensions.ps1 | Invoke-Expression
 Add-Type -AssemblyName System.Windows.Forms
-$EdgeUninstallAnswer = [System.Windows.Forms.MessageBox]::Show('Uninstall Edge?' , 'Edge' , 4, 32)
+$EdgeUninstallAnswer = [System.Windows.Forms.MessageBox]::Show('Uninstall Edge?
+
+Not recommended, some apps like Visual Studio use Edge.' , 'Edge' , 4, 48)
 if ($EdgeUninstallAnswer -eq 'Yes') {
     Write-Host 'Microsoft Edge > Uninstall' -ForegroundColor green -BackgroundColor black
     Invoke-RestMethod https://raw.githubusercontent.com/ChrisTitusTech/winutil/d0bde83333730a4536497451af747daba11e5039/edgeremoval.ps1 | Invoke-Expression
