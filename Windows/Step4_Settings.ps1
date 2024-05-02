@@ -658,6 +658,8 @@ Write-Host 'User Configuration > Administrative Templates > Start Menu and Taskb
 if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer') -ne $true) { New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Force -ea SilentlyContinue }
 New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'HideSCAMeetNow' -Value 1 -PropertyType DWord -Force -ea SilentlyContinue
 Write-Host 'Settings > Personalization > Taskbar > People > Show contacts on the taskbar > Off' -ForegroundColor green -BackgroundColor black
+Write-Host 'Taskbar > Task View > Disable' -ForegroundColor green -BackgroundColor black
+New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'ShowTaskViewButton' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
 if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People') -ne $true) { New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People' -Force -ea SilentlyContinue }
 New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People' -Name 'PeopleBand' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
 Write-Host 'Windows Security > Virus & threat protection > Manage settings > Change notification settings > Recent activity and scan results > Off' -ForegroundColor green -BackgroundColor black
