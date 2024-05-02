@@ -303,7 +303,7 @@ public class Clicker
     [Clicker]::LeftClickAtPoint(440, 210)
     Start-Sleep 2
     $uBlockPattern = 'uBlock.+?([a-f0-9]{8}-([a-f0-9]{4}-){3}[a-f0-9]{12})\\'
-    $uBlockUUID=(Select-String -Pattern $uBlockPattern -Path $CurrentFirefoxProfile\prefs.js).Matches.Groups[1].Value
+    $uBlockUUID = (Select-String -Pattern $uBlockPattern -Path $CurrentFirefoxProfile\prefs.js).Matches.Groups[1].Value
     $OpenWithFirefox.StartInfo.Arguments = "moz-extension://$uBlockUUID/dashboard.html#settings.html"
     $OpenWithFirefox.start()
     Start-Sleep 2
