@@ -193,7 +193,6 @@ if ($MPVAnswer -eq 'Yes') {
 	Write-Host 'mpv > Install' -ForegroundColor green -BackgroundColor black
 	Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/Download_Install_AutoUpdate.ps1 | Invoke-Expression
 }
-Write-Host 'Settings > Update & Security > Check for updates' -ForegroundColor green -BackgroundColor black
 Write-Host 'NuGet > Install' -ForegroundColor green -BackgroundColor black
 Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
 Write-Host 'PSWindowsUpdate > Install' -ForegroundColor green -BackgroundColor black
