@@ -45,7 +45,7 @@
 1. PowerShell (Admin):
 
 ```powershell
-Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Windows10_Step1.ps1 | Invoke-Expression
+Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Step1.ps1 | Invoke-Expression
 
 ```
 

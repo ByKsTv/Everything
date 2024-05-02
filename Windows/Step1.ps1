@@ -1,25 +1,25 @@
-$Windows10Step2 = 'Windows10_Step2'
-Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/$Windows10Step2.ps1 -OutFile $env:TEMP\$Windows10Step2.ps1
-Write-Host "Task Scheduler > $Windows10Step2" -ForegroundColor green -BackgroundColor black
-$Windows10Step2_Principal = New-ScheduledTaskPrincipal -UserId $env:computername\$env:USERNAME -RunLevel Highest
-$Windows10Step2_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "-WindowStyle Maximized -ExecutionPolicy Bypass -File $env:TEMP\$Windows10Step2.ps1"
-$Windows10Step2_Trigger = New-ScheduledTaskTrigger -AtLogOn
-$Windows10Step2_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
-$Windows10Step2_Parameters = @{
-	TaskName  = $Windows10Step2
-	Principal = $Windows10Step2_Principal
-	Action    = $Windows10Step2_Action
-	Trigger   = $Windows10Step2_Trigger
-	Settings  = $Windows10Step2_Settings
+$NextStep = 'Step2'
+Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/$NextStep.ps1 -OutFile $env:TEMP\$NextStep.ps1
+Write-Host "Task Scheduler > $NextStep" -ForegroundColor green -BackgroundColor black
+$NextStep_Principal = New-ScheduledTaskPrincipal -UserId $env:computername\$env:USERNAME -RunLevel Highest
+$NextStep_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "-WindowStyle Maximized -ExecutionPolicy Bypass -File $env:TEMP\$NextStep.ps1"
+$NextStep_Trigger = New-ScheduledTaskTrigger -AtLogOn
+$NextStep_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
+$NextStep_Parameters = @{
+	TaskName  = $NextStep
+	Principal = $NextStep_Principal
+	Action    = $NextStep_Action
+	Trigger   = $NextStep_Trigger
+	Settings  = $NextStep_Settings
 }
-Register-ScheduledTask @Windows10Step2_Parameters -Force
+Register-ScheduledTask @NextStep_Parameters -Force
 Write-Host 'Control Panel > Power Options > Ultimate Perofrmance > On' -ForegroundColor green -BackgroundColor black
 $powerSchemeName = 'Ultimate Performance'
 $powerSchemeGuid = 'e9a42b02-d5df-448d-aa00-03f14749eb61'
 $schemes = powercfg /list | Out-String -Stream
 $ultimateScheme = $schemes | Where-Object { $_ -match $powerSchemeName }
 if ($null -eq $ultimateScheme) {
-	Invoke-WebRequest -Uri https://github.com/ByKsTv/Everything/raw/main/Windows/Windows10_Step1_UltimatePerformance.pow -OutFile $env:TEMP\UltimatePerformance.pow
+	Invoke-WebRequest -Uri https://github.com/ByKsTv/Everything/raw/main/Windows/Step1_UltimatePerformance.pow -OutFile $env:TEMP\UltimatePerformance.pow
 	powercfg -import $env:TEMP\UltimatePerformance.pow $powerSchemeGuid
 }
 powercfg /S $powerSchemeGuid
