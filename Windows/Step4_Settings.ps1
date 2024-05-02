@@ -182,6 +182,7 @@ if ((Test-Path -LiteralPath "$ENV:temp\OOSU10.cfg") -eq $true) {
 }
 New-Item -Path $ENV:temp\OOSU10.cfg -ItemType File -Value $OOSU10
 Start-Process $ENV:temp\OOSU10.exe -ArgumentList "$ENV:temp\OOSU10.cfg /quiet" -Wait
+Start-Sleep 5
 Write-Host 'O&O ShutUp10++ > Current User > Microsoft Edge > Disable use of web service to resolve navigation errors > On' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Policies\Microsoft\Edge') -ne $true) { New-Item 'HKCU:\SOFTWARE\Policies\Microsoft\Edge' -Force -ea SilentlyContinue }
 New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Policies\Microsoft\Edge' -Name 'ResolveNavigationErrorsUseWebService' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
