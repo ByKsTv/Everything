@@ -1,5 +1,3 @@
-Add-Type -AssemblyName System.Windows.Forms
-Add-Type -AssemblyName System.Drawing
 $Windows10Step2 = 'Windows10_Step2'
 Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/$Windows10Step2.ps1 -OutFile $env:TEMP\$Windows10Step2.ps1
 Write-Host "Task Scheduler > $Windows10Step2" -ForegroundColor green -BackgroundColor black
@@ -36,6 +34,8 @@ Set-LocalUser -Name $env:username -PasswordNeverExpires 1
 Write-Host "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\DefaultUsername > $env:username" -ForegroundColor green -BackgroundColor black
 if ((Test-Path -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon') -ne $true) { New-Item 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Force -ea SilentlyContinue }
 New-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'DefaultUsername' -Value $env:username -PropertyType String -Force -ea SilentlyContinue
+Add-Type -AssemblyName System.Windows.Forms
+Add-Type -AssemblyName System.Drawing
 $PCPasswordAnswer = [System.Windows.Forms.MessageBox]::Show('Add PC Password?' , 'PC Password' , 4, 32)
 if ($PCPasswordAnswer -eq 'Yes') {
 	$PCPasswordForm = New-Object System.Windows.Forms.Form

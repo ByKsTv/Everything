@@ -251,6 +251,9 @@ New-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersio
 Write-Host 'Network Memory Allocation > Size > Gaming' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -LiteralPath 'HKLM:\System\ControlSet001\Services\LanmanServer\Parameters') -ne $true) { New-Item 'HKLM:\System\ControlSet001\Services\LanmanServer\Parameters' -Force -ea SilentlyContinue }
 New-ItemProperty -LiteralPath 'HKLM:\System\ControlSet001\Services\LanmanServer\Parameters' -Name 'Size' -Value 3 -PropertyType DWord -Force -ea SilentlyContinue
+Write-Host 'IRPStackSize > 32' -ForegroundColor green -BackgroundColor black
+if((Test-Path -LiteralPath "HKLM:\System\ControlSet001\Services\LanmanServer\Parameters") -ne $true) {  New-Item "HKLM:\System\ControlSet001\Services\LanmanServer\Parameters" -force -ea SilentlyContinue };
+New-ItemProperty -LiteralPath 'HKLM:\System\ControlSet001\Services\LanmanServer\Parameters' -Name 'IRPStackSize' -Value 32 -PropertyType DWord -Force -ea SilentlyContinue;
 Write-Host 'Network Memory Allocation > LargeSystemCache > Disabled' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -LiteralPath 'HKLM:\System\ControlSet001\Control\Session Manager\Memory Management') -ne $true) { New-Item 'HKLM:\System\ControlSet001\Control\Session Manager\Memory Management' -Force -ea SilentlyContinue }
 New-ItemProperty -LiteralPath 'HKLM:\System\ControlSet001\Control\Session Manager\Memory Management' -Name 'LargeSystemCache' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue

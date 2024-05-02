@@ -1,9 +1,205 @@
-Write-Host 'Bing Search > Off' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search') -ne $true) { New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search' -Force -ea SilentlyContinue }
-New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search' -Name 'BingSearchEnabled' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
+Write-Host 'O&O ShutUp10++ > Recommended' -ForegroundColor green -BackgroundColor black
+Invoke-WebRequest -Uri https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe -OutFile $ENV:temp\OOSU10.exe
+$OOSU10 = '############################################################################
+# This file was created with O&O ShutUp10++ V1.9.1436
+# and can be imported onto another computer. 
+#
+# Download the application at https://www.oo-software.com/shutup10
+# You can then import the file from within the program. 
+#
+# Alternatively you can import it automatically over a command line.
+# Simply use the following parameter: 
+# OOSU10.exe <path to file>
+# 
+# Selecting the Option /quiet ends the app right after the import and the
+# user does not get any feedback about the import.
+#
+# We are always happy to answer any questions you may have!
+# © 2015-2023 O&O Software GmbH, Berlin. All rights reserved.
+# https://www.oo-software.com/
+############################################################################
+
+P001	+
+P002	+
+P003	+
+P004	+
+P005	+
+P006	+
+P008	+
+P026	+
+P027	+
+P028	+
+P064	+
+P065	+
+P066	+
+P067	+
+P070	+
+P069	+
+P009	-
+P010	-
+P015	-
+P068	-
+P016	-
+A001	+
+A002	+
+A003	+
+A004	+
+A006	+
+A005	+
+P007	+
+P036	+
+P025	+
+P033	+
+P023	+
+P056	+
+P057	-
+P012	-
+P034	-
+P013	-
+P035	-
+P062	-
+P063	-
+P081	-
+P047	-
+P019	-
+P048	-
+P049	-
+P020	-
+P037	-
+P011	-
+P038	-
+P050	-
+P051	-
+P018	-
+P039	-
+P021	-
+P040	-
+P022	-
+P041	-
+P014	-
+P042	-
+P052	-
+P053	-
+P054	-
+P055	-
+P029	-
+P043	-
+P030	-
+P044	-
+P031	-
+P045	-
+P032	-
+P046	-
+P058	-
+P059	-
+P060	-
+P061	-
+P024	-
+S001	+
+S002	+
+S003	+
+S008	-
+E001	+
+E002	+
+E003	+
+E008	+
+E007	+
+E010	+
+E011	+
+E012	+
+E009	-
+E004	-
+E005	-
+E013	-
+E014	-
+E006	-
+Y001	+
+Y002	+
+Y003	+
+Y004	+
+Y005	+
+Y006	+
+Y007	+
+C012	+
+C002	+
+C013	+
+C007	+
+C008	+
+C009	+
+C010	+
+C011	+
+C014	+
+C015	+
+L001	+
+L003	+
+L004	-
+L005	-
+U001	+
+U004	+
+U005	+
+U006	+
+U007	+
+W001	+
+W011	+
+W004	-
+W005	-
+W010	-
+W009	-
+P017	-
+W006	-
+W008	-
+M006	+
+M011	-
+M010	-
+O003	-
+O001	-
+S012	-
+S013	-
+S014	-
+K001	+
+K002	+
+K005	+
+M003	-
+M015	-
+M016	-
+M017	-
+M018	-
+M019	-
+M020	-
+M022	+
+M001	+
+M004	+
+M005	+
+M024	+
+M012	-
+M013	-
+M014	-
+M023	-
+N001	-
+'
+if ((Test-Path -LiteralPath "$ENV:temp\OOSU10.cfg") -eq $true) {
+	Remove-Item -Path $ENV:temp\OOSU10.cfg
+}
+New-Item -Path $ENV:temp\OOSU10.cfg -ItemType File -Value $OOSU10
+Start-Process $ENV:temp\OOSU10.exe -ArgumentList "$ENV:temp\OOSU10.cfg /quiet"
+Write-Host 'Services > Manual' -ForegroundColor green -BackgroundColor black
+Set-Service AJRouter -StartupType Disabled
+Set-Service AssignedAccessManagerSvc -StartupType Disabled
+Set-Service CDPSvc -StartupType Manual
+Set-Service StorSvc -StartupType Manual
+Set-Service UsoSvc -StartupType Manual
+Set-Service WpnService -StartupType Manual
+Set-Service edgeupdate -StartupType Manual
+Set-Service vm3dservice -StartupType Manual
 Write-Host 'Indexing Service > Off' -ForegroundColor green -BackgroundColor black
 Stop-Service -Name WSearch
 Set-Service -Name WSearch -StartupType Disabled
+Write-Host 'System Properties > Remote > Allow Remote Assistance connections to this computer > Off' -ForegroundColor green -BackgroundColor black
+if((Test-Path -LiteralPath "HKLM:\System\ControlSet001\Control\Remote Assistance") -ne $true) {  New-Item "HKLM:\System\ControlSet001\Control\Remote Assistance" -force -ea SilentlyContinue };
+New-ItemProperty -LiteralPath 'HKLM:\System\ControlSet001\Control\Remote Assistance' -Name 'fAllowToGetHelp' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue;
+Write-Host 'Bing Search > Off' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search') -ne $true) { New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search' -Force -ea SilentlyContinue }
+New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search' -Name 'BingSearchEnabled' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
 Write-Host 'Folder Properties > Customize > Optimize all folders > General items' -ForegroundColor green -BackgroundColor black
 $BasePath = 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell'
 if (Test-Path -Path $BasePath\Bags) {
@@ -52,6 +248,22 @@ If ($itemsToDisplay.Length -gt 0) {
 }
 $data += ',194,60,1,194,70,1,197,90,1,0'
 Set-ItemProperty -Path $key.PSPath -Name 'Data' -Type Binary -Value $data.Split(',')
+Write-Host 'ContentDeliveryManager > Off' -ForegroundColor green -BackgroundColor black
+if((Test-Path -LiteralPath "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager") -ne $true) {  New-Item "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" -force -ea SilentlyContinue };
+New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'FeatureManagementEnabled' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue;
+New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'OemPreInstalledAppsEnabled' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue;
+New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'PreInstalledAppsEnabled' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue;
+New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'RotatingLockScreenEnabled' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue;
+New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'RotatingLockScreenOverlayEnabled' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue;
+New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SilentInstalledAppsEnabled' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue;
+New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SoftLandingEnabled' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue;
+New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SystemPaneSuggestionsEnabled' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue;
+New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SlideshowEnabled' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue;
+New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'ContentDeliveryAllowed' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue;
+New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'PreInstalledAppsEverEnabled' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue;
+New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SubscribedContent-338387Enabled' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue;
+New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SubscribedContent-338389Enabled' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue;
+New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SubscribedContent-353698Enabled' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue;
 Write-Host 'Settings > System > Tablet > When I sign in > Never use tablet mode' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell') -ne $true) { New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell' -Force -ea SilentlyContinue }
 New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell' -Name 'SignInMode' -Value 1 -PropertyType DWord -Force -ea SilentlyContinue
@@ -101,24 +313,6 @@ if ((Test-Path -LiteralPath 'HKCU:\Control Panel\Mouse') -ne $true) { New-Item '
 New-ItemProperty -LiteralPath 'HKCU:\Control Panel\Mouse' -Name 'MouseSpeed' -Value '0' -PropertyType String -Force -ea SilentlyContinue
 New-ItemProperty -LiteralPath 'HKCU:\Control Panel\Mouse' -Name 'MouseThreshold1' -Value '0' -PropertyType String -Force -ea SilentlyContinue
 New-ItemProperty -LiteralPath 'HKCU:\Control Panel\Mouse' -Name 'MouseThreshold2' -Value '0' -PropertyType String -Force -ea SilentlyContinue
-Write-Host 'Settings > Date & time > Time zone > Jerusalem' -ForegroundColor green -BackgroundColor black
-Set-TimeZone -Id 'Israel Standard Time'
-Write-Host 'Settings > Time & Language > Region > Regional format data > Change data format > Short date > dd/MM/yyyy' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKCU:\Control Panel\International') -ne $true) { New-Item 'HKCU:\Control Panel\International' -Force -ea SilentlyContinue }
-New-ItemProperty -LiteralPath 'HKCU:\Control Panel\International' -Name 'sShortDate' -Value 'dd/MM/yyyy' -PropertyType String -Force -ea SilentlyContinue
-Write-Host 'Settings > Time & Language > Region > Regional format data > Change data format > Long date > dddd, d MMMM, yyyy' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKCU:\Control Panel\International') -ne $true) { New-Item 'HKCU:\Control Panel\International' -Force -ea SilentlyContinue }
-New-ItemProperty -LiteralPath 'HKCU:\Control Panel\International' -Name 'sLongDate' -Value 'dddd, d MMMM, yyyy' -PropertyType String -Force -ea SilentlyContinue
-Write-Host 'Settings > Time & language > Region > Regional format data > Change data format > Short time > HH:mm' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKCU:\Control Panel\International') -ne $true) { New-Item 'HKCU:\Control Panel\International' -Force -ea SilentlyContinue }
-New-ItemProperty -LiteralPath 'HKCU:\Control Panel\International' -Name 'sShortTime' -Value 'HH:mm' -PropertyType String -Force -ea SilentlyContinue
-Write-Host 'Settings > Time & language > Region > Regional format data > Change data format > Long time > HH:mm:ss' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKCU:\Control Panel\International') -ne $true) { New-Item 'HKCU:\Control Panel\International' -Force -ea SilentlyContinue }
-New-ItemProperty -LiteralPath 'HKCU:\Control Panel\International' -Name 'sTimeFormat' -Value 'HH:mm:ss' -PropertyType String -Force -ea SilentlyContinue
-Write-Host 'Settings > Time & Language > Language > Hebrew Keyboard' -ForegroundColor green -BackgroundColor black
-$HebrewUserLanguage = Get-WinUserLanguageList
-$HebrewUserLanguage.Add('he-IL')
-Set-WinUserLanguageList -LanguageList $HebrewUserLanguage -Force
 Write-Host 'Settings > Privacy > Let Windows track app launches to improve Start and search results > Off' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced') -ne $true) { New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Force -ea SilentlyContinue }
 New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'Start_TrackProgs' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
@@ -153,6 +347,12 @@ New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\TabletTip\1.7' -Name 'En
 Write-Host 'Sounds > Communications > When Windows detects communications activity > Do nothing' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Multimedia\Audio') -ne $true) { New-Item 'HKCU:\SOFTWARE\Microsoft\Multimedia\Audio' -Force -ea SilentlyContinue }
 New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Multimedia\Audio' -Name 'UserDuckingPreference' -Value 3 -PropertyType DWord -Force -ea SilentlyContinue
+Write-Host 'Computer Configuration > Administrative Templates > Network > WLAN Service > WLAN Settings > Allow Windows to automatically connect to suggested open hotspots, to networks shared by contacts, and to hotspots offering paid services > Disabled' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKLM:\Software\Microsoft\WcmSvc\wifinetworkmanager\config') -ne $true) { New-Item 'HKLM:\Software\Microsoft\WcmSvc\wifinetworkmanager\config' -Force -ea SilentlyContinue }
+New-ItemProperty -LiteralPath 'HKLM:\Software\Microsoft\WcmSvc\wifinetworkmanager\config' -Name 'AutoConnectAllowedOEM' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
+Write-Host 'Computer Configuration > Administrative Templates > Windows Components > Location and Sensors > Turn off location > Disabled' -ForegroundColor green -BackgroundColor black
+if((Test-Path -LiteralPath "HKLM:\Software\Policies\Microsoft\Windows\LocationAndSensors") -ne $true) {  New-Item "HKLM:\Software\Policies\Microsoft\Windows\LocationAndSensors" -force -ea SilentlyContinue };
+New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\Windows\LocationAndSensors' -Name 'DisableLocation' -Value 1 -PropertyType DWord -Force -ea SilentlyContinue;
 Write-Host 'Computer Configuration > Administrative Templates > Windows Components > Cloud Content > Turn off cloud optimized content > Enabled' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Microsoft\Windows\CloudContent') -ne $true) { New-Item 'HKLM:\Software\Policies\Microsoft\Windows\CloudContent' -Force -ea SilentlyContinue }
 New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\Windows\CloudContent' -Name 'DisableCloudOptimizedContent' -Value 1 -PropertyType DWord -Force -ea SilentlyContinue
@@ -461,10 +661,6 @@ New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\Windows NT\Curr
 Write-Host 'O&O ShutUp10++ > Local Machine > Miscellaneous > Disable Installation of PC Health Check > On' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -LiteralPath 'HKLM:\Software\Microsoft\PCHC') -ne $true) { New-Item 'HKLM:\Software\Microsoft\PCHC' -Force -ea SilentlyContinue }
 New-ItemProperty -LiteralPath 'HKLM:\Software\Microsoft\PCHC' -Name 'PreviousUninstall' -Value 1 -PropertyType DWord -Force -ea SilentlyContinue
-Write-Host 'Task Scheduler > Microsoft\Windows\Application Experience\PcaPatchDbTask > Disable' -ForegroundColor green -BackgroundColor black
-Disable-ScheduledTask -TaskName PcaPatchDbTask -TaskPath '\Microsoft\Windows\Application Experience'
-Write-Host 'Task Scheduler > Microsoft\Windows\Maintenance\WinSAT > Disable' -ForegroundColor green -BackgroundColor black
-Disable-ScheduledTask -TaskName WinSAT -TaskPath '\Microsoft\Windows\Maintenance'
 Write-Host 'Desktop > Microsoft Edge > Off' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -LiteralPath 'C:\Users\Public\Desktop\Microsoft Edge.lnk') -eq $true) {
 	Remove-Item -LiteralPath 'C:\Users\Public\Desktop\Microsoft Edge.lnk'
@@ -477,3 +673,26 @@ Write-Host 'Windows Security Notification Icon > Off' -ForegroundColor green -Ba
 if ($null -ne (Get-Item -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run').GetValue('SecurityHealth')) {
 	Remove-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'SecurityHealth'
 }
+Write-Host 'Legacy Advanced Boot Options Added (F8)' -ForegroundColor green -BackgroundColor black
+bcdedit /set `{current`} bootmenupolicy Legacy
+Write-Host 'Split Threshold for svchost.exe' -ForegroundColor cyan -BackgroundColor black
+$svchostram = (Get-CimInstance -ClassName Win32_PhysicalMemory | Measure-Object -Property Capacity -Sum).Sum / 1kb
+Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control' -Name 'SvcHostSplitThresholdInKB' -Type DWord -Value $svchostram -Force
+Write-Host 'Settings > Date & time > Time zone > Jerusalem' -ForegroundColor green -BackgroundColor black
+Set-TimeZone -Id 'Israel Standard Time'
+Write-Host 'Settings > Time & Language > Region > Regional format data > Change data format > Short date > dd/MM/yyyy' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKCU:\Control Panel\International') -ne $true) { New-Item 'HKCU:\Control Panel\International' -Force -ea SilentlyContinue }
+New-ItemProperty -LiteralPath 'HKCU:\Control Panel\International' -Name 'sShortDate' -Value 'dd/MM/yyyy' -PropertyType String -Force -ea SilentlyContinue
+Write-Host 'Settings > Time & Language > Region > Regional format data > Change data format > Long date > dddd, d MMMM, yyyy' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKCU:\Control Panel\International') -ne $true) { New-Item 'HKCU:\Control Panel\International' -Force -ea SilentlyContinue }
+New-ItemProperty -LiteralPath 'HKCU:\Control Panel\International' -Name 'sLongDate' -Value 'dddd, d MMMM, yyyy' -PropertyType String -Force -ea SilentlyContinue
+Write-Host 'Settings > Time & language > Region > Regional format data > Change data format > Short time > HH:mm' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKCU:\Control Panel\International') -ne $true) { New-Item 'HKCU:\Control Panel\International' -Force -ea SilentlyContinue }
+New-ItemProperty -LiteralPath 'HKCU:\Control Panel\International' -Name 'sShortTime' -Value 'HH:mm' -PropertyType String -Force -ea SilentlyContinue
+Write-Host 'Settings > Time & language > Region > Regional format data > Change data format > Long time > HH:mm:ss' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKCU:\Control Panel\International') -ne $true) { New-Item 'HKCU:\Control Panel\International' -Force -ea SilentlyContinue }
+New-ItemProperty -LiteralPath 'HKCU:\Control Panel\International' -Name 'sTimeFormat' -Value 'HH:mm:ss' -PropertyType String -Force -ea SilentlyContinue
+Write-Host 'Settings > Time & Language > Language > Hebrew Keyboard' -ForegroundColor green -BackgroundColor black
+$HebrewUserLanguage = Get-WinUserLanguageList
+$HebrewUserLanguage.Add('he-IL')
+Set-WinUserLanguageList -LanguageList $HebrewUserLanguage -Force
