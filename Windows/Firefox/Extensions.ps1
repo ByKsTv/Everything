@@ -1,12 +1,11 @@
 Add-Type -AssemblyName System.Windows.Forms
-$CurrentFireFoxProfilePath0 = Get-ChildItem -Directory -Path "$env:APPDATA\Mozilla\Firefox\Profiles" -Filter '*.default-release'
-$CurrentFireFoxProfilePath = "$env:APPDATA\Mozilla\Firefox\Profiles\$CurrentFireFoxProfilePath0"
-if ((Test-Path -LiteralPath $CurrentFireFoxProfilePath) -eq $true) {
+$FirefoxProfiles = Get-ChildItem -Directory -Path "$env:APPDATA\Mozilla\Firefox\Profiles" -Filter '*.default-release'
+$CurrentFirefoxProfile = "$env:APPDATA\Mozilla\Firefox\Profiles\$FirefoxProfiles"
+if ((Test-Path -LiteralPath $CurrentFirefoxProfile) -eq $true) {
     Write-Host 'Firefox Extensions Setup' -ForegroundColor green -BackgroundColor black
     Write-Host 'Scale 100%' -ForegroundColor green -BackgroundColor black
     explorer ms-settings:display
     Start-Sleep 3
-    Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('{TAB 2}{UP 5}')
     Start-Sleep 1
     [System.Windows.Forms.SendKeys]::SendWait('%{F4}')
@@ -303,26 +302,12 @@ public class Clicker
     Write-Host 'uBlock Origin > Okay' -ForegroundColor green -BackgroundColor black
     [Clicker]::LeftClickAtPoint(440, 210)
     Start-Sleep 2
-    Write-Host 'uBlock Origin > Icon' -ForegroundColor green -BackgroundColor black
-    [Clicker]::LeftClickAtPoint(430, 60)
-    Start-Sleep 3
-    Write-Host 'uBlock Origin > Open the dashboard' -ForegroundColor green -BackgroundColor black
-    [System.Windows.Forms.SendKeys]::SendWait('+{TAB}')
-    Start-Sleep 1
-    [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
-    Start-Sleep 1
-    Write-Host 'uBlock Origin > Settings.html' -ForegroundColor green -BackgroundColor black
-    [System.Windows.Forms.SendKeys]::SendWait('{F6}') 
-    Start-Sleep 1
-    [System.Windows.Forms.SendKeys]::SendWait('^{c}')
-    Start-Sleep 1
-    $ublockhtml = 'dashboard.html.*'
-    (Get-Clipboard) -replace $ublockhtml, 'dashboard.html#settings.html' | Set-Clipboard
-    Start-Sleep 1
-    [System.Windows.Forms.SendKeys]::SendWait('^{v}')
-    Start-Sleep 1
-    [System.Windows.Forms.SendKeys]::SendWait('^{ENTER}')
-    Start-Sleep 1
+    $uBlockRegex = '(?<=uBlock0@raymondhill.net.....)....................................'
+    $FirefoxPrefsjs = Get-Content "$CurrentFirefoxProfile\prefs.js"
+    $uBlockUUID = $FirefoxPrefsjs | Select-String -Pattern $uBlockRegex | ForEach-Object { $_.matches.value }
+    $OpenWithFirefox.StartInfo.Arguments = "moz-extension://$uBlockUUID/dashboard.html#settings.html"
+    $OpenWithFirefox.start()
+    Start-Sleep 2
     Write-Host 'uBlock Origin > Restore from file' -ForegroundColor green -BackgroundColor black
     [System.Windows.Forms.SendKeys]::SendWait('+{TAB 2}')
     Start-Sleep 1
