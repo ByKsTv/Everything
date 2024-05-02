@@ -81,9 +81,9 @@ if ($MPVAnswer -eq 'Yes') {
 }
 #$EdgeUninstallAnswer = [System.Windows.Forms.MessageBox]::Show('Uninstall Edge?' , 'Edge' , 4, 32)
 #if ($EdgeUninstallAnswer -eq 'Yes') {
-    #Write-Host 'Microsoft Edge > Uninstall' -ForegroundColor green -BackgroundColor black
-    #Invoke-RestMethod https://raw.githubusercontent.com/ChrisTitusTech/winutil/main/edgeremoval.ps1 | Invoke-Expression
-    #Invoke-RestMethod https://raw.githubusercontent.com/ChrisTitusTech/winutil/d0bde83333730a4536497451af747daba11e5039/edgeremoval.ps1 | Invoke-Expression
+#Write-Host 'Microsoft Edge > Uninstall' -ForegroundColor green -BackgroundColor black
+#Invoke-RestMethod https://raw.githubusercontent.com/ChrisTitusTech/winutil/main/edgeremoval.ps1 | Invoke-Expression
+#Invoke-RestMethod https://raw.githubusercontent.com/ChrisTitusTech/winutil/d0bde83333730a4536497451af747daba11e5039/edgeremoval.ps1 | Invoke-Expression
 #}
 #Write-Host 'Restart' -ForegroundColor cyan -BackgroundColor black
 #shutdown /r /t 00
