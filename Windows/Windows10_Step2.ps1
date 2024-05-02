@@ -76,17 +76,17 @@ Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windo
 Add-Type -AssemblyName System.Windows.Forms
 $MPVAnswer = [System.Windows.Forms.MessageBox]::Show('Install mpv?' , 'mpv' , 4, 32)
 if ($MPVAnswer -eq 'Yes') {
-	Write-Host 'mpv > Install' -ForegroundColor green -BackgroundColor black
-	Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/Download_Install_AutoUpdate.ps1 | Invoke-Expression
+    Write-Host 'mpv > Install' -ForegroundColor green -BackgroundColor black
+    Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/Download_Install_AutoUpdate.ps1 | Invoke-Expression
 }
 Write-Host 'Microsoft Paint Setup' -ForegroundColor green -BackgroundColor black
 Add-WindowsCapability -Online -Name 'Microsoft.Windows.MSPaint~~~~0.0.1.0'
 Start-Sleep 20
 $EdgeUninstallAnswer = [System.Windows.Forms.MessageBox]::Show('Uninstall Edge?' , 'Edge' , 4, 32)
 if ($EdgeUninstallAnswer -eq 'Yes') {
-	Write-Host 'Microsoft Edge > Uninstall' -ForegroundColor green -BackgroundColor black
-	#Invoke-RestMethod https://raw.githubusercontent.com/ChrisTitusTech/winutil/main/edgeremoval.ps1 | Invoke-Expression
-	Invoke-RestMethod https://raw.githubusercontent.com/ChrisTitusTech/winutil/d0bde83333730a4536497451af747daba11e5039/edgeremoval.ps1 | Invoke-Expression
+    Write-Host 'Microsoft Edge > Uninstall' -ForegroundColor green -BackgroundColor black
+    #Invoke-RestMethod https://raw.githubusercontent.com/ChrisTitusTech/winutil/main/edgeremoval.ps1 | Invoke-Expression
+    Invoke-RestMethod https://raw.githubusercontent.com/ChrisTitusTech/winutil/d0bde83333730a4536497451af747daba11e5039/edgeremoval.ps1 | Invoke-Expression
 }
 Write-Host 'Restart' -ForegroundColor cyan -BackgroundColor black
 shutdown /r /t 00
