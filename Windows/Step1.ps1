@@ -147,8 +147,8 @@ if ($RemotePowerShellAnswer -eq 'No') {
 }
 $MPVAnswer = [System.Windows.Forms.MessageBox]::Show('Install mpv?' , 'mpv' , 4, 32)
 if ($MPVAnswer -eq 'Yes') {
-    Write-Host 'mpv > Install' -ForegroundColor green -BackgroundColor black
-    Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/Download_Install_AutoUpdate.ps1 | Invoke-Expression
+	Write-Host 'mpv > Install' -ForegroundColor green -BackgroundColor black
+	Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/Download_Install_AutoUpdate.ps1 | Invoke-Expression
 }
 $BrowserSelectionForm = New-Object System.Windows.Forms.Form
 $BrowserSelectionForm.Text = 'Browser Selection'

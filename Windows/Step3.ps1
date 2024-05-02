@@ -1,4 +1,19 @@
 Unregister-ScheduledTask -TaskName Step3 -Confirm:$false
+$NextStep = 'Step4'
+Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/$NextStep.ps1 -OutFile $env:TEMP\$NextStep.ps1
+Write-Host "Task Scheduler > $NextStep" -ForegroundColor green -BackgroundColor black
+$NextStep_Principal = New-ScheduledTaskPrincipal -UserId $env:computername\$env:USERNAME -RunLevel Highest
+$NextStep_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "-WindowStyle Maximized -ExecutionPolicy Bypass -File $env:TEMP\$NextStep.ps1"
+$NextStep_Trigger = New-ScheduledTaskTrigger -AtLogOn
+$NextStep_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
+$NextStep_Parameters = @{
+    TaskName  = $NextStep
+    Principal = $NextStep_Principal
+    Action    = $NextStep_Action
+    Trigger   = $NextStep_Trigger
+    Settings  = $NextStep_Settings
+}
+Register-ScheduledTask @NextStep_Parameters -Force
 Write-Host 'Sophia Script > Download' -ForegroundColor green -BackgroundColor black
 Invoke-RestMethod https://raw.githubusercontent.com/farag2/Sophia-Script-for-Windows/master/Download_Sophia.ps1 | Invoke-Expression
 $CurrentSophiaScriptPath = Get-Location
@@ -14,20 +29,9 @@ $SophiaScriptToastRegex = '(?ms)(?<=^\s*#region Toast notifications\s*).*?(?=\s*
 Write-Host 'Sophia Script > Run' -ForegroundColor green -BackgroundColor black
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 .\Sophia.ps1
-Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Arkenfox.ps1 | Invoke-Expression
-Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Step3_Settings.ps1 | Invoke-Expression
-Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Step3_Network.ps1 | Invoke-Expression
-Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Extensions.ps1 | Invoke-Expression
-#Add-Type -AssemblyName System.Windows.Forms
-#$EdgeUninstallAnswer = [System.Windows.Forms.MessageBox]::Show('Uninstall Edge?' , 'Edge' , 4, 32)
-#if ($EdgeUninstallAnswer -eq 'Yes') {
-#Write-Host 'Microsoft Edge > Uninstall' -ForegroundColor green -BackgroundColor black
-#Invoke-RestMethod https://raw.githubusercontent.com/ChrisTitusTech/winutil/main/edgeremoval.ps1 | Invoke-Expression
-#Invoke-RestMethod https://raw.githubusercontent.com/ChrisTitusTech/winutil/d0bde83333730a4536497451af747daba11e5039/edgeremoval.ps1 | Invoke-Expression
-#}
-Write-Host 'Windows Fax and Scan > Install' -ForegroundColor cyan -BackgroundColor black
-Add-WindowsCapability -Name 'Print.Fax.Scan~~~~0.0.1.0' -Online
-Write-Host 'Paint > Install' -ForegroundColor cyan -BackgroundColor black
+#Write-Host 'Windows Fax and Scan > Install' -ForegroundColor green -BackgroundColor black
+#Add-WindowsCapability -Name 'Print.Fax.Scan~~~~0.0.1.0' -Online
+Write-Host 'Paint > Install' -ForegroundColor green -BackgroundColor black
 Add-WindowsCapability -Name 'Microsoft.Windows.MSPaint~~~~0.0.1.0' -Online
 Write-Host 'Restart' -ForegroundColor cyan -BackgroundColor black
 shutdown /r /t 00

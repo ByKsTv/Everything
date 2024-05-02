@@ -7,11 +7,11 @@ $NextStep_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "-W
 $NextStep_Trigger = New-ScheduledTaskTrigger -AtLogOn
 $NextStep_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
 $NextStep_Parameters = @{
-	TaskName  = $NextStep
-	Principal = $NextStep_Principal
-	Action    = $NextStep_Action
-	Trigger   = $NextStep_Trigger
-	Settings  = $NextStep_Settings
+    TaskName  = $NextStep
+    Principal = $NextStep_Principal
+    Action    = $NextStep_Action
+    Trigger   = $NextStep_Trigger
+    Settings  = $NextStep_Settings
 }
 Register-ScheduledTask @NextStep_Parameters -Force
 Write-Host 'NuGet > Uninstall' -ForegroundColor green -BackgroundColor black
@@ -55,7 +55,7 @@ Remove-WindowsCapability -Name 'Hello.Face.18967~~~~0.0.1.0' -Online
 Remove-WindowsCapability -Name 'OneCoreUAP.OneSync~~~~0.0.1.0' -Online
 Remove-WindowsCapability -Name 'MathRecognizer~~~~0.0.1.0' -Online
 Remove-WindowsCapability -Name 'OpenSSH.Client~~~~0.0.1.0' -Online
-Remove-WindowsCapability -Name 'Print.Fax.Scan~~~~0.0.1.0' -Online
+#Remove-WindowsCapability -Name 'Print.Fax.Scan~~~~0.0.1.0' -Online
 Write-Host 'Windows features > Disable' -ForegroundColor green -BackgroundColor black
 Disable-WindowsOptionalFeature -FeatureName 'LegacyComponents' -Online -NoRestart
 Disable-WindowsOptionalFeature -FeatureName 'MicrosoftWindowsPowerShellV2' -Online -NoRestart
