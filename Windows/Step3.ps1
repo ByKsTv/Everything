@@ -29,8 +29,6 @@ $SophiaScriptToastRegex = '(?ms)(?<=^\s*#region Toast notifications\s*).*?(?=\s*
 Write-Host 'Sophia Script > Run' -ForegroundColor green -BackgroundColor black
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 .\Sophia.ps1
-#Write-Host 'Windows Fax and Scan > Install' -ForegroundColor green -BackgroundColor black
-#Add-WindowsCapability -Name 'Print.Fax.Scan~~~~0.0.1.0' -Online
 Write-Host 'Paint > Install' -ForegroundColor green -BackgroundColor black
 Add-WindowsCapability -Name 'Microsoft.Windows.MSPaint~~~~0.0.1.0' -Online
 Write-Host 'Restart' -ForegroundColor cyan -BackgroundColor black

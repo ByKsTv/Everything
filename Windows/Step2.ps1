@@ -33,6 +33,7 @@ Disable-ScheduledTask -TaskName 'FamilySafetyMonitor' -TaskPath '\Microsoft\Wind
 Disable-ScheduledTask -TaskName 'FamilySafetyRefreshTask' -TaskPath '\Microsoft\Windows\Shell\'
 Disable-ScheduledTask -TaskName 'MapsToastTask' -TaskPath '\Microsoft\Windows\Maps\'
 Disable-ScheduledTask -TaskName 'MapsUpdateTask' -TaskPath '\Microsoft\Windows\Maps\'
+Disable-ScheduledTask -TaskName 'MareBackup' -TaskPath '\Microsoft\Windows\Application Experience\'
 Disable-ScheduledTask -TaskName 'Microsoft Compatibility Appraiser' -TaskPath '\Microsoft\Windows\Application Experience\'
 Disable-ScheduledTask -TaskName 'Microsoft-Windows-DiskDiagnosticDataCollector' -TaskPath '\Microsoft\Windows\DiskDiagnostic\'
 Disable-ScheduledTask -TaskName 'PcaPatchDbTask' -TaskPath '\Microsoft\Windows\Application Experience\'
@@ -55,7 +56,6 @@ Remove-WindowsCapability -Name 'Hello.Face.18967~~~~0.0.1.0' -Online
 Remove-WindowsCapability -Name 'OneCoreUAP.OneSync~~~~0.0.1.0' -Online
 Remove-WindowsCapability -Name 'MathRecognizer~~~~0.0.1.0' -Online
 Remove-WindowsCapability -Name 'OpenSSH.Client~~~~0.0.1.0' -Online
-#Remove-WindowsCapability -Name 'Print.Fax.Scan~~~~0.0.1.0' -Online
 Write-Host 'Windows features > Disable' -ForegroundColor green -BackgroundColor black
 Disable-WindowsOptionalFeature -FeatureName 'LegacyComponents' -Online -NoRestart
 Disable-WindowsOptionalFeature -FeatureName 'MicrosoftWindowsPowerShellV2' -Online -NoRestart

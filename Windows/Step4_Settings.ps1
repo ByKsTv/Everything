@@ -182,6 +182,68 @@ if ((Test-Path -LiteralPath "$ENV:temp\OOSU10.cfg") -eq $true) {
 }
 New-Item -Path $ENV:temp\OOSU10.cfg -ItemType File -Value $OOSU10
 Start-Process $ENV:temp\OOSU10.exe -ArgumentList "$ENV:temp\OOSU10.cfg /quiet"
+Write-Host 'O&O ShutUp10++ > Current User > Microsoft Edge > Disable use of web service to resolve navigation errors > On' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Policies\Microsoft\Edge') -ne $true) { New-Item 'HKCU:\SOFTWARE\Policies\Microsoft\Edge' -Force -ea SilentlyContinue }
+New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Policies\Microsoft\Edge' -Name 'ResolveNavigationErrorsUseWebService' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
+Write-Host 'O&O ShutUp10++ > Local Machine > Microsoft Edge > Disable use of web service to resolve navigation errors > On' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Microsoft\Edge') -ne $true) { New-Item 'HKLM:\Software\Policies\Microsoft\Edge' -Force -ea SilentlyContinue }
+New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\Edge' -Name 'ResolveNavigationErrorsUseWebService' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
+Write-Host 'O&O ShutUp10++ > Current User > Microsoft Edge > Disable suggestion of similar sites when website cannot be found > On' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Policies\Microsoft\Edge') -ne $true) { New-Item 'HKCU:\SOFTWARE\Policies\Microsoft\Edge' -Force -ea SilentlyContinue }
+New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Policies\Microsoft\Edge' -Name 'AlternateErrorPagesEnabled' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
+Write-Host 'O&O ShutUp10++ > Local Machine > Microsoft Edge > Disable suggestion of similar sites when website cannot be found > On' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Microsoft\Edge') -ne $true) { New-Item 'HKLM:\Software\Policies\Microsoft\Edge' -Force -ea SilentlyContinue }
+New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\Edge' -Name 'AlternateErrorPagesEnabled' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
+Write-Host 'O&O ShutUp10++ > Current User > Microsoft Edge > Disable preload of pages for faster browsing and searching > On' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Policies\Microsoft\Edge') -ne $true) { New-Item 'HKCU:\SOFTWARE\Policies\Microsoft\Edge' -Force -ea SilentlyContinue }
+New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Policies\Microsoft\Edge' -Name 'NetworkPredictionOptions' -Value 2 -PropertyType DWord -Force -ea SilentlyContinue
+Write-Host 'O&O ShutUp10++ > Local Machine > Microsoft Edge > Disable preload of pages for faster browsing and searching > On' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Microsoft\Edge') -ne $true) { New-Item 'HKLM:\Software\Policies\Microsoft\Edge' -Force -ea SilentlyContinue }
+New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\Edge' -Name 'NetworkPredictionOptions' -Value 2 -PropertyType DWord -Force -ea SilentlyContinue
+Write-Host 'O&O ShutUp10++ > Current User > Microsoft Edge > Do not optimize web search results on the task bar for screen reader > On' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Main') -ne $true) { New-Item 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Main' -Force -ea SilentlyContinue }
+New-ItemProperty -LiteralPath 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Main' -Name 'OptimizeWindowsSearchResultsForScreenReaders' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
+Write-Host 'O&O ShutUp10++ > Current User > Taskbar > Disable search box in task bar > On' -ForegroundColor green -BackgroundColor black
+New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search' -Name 'SearchboxTaskbarMode' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
+Write-Host 'O&O ShutUp10++ > Current User > Taskbar > Disable news and interests in the task bar > On' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds') -ne $true) { New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds' -Force -ea SilentlyContinue }
+New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds' -Name 'ShellFeedsTaskbarViewMode' -Value 2 -PropertyType DWord -Force -ea SilentlyContinue
+Write-Host 'O&O ShutUp10++ > Local Machine > Privacy > Disable Biometrical features > On' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Microsoft\Biometrics') -ne $true) { New-Item 'HKLM:\Software\Policies\Microsoft\Biometrics' -Force -ea SilentlyContinue }
+New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\Biometrics' -Name 'Enabled' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
+Write-Host 'O&O ShutUp10++ > Local Machine > Security > Disable Internet access of Windows Media Digital Right Management (DRM) > On' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Microsoft\WMDRM') -ne $true) { New-Item 'HKLM:\Software\Policies\Microsoft\WMDRM' -Force -ea SilentlyContinue }
+New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\WMDRM' -Name 'DisableOnline' -Value 1 -PropertyType DWord -Force -ea SilentlyContinue
+Write-Host 'O&O ShutUp10++ > Local Machine > Microsoft Edge > Disable Microsoft Edge launch in the background > On' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\Main') -ne $true) { New-Item 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\Main' -Force -ea SilentlyContinue }
+New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\Main' -Name 'AllowPrelaunch' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
+Write-Host 'O&O ShutUp10++ > Local Machine > Microsoft Edge > Disable loading the start and new tab pages in the background > On' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\TabPreloader') -ne $true) { New-Item 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\TabPreloader' -Force -ea SilentlyContinue }
+New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\TabPreloader' -Name 'AllowTabPreloading' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
+Write-Host 'O&O ShutUp10++ > Local Machine > Windows Explorer > Disable OneDrive access to network before login > On' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKLM:\Software\Microsoft\OneDrive') -ne $true) { New-Item 'HKLM:\Software\Microsoft\OneDrive' -Force -ea SilentlyContinue }
+New-ItemProperty -LiteralPath 'HKLM:\Software\Microsoft\OneDrive' -Name 'PreventNetworkTrafficPreUserSignIn' -Value 1 -PropertyType DWord -Force -ea SilentlyContinue
+Write-Host 'O&O ShutUp10++ > Local Machine > Windows Explorer > Disable Microsoft OneDrive > On' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Microsoft\Windows\OneDrive') -ne $true) { New-Item 'HKLM:\Software\Policies\Microsoft\Windows\OneDrive' -Force -ea SilentlyContinue }
+New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\Windows\OneDrive' -Name 'DisableFileSyncNGSC' -Value 1 -PropertyType DWord -Force -ea SilentlyContinue
+Write-Host 'O&O ShutUp10++ > Local Machine > Microsoft Defender > Disable Microsoft SpyNet membership > On' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Microsoft\Windows Defender\Spynet') -ne $true) { New-Item 'HKLM:\Software\Policies\Microsoft\Windows Defender\Spynet' -Force -ea SilentlyContinue }
+New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\Windows Defender\Spynet' -Name 'SpyNetReporting' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
+Write-Host 'O&O ShutUp10++ > Local Machine > Microsoft Defender > Disable reporting of malware infection information > On' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Microsoft\MRT') -ne $true) { New-Item 'HKLM:\Software\Policies\Microsoft\MRT' -Force -ea SilentlyContinue }
+New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\MRT' -Name 'DontReportInfectionInformation' -Value 1 -PropertyType DWord -Force -ea SilentlyContinue
+Write-Host "O&O ShutUp10++ > Local Machine > Taskbar > Disable 'Meet now' in the task bar > On" -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer') -ne $true) { New-Item 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Force -ea SilentlyContinue }
+New-ItemProperty -LiteralPath 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'HideSCAMeetNow' -Value 1 -PropertyType DWord -Force -ea SilentlyContinue
+Write-Host 'O&O ShutUp10++ > Local Machine > Taskbar > Disable news and interests in the task bar > On' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Microsoft\Windows\Windows Feeds') -ne $true) { New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Windows Feeds' -Force -ea SilentlyContinue }
+New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\Windows\Windows Feeds' -Name 'EnableFeeds' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
+Write-Host 'O&O ShutUp10++ > Local Machine > Miscellaneous > Disable Key Management Service Only Activation > On' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Microsoft\Windows NT\CurrentVersion\Software Protection Platform') -ne $true) { New-Item 'HKLM:\Software\Policies\Microsoft\Windows NT\CurrentVersion\Software Protection Platform' -Force -ea SilentlyContinue }
+New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\Windows NT\CurrentVersion\Software Protection Platform' -Name 'NoGenTicket' -Value 1 -PropertyType DWord -Force -ea SilentlyContinue
+Write-Host 'O&O ShutUp10++ > Local Machine > Miscellaneous > Disable Installation of PC Health Check > On' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKLM:\Software\Microsoft\PCHC') -ne $true) { New-Item 'HKLM:\Software\Microsoft\PCHC' -Force -ea SilentlyContinue }
+New-ItemProperty -LiteralPath 'HKLM:\Software\Microsoft\PCHC' -Name 'PreviousUninstall' -Value 1 -PropertyType DWord -Force -ea SilentlyContinue
 Write-Host 'Services > Manual' -ForegroundColor green -BackgroundColor black
 Set-Service AJRouter -StartupType Disabled
 Set-Service AssignedAccessManagerSvc -StartupType Disabled
@@ -601,66 +663,7 @@ New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\E
 Write-Host 'Windows Security > Virus & threat protection > Manage settings > Change notification settings > Recent activity and scan results > Off' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -LiteralPath 'HKLM:\Software\Microsoft\Windows Defender Security Center\Virus and threat protection') -ne $true) { New-Item 'HKLM:\Software\Microsoft\Windows Defender Security Center\Virus and threat protection' -Force -ea SilentlyContinue }
 New-ItemProperty -LiteralPath 'HKLM:\Software\Microsoft\Windows Defender Security Center\Virus and threat protection' -Name 'SummaryNotificationDisabled' -Value 1 -PropertyType DWord -Force -ea SilentlyContinue
-Write-Host 'O&O ShutUp10++ > Current User > Microsoft Edge > Disable use of web service to resolve navigation errors > On' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Policies\Microsoft\Edge') -ne $true) { New-Item 'HKCU:\SOFTWARE\Policies\Microsoft\Edge' -Force -ea SilentlyContinue }
-New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Policies\Microsoft\Edge' -Name 'ResolveNavigationErrorsUseWebService' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
-Write-Host 'O&O ShutUp10++ > Local Machine > Microsoft Edge > Disable use of web service to resolve navigation errors > On' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Microsoft\Edge') -ne $true) { New-Item 'HKLM:\Software\Policies\Microsoft\Edge' -Force -ea SilentlyContinue }
-New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\Edge' -Name 'ResolveNavigationErrorsUseWebService' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
-Write-Host 'O&O ShutUp10++ > Current User > Microsoft Edge > Disable suggestion of similar sites when website cannot be found > On' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Policies\Microsoft\Edge') -ne $true) { New-Item 'HKCU:\SOFTWARE\Policies\Microsoft\Edge' -Force -ea SilentlyContinue }
-New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Policies\Microsoft\Edge' -Name 'AlternateErrorPagesEnabled' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
-Write-Host 'O&O ShutUp10++ > Local Machine > Microsoft Edge > Disable suggestion of similar sites when website cannot be found > On' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Microsoft\Edge') -ne $true) { New-Item 'HKLM:\Software\Policies\Microsoft\Edge' -Force -ea SilentlyContinue }
-New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\Edge' -Name 'AlternateErrorPagesEnabled' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
-Write-Host 'O&O ShutUp10++ > Current User > Microsoft Edge > Disable preload of pages for faster browsing and searching > On' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Policies\Microsoft\Edge') -ne $true) { New-Item 'HKCU:\SOFTWARE\Policies\Microsoft\Edge' -Force -ea SilentlyContinue }
-New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Policies\Microsoft\Edge' -Name 'NetworkPredictionOptions' -Value 2 -PropertyType DWord -Force -ea SilentlyContinue
-Write-Host 'O&O ShutUp10++ > Local Machine > Microsoft Edge > Disable preload of pages for faster browsing and searching > On' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Microsoft\Edge') -ne $true) { New-Item 'HKLM:\Software\Policies\Microsoft\Edge' -Force -ea SilentlyContinue }
-New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\Edge' -Name 'NetworkPredictionOptions' -Value 2 -PropertyType DWord -Force -ea SilentlyContinue
-Write-Host 'O&O ShutUp10++ > Current User > Microsoft Edge > Do not optimize web search results on the task bar for screen reader > On' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Main') -ne $true) { New-Item 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Main' -Force -ea SilentlyContinue }
-New-ItemProperty -LiteralPath 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Main' -Name 'OptimizeWindowsSearchResultsForScreenReaders' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
-Write-Host 'O&O ShutUp10++ > Current User > Taskbar > Disable news and interests in the task bar > On' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds') -ne $true) { New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds' -Force -ea SilentlyContinue }
-New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds' -Name 'ShellFeedsTaskbarViewMode' -Value 2 -PropertyType DWord -Force -ea SilentlyContinue
-Write-Host 'O&O ShutUp10++ > Local Machine > Privacy > Disable Biometrical features > On' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Microsoft\Biometrics') -ne $true) { New-Item 'HKLM:\Software\Policies\Microsoft\Biometrics' -Force -ea SilentlyContinue }
-New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\Biometrics' -Name 'Enabled' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
-Write-Host 'O&O ShutUp10++ > Local Machine > Security > Disable Internet access of Windows Media Digital Right Management (DRM) > On' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Microsoft\WMDRM') -ne $true) { New-Item 'HKLM:\Software\Policies\Microsoft\WMDRM' -Force -ea SilentlyContinue }
-New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\WMDRM' -Name 'DisableOnline' -Value 1 -PropertyType DWord -Force -ea SilentlyContinue
-Write-Host 'O&O ShutUp10++ > Local Machine > Microsoft Edge > Disable Microsoft Edge launch in the background > On' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\Main') -ne $true) { New-Item 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\Main' -Force -ea SilentlyContinue }
-New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\Main' -Name 'AllowPrelaunch' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
-Write-Host 'O&O ShutUp10++ > Local Machine > Microsoft Edge > Disable loading the start and new tab pages in the background > On' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\TabPreloader') -ne $true) { New-Item 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\TabPreloader' -Force -ea SilentlyContinue }
-New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\TabPreloader' -Name 'AllowTabPreloading' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
-Write-Host 'O&O ShutUp10++ > Local Machine > Windows Explorer > Disable OneDrive access to network before login > On' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\Software\Microsoft\OneDrive') -ne $true) { New-Item 'HKLM:\Software\Microsoft\OneDrive' -Force -ea SilentlyContinue }
-New-ItemProperty -LiteralPath 'HKLM:\Software\Microsoft\OneDrive' -Name 'PreventNetworkTrafficPreUserSignIn' -Value 1 -PropertyType DWord -Force -ea SilentlyContinue
-Write-Host 'O&O ShutUp10++ > Local Machine > Windows Explorer > Disable Microsoft OneDrive > On' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Microsoft\Windows\OneDrive') -ne $true) { New-Item 'HKLM:\Software\Policies\Microsoft\Windows\OneDrive' -Force -ea SilentlyContinue }
-New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\Windows\OneDrive' -Name 'DisableFileSyncNGSC' -Value 1 -PropertyType DWord -Force -ea SilentlyContinue
-Write-Host 'O&O ShutUp10++ > Local Machine > Microsoft Defender > Disable Microsoft SpyNet membership > On' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Microsoft\Windows Defender\Spynet') -ne $true) { New-Item 'HKLM:\Software\Policies\Microsoft\Windows Defender\Spynet' -Force -ea SilentlyContinue }
-New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\Windows Defender\Spynet' -Name 'SpyNetReporting' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
-Write-Host 'O&O ShutUp10++ > Local Machine > Microsoft Defender > Disable reporting of malware infection information > On' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Microsoft\MRT') -ne $true) { New-Item 'HKLM:\Software\Policies\Microsoft\MRT' -Force -ea SilentlyContinue }
-New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\MRT' -Name 'DontReportInfectionInformation' -Value 1 -PropertyType DWord -Force -ea SilentlyContinue
-Write-Host "O&O ShutUp10++ > Local Machine > Taskbar > Disable 'Meet now' in the task bar > On" -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer') -ne $true) { New-Item 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Force -ea SilentlyContinue }
-New-ItemProperty -LiteralPath 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'HideSCAMeetNow' -Value 1 -PropertyType DWord -Force -ea SilentlyContinue
-Write-Host 'O&O ShutUp10++ > Local Machine > Taskbar > Disable news and interests in the task bar > On' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Microsoft\Windows\Windows Feeds') -ne $true) { New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Windows Feeds' -Force -ea SilentlyContinue }
-New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\Windows\Windows Feeds' -Name 'EnableFeeds' -Value 0 -PropertyType DWord -Force -ea SilentlyContinue
-Write-Host 'O&O ShutUp10++ > Local Machine > Miscellaneous > Disable Key Management Service Only Activation > On' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Microsoft\Windows NT\CurrentVersion\Software Protection Platform') -ne $true) { New-Item 'HKLM:\Software\Policies\Microsoft\Windows NT\CurrentVersion\Software Protection Platform' -Force -ea SilentlyContinue }
-New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\Windows NT\CurrentVersion\Software Protection Platform' -Name 'NoGenTicket' -Value 1 -PropertyType DWord -Force -ea SilentlyContinue
-Write-Host 'O&O ShutUp10++ > Local Machine > Miscellaneous > Disable Installation of PC Health Check > On' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\Software\Microsoft\PCHC') -ne $true) { New-Item 'HKLM:\Software\Microsoft\PCHC' -Force -ea SilentlyContinue }
-New-ItemProperty -LiteralPath 'HKLM:\Software\Microsoft\PCHC' -Name 'PreviousUninstall' -Value 1 -PropertyType DWord -Force -ea SilentlyContinue
+
 Write-Host 'Desktop > Microsoft Edge > Off' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -LiteralPath 'C:\Users\Public\Desktop\Microsoft Edge.lnk') -eq $true) {
 	Remove-Item -LiteralPath 'C:\Users\Public\Desktop\Microsoft Edge.lnk'
