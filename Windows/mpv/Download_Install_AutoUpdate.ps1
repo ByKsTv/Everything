@@ -46,7 +46,7 @@ Start-Sleep 2
 [System.Windows.Forms.SendKeys]::SendWait('{y 2}')
 Start-Sleep 1
 [System.Windows.Forms.SendKeys]::SendWait('{1}')
-Start-Sleep 10
+Start-Sleep 20
 Write-Host 'mpv > Install' -ForegroundColor green -BackgroundColor black
 Start-Process -FilePath $env:ProgramFiles\mpv\installer\mpv-install.bat -ArgumentList /u
 Write-Host 'mpv > mpv.conf' -ForegroundColor green -BackgroundColor black
