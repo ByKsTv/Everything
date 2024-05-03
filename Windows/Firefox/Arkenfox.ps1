@@ -9,9 +9,7 @@ if ((Test-Path -LiteralPath $CurrentFireFoxProfilePath) -eq $true) {
     Invoke-WebRequest -Uri https://raw.githubusercontent.com/arkenfox/user.js/master/user.js -OutFile $CurrentFireFoxProfilePath\user.js
     $Arkenfox_Update = 'Arkenfox Update'
     $Arkenfox_Update_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $Arkenfox_Update }
-    if ($Arkenfox_Update_Exists) {
-    }
-    else {
+    if (!($Arkenfox_Update_Exists)) {
         Write-Host "Task Scheduler > $Arkenfox_Update" -ForegroundColor green -BackgroundColor black
         $Arkenfox_Update_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
         $Arkenfox_Update_Action = New-ScheduledTaskAction -Execute "$CurrentFireFoxProfilePath\updater.bat" -Argument '-unattended -updatebatch'
@@ -28,9 +26,7 @@ if ((Test-Path -LiteralPath $CurrentFireFoxProfilePath) -eq $true) {
     }
     $Arkenfox_Clean = 'Arkenfox Clean'
     $Arkenfox_Clean_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $Arkenfox_Clean }
-    if ($Arkenfox_Clean_Exists) {
-    }
-    else {
+    if (!($Arkenfox_Clean_Exists)) {
         Write-Host "Task Scheduler > $Arkenfox_Clean" -ForegroundColor green -BackgroundColor black
         $Arkenfox_Clean_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
         $Arkenfox_Clean_Action = New-ScheduledTaskAction -Execute "$CurrentFireFoxProfilePath\prefsCleaner.bat" -Argument '-unattended'
@@ -47,9 +43,7 @@ if ((Test-Path -LiteralPath $CurrentFireFoxProfilePath) -eq $true) {
     }
     $Arkenfox_Overrides = 'Arkenfox Overrides'
     $Arkenfox_Overrides_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $Arkenfox_Overrides }
-    if ($Arkenfox_Overrides_Exists) {
-    }
-    else {
+    if (!($Arkenfox_Overrides_Exists)) {
         Write-Host "Task Scheduler > $Arkenfox_Overrides" -ForegroundColor green -BackgroundColor black
         $Arkenfox_Overrides_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
         $Arkenfox_Overrides_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/user-overrides.js -OutFile $CurrentFireFoxProfilePath\user-overrides.js"

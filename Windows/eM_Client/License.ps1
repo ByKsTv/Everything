@@ -1,8 +1,6 @@
 $eM_Client_License_Fix = 'eM Client License Fix'
 $eM_Client_License_Fix_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $eM_Client_License_Fix }
-if ($eM_Client_License_Fix_Exists) {
-}
-else {
+if (!($eM_Client_License_Fix_Exists)) {
     Write-Host "Task Scheduler > $eM_Client_License_Fix" -ForegroundColor green -BackgroundColor black
     $eM_Client_License_Fix_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
     $eM_Client_License_Fix_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "Remove-Item -LiteralPath '$env:APPDATA\eM Client\Local Folders\folders.dat'"

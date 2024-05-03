@@ -24,9 +24,7 @@ Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/
 Write-Host 'mpv > installer' -ForegroundColor green -BackgroundColor black
 $MPV_Updater = 'MPV Updater'
 $MPV_Updater_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $MPV_Updater }
-if ($MPV_Updater_Exists) {
-}
-else {
+if (!($MPV_Updater_Exists)) {
     Write-Host "Task Scheduler > $MPV_Updater" -ForegroundColor green -BackgroundColor black
     $MPV_Updater_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
     $MPV_Updater_Action = New-ScheduledTaskAction -Execute "$env:ProgramFiles\mpv\updater.bat"
