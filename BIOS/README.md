@@ -16,7 +16,7 @@
 > [!NOTE]
 > Some motherboard manufacturers require users to rename the BIOS using a renamer included with the downwload.
 
-4. Plug the USB to the motherboard (If exists - to the USB marked as "BIOS").
+4. Plug the USB to the motherboard (If exists - to the USB marked as `BIOS`).
 5. Boot to BIOS.
 
 > [!TIP]
