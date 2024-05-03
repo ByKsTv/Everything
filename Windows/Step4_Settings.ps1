@@ -638,7 +638,7 @@ if ((Test-Path -LiteralPath 'C:\Users\Public\Desktop\Microsoft Edge.lnk') -eq $t
 }
 Write-Host 'Desktop > Firefox > Off' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -LiteralPath "$env:PUBLIC\Desktop\Firefox.lnk") -eq $true) {
-	Remove-Item -Path ("$env:PUBLIC\Desktop\Firefox.lnk") -Force -Recurse
+	Remove-Item -Path ("$env:PUBLIC\Desktop\Firefox.lnk")
 }
 Write-Host 'Windows Security Notification Icon > Off' -ForegroundColor green -BackgroundColor black
 if ($null -ne (Get-Item -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run').GetValue('SecurityHealth')) {
