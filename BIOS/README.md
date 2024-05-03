@@ -14,7 +14,7 @@
 3. Move BIOS to USB.
 
 > [!NOTE]
-> Some motherboard manufacturers require users to rename the BIOS file using a renamer file included with the downwload.
+> Some motherboard manufacturers require users to rename the BIOS using a renamer included with the downwload.
 
 4. Plug the USB to the motherboard (If exists - the USB marked as "BIOS").
 5. Boot to BIOS.
