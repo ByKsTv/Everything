@@ -1,7 +1,7 @@
 # Information
 
 > [!NOTE]
-> Everything about Firefox.
+> Everything about Chrome.
 
 ## Chrome Extensions
 

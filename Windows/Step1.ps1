@@ -145,6 +145,11 @@ if ($RemotePowerShellAnswer -eq 'No') {
 	Stop-Service WinRM
 	Set-Service WinRM -StartupType Manual
 }
+$MPVAnswer = [System.Windows.Forms.MessageBox]::Show('Install mpv?' , 'mpv' , 4, 32)
+if ($MPVAnswer -eq 'Yes') {
+	Write-Host 'mpv > Install' -ForegroundColor green -BackgroundColor black
+	Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/Download_Install_AutoUpdate.ps1 | Invoke-Expression
+}
 $BrowserSelectionForm = New-Object System.Windows.Forms.Form
 $BrowserSelectionForm.Text = 'Browser Selection'
 $BrowserSelectionForm.Size = New-Object System.Drawing.Size(300, 200)
@@ -187,11 +192,6 @@ if ($BrowserSelectionAnswer -eq [System.Windows.Forms.DialogResult]::OK) {
 			Start-Process $env:TEMP\chrome_installer.exe
 		}
 	}
-}
-$MPVAnswer = [System.Windows.Forms.MessageBox]::Show('Install mpv?' , 'mpv' , 4, 32)
-if ($MPVAnswer -eq 'Yes') {
-	Write-Host 'mpv > Install' -ForegroundColor green -BackgroundColor black
-	Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/Download_Install_AutoUpdate.ps1 | Invoke-Expression
 }
 Write-Host 'NuGet > Install' -ForegroundColor green -BackgroundColor black
 Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
