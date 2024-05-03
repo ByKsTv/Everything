@@ -5,12 +5,19 @@
 
 ## BIOS Update
 
-1. Download Motherboard BIOS to USB.
+1. Search the motherboard model on Google.
 
 > [!TIP]
 > Motherboard Model Can Be Found On `System Information` > `BaseBoard Product`.
 
-1. Boot to BIOS.
+2. Use the official manufacter site to download the latest BIOS.
+3. Download BIOS to USB.
+
+> [!NOTE]
+> Some motherboard manufacturers require users to rename the BIOS file using a renamer file included with the downwload.
+
+4. Plug the USB to the motherboard (if exist - to the USB Flashback USB).
+5. Boot to BIOS.
 
 > [!TIP]
 > Restart to BIOS using CMD (Admin):
@@ -20,7 +27,7 @@
 >
 > ```
 
-1. Update BIOS Firmware.
+6. Update BIOS Firmware.
 
 > [!CAUTION]
 > Update PC BIOS at night hours to avoid power loss.
