@@ -8,15 +8,15 @@
 1. Search the motherboard model on Google.
 
 > [!TIP]
-> Motherboard Model Can Be Found On `System Information` > `BaseBoard Product`.
+> Motherboard model Can be found on `System Information` > `BaseBoard Product`.
 
 2. Use the official manufacter site to download the latest BIOS.
-3. Download BIOS to USB.
+3. Move BIOS to USB.
 
 > [!NOTE]
 > Some motherboard manufacturers require users to rename the BIOS file using a renamer file included with the downwload.
 
-4. Plug the USB to the motherboard (if exist - to the USB Flashback USB).
+4. Plug the USB to the motherboard (If exists - the USB marked as "BIOS").
 5. Boot to BIOS.
 
 > [!TIP]

@@ -16,7 +16,7 @@
 1. Download Motherboard LAN driver to USB.
 
 > [!TIP]
-> Motherboard Model Can Be Found On `System Information` > `BaseBoard Product`.
+> Motherboard model can be found on `System Information` > `BaseBoard Product`.
 
 ## Pre Installation
 
