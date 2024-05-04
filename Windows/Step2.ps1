@@ -15,9 +15,7 @@ $NextStep_Parameters = @{
 }
 Register-ScheduledTask @NextStep_Parameters -Force
 Write-Host 'NuGet > Uninstall' -ForegroundColor green -BackgroundColor black
-takeown /R /F 'C:\Program Files\PackageManagement'
-icacls 'C:\Program Files\PackageManagement' /grant Everyone:F /T
-icacls 'C:\Program Files\PackageManagement' /grant Users:F /T
+icacls 'C:\Program Files\PackageManagement' /grant Users:F
 Remove-Item -Path ('C:\Program Files\PackageManagement') -Force -Recurse
 Remove-Item -Path ("$env:LOCALAPPDATA\PackageManagement") -Force -Recurse
 Remove-Item -Path ("$env:APPDATA\NuGet") -Force -Recurse

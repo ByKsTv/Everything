@@ -1,1 +1,1 @@
-mp.command('no-osd change-list ytdl-raw-options append cookies=' .. mp.command_native({'expand-path', '~~/cookies-youtube-private.txt'}))
+mp.commandv('no-osd', 'change-list', 'ytdl-raw-options', 'append', 'cookies=' .. mp.command_native({'expand-path', '~~/cookies-youtube-private.txt'}))

@@ -2,6 +2,8 @@ if (!(Test-Path -Path $env:ProgramFiles/mpv)) {
     Write-Host 'mpv' -ForegroundColor green -BackgroundColor black
     New-Item -Path $env:ProgramFiles/mpv -Value mpv -ItemType Directory
 }
+Write-Host 'mpv > permissions > allow' -ForegroundColor green -BackgroundColor black
+icacls $env:ProgramFiles/mpv /grant Users:F
 if (!(Test-Path -Path $env:ProgramFiles/mpv/installer)) {
     Write-Host 'mpv > installer' -ForegroundColor green -BackgroundColor black
     New-Item -Path $env:ProgramFiles/mpv/installer -Value installer -ItemType Directory
