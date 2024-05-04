@@ -41,9 +41,9 @@ if (!($MPV_Updater_Exists)) {
 }
 Start-ScheduledTask -TaskName $MPV_Updater
 Start-Sleep 2
-[System.Windows.Forms.SendKeys]::SendWait('{y 2}')
-Start-Sleep 1
-[System.Windows.Forms.SendKeys]::SendWait('{1}')
+[System.Windows.Forms.SendKeys]::SendWait('y')
+[System.Windows.Forms.SendKeys]::SendWait('y')
+[System.Windows.Forms.SendKeys]::SendWait('1')
 While (!(Test-Path $env:ProgramFiles\mpv\installer\mpv-install.bat -ErrorAction SilentlyContinue)) {
 }
 Start-Sleep 5
