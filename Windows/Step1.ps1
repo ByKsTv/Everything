@@ -32,8 +32,8 @@ if ($env:computername -ne $env:username) {
 Write-Host "Computer Management > System Tools > Local Users and Groups > Users > $env:username > Password never expires > On" -ForegroundColor green -BackgroundColor black
 Set-LocalUser -Name $env:username -PasswordNeverExpires 1
 Write-Host "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\DefaultUsername > $env:username" -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon') -ne $true) { New-Item 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Force -ea SilentlyContinue }
-New-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'DefaultUsername' -Value $env:username -PropertyType String -Force -ea SilentlyContinue
+if ((Test-Path -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon') -ne $true) { New-Item 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Force }
+New-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'DefaultUsername' -Value $env:username -PropertyType String -Force
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 $PCPasswordAnswer = [System.Windows.Forms.MessageBox]::Show('Add PC Password?' , 'PC Password' , 4, 32)
@@ -66,15 +66,15 @@ if ($PCPasswordAnswer -eq 'Yes') {
 		Write-Host "PC Password > $PCPasswordResultPASS" -ForegroundColor green -BackgroundColor black
 		Set-LocalUser -Name $env:username -Password (ConvertTo-SecureString -AsPlainText $PCPasswordResultPASS -Force)
 		Write-Host "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\DefaultPassword > $PCPasswordResultPASS" -ForegroundColor green -BackgroundColor black
-		New-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'DefaultPassword' -Value $PCPasswordResultPASS -PropertyType String -Force -ea SilentlyContinue
+		New-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'DefaultPassword' -Value $PCPasswordResultPASS -PropertyType String -Force
 		$PCPasswordAutoLogonAnswer = [System.Windows.Forms.MessageBox]::Show('Enable AutoAdminLogon?' , 'AutoAdminLogon' , 4, 32)
 		if ($PCPasswordAutoLogonAnswer -eq 'Yes') {
 			Write-Host 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\AutoAdminLogon > On' -ForegroundColor green -BackgroundColor black
-			New-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'AutoAdminLogon' -Value '1' -PropertyType String -Force -ea SilentlyContinue
+			New-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'AutoAdminLogon' -Value '1' -PropertyType String -Force
 		}
 		if ($PCPasswordAutoLogonAnswer -eq 'No') {
 			Write-Host 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\AutoAdminLogon > Off' -ForegroundColor green -BackgroundColor black
-			New-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'AutoAdminLogon' -Value '0' -PropertyType String -Force -ea SilentlyContinue
+			New-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'AutoAdminLogon' -Value '0' -PropertyType String -Force
 		}
 	}
 }
@@ -82,7 +82,7 @@ if ($PCPasswordAnswer -eq 'No') {
 	Write-Host 'PC Password > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-LocalUser -Name $env:username -Password ([securestring]::new())
 	Write-Host 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\AutoAdminLogon > Off' -ForegroundColor green -BackgroundColor black
-	New-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'AutoAdminLogon' -Value '0' -PropertyType String -Force -ea SilentlyContinue
+	New-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'AutoAdminLogon' -Value '0' -PropertyType String -Force
 }
 $RemoteDesktopAnswer = [System.Windows.Forms.MessageBox]::Show('Enable Remote Desktop?
 
