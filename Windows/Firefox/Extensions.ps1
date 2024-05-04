@@ -45,7 +45,7 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         Start-Sleep -Milliseconds 1000
         [System.Windows.Forms.SendKeys]::SendWait('%n')
         Start-Sleep -Milliseconds 1000
-        Write-Host "uBlock Origin > Restore from file > Select file" -ForegroundColor green -BackgroundColor black
+        Write-Host 'uBlock Origin > Restore from file > Select file' -ForegroundColor green -BackgroundColor black
         [System.Windows.Forms.SendKeys]::SendWait('uBlock_Origin_Backup.txt')
         [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
         Start-Sleep -Milliseconds 1000
