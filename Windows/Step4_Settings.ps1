@@ -646,7 +646,7 @@ if ($null -ne (Get-Item -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVe
 }
 Write-Host 'Legacy Advanced Boot Options Added (F8)' -ForegroundColor green -BackgroundColor black
 bcdedit /set `{current`} bootmenupolicy Legacy
-Write-Host 'Split Threshold for svchost.exe' -ForegroundColor green -BackgroundColor black
+Write-Host 'svchost.exe > Group (Decrease Proccess Number)' -ForegroundColor green -BackgroundColor black
 $svchostram = (Get-CimInstance -ClassName Win32_PhysicalMemory | Measure-Object -Property Capacity -Sum).Sum / 1kb
 Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control' -Name 'SvcHostSplitThresholdInKB' -Type DWord -Value $svchostram -Force
 Write-Host 'Settings > Date & time > Time zone > Jerusalem' -ForegroundColor green -BackgroundColor black
