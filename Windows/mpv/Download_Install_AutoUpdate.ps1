@@ -1,4 +1,3 @@
-Add-Type -AssemblyName System.Windows.Forms
 if (!(Test-Path -Path $env:ProgramFiles/mpv)) {
     Write-Host 'mpv' -ForegroundColor green -BackgroundColor black
     New-Item -Path $env:ProgramFiles/mpv -Value mpv -ItemType Directory
@@ -41,6 +40,7 @@ if (!($MPV_Updater_Exists)) {
 }
 Start-ScheduledTask -TaskName $MPV_Updater
 Start-Sleep 2
+Add-Type -AssemblyName System.Windows.Forms
 [System.Windows.Forms.SendKeys]::SendWait('y')
 [System.Windows.Forms.SendKeys]::SendWait('y')
 [System.Windows.Forms.SendKeys]::SendWait('1')
