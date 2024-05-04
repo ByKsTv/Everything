@@ -96,7 +96,7 @@ Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windo
 > [!NOTE]
 > HP Printer: Original Ink Cartridges.
 
-## Extra Software
+## Extra Softwaree
 
 - [Office](https://gravesoft.dev/download_windows_office/office_c2r_links/#english-en-us) + PowerShell (Admin):
 
