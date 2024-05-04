@@ -10,7 +10,7 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.txt -OutFile $env:TEMP\uBlock_Origin_Backup.txt
         $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\ublock_origin.xpi"
         $OpenWithFirefox.start()
-        Start-Sleep -Milliseconds 3000
+        Start-Sleep -Milliseconds 6000
         Add-Type -AssemblyName System.Windows.Forms
         [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
         Start-Sleep -Milliseconds 100
