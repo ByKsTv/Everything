@@ -29,13 +29,13 @@ $OfficeList.Size = New-Object System.Drawing.Size(580, 20)
 $OfficeList.SelectionMode = 'MultiExtended'
 [void] $OfficeList.Items.Add('Microsoft 365 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Skype for Business, Word)')
 [void] $OfficeList.Items.Add('Office 2021 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Word)')
-[void] $OfficeList.Items.Add('Office 2021 - (Access)')
-[void] $OfficeList.Items.Add('Office 2021 - (Excel)')
-[void] $OfficeList.Items.Add('Office 2021 - (OneNote)')
-[void] $OfficeList.Items.Add('Office 2021 - (Outlook)')
-[void] $OfficeList.Items.Add('Office 2021 - (PowerPoint)')
-[void] $OfficeList.Items.Add('Office 2021 - (Publisher)')
-[void] $OfficeList.Items.Add('Office 2021 - (Word)')
+[void] $OfficeList.Items.Add('Office 2021 - Access')
+[void] $OfficeList.Items.Add('Office 2021 - Excel')
+[void] $OfficeList.Items.Add('Office 2021 - OneNote')
+[void] $OfficeList.Items.Add('Office 2021 - Outlook')
+[void] $OfficeList.Items.Add('Office 2021 - PowerPoint')
+[void] $OfficeList.Items.Add('Office 2021 - Publisher')
+[void] $OfficeList.Items.Add('Office 2021 - Word')
 $OfficeList.Height = 150
 $OfficeForm.Controls.Add($OfficeList)
 $OfficeForm.Topmost = $true
@@ -52,38 +52,38 @@ if ($OfficeDialog -eq [System.Windows.Forms.DialogResult]::OK) {
 		Invoke-WebRequest -Uri 'https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlus2021Retail&platform=x64&language=en-us&version=O16GA' -OutFile $env:TEMP\2021ProPlus.exe
 		Start-Process $env:TEMP\2021ProPlus.exe -Wait
 	}
-	if ($OfficeSelected -eq 'Office 2021 - (Access)') {
+	if ($OfficeSelected -eq 'Office 2021 - Access') {
 		Write-Host 'Office 2021 - (Access) > Install' -ForegroundColor green -BackgroundColor black
 		Invoke-WebRequest -Uri 'https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=Access2021Retail&platform=x64&language=en-us&version=O16GA' -OutFile $env:TEMP\2021Access.exe
 		Start-Process $env:TEMP\2021Access.exe -Wait
 	}
-	if ($OfficeSelected -eq 'Office 2021 - (Excel)') {
-		Write-Host 'Office 2021 - (Excel) > Install' -ForegroundColor green -BackgroundColor black
+	if ($OfficeSelected -eq 'Office 2021 - Excel') {
+		Write-Host 'Office 2021 - Excel > Install' -ForegroundColor green -BackgroundColor black
 		Invoke-WebRequest -Uri 'https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=Excel2021Retail&platform=x64&language=en-us&version=O16GA' -OutFile $env:TEMP\2021Excel.exe
 		Start-Process $env:TEMP\2021Excel.exe -Wait
 	}
-	if ($OfficeSelected -eq 'Office 2021 - (OneNote)') {
-		Write-Host 'Office 2021 - (OneNote) > Install' -ForegroundColor green -BackgroundColor black
+	if ($OfficeSelected -eq 'Office 2021 - OneNote') {
+		Write-Host 'Office 2021 - OneNote > Install' -ForegroundColor green -BackgroundColor black
 		Invoke-WebRequest -Uri 'https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=OneNote2021Retail&platform=x64&language=en-us&version=O16GA' -OutFile $env:TEMP\2021OneNote.exe
 		Start-Process $env:TEMP\2021OneNote.exe -Wait
 	}
-	if ($OfficeSelected -eq 'Office 2021 - (Outlook)') {
-		Write-Host 'Office 2021 - (Outlook) > Install' -ForegroundColor green -BackgroundColor black
+	if ($OfficeSelected -eq 'Office 2021 - Outlook') {
+		Write-Host 'Office 2021 - Outlook > Install' -ForegroundColor green -BackgroundColor black
 		Invoke-WebRequest -Uri 'https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=Outlook2021Retail&platform=x64&language=en-us&version=O16GA' -OutFile $env:TEMP\2021Outlook.exe
 		Start-Process $env:TEMP\2021Outlook.exe -Wait
 	}
-	if ($OfficeSelected -eq 'Office 2021 - (PowerPoint)') {
-		Write-Host 'Office 2021 - (PowerPoint) > Install' -ForegroundColor green -BackgroundColor black
+	if ($OfficeSelected -eq 'Office 2021 - PowerPoint') {
+		Write-Host 'Office 2021 - PowerPoint > Install' -ForegroundColor green -BackgroundColor black
 		Invoke-WebRequest -Uri 'https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=PowerPoint2021Retail&platform=x64&language=en-us&version=O16GA' -OutFile $env:TEMP\2021PowerPoint.exe
 		Start-Process $env:TEMP\2021PowerPoint.exe -Wait
 	}
-	if ($OfficeSelected -eq 'Office 2021 - (Publisher)') {
-		Write-Host 'Office 2021 - (Publisher) > Install' -ForegroundColor green -BackgroundColor black
+	if ($OfficeSelected -eq 'Office 2021 - Publisher') {
+		Write-Host 'Office 2021 - Publisher > Install' -ForegroundColor green -BackgroundColor black
 		Invoke-WebRequest -Uri 'https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=Publisher2021Retail&platform=x64&language=en-us&version=O16GA' -OutFile $env:TEMP\2021Publisher.exe
 		Start-Process $env:TEMP\2021Publisher.exe -Wait
 	}
-	if ($OfficeSelected -eq 'Office 2021 - (Word)') {
-		Write-Host 'Office 2021 - (Word) > Install' -ForegroundColor green -BackgroundColor black
+	if ($OfficeSelected -eq 'Office 2021 - Word') {
+		Write-Host 'Office 2021 - Word > Install' -ForegroundColor green -BackgroundColor black
 		Invoke-WebRequest -Uri 'https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=Word2021Retail&platform=x64&language=en-us&version=O16GA' -OutFile $env:TEMP\2021Word.exe
 		Start-Process $env:TEMP\2021Word.exe -Wait
 	}
