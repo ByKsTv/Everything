@@ -106,7 +106,7 @@ Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windo
 - [Logitech G HUB](https://www.logitechg.com/en-us/innovation/g-hub.html)
 - [HyperX NGENUITY](https://hyperx.com/pages/ngenuity)
 - [Discord](https://discord.com/download)
-- [qBittorrent](https://www.qbittorrent.org/download)
+- [qBittorrent](https://github.com/ByKsTv/Everything/tree/main/Windows/qBittorrent)
 - [Telegram](https://desktop.telegram.org/)
 - [NordVPN](https://nordvpn.com/download/windows/)
 - [AnyDesk](https://anydesk.com/en/downloads)

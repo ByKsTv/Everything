@@ -5,6 +5,16 @@ Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windo
 Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Extensions.ps1 | Invoke-Expression
 Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Office/Download.ps1 | Invoke-Expression
 Add-Type -AssemblyName System.Windows.Forms
+$MPVAnswer = [System.Windows.Forms.MessageBox]::Show('Install mpv?' , 'mpv' , 4, 32)
+if ($MPVAnswer -eq 'Yes') {
+	Write-Host 'mpv > Install' -ForegroundColor green -BackgroundColor black
+	Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/Download.ps1 | Invoke-Expression
+}
+$qBittorrentAnswer = [System.Windows.Forms.MessageBox]::Show('Install qBittorrent?' , 'qBittorrent' , 4, 32)
+if ($qBittorrentAnswer -eq 'Yes') {
+    Write-Host 'qBittorrent > Install' -ForegroundColor green -BackgroundColor black
+    Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1 | Invoke-Expression
+}
 $EdgeUninstallAnswer = [System.Windows.Forms.MessageBox]::Show('Uninstall Edge?
 
 Not recommended, some apps like Visual Studio use Edge.' , 'Edge' , 4, 48)
