@@ -50,7 +50,7 @@ While (!(Test-Path $env:ProgramFiles\mpv\installer\mpv-install.bat -ErrorAction 
 }
 Start-Sleep -Milliseconds 1000
 Write-Host 'mpv > Install' -ForegroundColor green -BackgroundColor black
-Start-Process -FilePath $env:ProgramFiles\mpv\installer\mpv-install.bat -ArgumentList "/u"
+Start-Process -FilePath $env:ProgramFiles\mpv\installer\mpv-install.bat -ArgumentList '/u'
 Write-Host 'mpv > mpv.conf' -ForegroundColor green -BackgroundColor black
 Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/mpv.conf -OutFile $env:ProgramFiles/mpv/mpv.conf
 Write-Host 'mpv > input.conf' -ForegroundColor green -BackgroundColor black
@@ -100,6 +100,7 @@ if ($sponsorblockanswer -eq 'Yes') {
     Invoke-WebRequest -Uri https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblock_shared/sponsorblock.py -OutFile $env:ProgramFiles/mpv/scripts/sponsorblock_shared/sponsorblock.py
     Write-Host 'mpv > scripts > sponsorblock_shared > main.lua' -ForegroundColor green -BackgroundColor black
     Invoke-WebRequest -Uri https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblock_shared/main.lua -OutFile $env:ProgramFiles/mpv/scripts/sponsorblock_shared/main.lua
+    Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Python/Download.ps1 | Invoke-Expression
 }
 $deletefileanswer = [System.Windows.Forms.MessageBox]::Show('Add delete file?
 
