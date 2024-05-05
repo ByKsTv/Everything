@@ -3,6 +3,15 @@
 > [!NOTE]
 > Everything about Chrome.
 
+## Chrome Setup (Auto Install)
+
+1. PowerShell (Admin):
+
+```powershell
+Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Chrome/Download.ps1 | Invoke-Expression
+
+```
+
 ## Chrome Extensions
 
 1. [uBlock Origin](https://chromewebstore.google.com/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm) > `Settings` > [Restore from file](https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.txt).

@@ -175,16 +175,13 @@ if ($BrowserSelectionAnswer -eq [System.Windows.Forms.DialogResult]::OK) {
 	$BrowserSelectionSelected = $BrowserSelectionList.SelectedItems
 	if ($BrowserSelectionSelected -eq 'Firefox') {
 		if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Mozilla Firefox") -ne $true) {
-			Write-Host 'Firefox Setup' -ForegroundColor green -BackgroundColor black
-			Invoke-WebRequest -Uri https://download.mozilla.org/?product=firefox-stub -OutFile $env:TEMP\firefox-stub.exe
-			Start-Process $env:TEMP\firefox-stub.exe
+			Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Download.ps1 | Invoke-Expression
+
 		}
 	}
 	if ($BrowserSelectionSelected -eq 'Chrome') {
 		if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Google\Chrome\Application") -ne $true) {
-			Write-Host 'Chrome Setup' -ForegroundColor green -BackgroundColor black
-			Invoke-WebRequest -Uri https://dl.google.com/chrome/install/latest/chrome_installer.exe -OutFile $env:TEMP\chrome_installer.exe
-			Start-Process $env:TEMP\chrome_installer.exe
+			Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Chrome/Download.ps1 | Invoke-Expression
 		}
 	}
 }

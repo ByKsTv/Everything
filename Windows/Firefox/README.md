@@ -3,7 +3,16 @@
 > [!NOTE]
 > Everything about Firefox.
 
-## Arkenfox Setup
+## Firefox Setup (Auto Install)
+
+1. PowerShell (Admin):
+
+```powershell
+Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Download.ps1 | Invoke-Expression
+
+```
+
+## Arkenfox Setup (Auto Install)
 
 1. PowerShell (Admin):
 

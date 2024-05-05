@@ -7,8 +7,8 @@ Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windo
 Add-Type -AssemblyName System.Windows.Forms
 $MPVAnswer = [System.Windows.Forms.MessageBox]::Show('Install mpv?' , 'mpv' , 4, 32)
 if ($MPVAnswer -eq 'Yes') {
-	Write-Host 'mpv > Install' -ForegroundColor green -BackgroundColor black
-	Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/Download.ps1 | Invoke-Expression
+    Write-Host 'mpv > Install' -ForegroundColor green -BackgroundColor black
+    Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/Download.ps1 | Invoke-Expression
 }
 $qBittorrentAnswer = [System.Windows.Forms.MessageBox]::Show('Install qBittorrent?' , 'qBittorrent' , 4, 32)
 if ($qBittorrentAnswer -eq 'Yes') {
