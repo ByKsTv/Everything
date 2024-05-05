@@ -1,9 +1,11 @@
-Write-Host 'qBittorrent > Download' -ForegroundColor green -BackgroundColor black
-Invoke-WebRequest -UserAgent "Wget" -Uri https://sourceforge.net/projects/qbittorrent/files/latest/download -OutFile $ENV:temp\qBittorrent.exe
-Write-Host 'qBittorrent > Install' -ForegroundColor green -BackgroundColor black
-Start-Process $ENV:temp\qBittorrent.exe -ArgumentList "/S"
+if (!(Test-Path -Path $env:APPDATA\qBittorrent)) {
+	Write-Host 'qBittorrent > Download' -ForegroundColor green -BackgroundColor black
+	Invoke-WebRequest -UserAgent 'Wget' -Uri https://sourceforge.net/projects/qbittorrent/files/latest/download -OutFile $ENV:temp\qBittorrent.exe
+	Write-Host 'qBittorrent > Install' -ForegroundColor green -BackgroundColor black
+	Start-Process $ENV:temp\qBittorrent.exe -ArgumentList '/S'
+}
 Write-Host 'qBittorrent > Custom Settings' -ForegroundColor green -BackgroundColor black
-$qBitSettings='
+$qBitSettings = '
 [BitTorrent]
 Session\MaxUploadsPerTorrent=-1
 Session\GlobalMaxInactiveSeedingMinutes=0
@@ -58,7 +60,7 @@ Enabled=false
 Accepted=true
 '
 if (!(Test-Path -Path $env:APPDATA\qBittorrent)) {
-    Write-Host '$env:APPDATA\qBittorrent' -ForegroundColor green -BackgroundColor black
-    New-Item -Path $env:APPDATA\qBittorrent -Value qBittorrent -ItemType Directory
+	Write-Host '$env:APPDATA\qBittorrent' -ForegroundColor green -BackgroundColor black
+	New-Item -Path $env:APPDATA\qBittorrent -Value qBittorrent -ItemType Directory
 }
 Set-Content -Path $env:APPDATA\qBittorrent\qBittorrent.ini -Value $qBitSettings -Force
