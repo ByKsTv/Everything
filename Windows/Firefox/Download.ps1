@@ -1,5 +1,6 @@
-Write-Host 'Firefox Setup' -ForegroundColor green -BackgroundColor black
+Write-Host 'Firefox > Download' -ForegroundColor green -BackgroundColor black
 Invoke-WebRequest -Uri https://download.mozilla.org/?product=firefox-stub -OutFile $env:TEMP\firefox-stub.exe
+Write-Host 'Firefox > Install' -ForegroundColor green -BackgroundColor black
 Start-Process $env:TEMP\firefox-stub.exe -Wait
 Start-Sleep -Milliseconds 5000
 Write-Host 'Firefox > Import from browser > Uncheck' -ForegroundColor green -BackgroundColor black
