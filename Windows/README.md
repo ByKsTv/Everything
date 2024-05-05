@@ -113,7 +113,7 @@ Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windo
 - [CrystalDiskInfo](https://crystalmark.info/en/download/#CrystalDiskInfo)
 - [CrystalDiskMark](https://crystalmark.info/en/download/#CrystalDiskMark)
 - [MediaInfo](https://mediaarea.net/en/MediaInfo/Download)
-- [Python](https://www.python.org/downloads/)
+- [Python](https://github.com/ByKsTv/Everything/tree/main/Windows/Python)
 - [Notepad++](https://notepad-plus-plus.org/downloads/)
 - [Steam](https://store.steampowered.com/about/)
 - [Microsoft PowerToys](https://github.com/microsoft/PowerToys/releases/latest)
