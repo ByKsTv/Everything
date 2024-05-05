@@ -1,6 +1,7 @@
 Unregister-ScheduledTask -TaskName Step4 -Confirm:$false
 Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Arkenfox.ps1 | Invoke-Expression
 Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Step4_Settings.ps1 | Invoke-Expression
+Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Office/Disable_Telemetry.ps1 | Invoke-Expression
 Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Step4_Network.ps1 | Invoke-Expression
 Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Extensions.ps1 | Invoke-Expression
 Add-Type -AssemblyName System.Windows.Forms
