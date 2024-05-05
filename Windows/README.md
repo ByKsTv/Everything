@@ -98,15 +98,9 @@ Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windo
 
 ## Extra Software
 
-- [Office](https://gravesoft.dev/download_windows_office/office_c2r_links/#english-en-us) + PowerShell (Admin):
-
-```powershell
-& ([ScriptBlock]::Create((Invoke-RestMethod https://massgrave.dev/get))) /Ohook
-
-```
-
+- [Office](https://github.com/ByKsTv/Everything/tree/main/Windows/Office)
 - [7-Zip](https://www.7-zip.org)
-- mpv + [config](https://github.com/ByKsTv/Everything/tree/main/Windows/mpv)
+- [mpv](https://github.com/ByKsTv/Everything/tree/main/Windows/mpv)
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp/releases/latest)
 - [Razer Synapse](https://www.razer.com/synapse-3)
 - [Logitech G HUB](https://www.logitechg.com/en-us/innovation/g-hub.html)
@@ -138,12 +132,7 @@ Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windo
 - [VMware Workstation](https://rutracker.org/forum/tracker.php?nm=VMware%20Workstation) (Download 17.0.2 to avoid [High CPU Usage](https://communities.vmware.com/t5/VMware-Workstation-Pro/High-CPU-usage-by-vmnat-exe-after-upgrade-to-VMware-Workstation/m-p/2992080/highlight/true#M183202))
 - [Plex](https://www.plex.tv/media-server-downloads/#plex-media-server)
 - [Jellyfin](https://jellyfin.org/downloads/windows)
-- eM Client [LRepacks](https://lrepacks.net/repaki-programm-dlya-interneta/364-repack-em-client-amp-portable.html) / [Diakov](https://diakov.net/14616-em-client-pro-9222300-portable.html) + PowerShell (Admin):
-
-```powershell
-Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/eM_Client/License.ps1 | Invoke-Expression
-
-```
+- [eM Client](https://github.com/ByKsTv/Everything/tree/main/Windows/eM_Client)
 
 ## Plex Settings
 
