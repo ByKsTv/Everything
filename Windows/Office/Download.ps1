@@ -1,4 +1,3 @@
-Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Office/Disable_Telemetry.ps1 | Invoke-Expression
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 $OfficeForm = New-Object System.Windows.Forms.Form
@@ -90,4 +89,5 @@ if ($OfficeDialog -eq [System.Windows.Forms.DialogResult]::OK) {
 	}
 	Write-Host 'Office > Activate' -ForegroundColor green -BackgroundColor black
 	& ([ScriptBlock]::Create((Invoke-RestMethod https://massgrave.dev/get))) /Ohook
+	Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Office/Disable_Telemetry.ps1 | Invoke-Expression
 }
