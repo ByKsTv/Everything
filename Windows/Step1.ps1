@@ -19,8 +19,8 @@ $powerSchemeGuid = 'e9a42b02-d5df-448d-aa00-03f14749eb61'
 $schemes = powercfg /list | Out-String -Stream
 $ultimateScheme = $schemes | Where-Object { $_ -match $powerSchemeName }
 if ($null -eq $ultimateScheme) {
-	Invoke-WebRequest -Uri https://github.com/ByKsTv/Everything/raw/main/Windows/Step1_UltimatePerformance.pow -OutFile $env:TEMP\UltimatePerformance.pow
-	powercfg -import $env:TEMP\UltimatePerformance.pow $powerSchemeGuid
+	Invoke-WebRequest -Uri https://github.com/ByKsTv/Everything/raw/main/Windows/Ultimate_Performance.pow -OutFile $env:TEMP\Ultimate_Performance.pow
+	powercfg -import $env:TEMP\Ultimate_Performance.pow $powerSchemeGuid
 }
 powercfg /S $powerSchemeGuid
 Write-Host 'Settings > Power & Sleep > Screen > When plugged in, turn off after > Never' -ForegroundColor green -BackgroundColor black

@@ -16,5 +16,5 @@ Start-Sleep -Milliseconds 3000
 Write-Host 'Firefox > Sign in' -ForegroundColor green -BackgroundColor black
 $OpenWithFirefox = New-Object System.Diagnostics.Process
 $OpenWithFirefox.StartInfo.Filename = 'firefox.exe'
-$OpenWithFirefox.StartInfo.Arguments = "about:preferences#sync"
+$OpenWithFirefox.StartInfo.Arguments = 'about:preferences#sync'
 $OpenWithFirefox.start()
