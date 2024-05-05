@@ -14,7 +14,7 @@ Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windo
 
 ## Office Setup (Manual Install)
 
-1. Choose Office Version: https://gravesoft.dev/download_windows_office/office_c2r_links/#english-en-us
+1. Choose [Office Version](https://gravesoft.dev/download_windows_office/office_c2r_links/#english-en-us)
 1. Activate Office - PowerShell (Admin):
 
    ```powershell
