@@ -99,7 +99,7 @@ Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windo
 ## Extra Software
 
 - [Office](https://github.com/ByKsTv/Everything/tree/main/Windows/Office)
-- [7-Zip](https://www.7-zip.org)
+- [7-Zip](https://github.com/ByKsTv/Everything/tree/main/Windows/7Zip)
 - [mpv](https://github.com/ByKsTv/Everything/tree/main/Windows/mpv)
 - [yt-dlp](https://github.com/yt-dlp/yt-dlp/releases/latest)
 - [Razer Synapse](https://www.razer.com/synapse-3)

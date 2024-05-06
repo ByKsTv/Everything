@@ -5,6 +5,7 @@ Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windo
 Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Settings.ps1 | Invoke-Expression
 Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Network.ps1 | Invoke-Expression
 Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Extensions.ps1 | Invoke-Expression
+Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1 | Invoke-Expression
 Add-Type -AssemblyName System.Windows.Forms
 $PythonAnswer = [System.Windows.Forms.MessageBox]::Show('Install Python?' , 'Python' , 4, 32)
 if ($PythonAnswer -eq 'Yes') {
