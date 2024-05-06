@@ -39,6 +39,10 @@ $SteamAnswer = [System.Windows.Forms.MessageBox]::Show('Install Steam?' , 'Steam
 if ($SteamAnswer -eq 'Yes') {
     Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Steam/Download.ps1 | Invoke-Expression
 }
+$NotepadPlusPlusAnswer = [System.Windows.Forms.MessageBox]::Show('Install Notepad++?' , 'Notepad++' , 4, 32)
+if ($NotepadPlusPlusAnswer -eq 'Yes') {
+    Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Notepad_Plus_Plus/Download.ps1 | Invoke-Expression
+}
 $EdgeUninstallAnswer = [System.Windows.Forms.MessageBox]::Show('Uninstall Edge?
 
 Not recommended, some apps like Visual Studio use Edge.' , 'Edge' , 4, 48)
