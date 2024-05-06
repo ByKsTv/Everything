@@ -3,7 +3,7 @@
 > [!NOTE]
 > Everything about Sophia Script.
 
-## Sophia Script Setup (Auto Install)
+## Sophia Script Setup - Auto Install
 
 1. PowerShell (Admin):
 

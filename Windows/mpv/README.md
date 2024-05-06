@@ -3,7 +3,7 @@
 > [!NOTE]
 > Everything about mpv.
 
-## mpv Setup
+## mpv Setup - Auto Install
 
 1. PowerShell (Admin):
 

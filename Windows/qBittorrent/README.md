@@ -3,7 +3,7 @@
 > [!NOTE]
 > Everything about qBittorrent.
 
-## qBittorrent Setup (Auto Install)
+## qBittorrent Setup - Auto Install
 
 1. PowerShell (Admin):
 

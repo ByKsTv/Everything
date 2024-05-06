@@ -40,7 +40,7 @@
 1. Connect Ethernet Cable (After Windows Boots Up).
 1. `Do you want to allow your PC to be discoverable by other PCs and devices on this network?` > Yes.
 
-## Initial Setup
+## Initial Setup - Auto Install
 
 1. PowerShell (Admin):
 

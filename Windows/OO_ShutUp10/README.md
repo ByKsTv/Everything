@@ -3,7 +3,7 @@
 > [!NOTE]
 > Everything about O&O ShutUp10++.
 
-## O&O ShutUp10++ Setup (Auto Install)
+## O&O ShutUp10++ Setup - Auto Install
 
 1. PowerShell (Admin):
 

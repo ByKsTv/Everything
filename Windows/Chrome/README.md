@@ -3,7 +3,7 @@
 > [!NOTE]
 > Everything about Chrome.
 
-## Chrome Setup (Auto Install)
+## Chrome Setup - Auto Install
 
 1. PowerShell (Admin):
 
