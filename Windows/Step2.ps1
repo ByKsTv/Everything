@@ -1,6 +1,7 @@
 Unregister-ScheduledTask -TaskName Step2 -Confirm:$false
 $NextStep = 'Step3'
-Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/$NextStep.ps1 -OutFile $env:TEMP\$NextStep.ps1
+#Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/$NextStep.ps1 -OutFile $env:TEMP\$NextStep.ps1
+(New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/$NextStep.ps1", "$env:TEMP\$NextStep.ps1")
 Write-Host "Task Scheduler > $NextStep" -ForegroundColor green -BackgroundColor black
 $NextStep_Principal = New-ScheduledTaskPrincipal -UserId $env:computername\$env:USERNAME -RunLevel Highest
 $NextStep_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "-WindowStyle Maximized -ExecutionPolicy Bypass -File $env:TEMP\$NextStep.ps1"
@@ -22,7 +23,8 @@ Remove-Item -Path ("$env:APPDATA\NuGet") -Force -Recurse
 Write-Host 'PSWindowsUpdate > Uninstall' -ForegroundColor green -BackgroundColor black
 Uninstall-Module PSWindowsUpdate -Force
 Write-Host 'Settings > Update & Security > Activation' -ForegroundColor green -BackgroundColor black
-& ([ScriptBlock]::Create((Invoke-RestMethod https://massgrave.dev/get))) /HWID
+#& ([ScriptBlock]::Create((Invoke-RestMethod https://massgrave.dev/get))) /HWID
+& ([ScriptBlock]::Create(((New-Object System.Net.WebClient).DownloadString('https://massgrave.dev/get')))) /HWID
 Write-Host 'Scheduled tasks > Disable' -ForegroundColor green -BackgroundColor black
 Disable-ScheduledTask -TaskName 'Consolidator' -TaskPath '\Microsoft\Windows\Customer Experience Improvement Program\'
 Disable-ScheduledTask -TaskName 'DmClient' -TaskPath '\Microsoft\Windows\Feedback\Siuf\'
