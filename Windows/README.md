@@ -108,7 +108,7 @@ Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windo
 - [Discord](https://discord.com/download)
 - [qBittorrent](https://github.com/ByKsTv/Everything/tree/main/Windows/qBittorrent)
 - [Telegram](https://desktop.telegram.org/)
-- [NordVPN](https://nordvpn.com/download/windows/)
+- [NordVPN](https://github.com/ByKsTv/Everything/tree/main/Windows/NordVPN)
 - [AnyDesk](https://anydesk.com/en/downloads)
 - [CrystalDiskInfo](https://crystalmark.info/en/download/#CrystalDiskInfo)
 - [CrystalDiskMark](https://crystalmark.info/en/download/#CrystalDiskMark)

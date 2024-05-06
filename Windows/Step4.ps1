@@ -31,6 +31,10 @@ $TelegramAnswer = [System.Windows.Forms.MessageBox]::Show('Install Telegram?' , 
 if ($TelegramAnswer -eq 'Yes') {
     Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Telegram/Download.ps1 | Invoke-Expression
 }
+$NordVPNAnswer = [System.Windows.Forms.MessageBox]::Show('Install NordVPN?' , 'NordVPN' , 4, 32)
+if ($NordVPNAnswer -eq 'Yes') {
+    Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/NordVPN/Download.ps1 | Invoke-Expression
+}
 $EdgeUninstallAnswer = [System.Windows.Forms.MessageBox]::Show('Uninstall Edge?
 
 Not recommended, some apps like Visual Studio use Edge.' , 'Edge' , 4, 48)
