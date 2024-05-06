@@ -43,6 +43,10 @@ $NotepadPlusPlusAnswer = [System.Windows.Forms.MessageBox]::Show('Install Notepa
 if ($NotepadPlusPlusAnswer -eq 'Yes') {
     Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Notepad_Plus_Plus/Download.ps1 | Invoke-Expression
 }
+$MediaInfoAnswer = [System.Windows.Forms.MessageBox]::Show('Install MediaInfo?' , 'MediaInfo' , 4, 32)
+if ($MediaInfoAnswer -eq 'Yes') {
+    Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/MediaInfo/Download.ps1 | Invoke-Expression
+}
 $EdgeUninstallAnswer = [System.Windows.Forms.MessageBox]::Show('Uninstall Edge?
 
 Not recommended, some apps like Visual Studio use Edge.' , 'Edge' , 4, 48)

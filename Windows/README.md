@@ -112,7 +112,7 @@ Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windo
 - [AnyDesk](https://anydesk.com/en/downloads)
 - [CrystalDiskInfo](https://crystalmark.info/en/download/#CrystalDiskInfo)
 - [CrystalDiskMark](https://crystalmark.info/en/download/#CrystalDiskMark)
-- [MediaInfo](https://mediaarea.net/en/MediaInfo/Download)
+- [MediaInfo](https://github.com/ByKsTv/Everything/tree/main/Windows/MediaInfo)
 - [Python](https://github.com/ByKsTv/Everything/tree/main/Windows/Python)
 - [Notepad++](https://github.com/ByKsTv/Everything/tree/main/Windows/Notepad_Plus_Plus)
 - [Steam](https://github.com/ByKsTv/Everything/tree/main/Windows/Steam)
