@@ -23,6 +23,8 @@ Session\MultiConnectionsPerIp=true
 Session\ValidateHTTPSTrackerCertificate=false
 
 [Preferences]
+Advanced\RecheckOnCompletion=true
+Advanced\confirmTorrentRecheck=false
 General\AlternatingRowColors=false
 General\HideZeroValues=true
 General\Locale=en
