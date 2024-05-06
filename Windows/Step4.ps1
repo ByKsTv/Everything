@@ -15,10 +15,6 @@ $MPVAnswer = [System.Windows.Forms.MessageBox]::Show('Install mpv?' , 'mpv' , 4,
 if ($MPVAnswer -eq 'Yes') {
     Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/Download.ps1 | Invoke-Expression
 }
-$OfficeAnswer = [System.Windows.Forms.MessageBox]::Show('Install Office?' , 'Office' , 4, 32)
-if ($OfficeAnswer -eq 'Yes') {
-    Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Office/Download.ps1 | Invoke-Expression
-}
 $qBittorrentAnswer = [System.Windows.Forms.MessageBox]::Show('Install qBittorrent?' , 'qBittorrent' , 4, 32)
 if ($qBittorrentAnswer -eq 'Yes') {
     Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1 | Invoke-Expression
@@ -46,6 +42,10 @@ if ($NotepadPlusPlusAnswer -eq 'Yes') {
 $MediaInfoAnswer = [System.Windows.Forms.MessageBox]::Show('Install MediaInfo?' , 'MediaInfo' , 4, 32)
 if ($MediaInfoAnswer -eq 'Yes') {
     Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/MediaInfo/Download.ps1 | Invoke-Expression
+}
+$OfficeAnswer = [System.Windows.Forms.MessageBox]::Show('Install Office?' , 'Office' , 4, 32)
+if ($OfficeAnswer -eq 'Yes') {
+    Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Office/Download.ps1 | Invoke-Expression
 }
 $EdgeUninstallAnswer = [System.Windows.Forms.MessageBox]::Show('Uninstall Edge?
 
