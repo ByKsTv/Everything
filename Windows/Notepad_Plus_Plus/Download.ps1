@@ -7,4 +7,4 @@ $installerPath = Join-Path $env:temp $outfile
 Write-Host 'Notepad++ > Download' -ForegroundColor green -BackgroundColor black
 Invoke-WebRequest -UseBasicParsing $dlUrl -OutFile $installerPath
 Write-Host 'Notepad++ > Install' -ForegroundColor green -BackgroundColor black
-Start-Process -FilePath $installerPath -Args '/S' -Wait
+Start-Process -FilePath $installerPath -Args '/S'

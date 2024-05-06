@@ -49,6 +49,8 @@ Add-Type -AssemblyName System.Windows.Forms
 While (!(Test-Path $env:ProgramFiles\mpv\installer\mpv-install.bat -ErrorAction SilentlyContinue)) {
 }
 Start-Sleep -Milliseconds 1000
+Write-Host 'mpv > Install' -ForegroundColor green -BackgroundColor black
+Start-Process -FilePath $env:ProgramFiles\mpv\installer\mpv-install.bat -ArgumentList '/u'
 Write-Host 'mpv > mpv.conf' -ForegroundColor green -BackgroundColor black
 Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/mpv.conf -OutFile $env:ProgramFiles/mpv/mpv.conf
 Write-Host 'mpv > input.conf' -ForegroundColor green -BackgroundColor black
@@ -116,5 +118,3 @@ Auto deletes current video file when 15 seconds remaining.
         Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/delete_file_auto.lua -OutFile $env:ProgramFiles/mpv/scripts/delete_file_auto.lua
     }
 }
-Write-Host 'mpv > Install' -ForegroundColor green -BackgroundColor black
-Start-Process -FilePath $env:ProgramFiles\mpv\installer\mpv-install.bat -ArgumentList '/u' -Wait
