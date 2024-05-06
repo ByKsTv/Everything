@@ -3,4 +3,4 @@ $LastestMediaInfoVersion = 'https://mediaarea.net/download/binary/mediainfo-gui/
 Write-Host 'Mediainfo > Download' -ForegroundColor green -BackgroundColor black
 Invoke-WebRequest -Uri $LastestMediaInfoVersion -OutFile $env:TEMP\MediaInfo.exe
 Write-Host 'Mediainfo > Install' -ForegroundColor green -BackgroundColor black
-Start-Process -FilePath $env:TEMP\MediaInfo.exe -Args "/S"
+Start-Process -FilePath $env:TEMP\MediaInfo.exe -Args '/S' -Wait
