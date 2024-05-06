@@ -1,4 +1,6 @@
 Unregister-ScheduledTask -TaskName Step4 -Confirm:$false
+Write-Host 'Settings > Update & Security > Check for updates' -ForegroundColor green -BackgroundColor black
+Start-Process -FilePath "$env:SystemRoot\System32\UsoClient.exe" -ArgumentList StartInteractiveScan
 #Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/OO_ShutUp10/Download.ps1 | Invoke-Expression
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/OO_ShutUp10/Download.ps1')
 #Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Arkenfox.ps1 | Invoke-Expression
