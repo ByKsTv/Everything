@@ -6,8 +6,10 @@ Write-Host 'Mediainfo > Download' -ForegroundColor green -BackgroundColor black
 Write-Host 'Mediainfo > Install' -ForegroundColor green -BackgroundColor black
 Start-Process -FilePath $env:TEMP\MediaInfo.exe -Args '/S'
 Write-Host 'Mediainfo > Custom Settings' -ForegroundColor green -BackgroundColor black
-$MediaInfoSetting='Output = Tree
-Donated = 1'
+$MediaInfoSetting='
+Output = Tree
+Donated = 1
+'
 if (!(Test-Path -Path $env:APPDATA\MediaInfo)) {
 	Write-Host 'APPDATA > Roaming > MediaInfo' -ForegroundColor green -BackgroundColor black
 	New-Item -Path $env:APPDATA\MediaInfo -Value MediaInfo -ItemType Directory
