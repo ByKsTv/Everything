@@ -1,6 +1,15 @@
 if (!(Test-Path -Path $env:ProgramFiles\qBittorrent\qbittorrent.exe)) {
+	Write-Host 'qBittorrent > Get latest' -ForegroundColor green -BackgroundColor black
+	$qBitReleases = Invoke-RestMethod 'https://github.com/qBittorrent/qBittorrent/releases.atom'
+	$qBitLatest = ($qBitReleases.title) -replace 'release-', '' | Select-Object -First 1
+	$qBitURL1 = 'https://deac-fra.dl.sourceforge.net/project/qbittorrent/qbittorrent-win32/qbittorrent-'
+	$qBitURL3 = '/qbittorrent_'
+	$qBitURL5 = '_x64_setup.exe?viasf=1'
+	$qBitFull = $qBitURL1 + $qBitLatest + $qBitURL3 + $qBitLatest + $qBitURL5
 	Write-Host 'qBittorrent > Download' -ForegroundColor green -BackgroundColor black
-	Invoke-WebRequest -UserAgent 'Wget' -Uri https://sourceforge.net/projects/qbittorrent/files/latest/download -OutFile $ENV:temp\qBittorrent.exe
+	(New-Object System.Net.WebClient).DownloadFile("$qBitFull", "$ENV:temp\qBittorrent.exe")
+	#Write-Host 'qBittorrent > Download' -ForegroundColor green -BackgroundColor black
+	#Invoke-WebRequest -UserAgent 'Wget' -Uri https://sourceforge.net/projects/qbittorrent/files/latest/download -OutFile $ENV:temp\qBittorrent.exe
 	Write-Host 'qBittorrent > Install' -ForegroundColor green -BackgroundColor black
 	Start-Process $ENV:temp\qBittorrent.exe -ArgumentList '/S'
 }
