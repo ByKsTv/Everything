@@ -8,9 +8,7 @@
 1. PowerShell (Admin):
 
 ```powershell
-#Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Office/Download.ps1 | Invoke-Expression
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Office/Download.ps1')
-
 
 ```
 
@@ -27,7 +25,6 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 1. Disable Telemetry - PowerShell (Admin):
 
    ```powershell
-   #Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Office/Disable_Telemetry.ps1 | Invoke-Expression
    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Office/Disable_Telemetry.ps1')
-
+    
    ```
