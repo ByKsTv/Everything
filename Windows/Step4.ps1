@@ -65,6 +65,18 @@ $HyperX_NGENUITYAnswer = [System.Windows.Forms.MessageBox]::Show('Install HyperX
 if ($HyperX_NGENUITYAnswer -eq 'Yes') {
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/HyperX_NGENUITY/Download.ps1')
 }
+$CrystalDiskInfoAnswer = [System.Windows.Forms.MessageBox]::Show('Install CrystalDiskInfo?' , 'CrystalDiskInfo' , 4, 32)
+if ($CrystalDiskInfoAnswer -eq 'Yes') {
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/CrystalDiskInfo/Download.ps1')
+}
+$CrystalDiskMarkAnswer = [System.Windows.Forms.MessageBox]::Show('Install CrystalDiskMark?' , 'CrystalDiskMark' , 4, 32)
+if ($CrystalDiskMarkAnswer -eq 'Yes') {
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/CrystalDiskMark/Download.ps1')
+}
+$AnyDeskAnswer = [System.Windows.Forms.MessageBox]::Show('Install AnyDesk?' , 'AnyDesk' , 4, 32)
+if ($AnyDeskAnswer -eq 'Yes') {
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/AnyDesk/Download.ps1')
+}
 $OfficeAnswer = [System.Windows.Forms.MessageBox]::Show('Install Office?' , 'Office' , 4, 32)
 if ($OfficeAnswer -eq 'Yes') {
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Office/Download.ps1')

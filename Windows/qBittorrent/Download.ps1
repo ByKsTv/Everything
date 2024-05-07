@@ -1,8 +1,8 @@
 if (!(Test-Path -Path $env:ProgramFiles\qBittorrent\qbittorrent.exe)) {
 	Write-Host 'qBittorrent > Download' -ForegroundColor green -BackgroundColor black
-	$qbit = New-Object System.Net.WebClient
-	$qbit.Headers.Add('user-agent', 'Wget')
-	$qbit.DownloadFile('https://sourceforge.net/projects/qbittorrent/files/latest/download', "$ENV:temp\qBittorrent.exe")
+	$qBittorrent = New-Object System.Net.WebClient
+	$qBittorrent.Headers.Add('user-agent', 'Wget')
+	$qBittorrent.DownloadFile('https://sourceforge.net/projects/qbittorrent/files/latest/download', "$ENV:temp\qBittorrent.exe")
 	Write-Host 'qBittorrent > Install' -ForegroundColor green -BackgroundColor black
 	Start-Process $ENV:temp\qBittorrent.exe -ArgumentList '/S'
 }
