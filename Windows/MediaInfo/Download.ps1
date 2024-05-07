@@ -6,7 +6,7 @@ Write-Host 'Mediainfo > Download' -ForegroundColor green -BackgroundColor black
 Write-Host 'Mediainfo > Install' -ForegroundColor green -BackgroundColor black
 Start-Process -FilePath $env:TEMP\MediaInfo.exe -Args '/S'
 Write-Host 'Mediainfo > Custom Settings' -ForegroundColor green -BackgroundColor black
-$MediaInfoSetting='
+$MediaInfoSetting = '
 Output = Tree
 Donated = 1
 '
