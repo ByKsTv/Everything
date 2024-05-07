@@ -31,11 +31,6 @@ if ($qBittorrentAnswer -eq 'Yes') {
     #Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1 | Invoke-Expression
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
 }
-$DiscordAnswer = [System.Windows.Forms.MessageBox]::Show('Install Discord?' , 'Discord' , 4, 32)
-if ($DiscordAnswer -eq 'Yes') {
-    #Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Discord/Download.ps1 | Invoke-Expression
-    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Discord/Download.ps1')
-}
 $TelegramAnswer = [System.Windows.Forms.MessageBox]::Show('Install Telegram?' , 'Telegram' , 4, 32)
 if ($TelegramAnswer -eq 'Yes') {
     #Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Telegram/Download.ps1 | Invoke-Expression
@@ -60,6 +55,11 @@ $MediaInfoAnswer = [System.Windows.Forms.MessageBox]::Show('Install MediaInfo?' 
 if ($MediaInfoAnswer -eq 'Yes') {
     #Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/MediaInfo/Download.ps1 | Invoke-Expression
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/MediaInfo/Download.ps1')
+}
+$DiscordAnswer = [System.Windows.Forms.MessageBox]::Show('Install Discord?' , 'Discord' , 4, 32)
+if ($DiscordAnswer -eq 'Yes') {
+    #Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Discord/Download.ps1 | Invoke-Expression
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Discord/Download.ps1')
 }
 $OfficeAnswer = [System.Windows.Forms.MessageBox]::Show('Install Office?' , 'Office' , 4, 32)
 if ($OfficeAnswer -eq 'Yes') {
