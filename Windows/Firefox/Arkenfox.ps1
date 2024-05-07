@@ -3,15 +3,10 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
     $CurrentFireFoxProfilePath = "$env:APPDATA\Mozilla\Firefox\Profiles\$CurrentFireFoxProfilePath0"
     if ((Test-Path -LiteralPath $CurrentFireFoxProfilePath) -eq $true) {
         Write-Host 'Arkenfox Setup' -ForegroundColor green -BackgroundColor black
-        #Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/user-overrides.js -OutFile $CurrentFireFoxProfilePath\user-overrides.js
         (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/user-overrides.js', "$CurrentFireFoxProfilePath\user-overrides.js")
-        #Invoke-WebRequest -Uri https://github.com/ByKsTv/Everything/raw/main/Windows/Firefox/search.json.mozlz4 -OutFile $CurrentFireFoxProfilePath\search.json.mozlz4
         (New-Object System.Net.WebClient).DownloadFile('https://github.com/ByKsTv/Everything/raw/main/Windows/Firefox/search.json.mozlz4', "$CurrentFireFoxProfilePath\search.json.mozlz4")
-        #Invoke-WebRequest -Uri https://raw.githubusercontent.com/arkenfox/user.js/master/updater.bat -OutFile $CurrentFireFoxProfilePath\updater.bat
         (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/arkenfox/user.js/master/updater.bat', "$CurrentFireFoxProfilePath\updater.bat")
-        #Invoke-WebRequest -Uri https://raw.githubusercontent.com/arkenfox/user.js/master/prefsCleaner.bat -OutFile $CurrentFireFoxProfilePath\prefsCleaner.bat
         (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/arkenfox/user.js/master/prefsCleaner.bat', "$CurrentFireFoxProfilePath\prefsCleaner.bat")
-        #Invoke-WebRequest -Uri https://raw.githubusercontent.com/arkenfox/user.js/master/user.js -OutFile $CurrentFireFoxProfilePath\user.js
         (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/arkenfox/user.js/master/user.js', "$CurrentFireFoxProfilePath\user.js")
         $Arkenfox_Update = 'Arkenfox Update'
         $Arkenfox_Update_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $Arkenfox_Update }

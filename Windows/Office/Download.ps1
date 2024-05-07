@@ -44,60 +44,50 @@ if ($OfficeDialog -eq [System.Windows.Forms.DialogResult]::OK) {
 	$OfficeSelected = $OfficeList.SelectedItems
 	if ($OfficeSelected -eq 'Microsoft 365 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Skype for Business, Word)') {
 		Write-Host 'Microsoft 365 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Skype for Business, Word) > Install' -ForegroundColor green -BackgroundColor black
-		#Invoke-WebRequest -Uri 'https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=O365ProPlusRetail&platform=x64&language=en-us&version=O16GA' -OutFile $env:TEMP\O365ProPlus.exe
 		(New-Object System.Net.WebClient).DownloadFile('https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=O365ProPlusRetail&platform=x64&language=en-us&version=O16GA', "$env:TEMP\O365ProPlus.exe")
 		Start-Process $env:TEMP\O365ProPlus.exe -Wait
 	}
 	if ($OfficeSelected -eq 'Office 2021 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Word)') {
 		Write-Host 'Office 2021 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Word) > Install' -ForegroundColor green -BackgroundColor black
-		#Invoke-WebRequest -Uri 'https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlus2021Retail&platform=x64&language=en-us&version=O16GA' -OutFile $env:TEMP\2021ProPlus.exe
 		(New-Object System.Net.WebClient).DownloadFile('https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlus2021Retail&platform=x64&language=en-us&version=O16GA', "$env:TEMP\2021ProPlus.exe")
 		Start-Process $env:TEMP\2021ProPlus.exe -Wait
 	}
 	if ($OfficeSelected -eq 'Office 2021 - Access') {
 		Write-Host 'Office 2021 - (Access) > Install' -ForegroundColor green -BackgroundColor black
-		#Invoke-WebRequest -Uri 'https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=Access2021Retail&platform=x64&language=en-us&version=O16GA' -OutFile $env:TEMP\2021Access.exe
 		(New-Object System.Net.WebClient).DownloadFile('https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=Access2021Retail&platform=x64&language=en-us&version=O16GA', "$env:TEMP\2021Access.exe")
 		Start-Process $env:TEMP\2021Access.exe -Wait
 	}
 	if ($OfficeSelected -eq 'Office 2021 - Excel') {
 		Write-Host 'Office 2021 - Excel > Install' -ForegroundColor green -BackgroundColor black
-		#Invoke-WebRequest -Uri 'https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=Excel2021Retail&platform=x64&language=en-us&version=O16GA' -OutFile $env:TEMP\2021Excel.exe
 		(New-Object System.Net.WebClient).DownloadFile('https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=Excel2021Retail&platform=x64&language=en-us&version=O16GA', "$env:TEMP\2021Excel.exe")
 		Start-Process $env:TEMP\2021Excel.exe -Wait
 	}
 	if ($OfficeSelected -eq 'Office 2021 - OneNote') {
 		Write-Host 'Office 2021 - OneNote > Install' -ForegroundColor green -BackgroundColor black
-		#Invoke-WebRequest -Uri 'https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=OneNote2021Retail&platform=x64&language=en-us&version=O16GA' -OutFile $env:TEMP\2021OneNote.exe
 		(New-Object System.Net.WebClient).DownloadFile('https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=OneNote2021Retail&platform=x64&language=en-us&version=O16GA', "$env:TEMP\2021OneNote.exe")
 		Start-Process $env:TEMP\2021OneNote.exe -Wait
 	}
 	if ($OfficeSelected -eq 'Office 2021 - Outlook') {
 		Write-Host 'Office 2021 - Outlook > Install' -ForegroundColor green -BackgroundColor black
-		#Invoke-WebRequest -Uri 'https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=Outlook2021Retail&platform=x64&language=en-us&version=O16GA' -OutFile $env:TEMP\2021Outlook.exe
 		(New-Object System.Net.WebClient).DownloadFile('https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=Outlook2021Retail&platform=x64&language=en-us&version=O16GA', "$env:TEMP\2021Outlook.exe")
 		Start-Process $env:TEMP\2021Outlook.exe -Wait
 	}
 	if ($OfficeSelected -eq 'Office 2021 - PowerPoint') {
 		Write-Host 'Office 2021 - PowerPoint > Install' -ForegroundColor green -BackgroundColor black
-		#Invoke-WebRequest -Uri 'https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=PowerPoint2021Retail&platform=x64&language=en-us&version=O16GA' -OutFile $env:TEMP\2021PowerPoint.exe
 		(New-Object System.Net.WebClient).DownloadFile('https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=PowerPoint2021Retail&platform=x64&language=en-us&version=O16GA', "$env:TEMP\2021PowerPoint.exe")
 		Start-Process $env:TEMP\2021PowerPoint.exe -Wait
 	}
 	if ($OfficeSelected -eq 'Office 2021 - Publisher') {
 		Write-Host 'Office 2021 - Publisher > Install' -ForegroundColor green -BackgroundColor black
-		#Invoke-WebRequest -Uri 'https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=Publisher2021Retail&platform=x64&language=en-us&version=O16GA' -OutFile $env:TEMP\2021Publisher.exe
 		(New-Object System.Net.WebClient).DownloadFile('https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=Publisher2021Retail&platform=x64&language=en-us&version=O16GA', "$env:TEMP\2021Publisher.exe")
 		Start-Process $env:TEMP\2021Publisher.exe -Wait
 	}
 	if ($OfficeSelected -eq 'Office 2021 - Word') {
 		Write-Host 'Office 2021 - Word > Install' -ForegroundColor green -BackgroundColor black
-		#Invoke-WebRequest -Uri 'https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=Word2021Retail&platform=x64&language=en-us&version=O16GA' -OutFile $env:TEMP\2021Word.exe
 		(New-Object System.Net.WebClient).DownloadFile('https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=Word2021Retail&platform=x64&language=en-us&version=O16GA', "$env:TEMP\2021Word.exe")
 		Start-Process $env:TEMP\2021Word.exe -Wait
 	}
 	Write-Host 'Office > Activate' -ForegroundColor green -BackgroundColor black
 	& ([ScriptBlock]::Create((Invoke-RestMethod https://massgrave.dev/get))) /Ohook
-	#Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Office/Disable_Telemetry.ps1 | Invoke-Expression
 	Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Office/Disable_Telemetry.ps1')
 }

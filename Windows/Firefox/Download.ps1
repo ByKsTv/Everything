@@ -1,5 +1,4 @@
 Write-Host 'Firefox > Download' -ForegroundColor green -BackgroundColor black
-#Invoke-WebRequest -Uri https://download.mozilla.org/?product=firefox-stub -OutFile $env:TEMP\firefox-stub.exe
 (New-Object System.Net.WebClient).DownloadFile('https://download.mozilla.org/?product=firefox-stub', "$env:TEMP\firefox-stub.exe")
 Write-Host 'Firefox > Install' -ForegroundColor green -BackgroundColor black
 Start-Process $env:TEMP\firefox-stub.exe -Wait

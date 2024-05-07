@@ -5,10 +5,8 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         Write-Host 'Firefox Extensions Setup' -ForegroundColor green -BackgroundColor black
         $OpenWithFirefox = New-Object System.Diagnostics.Process
         $OpenWithFirefox.StartInfo.Filename = 'firefox.exe'
-        #Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4261710/ublock_origin-1.57.2.xpi -OutFile $env:TEMP\ublock_origin.xpi
         (New-Object System.Net.WebClient).DownloadFile('https://addons.mozilla.org/firefox/downloads/file/4261710/ublock_origin-1.57.2.xpi', "$env:TEMP\ublock_origin.xpi")
         Write-Host 'uBlock Origin' -ForegroundColor green -BackgroundColor black
-        #Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.txt -OutFile $env:TEMP\uBlock_Origin_Backup.txt
         (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.txt', "$env:TEMP\uBlock_Origin_Backup.txt")
         $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\ublock_origin.xpi"
         $OpenWithFirefox.start()
@@ -54,7 +52,6 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
         Start-Sleep -Milliseconds 1000
         Write-Host 'ClearURLs' -ForegroundColor green -BackgroundColor black
-        #Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4064884/clearurls-1.26.1.xpi -OutFile $env:TEMP\clearurls.xpi
         (New-Object System.Net.WebClient).DownloadFile('https://addons.mozilla.org/firefox/downloads/file/4064884/clearurls-1.26.1.xpi', "$env:TEMP\clearurls.xpi")
         $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\clearurls.xpi"
         $OpenWithFirefox.start()
@@ -70,7 +67,6 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         [System.Windows.Forms.SendKeys]::SendWait('%o')
         Start-Sleep -Milliseconds 500
         Write-Host 'Im not robot captcha clicker' -ForegroundColor green -BackgroundColor black
-        #Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/3897119/i_m_not_robot_captcha_clicker-1.3.1.xpi -OutFile $env:TEMP\i_m_not_robot_captcha_clicker.xpi
         (New-Object System.Net.WebClient).DownloadFile('https://addons.mozilla.org/firefox/downloads/file/3897119/i_m_not_robot_captcha_clicker-1.3.1.xpi', "$env:TEMP\i_m_not_robot_captcha_clicker.xpi")
         $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\i_m_not_robot_captcha_clicker.xpi"
         $OpenWithFirefox.start()
@@ -87,7 +83,6 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         Start-Sleep -Milliseconds 500
         Write-Host 'Buster' -ForegroundColor green -BackgroundColor black
         $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\buster_captcha_solver.xpi"
-        #Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4044701/buster_captcha_solver-2.0.1.xpi -OutFile $env:TEMP\buster_captcha_solver.xpi
         (New-Object System.Net.WebClient).DownloadFile('https://addons.mozilla.org/firefox/downloads/file/4044701/buster_captcha_solver-2.0.1.xpi', "$env:TEMP\buster_captcha_solver.xpi")
         $OpenWithFirefox.start()
         Start-Sleep -Milliseconds 3000
@@ -102,7 +97,6 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         [System.Windows.Forms.SendKeys]::SendWait('%o')
         Start-Sleep -Milliseconds 500
         Write-Host 'Camelizer' -ForegroundColor green -BackgroundColor black
-        #Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4075638/the_camelizer_price_history_ch-3.0.15.xpi -OutFile $env:TEMP\the_camelizer_price_history_ch.xpi
         (New-Object System.Net.WebClient).DownloadFile('https://addons.mozilla.org/firefox/downloads/file/4075638/the_camelizer_price_history_ch-3.0.15.xpi', "$env:TEMP\the_camelizer_price_history_ch.xpi")
         $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\the_camelizer_price_history_ch.xpi"
         $OpenWithFirefox.start()
@@ -118,7 +112,6 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         [System.Windows.Forms.SendKeys]::SendWait('%o')
         Start-Sleep -Milliseconds 500
         Write-Host 'Tampermonkey' -ForegroundColor green -BackgroundColor black
-        #Invoke-WebRequest -Uri https://addons.mozilla.org/firefox/downloads/file/4250678/tampermonkey-5.1.0.xpi -OutFile $env:TEMP\tampermonkey.xpi
         (New-Object System.Net.WebClient).DownloadFile('https://addons.mozilla.org/firefox/downloads/file/4250678/tampermonkey-5.1.0.xpi', "$env:TEMP\tampermonkey.xpi")
         $OpenWithFirefox.StartInfo.Arguments = "$env:TEMP\tampermonkey.xpi"
         $OpenWithFirefox.start()

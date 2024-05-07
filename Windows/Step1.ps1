@@ -1,5 +1,4 @@
 $NextStep = 'Step2'
-#Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/$NextStep.ps1 -OutFile $env:TEMP\$NextStep.ps1
 (New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/$NextStep.ps1", "$env:TEMP\$NextStep.ps1")
 Write-Host "Task Scheduler > $NextStep" -ForegroundColor green -BackgroundColor black
 $NextStep_Principal = New-ScheduledTaskPrincipal -UserId $env:computername\$env:USERNAME -RunLevel Highest
@@ -20,7 +19,6 @@ $powerSchemeGuid = 'e9a42b02-d5df-448d-aa00-03f14749eb61'
 $schemes = powercfg /list | Out-String -Stream
 $ultimateScheme = $schemes | Where-Object { $_ -match $powerSchemeName }
 if ($null -eq $ultimateScheme) {
-	#Invoke-WebRequest -Uri https://github.com/ByKsTv/Everything/raw/main/Windows/Ultimate_Performance.pow -OutFile $env:TEMP\Ultimate_Performance.pow
 	(New-Object System.Net.WebClient).DownloadFile('https://github.com/ByKsTv/Everything/raw/main/Windows/Ultimate_Performance.pow', "$env:TEMP\Ultimate_Performance.pow")
 	powercfg -import $env:TEMP\Ultimate_Performance.pow $powerSchemeGuid
 }
@@ -177,13 +175,11 @@ if ($BrowserSelectionAnswer -eq [System.Windows.Forms.DialogResult]::OK) {
 	$BrowserSelectionSelected = $BrowserSelectionList.SelectedItems
 	if ($BrowserSelectionSelected -eq 'Firefox') {
 		if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Mozilla Firefox") -ne $true) {
-			#Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Download.ps1 | Invoke-Expression
 			Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Download.ps1')
 		}
 	}
 	if ($BrowserSelectionSelected -eq 'Chrome') {
 		if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Google\Chrome\Application") -ne $true) {
-			#Invoke-RestMethod https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Chrome/Download.ps1 | Invoke-Expression
 			Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Chrome/Download.ps1')
 		}
 	}

@@ -1,5 +1,4 @@
 Write-Host 'O&O ShutUp10++ > Recommended' -ForegroundColor green -BackgroundColor black
-#Invoke-WebRequest -Uri https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe -OutFile $ENV:temp\OOSU10.exe
 (New-Object System.Net.WebClient).DownloadFile('https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe', "$env:TEMP\OOSU10.exe")
 $OOSU10 = '
 ############################################################################
