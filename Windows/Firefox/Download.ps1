@@ -2,7 +2,7 @@ Write-Host 'Firefox > Download' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://download.mozilla.org/?product=firefox-stub', "$env:TEMP\firefox-stub.exe")
 Write-Host 'Firefox > Install' -ForegroundColor green -BackgroundColor black
 Start-Process $env:TEMP\firefox-stub.exe -Wait
-Start-Sleep -Milliseconds 5000
+Start-Sleep -Milliseconds 6000
 Write-Host 'Firefox > Import from browser > Uncheck' -ForegroundColor green -BackgroundColor black
 Add-Type -AssemblyName System.Windows.Forms
 [System.Windows.Forms.SendKeys]::SendWait('{TAB}')
