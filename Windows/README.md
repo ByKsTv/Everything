@@ -55,7 +55,7 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 ### NVCleanstall
 
 1. Download and Install [NVCleanstall](https://www.techpowerup.com/download/techpowerup-nvcleanstall/) `On this machine` + `Check for updates`.
-2. Download [Display Driver Uninstaller](https://www.wagnardsoft.com/display-driver-uninstaller-DDU-) `Portable`.
+2. Download [Display Driver Uninstaller](https://github.com/ByKsTv/Everything/tree/main/Windows/Display_Driver_Uninstaller).
 3. Restart to Safe Mode (Shift+Restart) `Troubleshoot` > `Advanced options` > `Startup Settings` > `Restart` > Disconnect Ethernet Cable > Open Display Driver Uninstaller (Admin) > `OK` > Disable `Show offers from out partners` > Enable `Remove PhysX` > `Close` > `OK` > `---Select device type---` > `GPU` > `Clean and restart`.
 4. Open NVCleanstall (Admin) > Connect Ethernet Cable > `Refresh` > `Manually select a driver version` > `Studio` > `Next` > `Recommended` > `Next` > Disable `Installer Telemetry & Advertising` > Enable `Unattended Express Installation` > `Next` > `Install`.
 
@@ -109,6 +109,7 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 - [qBittorrent](https://github.com/ByKsTv/Everything/tree/main/Windows/qBittorrent)
 - [Telegram](https://github.com/ByKsTv/Everything/tree/main/Windows/Telegram)
 - [NordVPN](https://github.com/ByKsTv/Everything/tree/main/Windows/NordVPN)
+- [Display Driver Uninstaller](https://github.com/ByKsTv/Everything/tree/main/Windows/Display_Driver_Uninstaller)
 - [AnyDesk](https://github.com/ByKsTv/Everything/tree/main/Windows/AnyDesk)
 - [CrystalDiskInfo](https://github.com/ByKsTv/Everything/tree/main/Windows/CrystalDiskInfo)
 - [CrystalDiskMark](https://github.com/ByKsTv/Everything/tree/main/Windows/CrystalDiskMark)

@@ -77,6 +77,10 @@ $AnyDeskAnswer = [System.Windows.Forms.MessageBox]::Show('Install AnyDesk?' , 'A
 if ($AnyDeskAnswer -eq 'Yes') {
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/AnyDesk/Download.ps1')
 }
+$Display_Driver_UninstallerAnswer = [System.Windows.Forms.MessageBox]::Show('Install Display Driver Uninstaller?' , 'Display Driver Uninstaller' , 4, 32)
+if ($Display_Driver_UninstallerAnswer -eq 'Yes') {
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Display_Driver_Uninstaller/Download.ps1')
+}
 $OfficeAnswer = [System.Windows.Forms.MessageBox]::Show('Install Office?' , 'Office' , 4, 32)
 if ($OfficeAnswer -eq 'Yes') {
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Office/Download.ps1')
