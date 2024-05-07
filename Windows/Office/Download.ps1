@@ -89,5 +89,6 @@ if ($OfficeDialog -eq [System.Windows.Forms.DialogResult]::OK) {
 	}
 	Write-Host 'Office > Activate' -ForegroundColor green -BackgroundColor black
 	& ([ScriptBlock]::Create(((New-Object Net.WebClient).DownloadString('https://massgrave.dev/get')))) /Ohook
+	#Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/abbodi1406/WHD/master/scripts/OC2R_DisableTelemetry.ps1')
 	Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Office/Disable_Telemetry.ps1')
 }
