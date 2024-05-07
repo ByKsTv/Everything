@@ -26,5 +26,5 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 
    ```powershell
    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Office/Disable_Telemetry.ps1')
-    
+
    ```
