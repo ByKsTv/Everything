@@ -49,9 +49,6 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 
 ```
 
-> [!NOTE]
-> Total time to finish initial setup: 45 minutes.
-
 ### NVCleanstall
 
 1. Download and Install [NVCleanstall](https://www.techpowerup.com/download/techpowerup-nvcleanstall/) `On this machine` + `Check for updates`.
