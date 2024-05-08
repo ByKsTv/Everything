@@ -51,10 +51,8 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 
 ### NVCleanstall
 
-1. Download and Install [NVCleanstall](https://www.techpowerup.com/download/techpowerup-nvcleanstall/) `On this machine` + `Check for updates`.
-2. Download [Display Driver Uninstaller](https://github.com/ByKsTv/Everything/tree/main/Windows/Display_Driver_Uninstaller).
-3. Restart to Safe Mode (Shift+Restart) `Troubleshoot` > `Advanced options` > `Startup Settings` > `Restart` > Disconnect Ethernet Cable > Open Display Driver Uninstaller (Admin) > `OK` > Disable `Show offers from out partners` > Enable `Remove PhysX` > `Close` > `OK` > `---Select device type---` > `GPU` > `Clean and restart`.
-4. Open NVCleanstall (Admin) > Connect Ethernet Cable > `Refresh` > `Manually select a driver version` > `Studio` > `Next` > `Recommended` > `Next` > Disable `Installer Telemetry & Advertising` > Enable `Unattended Express Installation` > `Next` > `Install`.
+1. Restart to Safe Mode (Shift+Restart) `Troubleshoot` > `Advanced options` > `Startup Settings` > `Restart` > Disconnect Ethernet Cable > Open Display Driver Uninstaller (Admin) > `OK` > Disable `Show offers from out partners` > Enable `Remove PhysX` > `Close` > `OK` > `---Select device type---` > `GPU` > `Clean and restart`.
+1. Open NVCleanstall (Admin) > Connect Ethernet Cable > `Refresh` > `Manually select a driver version` > `Studio` > `Next` > `Recommended` > `Next` > Disable `Installer Telemetry & Advertising` > Enable `Unattended Express Installation` > `Next` > `Install`.
 
 ### NVIDIA Control Panel
 
@@ -95,28 +93,6 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 
 ## Extra Software
 
-- [Office](https://github.com/ByKsTv/Everything/tree/main/Windows/Office)
-- [7-Zip](https://github.com/ByKsTv/Everything/tree/main/Windows/7Zip)
-- [mpv](https://github.com/ByKsTv/Everything/tree/main/Windows/mpv)
-- [yt-dlp](https://github.com/yt-dlp/yt-dlp/releases/latest)
-- [Razer Synapse](https://github.com/ByKsTv/Everything/tree/main/Windows/Razer_Synapse)
-- [Logitech G HUB](https://github.com/ByKsTv/Everything/tree/main/Windows/Logitech_G_HUB)
-- [HyperX NGENUITY](https://github.com/ByKsTv/Everything/tree/main/Windows/HyperX_NGENUITY)
-- [Discord](https://github.com/ByKsTv/Everything/tree/main/Windows/Discord)
-- [qBittorrent](https://github.com/ByKsTv/Everything/tree/main/Windows/qBittorrent)
-- [Telegram](https://github.com/ByKsTv/Everything/tree/main/Windows/Telegram)
-- [NordVPN](https://github.com/ByKsTv/Everything/tree/main/Windows/NordVPN)
-- [Display Driver Uninstaller](https://github.com/ByKsTv/Everything/tree/main/Windows/Display_Driver_Uninstaller)
-- [AnyDesk](https://github.com/ByKsTv/Everything/tree/main/Windows/AnyDesk)
-- [CrystalDiskInfo](https://github.com/ByKsTv/Everything/tree/main/Windows/CrystalDiskInfo)
-- [CrystalDiskMark](https://github.com/ByKsTv/Everything/tree/main/Windows/CrystalDiskMark)
-- [MediaInfo](https://github.com/ByKsTv/Everything/tree/main/Windows/MediaInfo)
-- [Python](https://github.com/ByKsTv/Everything/tree/main/Windows/Python)
-- [Notepad++](https://github.com/ByKsTv/Everything/tree/main/Windows/Notepad_Plus_Plus)
-- [Steam](https://github.com/ByKsTv/Everything/tree/main/Windows/Steam)
-- [Microsoft PowerToys](https://github.com/microsoft/PowerToys/releases/latest)
-- [Sysinternals](https://learn.microsoft.com/sysinternals/downloads/)
-- [Battle.net](https://github.com/ByKsTv/Everything/tree/main/Windows/Battle.net)
 - [Valorant](https://playvalorant.com/en-us/download/)
 - [JitBit Macro Recorder](https://rutracker.org/forum/tracker.php?nm=JitBit)
 - [Microsoft Visual Studio](https://rutracker.org/forum/tracker.php?nm=Microsoft%20Visual%20Studio)
@@ -126,11 +102,9 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 - [RegistryChangesView](https://www.nirsoft.net/utils/registry_changes_view.html)
 - [UAD-ng](https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/releases/latest) - Android Debloater
 - HWMonitor Pro [Diakov](https://diakov.net/10934-cpuid-hwmonitor-pro-153-portable.html) / [RuTracker.org](https://rutracker.org/forum/tracker.php?nm=HWMonitor)
-- Adobe Acrobat Pro [m0nkrus](https://www.monkrus.ws/) / [RuTracker.org](https://rutracker.org/forum/tracker.php?nm=Adobe%20Acrobat) / [RuTracker.ru](http://rutracker.ru/viewforum.php?f=220)
+- Adobe Acrobat Pro [m0nkrus](http://www.monkrus.ws/) / [RuTracker.org](https://rutracker.org/forum/tracker.php?nm=Adobe%20Acrobat) / [RuTracker.ru](http://rutracker.ru/viewforum.php?f=220)
 - [VMware Workstation](https://rutracker.org/forum/tracker.php?nm=VMware%20Workstation) (Download 17.0.2 to avoid [High CPU Usage](https://communities.vmware.com/t5/VMware-Workstation-Pro/High-CPU-usage-by-vmnat-exe-after-upgrade-to-VMware-Workstation/m-p/2992080/highlight/true#M183202))
 - [Plex](https://www.plex.tv/media-server-downloads/#plex-media-server)
-- [Jellyfin](https://github.com/ByKsTv/Everything/tree/main/Windows/Jellyfin)
-- [eM Client](https://github.com/ByKsTv/Everything/tree/main/Windows/eM_Client)
 
 ## Plex Settings
 
@@ -151,7 +125,3 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 15. `Settings` > `Transcoder` > `Background transcoding x264 preset` > `Very slow` > `Save Changes`.
 16. `Settings` > `Scheduled Tasks` > `Update all libraries during maintenance` > On > `Save Changes`.
 17. [Optional Playback Data](https://www.plex.tv/about/privacy-legal/privacy-preferences/#opd) > `Send playback data to Plex` > Off.
-
-## Jellyfin Settings
-
-1. Use OpenSubtitles Plugin to Auto Download Subtitles Hebrew

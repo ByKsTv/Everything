@@ -84,6 +84,10 @@ $Display_Driver_UninstallerAnswer = [System.Windows.Forms.MessageBox]::Show('Ins
 if ($Display_Driver_UninstallerAnswer -eq 'Yes') {
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Display_Driver_Uninstaller/Download.ps1')
 }
+$NVCleanstallAnswer = [System.Windows.Forms.MessageBox]::Show('Install NVCleanstall?' , 'NVCleanstall' , 4, 32)
+if ($NVCleanstallAnswer -eq 'Yes') {
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/NVCleanstall/Download.ps1')
+}
 $OfficeAnswer = [System.Windows.Forms.MessageBox]::Show('Install Office?' , 'Office' , 4, 32)
 if ($OfficeAnswer -eq 'Yes') {
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Office/Download.ps1')
