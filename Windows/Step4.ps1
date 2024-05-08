@@ -88,6 +88,10 @@ $NVCleanstallAnswer = [System.Windows.Forms.MessageBox]::Show('Install NVCleanst
 if ($NVCleanstallAnswer -eq 'Yes') {
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/NVCleanstall/Download.ps1')
 }
+$PlexAnswer = [System.Windows.Forms.MessageBox]::Show('Install Plex?' , 'Plex' , 4, 32)
+if ($PlexAnswer -eq 'Yes') {
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Plex/Download.ps1')
+}
 $OfficeAnswer = [System.Windows.Forms.MessageBox]::Show('Install Office?' , 'Office' , 4, 32)
 if ($OfficeAnswer -eq 'Yes') {
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Office/Download.ps1')

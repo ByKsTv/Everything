@@ -5,7 +5,7 @@ if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Google\Chrome\Application"
     $OpenWithChrome.start()
     Start-Sleep -Milliseconds 5000
     Add-Type -AssemblyName System.Windows.Forms
-    [System.Windows.Forms.SendKeys]::SendWait('^+J')
+    [System.Windows.Forms.SendKeys]::SendWait('^+j')
 }
 if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Mozilla Firefox") -eq $true) {
     $OpenWithFirefox = New-Object System.Diagnostics.Process
@@ -14,15 +14,18 @@ if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Mozilla Firefox") -eq $tru
     $OpenWithFirefox.start()
     Start-Sleep -Milliseconds 5000
     Add-Type -AssemblyName System.Windows.Forms
-    [System.Windows.Forms.SendKeys]::SendWait('^+K')
+    [System.Windows.Forms.SendKeys]::SendWait('^+k')
 }
-Start-Sleep -Milliseconds 1000
+Start-Sleep -Milliseconds 2000
 [System.Windows.Forms.SendKeys]::SendWait("document.getElementsByClassName{(}'button startbutton'{)}{[}0{]}.click{(}{)}")
 [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
 Start-Sleep -Milliseconds 1000
 [System.Windows.Forms.SendKeys]::SendWait("document.getElementsByClassName{(}'closest'{)}{[}0{]}.click{(}{)}")
 [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
 Start-Sleep -Milliseconds 1000
+if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Mozilla Firefox") -eq $true) {
+    [System.Windows.Forms.SendKeys]::SendWait('^+i')
+}
 $Downloads = (New-Object -ComObject Shell.Application).NameSpace('shell:Downloads').Self.Path
 $NVCleanstallPath = Join-Path $Downloads 'NVCleanstall_*.exe'
 $NVCleanstall = Get-Item $NVCleanstallPath
