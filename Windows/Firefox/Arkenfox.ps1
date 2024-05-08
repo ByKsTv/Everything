@@ -3,6 +3,7 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
     $CurrentFireFoxProfilePath = "$env:APPDATA\Mozilla\Firefox\Profiles\$CurrentFireFoxProfilePath0"
     if ((Test-Path -LiteralPath $CurrentFireFoxProfilePath) -eq $true) {
         Write-Host 'Arkenfox Setup' -ForegroundColor green -BackgroundColor black
+        Stop-Process -Name firefox -Force
         (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/user-overrides.js', "$CurrentFireFoxProfilePath\user-overrides.js")
         (New-Object System.Net.WebClient).DownloadFile('https://github.com/ByKsTv/Everything/raw/main/Windows/Firefox/search.json.mozlz4', "$CurrentFireFoxProfilePath\search.json.mozlz4")
         (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/arkenfox/user.js/master/updater.bat', "$CurrentFireFoxProfilePath\updater.bat")
