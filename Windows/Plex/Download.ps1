@@ -41,8 +41,12 @@ if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Mozilla Firefox") -eq $tru
     Start-Sleep -Milliseconds 1000
     [System.Windows.Forms.SendKeys]::SendWait('s')
 }
-Start-Sleep -Milliseconds 10000
 $Downloads = (New-Object -ComObject Shell.Application).NameSpace('shell:Downloads').Self.Path
 $PlexMediaServerPath = Join-Path $Downloads 'PlexMediaServer-*.exe'
-$PlexMediaServer = Get-Item $PlexMediaServerPath
-Start-Process -FilePath $PlexMediaServer -ArgumentList '/VERYSILENT'
+While (!(Test-Path $PlexMediaServerPath -ErrorAction SilentlyContinue)) {
+}
+do {
+    $dirStats = Get-Item $PlexMediaServerPath | Measure-Object -Sum Length
+} 
+until( ($dirStats.Sum -ne 0) )
+Start-Process -FilePath $PlexMediaServerPath -ArgumentList '/VERYSILENT'
