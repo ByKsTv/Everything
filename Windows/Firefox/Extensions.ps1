@@ -28,7 +28,7 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         Start-Sleep -Milliseconds 500
         [System.Windows.Forms.SendKeys]::SendWait('^+k')
         Start-Sleep -Milliseconds 500
-        [System.Windows.Forms.SendKeys]::SendWait("{UP}")
+        [System.Windows.Forms.SendKeys]::SendWait('{UP}')
         [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
         Start-Sleep -Milliseconds 1000
         [System.Windows.Forms.SendKeys]::SendWait('^+i')
@@ -45,7 +45,7 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         Start-Sleep -Milliseconds 500
         [System.Windows.Forms.SendKeys]::SendWait('^+k')
         Start-Sleep -Milliseconds 500
-        [System.Windows.Forms.SendKeys]::SendWait("{UP}")
+        [System.Windows.Forms.SendKeys]::SendWait('{UP}')
         [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
         Start-Sleep -Milliseconds 1000
         [System.Windows.Forms.SendKeys]::SendWait('^+i')
@@ -62,7 +62,7 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         Start-Sleep -Milliseconds 500
         [System.Windows.Forms.SendKeys]::SendWait('^+k')
         Start-Sleep -Milliseconds 500
-        [System.Windows.Forms.SendKeys]::SendWait("{UP}")
+        [System.Windows.Forms.SendKeys]::SendWait('{UP}')
         [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
         Start-Sleep -Milliseconds 1000
         [System.Windows.Forms.SendKeys]::SendWait('^+i')
@@ -79,7 +79,7 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         Start-Sleep -Milliseconds 500
         [System.Windows.Forms.SendKeys]::SendWait('^+k')
         Start-Sleep -Milliseconds 500
-        [System.Windows.Forms.SendKeys]::SendWait("{UP}")
+        [System.Windows.Forms.SendKeys]::SendWait('{UP}')
         [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
         Start-Sleep -Milliseconds 1000
         [System.Windows.Forms.SendKeys]::SendWait('^+i')
@@ -96,7 +96,7 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         Start-Sleep -Milliseconds 500
         [System.Windows.Forms.SendKeys]::SendWait('^+k')
         Start-Sleep -Milliseconds 500
-        [System.Windows.Forms.SendKeys]::SendWait("{UP}")
+        [System.Windows.Forms.SendKeys]::SendWait('{UP}')
         [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
         Start-Sleep -Milliseconds 1000
         [System.Windows.Forms.SendKeys]::SendWait('^+i')
