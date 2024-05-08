@@ -4,7 +4,7 @@ $MediaInfoDL = 'https:' + $MediaInfoHREF
 Write-Host 'Mediainfo > Download' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile($MediaInfoDL, "$env:TEMP\MediaInfo.exe")
 Write-Host 'Mediainfo > Install' -ForegroundColor green -BackgroundColor black
-Start-Process -FilePath $env:TEMP\MediaInfo.exe -Args '/S'
+Start-Process -FilePath $env:TEMP\MediaInfo.exe -ArgumentList '/S'
 Write-Host 'Mediainfo > Custom Settings' -ForegroundColor green -BackgroundColor black
 $MediaInfoSetting = '
 Output = Tree

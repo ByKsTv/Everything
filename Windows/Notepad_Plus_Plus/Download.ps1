@@ -7,4 +7,4 @@ $installerPath = Join-Path $env:temp $outfile
 Write-Host 'Notepad++ > Download' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile($dlUrl, $installerPath)
 Write-Host 'Notepad++ > Install' -ForegroundColor green -BackgroundColor black
-Start-Process -FilePath $installerPath -Args '/S'
+Start-Process -FilePath $installerPath -ArgumentList '/S'

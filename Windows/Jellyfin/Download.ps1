@@ -4,4 +4,4 @@ $JellyfinURL = 'https://repo.jellyfin.org' + $JellyfinLatest
 Write-Host 'Jellyfin > Download' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile($JellyfinURL, "$env:TEMP\Jellyfin.exe")
 Write-Host 'Jellyfin > Install' -ForegroundColor green -BackgroundColor black
-Start-Process -FilePath $env:TEMP\Jellyfin.exe -Args '/S'
+Start-Process -FilePath $env:TEMP\Jellyfin.exe -ArgumentList '/S'

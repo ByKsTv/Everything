@@ -4,4 +4,4 @@ $installerPath = Join-Path $env:TEMP (Split-Path $dlurl -Leaf)
 Write-Host '7-Zip > Download' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile($dlurl, $installerPath)
 Write-Host '7-Zip > Install' -ForegroundColor green -BackgroundColor black
-Start-Process -FilePath $installerPath -Args '/S' -Wait
+Start-Process -FilePath $installerPath -ArgumentList '/S' -Wait

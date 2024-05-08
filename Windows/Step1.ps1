@@ -174,14 +174,10 @@ $BrowserSelectionAnswer = $BrowserSelectionForm.ShowDialog()
 if ($BrowserSelectionAnswer -eq [System.Windows.Forms.DialogResult]::OK) {
 	$BrowserSelectionSelected = $BrowserSelectionList.SelectedItems
 	if ($BrowserSelectionSelected -eq 'Firefox') {
-		if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Mozilla Firefox") -ne $true) {
-			Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Download.ps1')
-		}
+		Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Download.ps1')
 	}
 	if ($BrowserSelectionSelected -eq 'Chrome') {
-		if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Google\Chrome\Application") -ne $true) {
-			Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Chrome/Download.ps1')
-		}
+		Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Chrome/Download.ps1')
 	}
 }
 Write-Host 'NuGet > Install' -ForegroundColor green -BackgroundColor black
