@@ -4,6 +4,10 @@ if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Google\Chrome\Application"
     $OpenWithChrome.StartInfo.Arguments = 'https://www.techpowerup.com/download/techpowerup-nvcleanstall/'
     $OpenWithChrome.start()
     Start-Sleep -Milliseconds 5000
+    [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
+    Start-Sleep -Milliseconds 100
+    [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
+    Start-Sleep -Milliseconds 500
     Add-Type -AssemblyName System.Windows.Forms
     [System.Windows.Forms.SendKeys]::SendWait('^+j')
 }
