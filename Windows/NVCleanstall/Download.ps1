@@ -27,6 +27,9 @@ Start-Sleep -Milliseconds 1000
 [System.Windows.Forms.SendKeys]::SendWait("document.getElementsByClassName{(}'closest'{)}{[}0{]}.click{(}{)}")
 [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
 Start-Sleep -Milliseconds 1000
+if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Google\Chrome\Application") -eq $true) {
+    [System.Windows.Forms.SendKeys]::SendWait('^+j')
+}
 if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Mozilla Firefox") -eq $true) {
     [System.Windows.Forms.SendKeys]::SendWait('^+i')
 }
