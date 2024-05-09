@@ -3,12 +3,13 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
     $CurrentFirefoxProfile = "$env:APPDATA\Mozilla\Firefox\Profiles\$FirefoxProfiles"
     if ((Test-Path -LiteralPath $CurrentFirefoxProfile) -eq $true) {
         Write-Host 'Firefox Extensions Setup' -ForegroundColor green -BackgroundColor black
-        $OpenWithFirefox = New-Object System.Diagnostics.Process
-        $OpenWithFirefox.StartInfo.Filename = 'firefox.exe'
-        $OpenWithFirefox.StartInfo.Arguments = 'https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/'
-        $OpenWithFirefox.start()
+        [System.Diagnostics.Process]::Start("firefox.exe", "https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/")
         Start-Sleep -Milliseconds 2000
         Add-Type -AssemblyName System.Windows.Forms
+        [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
+        Start-Sleep -Milliseconds 100
+        [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
+        Start-Sleep -Milliseconds 500
         [System.Windows.Forms.SendKeys]::SendWait('^+k')
         Start-Sleep -Milliseconds 2000
         [System.Windows.Forms.SendKeys]::SendWait("document.getElementsByClassName{(}'Button Button--action AMInstallButton-button Button--puffy'{)}{[}0{]}.click{(}{)}")
@@ -19,8 +20,7 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         [System.Windows.Forms.SendKeys]::SendWait('%a')
         Start-Sleep -Milliseconds 500
         [System.Windows.Forms.SendKeys]::SendWait('%o')
-        $OpenWithFirefox.StartInfo.Arguments = 'https://addons.mozilla.org/en-US/firefox/addon/clearurls/'
-        $OpenWithFirefox.start()
+        [System.Diagnostics.Process]::Start("firefox.exe", "https://addons.mozilla.org/en-US/firefox/addon/clearurls/")
         Start-Sleep -Milliseconds 2000
         [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
         Start-Sleep -Milliseconds 100
@@ -36,8 +36,7 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         [System.Windows.Forms.SendKeys]::SendWait('%a')
         Start-Sleep -Milliseconds 500
         [System.Windows.Forms.SendKeys]::SendWait('%o')
-        $OpenWithFirefox.StartInfo.Arguments = 'https://addons.mozilla.org/en-US/firefox/addon/i-m-not-robot-captcha-clicker/'
-        $OpenWithFirefox.start()
+        [System.Diagnostics.Process]::Start("firefox.exe", "https://addons.mozilla.org/en-US/firefox/addon/i-m-not-robot-captcha-clicker/")
         Start-Sleep -Milliseconds 2000
         [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
         Start-Sleep -Milliseconds 100
@@ -53,8 +52,7 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         [System.Windows.Forms.SendKeys]::SendWait('%a')
         Start-Sleep -Milliseconds 500
         [System.Windows.Forms.SendKeys]::SendWait('%o')
-        $OpenWithFirefox.StartInfo.Arguments = 'https://addons.mozilla.org/en-US/firefox/addon/buster-captcha-solver/'
-        $OpenWithFirefox.start()
+        [System.Diagnostics.Process]::Start("firefox.exe", "https://addons.mozilla.org/en-US/firefox/addon/buster-captcha-solver/")
         Start-Sleep -Milliseconds 2000
         [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
         Start-Sleep -Milliseconds 100
@@ -70,8 +68,7 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         [System.Windows.Forms.SendKeys]::SendWait('%a')
         Start-Sleep -Milliseconds 500
         [System.Windows.Forms.SendKeys]::SendWait('%o')
-        $OpenWithFirefox.StartInfo.Arguments = 'https://addons.mozilla.org/en-US/firefox/addon/the-camelizer-price-history-ch/'
-        $OpenWithFirefox.start()
+        [System.Diagnostics.Process]::Start("firefox.exe", "https://addons.mozilla.org/en-US/firefox/addon/the-camelizer-price-history-ch/")
         Start-Sleep -Milliseconds 2000
         [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
         Start-Sleep -Milliseconds 100
@@ -87,8 +84,7 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         [System.Windows.Forms.SendKeys]::SendWait('%a')
         Start-Sleep -Milliseconds 500
         [System.Windows.Forms.SendKeys]::SendWait('%o')
-        $OpenWithFirefox.StartInfo.Arguments = 'https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/'
-        $OpenWithFirefox.start()
+        [System.Diagnostics.Process]::Start("firefox.exe", "https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/")
         Start-Sleep -Milliseconds 2000
         [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
         Start-Sleep -Milliseconds 100
@@ -105,8 +101,7 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         Start-Sleep -Milliseconds 5000
         [System.Windows.Forms.SendKeys]::SendWait('%o')
         Write-Host 'AdsBypasser' -ForegroundColor green -BackgroundColor black
-        $OpenWithFirefox.StartInfo.Arguments = 'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js'
-        $OpenWithFirefox.start()
+        [System.Diagnostics.Process]::Start("firefox.exe", "https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js")
         Start-Sleep -Milliseconds 3000
         [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
         Start-Sleep -Milliseconds 100
@@ -117,8 +112,7 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.txt', "$env:TEMP\uBlock_Origin_Backup.txt")
         $uBlockPattern = 'uBlock.+?([a-f0-9]{8}-([a-f0-9]{4}-){3}[a-f0-9]{12})\\'
         $uBlockUUID = (Select-String -Pattern $uBlockPattern -Path $CurrentFirefoxProfile\prefs.js).Matches.Groups[1].Value
-        $OpenWithFirefox.StartInfo.Arguments = "moz-extension://$uBlockUUID/dashboard.html#settings.html"
-        $OpenWithFirefox.start()
+        [System.Diagnostics.Process]::Start("firefox.exe", "moz-extension://$uBlockUUID/dashboard.html#settings.html")
         Start-Sleep -Milliseconds 2000
         [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
         Start-Sleep -Milliseconds 100

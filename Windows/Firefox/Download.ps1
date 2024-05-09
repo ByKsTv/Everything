@@ -1,8 +1,9 @@
-if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Mozilla Firefox") -ne $true) {
+if ((Test-Path -LiteralPath "$env:ProgramFiles\Mozilla Firefox") -ne $true) {
     Write-Host 'Firefox > Download' -ForegroundColor green -BackgroundColor black
-    (New-Object System.Net.WebClient).DownloadFile('https://download.mozilla.org/?product=firefox-stub', "$env:TEMP\firefox-stub.exe")
+    (New-Object System.Net.WebClient).DownloadFile('https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US', "$env:TEMP\firefox.exe")
     Write-Host 'Firefox > Install' -ForegroundColor green -BackgroundColor black
-    Start-Process $env:TEMP\firefox-stub.exe -Wait
+    Start-Process $env:TEMP\firefox.exe -ArgumentList '/S' -Wait
+    Start-Process "$env:ProgramFiles\Mozilla Firefox\firefox.exe"
     Start-Sleep -Milliseconds 6000
     Write-Host 'Firefox > Import from browser > Uncheck' -ForegroundColor green -BackgroundColor black
     Add-Type -AssemblyName System.Windows.Forms
@@ -14,10 +15,5 @@ if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Mozilla Firefox") -ne $tru
     Write-Host 'Firefox > Set as default' -ForegroundColor green -BackgroundColor black
     [System.Windows.Forms.SendKeys]::SendWait('{TAB}')
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
-    Start-Sleep -Milliseconds 3000
-    Write-Host 'Firefox > Sign in' -ForegroundColor green -BackgroundColor black
-    $OpenWithFirefox = New-Object System.Diagnostics.Process
-    $OpenWithFirefox.StartInfo.Filename = 'firefox.exe'
-    $OpenWithFirefox.StartInfo.Arguments = 'about:preferences#sync'
-    $OpenWithFirefox.start()
+    [System.Diagnostics.Process]::Start('firefox.exe', 'https://accounts.firefox.com/')
 }
