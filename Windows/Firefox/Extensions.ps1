@@ -4,7 +4,7 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
     if ((Test-Path -LiteralPath $CurrentFirefoxProfile) -eq $true) {
         Write-Host 'Firefox Extensions Setup' -ForegroundColor green -BackgroundColor black
         [System.Diagnostics.Process]::Start("firefox.exe", "https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/")
-        Start-Sleep -Milliseconds 2000
+        Start-Sleep -Milliseconds 6000
         Add-Type -AssemblyName System.Windows.Forms
         [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
         Start-Sleep -Milliseconds 100
