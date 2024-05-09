@@ -4,11 +4,11 @@ if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Google\Chrome\Application"
     $OpenWithChrome.StartInfo.Arguments = 'https://www.plex.tv/media-server-downloads/#plex-media-server'
     $OpenWithChrome.start()
     Start-Sleep -Milliseconds 5000
+    Add-Type -AssemblyName System.Windows.Forms
     [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
     Start-Sleep -Milliseconds 100
     [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
     Start-Sleep -Milliseconds 500
-    Add-Type -AssemblyName System.Windows.Forms
     [System.Windows.Forms.SendKeys]::SendWait('^+j')
 }
 if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Mozilla Firefox") -eq $true) {
@@ -17,11 +17,11 @@ if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Mozilla Firefox") -eq $tru
     $OpenWithFirefox.StartInfo.Arguments = 'https://www.plex.tv/media-server-downloads/#plex-media-server'
     $OpenWithFirefox.start()
     Start-Sleep -Milliseconds 5000
+    Add-Type -AssemblyName System.Windows.Forms
     [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
     Start-Sleep -Milliseconds 100
     [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
     Start-Sleep -Milliseconds 500
-    Add-Type -AssemblyName System.Windows.Forms
     [System.Windows.Forms.SendKeys]::SendWait('^+k')
 }
 Start-Sleep -Milliseconds 2000
