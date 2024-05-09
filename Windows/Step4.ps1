@@ -103,7 +103,7 @@ if ($EdgeUninstallAnswer -eq 'Yes') {
     Write-Host 'Microsoft Edge > Uninstall' -ForegroundColor green -BackgroundColor black
     #Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ChrisTitusTech/winutil/d0bde83333730a4536497451af747daba11e5039/edgeremoval.ps1')
     #Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ChrisTitusTech/winutil/main/edgeremoval.ps1')
-    Start-Process -FilePath PowerShell.exe -Verb Runas -ArgumentList "Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/he3als/EdgeRemover/main/RemoveEdge.ps1')"
+    Start-Process -FilePath PowerShell.exe -Verb Runas -ArgumentList "Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/he3als/EdgeRemover/main/RemoveEdge.ps1')" -Wait
 }
 $RestartAnswer = [System.Windows.Forms.MessageBox]::Show('Restart?' , 'Restart' , 4, 32)
 if ($RestartAnswer -eq 'Yes') {
