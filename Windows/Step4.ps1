@@ -101,8 +101,11 @@ $EdgeUninstallAnswer = [System.Windows.Forms.MessageBox]::Show('Uninstall Edge?
 Not recommended, some apps like Visual Studio use Edge.' , 'Edge' , 4, 48)
 if ($EdgeUninstallAnswer -eq 'Yes') {
     Write-Host 'Microsoft Edge > Uninstall' -ForegroundColor green -BackgroundColor black
-    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ChrisTitusTech/winutil/d0bde83333730a4536497451af747daba11e5039/edgeremoval.ps1')
-    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ChrisTitusTech/winutil/main/edgeremoval.ps1')
+    #Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ChrisTitusTech/winutil/d0bde83333730a4536497451af747daba11e5039/edgeremoval.ps1')
+    #Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ChrisTitusTech/winutil/main/edgeremoval.ps1')
+    Start-Process -FilePath PowerShell.exe -Verb Runas -ArgumentList "Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/he3als/EdgeRemover/main/RemoveEdge.ps1')"
 }
-Write-Host 'Restart' -ForegroundColor cyan -BackgroundColor black
-shutdown /r /t 00
+$RestartAnswer = [System.Windows.Forms.MessageBox]::Show('Restart?' , 'Restart' , 4, 32)
+if ($RestartAnswer -eq 'Yes') {
+    shutdown /r /t 00
+}
