@@ -18,6 +18,10 @@ if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Mozilla Firefox") -eq $tru
     $OpenWithFirefox.start()
     Start-Sleep -Milliseconds 5000
     Add-Type -AssemblyName System.Windows.Forms
+    [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
+    Start-Sleep -Milliseconds 100
+    [System.Windows.Forms.SendKeys]::SendWait('%{TAB}')
+    Start-Sleep -Milliseconds 500
     [System.Windows.Forms.SendKeys]::SendWait('^+k')
 }
 Start-Sleep -Milliseconds 2000
