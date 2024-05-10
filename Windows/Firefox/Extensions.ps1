@@ -5,7 +5,8 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         Write-Host 'Firefox Extensions Setup' -ForegroundColor green -BackgroundColor black
         [System.Diagnostics.Process]::Start('firefox.exe', 'https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/')
         Start-Sleep -Milliseconds 6000
-        Add-Type @'
+        if (-not ([System.Management.Automation.PSTypeName]'SFW').Type) {
+            Add-Type @'
         using System;
         using System.Runtime.InteropServices;
         public class SFW {
@@ -14,6 +15,7 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
             public static extern bool SetForegroundWindow(IntPtr hWnd);
         }
 '@
+        }
         $FirefoxWindow = Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }
         Write-Host 'Firefox > Set Foreground' -ForegroundColor green -BackgroundColor black
         [SFW]::SetForegroundWindow($FirefoxWindow.MainWindowHandle)

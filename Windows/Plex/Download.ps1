@@ -1,5 +1,6 @@
 Write-Host 'Plex > Add option to set browser to foreground' -ForegroundColor green -BackgroundColor black
-Add-Type @'
+if (-not ([System.Management.Automation.PSTypeName]'SFW').Type) {
+    Add-Type @'
 using System;
 using System.Runtime.InteropServices;
 public class SFW {
@@ -8,6 +9,7 @@ public class SFW {
     public static extern bool SetForegroundWindow(IntPtr hWnd);
 }
 '@
+}
 Write-Host 'Plex > Download' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Google\Chrome\Application") -eq $true) {
     [System.Diagnostics.Process]::Start('chrome.exe', 'https://www.plex.tv/media-server-downloads/#plex-media-server')

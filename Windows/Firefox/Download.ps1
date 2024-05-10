@@ -9,7 +9,8 @@ if ((Test-Path -LiteralPath "$env:ProgramFiles\Mozilla Firefox") -ne $true) {
     while (($null -eq (Get-Process -Name 'firefox' -ErrorAction SilentlyContinue))) {
     }
     Start-Sleep -Milliseconds 1000
-    Add-Type @'
+    if (-not ([System.Management.Automation.PSTypeName]'SFW').Type) {
+        Add-Type @'
     using System;
     using System.Runtime.InteropServices;
     public class SFW {
@@ -18,6 +19,7 @@ if ((Test-Path -LiteralPath "$env:ProgramFiles\Mozilla Firefox") -ne $true) {
        public static extern bool SetForegroundWindow(IntPtr hWnd);
     }
 '@
+    }
     $FirefoxWindow = Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }
     Write-Host 'Firefox > Set Foreground' -ForegroundColor green -BackgroundColor black
     [SFW]::SetForegroundWindow($FirefoxWindow.MainWindowHandle)
