@@ -3,7 +3,9 @@ if ((Test-Path -LiteralPath "$env:ProgramFiles\Mozilla Firefox") -ne $true) {
     (New-Object System.Net.WebClient).DownloadFile('https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US', "$env:TEMP\firefox.exe")
     Write-Host 'Firefox > Install' -ForegroundColor green -BackgroundColor black
     Start-Process $env:TEMP\firefox.exe -ArgumentList '/S' -Wait
+    Write-Host 'Firefox > Open' -ForegroundColor green -BackgroundColor black
     Start-Process "$env:ProgramFiles\Mozilla Firefox\firefox.exe"
+    Write-Host 'Firefox > Wait for process' -ForegroundColor green -BackgroundColor black
     while (($null -eq (Get-Process -Name 'firefox' -ErrorAction SilentlyContinue))) {
     }
     Start-Sleep -Milliseconds 1000
