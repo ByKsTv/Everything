@@ -208,7 +208,7 @@ $OKButton.Add_Click{
     if ($CheckHyperXNGENUITY.Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/HyperX_NGENUITY/Download.ps1')
     }
-    # 5th to activate - updater slow to open otherwise
+    # 5th to activate - cmd.exe updater slow to open otherwise
     if ($Checkmpv.Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/Download.ps1')
     }
