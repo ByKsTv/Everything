@@ -8,6 +8,14 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Network.ps1')
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Extensions.ps1')
 Add-Type -AssemblyName System.Windows.Forms
+$NVCleanstallAnswer = [System.Windows.Forms.MessageBox]::Show('Install NVCleanstall?' , 'NVCleanstall' , 4, 32)
+if ($NVCleanstallAnswer -eq 'Yes') {
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/NVCleanstall/Download.ps1')
+}
+$PlexAnswer = [System.Windows.Forms.MessageBox]::Show('Install Plex?' , 'Plex' , 4, 32)
+if ($PlexAnswer -eq 'Yes') {
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Plex/Download.ps1')
+}
 $7ZipAnswer = [System.Windows.Forms.MessageBox]::Show('Install 7-Zip?' , '7-Zip' , 4, 32)
 if ($7ZipAnswer -eq 'Yes') {
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
@@ -83,14 +91,6 @@ if ($AnyDeskAnswer -eq 'Yes') {
 $Display_Driver_UninstallerAnswer = [System.Windows.Forms.MessageBox]::Show('Install Display Driver Uninstaller?' , 'Display Driver Uninstaller' , 4, 32)
 if ($Display_Driver_UninstallerAnswer -eq 'Yes') {
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Display_Driver_Uninstaller/Download.ps1')
-}
-$NVCleanstallAnswer = [System.Windows.Forms.MessageBox]::Show('Install NVCleanstall?' , 'NVCleanstall' , 4, 32)
-if ($NVCleanstallAnswer -eq 'Yes') {
-    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/NVCleanstall/Download.ps1')
-}
-$PlexAnswer = [System.Windows.Forms.MessageBox]::Show('Install Plex?' , 'Plex' , 4, 32)
-if ($PlexAnswer -eq 'Yes') {
-    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Plex/Download.ps1')
 }
 $Visual_Studio_CodeAnswer = [System.Windows.Forms.MessageBox]::Show('Install Visual Studio Code?' , 'Visual Studio Code' , 4, 32)
 if ($Visual_Studio_CodeAnswer -eq 'Yes') {
