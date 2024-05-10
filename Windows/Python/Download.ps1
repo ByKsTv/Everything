@@ -10,4 +10,4 @@ $PyVerDir = $PyVerDir.Substring(0, 1).ToUpper() + $PyVerDir.Substring(1).ToLower
 Write-Host 'Python > Download' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile($PyUrl, "$env:TEMP\${PyPkg}")
 Write-Host 'Python > Install' -ForegroundColor green -BackgroundColor black
-Start-Process "$env:TEMP\${PyPkg}" -ArgumentList '/silent', 'InstallAllUsers=1', 'PrependPath=1', 'Include_test=0' -NoNewWindow
+Start-Process "$env:TEMP\${PyPkg}" -ArgumentList '/verysilent', 'InstallAllUsers=1', 'PrependPath=1', 'Include_test=0' -NoNewWindow
