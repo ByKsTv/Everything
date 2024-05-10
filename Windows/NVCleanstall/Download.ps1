@@ -44,11 +44,12 @@ if ((Test-Path -LiteralPath "$env:ProgramFiles\Mozilla Firefox") -eq $true) {
     [System.Windows.Forms.SendKeys]::SendWait('^+i')
 }
 $Downloads = (New-Object -ComObject Shell.Application).NameSpace('shell:Downloads').Self.Path
-$NVCleanstallPath = Join-Path $Downloads 'NVCleanstall*.exe'
-While (!(Test-Path $NVCleanstallPath -ErrorAction SilentlyContinue)) {
+Write-Host 'NVCleanstall > Waiting for download' -ForegroundColor green -BackgroundColor black
+While (!(Test-Path "$Downloads\NVCleanstall*.exe" -ErrorAction SilentlyContinue)) {
 }
 do {
-    $dirStats = Get-Item $NVCleanstallPath | Measure-Object -Sum Length
+    $dirStats = Get-Item "$Downloads\NVCleanstall*.exe" | Measure-Object -Sum Length
 } 
 until( ($dirStats.Sum -ne 0) )
-Start-Process -FilePath $NVCleanstallPath -ArgumentList '/install /tasks="DriverUpdateCheck,DesktopIcon" /verysilent'
+Write-Host 'NVCleanstall > Install' -ForegroundColor green -BackgroundColor black
+Start-Process -FilePath "$Downloads\NVCleanstall*.exe" -ArgumentList '/install /tasks="DriverUpdateCheck,DesktopIcon" /verysilent'

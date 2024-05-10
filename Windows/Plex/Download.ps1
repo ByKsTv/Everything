@@ -45,11 +45,12 @@ if ((Test-Path -LiteralPath "$env:ProgramFiles\Mozilla Firefox") -eq $true) {
     [System.Windows.Forms.SendKeys]::SendWait('s')
 }
 $Downloads = (New-Object -ComObject Shell.Application).NameSpace('shell:Downloads').Self.Path
-$PlexMediaServerPath = Join-Path $Downloads 'PlexMediaServer*.exe'
-While (!(Test-Path $PlexMediaServerPath -ErrorAction SilentlyContinue)) {
+Write-Host 'Plex > Waiting for download' -ForegroundColor green -BackgroundColor black
+While (!(Test-Path "$Downloads\PlexMediaServer*.exe" -ErrorAction SilentlyContinue)) {
 }
 do {
-    $dirStats = Get-Item $PlexMediaServerPath | Measure-Object -Sum Length
+    $dirStats = Get-Item "$Downloads\PlexMediaServer*.exe" | Measure-Object -Sum Length
 } 
 until( ($dirStats.Sum -ne 0) )
-Start-Process -FilePath $PlexMediaServerPath -ArgumentList '/VERYSILENT'
+Write-Host 'Plex > Install' -ForegroundColor green -BackgroundColor black
+Start-Process -FilePath "$Downloads\PlexMediaServer*.exe" -ArgumentList '/VERYSILENT'
