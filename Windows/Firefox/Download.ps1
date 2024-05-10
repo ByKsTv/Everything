@@ -20,9 +20,8 @@ if ((Test-Path -LiteralPath "$env:ProgramFiles\Mozilla Firefox") -ne $true) {
     }
 '@
     }
-    $FirefoxWindow = Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }
     Write-Host 'Firefox > Set Foreground' -ForegroundColor green -BackgroundColor black
-    [SFW]::SetForegroundWindow($FirefoxWindow.MainWindowHandle)
+    [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
     Start-Sleep -Milliseconds 1000
     Write-Host 'Firefox > Import from browser > Uncheck' -ForegroundColor green -BackgroundColor black
     Add-Type -AssemblyName System.Windows.Forms

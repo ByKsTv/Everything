@@ -55,9 +55,8 @@ public class SFW {
 }
 '@
 }
-$cmdWindow = Get-Process | Where-Object { $_.mainWindowTitle -match 'cmd.exe' }
 Write-Host 'mpv > Set Foreground' -ForegroundColor green -BackgroundColor black
-[SFW]::SetForegroundWindow($cmdWindow.MainWindowHandle)
+[SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'cmd.exe' }).MainWindowHandle)
 Start-Sleep -Milliseconds 1000
 Add-Type -AssemblyName System.Windows.Forms
 [System.Windows.Forms.SendKeys]::SendWait('y')

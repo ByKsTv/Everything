@@ -16,9 +16,8 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         }
 '@
         }
-        $FirefoxWindow = Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }
         Write-Host 'Firefox > Set Foreground' -ForegroundColor green -BackgroundColor black
-        [SFW]::SetForegroundWindow($FirefoxWindow.MainWindowHandle)
+        [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
         Start-Sleep -Milliseconds 1000
         Add-Type -AssemblyName System.Windows.Forms
         [System.Windows.Forms.SendKeys]::SendWait('^+k')
@@ -33,7 +32,7 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         [System.Windows.Forms.SendKeys]::SendWait('%o')
         [System.Diagnostics.Process]::Start('firefox.exe', 'https://addons.mozilla.org/en-US/firefox/addon/clearurls/')
         Start-Sleep -Milliseconds 2000
-        [SFW]::SetForegroundWindow($FirefoxWindow.MainWindowHandle)
+        [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
         Start-Sleep -Milliseconds 1000
         [System.Windows.Forms.SendKeys]::SendWait('^+k')
         Start-Sleep -Milliseconds 500
@@ -47,7 +46,7 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         [System.Windows.Forms.SendKeys]::SendWait('%o')
         [System.Diagnostics.Process]::Start('firefox.exe', 'https://addons.mozilla.org/en-US/firefox/addon/i-m-not-robot-captcha-clicker/')
         Start-Sleep -Milliseconds 2000
-        [SFW]::SetForegroundWindow($FirefoxWindow.MainWindowHandle)
+        [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
         Start-Sleep -Milliseconds 1000
         [System.Windows.Forms.SendKeys]::SendWait('^+k')
         Start-Sleep -Milliseconds 500
@@ -61,7 +60,7 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         [System.Windows.Forms.SendKeys]::SendWait('%o')
         [System.Diagnostics.Process]::Start('firefox.exe', 'https://addons.mozilla.org/en-US/firefox/addon/buster-captcha-solver/')
         Start-Sleep -Milliseconds 2000
-        [SFW]::SetForegroundWindow($FirefoxWindow.MainWindowHandle)
+        [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
         Start-Sleep -Milliseconds 1000
         [System.Windows.Forms.SendKeys]::SendWait('^+k')
         Start-Sleep -Milliseconds 500
@@ -75,7 +74,7 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         [System.Windows.Forms.SendKeys]::SendWait('%o')
         [System.Diagnostics.Process]::Start('firefox.exe', 'https://addons.mozilla.org/en-US/firefox/addon/the-camelizer-price-history-ch/')
         Start-Sleep -Milliseconds 2000
-        [SFW]::SetForegroundWindow($FirefoxWindow.MainWindowHandle)
+        [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
         Start-Sleep -Milliseconds 1000
         [System.Windows.Forms.SendKeys]::SendWait('^+k')
         Start-Sleep -Milliseconds 500
@@ -89,7 +88,7 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         [System.Windows.Forms.SendKeys]::SendWait('%o')
         [System.Diagnostics.Process]::Start('firefox.exe', 'https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/')
         Start-Sleep -Milliseconds 2000
-        [SFW]::SetForegroundWindow($FirefoxWindow.MainWindowHandle)
+        [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
         Start-Sleep -Milliseconds 1000
         [System.Windows.Forms.SendKeys]::SendWait('^+k')
         Start-Sleep -Milliseconds 500
@@ -104,7 +103,7 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         Write-Host 'AdsBypasser' -ForegroundColor green -BackgroundColor black
         [System.Diagnostics.Process]::Start('firefox.exe', 'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js')
         Start-Sleep -Milliseconds 3000
-        [SFW]::SetForegroundWindow($FirefoxWindow.MainWindowHandle)
+        [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
         Start-Sleep -Milliseconds 1000
         Write-Host 'Tampermonkey > AdsBypasser > Install' -ForegroundColor green -BackgroundColor black
         [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
@@ -113,7 +112,7 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         $uBlockUUID = (Select-String -Pattern $uBlockPattern -Path $CurrentFirefoxProfile\prefs.js).Matches.Groups[1].Value
         [System.Diagnostics.Process]::Start('firefox.exe', "moz-extension://$uBlockUUID/dashboard.html#settings.html")
         Start-Sleep -Milliseconds 2000
-        [SFW]::SetForegroundWindow($FirefoxWindow.MainWindowHandle)
+        [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
         Start-Sleep -Milliseconds 1000
         Write-Host 'uBlock Origin > Restore from file' -ForegroundColor green -BackgroundColor black
         [System.Windows.Forms.SendKeys]::SendWait('+{TAB 2}')
