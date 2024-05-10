@@ -61,13 +61,9 @@ Add-Type -AssemblyName System.Windows.Forms
 [System.Windows.Forms.SendKeys]::SendWait('y')
 [System.Windows.Forms.SendKeys]::SendWait('y')
 [System.Windows.Forms.SendKeys]::SendWait('1')
-While (!(Test-Path $env:ProgramFiles\mpv\installer\mpv-install.bat -ErrorAction SilentlyContinue)) {
+Write-Host 'mpv > Wait for finish updating' -ForegroundColor green -BackgroundColor black
+while (!($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match "cmd.exe" } -ErrorAction SilentlyContinue))) {
 }
-do {
-    $dirStats = Get-Item $env:ProgramFiles\mpv\installer\mpv-install.bat | Measure-Object -Sum Length
-} 
-until( ($dirStats.Sum -ne 0) )
-Start-Sleep -Milliseconds 2000
 Write-Host 'mpv > Install' -ForegroundColor green -BackgroundColor black
 Start-Process -FilePath $env:ProgramFiles\mpv\installer\mpv-install.bat -ArgumentList '/u'
 Write-Host 'mpv > mpv.conf' -ForegroundColor green -BackgroundColor black
