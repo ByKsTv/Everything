@@ -192,6 +192,14 @@ $CancelButton.Add_Click({ $Form.Close() })
 $form.Controls.Add($CancelButton)
 
 $OKButton.Add_Click{
+    # First in order of actions because requires a browser
+    if ($CheckNVCleanstall.Checked) {
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/NVCleanstall/Download.ps1')
+    }
+    # First in order of actions because requires a browser
+    if ($CheckPlex.Checked) {
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Plex/Download.ps1')
+    }
     if ($Check7Zip.Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
     }
@@ -225,9 +233,6 @@ $OKButton.Add_Click{
     if ($CheckMediaInfo.Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/MediaInfo/Download.ps1')
     }
-    if ($CheckNVCleanstall.Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/NVCleanstall/Download.ps1')
-    }
     if ($CheckNordVPN.Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/NordVPN/Download.ps1')
     }
@@ -236,9 +241,6 @@ $OKButton.Add_Click{
     }
     if ($CheckOffice.Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Office/Download.ps1')
-    }
-    if ($CheckPlex.Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Plex/Download.ps1')
     }
     if ($CheckPython.Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Python/Download.ps1')
