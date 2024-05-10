@@ -56,6 +56,7 @@ public class SFW {
 $cmdWindow = Get-Process | Where-Object { $_.mainWindowTitle -match 'cmd.exe' }
 Write-Host 'mpv > Set Foreground' -ForegroundColor green -BackgroundColor black
 [SFW]::SetForegroundWindow($cmdWindow.MainWindowHandle)
+Start-Sleep -Milliseconds 1000
 Add-Type -AssemblyName System.Windows.Forms
 [System.Windows.Forms.SendKeys]::SendWait('y')
 [System.Windows.Forms.SendKeys]::SendWait('y')
@@ -66,6 +67,7 @@ do {
     $dirStats = Get-Item $env:ProgramFiles\mpv\installer\mpv-install.bat | Measure-Object -Sum Length
 } 
 until( ($dirStats.Sum -eq 16984) )
+Start-Sleep -Milliseconds 1000
 Write-Host 'mpv > Install' -ForegroundColor green -BackgroundColor black
 Start-Process -FilePath $env:ProgramFiles\mpv\installer\mpv-install.bat -ArgumentList '/u'
 Write-Host 'mpv > mpv.conf' -ForegroundColor green -BackgroundColor black
