@@ -262,6 +262,7 @@ $OKButton.Add_Click{
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
     }
     if ($CheckUninstallEdge.Checked) {
+        Write-Host 'Edge > Uninstall' -ForegroundColor green -BackgroundColor black
         # Option 1 - Working
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ChrisTitusTech/winutil/d0bde83333730a4536497451af747daba11e5039/edgeremoval.ps1')
         # Option 2 - Waiting for script update
