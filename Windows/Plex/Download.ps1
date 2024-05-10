@@ -13,17 +13,14 @@ public class SFW {
 Write-Host 'Plex > Download' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Google\Chrome\Application") -eq $true) {
     [System.Diagnostics.Process]::Start('chrome.exe', 'https://www.plex.tv/media-server-downloads/#plex-media-server')
-    while (($null -eq (Get-Process -Name 'chrome' -ErrorAction SilentlyContinue))) {
-    }
-    Start-Sleep -Milliseconds 1000
 }
 if ((Test-Path -LiteralPath "$env:ProgramFiles\Mozilla Firefox") -eq $true) {
     [System.Diagnostics.Process]::Start('firefox.exe', 'https://www.plex.tv/media-server-downloads/#plex-media-server')
-    while (($null -eq (Get-Process -Name 'firefox' -ErrorAction SilentlyContinue))) {
-    }
-    Start-Sleep -Milliseconds 1000
 }
 $BrowserWindow = Get-Process | Where-Object { $_.mainWindowTitle -match 'chrome' -or $_.mainWindowTitle -match 'firefox' }
+while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'chrome' -or $_.mainWindowTitle -match 'firefox' } -ErrorAction SilentlyContinue))) {
+}
+Start-Sleep -Milliseconds 1000
 Write-Host 'Plex > Set Foreground' -ForegroundColor green -BackgroundColor black
 [SFW]::SetForegroundWindow($BrowserWindow.MainWindowHandle)
 Start-Sleep -Milliseconds 1000
