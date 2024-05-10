@@ -52,4 +52,4 @@ do {
 } 
 until( ($dirStats.Sum -ne 0) )
 Write-Host 'NVCleanstall > Install' -ForegroundColor green -BackgroundColor black
-Start-Process -FilePath "$Downloads\NVCleanstall*.exe" -ArgumentList '/install /tasks="DriverUpdateCheck,DesktopIcon" /verysilent'
+Start-Process -FilePath "$Downloads\NVCleanstall*.exe" -ArgumentList '/install /tasks="DriverUpdateCheck,DesktopIcon" /verysilent' -Wait
