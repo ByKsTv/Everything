@@ -4,7 +4,9 @@ if ((Test-Path -LiteralPath "$env:ProgramFiles\Mozilla Firefox") -ne $true) {
     Write-Host 'Firefox > Install' -ForegroundColor green -BackgroundColor black
     Start-Process $env:TEMP\firefox.exe -ArgumentList '/S' -Wait
     Start-Process "$env:ProgramFiles\Mozilla Firefox\firefox.exe"
-    Start-Sleep -Milliseconds 6000
+    while (($null -eq (Get-Process -Name 'firefox' -ErrorAction SilentlyContinue))) {
+        Start-Sleep -Milliseconds 5000
+    }
     Add-Type @'
     using System;
     using System.Runtime.InteropServices;

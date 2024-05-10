@@ -9,11 +9,16 @@ public class SFW {
 '@
 if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Google\Chrome\Application") -eq $true) {
     [System.Diagnostics.Process]::Start('chrome.exe', 'https://www.techpowerup.com/download/techpowerup-nvcleanstall/')
+    while (($null -eq (Get-Process -Name 'chrome' -ErrorAction SilentlyContinue))) {
+        Start-Sleep -Milliseconds 5000
+    }
 }
 if ((Test-Path -LiteralPath "$env:ProgramFiles\Mozilla Firefox") -eq $true) {
     [System.Diagnostics.Process]::Start('firefox.exe', 'https://www.techpowerup.com/download/techpowerup-nvcleanstall/')
+    while (($null -eq (Get-Process -Name 'firefox' -ErrorAction SilentlyContinue))) {
+        Start-Sleep -Milliseconds 5000
+    }
 }
-Start-Sleep -Milliseconds 6000
 $BrowserWindow = Get-Process | Where-Object { $_.mainWindowTitle -match 'chrome' -or $_.mainWindowTitle -match 'firefox' }
 Write-Host 'Browser > Set Foreground' -ForegroundColor green -BackgroundColor black
 [SFW]::SetForegroundWindow($BrowserWindow.MainWindowHandle)
