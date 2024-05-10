@@ -17,6 +17,7 @@ if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Google\Chrome\Application"
 if ((Test-Path -LiteralPath "$env:ProgramFiles\Mozilla Firefox") -eq $true) {
     [System.Diagnostics.Process]::Start('firefox.exe', 'https://www.techpowerup.com/download/techpowerup-nvcleanstall/')
 }
+Write-Host 'NVCleanstall > Waiting for browser' -ForegroundColor green -BackgroundColor black
 while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'chrome' -or $_.mainWindowTitle -match 'firefox' } -ErrorAction SilentlyContinue))) {
 }
 Start-Sleep -Milliseconds 1000
