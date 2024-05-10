@@ -3,103 +3,56 @@ if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
     $CurrentFirefoxProfile = "$env:APPDATA\Mozilla\Firefox\Profiles\$FirefoxProfiles"
     if ((Test-Path -LiteralPath $CurrentFirefoxProfile) -eq $true) {
         Write-Host 'Firefox Extensions Setup' -ForegroundColor green -BackgroundColor black
-        [System.Diagnostics.Process]::Start('firefox.exe', 'https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/')
-        Start-Sleep -Milliseconds 6000
-        if (-not ([System.Management.Automation.PSTypeName]'SFW').Type) {
-            Add-Type @'
-        using System;
-        using System.Runtime.InteropServices;
-        public class SFW {
-            [DllImport("user32.dll")]
-            [return: MarshalAs(UnmanagedType.Bool)]
-            public static extern bool SetForegroundWindow(IntPtr hWnd);
+        Stop-Process -Name firefox -Force
+        # https://github.com/letsdoautomation/powershell/tree/main/Firefox%20deploy%20Extension
+        $settings =
+        [PSCustomObject]@{
+            Path  = 'SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install'
+            Value = 'https://addons.mozilla.org/firefox/downloads/file/4261710/ublock_origin-1.57.2.xpi'
+            Name  = ++$count
+        },
+        [PSCustomObject]@{
+            Path  = 'SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install'
+            Value = 'https://addons.mozilla.org/firefox/downloads/file/4282688/tampermonkey-5.1.1.xpi'
+            Name  = ++$count
+        },
+        [PSCustomObject]@{
+            Path  = 'SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install'
+            Value = 'https://addons.mozilla.org/firefox/downloads/file/4064884/clearurls-1.26.1.xpi'
+            Name  = ++$count
+        },
+        [PSCustomObject]@{
+            Path  = 'SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install'
+            Value = 'https://addons.mozilla.org/firefox/downloads/file/3897119/i_m_not_robot_captcha_clicker-1.3.1.xpi'
+            Name  = ++$count
+        },
+        [PSCustomObject]@{
+            Path  = 'SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install'
+            Value = 'https://addons.mozilla.org/firefox/downloads/file/4044701/buster_captcha_solver-2.0.1.xpi'
+            Name  = ++$count
+        },
+        [PSCustomObject]@{
+            Path  = 'SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install'
+            Value = 'https://addons.mozilla.org/firefox/downloads/file/4075638/the_camelizer_price_history_ch-3.0.15.xpi'
+            Name  = ++$count
+        } | Group-Object Path
+        foreach ($setting in $settings) {
+            $registry = [Microsoft.Win32.Registry]::LocalMachine.OpenSubKey($setting.Name, $true)
+            if ($null -eq $registry) {
+                $registry = [Microsoft.Win32.Registry]::LocalMachine.CreateSubKey($setting.Name, $true)
+            }
+            $setting.Group | ForEach-Object {
+                $registry.SetValue($_.name, $_.value)
+            }
+            $registry.Dispose()
         }
-'@
+        [System.Diagnostics.Process]::Start('firefox.exe')
+        Write-Host 'Firefox > Waiting for browser' -ForegroundColor green -BackgroundColor black
+        while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' } -ErrorAction SilentlyContinue))) {
         }
+        Start-Sleep -Milliseconds 10000
         Write-Host 'Firefox > Set Foreground' -ForegroundColor green -BackgroundColor black
         [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
-        Start-Sleep -Milliseconds 1000
-        Add-Type -AssemblyName System.Windows.Forms
-        [System.Windows.Forms.SendKeys]::SendWait('^+k')
-        Start-Sleep -Milliseconds 2000
-        [System.Windows.Forms.SendKeys]::SendWait("document.getElementsByClassName{(}'Button Button--action AMInstallButton-button Button--puffy'{)}{[}0{]}.click{(}{)}")
-        [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
-        Start-Sleep -Milliseconds 1000
-        [System.Windows.Forms.SendKeys]::SendWait('^+i')
-        Start-Sleep -Milliseconds 2000
-        [System.Windows.Forms.SendKeys]::SendWait('%a')
-        Start-Sleep -Milliseconds 500
-        [System.Windows.Forms.SendKeys]::SendWait('%o')
-        [System.Diagnostics.Process]::Start('firefox.exe', 'https://addons.mozilla.org/en-US/firefox/addon/clearurls/')
-        Start-Sleep -Milliseconds 2000
-        [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
-        Start-Sleep -Milliseconds 1000
-        [System.Windows.Forms.SendKeys]::SendWait('^+k')
-        Start-Sleep -Milliseconds 500
-        [System.Windows.Forms.SendKeys]::SendWait('{UP}')
-        [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
-        Start-Sleep -Milliseconds 1000
-        [System.Windows.Forms.SendKeys]::SendWait('^+i')
-        Start-Sleep -Milliseconds 1000
-        [System.Windows.Forms.SendKeys]::SendWait('%a')
-        Start-Sleep -Milliseconds 500
-        [System.Windows.Forms.SendKeys]::SendWait('%o')
-        [System.Diagnostics.Process]::Start('firefox.exe', 'https://addons.mozilla.org/en-US/firefox/addon/i-m-not-robot-captcha-clicker/')
-        Start-Sleep -Milliseconds 2000
-        [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
-        Start-Sleep -Milliseconds 1000
-        [System.Windows.Forms.SendKeys]::SendWait('^+k')
-        Start-Sleep -Milliseconds 500
-        [System.Windows.Forms.SendKeys]::SendWait('{UP}')
-        [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
-        Start-Sleep -Milliseconds 1000
-        [System.Windows.Forms.SendKeys]::SendWait('^+i')
-        Start-Sleep -Milliseconds 1000
-        [System.Windows.Forms.SendKeys]::SendWait('%a')
-        Start-Sleep -Milliseconds 500
-        [System.Windows.Forms.SendKeys]::SendWait('%o')
-        [System.Diagnostics.Process]::Start('firefox.exe', 'https://addons.mozilla.org/en-US/firefox/addon/buster-captcha-solver/')
-        Start-Sleep -Milliseconds 2000
-        [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
-        Start-Sleep -Milliseconds 1000
-        [System.Windows.Forms.SendKeys]::SendWait('^+k')
-        Start-Sleep -Milliseconds 500
-        [System.Windows.Forms.SendKeys]::SendWait('{UP}')
-        [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
-        Start-Sleep -Milliseconds 1000
-        [System.Windows.Forms.SendKeys]::SendWait('^+i')
-        Start-Sleep -Milliseconds 1000
-        [System.Windows.Forms.SendKeys]::SendWait('%a')
-        Start-Sleep -Milliseconds 500
-        [System.Windows.Forms.SendKeys]::SendWait('%o')
-        [System.Diagnostics.Process]::Start('firefox.exe', 'https://addons.mozilla.org/en-US/firefox/addon/the-camelizer-price-history-ch/')
-        Start-Sleep -Milliseconds 2000
-        [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
-        Start-Sleep -Milliseconds 1000
-        [System.Windows.Forms.SendKeys]::SendWait('^+k')
-        Start-Sleep -Milliseconds 500
-        [System.Windows.Forms.SendKeys]::SendWait('{UP}')
-        [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
-        Start-Sleep -Milliseconds 1000
-        [System.Windows.Forms.SendKeys]::SendWait('^+i')
-        Start-Sleep -Milliseconds 1000
-        [System.Windows.Forms.SendKeys]::SendWait('%a')
-        Start-Sleep -Milliseconds 500
-        [System.Windows.Forms.SendKeys]::SendWait('%o')
-        [System.Diagnostics.Process]::Start('firefox.exe', 'https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/')
-        Start-Sleep -Milliseconds 2000
-        [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
-        Start-Sleep -Milliseconds 1000
-        [System.Windows.Forms.SendKeys]::SendWait('^+k')
-        Start-Sleep -Milliseconds 500
-        [System.Windows.Forms.SendKeys]::SendWait('{UP}')
-        [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
-        Start-Sleep -Milliseconds 1000
-        [System.Windows.Forms.SendKeys]::SendWait('^+i')
-        Start-Sleep -Milliseconds 1000
-        [System.Windows.Forms.SendKeys]::SendWait('%a')
-        Start-Sleep -Milliseconds 5000
-        [System.Windows.Forms.SendKeys]::SendWait('%o')
         Write-Host 'AdsBypasser' -ForegroundColor green -BackgroundColor black
         [System.Diagnostics.Process]::Start('firefox.exe', 'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js')
         Start-Sleep -Milliseconds 3000
