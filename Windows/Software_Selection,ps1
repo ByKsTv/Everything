@@ -200,17 +200,17 @@ $OKButton.Add_Click{
     if ($CheckPlex.Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Plex/Download.ps1')
     }
-    # 3rd to activate - user input required
+    # 3rd to activate - cmd.exe updater slow to open otherwise
+    if ($Checkmpv.Checked) {
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/Download.ps1')
+    }
+    # 4th to activate - user input required
     if ($CheckRazerSynapse.Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Razer_Synapse/Download.ps1')
     }
-    # 4th to activate - user input required
+    # 5th to activate - user input required
     if ($CheckHyperXNGENUITY.Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/HyperX_NGENUITY/Download.ps1')
-    }
-    # 5th to activate - cmd.exe updater slow to open otherwise
-    if ($Checkmpv.Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/Download.ps1')
     }
     if ($Check7Zip.Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
