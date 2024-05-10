@@ -4,7 +4,7 @@
 $Form = New-Object System.Windows.Forms.Form
 $Form.width = 500
 $Form.height = 700
-$Form.Text = 'Install Software'
+$Form.Text = 'Software Selection'
 
 $Font = New-Object System.Drawing.Font('Tahoma', 10)
 $Form.Font = $Font
