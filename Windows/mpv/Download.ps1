@@ -41,10 +41,8 @@ if (!($MPV_Updater_Exists)) {
     Register-ScheduledTask @MPV_Updater_Parameters -Force
 }
 Start-ScheduledTask -TaskName $MPV_Updater
-Write-Host 'mpv > test1' -ForegroundColor green -BackgroundColor black
-while (($null -eq (Get-Process -Name 'cmd' -ErrorAction SilentlyContinue))) {
+while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match "cmd.exe" } -ErrorAction SilentlyContinue))) {
 }
-Write-Host 'mpv > test2' -ForegroundColor green -BackgroundColor black
 Start-Sleep -Milliseconds 1000
 Add-Type -AssemblyName System.Windows.Forms
 [System.Windows.Forms.SendKeys]::SendWait('y')
