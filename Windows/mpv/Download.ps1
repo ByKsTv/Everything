@@ -43,6 +43,19 @@ if (!($MPV_Updater_Exists)) {
 Start-ScheduledTask -TaskName $MPV_Updater
 while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match "cmd.exe" } -ErrorAction SilentlyContinue))) {
 }
+Write-Host 'mpv > Add option to set cmd to foreground' -ForegroundColor green -BackgroundColor black
+Add-Type @'
+using System;
+using System.Runtime.InteropServices;
+public class SFW {
+    [DllImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static extern bool SetForegroundWindow(IntPtr hWnd);
+}
+'@
+$cmdWindow = Get-Process | Where-Object { $_.mainWindowTitle -match 'cmd.exe' }
+Write-Host 'mpv > Set Foreground' -ForegroundColor green -BackgroundColor black
+[SFW]::SetForegroundWindow($cmdWindow.MainWindowHandle)
 Start-Sleep -Milliseconds 1000
 Add-Type -AssemblyName System.Windows.Forms
 [System.Windows.Forms.SendKeys]::SendWait('y')
