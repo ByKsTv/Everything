@@ -17,12 +17,11 @@ if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Google\Chrome\Application"
 if ((Test-Path -LiteralPath "$env:ProgramFiles\Mozilla Firefox") -eq $true) {
     [System.Diagnostics.Process]::Start('firefox.exe', 'https://www.techpowerup.com/download/techpowerup-nvcleanstall/')
 }
-$BrowserWindow = Get-Process | Where-Object { $_.mainWindowTitle -match 'chrome' -or $_.mainWindowTitle -match 'firefox' }
 while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'chrome' -or $_.mainWindowTitle -match 'firefox' } -ErrorAction SilentlyContinue))) {
 }
 Start-Sleep -Milliseconds 1000
 Write-Host 'NVCleanstall > Set Foreground' -ForegroundColor green -BackgroundColor black
-[SFW]::SetForegroundWindow($BrowserWindow.MainWindowHandle)
+[SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'chrome' -or $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
 Start-Sleep -Milliseconds 1000
 Add-Type -AssemblyName System.Windows.Forms
 if ((Test-Path -LiteralPath "${env:ProgramFiles(x86)}\Google\Chrome\Application") -eq $true) {
