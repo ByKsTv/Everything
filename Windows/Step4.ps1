@@ -8,6 +8,14 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Network.ps1')
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Extensions.ps1')
 Add-Type -AssemblyName System.Windows.Forms
+$RazerSynapseAnswer = [System.Windows.Forms.MessageBox]::Show('Install Razer Synapse?' , 'Razer Synapse' , 4, 32)
+if ($RazerSynapseAnswer -eq 'Yes') {
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Razer_Synapse/Download.ps1')
+}
+$HyperX_NGENUITYAnswer = [System.Windows.Forms.MessageBox]::Show('Install HyperX NGENUITY?' , 'HyperX NGENUITY' , 4, 32)
+if ($HyperX_NGENUITYAnswer -eq 'Yes') {
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/HyperX_NGENUITY/Download.ps1')
+}
 $NVCleanstallAnswer = [System.Windows.Forms.MessageBox]::Show('Install NVCleanstall?' , 'NVCleanstall' , 4, 32)
 if ($NVCleanstallAnswer -eq 'Yes') {
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/NVCleanstall/Download.ps1')
@@ -56,10 +64,6 @@ $DiscordAnswer = [System.Windows.Forms.MessageBox]::Show('Install Discord?' , 'D
 if ($DiscordAnswer -eq 'Yes') {
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Discord/Download.ps1')
 }
-$RazerSynapseAnswer = [System.Windows.Forms.MessageBox]::Show('Install Razer Synapse?' , 'Razer Synapse' , 4, 32)
-if ($RazerSynapseAnswer -eq 'Yes') {
-    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Razer_Synapse/Download.ps1')
-}
 $Logitech_G_HUBAnswer = [System.Windows.Forms.MessageBox]::Show('Install Logitech G HUB?' , 'Logitech G HUB' , 4, 32)
 if ($Logitech_G_HUBAnswer -eq 'Yes') {
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Logitech_G_HUB/Download.ps1')
@@ -71,10 +75,6 @@ if ($BattlenetAnswer -eq 'Yes') {
 $JellyfinAnswer = [System.Windows.Forms.MessageBox]::Show('Install Jellyfin?' , 'Jellyfin' , 4, 32)
 if ($JellyfinAnswer -eq 'Yes') {
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Jellyfin/Download.ps1')
-}
-$HyperX_NGENUITYAnswer = [System.Windows.Forms.MessageBox]::Show('Install HyperX NGENUITY?' , 'HyperX NGENUITY' , 4, 32)
-if ($HyperX_NGENUITYAnswer -eq 'Yes') {
-    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/HyperX_NGENUITY/Download.ps1')
 }
 $CrystalDiskInfoAnswer = [System.Windows.Forms.MessageBox]::Show('Install CrystalDiskInfo?' , 'CrystalDiskInfo' , 4, 32)
 if ($CrystalDiskInfoAnswer -eq 'Yes') {
