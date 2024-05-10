@@ -92,6 +92,10 @@ $PlexAnswer = [System.Windows.Forms.MessageBox]::Show('Install Plex?' , 'Plex' ,
 if ($PlexAnswer -eq 'Yes') {
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Plex/Download.ps1')
 }
+$Visual_Studio_CodeAnswer = [System.Windows.Forms.MessageBox]::Show('Install Visual Studio Code?' , 'Visual Studio Code' , 4, 32)
+if ($Visual_Studio_CodeAnswer -eq 'Yes') {
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Visual_Studio_Code/Download.ps1')
+}
 $OfficeAnswer = [System.Windows.Forms.MessageBox]::Show('Install Office?' , 'Office' , 4, 32)
 if ($OfficeAnswer -eq 'Yes') {
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Office/Download.ps1')

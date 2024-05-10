@@ -96,7 +96,6 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 - [Valorant](https://playvalorant.com/en-us/download/)
 - [JitBit Macro Recorder](https://rutracker.org/forum/tracker.php?nm=JitBit)
 - [Microsoft Visual Studio](https://rutracker.org/forum/tracker.php?nm=Microsoft%20Visual%20Studio)
-- [Microsoft Visual Studio Code](https://code.visualstudio.com/download)
 - [Lumion](https://rutracker.org/forum/tracker.php?nm=Lumion)
 - [Image-Line - FL Studio](https://rutracker.org/forum/tracker.php?nm=Image-Line%20-%20FL%20Studio)
 - [RegistryChangesView](https://www.nirsoft.net/utils/registry_changes_view.html)
