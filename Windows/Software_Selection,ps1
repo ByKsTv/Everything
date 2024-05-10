@@ -200,7 +200,7 @@ $OKButton.Add_Click{
     if ($CheckPlex.Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Plex/Download.ps1')
     }
-    # 3rd to activate - cmd.exe updater slow to open otherwise
+    # 3rd to activate - mpv updater slow to open otherwise
     if ($Checkmpv.Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/Download.ps1')
     }
