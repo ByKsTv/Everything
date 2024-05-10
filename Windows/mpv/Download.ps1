@@ -41,8 +41,10 @@ if (!($MPV_Updater_Exists)) {
     Register-ScheduledTask @MPV_Updater_Parameters -Force
 }
 Start-ScheduledTask -TaskName $MPV_Updater
+Write-Host 'mpv > test1' -ForegroundColor green -BackgroundColor black
 while (($null -eq (Get-Process -Name 'cmd' -ErrorAction SilentlyContinue))) {
 }
+Write-Host 'mpv > test2' -ForegroundColor green -BackgroundColor black
 Start-Sleep -Milliseconds 1000
 Add-Type -AssemblyName System.Windows.Forms
 [System.Windows.Forms.SendKeys]::SendWait('y')
@@ -54,6 +56,7 @@ do {
     $dirStats = Get-Item $env:ProgramFiles\mpv\installer\mpv-install.bat | Measure-Object -Sum Length
 } 
 until( ($dirStats.Sum -ne 0) )
+Write-Host 'mpv > test3' -ForegroundColor green -BackgroundColor black
 Start-Sleep -Milliseconds 2000
 Write-Host 'mpv > Install' -ForegroundColor green -BackgroundColor black
 Start-Process -FilePath $env:ProgramFiles\mpv\installer\mpv-install.bat -ArgumentList '/u'
