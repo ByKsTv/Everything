@@ -37,148 +37,141 @@ $CheckCrystalDiskInfo.Text = 'CrystalDiskInfo'
 $CheckCrystalDiskInfo.Checked = $false
 $Form.Controls.Add($CheckCrystalDiskInfo)
 
-$CheckCrystalDiskInfo = New-Object System.Windows.Forms.checkbox
-$CheckCrystalDiskInfo.Location = New-Object System.Drawing.Size(30, 110)
-$CheckCrystalDiskInfo.Size = New-Object System.Drawing.Size(250, 20)
-$CheckCrystalDiskInfo.Text = 'CrystalDiskInfo'
-$CheckCrystalDiskInfo.Checked = $false
-$Form.Controls.Add($CheckCrystalDiskInfo)
-
 $CheckCrystalDiskMark = New-Object System.Windows.Forms.checkbox
-$CheckCrystalDiskMark.Location = New-Object System.Drawing.Size(30, 130)
+$CheckCrystalDiskMark.Location = New-Object System.Drawing.Size(30, 110)
 $CheckCrystalDiskMark.Size = New-Object System.Drawing.Size(250, 20)
 $CheckCrystalDiskMark.Text = 'CrystalDiskMark'
 $CheckCrystalDiskMark.Checked = $false
 $Form.Controls.Add($CheckCrystalDiskMark)
 
 $CheckDiscord = New-Object System.Windows.Forms.checkbox
-$CheckDiscord.Location = New-Object System.Drawing.Size(30, 150)
+$CheckDiscord.Location = New-Object System.Drawing.Size(30, 130)
 $CheckDiscord.Size = New-Object System.Drawing.Size(250, 20)
 $CheckDiscord.Text = 'Discord'
 $CheckDiscord.Checked = $false
 $Form.Controls.Add($CheckDiscord)
 
 $CheckDisplayDriverUninstaller = New-Object System.Windows.Forms.checkbox
-$CheckDisplayDriverUninstaller.Location = New-Object System.Drawing.Size(30, 170)
+$CheckDisplayDriverUninstaller.Location = New-Object System.Drawing.Size(30, 150)
 $CheckDisplayDriverUninstaller.Size = New-Object System.Drawing.Size(250, 20)
 $CheckDisplayDriverUninstaller.Text = 'Display Driver Uninstaller'
 $CheckDisplayDriverUninstaller.Checked = $false
 $Form.Controls.Add($CheckDisplayDriverUninstaller)
 
 $CheckHyperXNGENUITY = New-Object System.Windows.Forms.checkbox
-$CheckHyperXNGENUITY.Location = New-Object System.Drawing.Size(30, 190)
+$CheckHyperXNGENUITY.Location = New-Object System.Drawing.Size(30, 170)
 $CheckHyperXNGENUITY.Size = New-Object System.Drawing.Size(250, 20)
 $CheckHyperXNGENUITY.Text = 'HyperX NGENUITY'
 $CheckHyperXNGENUITY.Checked = $false
 $Form.Controls.Add($CheckHyperXNGENUITY)
 
 $CheckJellyfin = New-Object System.Windows.Forms.checkbox
-$CheckJellyfin.Location = New-Object System.Drawing.Size(30, 210)
+$CheckJellyfin.Location = New-Object System.Drawing.Size(30, 190)
 $CheckJellyfin.Size = New-Object System.Drawing.Size(250, 20)
 $CheckJellyfin.Text = 'Jellyfin'
 $CheckJellyfin.Checked = $false
 $Form.Controls.Add($CheckJellyfin)
 
 $CheckLogitechGHUB = New-Object System.Windows.Forms.checkbox
-$CheckLogitechGHUB.Location = New-Object System.Drawing.Size(30, 230)
+$CheckLogitechGHUB.Location = New-Object System.Drawing.Size(30, 210)
 $CheckLogitechGHUB.Size = New-Object System.Drawing.Size(250, 20)
 $CheckLogitechGHUB.Text = 'Logitech G HUB'
 $CheckLogitechGHUB.Checked = $false
 $Form.Controls.Add($CheckLogitechGHUB)
 
 $CheckMediaInfo = New-Object System.Windows.Forms.checkbox
-$CheckMediaInfo.Location = New-Object System.Drawing.Size(30, 250)
+$CheckMediaInfo.Location = New-Object System.Drawing.Size(30, 230)
 $CheckMediaInfo.Size = New-Object System.Drawing.Size(250, 20)
 $CheckMediaInfo.Text = 'MediaInfo'
 $CheckMediaInfo.Checked = $false
 $Form.Controls.Add($CheckMediaInfo)
 
 $CheckNVCleanstall = New-Object System.Windows.Forms.checkbox
-$CheckNVCleanstall.Location = New-Object System.Drawing.Size(30, 270)
+$CheckNVCleanstall.Location = New-Object System.Drawing.Size(30, 250)
 $CheckNVCleanstall.Size = New-Object System.Drawing.Size(250, 20)
 $CheckNVCleanstall.Text = 'NVCleanstall'
 $CheckNVCleanstall.Checked = $false
 $Form.Controls.Add($CheckNVCleanstall)
 
 $CheckNordVPN = New-Object System.Windows.Forms.checkbox
-$CheckNordVPN.Location = New-Object System.Drawing.Size(30, 290)
+$CheckNordVPN.Location = New-Object System.Drawing.Size(30, 270)
 $CheckNordVPN.Size = New-Object System.Drawing.Size(250, 20)
 $CheckNordVPN.Text = 'NordVPN'
 $CheckNordVPN.Checked = $false
 $Form.Controls.Add($CheckNordVPN)
 
 $CheckNotepadPlusPlus = New-Object System.Windows.Forms.checkbox
-$CheckNotepadPlusPlus.Location = New-Object System.Drawing.Size(30, 310)
+$CheckNotepadPlusPlus.Location = New-Object System.Drawing.Size(30, 290)
 $CheckNotepadPlusPlus.Size = New-Object System.Drawing.Size(250, 20)
 $CheckNotepadPlusPlus.Text = 'Notepad++'
 $CheckNotepadPlusPlus.Checked = $false
 $Form.Controls.Add($CheckNotepadPlusPlus)
 
 $CheckOffice = New-Object System.Windows.Forms.checkbox
-$CheckOffice.Location = New-Object System.Drawing.Size(30, 330)
+$CheckOffice.Location = New-Object System.Drawing.Size(30, 310)
 $CheckOffice.Size = New-Object System.Drawing.Size(250, 20)
 $CheckOffice.Text = 'Office'
 $CheckOffice.Checked = $false
 $Form.Controls.Add($CheckOffice)
 
 $CheckPlex = New-Object System.Windows.Forms.checkbox
-$CheckPlex.Location = New-Object System.Drawing.Size(30, 350)
+$CheckPlex.Location = New-Object System.Drawing.Size(30, 330)
 $CheckPlex.Size = New-Object System.Drawing.Size(250, 20)
 $CheckPlex.Text = 'Plex'
 $CheckPlex.Checked = $false
 $Form.Controls.Add($CheckPlex)
 
 $CheckPython = New-Object System.Windows.Forms.checkbox
-$CheckPython.Location = New-Object System.Drawing.Size(30, 370)
+$CheckPython.Location = New-Object System.Drawing.Size(30, 350)
 $CheckPython.Size = New-Object System.Drawing.Size(250, 20)
 $CheckPython.Text = 'Python'
 $CheckPython.Checked = $false
 $Form.Controls.Add($CheckPython)
 
 $CheckRazerSynapse = New-Object System.Windows.Forms.checkbox
-$CheckRazerSynapse.Location = New-Object System.Drawing.Size(30, 390)
+$CheckRazerSynapse.Location = New-Object System.Drawing.Size(30, 370)
 $CheckRazerSynapse.Size = New-Object System.Drawing.Size(250, 20)
 $CheckRazerSynapse.Text = 'Razer Synapse'
 $CheckRazerSynapse.Checked = $false
 $Form.Controls.Add($CheckRazerSynapse)
 
 $CheckSteam = New-Object System.Windows.Forms.checkbox
-$CheckSteam.Location = New-Object System.Drawing.Size(30, 410)
+$CheckSteam.Location = New-Object System.Drawing.Size(30, 390)
 $CheckSteam.Size = New-Object System.Drawing.Size(250, 20)
 $CheckSteam.Text = 'Steam'
 $CheckSteam.Checked = $false
 $Form.Controls.Add($CheckSteam)
 
 $CheckTelegram = New-Object System.Windows.Forms.checkbox
-$CheckTelegram.Location = New-Object System.Drawing.Size(30, 430)
+$CheckTelegram.Location = New-Object System.Drawing.Size(30, 410)
 $CheckTelegram.Size = New-Object System.Drawing.Size(250, 20)
 $CheckTelegram.Text = 'Telegram'
 $CheckTelegram.Checked = $false
 $Form.Controls.Add($CheckTelegram)
 
 $CheckVisualStudioCode = New-Object System.Windows.Forms.checkbox
-$CheckVisualStudioCode.Location = New-Object System.Drawing.Size(30, 450)
+$CheckVisualStudioCode.Location = New-Object System.Drawing.Size(30, 430)
 $CheckVisualStudioCode.Size = New-Object System.Drawing.Size(250, 20)
 $CheckVisualStudioCode.Text = 'Visual Studio Code'
 $CheckVisualStudioCode.Checked = $false
 $Form.Controls.Add($CheckVisualStudioCode)
 
 $Checkmpv = New-Object System.Windows.Forms.checkbox
-$Checkmpv.Location = New-Object System.Drawing.Size(30, 470)
+$Checkmpv.Location = New-Object System.Drawing.Size(30, 450)
 $Checkmpv.Size = New-Object System.Drawing.Size(250, 20)
 $Checkmpv.Text = 'mpv'
 $Checkmpv.Checked = $false
 $Form.Controls.Add($Checkmpv)
 
 $CheckqBittorrent = New-Object System.Windows.Forms.checkbox
-$CheckqBittorrent.Location = New-Object System.Drawing.Size(30, 490)
+$CheckqBittorrent.Location = New-Object System.Drawing.Size(30, 470)
 $CheckqBittorrent.Size = New-Object System.Drawing.Size(250, 20)
 $CheckqBittorrent.Text = 'qBittorrent'
 $CheckqBittorrent.Checked = $false
 $Form.Controls.Add($CheckqBittorrent)
 
 $CheckUninstallEdge = New-Object System.Windows.Forms.checkbox
-$CheckUninstallEdge.Location = New-Object System.Drawing.Size(30, 510)
+$CheckUninstallEdge.Location = New-Object System.Drawing.Size(30, 490)
 $CheckUninstallEdge.Size = New-Object System.Drawing.Size(250, 20)
 $CheckUninstallEdge.Text = 'Uninstall Edge (Not Recommended)'
 $CheckUninstallEdge.Checked = $false
