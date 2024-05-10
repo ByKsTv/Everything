@@ -45,7 +45,7 @@ if ((Test-Path -LiteralPath "$env:ProgramFiles\Mozilla Firefox") -eq $true) {
     [System.Windows.Forms.SendKeys]::SendWait('s')
 }
 $Downloads = (New-Object -ComObject Shell.Application).NameSpace('shell:Downloads').Self.Path
-$PlexMediaServerPath = Join-Path $Downloads 'PlexMediaServer-*.exe'
+$PlexMediaServerPath = Join-Path $Downloads 'PlexMediaServer*.exe'
 While (!(Test-Path $PlexMediaServerPath -ErrorAction SilentlyContinue)) {
 }
 do {
