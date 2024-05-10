@@ -11,11 +11,11 @@ Output = Tree
 Donated = 1
 '
 if (!(Test-Path -Path $env:APPDATA\MediaInfo)) {
-	Write-Host 'APPDATA > Roaming > MediaInfo' -ForegroundColor green -BackgroundColor black
+	Write-Host 'MediaInfo > APPDATA > Roaming > MediaInfo' -ForegroundColor green -BackgroundColor black
 	New-Item -Path $env:APPDATA\MediaInfo -Value MediaInfo -ItemType Directory
 }
 if (!(Test-Path -Path $env:APPDATA\MediaInfo\Plugin)) {
-	Write-Host 'APPDATA > Roaming > MediaInfo > Plugin' -ForegroundColor green -BackgroundColor black
+	Write-Host 'MediaInfo > APPDATA > Roaming > MediaInfo > Plugin' -ForegroundColor green -BackgroundColor black
 	New-Item -Path $env:APPDATA\MediaInfo\Plugin -Value Plugin -ItemType Directory
 }
 Set-Content -Path $env:APPDATA\MediaInfo\Plugin\MediaInfo.cfg -Value $MediaInfoSetting -Force
