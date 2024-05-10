@@ -55,9 +55,7 @@ While (!(Test-Path $env:ProgramFiles\mpv\installer\mpv-install.bat -ErrorAction 
 do {
     $dirStats = Get-Item $env:ProgramFiles\mpv\installer\mpv-install.bat | Measure-Object -Sum Length
 } 
-until( ($dirStats.Sum -ne 0) )
-Write-Host 'mpv > test3' -ForegroundColor green -BackgroundColor black
-Start-Sleep -Milliseconds 2000
+until( ($dirStats.Sum -eq 16984) )
 Write-Host 'mpv > Install' -ForegroundColor green -BackgroundColor black
 Start-Process -FilePath $env:ProgramFiles\mpv\installer\mpv-install.bat -ArgumentList '/u'
 Write-Host 'mpv > mpv.conf' -ForegroundColor green -BackgroundColor black
