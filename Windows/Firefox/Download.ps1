@@ -5,8 +5,8 @@ if ((Test-Path -LiteralPath "$env:ProgramFiles\Mozilla Firefox") -ne $true) {
     Start-Process $env:TEMP\firefox.exe -ArgumentList '/S' -Wait
     Start-Process "$env:ProgramFiles\Mozilla Firefox\firefox.exe"
     while (($null -eq (Get-Process -Name 'firefox' -ErrorAction SilentlyContinue))) {
-        Start-Sleep -Milliseconds 5000
     }
+    Start-Sleep -Milliseconds 1000
     Add-Type @'
     using System;
     using System.Runtime.InteropServices;

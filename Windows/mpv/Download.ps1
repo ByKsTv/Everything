@@ -42,8 +42,8 @@ if (!($MPV_Updater_Exists)) {
 }
 Start-ScheduledTask -TaskName $MPV_Updater
 while (($null -eq (Get-Process -Name 'cmd' -ErrorAction SilentlyContinue))) {
-    Start-Sleep -Milliseconds 1000
 }
+Start-Sleep -Milliseconds 1000
 Add-Type -AssemblyName System.Windows.Forms
 [System.Windows.Forms.SendKeys]::SendWait('y')
 [System.Windows.Forms.SendKeys]::SendWait('y')
