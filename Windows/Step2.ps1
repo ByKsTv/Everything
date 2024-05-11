@@ -15,10 +15,19 @@ $NextStep_Parameters = @{
 }
 Register-ScheduledTask @NextStep_Parameters -Force
 Write-Host 'NuGet > Uninstall' -ForegroundColor green -BackgroundColor black
-icacls 'C:\Program Files\PackageManagement' /grant Users:F
-Remove-Item -Path ('C:\Program Files\PackageManagement') -Force -Recurse
-Remove-Item -Path ("$env:LOCALAPPDATA\PackageManagement") -Force -Recurse
-Remove-Item -Path ("$env:APPDATA\NuGet") -Force -Recurse
+if ((Test-Path -Path "$env:ProgramFiles\PackageManagement")) {
+    Write-Host "NuGet > Delete $env:ProgramFiles\PackageManagement" -ForegroundColor green -BackgroundColor black
+    icacls "$env:ProgramFiles\PackageManagement" /grant Users:F
+    Remove-Item -Path ("$env:ProgramFiles\PackageManagement") -Force -Recurse
+}
+if ((Test-Path -Path "$env:LOCALAPPDATA\PackageManagement")) {
+    Write-Host "NuGet > Delete $env:LOCALAPPDATA\PackageManagement" -ForegroundColor green -BackgroundColor black
+    Remove-Item -Path ("$env:LOCALAPPDATA\PackageManagement") -Force -Recurse
+}
+if ((Test-Path -Path "$env:APPDATA\PackageManagement")) {
+    Write-Host "NuGet > Delete $env:APPDATA\PackageManagement" -ForegroundColor green -BackgroundColor black
+    Remove-Item -Path ("$env:APPDATA\PackageManagement") -Force -Recurse
+}
 Write-Host 'PSWindowsUpdate > Uninstall' -ForegroundColor green -BackgroundColor black
 Uninstall-Module PSWindowsUpdate -Force
 Write-Host 'Settings > Update & Security > Activation' -ForegroundColor green -BackgroundColor black
