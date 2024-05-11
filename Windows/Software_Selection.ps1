@@ -93,6 +93,13 @@ $CheckNVCleanstall.Text = 'NVCleanstall'
 $CheckNVCleanstall.Checked = $false
 $Form.Controls.Add($CheckNVCleanstall)
 
+If ((Get-WmiObject Win32_VideoController).Name -like '*NVIDIA*') {
+    $CheckNVCleanstall.Text += ' (Compatible GPU)'
+}
+If ((Get-WmiObject Win32_VideoController).Name -notlike '*NVIDIA*') {
+    $CheckNVCleanstall.Text += ' (Incompatible GPU)'
+}
+
 $CheckNordVPN = New-Object System.Windows.Forms.checkbox
 $CheckNordVPN.Location = New-Object System.Drawing.Size(30, 270)
 $CheckNordVPN.Size = New-Object System.Drawing.Size(250, 20)

@@ -382,3 +382,10 @@ if ($WakeOnLanAnswer -eq 'No') {
 		Set-NetAdapterAdvancedProperty -DisplayName 'Shutdown Wake Up' -DisplayValue 'Disabled'
 	}
 }
+Write-Host 'Wait until networking is available' -ForegroundColor green -BackgroundColor black
+# https://gist.github.com/larsks/4011808
+while (1) {
+	if ( ((Get-WmiObject -Class Win32_NetworkAdapterConfiguration -Filter DHCPEnabled=TRUE | Where-Object { $_.DefaultIPGateway -ne $null }) | Measure-Object).count -gt 0 ) {
+		break
+	}
+}
