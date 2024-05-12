@@ -6,12 +6,12 @@ $FormSoftwareSelection.width = 500
 $FormSoftwareSelection.height = 700
 $FormSoftwareSelection.Text = 'Software Selection'
 
-$FontSoftwareSelection = New-Object System.Drawing.Font('Tahoma', 10)
+$FontSoftwareSelection = New-Object System.Drawing.Font("Tahoma",13,[System.Drawing.FontStyle]::Regular,[System.Drawing.GraphicsUnit]::Pixel)
 $FormSoftwareSelection.Font = $FontSoftwareSelection
 
 $Check7Zip = New-Object System.Windows.Forms.checkbox
 $Check7Zip.Location = New-Object System.Drawing.Size(30, 30)
-$Check7Zip.Size = New-Object System.Drawing.Size(250, 20)
+$Check7Zip.Size = New-Object System.Drawing.Size(300, 20)
 $Check7Zip.Text = '7-Zip'
 $Check7Zip.Checked = $false
 $FormSoftwareSelection.Controls.Add($Check7Zip)
@@ -23,7 +23,7 @@ if ((Test-Path -Path $env:ProgramFiles\7-Zip)) {
 
 $CheckAnyDesk = New-Object System.Windows.Forms.checkbox
 $CheckAnyDesk.Location = New-Object System.Drawing.Size(30, 50)
-$CheckAnyDesk.Size = New-Object System.Drawing.Size(250, 20)
+$CheckAnyDesk.Size = New-Object System.Drawing.Size(300, 20)
 $CheckAnyDesk.Text = 'AnyDesk'
 $CheckAnyDesk.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckAnyDesk)
@@ -35,7 +35,7 @@ if ((Test-Path -Path ${env:ProgramFiles(x86)}\AnyDesk)) {
 
 $CheckBattleNet = New-Object System.Windows.Forms.checkbox
 $CheckBattleNet.Location = New-Object System.Drawing.Size(30, 70)
-$CheckBattleNet.Size = New-Object System.Drawing.Size(250, 20)
+$CheckBattleNet.Size = New-Object System.Drawing.Size(300, 20)
 $CheckBattleNet.Text = 'Battle.net'
 $CheckBattleNet.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckBattleNet)
@@ -48,7 +48,7 @@ if ((Test-Path -Path ${env:ProgramFiles(x86)}\Battle.net)) {
 
 $CheckCrystalDiskInfo = New-Object System.Windows.Forms.checkbox
 $CheckCrystalDiskInfo.Location = New-Object System.Drawing.Size(30, 90)
-$CheckCrystalDiskInfo.Size = New-Object System.Drawing.Size(250, 20)
+$CheckCrystalDiskInfo.Size = New-Object System.Drawing.Size(300, 20)
 $CheckCrystalDiskInfo.Text = 'CrystalDiskInfo'
 $CheckCrystalDiskInfo.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckCrystalDiskInfo)
@@ -60,7 +60,7 @@ if ((Test-Path -Path $env:ProgramFiles\CrystalDiskInfo)) {
 
 $CheckCrystalDiskMark = New-Object System.Windows.Forms.checkbox
 $CheckCrystalDiskMark.Location = New-Object System.Drawing.Size(30, 110)
-$CheckCrystalDiskMark.Size = New-Object System.Drawing.Size(250, 20)
+$CheckCrystalDiskMark.Size = New-Object System.Drawing.Size(300, 20)
 $CheckCrystalDiskMark.Text = 'CrystalDiskMark'
 $CheckCrystalDiskMark.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckCrystalDiskMark)
@@ -72,7 +72,7 @@ if ((Test-Path -Path $env:ProgramFiles\CrystalDiskMark8)) {
 
 $CheckDiscord = New-Object System.Windows.Forms.checkbox
 $CheckDiscord.Location = New-Object System.Drawing.Size(30, 130)
-$CheckDiscord.Size = New-Object System.Drawing.Size(250, 20)
+$CheckDiscord.Size = New-Object System.Drawing.Size(300, 20)
 $CheckDiscord.Text = 'Discord'
 $CheckDiscord.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckDiscord)
@@ -84,7 +84,7 @@ if ((Test-Path -Path $env:LOCALAPPDATA\Discord)) {
 
 $CheckDisplayDriverUninstaller = New-Object System.Windows.Forms.checkbox
 $CheckDisplayDriverUninstaller.Location = New-Object System.Drawing.Size(30, 150)
-$CheckDisplayDriverUninstaller.Size = New-Object System.Drawing.Size(250, 20)
+$CheckDisplayDriverUninstaller.Size = New-Object System.Drawing.Size(300, 20)
 $CheckDisplayDriverUninstaller.Text = 'Display Driver Uninstaller'
 $CheckDisplayDriverUninstaller.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckDisplayDriverUninstaller)
@@ -96,7 +96,7 @@ if ((Test-Path -Path "${env:ProgramFiles(x86)}\Display Driver Uninstaller")) {
 
 $CheckHyperXNGENUITY = New-Object System.Windows.Forms.checkbox
 $CheckHyperXNGENUITY.Location = New-Object System.Drawing.Size(30, 170)
-$CheckHyperXNGENUITY.Size = New-Object System.Drawing.Size(250, 20)
+$CheckHyperXNGENUITY.Size = New-Object System.Drawing.Size(300, 20)
 $CheckHyperXNGENUITY.Text = 'HyperX NGENUITY'
 $CheckHyperXNGENUITY.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckHyperXNGENUITY)
@@ -109,7 +109,7 @@ if ((Get-ChildItem $env:ProgramFiles\WindowsApps) -like '*NGENUITY*') {
 
 $CheckJellyfin = New-Object System.Windows.Forms.checkbox
 $CheckJellyfin.Location = New-Object System.Drawing.Size(30, 190)
-$CheckJellyfin.Size = New-Object System.Drawing.Size(250, 20)
+$CheckJellyfin.Size = New-Object System.Drawing.Size(300, 20)
 $CheckJellyfin.Text = 'Jellyfin'
 $CheckJellyfin.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckJellyfin)
@@ -121,7 +121,7 @@ if ((Test-Path -Path $env:ProgramFiles\Jellyfin)) {
 
 $CheckLogitechGHUB = New-Object System.Windows.Forms.checkbox
 $CheckLogitechGHUB.Location = New-Object System.Drawing.Size(30, 210)
-$CheckLogitechGHUB.Size = New-Object System.Drawing.Size(250, 20)
+$CheckLogitechGHUB.Size = New-Object System.Drawing.Size(300, 20)
 $CheckLogitechGHUB.Text = 'Logitech G HUB'
 $CheckLogitechGHUB.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckLogitechGHUB)
@@ -133,7 +133,7 @@ if ((Test-Path -Path $env:ProgramFiles\LGHUB)) {
 
 $CheckMediaInfo = New-Object System.Windows.Forms.checkbox
 $CheckMediaInfo.Location = New-Object System.Drawing.Size(30, 230)
-$CheckMediaInfo.Size = New-Object System.Drawing.Size(250, 20)
+$CheckMediaInfo.Size = New-Object System.Drawing.Size(300, 20)
 $CheckMediaInfo.Text = 'MediaInfo'
 $CheckMediaInfo.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckMediaInfo)
@@ -145,7 +145,7 @@ if ((Test-Path -Path $env:ProgramFiles\MediaInfo)) {
 
 $CheckNVCleanstall = New-Object System.Windows.Forms.checkbox
 $CheckNVCleanstall.Location = New-Object System.Drawing.Size(30, 250)
-$CheckNVCleanstall.Size = New-Object System.Drawing.Size(250, 20)
+$CheckNVCleanstall.Size = New-Object System.Drawing.Size(300, 20)
 $CheckNVCleanstall.Text = 'NVCleanstall'
 $CheckNVCleanstall.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckNVCleanstall)
@@ -165,7 +165,7 @@ if ((Test-Path -Path $env:ProgramFiles\NVCleanstall)) {
 
 $CheckNordVPN = New-Object System.Windows.Forms.checkbox
 $CheckNordVPN.Location = New-Object System.Drawing.Size(30, 270)
-$CheckNordVPN.Size = New-Object System.Drawing.Size(250, 20)
+$CheckNordVPN.Size = New-Object System.Drawing.Size(300, 20)
 $CheckNordVPN.Text = 'NordVPN'
 $CheckNordVPN.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckNordVPN)
@@ -177,7 +177,7 @@ if ((Test-Path -Path $env:ProgramFiles\NordVPN)) {
 
 $CheckNotepadPlusPlus = New-Object System.Windows.Forms.checkbox
 $CheckNotepadPlusPlus.Location = New-Object System.Drawing.Size(30, 290)
-$CheckNotepadPlusPlus.Size = New-Object System.Drawing.Size(250, 20)
+$CheckNotepadPlusPlus.Size = New-Object System.Drawing.Size(300, 20)
 $CheckNotepadPlusPlus.Text = 'Notepad++'
 $CheckNotepadPlusPlus.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckNotepadPlusPlus)
@@ -189,7 +189,7 @@ if ((Test-Path -Path $env:ProgramFiles\Notepad++)) {
 
 $CheckOffice = New-Object System.Windows.Forms.checkbox
 $CheckOffice.Location = New-Object System.Drawing.Size(30, 310)
-$CheckOffice.Size = New-Object System.Drawing.Size(250, 20)
+$CheckOffice.Size = New-Object System.Drawing.Size(300, 20)
 $CheckOffice.Text = 'Office'
 $CheckOffice.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckOffice)
@@ -201,7 +201,7 @@ if ((Test-Path -Path "$env:ProgramFiles\Microsoft Office")) {
 
 $CheckPlex = New-Object System.Windows.Forms.checkbox
 $CheckPlex.Location = New-Object System.Drawing.Size(30, 330)
-$CheckPlex.Size = New-Object System.Drawing.Size(250, 20)
+$CheckPlex.Size = New-Object System.Drawing.Size(300, 20)
 $CheckPlex.Text = 'Plex'
 $CheckPlex.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckPlex)
@@ -213,7 +213,7 @@ if ((Test-Path -Path $env:ProgramFiles\Plex)) {
 
 $CheckPuTTY = New-Object System.Windows.Forms.checkbox
 $CheckPuTTY.Location = New-Object System.Drawing.Size(30, 350)
-$CheckPuTTY.Size = New-Object System.Drawing.Size(250, 20)
+$CheckPuTTY.Size = New-Object System.Drawing.Size(300, 20)
 $CheckPuTTY.Text = 'PuTTY'
 $CheckPuTTY.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckPuTTY)
@@ -225,7 +225,7 @@ if ((Test-Path -Path $env:ProgramFiles\PuTTY)) {
 
 $CheckPython = New-Object System.Windows.Forms.checkbox
 $CheckPython.Location = New-Object System.Drawing.Size(30, 370)
-$CheckPython.Size = New-Object System.Drawing.Size(250, 20)
+$CheckPython.Size = New-Object System.Drawing.Size(300, 20)
 $CheckPython.Text = 'Python'
 $CheckPython.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckPython)
@@ -237,7 +237,7 @@ if ((Test-Path -Path $env:LOCALAPPDATA\Programs\Python)) {
 
 $CheckRazerSynapse = New-Object System.Windows.Forms.checkbox
 $CheckRazerSynapse.Location = New-Object System.Drawing.Size(30, 390)
-$CheckRazerSynapse.Size = New-Object System.Drawing.Size(250, 20)
+$CheckRazerSynapse.Size = New-Object System.Drawing.Size(300, 20)
 $CheckRazerSynapse.Text = 'Razer Synapse'
 $CheckRazerSynapse.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckRazerSynapse)
@@ -249,7 +249,7 @@ if ((Test-Path -Path ${env:ProgramFiles(x86)}\Razer)) {
 
 $CheckSteam = New-Object System.Windows.Forms.checkbox
 $CheckSteam.Location = New-Object System.Drawing.Size(30, 410)
-$CheckSteam.Size = New-Object System.Drawing.Size(250, 20)
+$CheckSteam.Size = New-Object System.Drawing.Size(300, 20)
 $CheckSteam.Text = 'Steam'
 $CheckSteam.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckSteam)
@@ -261,7 +261,7 @@ if ((Test-Path -Path ${env:ProgramFiles(x86)}\Steam)) {
 
 $CheckTelegram = New-Object System.Windows.Forms.checkbox
 $CheckTelegram.Location = New-Object System.Drawing.Size(30, 430)
-$CheckTelegram.Size = New-Object System.Drawing.Size(250, 20)
+$CheckTelegram.Size = New-Object System.Drawing.Size(300, 20)
 $CheckTelegram.Text = 'Telegram'
 $CheckTelegram.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckTelegram)
@@ -273,7 +273,7 @@ if ((Test-Path -Path "$env:APPDATA\Telegram Desktop")) {
 
 $CheckVisualStudioCode = New-Object System.Windows.Forms.checkbox
 $CheckVisualStudioCode.Location = New-Object System.Drawing.Size(30, 450)
-$CheckVisualStudioCode.Size = New-Object System.Drawing.Size(250, 20)
+$CheckVisualStudioCode.Size = New-Object System.Drawing.Size(300, 20)
 $CheckVisualStudioCode.Text = 'Visual Studio Code'
 $CheckVisualStudioCode.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckVisualStudioCode)
@@ -285,7 +285,7 @@ if ((Test-Path -Path "$env:LOCALAPPDATA\Programs\Microsoft VS Code")) {
 
 $Checkmpv = New-Object System.Windows.Forms.checkbox
 $Checkmpv.Location = New-Object System.Drawing.Size(30, 470)
-$Checkmpv.Size = New-Object System.Drawing.Size(250, 20)
+$Checkmpv.Size = New-Object System.Drawing.Size(300, 20)
 $Checkmpv.Text = 'mpv'
 $Checkmpv.Checked = $false
 $FormSoftwareSelection.Controls.Add($Checkmpv)
@@ -297,7 +297,7 @@ if ((Test-Path -Path $env:ProgramFiles\mpv)) {
 
 $CheckqBittorrent = New-Object System.Windows.Forms.checkbox
 $CheckqBittorrent.Location = New-Object System.Drawing.Size(30, 490)
-$CheckqBittorrent.Size = New-Object System.Drawing.Size(250, 20)
+$CheckqBittorrent.Size = New-Object System.Drawing.Size(300, 20)
 $CheckqBittorrent.Text = 'qBittorrent'
 $CheckqBittorrent.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckqBittorrent)
@@ -309,7 +309,7 @@ if ((Test-Path -Path $env:ProgramFiles\qBittorrent)) {
 
 $CheckUninstallEdge = New-Object System.Windows.Forms.checkbox
 $CheckUninstallEdge.Location = New-Object System.Drawing.Size(30, 510)
-$CheckUninstallEdge.Size = New-Object System.Drawing.Size(250, 20)
+$CheckUninstallEdge.Size = New-Object System.Drawing.Size(300, 20)
 $CheckUninstallEdge.Text = 'Uninstall Edge (Not Recommended)'
 $CheckUninstallEdge.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckUninstallEdge)
