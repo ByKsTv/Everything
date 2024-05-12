@@ -17,7 +17,7 @@ $Check7Zip.Checked = $false
 $FormSoftwareSelection.Controls.Add($Check7Zip)
 
 if ((Test-Path -Path $env:ProgramFiles\7-Zip)) {
-    $Check7Zip.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#009600')
+    $Check7Zip.Enabled = $false
     $Check7Zip.Text += ' (Installed)'
 }
 
@@ -29,7 +29,7 @@ $CheckAnyDesk.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckAnyDesk)
 
 if ((Test-Path -Path ${env:ProgramFiles(x86)}\AnyDesk)) {
-    $CheckAnyDesk.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#009600')
+    $CheckAnyDesk.Enabled = $false
     $CheckAnyDesk.Text += ' (Installed)'
 }
 
@@ -41,7 +41,7 @@ $CheckBattleNet.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckBattleNet)
 
 if ((Test-Path -Path ${env:ProgramFiles(x86)}\Battle.net)) {
-    $CheckBattleNet.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#009600')
+    $CheckBattleNet.Enabled = $false
     $CheckBattleNet.Text += ' (Installed)'
 
 }
@@ -54,7 +54,7 @@ $CheckCrystalDiskInfo.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckCrystalDiskInfo)
 
 if ((Test-Path -Path $env:ProgramFiles\CrystalDiskInfo)) {
-    $CheckCrystalDiskInfo.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#009600')
+    $CheckCrystalDiskInfo.Enabled = $false
     $CheckCrystalDiskInfo.Text += ' (Installed)'
 }
 
@@ -66,7 +66,7 @@ $CheckCrystalDiskMark.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckCrystalDiskMark)
 
 if ((Test-Path -Path $env:ProgramFiles\CrystalDiskMark8)) {
-    $CheckCrystalDiskMark.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#009600')
+    $CheckCrystalDiskMark.Enabled = $false
     $CheckCrystalDiskMark.Text += ' (Installed)'
 }
 
@@ -78,7 +78,7 @@ $CheckDiscord.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckDiscord)
 
 if ((Test-Path -Path $env:LOCALAPPDATA\Discord)) {
-    $CheckDiscord.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#009600')
+    $CheckDiscord.Enabled = $false
     $CheckDiscord.Text += ' (Installed)'
 }
 
@@ -90,7 +90,7 @@ $CheckDisplayDriverUninstaller.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckDisplayDriverUninstaller)
 
 if ((Test-Path -Path "${env:ProgramFiles(x86)}\Display Driver Uninstaller")) {
-    $CheckDisplayDriverUninstaller.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#009600')
+    $CheckDisplayDriverUninstaller.Enabled = $false
     $CheckDisplayDriverUninstaller.Text += ' (Installed)'
 }
 
@@ -102,7 +102,7 @@ $CheckHyperXNGENUITY.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckHyperXNGENUITY)
 
 if ((Get-ChildItem $env:ProgramFiles\WindowsApps) -like '*NGENUITY*') {
-    $CheckHyperXNGENUITY.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#009600')
+    $CheckHyperXNGENUITY.Enabled = $false
     $CheckHyperXNGENUITY.Text += ' (Installed)'
 }
 
@@ -115,7 +115,7 @@ $CheckJellyfin.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckJellyfin)
 
 if ((Test-Path -Path $env:ProgramFiles\Jellyfin)) {
-    $CheckJellyfin.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#009600')
+    $CheckJellyfin.Enabled = $false
     $CheckJellyfin.Text += ' (Installed)'
 }
 
@@ -127,7 +127,7 @@ $CheckLogitechGHUB.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckLogitechGHUB)
 
 if ((Test-Path -Path $env:ProgramFiles\LGHUB)) {
-    $CheckLogitechGHUB.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#009600')
+    $CheckLogitechGHUB.Enabled = $false
     $CheckLogitechGHUB.Text += ' (Installed)'
 }
 
@@ -139,7 +139,7 @@ $CheckMediaInfo.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckMediaInfo)
 
 if ((Test-Path -Path $env:ProgramFiles\MediaInfo)) {
-    $CheckMediaInfo.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#009600')
+    $CheckMediaInfo.Enabled = $false
     $CheckMediaInfo.Text += ' (Installed)'
 }
 
@@ -155,12 +155,11 @@ If ((Get-WmiObject Win32_VideoController).Name -like '*NVIDIA*') {
 }
 If ((Get-WmiObject Win32_VideoController).Name -notlike '*NVIDIA*') {
     $CheckNVCleanstall.Text += ' (Incompatible GPU)'
-    #$CheckNVCleanstall.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#ff0000')
     $CheckNVCleanstall.Enabled = $false
 }
 
 if ((Test-Path -Path $env:ProgramFiles\NVCleanstall)) {
-    $CheckNVCleanstall.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#009600')
+    $CheckNVCleanstall.Enabled = $false
     $CheckNVCleanstall.Text += ' (Installed)'
 }
 
@@ -172,7 +171,7 @@ $CheckNordVPN.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckNordVPN)
 
 if ((Test-Path -Path $env:ProgramFiles\NordVPN)) {
-    $CheckNordVPN.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#009600')
+    $CheckNordVPN.Enabled = $false
     $CheckNordVPN.Text += ' (Installed)'
 }
 
@@ -184,7 +183,7 @@ $CheckNotepadPlusPlus.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckNotepadPlusPlus)
 
 if ((Test-Path -Path $env:ProgramFiles\Notepad++)) {
-    $CheckNotepadPlusPlus.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#009600')
+    $CheckNotepadPlusPlus.Enabled = $false
     $CheckNotepadPlusPlus.Text += ' (Installed)'
 }
 
@@ -196,7 +195,7 @@ $CheckOffice.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckOffice)
 
 if ((Test-Path -Path "$env:ProgramFiles\Microsoft Office")) {
-    $CheckOffice.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#009600')
+    $CheckOffice.Enabled = $false
     $CheckOffice.Text += ' (Installed)'
 }
 
@@ -208,7 +207,7 @@ $CheckPlex.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckPlex)
 
 if ((Test-Path -Path $env:ProgramFiles\Plex)) {
-    $CheckPlex.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#009600')
+    $CheckPlex.Enabled = $false
     $CheckPlex.Text += ' (Installed)'
 }
 
@@ -220,7 +219,7 @@ $CheckPuTTY.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckPuTTY)
 
 if ((Test-Path -Path $env:ProgramFiles\PuTTY)) {
-    $CheckPuTTY.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#009600')
+    $CheckPuTTY.Enabled = $false
     $CheckPuTTY.Text += ' (Installed)'
 }
 
@@ -232,7 +231,7 @@ $CheckPython.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckPython)
 
 if ((Test-Path -Path $env:LOCALAPPDATA\Programs\Python)) {
-    $CheckPython.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#009600')
+    $CheckPython.Enabled = $false
     $CheckPython.Text += ' (Installed)'
 }
 
@@ -244,7 +243,7 @@ $CheckRazerSynapse.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckRazerSynapse)
 
 if ((Test-Path -Path ${env:ProgramFiles(x86)}\Razer)) {
-    $CheckRazerSynapse.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#009600')
+    $CheckRazerSynapse.Enabled = $false
     $CheckRazerSynapse.Text += ' (Installed)'
 }
 
@@ -256,7 +255,7 @@ $CheckSteam.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckSteam)
 
 if ((Test-Path -Path ${env:ProgramFiles(x86)}\Steam)) {
-    $CheckSteam.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#009600')
+    $CheckSteam.Enabled = $false
     $CheckSteam.Text += ' (Installed)'
 }
 
@@ -268,7 +267,7 @@ $CheckTelegram.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckTelegram)
 
 if ((Test-Path -Path "$env:APPDATA\Telegram Desktop")) {
-    $CheckTelegram.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#009600')
+    $CheckTelegram.Enabled = $false
     $CheckTelegram.Text += ' (Installed)'
 }
 
@@ -280,7 +279,7 @@ $CheckVisualStudioCode.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckVisualStudioCode)
 
 if ((Test-Path -Path "$env:LOCALAPPDATA\Programs\Microsoft VS Code")) {
-    $CheckVisualStudioCode.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#009600')
+    $CheckVisualStudioCode.Enabled = $false
     $CheckVisualStudioCode.Text += ' (Installed)'
 }
 
@@ -292,7 +291,7 @@ $Checkmpv.Checked = $false
 $FormSoftwareSelection.Controls.Add($Checkmpv)
 
 if ((Test-Path -Path $env:ProgramFiles\mpv)) {
-    $Checkmpv.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#009600')
+    $Checkmpv.Enabled = $false
     $Checkmpv.Text += ' (Installed)'
 }
 
@@ -304,7 +303,7 @@ $CheckqBittorrent.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckqBittorrent)
 
 if ((Test-Path -Path $env:ProgramFiles\qBittorrent)) {
-    $CheckqBittorrent.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#009600')
+    $CheckqBittorrent.Enabled = $false
     $CheckqBittorrent.Text += ' (Installed)'
 }
 
@@ -316,7 +315,7 @@ $CheckUninstallEdge.Checked = $false
 $FormSoftwareSelection.Controls.Add($CheckUninstallEdge)
 
 if (!(Test-Path -Path ${env:ProgramFiles(x86)}\Microsoft\Edge\Application\msedge.exe)) {
-    $CheckUninstallEdge.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#009600')
+    $CheckUninstallEdge.Enabled = $false
     $CheckUninstallEdge.Text += ' (Uninstalled)'
 }
 
