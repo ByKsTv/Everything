@@ -155,7 +155,8 @@ If ((Get-WmiObject Win32_VideoController).Name -like '*NVIDIA*') {
 }
 If ((Get-WmiObject Win32_VideoController).Name -notlike '*NVIDIA*') {
     $CheckNVCleanstall.Text += ' (Incompatible GPU)'
-    $CheckNVCleanstall.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#ff0000')
+    #$CheckNVCleanstall.ForeColor = [System.Drawing.ColorTranslator]::FromHtml('#ff0000')
+    $CheckNVCleanstall.Enabled = $false
 }
 
 if ((Test-Path -Path $env:ProgramFiles\NVCleanstall)) {
