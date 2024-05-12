@@ -62,6 +62,7 @@ Add-Type -AssemblyName System.Windows.Forms
 [System.Windows.Forms.SendKeys]::SendWait('y')
 [System.Windows.Forms.SendKeys]::SendWait('y')
 [System.Windows.Forms.SendKeys]::SendWait('1')
+[System.Windows.Forms.SendKeys]::SendWait('1')
 Write-Host 'mpv > Wait for finish updating' -ForegroundColor green -BackgroundColor black
 while (!($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'cmd.exe' } -ErrorAction SilentlyContinue))) {
 }
