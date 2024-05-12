@@ -109,7 +109,7 @@ New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'Disa
 Write-Host 'Jitbit Macro Recorder > Settings > Playback settings > Continuous reply > Infinite playback' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'NumberOfPlaybacks' -Value 0 -PropertyType DWord -Force
 Write-Host 'Jitbit Macro Recorder > Settings > Playback settings > Hide the topmost playing... bar > On' -ForegroundColor green -BackgroundColor black
-New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'HidePlayWnd' -Value 'True' -PropertyType String -Force
+New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'HidePlayWnd' -Value 'False' -PropertyType String -Force
 Write-Host 'Jitbit Macro Recorder > Settings > Keyboard shortcuts (hotkeys) > Play / Pause / Resume playback > F8' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'PausePlayKey' -Value 119 -PropertyType DWord -Force
 Write-Host 'Jitbit Macro Recorder > Settings > Keyboard shortcuts (hotkeys) > Abort playback > F9' -ForegroundColor green -BackgroundColor black
