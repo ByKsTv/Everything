@@ -108,7 +108,7 @@ if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Jitbit\Macro Recorder') -ne $true) {
 New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'DisableStartupScreen' -Value 'True' -PropertyType String -Force
 Write-Host 'Jitbit Macro Recorder > Settings > Playback settings > Continuous reply > Infinite playback' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'NumberOfPlaybacks' -Value 0 -PropertyType DWord -Force
-Write-Host 'Jitbit Macro Recorder > Settings > Playback settings > Hide the topmost playing... bar > On' -ForegroundColor green -BackgroundColor black
+Write-Host 'Jitbit Macro Recorder > Settings > Playback settings > Hide the topmost playing... bar > Off' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'HidePlayWnd' -Value 'False' -PropertyType String -Force
 Write-Host 'Jitbit Macro Recorder > Settings > General > Move the playback toolbar to the right > On' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'PlayRecFormsOnTheRight' -Value 'True' -PropertyType String -Force
