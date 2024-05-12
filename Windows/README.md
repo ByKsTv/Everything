@@ -6,7 +6,7 @@
 ## Backup
 
 > [!WARNING]
-> Backup everything including usernames, passwords, videos, photos, software, desktop layout, macros, mpv settings, firefox profile folder, app data, wallpaper engine, servers.
+> Backup everything including usernames, passwords, videos, photos, software, desktop layout, macros, mpv settings, firefox profile folder, app data.
 
 ## Download
 
@@ -89,7 +89,7 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 6. Set up print quality and print size.
 
 > [!NOTE]
-> HP Printer: Original Ink Cartridges.
+> HP Printer? Only use Original Ink Cartridges.
 
 ## Extra Software
 
