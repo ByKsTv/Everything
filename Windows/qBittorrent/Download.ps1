@@ -64,7 +64,7 @@ Enabled=false
 Accepted=true
 '
 if (!(Test-Path -Path $env:APPDATA\qBittorrent)) {
-	Write-Host 'APPDATA > Roaming > qBittorrent' -ForegroundColor green -BackgroundColor black
+	Write-Host 'qBittorrent > APPDATA > Roaming > qBittorrent' -ForegroundColor green -BackgroundColor black
 	New-Item -Path $env:APPDATA\qBittorrent -Value qBittorrent -ItemType Directory
 }
 Set-Content -Path $env:APPDATA\qBittorrent\qBittorrent.ini -Value $qBitSettings -Force
