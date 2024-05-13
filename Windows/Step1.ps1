@@ -1,3 +1,8 @@
+Write-Host 'Step1: Setting UI' -ForegroundColor green -BackgroundColor black
+$host.UI.RawUI.WindowTitle = 'Step1'
+$host.UI.RawUI.BackgroundColor = 'black'
+$Host.UI.RawUI.ForegroundColor = 'white' 
+
 Write-Host 'Step1: Task Scheduler: Initiating next step' -ForegroundColor green -BackgroundColor black
 $NextStep = 'Step2'
 (New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/$NextStep.ps1", "$env:TEMP\$NextStep.ps1")
