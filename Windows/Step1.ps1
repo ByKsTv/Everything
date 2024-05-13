@@ -2,8 +2,8 @@ Write-Host 'Step1: Setting UI' -ForegroundColor green -BackgroundColor black
 $host.UI.RawUI.WindowTitle = 'Step1'
 $host.UI.RawUI.BackgroundColor = 'black'
 $Host.UI.RawUI.ForegroundColor = 'white'
-Add-Type -AssemblyName System.Windows.Forms
-[System.Windows.Forms.SendKeys]::SendWait('%{ENTER}')
+Add-Type -MemberDefinition '[DllImport("user32.dll")] public static extern bool ShowWindowAsync(IntPtr hWnd, int nCmdShow)' -name NativeMethods -namespace Win32
+[Win32.NativeMethods]::ShowWindowAsync((Get-Process PowerShell)[0].MainWindowHandle, 3)
 Clear-Host
 
 Write-Host 'Step1: Task Scheduler: Initiating next step' -ForegroundColor green -BackgroundColor black
