@@ -27,7 +27,7 @@ while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'chrom
 Start-Sleep -Milliseconds 1000
 
 Write-Host 'NVCleanstall: Setting foreground' -ForegroundColor green -BackgroundColor black
-(New-Object -ComObject WScript.Shell).AppActivate((Get-Process Chrome) -or (Get-Process firefox).MainWindowTitle)
+[SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'chrome' -or $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
 Start-Sleep -Milliseconds 1000
 
 Write-Host 'NVCleanstall: Starting browser console' -ForegroundColor green -BackgroundColor black

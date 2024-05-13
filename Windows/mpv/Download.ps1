@@ -55,9 +55,21 @@ Start-ScheduledTask -TaskName $MPV_Updater
 Write-Host "mpv: Waiting for 'updater.bat' to finish" -ForegroundColor green -BackgroundColor black
 while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'cmd.exe' } -ErrorAction SilentlyContinue))) {
 }
+Write-Host 'mpv: Downloading option to set foreground' -ForegroundColor green -BackgroundColor black
+if (-not ([System.Management.Automation.PSTypeName]'SFW').Type) {
+    Add-Type @'
+using System;
+using System.Runtime.InteropServices;
+public class SFW {
+    [DllImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    public static extern bool SetForegroundWindow(IntPtr hWnd);
+}
+'@
+}
 
 Write-Host 'mpv: Setting foreground' -ForegroundColor green -BackgroundColor black
-(New-Object -ComObject WScript.Shell).AppActivate((Get-Process cmd).MainWindowTitle)
+[SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'cmd.exe' }).MainWindowHandle)
 Start-Sleep -Milliseconds 1000
 
 Write-Host "mpv: Downloading 'mpv', 'yt-dlp' and 'ffmpeg'" -ForegroundColor green -BackgroundColor black
