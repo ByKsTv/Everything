@@ -1,10 +1,6 @@
 Write-Host 'Step3: Setting UI: Setting Title' -ForegroundColor green -BackgroundColor black
 $host.UI.RawUI.WindowTitle = 'Step3'
 
-Write-Host 'Step3: Setting UI: Setting Colors' -ForegroundColor green -BackgroundColor black
-$host.UI.RawUI.BackgroundColor = 'black'
-$Host.UI.RawUI.ForegroundColor = 'white'
-
 Write-Host 'Step3: Setting UI: Maximizing Window' -ForegroundColor green -BackgroundColor black
 $sig = '[DllImport("user32.dll")] public static extern bool ShowWindowAsync(IntPtr hWnd, int nCmdShow);'
 Add-Type -MemberDefinition $sig -Name NativeMethods -Namespace Win32
