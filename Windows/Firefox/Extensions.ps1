@@ -89,6 +89,7 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
     Start-Sleep -Milliseconds 1000
     
     Write-Host "Mozila Firefox Extensions: Installing 'AdsBypasser' to 'Tampermonkey'" -ForegroundColor green -BackgroundColor black
+    Add-Type -AssemblyName System.Windows.Forms
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
     
     Write-Host "Mozila Firefox Extensions: Downloading 'uBlock Origin' custom settings" -ForegroundColor green -BackgroundColor black

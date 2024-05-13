@@ -1,7 +1,9 @@
 Write-Host 'Step1: Setting UI' -ForegroundColor green -BackgroundColor black
 $host.UI.RawUI.WindowTitle = 'Step1'
 $host.UI.RawUI.BackgroundColor = 'black'
-$Host.UI.RawUI.ForegroundColor = 'white' 
+$Host.UI.RawUI.ForegroundColor = 'white'
+Add-Type -AssemblyName System.Windows.Forms
+[System.Windows.Forms.SendKeys]::SendWait('%{ENTER}')
 Clear-Host
 
 Write-Host 'Step1: Task Scheduler: Initiating next step' -ForegroundColor green -BackgroundColor black

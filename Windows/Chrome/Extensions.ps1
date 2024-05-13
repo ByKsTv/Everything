@@ -71,6 +71,7 @@ if ($InstalledSoftware -match 'Google Chrome') {
     Start-Sleep -Milliseconds 1000
 
     Write-Host "Google Chrome Extensions: Installing 'AdsBypasser' to 'Tampermonkey'" -ForegroundColor green -BackgroundColor black
+    Add-Type -AssemblyName System.Windows.Forms
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
 
     Write-Host "Google Chrome Extensions: Downloading 'uBlock Origin' custom settings" -ForegroundColor green -BackgroundColor black
