@@ -83,7 +83,6 @@ New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlo
 
 [void] [System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms')
 [void] [System.Reflection.Assembly]::LoadWithPartialName('System.Drawing')
-[void] [System.Windows.Forms.Application]::EnableVisualStyles()
 
 $Form_Step1 = New-Object System.Windows.Forms.Form
 $Form_Step1.width = 500
