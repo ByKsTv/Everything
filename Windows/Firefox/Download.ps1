@@ -7,10 +7,10 @@ Start-Process $env:TEMP\firefox.exe -ArgumentList '/S' -Wait
 Write-Host 'Mozila Firefox: Starting' -ForegroundColor green -BackgroundColor black
 Start-Process "$env:ProgramFiles\Mozilla Firefox\firefox.exe"
 
-Write-Host 'Mozila Firefox: Waiting for process' -ForegroundColor green -BackgroundColor black
-while (($null -eq (Get-Process -Name 'firefox' -ErrorAction SilentlyContinue))) {
+Write-Host 'Mozila Firefox: Waiting for browser' -ForegroundColor green -BackgroundColor black
+while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' } -ErrorAction SilentlyContinue))) {
 }
-Start-Sleep -Milliseconds 1000
+Start-Sleep -Milliseconds 10000
 
 Write-Host 'Mozila Firefox: Adding option to set foreground' -ForegroundColor green -BackgroundColor black
 if (-not ([System.Management.Automation.PSTypeName]'SFW').Type) {
