@@ -62,30 +62,17 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' } -ErrorAction SilentlyContinue))) {
         }
         Start-Sleep -Milliseconds 10000
-        
-        Write-Host "Mozila Firefox Extensions: Adding option to set foreground" -ForegroundColor green -BackgroundColor black
-        if (-not ([System.Management.Automation.PSTypeName]'SFW').Type) {
-            Add-Type @'
-        using System;
-        using System.Runtime.InteropServices;
-        public class SFW {
-            [DllImport("user32.dll")]
-            [return: MarshalAs(UnmanagedType.Bool)]
-            public static extern bool SetForegroundWindow(IntPtr hWnd);
-        }
-'@
-        }
     }
 
     Write-Host 'Mozila Firefox Extensions: Setting foreground' -ForegroundColor green -BackgroundColor black
-    [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
+    (New-Object -ComObject WScript.Shell).AppActivate((Get-Process firefox).MainWindowTitle)
 
     Write-Host "Mozila Firefox Extensions: Adding 'AdsBypasser' to 'Tampermonkey'" -ForegroundColor green -BackgroundColor black
     [System.Diagnostics.Process]::Start('firefox.exe', 'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js')
     Start-Sleep -Milliseconds 3000
 
     Write-Host 'Mozila Firefox Extensions: Setting foreground' -ForegroundColor green -BackgroundColor black
-    [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
+    (New-Object -ComObject WScript.Shell).AppActivate((Get-Process firefox).MainWindowTitle)
     Start-Sleep -Milliseconds 1000
     
     Write-Host "Mozila Firefox Extensions: Installing 'AdsBypasser' to 'Tampermonkey'" -ForegroundColor green -BackgroundColor black
@@ -102,10 +89,10 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
     Start-Sleep -Milliseconds 2000
 
     Write-Host 'Mozila Firefox Extensions: Setting foreground' -ForegroundColor green -BackgroundColor black
-    [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
+    (New-Object -ComObject WScript.Shell).AppActivate((Get-Process firefox).MainWindowTitle)
     Start-Sleep -Milliseconds 1000
 
-     Write-Host "Mozila Firefox Extensions: Starting 'Restore from file' on 'uBlock Origin' settings" -ForegroundColor green -BackgroundColor black
+    Write-Host "Mozila Firefox Extensions: Starting 'Restore from file' on 'uBlock Origin' settings" -ForegroundColor green -BackgroundColor black
     [System.Windows.Forms.SendKeys]::SendWait('+{TAB 2}')
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
     Start-Sleep -Milliseconds 1000
@@ -127,6 +114,6 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
     Start-Sleep -Milliseconds 1000
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
 
-    Write-Host "Mozila Firefox Extensions: Cleaning up" -ForegroundColor green -BackgroundColor black
+    Write-Host 'Mozila Firefox Extensions: Cleaning up' -ForegroundColor green -BackgroundColor black
     Remove-Item HKLM:\SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install -Force
 }

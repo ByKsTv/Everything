@@ -28,7 +28,7 @@ while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'chrom
 Start-Sleep -Milliseconds 1000
 
 Write-Host 'Plex: Setting foreground' -ForegroundColor green -BackgroundColor black
-[SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'chrome' -or $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
+(New-Object -ComObject WScript.Shell).AppActivate((Get-Process Chrome) -or (Get-Process firefox).MainWindowTitle)
 Start-Sleep -Milliseconds 1000
 
 Write-Host 'Plex: Starting browser console' -ForegroundColor green -BackgroundColor black

@@ -46,28 +46,15 @@ if ($InstalledSoftware -match 'Google Chrome') {
     }
     Start-Sleep -Milliseconds 10000
 
-    Write-Host 'Google Chrome Extensions: Adding option to set foreground' -ForegroundColor green -BackgroundColor black
-    if (-not ([System.Management.Automation.PSTypeName]'SFW').Type) {
-        Add-Type @'
-    using System;
-    using System.Runtime.InteropServices;
-    public class SFW {
-       [DllImport("user32.dll")]
-       [return: MarshalAs(UnmanagedType.Bool)]
-       public static extern bool SetForegroundWindow(IntPtr hWnd);
-    }
-'@
-    }
-
     Write-Host 'Google Chrome Extensions: Setting foreground' -ForegroundColor green -BackgroundColor black
-    [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'Chrome' }).MainWindowHandle)
+    (New-Object -ComObject WScript.Shell).AppActivate((Get-Process Chrome).MainWindowTitle)
 
     Write-Host "Google Chrome Extensions: Adding 'AdsBypasser' to 'Tampermonkey'" -ForegroundColor green -BackgroundColor black
     [System.Diagnostics.Process]::Start('Chrome.exe', 'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js')
     Start-Sleep -Milliseconds 3000
 
     Write-Host 'Google Chrome Extensions: Setting foreground' -ForegroundColor green -BackgroundColor black
-    [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'Chrome' }).MainWindowHandle)
+    (New-Object -ComObject WScript.Shell).AppActivate((Get-Process Chrome).MainWindowTitle)
     Start-Sleep -Milliseconds 1000
 
     Write-Host "Google Chrome Extensions: Installing 'AdsBypasser' to 'Tampermonkey'" -ForegroundColor green -BackgroundColor black
@@ -80,7 +67,7 @@ if ($InstalledSoftware -match 'Google Chrome') {
     Start-Sleep -Milliseconds 2000
 
     Write-Host 'Google Chrome Extensions: Setting foreground' -ForegroundColor green -BackgroundColor black
-    [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'Chrome' }).MainWindowHandle)
+    (New-Object -ComObject WScript.Shell).AppActivate((Get-Process Chrome).MainWindowTitle)
     Start-Sleep -Milliseconds 1000
 
     Write-Host "Google Chrome Extensions: Starting 'Restore from file' on 'uBlock Origin' settings" -ForegroundColor green -BackgroundColor black
