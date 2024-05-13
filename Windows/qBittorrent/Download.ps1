@@ -1,10 +1,12 @@
-Write-Host 'qBittorrent > Download' -ForegroundColor green -BackgroundColor black
+Write-Host 'qBittorrent: Downloading' -ForegroundColor green -BackgroundColor black
 $qBittorrent = New-Object System.Net.WebClient
 $qBittorrent.Headers.Add('user-agent', 'Wget')
 $qBittorrent.DownloadFile('https://sourceforge.net/projects/qbittorrent/files/latest/download', "$ENV:temp\qBittorrent.exe")
-Write-Host 'qBittorrent > Install' -ForegroundColor green -BackgroundColor black
+
+Write-Host 'qBittorrent: Installing' -ForegroundColor green -BackgroundColor black
 Start-Process $ENV:temp\qBittorrent.exe -ArgumentList '/S'
-Write-Host 'qBittorrent > Custom Settings' -ForegroundColor green -BackgroundColor black
+
+Write-Host 'qBittorrent: Using custom settings' -ForegroundColor green -BackgroundColor black
 $qBitSettings = '
 [BitTorrent]
 Session\MaxUploadsPerTorrent=-1
@@ -62,7 +64,6 @@ Enabled=false
 Accepted=true
 '
 if (!(Test-Path -Path $env:APPDATA\qBittorrent)) {
-	Write-Host 'qBittorrent > APPDATA > Roaming > qBittorrent' -ForegroundColor green -BackgroundColor black
 	New-Item -Path $env:APPDATA\qBittorrent -Value qBittorrent -ItemType Directory
 }
 Set-Content -Path $env:APPDATA\qBittorrent\qBittorrent.ini -Value $qBitSettings -Force

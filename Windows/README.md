@@ -91,6 +91,15 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 > [!NOTE]
 > HP Printer? Only use Original Ink Cartridges.
 
+## Software Selection - Manual Install
+
+1. PowerShell (Admin):
+
+```powershell
+Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software_Selection.ps1')
+
+```
+
 ## Extra Software
 
 - [Valorant](https://playvalorant.com/en-us/download/)

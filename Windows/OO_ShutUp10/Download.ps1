@@ -1,5 +1,7 @@
-Write-Host 'O&O ShutUp10++ > Recommended' -ForegroundColor green -BackgroundColor black
+Write-Host 'O&O ShutUp10++: Downloading' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe', "$env:TEMP\OOSU10.exe")
+
+Write-Host 'O&O ShutUp10++: Getting latest recommended settings' -ForegroundColor green -BackgroundColor black
 $OOSU10 = '
 ############################################################################
 # This file was created with O&O ShutUp10++ V1.9.1436
@@ -178,7 +180,11 @@ M014	-
 M023	-
 N001	-
 '
+
+Write-Host 'O&O ShutUp10++: Writing latest recommended settings' -ForegroundColor green -BackgroundColor black
 New-Item -Path $ENV:temp\OOSU10.cfg -ItemType File -Value $OOSU10 -Force
+
+Write-Host 'O&O ShutUp10++: Modifying settings' -ForegroundColor green -BackgroundColor black
 $PrivacyAccessLanguageBrowser = 'P015	-'
 $PrivacyTextSuggest = 'P068	-'
 $EdgeDRM = 'E004	-'
@@ -207,7 +213,7 @@ $MiscKeyManagement = 'M012	-'
 $MiscMapData = 'M013	-'
 $MiscMapNetwork = 'M014	-'
 $MiscPCHealth = 'M023	-'
-Write-Host 'O&O ShutUp10++ > Custom Settings' -ForegroundColor green -BackgroundColor black
 (Get-Content -Raw $ENV:temp\OOSU10.cfg) -replace $PrivacyAccessLanguageBrowser, 'P015	+' -replace $PrivacyTextSuggest, 'P068	+' -replace $EdgeOptimizeSearch, 'E005	+' -replace $EdgeDRM, 'E004	+' -replace $ExplorerRecently, 'M011	+' -replace $ExplorerAds, 'M010	+' -replace $SearchBing, 'M003	+' -replace $TaskbarPeople, 'M015	+' -replace $TaskbarSearch, 'M016	+' -replace $TaskbarMeet, 'M018	+' -replace $TaskbarNews, 'M020	+' -replace $PrivacyBiometrical, 'P009	+' -replace $SecurityDRM, 'S008	+' -replace $EdgeBackground, 'E013	+' -replace $EdgeBackgroundPages, 'E014	+' -replace $LocationSensors, 'L004	+' -replace $LocationService, 'L005	+' -replace $ExplorerOneDrive, 'O003	+' -replace $ExplorerOneDriveDisable, 'O001	+' -replace $DefenderSpynet, 'S012	+' -replace $DefenderSubmit, 'S013	+' -replace $DefenderReport, 'S014	+' -replace $TaskbarMeetMachine, 'M017	+' -replace $TaskbarNewsMachine, 'M019	+' -replace $MiscKeyManagement, 'M012	+' -replace $MiscMapData, 'M013	+' -replace $MiscMapNetwork, 'M014	+' -replace $MiscPCHealth, 'M023	+' | Set-Content $ENV:temp\OOSU10.cfg
-Write-Host 'O&O ShutUp10++ > Run' -ForegroundColor green -BackgroundColor black
+
+Write-Host 'O&O ShutUp10++: Starting' -ForegroundColor green -BackgroundColor black
 Start-Process $ENV:temp\OOSU10.exe -ArgumentList "$ENV:temp\OOSU10.cfg /quiet"
