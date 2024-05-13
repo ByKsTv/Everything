@@ -6,7 +6,7 @@ $FormSoftwareSelection.width = 500
 $FormSoftwareSelection.height = 700
 $FormSoftwareSelection.Text = 'Software Selection'
 
-$FontSoftwareSelection = New-Object System.Drawing.Font("Tahoma",13,[System.Drawing.FontStyle]::Regular,[System.Drawing.GraphicsUnit]::Pixel)
+$FontSoftwareSelection = New-Object System.Drawing.Font("Tahoma",10)
 $FormSoftwareSelection.Font = $FontSoftwareSelection
 
 $Check7Zip = New-Object System.Windows.Forms.checkbox
