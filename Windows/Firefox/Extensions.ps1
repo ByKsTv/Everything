@@ -1,7 +1,7 @@
-if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
+if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
     $FirefoxProfiles = Get-ChildItem -Directory -Path "$env:APPDATA\Mozilla\Firefox\Profiles" -Filter '*.default-release'
     $CurrentFirefoxProfile = "$env:APPDATA\Mozilla\Firefox\Profiles\$FirefoxProfiles"
-    if ((Test-Path -LiteralPath $CurrentFirefoxProfile) -eq $true) {
+    if ((Test-Path -Path $CurrentFirefoxProfile) -eq $true) {
         Write-Host 'Firefox Extensions Setup (https://github.com/letsdoautomation/powershell/tree/main/Firefox%20deploy%20Extension)' -ForegroundColor green -BackgroundColor black
         Stop-Process -Name firefox -Force
         $settings =

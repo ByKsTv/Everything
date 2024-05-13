@@ -1,4 +1,4 @@
-if ((Test-Path -LiteralPath "$env:ProgramFiles\Google\Chrome\Application") -eq $true) {
+if ((Test-Path -Path "$env:ProgramFiles\Google\Chrome\Application") -eq $true) {
     Write-Host 'Chrome Extensions Setup (https://github.com/letsdoautomation/powershell/tree/main/Install%20Google%20Chrome%20Extensions)' -ForegroundColor green -BackgroundColor black
     Stop-Process -Name Chrome -Force
     $extensions = 'cjpalhdlnbpafiamejdnhcphjbkeiagm', 'dhdgffkkebhmkfjojejmpbldmpobfkfo', 'lckanjgmijmafbedllaakclkaicjfmnk', 'ceipnlhmjohemhfpbjdgeigkababhmjc', 'mpbjkejclgfgadiemmefgebjfooflfhl', 'ghnomdcacenbmilgjigehppbamfndblo'

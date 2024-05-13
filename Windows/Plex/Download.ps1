@@ -11,10 +11,10 @@ public class SFW {
 '@
 }
 Write-Host 'Plex > Download' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath "$env:ProgramFiles\Google\Chrome\Application") -eq $true) {
+if ((Test-Path -Path "$env:ProgramFiles\Google\Chrome\Application") -eq $true) {
     [System.Diagnostics.Process]::Start('chrome.exe', 'https://www.plex.tv/media-server-downloads/#plex-media-server')
 }
-if ((Test-Path -LiteralPath "$env:ProgramFiles\Mozilla Firefox") -eq $true) {
+if ((Test-Path -Path "$env:ProgramFiles\Mozilla Firefox") -eq $true) {
     [System.Diagnostics.Process]::Start('firefox.exe', 'https://www.plex.tv/media-server-downloads/#plex-media-server')
 } 
 Write-Host 'Plex > Waiting for browser' -ForegroundColor green -BackgroundColor black
@@ -25,20 +25,20 @@ Write-Host 'Plex > Set Foreground' -ForegroundColor green -BackgroundColor black
 [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'chrome' -or $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
 Start-Sleep -Milliseconds 1000
 Add-Type -AssemblyName System.Windows.Forms
-if ((Test-Path -LiteralPath "$env:ProgramFiles\Google\Chrome\Application") -eq $true) {
+if ((Test-Path -Path "$env:ProgramFiles\Google\Chrome\Application") -eq $true) {
     [System.Windows.Forms.SendKeys]::SendWait('^+j')
 }
-if ((Test-Path -LiteralPath "$env:ProgramFiles\Mozilla Firefox") -eq $true) {
+if ((Test-Path -Path "$env:ProgramFiles\Mozilla Firefox") -eq $true) {
     [System.Windows.Forms.SendKeys]::SendWait('^+k')
 }
 Start-Sleep -Milliseconds 2000
 [System.Windows.Forms.SendKeys]::SendWait("document.getElementsByClassName{(}'user-arch'{)}{[}0{]}.click{(}{)}")
 [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
 Start-Sleep -Milliseconds 1000
-if ((Test-Path -LiteralPath "$env:ProgramFiles\Google\Chrome\Application") -eq $true) {
+if ((Test-Path -Path "$env:ProgramFiles\Google\Chrome\Application") -eq $true) {
     [System.Windows.Forms.SendKeys]::SendWait('^+j')
 }
-if ((Test-Path -LiteralPath "$env:ProgramFiles\Mozilla Firefox") -eq $true) {
+if ((Test-Path -Path "$env:ProgramFiles\Mozilla Firefox") -eq $true) {
     [System.Windows.Forms.SendKeys]::SendWait('^+i')
     Start-Sleep -Milliseconds 1000
     [System.Windows.Forms.SendKeys]::SendWait('%o')

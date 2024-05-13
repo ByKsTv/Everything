@@ -220,89 +220,89 @@ Set-NetTCPSetting -NonSackRttResiliency Disabled
 Write-Host 'InitialRtoMs > 2000' -ForegroundColor green -BackgroundColor black
 Set-NetTCPSetting -InitialRtoMs 2000
 Write-Host 'Internet Explorer Optimization > MaxConnectionsPer1_0Server > 10' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\Software\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPER1_0SERVER') -ne $true) {
+if ((Test-Path -Path 'HKLM:\Software\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPER1_0SERVER') -ne $true) {
  New-Item 'HKLM:\Software\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPER1_0SERVER' -Force 
 }
-New-ItemProperty -LiteralPath 'HKLM:\Software\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPER1_0SERVER' -Name 'iexplore.exe' -Value 10 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\Software\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPER1_0SERVER' -Name 'iexplore.exe' -Value 10 -PropertyType DWord -Force
 Write-Host 'Internet Explorer Optimization > MaxConnectionsPerServer > 10' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\Software\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPERSERVER') -ne $true) {
+if ((Test-Path -Path 'HKLM:\Software\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPERSERVER') -ne $true) {
  New-Item 'HKLM:\Software\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPERSERVER' -Force 
 }
-New-ItemProperty -LiteralPath 'HKLM:\Software\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPERSERVER' -Name 'iexplore.exe' -Value 10 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\Software\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPERSERVER' -Name 'iexplore.exe' -Value 10 -PropertyType DWord -Force
 Write-Host 'Host Resolution Priority > LocalPriority > 4' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider') -ne $true) {
+if ((Test-Path -Path 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider') -ne $true) {
  New-Item 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Force 
 }
-New-ItemProperty -LiteralPath 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Name 'LocalPriority' -Value 4 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Name 'LocalPriority' -Value 4 -PropertyType DWord -Force
 Write-Host 'Host Resolution Priority > HostsPriority > 5' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider') -ne $true) {
+if ((Test-Path -Path 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider') -ne $true) {
  New-Item 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Force 
 }
-New-ItemProperty -LiteralPath 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Name 'HostsPriority' -Value 5 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Name 'HostsPriority' -Value 5 -PropertyType DWord -Force
 Write-Host 'Host Resolution Priority > DnsPriority > 6' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider') -ne $true) {
+if ((Test-Path -Path 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider') -ne $true) {
  New-Item 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Force 
 }
-New-ItemProperty -LiteralPath 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Name 'DnsPriority' -Value 6 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Name 'DnsPriority' -Value 6 -PropertyType DWord -Force
 Write-Host 'Host Resolution Priority > NetbtPriority > 7' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider') -ne $true) {
+if ((Test-Path -Path 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider') -ne $true) {
  New-Item 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Force 
 }
-New-ItemProperty -LiteralPath 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Name 'NetbtPriority' -Value 7 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Name 'NetbtPriority' -Value 7 -PropertyType DWord -Force
 Write-Host 'QoS > NonBestEffortLimit > 0' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Microsoft\Windows\Psched') -ne $true) {
+if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Psched') -ne $true) {
  New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Psched' -Force 
 }
-New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Microsoft\Windows\Psched' -Name 'NonBestEffortLimit' -Value 0 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Psched' -Name 'NonBestEffortLimit' -Value 0 -PropertyType DWord -Force
 Write-Host 'QoS > Do not use NLA > Optimal' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\System\ControlSet001\Services\Tcpip\QoS') -ne $true) {
+if ((Test-Path -Path 'HKLM:\System\ControlSet001\Services\Tcpip\QoS') -ne $true) {
  New-Item 'HKLM:\System\ControlSet001\Services\Tcpip\QoS' -Force 
 }
-New-ItemProperty -LiteralPath 'HKLM:\System\ControlSet001\Services\Tcpip\QoS' -Name 'Do not use NLA' -Value '1' -PropertyType String -Force
+New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\QoS' -Name 'Do not use NLA' -Value '1' -PropertyType String -Force
 Write-Host 'NetworkThrottlingIndex > Disabled' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile') -ne $true) {
+if ((Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile') -ne $true) {
  New-Item 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile' -Force 
 }
-New-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile' -Name 'NetworkThrottlingIndex' -Value -1 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile' -Name 'NetworkThrottlingIndex' -Value -1 -PropertyType DWord -Force
 Write-Host 'SystemResponsiveness > Gaming' -ForegroundColor green -BackgroundColor black
-New-ItemProperty -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile' -Name 'SystemResponsiveness' -Value 0 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile' -Name 'SystemResponsiveness' -Value 0 -PropertyType DWord -Force
 Write-Host 'Network Memory Allocation > Size > Gaming' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\System\ControlSet001\Services\LanmanServer\Parameters') -ne $true) {
+if ((Test-Path -Path 'HKLM:\System\ControlSet001\Services\LanmanServer\Parameters') -ne $true) {
  New-Item 'HKLM:\System\ControlSet001\Services\LanmanServer\Parameters' -Force 
 }
-New-ItemProperty -LiteralPath 'HKLM:\System\ControlSet001\Services\LanmanServer\Parameters' -Name 'Size' -Value 3 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\LanmanServer\Parameters' -Name 'Size' -Value 3 -PropertyType DWord -Force
 Write-Host 'IRPStackSize > 32' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\System\ControlSet001\Services\LanmanServer\Parameters') -ne $true) {
+if ((Test-Path -Path 'HKLM:\System\ControlSet001\Services\LanmanServer\Parameters') -ne $true) {
  New-Item 'HKLM:\System\ControlSet001\Services\LanmanServer\Parameters' -Force 
 }
-New-ItemProperty -LiteralPath 'HKLM:\System\ControlSet001\Services\LanmanServer\Parameters' -Name 'IRPStackSize' -Value 32 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\LanmanServer\Parameters' -Name 'IRPStackSize' -Value 32 -PropertyType DWord -Force
 Write-Host 'Network Memory Allocation > LargeSystemCache > Disabled' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\System\ControlSet001\Control\Session Manager\Memory Management') -ne $true) {
+if ((Test-Path -Path 'HKLM:\System\ControlSet001\Control\Session Manager\Memory Management') -ne $true) {
  New-Item 'HKLM:\System\ControlSet001\Control\Session Manager\Memory Management' -Force 
 }
-New-ItemProperty -LiteralPath 'HKLM:\System\ControlSet001\Control\Session Manager\Memory Management' -Name 'LargeSystemCache' -Value 0 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\System\ControlSet001\Control\Session Manager\Memory Management' -Name 'LargeSystemCache' -Value 0 -PropertyType DWord -Force
 Write-Host 'Dynamic Port Allocation > MaxUserPort > 65534' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters') -ne $true) {
+if ((Test-Path -Path 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters') -ne $true) {
  New-Item 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -Force 
 }
-New-ItemProperty -LiteralPath 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -Name 'MaxUserPort' -Value 65534 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -Name 'MaxUserPort' -Value 65534 -PropertyType DWord -Force
 Write-Host 'Dynamic Port Allocation > TcpTimedWaitDelay > 30' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters') -ne $true) {
+if ((Test-Path -Path 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters') -ne $true) {
  New-Item 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -Force 
 }
-New-ItemProperty -LiteralPath 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -Name 'TcpTimedWaitDelay' -Value 30 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -Name 'TcpTimedWaitDelay' -Value 30 -PropertyType DWord -Force
 Write-Host 'Time to Live > 64' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters') -ne $true) {
+if ((Test-Path -Path 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters') -ne $true) {
  New-Item 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -Force 
 }
-New-ItemProperty -LiteralPath 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -Name 'DefaultTTL' -Value 64 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -Name 'DefaultTTL' -Value 64 -PropertyType DWord -Force
 Write-Host 'TcpAckFrequency > Disabled' -ForegroundColor green -BackgroundColor black
 $NetworkGUID = (Get-NetAdapter).InterfaceGUID
-New-ItemProperty -LiteralPath HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\$NetworkGUID -Name 'TcpAckFrequency' -Value 1 -PropertyType DWord -Force
+New-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\$NetworkGUID -Name 'TcpAckFrequency' -Value 1 -PropertyType DWord -Force
 Write-Host 'TcpDelAckTicks > Disabled' -ForegroundColor green -BackgroundColor black
-New-ItemProperty -LiteralPath HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\$NetworkGUID -Name 'TcpDelAckTicks' -Value 0 -PropertyType DWord -Force
+New-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\$NetworkGUID -Name 'TcpDelAckTicks' -Value 0 -PropertyType DWord -Force
 Write-Host 'TCPNoDelay > Enabled' -ForegroundColor green -BackgroundColor black
-New-ItemProperty -LiteralPath HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\$NetworkGUID -Name 'TCPNoDelay' -Value 1 -PropertyType DWord -Force
+New-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\$NetworkGUID -Name 'TCPNoDelay' -Value 1 -PropertyType DWord -Force
 Add-Type -AssemblyName System.Windows.Forms
 $WakeOnLanAnswer = [System.Windows.Forms.MessageBox]::Show('Enable Wake-On-Lan?
 

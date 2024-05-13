@@ -11,10 +11,10 @@ public class SFW {
 '@
 }
 Write-Host 'NVCleanstall > Download' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath "$env:ProgramFiles\Google\Chrome\Application") -eq $true) {
+if ((Test-Path -Path "$env:ProgramFiles\Google\Chrome\Application") -eq $true) {
     [System.Diagnostics.Process]::Start('chrome.exe', 'https://www.techpowerup.com/download/techpowerup-nvcleanstall/')
 }
-if ((Test-Path -LiteralPath "$env:ProgramFiles\Mozilla Firefox") -eq $true) {
+if ((Test-Path -Path "$env:ProgramFiles\Mozilla Firefox") -eq $true) {
     [System.Diagnostics.Process]::Start('firefox.exe', 'https://www.techpowerup.com/download/techpowerup-nvcleanstall/')
 }
 Write-Host 'NVCleanstall > Waiting for browser' -ForegroundColor green -BackgroundColor black
@@ -25,10 +25,10 @@ Write-Host 'NVCleanstall > Set Foreground' -ForegroundColor green -BackgroundCol
 [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'chrome' -or $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
 Start-Sleep -Milliseconds 1000
 Add-Type -AssemblyName System.Windows.Forms
-if ((Test-Path -LiteralPath "$env:ProgramFiles\Google\Chrome\Application") -eq $true) {
+if ((Test-Path -Path "$env:ProgramFiles\Google\Chrome\Application") -eq $true) {
     [System.Windows.Forms.SendKeys]::SendWait('^+j')
 }
-if ((Test-Path -LiteralPath "$env:ProgramFiles\Mozilla Firefox") -eq $true) {
+if ((Test-Path -Path "$env:ProgramFiles\Mozilla Firefox") -eq $true) {
     [System.Windows.Forms.SendKeys]::SendWait('^+k')
 }
 Start-Sleep -Milliseconds 2000
@@ -38,10 +38,10 @@ Start-Sleep -Milliseconds 1000
 [System.Windows.Forms.SendKeys]::SendWait("document.getElementsByClassName{(}'closest'{)}{[}0{]}.click{(}{)}")
 [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
 Start-Sleep -Milliseconds 1000
-if ((Test-Path -LiteralPath "$env:ProgramFiles\Google\Chrome\Application") -eq $true) {
+if ((Test-Path -Path "$env:ProgramFiles\Google\Chrome\Application") -eq $true) {
     [System.Windows.Forms.SendKeys]::SendWait('^+j')
 }
-if ((Test-Path -LiteralPath "$env:ProgramFiles\Mozilla Firefox") -eq $true) {
+if ((Test-Path -Path "$env:ProgramFiles\Mozilla Firefox") -eq $true) {
     [System.Windows.Forms.SendKeys]::SendWait('^+i')
 }
 $Downloads = (New-Object -ComObject Shell.Application).NameSpace('shell:Downloads').Self.Path

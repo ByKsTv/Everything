@@ -1,7 +1,7 @@
-if ((Test-Path -LiteralPath $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
+if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
     $CurrentFireFoxProfilePath0 = Get-ChildItem -Directory -Path "$env:APPDATA\Mozilla\Firefox\Profiles" -Filter '*.default-release'
     $CurrentFireFoxProfilePath = "$env:APPDATA\Mozilla\Firefox\Profiles\$CurrentFireFoxProfilePath0"
-    if ((Test-Path -LiteralPath $CurrentFireFoxProfilePath) -eq $true) {
+    if ((Test-Path -Path $CurrentFireFoxProfilePath) -eq $true) {
         Write-Host 'Arkenfox Setup' -ForegroundColor green -BackgroundColor black
         Stop-Process -Name firefox -Force
         (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/user-overrides.js', "$CurrentFireFoxProfilePath\user-overrides.js")
