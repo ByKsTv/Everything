@@ -1,7 +1,7 @@
-Write-Host 'Task Scheduler: Initiating next step' -ForegroundColor green -BackgroundColor black
+Write-Host 'Step1: Task Scheduler: Initiating next step' -ForegroundColor green -BackgroundColor black
 $NextStep = 'Step2'
 (New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/$NextStep.ps1", "$env:TEMP\$NextStep.ps1")
-Write-Host "Task Scheduler: Adding $NextStep" -ForegroundColor green -BackgroundColor black
+Write-Host "Step1: Task Scheduler: Adding $NextStep" -ForegroundColor green -BackgroundColor black
 $NextStep_Principal = New-ScheduledTaskPrincipal -UserId $env:computername\$env:USERNAME -RunLevel Highest
 $NextStep_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "-WindowStyle Maximized -ExecutionPolicy Bypass -File $env:TEMP\$NextStep.ps1"
 $NextStep_Trigger = New-ScheduledTaskTrigger -AtLogOn
@@ -15,7 +15,7 @@ $NextStep_Parameters = @{
 }
 Register-ScheduledTask @NextStep_Parameters -Force
 
-Write-Host 'Power Options: Adding ultimate perofrmance' -ForegroundColor green -BackgroundColor black
+Write-Host 'Step1: Power Options: Adding ultimate perofrmance' -ForegroundColor green -BackgroundColor black
 $powerSchemeName = 'Ultimate Performance'
 $powerSchemeGuid = 'e9a42b02-d5df-448d-aa00-03f14749eb61'
 $schemes = powercfg /list | Out-String -Stream
@@ -26,18 +26,18 @@ if ($null -eq $ultimateScheme) {
 }
 powercfg /S $powerSchemeGuid
 
-Write-Host 'Power Options: Changing screen to never turns off' -ForegroundColor green -BackgroundColor black
+Write-Host 'Step1: Power Options: Changing screen to never turns off' -ForegroundColor green -BackgroundColor black
 powercfg -change -monitor-timeout-ac 0
 
-Write-Host "PC Name: Renaming to $env:username" -ForegroundColor green -BackgroundColor black
+Write-Host "Step1: PC Name: Renaming to $env:username" -ForegroundColor green -BackgroundColor black
 if ($env:computername -ne $env:username) {
 	Rename-Computer -NewName $env:username
 }
 
-Write-Host 'PC Password: Changing to never expires' -ForegroundColor green -BackgroundColor black
+Write-Host 'Step1: PC Password: Changing to never expires' -ForegroundColor green -BackgroundColor black
 Set-LocalUser -Name $env:username -PasswordNeverExpires 1
 
-Write-Host 'AutoAdminLogon: Adding username' -ForegroundColor green -BackgroundColor black
+Write-Host 'Step1: AutoAdminLogon: Adding username' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon') -ne $true) {
  New-Item 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Force 
 }
@@ -153,45 +153,45 @@ $CheckBox_RemotePowerShell.Add_Click( {
 
 $Form_Step1_OK.Add_Click{
 	if ($CheckBox_PCPassword.Checked -eq $true) {
-		Write-Host 'PC Password: Adding' -ForegroundColor green -BackgroundColor black
+		Write-Host 'Step1: PC Password: Adding' -ForegroundColor green -BackgroundColor black
 		Set-LocalUser -Name $env:username -Password (ConvertTo-SecureString -AsPlainText $TextBox_PCPassword.Text -Force)
 		New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'DefaultPassword' -Value $TextBox_PCPassword.Text -PropertyType String -Force
 	}
 	elseif ($CheckBox_PCPassword.Checked -eq $false) {
-		Write-Host 'PC Password: Removing' -ForegroundColor green -BackgroundColor black
+		Write-Host 'Step1: PC Password: Removing' -ForegroundColor green -BackgroundColor black
 		Set-LocalUser -Name $env:username -Password ([securestring]::new())
 		New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'AutoAdminLogon' -Value '0' -PropertyType String -Force
 	}
 
 	if ($CheckBox_PCAutoLogin.Checked -eq $true) {
-		Write-Host 'PC Auto Login: Enabling' -ForegroundColor green -BackgroundColor black
+		Write-Host 'Step1: PC Auto Login: Enabling' -ForegroundColor green -BackgroundColor black
 		New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'AutoAdminLogon' -Value '1' -PropertyType String -Force
 	}
 	elseif ($CheckBox_PCAutoLogin.Checked -eq $false) {
-		Write-Host 'PC Auto Login: Disabling' -ForegroundColor green -BackgroundColor black
+		Write-Host 'Step1: PC Auto Login: Disabling' -ForegroundColor green -BackgroundColor black
 		New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'AutoAdminLogon' -Value '0' -PropertyType String -Force
 	}
 
 	if ($CheckBox_RemoteDesktop.Checked -eq $true) {
-		Write-Host 'Remote Desktop: Enabling' -ForegroundColor green -BackgroundColor black
+		Write-Host 'Step1: Remote Desktop: Enabling' -ForegroundColor green -BackgroundColor black
 		Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name 'fDenyTSConnections' -Value 0
 		Enable-NetFirewallRule -DisplayGroup 'Remote Desktop'
 	}
 	elseif ($CheckBox_RemoteDesktop.Checked -eq $false) {
-		Write-Host 'Remote Desktop: Disabling' -ForegroundColor green -BackgroundColor black
+		Write-Host 'Step1: Remote Desktop: Disabling' -ForegroundColor green -BackgroundColor black
 		Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name 'fDenyTSConnections' -Value 1
 		Disable-NetFirewallRule -DisplayGroup 'Remote Desktop'
 	}
 
 	if ($CheckBox_RemotePowerShell.Checked -eq $true) {
-		Write-Host 'Remote PowerShell: Enabling' -ForegroundColor green -BackgroundColor black
+		Write-Host 'Step1: Remote PowerShell: Enabling' -ForegroundColor green -BackgroundColor black
 		Set-NetConnectionProfile -NetworkCategory Private
 		Enable-PSRemoting -Force
-		Write-Host 'Remote PowerShell: Adding IP' -ForegroundColor green -BackgroundColor black
+		Write-Host 'Step1: Remote PowerShell: Adding IP' -ForegroundColor green -BackgroundColor black
 		Set-Item wsman:\localhost\Client\TrustedHosts -Value $TextBox_RemotePowerShellIP.Text -Force
 	}
 	elseif ($CheckBox_RemotePowerShell.Checked -eq $false) {
-		Write-Host 'Remote PowerShell: Disabling' -ForegroundColor green -BackgroundColor black
+		Write-Host 'Step1: Remote PowerShell: Disabling' -ForegroundColor green -BackgroundColor black
 		Disable-PSRemoting -Force
 		Remove-Item -Path WSMan:\Localhost\listener\listener* -Recurse
 		Clear-Item wsman:\localhost\client\trustedhosts -Force
@@ -202,12 +202,12 @@ $Form_Step1_OK.Add_Click{
 	}
 
 	if ($CheckBox_MozilaFirefox.Checked -eq $true) {
-		Write-Host 'Mozila Firefox: Initiating' -ForegroundColor green -BackgroundColor black
+		Write-Host 'Step1: Mozila Firefox: Initiating' -ForegroundColor green -BackgroundColor black
 		Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Download.ps1')
 	}
 
 	if ($CheckBox_GoogleChrome.Checked -eq $true) {
-		Write-Host 'Google Chrome: Initiating' -ForegroundColor green -BackgroundColor black
+		Write-Host 'Step1: Google Chrome: Initiating' -ForegroundColor green -BackgroundColor black
 		Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Chrome/Download.ps1')
 	}
 }
@@ -215,10 +215,10 @@ $Form_Step1_OK.Add_Click{
 $Form_Step1.Add_Shown({ $Form_Step1.Activate() })
 [void] $Form_Step1.ShowDialog()
 
-Write-Host 'NuGet: Installing' -ForegroundColor green -BackgroundColor black
+Write-Host 'Step1: NuGet: Installing' -ForegroundColor green -BackgroundColor black
 Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
 
-Write-Host 'PSWindowsUpdate: Installing' -ForegroundColor green -BackgroundColor black
+Write-Host 'Step1: PSWindowsUpdate: Installing' -ForegroundColor green -BackgroundColor black
 Install-Module PSWindowsUpdate -Force
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 Import-Module PSWindowsUpdate -Force
