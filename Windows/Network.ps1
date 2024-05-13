@@ -9,187 +9,188 @@ Write-Host 'DCA > Disabled' -ForegroundColor green -BackgroundColor black
 netsh int tcp set global dca=Disabled
 Write-Host 'Teredo > Disabled' -ForegroundColor green -BackgroundColor black
 netsh interface teredo set state disabled
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'ARP Offload') {
+$NetworkSettingsName = Get-NetAdapterAdvancedProperty | Select-Object -Property 'DisplayName'
+if ($NetworkSettingsName -match 'ARP Offload') {
 	Write-Host 'ARP Offload > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'ARP Offload' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Adaptive Inter-Frame Spacing') {
+if ($NetworkSettingsName -match 'Adaptive Inter-Frame Spacing') {
 	Write-Host 'Adaptive Inter-Frame Spacing > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Adaptive Inter-Frame Spacing' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'DMA Coalescing') {
+if ($NetworkSettingsName -match 'DMA Coalescing') {
 	Write-Host 'DMA Coalescing > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'DMA Coalescing' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'ECMA') {
+if ($NetworkSettingsName -match 'ECMA') {
 	Write-Host 'ECMA > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'ECMA' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Energy Efficient Ethernet') {
+if ($NetworkSettingsName -match 'Energy Efficient Ethernet') {
 	Write-Host 'Energy Efficient Ethernet > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Energy Efficient Ethernet' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Energy Efficient Ethernet') {
+if ($NetworkSettingsName -match 'Energy Efficient Ethernet') {
 	Write-Host 'Energy Efficient Ethernet > Off' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Energy Efficient Ethernet' -DisplayValue 'Off'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Flow Control') {
+if ($NetworkSettingsName -match 'Flow Control') {
 	Write-Host 'Flow Control > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Flow Control' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Gigabit Master Slave Mode') {
+if ($NetworkSettingsName -match 'Gigabit Master Slave Mode') {
 	Write-Host 'Gigabit Master Slave Mode > Auto Detect' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Gigabit Master Slave Mode' -DisplayValue 'Auto Detect'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'IPv4 Checksum Offload') {
+if ($NetworkSettingsName -match 'IPv4 Checksum Offload') {
 	Write-Host 'IPv4 Checksum Offload > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'IPv4 Checksum Offload' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Interrupt Moderation Rate') {
+if ($NetworkSettingsName -match 'Interrupt Moderation Rate') {
 	Write-Host 'Interrupt Moderation Rate > Off' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Interrupt Moderation Rate' -DisplayValue 'Off'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Interrupt Moderation') {
+if ($NetworkSettingsName -match 'Interrupt Moderation') {
 	Write-Host 'Interrupt Moderation > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Interrupt Moderation' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Jumbo Frame') {
+if ($NetworkSettingsName -match 'Jumbo Frame') {
 	Write-Host 'Jumbo Frame > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Jumbo Frame' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Jumbo Packet') {
+if ($NetworkSettingsName -match 'Jumbo Packet') {
 	Write-Host 'Jumbo Packet > 1514' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Jumbo Packet' -DisplayValue '1514'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Jumbo Packet') {
+if ($NetworkSettingsName -match 'Jumbo Packet') {
 	Write-Host 'Jumbo Packet > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Jumbo Packet' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Large Send Offload (IPv4)') {
+if ($NetworkSettingsName -match 'Large Send Offload (IPv4)') {
 	Write-Host 'Large Send Offload (IPv4) > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Large Send Offload (IPv4)' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Large Send Offload v2 (IPv4)') {
+if ($NetworkSettingsName -match 'Large Send Offload v2 (IPv4)') {
 	Write-Host 'Large Send Offload v2 (IPv4) > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Large Send Offload v2 (IPv4)' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Large Send Offload v2 (IPv6)') {
+if ($NetworkSettingsName -match 'Large Send Offload v2 (IPv6)') {
 	Write-Host 'Large Send Offload v2 (IPv6) > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Large Send Offload v2 (IPv6)' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Legacy Switch Compatibility Mode') {
+if ($NetworkSettingsName -match 'Legacy Switch Compatibility Mode') {
 	Write-Host 'Legacy Switch Compatibility Mode > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Legacy Switch Compatibility Mode' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Log Link State Event') {
+if ($NetworkSettingsName -match 'Log Link State Event') {
 	Write-Host 'Log Link State Event > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Log Link State Event' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Max IRQ per Second') {
+if ($NetworkSettingsName -match 'Max IRQ per Second') {
 	Write-Host 'Max IRQ per Second > 30000' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Max IRQ per Second' -DisplayValue '30000'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Maximum Number of RSS Queues') {
+if ($NetworkSettingsName -match 'Maximum Number of RSS Queues') {
 	Write-Host 'Maximum Number of RSS Queues > 1 Queue' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Maximum Number of RSS Queues' -DisplayValue '1 Queue'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'NS Offload') {
+if ($NetworkSettingsName -match 'NS Offload') {
 	Write-Host 'NS Offload > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'NS Offload' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'PTP Hardware Timestamp') {
+if ($NetworkSettingsName -match 'PTP Hardware Timestamp') {
 	Write-Host 'PTP Hardware Timestamp > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'PTP Hardware Timestamp' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Packet Priority & VLAN') {
+if ($NetworkSettingsName -match 'Packet Priority & VLAN') {
 	Write-Host 'Packet Priority & VLAN > Packet Priority & VLAN Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Packet Priority & VLAN' -DisplayValue 'Packet Priority & VLAN Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Protocol ARP Offload') {
+if ($NetworkSettingsName -match 'Protocol ARP Offload') {
 	Write-Host 'Protocol ARP Offload > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Protocol ARP Offload' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Protocol NS Offload') {
+if ($NetworkSettingsName -match 'Protocol NS Offload') {
 	Write-Host 'Protocol NS Offload > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Protocol NS Offload' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Receive Buffers') {
+if ($NetworkSettingsName -match 'Receive Buffers') {
 	Write-Host 'Receive Buffers > 2048' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Receive Buffers' -DisplayValue '2048'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Receive Side Scaling') {
+if ($NetworkSettingsName -match 'Receive Side Scaling') {
 	Write-Host 'Receive Side Scaling > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Receive Side Scaling' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Reduce Speed On Power Down') {
+if ($NetworkSettingsName -match 'Reduce Speed On Power Down') {
 	Write-Host 'Reduce Speed On Power Down > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Reduce Speed On Power Down' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'SWOI') {
+if ($NetworkSettingsName -match 'SWOI') {
 	Write-Host 'SWOI > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'SWOI' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Selective Suspend Idle Timeout') {
+if ($NetworkSettingsName -match 'Selective Suspend Idle Timeout') {
 	Write-Host 'Selective Suspend Idle Timeout > 5' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Selective Suspend Idle Timeout' -DisplayValue '5'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Selective Suspend') {
+if ($NetworkSettingsName -match 'Selective Suspend') {
 	Write-Host 'Selective Suspend > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Selective Suspend' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Software Timestamp') {
+if ($NetworkSettingsName -match 'Software Timestamp') {
 	Write-Host 'Software Timestamp > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Software Timestamp' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Speed & Duplex') {
+if ($NetworkSettingsName -match 'Speed & Duplex') {
 	Write-Host 'Speed & Duplex > 1.0 Gbps Full Duplex' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Speed & Duplex' -DisplayValue '1.0 Gbps Full Duplex'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'System Idle Power Saver') {
+if ($NetworkSettingsName -match 'System Idle Power Saver') {
 	Write-Host 'System Idle Power Saver > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'System Idle Power Saver' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'TCP Checksum Offload (IPv4)') {
+if ($NetworkSettingsName -match 'TCP Checksum Offload (IPv4)') {
 	Write-Host 'TCP Checksum Offload (IPv4) > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'TCP Checksum Offload (IPv4)' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'TCP Checksum Offload (IPv6)') {
+if ($NetworkSettingsName -match 'TCP Checksum Offload (IPv6)') {
 	Write-Host 'TCP Checksum Offload (IPv6) > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'TCP Checksum Offload (IPv6)' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Transmit Buffers') {
+if ($NetworkSettingsName -match 'Transmit Buffers') {
 	Write-Host 'Transmit Buffers > 1024' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Transmit Buffers' -DisplayValue '1024'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Transmit Buffers') {
+if ($NetworkSettingsName -match 'Transmit Buffers') {
 	Write-Host 'Transmit Buffers > 2048' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Transmit Buffers' -DisplayValue '2048'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'UDP Checksum Offload (IPv4)') {
+if ($NetworkSettingsName -match 'UDP Checksum Offload (IPv4)') {
 	Write-Host 'UDP Checksum Offload (IPv4) > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'UDP Checksum Offload (IPv4)' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'UDP Checksum Offload (IPv6)') {
+if ($NetworkSettingsName -match 'UDP Checksum Offload (IPv6)') {
 	Write-Host 'UDP Checksum Offload (IPv6) > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'UDP Checksum Offload (IPv6)' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Ultra Low Power Mode') {
+if ($NetworkSettingsName -match 'Ultra Low Power Mode') {
 	Write-Host 'Ultra Low Power Mode > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Ultra Low Power Mode' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Wait for Link') {
+if ($NetworkSettingsName -match 'Wait for Link') {
 	Write-Host 'Wait for Link > Off' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Wait for Link' -DisplayValue 'Off'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Wake from S0ix on Magic Packet') {
+if ($NetworkSettingsName -match 'Wake from S0ix on Magic Packet') {
 	Write-Host 'Wake from S0ix on Magic Packet > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Wake from S0ix on Magic Packet' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Wake on Link Settings') {
+if ($NetworkSettingsName -match 'Wake on Link Settings') {
 	Write-Host 'Wake on Link Settings > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Wake on Link Settings' -DisplayValue 'Disabled'
 }
-if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Wake on Pattern Match') {
+if ($NetworkSettingsName -match 'Wake on Pattern Match') {
 	Write-Host 'Wake on Pattern Match > Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Wake on Pattern Match' -DisplayValue 'Disabled'
 }
@@ -332,15 +333,15 @@ if ($WakeOnLanAnswer -eq 'Yes') {
 			}
 		}
 	}
-	if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Wake on magic packet') {
+	if ($NetworkSettingsName -match 'Wake on magic packet') {
 		Write-Host 'Wake on magic packet > On' -ForegroundColor green -BackgroundColor black
 		Set-NetAdapterAdvancedProperty -DisplayName 'Wake on magic packet' -DisplayValue 'Enabled'
 	}
-	if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Enable PME') {
+	if ($NetworkSettingsName -match 'Enable PME') {
 		Write-Host 'Enable PME > On' -ForegroundColor green -BackgroundColor black
 		Set-NetAdapterAdvancedProperty -DisplayName 'Enable PME' -DisplayValue 'Enabled'
 	}
-	if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Shutdown Wake Up') {
+	if ($NetworkSettingsName -match 'Shutdown Wake Up') {
 		Write-Host 'Shutdown Wake Up > Enabled' -ForegroundColor green -BackgroundColor black
 		Set-NetAdapterAdvancedProperty -DisplayName 'Shutdown Wake Up' -DisplayValue 'Enabled'
 	}
@@ -369,15 +370,15 @@ if ($WakeOnLanAnswer -eq 'No') {
 			}
 		}
 	}
-	if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Wake on magic packet') {
+	if ($NetworkSettingsName -match 'Wake on magic packet') {
 		Write-Host 'Wake on magic packet > Off' -ForegroundColor green -BackgroundColor black
 		Set-NetAdapterAdvancedProperty -DisplayName 'Wake on magic packet' -DisplayValue 'Disabled'
 	}
-	if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Enable PME') {
+	if ($NetworkSettingsName -match 'Enable PME') {
 		Write-Host 'Enable PME > Off' -ForegroundColor green -BackgroundColor black
 		Set-NetAdapterAdvancedProperty -DisplayName 'Enable PME' -DisplayValue 'Disabled'
 	}
-	if (Get-NetAdapterAdvancedProperty | Where-Object 'DisplayName' -Contains 'Shutdown Wake Up') {
+	if ($NetworkSettingsName -match 'Shutdown Wake Up') {
 		Write-Host 'Shutdown Wake Up > Disabled' -ForegroundColor green -BackgroundColor black
 		Set-NetAdapterAdvancedProperty -DisplayName 'Shutdown Wake Up' -DisplayValue 'Disabled'
 	}
