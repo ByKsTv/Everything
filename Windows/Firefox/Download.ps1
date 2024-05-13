@@ -37,9 +37,9 @@ Add-Type -AssemblyName System.Windows.Forms
 [System.Windows.Forms.SendKeys]::SendWait(' ')
 Start-Sleep -Milliseconds 100
 
-Write-Host "Mozila Firefox: Setting as default browser" -ForegroundColor green -BackgroundColor black
+Write-Host 'Mozila Firefox: Setting as default browser' -ForegroundColor green -BackgroundColor black
 [System.Windows.Forms.SendKeys]::SendWait('{TAB}')
 [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
 
-Write-Host "Mozila Firefox: Waiting for user to sign in" -ForegroundColor green -BackgroundColor black
+Write-Host 'Mozila Firefox: Waiting for user to sign in' -ForegroundColor green -BackgroundColor black
 [System.Diagnostics.Process]::Start('firefox.exe', 'https://accounts.firefox.com/')
