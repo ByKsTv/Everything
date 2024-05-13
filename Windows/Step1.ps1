@@ -17,9 +17,10 @@ Write-Host 'Step1: Setting UI: Setting Foreground' -ForegroundColor green -Backg
 Write-Host 'Step1: Setting UI: Applying Colors' -ForegroundColor green -BackgroundColor black
 Clear-Host
 
-Write-Host 'Step1: Task Scheduler: Initiating next step' -ForegroundColor green -BackgroundColor black
+Write-Host 'Step1: Initiating next step' -ForegroundColor green -BackgroundColor black
 $NextStep = 'Step2'
 (New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/$NextStep.ps1", "$env:TEMP\$NextStep.ps1")
+
 Write-Host "Step1: Task Scheduler: Adding $NextStep" -ForegroundColor green -BackgroundColor black
 $NextStep_Principal = New-ScheduledTaskPrincipal -UserId $env:computername\$env:USERNAME -RunLevel Highest
 $NextStep_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "-WindowStyle Maximized -ExecutionPolicy Bypass -File $env:TEMP\$NextStep.ps1"
