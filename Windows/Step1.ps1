@@ -4,8 +4,10 @@ $host.UI.RawUI.WindowTitle = 'Step1'
 Write-Host 'Step1: concfg: Downloading' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://github.com/lukesampson/concfg/archive/refs/heads/master.zip', "$env:TEMP\concfg.zip")
 
-Write-Host 'Step1: concfg: Extracting' -ForegroundColor green -BackgroundColor black
-Expand-Archive -Path "$env:TEMP\concfg.zip" -DestinationPath "$env:TEMP\concfg"
+if (!(Test-Path -Path $env:TEMP\concfg)) {
+	Write-Host 'Step1: concfg: Extracting' -ForegroundColor green -BackgroundColor black
+	Expand-Archive -Path "$env:TEMP\concfg.zip" -DestinationPath "$env:TEMP\concfg" -Force
+}
 
 Write-Host 'Step1: concfg: Enabling script' -ForegroundColor green -BackgroundColor black
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
@@ -15,6 +17,7 @@ Set-Location "$env:TEMP\concfg\concfg-master\bin"
 
 Write-Host 'Step1: concfg: Importing cmd preset' -ForegroundColor green -BackgroundColor black
 .\concfg import cmd-default -n
+.\concfg clean
 
 Write-Host 'Step1: Setting UI: Setting Colors' -ForegroundColor green -BackgroundColor black
 $host.UI.RawUI.BackgroundColor = 'black'
