@@ -339,132 +339,132 @@ $Form_SoftwareSelection.Controls.Add($Form_SoftwareSelection_Cancel)
 $Form_SoftwareSelection_OK.Add_Click{
     # Priority: Browser required, manual input
     if ($CheckBox_NVCleanstall.Checked) {
-        Write-Host 'NVCleanstall: Initiating' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Software Selection: NVCleanstall: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/NVCleanstall/Download.ps1')
     }
 
     # Priority: Browser required, manual input
     if ($CheckBox_Plex.Checked) {
-        Write-Host 'Plex: Initiating' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Software Selection: Plex: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Plex/Download.ps1')
     }
 
     # Priority: Manual input
     if ($CheckBox_mpv.Checked) {
-        Write-Host 'mpv: Initiating' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Software Selection: mpv: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/Download.ps1')
     }
 
     # Priority: Manual input
     if ($CheckBox_RazerSynapse.Checked) {
-        Write-Host 'Razer Synapse: Initiating' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Software Selection: Razer Synapse: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Razer_Synapse/Download.ps1')
     }
 
     # Priority: Manual input
     if ($CheckBox_HyperXNGENUITY.Checked) {
-        Write-Host 'HyperX NGENUITY: Initiating' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Software Selection: HyperX NGENUITY: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/HyperX_NGENUITY/Download.ps1')
     }
 
     if ($CheckBox_7Zip.Checked) {
-        Write-Host '7-Zip: Initiating' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Software Selection: 7-Zip: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
     }
 
     if ($CheckBox_AnyDesk.Checked) {
-        Write-Host 'AnyDesk: Initiating' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Software Selection: AnyDesk: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/AnyDesk/Download.ps1')
     }
 
     if ($CheckBox_BattleNet.Checked) {
-        Write-Host 'Battle.net: Initiating' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Software Selection: Battle.net: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Battle.net/Download.ps1')
     }
 
     if ($CheckBox_CrystalDiskInfo.Checked) {
-        Write-Host 'CrystalDiskInfo: Initiating' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Software Selection: CrystalDiskInfo: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/CrystalDiskInfo/Download.ps1')
     }
 
     if ($CheckBox_CrystalDiskMark.Checked) {
-        Write-Host 'CrystalDiskMark: Initiating' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Software Selection: CrystalDiskMark: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/CrystalDiskMark/Download.ps1')
     }
     
     if ($CheckBox_Discord.Checked) {
-        Write-Host 'Discord: Initiating' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Software Selection: Discord: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Discord/Download.ps1')
     }
 
     if ($CheckBox_DisplayDriverUninstaller.Checked) {
-        Write-Host 'Display Driver Uninstaller: Initiating' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Software Selection: Display Driver Uninstaller: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Display_Driver_Uninstaller/Download.ps1')
     }
 
     if ($CheckBox_Jellyfin.Checked) {
-        Write-Host 'Jellyfin: Initiating' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Software Selection: Jellyfin: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Jellyfin/Download.ps1')
     }
 
     if ($CheckBox_LogitechGHUB.Checked) {
-        Write-Host 'Logitech G HUB: Initiating' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Software Selection: Logitech G HUB: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Logitech_G_HUB/Download.ps1')
     }
 
     if ($CheckBox_MediaInfo.Checked) {
-        Write-Host 'MediaInfo: Initiating' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Software Selection: MediaInfo: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/MediaInfo/Download.ps1')
     }
 
     if ($CheckBox_NordVPN.Checked) {
-        Write-Host 'NordVPN: Initiating' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Software Selection: NordVPN: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/NordVPN/Download.ps1')
     }
 
     if ($CheckBox_NotepadPlusPlus.Checked) {
-        Write-Host 'Notepad++: Initiating' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Software Selection: Notepad++: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Notepad_Plus_Plus/Download.ps1')
     }
 
     if ($CheckBox_PuTTY.Checked) {
-        Write-Host 'PuTTY: Initiating' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Software Selection: PuTTY: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/PuTTY/Download.ps1')
     }
 
     if ($CheckBox_Python.Checked) {
-        Write-Host 'Python: Initiating' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Software Selection: Python: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Python/Download.ps1')
     }
 
     if ($CheckBox_Steam.Checked) {
-        Write-Host 'Steam: Initiating' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Software Selection: Steam: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Steam/Download.ps1')
     }
 
     if ($CheckBox_Telegram.Checked) {
-        Write-Host 'Telegram: Initiating' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Software Selection: Telegram: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Telegram/Download.ps1')
     }
 
     if ($CheckBox_VisualStudioCode.Checked) {
-        Write-Host 'Visual Studio Code: Initiating' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Software Selection: Visual Studio Code: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Visual_Studio_Code/Download.ps1')
     }
 
     if ($CheckBox_qBittorrent.Checked) {
-        Write-Host 'qBittorrent: Initiating' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Software Selection: qBittorrent: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
     }
 
     # Priority: Manual input
     if ($CheckBox_MicrosoftOffice.Checked) {
-        Write-Host 'Microsoft Office: Initiating' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Software Selection: Microsoft Office: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Office/Download.ps1')
     }
 
     if ($CheckBox_UninstallEdge.Checked) {
-        Write-Host 'Microsoft Edge: Initiating' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Software Selection: Microsoft Edge: Initiating' -ForegroundColor green -BackgroundColor black
         # Option 1 - Working
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ChrisTitusTech/winutil/d0bde83333730a4536497451af747daba11e5039/edgeremoval.ps1')
         # Option 2 - Waiting for script update
