@@ -423,7 +423,7 @@ $OKButton.Add_Click{
         # Option 3 - Test it after windows update, after installing edge can't be uninstalled again using this script
         #Start-Process -FilePath PowerShell.exe -Verb Runas -ArgumentList "Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/he3als/EdgeRemover/main/RemoveEdge.ps1')"
         #Start-Sleep -Milliseconds 2000
-        #[System.Windows.Forms.SendKeys]::SendWait('2')
+        #[System.Windows.Forms.SendKeys]::SendWait('2')    }
     }
 }
 $FormSoftwareSelection.Add_Shown({ $FormSoftwareSelection.Activate() })
