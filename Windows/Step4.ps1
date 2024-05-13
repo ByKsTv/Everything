@@ -10,9 +10,6 @@ $hwnd = @(Get-Process PowerShell)[0].MainWindowHandle
 Write-Host 'Step4: Setting UI: Setting Foreground' -ForegroundColor green -BackgroundColor black
 (New-Object -ComObject WScript.Shell).AppActivate((Get-Process powershell).MainWindowTitle)
 
-Write-Host 'Step4: Setting UI: Applying Colors' -ForegroundColor green -BackgroundColor black
-Clear-Host
-
 Write-Host 'Step4: Task Scheduler: Removing current step' -ForegroundColor green -BackgroundColor black
 Unregister-ScheduledTask -TaskName Step4 -Confirm:$false
 
