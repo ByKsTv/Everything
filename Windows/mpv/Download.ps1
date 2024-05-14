@@ -34,7 +34,7 @@ Write-Host 'mpv: Updating' -ForegroundColor green -BackgroundColor black
 $MPV_Updater = 'MPV Updater'
 $MPV_Updater_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $MPV_Updater }
 if (!($MPV_Updater_Exists)) {
-    Write-Host "Task Scheduler: Adding $MPV_Updater" -ForegroundColor green -BackgroundColor black
+    Write-Host "mpv: Task Scheduler: Adding $MPV_Updater" -ForegroundColor green -BackgroundColor black
     $MPV_Updater_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
     $MPV_Updater_Action = New-ScheduledTaskAction -Execute "$env:ProgramFiles\mpv\updater.bat"
     $MPV_Updater_Trigger = New-ScheduledTaskTrigger -AtLogOn
@@ -133,7 +133,7 @@ Write-Host "mpv: Downloading 'toggleconsole.lua'" -ForegroundColor green -Backgr
 Write-Host "mpv: Downloading 'youtube-alt-tab.lua'" -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/youtube-alt-tab.lua', "$env:ProgramFiles/mpv/scripts/youtube-alt-tab.lua")
 
-$sponsorblockanswer = [System.Windows.Forms.MessageBox]::Show('Add sponsorblock?
+$sponsorblockanswer = [System.Windows.Forms.MessageBox]::Show($THIS, 'Add sponsorblock?
 
 Python must be installed.
 ' , 'mpv scripts' , 4, 32)
@@ -159,7 +159,7 @@ if ($sponsorblockanswer -eq 'Yes') {
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Python/Download.ps1')
 }
 
-$deletefileanswer = [System.Windows.Forms.MessageBox]::Show('Add delete file?
+$deletefileanswer = [System.Windows.Forms.MessageBox]::Show($THIS, 'Add delete file?
 
 Delete key deletes current video file.
 ' , 'mpv scripts' , 4, 32)
@@ -167,7 +167,7 @@ if ($deletefileanswer -eq 'Yes') {
     Write-Host "mpv: Downloading 'delete_file.lua'" -ForegroundColor green -BackgroundColor black
     (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/zenyd/mpv-scripts/master/delete_file.lua', "$env:ProgramFiles/mpv/scripts/delete_file.lua")
     
-    $autodeletefileanswer = [System.Windows.Forms.MessageBox]::Show('Add auto delete file?
+    $autodeletefileanswer = [System.Windows.Forms.MessageBox]::Show($THIS, 'Add auto delete file?
 
 Auto deletes current video file when 15 seconds remaining.
 ' , 'mpv scripts' , 4, 48)
