@@ -1,5 +1,6 @@
 [void] [System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms')
 [void] [System.Reflection.Assembly]::LoadWithPartialName('System.Drawing')
+[void] [System.Windows.Forms.Application]::EnableVisualStyles()
 
 $Form_SoftwareSelection = New-Object System.Windows.Forms.Form
 $Form_SoftwareSelection.width = 500
