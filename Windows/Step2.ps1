@@ -31,6 +31,9 @@ $NextStep_Parameters = @{
 }
 Register-ScheduledTask @NextStep_Parameters -Force
 
+Write-Host 'Step2: PSWindowsUpdate: Uninstalling' -ForegroundColor green -BackgroundColor black
+Uninstall-Module PSWindowsUpdate -Force
+
 Write-Host 'Step2: NuGet: Uninstalling' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path "$env:ProgramFiles\PackageManagement")) {
     Write-Host "Step2: NuGet: Deleting $env:ProgramFiles\PackageManagement" -ForegroundColor green -BackgroundColor black
@@ -45,8 +48,6 @@ if ((Test-Path -Path "$env:APPDATA\PackageManagement")) {
     Write-Host "Step2: NuGet: Deleting $env:APPDATA\PackageManagement" -ForegroundColor green -BackgroundColor black
     Remove-Item -Path ("$env:APPDATA\PackageManagement") -Force -Recurse
 }
-Write-Host 'Step2: PSWindowsUpdate: Uninstalling' -ForegroundColor green -BackgroundColor black
-Uninstall-Module PSWindowsUpdate -Force
 
 Write-Host 'Step2: Windows Key: Activating' -ForegroundColor green -BackgroundColor black
 & ([ScriptBlock]::Create(((New-Object System.Net.WebClient).DownloadString('https://massgrave.dev/get')))) /HWID
