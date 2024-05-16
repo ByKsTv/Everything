@@ -63,7 +63,7 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         }
         Start-Sleep -Milliseconds 10000
         
-        Write-Host "Mozila Firefox Extensions: Adding option to set foreground" -ForegroundColor green -BackgroundColor black
+        Write-Host 'Mozila Firefox Extensions: Adding option to set foreground' -ForegroundColor green -BackgroundColor black
         if (-not ([System.Management.Automation.PSTypeName]'SFW').Type) {
             Add-Type @'
         using System;
@@ -105,7 +105,7 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
     [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
     Start-Sleep -Milliseconds 1000
 
-     Write-Host "Mozila Firefox Extensions: Starting 'Restore from file' on 'uBlock Origin' settings" -ForegroundColor green -BackgroundColor black
+    Write-Host "Mozila Firefox Extensions: Starting 'Restore from file' on 'uBlock Origin' settings" -ForegroundColor green -BackgroundColor black
     [System.Windows.Forms.SendKeys]::SendWait('+{TAB 2}')
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
     Start-Sleep -Milliseconds 1000
@@ -127,6 +127,6 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
     Start-Sleep -Milliseconds 1000
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
 
-    Write-Host "Mozila Firefox Extensions: Cleaning up" -ForegroundColor green -BackgroundColor black
+    Write-Host 'Mozila Firefox Extensions: Cleaning up' -ForegroundColor green -BackgroundColor black
     Remove-Item HKLM:\SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install -Force
 }
