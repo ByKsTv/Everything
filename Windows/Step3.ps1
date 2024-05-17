@@ -1,15 +1,6 @@
 Write-Host 'Step3: Setting UI: Setting Title' -ForegroundColor green -BackgroundColor black
 $host.UI.RawUI.WindowTitle = 'Step3'
 
-Write-Host 'Step3: Setting UI: Maximizing Window' -ForegroundColor green -BackgroundColor black
-$sig = '[DllImport("user32.dll")] public static extern bool ShowWindowAsync(IntPtr hWnd, int nCmdShow);'
-Add-Type -MemberDefinition $sig -Name NativeMethods -Namespace Win32
-$hwnd = @(Get-Process PowerShell)[0].MainWindowHandle
-[Win32.NativeMethods]::ShowWindowAsync($hwnd, 3)
-
-Write-Host 'Step3: Setting UI: Setting Foreground' -ForegroundColor green -BackgroundColor black
-(New-Object -ComObject WScript.Shell).AppActivate((Get-Process powershell).MainWindowTitle)
-
 Write-Host 'Step3: Task Scheduler: Removing current step' -ForegroundColor green -BackgroundColor black
 Unregister-ScheduledTask -TaskName Step3 -Confirm:$false
 

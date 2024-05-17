@@ -1,13 +1,12 @@
 # Information
 
-> [!NOTE]
-> Everything about Discord.
+Everything about Discord.
 
 ## Discord Setup - Auto Install
 
 1. PowerShell (Admin):
 
-```powershell
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Discord/Download.ps1')
+   ```powershell
+   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Discord/Download.ps1')
 
-```
+   ```

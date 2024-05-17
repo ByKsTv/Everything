@@ -1,7 +1,6 @@
 # Information
 
-> [!NOTE]
-> Everything about Pi-Hole.
+Everything about Pi-Hole.
 
 ## Pre Installation
 
@@ -152,8 +151,7 @@
    sudo service unbound restart
    ```
 
-> [!NOTE]  
-> Source: <https://docs.pi-hole.net/guides/dns/unbound/>
+> Note: [Source](https://docs.pi-hole.net/guides/dns/unbound/)
 
 ### Auto-Update Setup
 

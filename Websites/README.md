@@ -1,7 +1,6 @@
 # Information
 
-> [!NOTE]
-> Everything about websites.
+Everything about websites.
 
 ## Movies & TV Shows
 
@@ -13,8 +12,7 @@
 - [RuTracker.org BDREMUX](https://rutracker.org/forum/tracker.php?f=1105&nm=BDRemux)
 - [DMHY BDMV](https://share.dmhy.org/topics/list?keyword=BDMV)
 
-> [!TIP]
-> Follow [Watch Order](https://www.reddit.com/r/anime/wiki/watch_order/)
+  > Note: Follow [Watch Order](https://www.reddit.com/r/anime/wiki/watch_order/)
 
 ### Non-Anime
 

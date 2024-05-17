@@ -1,16 +1,15 @@
 # Information
 
-> [!NOTE]
-> Everything about mpv.
+Everything about mpv.
 
 ## mpv Setup - Auto Install
 
 1. PowerShell (Admin):
 
-```powershell
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/Download.ps1')
+   ```powershell
+   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/Download.ps1')
 
-```
+   ```
 
 ## Scripts included
 

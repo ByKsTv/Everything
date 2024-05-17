@@ -19,7 +19,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. `START` > Enable all except `Set regional options to the same values as this user's` > `OK` > `OK`.
 1. Download Motherboard LAN driver to USB.
 
-   > TIP: Motherboard model can be found on `System Information` > `BaseBoard Product`
+   > Note: Motherboard model can be found on `System Information` > `BaseBoard Product`
 
 ## Pre Installation
 
@@ -28,7 +28,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. Disconnect Every Hard Drive Except Windows Drive.
 1. Boot to UEFI USB (F12/DEL/F11).
 
-   > TIP: Restart to BIOS using CMD (Admin):
+   > Note: Restart to BIOS using CMD (Admin):
    >
    > ```cmd
    > shutdown /r /fw /t 00

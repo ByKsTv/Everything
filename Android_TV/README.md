@@ -1,7 +1,6 @@
 # Information
 
-> [!NOTE]
-> Everything about Android TV apps.
+Everything about Android TV apps.
 
 ## Android TV Apps
 

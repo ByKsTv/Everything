@@ -1,7 +1,6 @@
 # Information
 
-> [!NOTE]
-> Everything about Android apps.
+Everything about Android apps.
 
 ## Android Apps
 
