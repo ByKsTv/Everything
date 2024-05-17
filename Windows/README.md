@@ -10,16 +10,16 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 1. PowerShell (Admin):
 
-    ```powershell
-    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/ISO.ps1')
-    
-    ```
+   ```powershell
+   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/ISO.ps1')
+
+   ```
 
 1. Connect USB with at least 8GB.
 1. `START` > Enable all except `Set regional options to the same values as this user's` > `OK` > `OK`.
 1. Download Motherboard LAN driver to USB.
 
-    > TIP: Motherboard model can be found on `System Information` > `BaseBoard Product`
+   > TIP: Motherboard model can be found on `System Information` > `BaseBoard Product`
 
 ## Pre Installation
 
@@ -28,12 +28,12 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. Disconnect Every Hard Drive Except Windows Drive.
 1. Boot to UEFI USB (F12/DEL/F11).
 
-    > TIP: Restart to BIOS using CMD (Admin):
-    >
-    > ```cmd
-    > shutdown /r /fw /t 00
-    >
-    > ```
+   > TIP: Restart to BIOS using CMD (Admin):
+   >
+   > ```cmd
+   > shutdown /r /fw /t 00
+   >
+   > ```
 
 ## Installation
 
@@ -46,19 +46,19 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 1. PowerShell (Admin):
 
-    ```powershell
-    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Step1.ps1')
-    
-    ```
+   ```powershell
+   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Step1.ps1')
+
+   ```
 
 ## Software Selection
 
 1. PowerShell (Admin):
 
-    ```powershell
-    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software_Selection.ps1')
-    
-    ```
+   ```powershell
+   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software_Selection.ps1')
+
+   ```
 
 ### NVCleanstall
 
@@ -87,7 +87,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 1. Download and Install Motherboard Drivers.
 
-    > Note: Download and Install only what's needed such as LAN and Chipset drivers.
+   > Note: Download and Install only what's needed such as LAN and Chipset drivers.
 
 ### Printers
 
@@ -98,7 +98,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. Set up scan profile.
 1. Set up print quality and print size.
 
-    > Note: HP Printer: Only Original Ink Cartridges.
+   > Note: HP Printer: Only Original Ink Cartridges.
 
 ## Extra Software
 
