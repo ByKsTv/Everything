@@ -50,6 +50,15 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
     
     ```
 
+## Software Selection
+
+1. PowerShell (Admin):
+
+    ```powershell
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software_Selection.ps1')
+    
+    ```
+
 ### NVCleanstall
 
 1. Restart to Safe Mode (Shift+Restart) `Troubleshoot` > `Advanced options` > `Startup Settings` > `Restart` > Disconnect Ethernet Cable > Open Display Driver Uninstaller (Admin) > `OK` > Disable `Show offers from out partners` > Enable `Remove PhysX` > `Close` > `OK` > `---Select device type---` > `GPU` > `Clean and restart`.
@@ -89,15 +98,6 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. Set up print quality and print size.
 
     > Note: HP Printer: Only Original Ink Cartridges.
-
-## Software Selection
-
-1. PowerShell (Admin):
-
-    ```powershell
-    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software_Selection.ps1')
-    
-    ```
 
 ## Extra Software
 
