@@ -29,6 +29,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. Boot to UEFI USB (F12/DEL/F11).
 
     > TIP: Restart to BIOS using CMD (Admin):
+    >
     > ```cmd
     > shutdown /r /fw /t 00
     >
