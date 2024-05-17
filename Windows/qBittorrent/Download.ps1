@@ -16,7 +16,6 @@ Session\GlobalMaxRatio=0
 Session\GlobalMaxSeedingMinutes=0
 Session\MaxRatioAction=1
 Session\MaxConnectionsPerTorrent=-1
-Session\BTProtocol=TCP
 Session\MaxConnections=-1
 Session\MaxUploads=-1
 Session\RefreshInterval=2000
