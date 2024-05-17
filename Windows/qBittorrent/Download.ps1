@@ -63,7 +63,4 @@ Enabled=false
 [LegalNotice]
 Accepted=true
 '
-if (!(Test-Path -Path $env:APPDATA\qBittorrent)) {
-	New-Item -Path $env:APPDATA\qBittorrent -Value qBittorrent -ItemType Directory
-}
-Set-Content -Path $env:APPDATA\qBittorrent\qBittorrent.ini -Value $qBitSettings -Force
+New-Item -Path "$env:APPDATA\qBittorrent\qBittorrent.ini" -ItemType File -Value $qBitSettings -Force

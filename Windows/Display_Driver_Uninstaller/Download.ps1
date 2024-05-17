@@ -11,7 +11,8 @@ Write-Host 'Display Driver Uninstaller: Installing' -ForegroundColor green -Back
 Start-Process -FilePath $env:TEMP\DDU.exe -ArgumentList '/S'
 
 Write-Host 'Display Driver Uninstaller: Using custom settings' -ForegroundColor green -BackgroundColor black
-$DDUSettings = '<?xml version="1.0" encoding="utf-8"?>
+$DDUSettings = '
+<?xml version="1.0" encoding="utf-8"?>
 <DisplayDriverUninstaller Version="18.0.7.6">
 	<Settings>
 		<SelectedLanguage>en-US</SelectedLanguage>
@@ -39,9 +40,6 @@ $DDUSettings = '<?xml version="1.0" encoding="utf-8"?>
 		<UsedBCD>False</UsedBCD>
 		<KeepNVCPopt>False</KeepNVCPopt>
 	</Settings>
-</DisplayDriverUninstaller>'
-
-if (!(Test-Path -Path "${env:ProgramFiles(x86)}\Display Driver Uninstaller")) {
-    New-Item -Path "${env:ProgramFiles(x86)}\Display Driver Uninstaller" -Value 'Display Driver Uninstaller' -ItemType Directory
-}
-Set-Content -Path "${env:ProgramFiles(x86)}\Display Driver Uninstaller\Settings\Settings.xml" -Value $DDUSettings -Force
+</DisplayDriverUninstaller>
+'
+New-Item -Path "${env:ProgramFiles(x86)}\Display Driver Uninstaller\Settings\Settings.xml" -ItemType File -Value $DDUSettings -Force
