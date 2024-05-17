@@ -7,8 +7,7 @@ Write-Host 'qBittorrent: Installing' -ForegroundColor green -BackgroundColor bla
 Start-Process $ENV:temp\qBittorrent.exe -ArgumentList '/S'
 
 Write-Host 'qBittorrent: Using custom settings' -ForegroundColor green -BackgroundColor black
-$qBitSettings = '
-[BitTorrent]
+$qBitSettings = '[BitTorrent]
 Session\MaxUploadsPerTorrent=-1
 Session\GlobalMaxInactiveSeedingMinutes=0
 Session\Port=0
@@ -61,6 +60,5 @@ geometry=@ByteArray(\x1\xd9\xd0\xcb\0\x3\0\0\0\0\0\0\xff\xff\xff\xf8\0\0\a}\0\0\
 Enabled=false
 
 [LegalNotice]
-Accepted=true
-'
+Accepted=true'
 New-Item -Path "$env:APPDATA\qBittorrent\qBittorrent.ini" -ItemType File -Value $qBitSettings -Force
