@@ -1,22 +1,25 @@
 # Information
 
-> [!NOTE]
-> Everything about Windows.
+Everything about Windows.
 
 ## Backup
 
-> [!WARNING]
-> Backup everything including usernames, passwords, videos, photos, software, desktop layout, macros, mpv settings, firefox profile folder, app data.
+Usernames, passwords, videos, photos, files, software, desktop layout, macros, mpv settings, firefox profile folder, app data.
 
 ## Download
 
-1. Download [Windows 10 Iot Enterprise LTSC 2021](https://massgrave.dev/windows_ltsc_links#win10-iot-enterprise-ltsc-2021).
+1. PowerShell (Admin):
+
+    ```powershell
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/ISO.ps1')
+    
+    ```
+
 1. Connect USB with at least 8GB.
-1. Download and Open [Rufus](https://github.com/pbatard/rufus/releases/latest) > `SELECT` > .ISO File > `Open` > `START` > Enable all except `Set regional options to the same values as this user's` > `OK` > `OK`.
+1. `START` > Enable all except `Set regional options to the same values as this user's` > `OK` > `OK`.
 1. Download Motherboard LAN driver to USB.
 
-> [!TIP]
-> Motherboard model can be found on `System Information` > `BaseBoard Product`.
+    > TIP: Motherboard model can be found on `System Information` > `BaseBoard Product`
 
 ## Pre Installation
 
@@ -25,13 +28,11 @@
 1. Disconnect Every Hard Drive Except Windows Drive.
 1. Boot to UEFI USB (F12/DEL/F11).
 
-> [!TIP]
-> Restart to BIOS using CMD (Admin):
->
-> ```cmd
-> shutdown /r /fw /t 00
->
-> ```
+    > TIP: Restart to BIOS using CMD (Admin):
+    > ```cmd
+    > shutdown /r /fw /t 00
+    >
+    > ```
 
 ## Installation
 
@@ -44,10 +45,10 @@
 
 1. PowerShell (Admin):
 
-```powershell
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Step1.ps1')
-
-```
+    ```powershell
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Step1.ps1')
+    
+    ```
 
 ### NVCleanstall
 
@@ -76,29 +77,27 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 
 1. Download and Install Motherboard Drivers.
 
-> [!NOTE]
-> Download and Install only what's needed such as LAN and Chipset drivers.
+    > Note: Download and Install only what's needed such as LAN and Chipset drivers.
 
 ### Printers
 
 1. `Settings` > `Devices` > `Printers & scanners` > `Add a printer or scanner` > `The printer that I want isn't listed` > `My printer is a little older. Help me find it.` > `Next`.
-2. Select the correct printer > `Next` > `Windows Update`.
-3. Select the correct manufacturer > Select the correct printer > `Next` > `Next` > `Next` > `Finish`.
-4. To scan pages use `Windows Fax and Scan` software.
-5. Set up scan profile.
-6. Set up print quality and print size.
+1. Select the correct printer > `Next` > `Windows Update`.
+1. Select the correct manufacturer > Select the correct printer > `Next` > `Next` > `Next` > `Finish`.
+1. To scan pages use `Windows Fax and Scan` software.
+1. Set up scan profile.
+1. Set up print quality and print size.
 
-> [!NOTE]
-> HP Printer? Only use Original Ink Cartridges.
+    > Note: HP Printer: Only Original Ink Cartridges.
 
-## Software Selection - Manual Install
+## Software Selection
 
 1. PowerShell (Admin):
 
-```powershell
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software_Selection.ps1')
-
-```
+    ```powershell
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software_Selection.ps1')
+    
+    ```
 
 ## Extra Software
 
