@@ -30,3 +30,15 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 
 Write-Host 'Step4: Software Selection: Initiating' -ForegroundColor green -BackgroundColor black
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software_Selection.ps1')
+
+Write-Host 'Step4: Windows Resource Protection: Searching for Integrity Violations' -ForegroundColor green -BackgroundColor black
+sfc /scannow
+
+Write-Host 'Step4: Searching for component store corruption' -ForegroundColor green -BackgroundColor black
+dism /Online /Cleanup-image /Scanhealth
+
+Write-Host 'Step4: Restoring health' -ForegroundColor green -BackgroundColor black
+dism /Online /Cleanup-image /Restorehealth
+
+Write-Host 'Step4: Cleaning up' -ForegroundColor green -BackgroundColor black
+dism /online /cleanup-image /startcomponentcleanup

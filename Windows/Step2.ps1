@@ -22,10 +22,23 @@ $NextStep_Parameters = @{
 }
 Register-ScheduledTask @NextStep_Parameters -Force
 
+Write-Host 'Step2: NuGet: Uninstalling' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -Path "$env:ProgramFiles\PackageManagement")) {
+    Write-Host "Step2: NuGet: Deleting $env:ProgramFiles\PackageManagement" -ForegroundColor green -BackgroundColor black
+    icacls "$env:ProgramFiles\PackageManagement" /grant Users:F
+    Remove-Item -Path ("$env:ProgramFiles\PackageManagement") -Force -Recurse
+}
+if ((Test-Path -Path "$env:LOCALAPPDATA\PackageManagement")) {
+    Write-Host "Step2: NuGet: Deleting $env:LOCALAPPDATA\PackageManagement" -ForegroundColor green -BackgroundColor black
+    Remove-Item -Path ("$env:LOCALAPPDATA\PackageManagement") -Force -Recurse
+}
+if ((Test-Path -Path "$env:APPDATA\PackageManagement")) {
+    Write-Host "Step2: NuGet: Deleting $env:APPDATA\PackageManagement" -ForegroundColor green -BackgroundColor black
+    Remove-Item -Path ("$env:APPDATA\PackageManagement") -Force -Recurse
+}
+
 Write-Host 'Step2: PSWindowsUpdate: Uninstalling' -ForegroundColor green -BackgroundColor black
 Uninstall-Module PSWindowsUpdate -Force
-
-Write-Host 'Step2: NuGet: Uninstalling' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path "$env:ProgramFiles\PackageManagement")) {
     Write-Host "Step2: NuGet: Deleting $env:ProgramFiles\PackageManagement" -ForegroundColor green -BackgroundColor black
     icacls "$env:ProgramFiles\PackageManagement" /grant Users:F
@@ -83,6 +96,9 @@ Disable-WindowsOptionalFeature -FeatureName 'MicrosoftWindowsPowershellV2Root' -
 Disable-WindowsOptionalFeature -FeatureName 'Printing-XPSServices-Features' -Online -NoRestart
 Disable-WindowsOptionalFeature -FeatureName 'WorkFolders-Client' -Online -NoRestart
 Disable-WindowsOptionalFeature -FeatureName 'MediaPlayback' -Online -NoRestart
+
+Write-Host 'Step2: Removing Windows Backup app' -ForegroundColor green -BackgroundColor black
+Remove-WindowsPackage -PackageName *UserExperience* -Online -NoRestart
 
 Write-Host 'Step2: Restarting' -ForegroundColor green -BackgroundColor black
 shutdown /r /t 00
