@@ -31,10 +31,6 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 Write-Host 'Step4: Software Selection: Initiating' -ForegroundColor green -BackgroundColor black
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software_Selection.ps1')
 
-Write-Host 'Step2: Windows Packages: Removing Windows Backup app' -ForegroundColor green -BackgroundColor black
-Remove-WindowsPackage -PackageName 'Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35~amd64~~10.0.19041.4291' -Online -NoRestart
-Remove-WindowsPackage -PackageName 'Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35~amd64~~10.0.19041.4355' -Online -NoRestart
-
 Write-Host 'Step4: Windows Resource Protection: Searching for Integrity Violations' -ForegroundColor green -BackgroundColor black
 sfc /scannow
 

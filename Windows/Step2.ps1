@@ -97,5 +97,9 @@ Disable-WindowsOptionalFeature -FeatureName 'Printing-XPSServices-Features' -Onl
 Disable-WindowsOptionalFeature -FeatureName 'WorkFolders-Client' -Online -NoRestart
 Disable-WindowsOptionalFeature -FeatureName 'MediaPlayback' -Online -NoRestart
 
+Write-Host 'Step2: Windows Packages: Removing Windows Backup app' -ForegroundColor green -BackgroundColor black
+Remove-WindowsPackage -PackageName 'Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35~amd64~~10.0.19041.4291' -Online -NoRestart
+Remove-WindowsPackage -PackageName 'Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35~amd64~~10.0.19041.4355' -Online -NoRestart
+
 Write-Host 'Step2: Restarting' -ForegroundColor green -BackgroundColor black
 shutdown /r /t 00
