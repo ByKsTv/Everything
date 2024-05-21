@@ -315,3 +315,68 @@ Write-Host 'Settings: Settings: Time & Language: Language: Hebrew Keyboard' -For
 $HebrewUserLanguage = Get-WinUserLanguageList
 $HebrewUserLanguage.Add('he-IL')
 Set-WinUserLanguageList -LanguageList $HebrewUserLanguage -Force
+
+Write-Host 'Settings: Lock Screen: Setting to black' -ForegroundColor green -BackgroundColor black
+# https://github.com/fr33thytweaks/Ultimate-Windows-Optimization-Guide/blob/main/6%20Windows/13%20Signout%20Lockscreen.ps1
+takeown /f 'C:\Windows\Web\Screen' /r /d y
+icacls 'C:\Windows\Web\Screen' /GRANT Everyone:F, Users:F /t
+Add-Type -AssemblyName System.Drawing
+$file = "$env:C:\Windows\Web\Screen\img100.jpg"
+$edit = New-Object System.Drawing.Bitmap 3840, 2160
+$color = [System.Drawing.Brushes]::Black
+$graphics = [System.Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:C:\Windows\Web\Screen\img101.jpg"
+$edit = New-Object System.Drawing.Bitmap 3840, 2400
+$color = [System.Drawing.Brushes]::Black
+$graphics = [System.Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:C:\Windows\Web\Screen\img101.png"
+$edit = New-Object System.Drawing.Bitmap 3840, 2400
+$color = [System.Drawing.Brushes]::Black
+$graphics = [System.Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:C:\Windows\Web\Screen\img102.jpg"
+$edit = New-Object System.Drawing.Bitmap 6400, 4000
+$color = [System.Drawing.Brushes]::Black
+$graphics = [System.Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:C:\Windows\Web\Screen\img103.jpg"
+$edit = New-Object System.Drawing.Bitmap 3839, 2400
+$color = [System.Drawing.Brushes]::Black
+$graphics = [System.Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:C:\Windows\Web\Screen\img103.png"
+$edit = New-Object System.Drawing.Bitmap 3839, 2400
+$color = [System.Drawing.Brushes]::Black
+$graphics = [System.Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:C:\Windows\Web\Screen\img104.jpg"
+$edit = New-Object System.Drawing.Bitmap 3840, 2400
+$color = [System.Drawing.Brushes]::Black
+$graphics = [System.Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:C:\Windows\Web\Screen\img105.jpg"
+$edit = New-Object System.Drawing.Bitmap 1920, 1200
+$color = [System.Drawing.Brushes]::Black
+$graphics = [System.Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+takeown /f 'C:\ProgramData\Microsoft\Windows\SystemData' /r /d y
+icacls 'C:\ProgramData\Microsoft\Windows\SystemData' /GRANT Everyone:F, Users:F /t
+Remove-Item 'C:\ProgramData\Microsoft\Windows\SystemData' -Force -Recurse
