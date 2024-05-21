@@ -64,12 +64,6 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 1. Restart to Safe Mode (Shift+Restart) `Troubleshoot` > `Advanced options` > `Startup Settings` > `Restart` > Disconnect Ethernet Cable > Open Display Driver Uninstaller (Admin) > `---Select device type---` > `GPU` > `Clean and restart`.
 1. Open NVCleanstall (Admin) > Connect Ethernet Cable > `Refresh` > `Manually select a driver version` > `Studio` > `Next` > `Recommended` > `Next` > `Use Previous Settings` > `Next` > `Install`.
-1. PowerShell (Admin):
-
-    ```powershell
-    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/nvidiaProfileInspector/Download.ps1')
-    
-    ```
 
 ### NVIDIA Control Panel
 

@@ -3,7 +3,9 @@ $nvidiaProfileInspectorURL = ((Invoke-RestMethod -Method GET -Uri 'https://api.g
 (New-Object System.Net.WebClient).DownloadFile("$nvidiaProfileInspectorURL", "$env:TEMP\nvidiaProfileInspector.zip")
 
 Write-Host 'nvidiaProfileInspector: Extracting' -ForegroundColor green -BackgroundColor black
-Expand-Archive "$env:TEMP\nvidiaProfileInspector.zip" -DestinationPath "$env:TEMP\nvidiaProfileInspector"
+if (!(Test-Path -Path $env:TEMP\nvidiaProfileInspector)) {
+    Expand-Archive "$env:TEMP\nvidiaProfileInspector.zip" -DestinationPath "$env:TEMP\nvidiaProfileInspector"
+}
 
 Write-Host 'nvidiaProfileInspector: Using custom settings' -ForegroundColor green -BackgroundColor black
 $nvidiaProfileInspectorSettings = @"
