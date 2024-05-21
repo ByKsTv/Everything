@@ -1,6 +1,10 @@
 # https://github.com/fr33thytweaks/Ultimate-Windows-Optimization-Guide/blob/main/6%20Windows/10%20Timer%20Resolution.ps1
+# https://forums.guru3d.com/threads/windows-timer-resolution-tool-in-form-of-system-service.376458/
 Write-Host 'Settings: Compiling Timer Resolution Service' -ForegroundColor green -BackgroundColor black
 $SetTimerResService = @"
+// comand line for compilation:
+// c:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe SetTimerResolutionService.cs
+
 using System;
 using System.Runtime.InteropServices;
 using System.ServiceProcess;
@@ -12,8 +16,10 @@ using System.IO;
 using System.Management;
 using System.Threading;
 using System.Diagnostics;
+
 [assembly: AssemblyVersion("2.1")]
 [assembly: AssemblyProduct("Set Timer Resolution service")]
+
 namespace WindowsService
 {
     class WindowsService : ServiceBase
@@ -22,36 +28,54 @@ namespace WindowsService
         {
             this.ServiceName = "STR";
             this.EventLog.Log = "Application";
+            
+            // These Flags set whether or not to handle that specific
+            //  type of event. Set to true if you need it, false otherwise.
             this.CanStop = true;
+
             this.CanHandlePowerEvent = false;
             this.CanHandleSessionChangeEvent = false;
             this.CanPauseAndContinue = false;
             this.CanShutdown = false;
         }
+
         static void Main()
         {
             ServiceBase.Run(new WindowsService());
         }
+
+
         protected override void OnStart(string[] args)
         {
             base.OnStart(args);
+
+            // read processes names from ini-file
             ReadProcessList();
+
+            // retrieve timer resolutions
             NtQueryTimerResolution(out this.MininumResolution, out this.MaximumResolution, out this.DefaultResolution);
             if(null != this.EventLog)
                 try { this.EventLog.WriteEntry(String.Format("Minimum={0}; Maximum={1}; Default={2}; Processes='{3}'", this.MininumResolution, this.MaximumResolution, this.DefaultResolution, null != this.ProcessesNames ? String.Join("','", this.ProcessesNames) : "")); }
                 catch {}
+
             if(null == this.ProcessesNames)
             {
+                // there is no ini-file, so just set maximum resolution and exit monitoring
                 SetMaximumResolution();
                 return;
             }
             if(0 == this.ProcessesNames.Count)
             {
+                // ini-file is empty, so just exit monitoring
                 return;
             }
+
+            // create delegate for async method execution
             this.ProcessStartDelegate = new OnProcessStart(this.ProcessStarted);
+
             try
             {
+                // subscribe for a start of processes
                 String query = String.Format("SELECT * FROM __InstanceCreationEvent WITHIN 0.5 WHERE (TargetInstance isa \"Win32_Process\") AND (TargetInstance.Name=\"{0}\")", String.Join("\" OR TargetInstance.Name=\"", this.ProcessesNames));
                 this.startWatch = new ManagementEventWatcher(query);
                 this.startWatch.EventArrived += this.startWatch_EventArrived;
@@ -64,8 +88,10 @@ namespace WindowsService
                     catch {}
             }
         }
+
         protected override void OnStop()
         {
+            // stop the event watchers
             if(null != this.startWatch)
             {
                 this.startWatch.Stop();
@@ -73,7 +99,9 @@ namespace WindowsService
 
             base.OnStop();
         }
+
         ManagementEventWatcher startWatch;
+
         void startWatch_EventArrived(object sender, EventArrivedEventArgs e) 
         {
             try
@@ -90,15 +118,21 @@ namespace WindowsService
 
             }
         }
+
         [DllImport("kernel32.dll", SetLastError=true)]
         static extern Int32 WaitForSingleObject(IntPtr Handle, Int32 Milliseconds);
+
         [DllImport("kernel32.dll", SetLastError=true)]
         static extern IntPtr OpenProcess(UInt32 DesiredAccess, Int32 InheritHandle, UInt32 ProcessId);
+
         [DllImport("kernel32.dll", SetLastError=true)]
         static extern Int32 CloseHandle(IntPtr Handle);
+
         const UInt32 SYNCHRONIZE = 0x00100000;
+
         delegate void OnProcessStart(UInt32 processId);
         OnProcessStart ProcessStartDelegate = null;
+
         void ProcessStarted(UInt32 processId)
         {
             SetMaximumResolution();
@@ -122,7 +156,9 @@ namespace WindowsService
             }
             SetDefaultResolution();
         }
+
         List<String> ProcessesNames = null;
+
         void ReadProcessList()
         {
             String iniFilePath = Assembly.GetExecutingAssembly().Location + ".ini";
@@ -144,14 +180,20 @@ namespace WindowsService
                 }
             }
         }
+
+
         [DllImport("ntdll.dll", SetLastError=true)]
         static extern int NtSetTimerResolution(uint DesiredResolution, bool SetResolution, out uint CurrentResolution);
+
         [DllImport("ntdll.dll", SetLastError=true)]
         static extern int NtQueryTimerResolution(out uint MinimumResolution, out uint MaximumResolution, out uint ActualResolution);
+
         uint DefaultResolution = 0;
         uint MininumResolution = 0;
         uint MaximumResolution = 0;
+
         long processCounter = 0;
+
         void SetMaximumResolution()
         {
             long counter = Interlocked.Increment(ref this.processCounter);
@@ -164,6 +206,7 @@ namespace WindowsService
                     catch {}
             }
         }
+
         void SetDefaultResolution()
         {
             long counter = Interlocked.Decrement(ref this.processCounter);
@@ -177,24 +220,38 @@ namespace WindowsService
             }
         }
     }
+
     [RunInstaller(true)]
     public class WindowsServiceInstaller : Installer
     {
+        /// <summary>
+        /// Public Constructor for WindowsServiceInstaller.
+        /// - Put all of your Initialization code here.
+        /// </summary>
         public WindowsServiceInstaller()
         {
             ServiceProcessInstaller serviceProcessInstaller = 
                                new ServiceProcessInstaller();
             ServiceInstaller serviceInstaller = new ServiceInstaller();
+
+            //# Service Account Information
             serviceProcessInstaller.Account = ServiceAccount.LocalSystem;
             serviceProcessInstaller.Username = null;
             serviceProcessInstaller.Password = null;
+
+            //# Service Information
             serviceInstaller.DisplayName = "Set Timer Resolution Service";
             serviceInstaller.StartType = ServiceStartMode.Automatic;
+
+            //# This must be identical to the WindowsService.ServiceBase name
+            //# set in the constructor of WindowsService.cs
             serviceInstaller.ServiceName = "STR";
+
             this.Installers.Add(serviceProcessInstaller);
             this.Installers.Add(serviceInstaller);
         }
     }
+
 }
 "@
 Set-Content -Path "$env:C:\Windows\SetTimerResolutionService.cs" -Value $SetTimerResService -Force
