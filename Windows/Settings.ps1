@@ -375,7 +375,7 @@ icacls 'C:\ProgramData\Microsoft\Windows\SystemData' /GRANT Everyone:F, Users:F 
 Remove-Item 'C:\ProgramData\Microsoft\Windows\SystemData' -Force -Recurse
 Write-Host 'Settings: Settings: Personalization: Lock screen: Show lock screen background pictures on the sign-in screen: On' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System') -ne $true) {
- New-Item 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System' -Force 
+	New-Item 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System' -Force
 }
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System' -Name 'DisableLogonBackgroundImage' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'RotatingLockScreenEnabled' -Value 0 -PropertyType DWord -Force
