@@ -19,6 +19,9 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 Write-Host 'Step4: Windows Settings: Initiating' -ForegroundColor green -BackgroundColor black
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Settings.ps1')
 
+Write-Host 'Step4: SetTimerResolutionService: Initiating' -ForegroundColor green -BackgroundColor black
+Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/SetTimerResolutionService.ps1')
+
 Write-Host 'Step4: Windows Network Settings: Initiating' -ForegroundColor green -BackgroundColor black
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Network.ps1')
 
