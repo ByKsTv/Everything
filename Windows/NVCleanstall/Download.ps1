@@ -95,7 +95,7 @@ New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\techPowerUp\NVCleanstall' -Name 'P
     "AddIdId": "",
     "AddIdName": "NVIDIA Graphics Device",
     "RunBefore": "",
-    "RunAfter": "powershell.exe \"Invoke-Expression (New-Object Net.WebClient).DownloadString(\"https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/nvidiaProfileInspector/Download.ps1\")\"",
+    "RunAfter": "powershell.exe Invoke-Expression (New-Object Net.WebClient).DownloadString(''https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/nvidiaProfileInspector/Download.ps1'')",
     "AddIdTemplate": "",
     "MSIPolicy": 5,
     "MSIPriority": 3,
