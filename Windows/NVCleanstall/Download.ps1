@@ -67,3 +67,37 @@ until( ($dirStats.Sum -ne 0) )
 
 Write-Host 'NVCleanstall: Installing' -ForegroundColor green -BackgroundColor black
 Start-Process -FilePath "$Downloads\NVCleanstall*.exe" -ArgumentList '/install /tasks="DriverUpdateCheck,DesktopIcon" /verysilent' -Wait
+
+Write-Host 'NVCleanstall: Using custom settings' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\techPowerUp\NVCleanstall') -ne $true) {
+    New-Item 'HKCU:\SOFTWARE\techPowerUp\NVCleanstall' -Force
+}
+New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\techPowerUp\NVCleanstall' -Name 'PreviousTweaks' -Value '{
+    "DisableInstallerTelemetry": true,
+    "Unattended": true,
+    "UnattendedReboot": true,
+    "CleanInstall": false,
+    "InstallDCHControlPanel": false,
+    "AddHardwareId": false,
+    "ShowDlssIndicator": false,
+    "DisableMPO": false,
+    "DisableNvCamera": true,
+    "ShowExpertOptions": true,
+    "DisableDriverTelemetry": false,
+    "DisableNvContainer": false,
+    "DisableHDAudioSleepTimer": true,
+    "EnableMSI": true,
+    "DisableHDCP": true,
+    "NvEncPatch": false,
+    "RunProgram": false,
+    "RebuildSignatureEAC": false,
+    "SkipUnsignedDriverWarning": false,
+    "AddIdId": "",
+    "AddIdName": "NVIDIA Graphics Device",
+    "RunBefore": "",
+    "RunAfter": "",
+    "AddIdTemplate": "",
+    "MSIPolicy": 5,
+    "MSIPriority": 3,
+    "NvEncPatchVersions": 0
+  }' -PropertyType String -Force
