@@ -64,19 +64,20 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 1. Restart to Safe Mode (Shift+Restart) `Troubleshoot` > `Advanced options` > `Startup Settings` > `Restart` > Disconnect Ethernet Cable > Open Display Driver Uninstaller (Admin) > `---Select device type---` > `GPU` > `Clean and restart`.
 1. Open NVCleanstall (Admin) > Connect Ethernet Cable > `Refresh` > `Manually select a driver version` > `Studio` > `Next` > `Recommended` > `Next` > `Use Previous Settings` > `Next` > `Install`.
+1. PowerShell (Admin):
+
+    ```powershell
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/nvidiaProfileInspector/Download.ps1')
+    
+    ```
 
 ### NVIDIA Control Panel
 
-1. `NVIDIA Control Panel` > `3D Settings` > `Manage 3D settings`:
-2. `Texture filtering - Quality` > `High quality`.
-3. `Texture filtering - Negative LOD bais` > `Clamp`.
-4. `Shader Cache Size` > `Unlimited`.
-5. `Power managment mode` > `Perfer maximum performance`.
-6. `NVIDIA Control Panel` > `Display` > `Change resolution`:
-7. `Output color format` > `YCbCr444` (TV) / `RGB` (Gaming).
-8. `Output dynamic range` > `Limited` (TV) / `Full` (Gaming).
-9. `Change resolution` > `Output color depth` > `12bpc`.
-10. `Adjust desktop size and postion` > `Full-Screen`.
+1. `NVIDIA Control Panel` > `Display` > `Change resolution`:
+1. `Output color format` > `YCbCr444` (TV) / `RGB` (Gaming).
+1. `Output dynamic range` > `Limited` (TV) / `Full` (Gaming).
+1. `Change resolution` > `Output color depth` > `12bpc`.
+1. `Adjust desktop size and postion` > `Full-Screen`.
 
 ### Sounds
 
