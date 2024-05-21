@@ -35,6 +35,7 @@ Everything about BIOS.
 1. `Advanced` > `Platform Misc Configuration` > `PCI Express Native Power Management` > `Enabled` (Wake-On-Lan).
 1. `Advanced` > `APM Configuration` > `Restore AC Power Loss` > `Power Off`.
 1. `Advanced` > `APM Configuration` > `Power On By PCI-E` > `Enabled` (Wake-On-Lan).
+1. `Advanced` > `CPU Configuration` > `CPU - Power Management Control` > `CPU C-states` > `Disabled`.
 1. `Advanced` > `Onboard Devices Configuration` > `Wi-Fi Controller` > `Disabled`.
 1. `Advanced` > `Onboard Devices Configuration` > `Bluetooth Controller` > `Disabled`.
 1. `Advanced` > `Onboard Devices Configuration` > `LED lighting When system is in working state` > `Stealth Mode`.
