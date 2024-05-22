@@ -77,7 +77,8 @@ Disable-ScheduledTask -TaskName 'XblGameSaveTask' -TaskPath '\Microsoft\XblGameS
 Disable-ScheduledTask -TaskName 'PcaPatchDbTask' -TaskPath '\Microsoft\Windows\Application Experience'
 Disable-ScheduledTask -TaskName 'WinSAT' -TaskPath '\Microsoft\Windows\Maintenance'
 
-Write-Host 'Step2: Optional features: Disabling bloatware' -ForegroundColor green -BackgroundColor black
+Write-Host 'Step2: Windows Capabilities: Disabling' -ForegroundColor green -BackgroundColor black
+# Get-WindowsCapability -Online | Where-Object { $_.State -ne 'NotPresent' }
 Remove-WindowsCapability -Name 'App.StepsRecorder~~~~0.0.1.0' -Online
 Remove-WindowsCapability -Name 'App.Support.QuickAssist~~~~0.0.1.0' -Online
 Remove-WindowsCapability -Name 'Browser.InternetExplorer~~~~0.0.11.0' -Online
@@ -88,14 +89,43 @@ Remove-WindowsCapability -Name 'Hello.Face.18967~~~~0.0.1.0' -Online
 Remove-WindowsCapability -Name 'OneCoreUAP.OneSync~~~~0.0.1.0' -Online
 Remove-WindowsCapability -Name 'MathRecognizer~~~~0.0.1.0' -Online
 Remove-WindowsCapability -Name 'OpenSSH.Client~~~~0.0.1.0' -Online
+Remove-WindowsCapability -Name 'DirectX.Configuration.Database~~~~0.0.1.0' -Online
+# Notepad
+Add-WindowsCapability -Name 'Microsoft.Windows.Notepad~~~~0.0.1.0' -Online
+# PowerShell ISE
+Add-WindowsCapability -Name 'Microsoft.Windows.PowerShell.ISE~~~~0.0.1.0' -Online
+# Windows Fax and Scan
+Add-WindowsCapability -Name 'Print.Fax.Scan~~~~0.0.1.0' -Online
+# Print Managment
+Add-WindowsCapability -Name 'Print.Management.Console~~~~0.0.1.0' -Online
 
-Write-Host 'Step2: Windows features: Disabling bloatware' -ForegroundColor green -BackgroundColor black
+Write-Host 'Step2: Windows Optional Features: Disabling' -ForegroundColor green -BackgroundColor black
+# Get-WindowsOptionalFeature -Online | Where-Object { $_.State -like 'Enabled' }
 Disable-WindowsOptionalFeature -FeatureName 'LegacyComponents' -Online -NoRestart
 Disable-WindowsOptionalFeature -FeatureName 'MicrosoftWindowsPowerShellV2' -Online -NoRestart
 Disable-WindowsOptionalFeature -FeatureName 'MicrosoftWindowsPowershellV2Root' -Online -NoRestart
 Disable-WindowsOptionalFeature -FeatureName 'Printing-XPSServices-Features' -Online -NoRestart
 Disable-WindowsOptionalFeature -FeatureName 'WorkFolders-Client' -Online -NoRestart
 Disable-WindowsOptionalFeature -FeatureName 'MediaPlayback' -Online -NoRestart
+Disable-WindowsOptionalFeature -FeatureName 'WCF-Services45' -Online -NoRestart
+Disable-WindowsOptionalFeature -FeatureName 'WCF-TCP-PortSharing45' -Online -NoRestart
+Disable-WindowsOptionalFeature -FeatureName 'Printing-PrintToPDFServices-Features' -Online -NoRestart
+Disable-WindowsOptionalFeature -FeatureName 'MSRDC-Infrastructure' -Online -NoRestart
+Disable-WindowsOptionalFeature -FeatureName 'NetFx4-AdvSrvs' -Online -NoRestart
+Disable-WindowsOptionalFeature -FeatureName 'SearchEngine-Client-Package' -Online -NoRestart
+Disable-WindowsOptionalFeature -FeatureName 'Microsoft-SnippingTool' -Online -NoRestart
+Disable-WindowsOptionalFeature -FeatureName 'Printing-Foundation-InternetPrinting-Client' -Online -NoRestart
+# RDP
+Enable-WindowsOptionalFeature -FeatureName 'Microsoft-RemoteDesktopConnection' -Online -NoRestart
+# Print
+Enable-WindowsOptionalFeature -FeatureName 'Printing-Foundation-Features' -Online -NoRestart
+# SMB
+if (Get-SmbClientNetworkInterface | Where-Object { $_.RdmaCapable -eq $false } ) {
+    Disable-WindowsOptionalFeature -FeatureName 'SmbDirect' -Online -NoRestart
+}
+elseif (Get-SmbClientNetworkInterface | Where-Object { $_.RdmaCapable -eq $true } ) {
+    Enable-WindowsOptionalFeature -FeatureName 'SmbDirect' -Online -NoRestart
+}
 
 Write-Host 'Step2: Windows Packages: Removing Windows Backup app' -ForegroundColor green -BackgroundColor black
 Remove-WindowsPackage -PackageName 'Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35~amd64~~10.0.19041.4291' -Online -NoRestart
