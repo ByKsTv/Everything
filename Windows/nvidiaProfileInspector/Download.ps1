@@ -18,7 +18,7 @@ $nvidiaProfileInspectorSettings = @"
       <ProfileSetting>
         <SettingNameInfo> </SettingNameInfo>
         <SettingID>390467</SettingID>
-        <SettingValue>2</SettingValue>
+        <SettingValue>0</SettingValue>
         <ValueType>Dword</ValueType>
       </ProfileSetting>
       <ProfileSetting>
@@ -42,7 +42,7 @@ $nvidiaProfileInspectorSettings = @"
       <ProfileSetting>
         <SettingNameInfo>Maximum pre-rendered frames</SettingNameInfo>
         <SettingID>8102046</SettingID>
-        <SettingValue>1</SettingValue>
+        <SettingValue>0</SettingValue>
         <ValueType>Dword</ValueType>
       </ProfileSetting>
       <ProfileSetting>
@@ -78,7 +78,7 @@ $nvidiaProfileInspectorSettings = @"
       <ProfileSetting>
         <SettingNameInfo>FRL Low Latency</SettingNameInfo>
         <SettingID>277041152</SettingID>
-        <SettingValue>1</SettingValue>
+        <SettingValue>0</SettingValue>
         <ValueType>Dword</ValueType>
       </ProfileSetting>
       <ProfileSetting>
