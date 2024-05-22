@@ -63,7 +63,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 ### NVCleanstall
 
 1. Restart to Safe Mode (Shift+Restart) `Troubleshoot` > `Advanced options` > `Startup Settings` > `Restart` > Disconnect Ethernet Cable > Open Display Driver Uninstaller (Admin) > `---Select device type---` > `GPU` > `Clean and restart`.
-1. Open NVCleanstall (Admin) > Connect Ethernet Cable > `Refresh` > `Manually select a driver version` > `Studio` > `Next` > `Minimum` > `Next` > `Use Previous Settings` > `Next` > `Install`.
+1. Open NVCleanstall (Admin) > Connect Ethernet Cable > `Refresh` > `Manually select a driver version` > `Studio` > `Next` > `Recommended` > Disable `PhysX` > `Next` > `Use Previous Settings` > `Next` > `Install`.
 
 ### NVIDIA Control Panel
 
