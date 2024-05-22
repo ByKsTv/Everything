@@ -72,11 +72,12 @@ Write-Host 'NVCleanstall: Using custom settings' -ForegroundColor green -Backgro
 if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\techPowerUp\NVCleanstall') -ne $true) {
     New-Item 'HKCU:\SOFTWARE\techPowerUp\NVCleanstall' -Force
 }
-New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\techPowerUp\NVCleanstall' -Name 'PreviousTweaks' -Value '{
+$NVCleanstallCustomSettings = @"
+{
     "DisableInstallerTelemetry": true,
     "Unattended": true,
-    "UnattendedReboot": true,
-    "CleanInstall": false,
+    "UnattendedReboot": false,
+    "CleanInstall": true,
     "InstallDCHControlPanel": false,
     "AddHardwareId": false,
     "ShowDlssIndicator": false,
@@ -95,9 +96,11 @@ New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\techPowerUp\NVCleanstall' -Name 'P
     "AddIdId": "",
     "AddIdName": "NVIDIA Graphics Device",
     "RunBefore": "",
-    "RunAfter": "powershell.exe Invoke-Expression (New-Object Net.WebClient).DownloadString(''https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/nvidiaProfileInspector/Download.ps1'')",
+    "RunAfter": "powershell.exe Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/nvidiaProfileInspector/Download.ps1')",
     "AddIdTemplate": "",
     "MSIPolicy": 5,
     "MSIPriority": 3,
     "NvEncPatchVersions": 0
-  }' -PropertyType String -Force
+  }
+"@
+New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\techPowerUp\NVCleanstall' -Name 'PreviousTweaks' -Value $NVCleanstallCustomSettings -PropertyType String -Force

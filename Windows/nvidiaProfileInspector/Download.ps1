@@ -30,12 +30,18 @@ $nvidiaProfileInspectorSettings = @"
       <ProfileSetting>
         <SettingNameInfo>Texture filtering - Trilinear optimization</SettingNameInfo>
         <SettingID>3066610</SettingID>
-        <SettingValue>1</SettingValue>
+        <SettingValue>0</SettingValue>
         <ValueType>Dword</ValueType>
       </ProfileSetting>
       <ProfileSetting>
         <SettingNameInfo>Preferred refresh rate</SettingNameInfo>
         <SettingID>6600001</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Maximum pre-rendered frames</SettingNameInfo>
+        <SettingID>8102046</SettingID>
         <SettingValue>1</SettingValue>
         <ValueType>Dword</ValueType>
       </ProfileSetting>
@@ -70,12 +76,6 @@ $nvidiaProfileInspectorSettings = @"
         <ValueType>Dword</ValueType>
       </ProfileSetting>
       <ProfileSetting>
-        <SettingNameInfo>Enable Ansel</SettingNameInfo>
-        <SettingID>276158834</SettingID>
-        <SettingValue>0</SettingValue>
-        <ValueType>Dword</ValueType>
-      </ProfileSetting>
-      <ProfileSetting>
         <SettingNameInfo>FRL Low Latency</SettingNameInfo>
         <SettingID>277041152</SettingID>
         <SettingValue>1</SettingValue>
@@ -85,6 +85,12 @@ $nvidiaProfileInspectorSettings = @"
         <SettingNameInfo>Threaded optimization</SettingNameInfo>
         <SettingID>549528094</SettingID>
         <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Vulkan/OpenGL present method</SettingNameInfo>
+        <SettingID>550932728</SettingID>
+        <SettingValue>0</SettingValue>
         <ValueType>Dword</ValueType>
       </ProfileSetting>
     </Settings>
