@@ -95,7 +95,7 @@ $NVCleanstallCustomSettings = @"
   "SkipUnsignedDriverWarning": false,
   "AddIdId": "",
   "AddIdName": "NVIDIA Graphics Device",
-  "RunBefore": "powershell.exe Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/nvidiaProfileInspector/Download.ps1')",
+  "RunBefore": "",
   "RunAfter": "powershell.exe Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/nvidiaProfileInspector/Download.ps1')",
   "AddIdTemplate": "",
   "MSIPolicy": 5,
