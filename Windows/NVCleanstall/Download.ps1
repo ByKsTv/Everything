@@ -76,7 +76,7 @@ $NVCleanstallCustomSettings = @"
 {
   "DisableInstallerTelemetry": true,
   "Unattended": true,
-  "UnattendedReboot": false,
+  "UnattendedReboot": true,
   "CleanInstall": false,
   "InstallDCHControlPanel": false,
   "AddHardwareId": false,
