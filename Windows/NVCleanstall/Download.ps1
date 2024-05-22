@@ -88,7 +88,7 @@ $NVCleanstallCustomSettings = @"
   "DisableNvContainer": false,
   "DisableHDAudioSleepTimer": true,
   "EnableMSI": true,
-  "DisableHDCP": false,
+  "DisableHDCP": true,
   "NvEncPatch": false,
   "RunProgram": true,
   "RebuildSignatureEAC": false,
