@@ -54,7 +54,7 @@ if ((Test-Path -Path "$env:APPDATA\PackageManagement")) {
 }
 
 Write-Host 'Step2: Windows Key: Activating' -ForegroundColor green -BackgroundColor black
-& ([ScriptBlock]::Create(((New-Object System.Net.WebClient).DownloadString('https://massgrave.dev/get')))) /HWID
+& ([ScriptBlock]::Create(((New-Object System.Net.WebClient).DownloadString('https://get.activated.win/')))) /HWID
 
 Write-Host 'Step2: Scheduled tasks: Disabling telemetry' -ForegroundColor green -BackgroundColor black
 Disable-ScheduledTask -TaskName 'Consolidator' -TaskPath '\Microsoft\Windows\Customer Experience Improvement Program\'

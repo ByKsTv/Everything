@@ -147,7 +147,7 @@ $Form_OfficeSelection.Add_Shown({ $Form_OfficeSelection.Activate() })
 [void] $Form_OfficeSelection.ShowDialog()
 
 Write-Host 'Office Key: Activating' -ForegroundColor green -BackgroundColor black
-& ([ScriptBlock]::Create(((New-Object Net.WebClient).DownloadString('https://massgrave.dev/get')))) /Ohook
+& ([ScriptBlock]::Create(((New-Object Net.WebClient).DownloadString('https://get.activated.win/')))) /Ohook
 
 Write-Host 'Office Telemetry: Disabling' -ForegroundColor green -BackgroundColor black
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/abbodi1406/WHD/master/scripts/OC2R_DisableTelemetry.ps1')

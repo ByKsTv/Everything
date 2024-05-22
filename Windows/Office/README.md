@@ -17,7 +17,7 @@ Everything about Office.
 1. Activate Office - PowerShell (Admin):
 
    ```powershell
-   & ([ScriptBlock]::Create(((New-Object Net.WebClient).DownloadString('https://massgrave.dev/get')))) /Ohook
+   & ([ScriptBlock]::Create(((New-Object Net.WebClient).DownloadString('https://get.activated.win/')))) /Ohook
 
    ```
 
