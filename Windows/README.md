@@ -67,6 +67,13 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 ### NVIDIA Control Panel
 
+1. PowerShell (Admin):
+
+   ```powershell
+   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/nvidiaProfileInspector/Download.ps1')
+
+   ```
+
 1. `NVIDIA Control Panel` > `Display` > `Change resolution`:
 1. `Output color format` > `YCbCr444` (TV) / `RGB` (Gaming).
 1. `Output dynamic range` > `Limited` (TV) / `Full` (Gaming).
