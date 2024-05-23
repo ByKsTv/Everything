@@ -53,19 +53,8 @@ $NextStep_Parameters = @{
 }
 Register-ScheduledTask @NextStep_Parameters -Force
 
-Write-Host 'Step1: Power Options: Adding ultimate perofrmance' -ForegroundColor green -BackgroundColor black
-$powerSchemeName = 'Ultimate Performance'
-$powerSchemeGuid = 'e9a42b02-d5df-448d-aa00-03f14749eb61'
-$schemes = powercfg /list | Out-String -Stream
-$ultimateScheme = $schemes | Where-Object { $_ -match $powerSchemeName }
-if ($null -eq $ultimateScheme) {
-	(New-Object System.Net.WebClient).DownloadFile('https://github.com/ByKsTv/Everything/raw/main/Windows/Ultimate_Performance.pow', "$env:TEMP\Ultimate_Performance.pow")
-	powercfg -import $env:TEMP\Ultimate_Performance.pow $powerSchemeGuid
-}
-powercfg /S $powerSchemeGuid
-
-Write-Host 'Step1: Power Options: Changing screen to never turns off' -ForegroundColor green -BackgroundColor black
-powercfg -change -monitor-timeout-ac 0
+ Write-Host 'Step1: Power Plan: Initiating' -ForegroundColor green -BackgroundColor black
+Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/PowerPlan.ps1')
 
 Write-Host "Step1: PC Name: Renaming to $env:username" -ForegroundColor green -BackgroundColor black
 if ($env:computername -ne $env:username) {
