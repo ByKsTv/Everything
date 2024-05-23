@@ -1,4 +1,5 @@
 # https://github.com/fr33thytweaks/Ultimate-Windows-Optimization-Guide/blob/main/6%20Windows/9%20Power%20Plan.ps1
+# https://learn.microsoft.com/en-us/previous-versions/windows/hardware/design/dn613985(v=vs.85)?redirectedfrom=MSDN
 # import ultimate power plan
 $powerSchemeName = 'Ultimate Performance'
 $powerSchemeGuid = 'e9a42b02-d5df-448d-aa00-03f14749eb61'
