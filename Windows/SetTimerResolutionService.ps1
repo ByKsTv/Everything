@@ -1,5 +1,6 @@
 # https://github.com/fr33thytweaks/Ultimate-Windows-Optimization-Guide/blob/main/6%20Windows/10%20Timer%20Resolution.ps1
 # https://forums.guru3d.com/threads/windows-timer-resolution-tool-in-form-of-system-service.376458/
+
 Write-Host 'Settings: Compiling Timer Resolution Service' -ForegroundColor green -BackgroundColor black
 $SetTimerResService = @"
 // comand line for compilation:
