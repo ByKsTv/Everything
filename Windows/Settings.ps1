@@ -194,8 +194,7 @@ Write-Host 'O&O ShutUp10++: Downloading' -ForegroundColor green -BackgroundColor
 (New-Object System.Net.WebClient).DownloadFile('https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe', "$env:TEMP\OOSU10.exe")
 
 Write-Host 'O&O ShutUp10++: Getting latest recommended settings' -ForegroundColor green -BackgroundColor black
-$OOSU10 = @'
-############################################################################
+$OOSU10 = '############################################################################
 # This file was created with O&O ShutUp10++ V1.9.1436
 # and can be imported onto another computer. 
 #
@@ -371,7 +370,7 @@ M013	-
 M014	-
 M023	-
 N001	-
-'@
+'
 
 Write-Host 'O&O ShutUp10++: Writing latest recommended settings' -ForegroundColor green -BackgroundColor black
 New-Item -Path $ENV:temp\OOSU10.cfg -ItemType File -Value $OOSU10 -Force

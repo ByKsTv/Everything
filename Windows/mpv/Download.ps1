@@ -176,3 +176,6 @@ Auto deletes current video file when 15 seconds remaining.
         (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/delete_file_auto.lua', "$env:ProgramFiles/mpv/scripts/delete_file_auto.lua")
     }
 }
+
+Write-Host "mpv: Allowing to edit 'mpv' folder" -ForegroundColor green -BackgroundColor black
+icacls $env:ProgramFiles/mpv /grant Users:F /t
