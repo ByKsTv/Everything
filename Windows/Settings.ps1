@@ -933,7 +933,6 @@ Remove-WindowsCapability -Name 'App.StepsRecorder~~~~0.0.1.0' -Online
 Remove-WindowsCapability -Name 'App.Support.QuickAssist~~~~0.0.1.0' -Online
 Remove-WindowsCapability -Name 'Browser.InternetExplorer~~~~0.0.11.0' -Online
 Remove-WindowsCapability -Name 'Media.WindowsMediaPlayer~~~~0.0.12.0' -Online
-Remove-WindowsCapability -Name 'Microsoft.Windows.MSPaint~~~~0.0.1.0' -Online
 Remove-WindowsCapability -Name 'Microsoft.Windows.WordPad~~~~0.0.1.0' -Online
 Remove-WindowsCapability -Name 'Hello.Face.18967~~~~0.0.1.0' -Online
 Remove-WindowsCapability -Name 'OneCoreUAP.OneSync~~~~0.0.1.0' -Online
@@ -948,6 +947,8 @@ Add-WindowsCapability -Name 'Microsoft.Windows.PowerShell.ISE~~~~0.0.1.0' -Onlin
 Add-WindowsCapability -Name 'Print.Fax.Scan~~~~0.0.1.0' -Online
 # Print Managment
 Add-WindowsCapability -Name 'Print.Management.Console~~~~0.0.1.0' -Online
+# Paint
+Add-WindowsCapability -Name 'Microsoft.Windows.MSPaint~~~~0.0.1.0' -Online
 
 Write-Host 'Step2: Windows Optional Features: Disabling' -ForegroundColor green -BackgroundColor black
 # Get-WindowsOptionalFeature -Online | Where-Object { $_.State -like 'Enabled' }
@@ -2689,13 +2690,5 @@ if ($WakeOnLanAnswer -eq 'No') {
 	if ($NetworkSettingsName -match 'Shutdown Wake Up') {
 		Write-Host 'Network: Shutdown Wake Up: Disabled' -ForegroundColor green -BackgroundColor black
 		Set-NetAdapterAdvancedProperty -DisplayName 'Shutdown Wake Up' -DisplayValue 'Disabled'
-	}
-}
-
-Write-Host 'Network: Wait until networking is available' -ForegroundColor green -BackgroundColor black
-# https://gist.github.com/larsks/4011808
-while (1) {
-	if ( ((Get-WmiObject -Class Win32_NetworkAdapterConfiguration -Filter DHCPEnabled=TRUE | Where-Object { $_.DefaultIPGateway -ne $null }) | Measure-Object).count -gt 0 ) {
-		break
 	}
 }

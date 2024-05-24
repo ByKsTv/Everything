@@ -35,7 +35,6 @@ if (-not ([System.Management.Automation.PSTypeName]'SFW').Type) {
 Write-Host 'Rufus: Setting foreground' -ForegroundColor green -BackgroundColor black
 [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'Rufus' }).MainWindowHandle)
 Start-Sleep -Milliseconds 1000
-# it doesnt work for some reason
 
 Write-Host 'Rufus: Selecting .ISO' -ForegroundColor green -BackgroundColor black
 Add-Type -AssemblyName System.Windows.Forms

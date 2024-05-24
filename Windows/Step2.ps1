@@ -1,6 +1,24 @@
 Write-Host 'Step2: Task Scheduler: Removing current step' -ForegroundColor green -BackgroundColor black
 Unregister-ScheduledTask -TaskName Step2 -Confirm:$false
 
+Write-Host 'Step2: Initiating next step' -ForegroundColor green -BackgroundColor black
+$NextStep = 'Step3'
+(New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/$NextStep.ps1", "$env:TEMP\$NextStep.ps1")
+
+Write-Host "Step2: Task Scheduler: Adding $NextStep" -ForegroundColor green -BackgroundColor black
+$NextStep_Principal = New-ScheduledTaskPrincipal -UserId $env:computername\$env:USERNAME -RunLevel Highest
+$NextStep_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "-WindowStyle Maximized -ExecutionPolicy Bypass -File $env:TEMP\$NextStep.ps1"
+$NextStep_Trigger = New-ScheduledTaskTrigger -AtLogOn
+$NextStep_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
+$NextStep_Parameters = @{
+	TaskName  = $NextStep
+	Principal = $NextStep_Principal
+	Action    = $NextStep_Action
+	Trigger   = $NextStep_Trigger
+	Settings  = $NextStep_Settings
+}
+Register-ScheduledTask @NextStep_Parameters -Force
+
 Write-Host 'Step2: Windows Update: Checking for updates' -ForegroundColor green -BackgroundColor black
 Start-Process -FilePath "$env:SystemRoot\System32\UsoClient.exe" -ArgumentList StartInteractiveScan
 
@@ -13,24 +31,5 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 Write-Host 'Step2: Windows Settings: Initiating' -ForegroundColor green -BackgroundColor black
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Settings.ps1')
 
-Write-Host 'Step2: Mozila Firefox Extensions: Initiating' -ForegroundColor green -BackgroundColor black
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Extensions.ps1')
-
-Write-Host 'Step2: Google Chrome Extensions: Initiating' -ForegroundColor green -BackgroundColor black
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Chrome/Extensions.ps1')
-
-Write-Host 'Step2: Software Selection: Initiating' -ForegroundColor green -BackgroundColor black
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software_Selection.ps1')
-
-# I don't think we need it
-# Write-Host 'Step2: Windows Resource Protection: Searching for Integrity Violations' -ForegroundColor green -BackgroundColor black
-# sfc /scannow
-
-# Write-Host 'Step2: Searching for component store corruption' -ForegroundColor green -BackgroundColor black
-# dism /Online /Cleanup-image /Scanhealth
-
-# Write-Host 'Step2: Restoring health' -ForegroundColor green -BackgroundColor black
-# dism /Online /Cleanup-image /Restorehealth
-
-# Write-Host 'Step2: Cleaning up' -ForegroundColor green -BackgroundColor black
-# dism /online /cleanup-image /startcomponentcleanup
+Write-Host 'Step2: Restarting' -ForegroundColor green -BackgroundColor black
+shutdown /r /t 00
