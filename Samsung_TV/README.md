@@ -6,9 +6,9 @@ Everything about Samsung TV.
 
 1. `Settings` > `Support` > `Software Update` > `Update Now`.
 
-    > Note: Update TV Firmware at night hours to avoid power loss.
-    >
-    > Note: [Firmware Update Changelog](https://eu.community.samsung.com/t5/tv/tv-firmware-changelogs-on-german-community/td-p/1846870)
+   > Note: Update TV Firmware at night hours to avoid power loss.
+   >
+   > Note: [Firmware Update Changelog](https://eu.community.samsung.com/t5/tv/tv-firmware-changelogs-on-german-community/td-p/1846870)
 
 1. Factory Reset.
 1. (SmartThings Setup) Remote Control > Left arrow > Left arrow.

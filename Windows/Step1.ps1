@@ -1,40 +1,3 @@
-Write-Host 'Step1: Setting UI: Setting Title' -ForegroundColor green -BackgroundColor black
-$host.UI.RawUI.WindowTitle = 'Step1'
-
-if (!(Test-Path -Path $env:TEMP\concfg)) {
-	Write-Host 'Step1: concfg: Downloading' -ForegroundColor green -BackgroundColor black
-	(New-Object System.Net.WebClient).DownloadFile('https://github.com/lukesampson/concfg/archive/refs/heads/master.zip', "$env:TEMP\concfg.zip")
-
-	Write-Host 'Step1: concfg: Extracting' -ForegroundColor green -BackgroundColor black
-	Expand-Archive -Path "$env:TEMP\concfg.zip" -DestinationPath "$env:TEMP\concfg" -Force
-	
-	Write-Host 'Step1: concfg: Enabling script' -ForegroundColor green -BackgroundColor black
-	Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
-	
-	Write-Host 'Step1: concfg: Setting location' -ForegroundColor green -BackgroundColor black
-	Set-Location "$env:TEMP\concfg\concfg-master\bin"
-	
-	Write-Host 'Step1: concfg: Importing cmd preset' -ForegroundColor green -BackgroundColor black
-	.\concfg import cmd-default -n
-	.\concfg clean
-}
-
-Write-Host 'Step1: Setting UI: Setting Colors' -ForegroundColor green -BackgroundColor black
-$host.UI.RawUI.BackgroundColor = 'black'
-$Host.UI.RawUI.ForegroundColor = 'white'
-
-Write-Host 'Step1: Setting UI: Maximizing Window' -ForegroundColor green -BackgroundColor black
-$sig = '[DllImport("user32.dll")] public static extern bool ShowWindowAsync(IntPtr hWnd, int nCmdShow);'
-Add-Type -MemberDefinition $sig -Name NativeMethods -Namespace Win32
-$hwnd = @(Get-Process PowerShell)[0].MainWindowHandle
-[Win32.NativeMethods]::ShowWindowAsync($hwnd, 3)
-
-Write-Host 'Step1: Setting UI: Setting Foreground' -ForegroundColor green -BackgroundColor black
-(New-Object -ComObject WScript.Shell).AppActivate((Get-Process powershell).MainWindowTitle)
-
-Write-Host 'Step1: Setting UI: Applying Colors' -ForegroundColor green -BackgroundColor black
-Clear-Host
-
 Write-Host 'Step1: Initiating next step' -ForegroundColor green -BackgroundColor black
 $NextStep = 'Step2'
 (New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/$NextStep.ps1", "$env:TEMP\$NextStep.ps1")
@@ -52,9 +15,6 @@ $NextStep_Parameters = @{
 	Settings  = $NextStep_Settings
 }
 Register-ScheduledTask @NextStep_Parameters -Force
-
- Write-Host 'Step1: Power Plan: Initiating' -ForegroundColor green -BackgroundColor black
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/PowerPlan.ps1')
 
 Write-Host "Step1: PC Name: Renaming to $env:username" -ForegroundColor green -BackgroundColor black
 if ($env:computername -ne $env:username) {

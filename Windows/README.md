@@ -67,23 +67,20 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 ### NVIDIA Control Panel
 
-1. PowerShell (Admin):
-
-   ```powershell
-   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/nvidiaProfileInspector/Download.ps1')
-
-   ```
-
+1. `NVIDIA Control Panel` > `3D Settings` > `Manage 3D settings`:
+1. `Power managment mode` > `Perfer maximum performance`.
+1. `Preferred refresh rate` > `Highest available`.
 1. `NVIDIA Control Panel` > `Display` > `Change resolution`:
 1. `Output color format` > `YCbCr444` (TV) / `RGB` (Gaming).
 1. `Output dynamic range` > `Limited` (TV) / `Full` (Gaming).
 1. `Change resolution` > `Output color depth` > `12bpc`.
-1. `Adjust desktop size and postion` > `Full-Screen`.
+1. `Adjust desktop size and postion` > `No scaling` > `GPU`.
 
 ### Sounds
 
 1. Speaker setup > `5.1 (side)`.
-2. Default Format > `24 bit, 192000 Hz (Studio Quality)`.
+1. Default Format > `24 bit, 192000 Hz (Studio Quality)`.
+1. Enhancements > Disabled.
 
 ### Drivers
 
