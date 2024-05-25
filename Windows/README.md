@@ -69,12 +69,10 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 1. `NVIDIA Control Panel` > `3D Settings` > `Manage 3D settings`:
 1. `Power managment mode` > `Perfer maximum performance`.
-1. `Preferred refresh rate` > `Highest available`.
 1. `NVIDIA Control Panel` > `Display` > `Change resolution`:
 1. `Output color format` > `YCbCr444` (TV) / `RGB` (Gaming).
 1. `Output dynamic range` > `Limited` (TV) / `Full` (Gaming).
 1. `Change resolution` > `Output color depth` > `12bpc`.
-1. `Adjust desktop size and postion` > `No scaling` > `GPU`.
 
 ### Sounds
 
