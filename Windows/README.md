@@ -80,7 +80,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 1. Speaker setup > `5.1 (side)`.
 1. Default Format > `24 bit, 48000 Hz (Studio Quality)`.
-1. Enhancements > Disabled.
+1. Enhancements: Disable all.
 
 ### Drivers
 
