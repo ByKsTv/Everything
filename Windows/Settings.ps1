@@ -1,4 +1,3 @@
-# https://learn.microsoft.com/en-us/previous-versions/windows/hardware/design/dn613985(v=vs.85)
 Write-Host 'PowerPlan: Importing Ultimate Performance' -ForegroundColor green -BackgroundColor black
 $ultimateScheme = powercfg /LIST | Where-Object { $_ -match 'Ultimate Performance' }
 if ($null -eq $ultimateScheme) {
@@ -40,15 +39,13 @@ New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Explorer
 Write-Host 'PowerPlan: Disabling fast boot option' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power' -Name 'HiberbootEnabled' -PropertyType DWord -Value 0 -Force
 
+# https://learn.microsoft.com/en-us/previous-versions/windows/hardware/design/dn613985(v=vs.85)
 Write-Host 'PowerPlan: Unparking CPU cores' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKLM:\SYSTEM\ControlSet001\Control\Power\PowerSettings\54533251-82be-4824-96c1-47b60b740d00\0cc5b647-c1df-4637-891a-dec35c318583' -Name 'ValueMax' -PropertyType DWord -Value 0 -Force
 powercfg /SETACVALUEINDEX SCHEME_CURRENT sub_processor CPMINCORES 100
 powercfg /SETACVALUEINDEX SCHEME_CURRENT sub_processor CPMINCORES1 100
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT sub_processor CPMINCORES 100
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT sub_processor CPMINCORES1 100
-
-Write-Host 'PowerPlan: Setting system responsiveness' -ForegroundColor green -BackgroundColor black
-New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile' -Name 'SystemResponsiveness' -PropertyType DWord -Value 0 -Force
 
 Write-Host 'PowerPlan: Turn off hard disk after: 0 seconds' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 0012ee47-9041-4b5d-9b77-535fba8b1442 6738e2c4-e8a5-4a42-b16a-e040e769756e 0x00000000
@@ -94,10 +91,10 @@ powercfg /SETDCVALUEINDEX SCHEME_CURRENT 501a4d13-42af-4429-9fd1-a8218c268e20 ee
 
 # https://docs.google.com/document/d/1c2-lUJq74wuYK1WrA_bIvgb89dUN0sj8-hO3vqmrau4/edit
 # Do not enable, CPU will be at 100% Usage constintly
-Write-Host 'PowerPlan: Processor idle disable: Processor idle disable: Processor idle enable' -ForegroundColor green -BackgroundColor black
-powercfg /attributes SUB_PROCESSOR 5d76a2ca-e8c0-402f-a133-2158492d58ad -ATTRIB_HIDE
-powercfg /SETACVALUEINDEX SCHEME_CURRENT sub_processor 5d76a2ca-e8c0-402f-a133-2158492d58ad 0
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT sub_processor 5d76a2ca-e8c0-402f-a133-2158492d58ad 0
+# Write-Host 'PowerPlan: Processor idle disable: Processor idle disable: Processor idle enable' -ForegroundColor green -BackgroundColor black
+# powercfg /attributes SUB_PROCESSOR 5d76a2ca-e8c0-402f-a133-2158492d58ad -ATTRIB_HIDE
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT sub_processor 5d76a2ca-e8c0-402f-a133-2158492d58ad 0
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT sub_processor 5d76a2ca-e8c0-402f-a133-2158492d58ad 0
 
 Write-Host 'PowerPlan: Processor power management: Minimum processor state: 100%' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 893dee8e-2bef-41e0-89c6-b55d0929964c 0x00000064
@@ -938,16 +935,16 @@ Remove-WindowsCapability -Name 'OneCoreUAP.OneSync~~~~0.0.1.0' -Online
 Remove-WindowsCapability -Name 'MathRecognizer~~~~0.0.1.0' -Online
 Remove-WindowsCapability -Name 'OpenSSH.Client~~~~0.0.1.0' -Online
 Remove-WindowsCapability -Name 'DirectX.Configuration.Database~~~~0.0.1.0' -Online
-# Notepad
-Add-WindowsCapability -Name 'Microsoft.Windows.Notepad~~~~0.0.1.0' -Online
-# PowerShell ISE
-Add-WindowsCapability -Name 'Microsoft.Windows.PowerShell.ISE~~~~0.0.1.0' -Online
-# Windows Fax and Scan
-Add-WindowsCapability -Name 'Print.Fax.Scan~~~~0.0.1.0' -Online
-# Print Managment
-Add-WindowsCapability -Name 'Print.Management.Console~~~~0.0.1.0' -Online
-# Paint
-Add-WindowsCapability -Name 'Microsoft.Windows.MSPaint~~~~0.0.1.0' -Online
+# # Notepad
+# Add-WindowsCapability -Name 'Microsoft.Windows.Notepad~~~~0.0.1.0' -Online
+# # PowerShell ISE
+# Add-WindowsCapability -Name 'Microsoft.Windows.PowerShell.ISE~~~~0.0.1.0' -Online
+# # Windows Fax and Scan
+# Add-WindowsCapability -Name 'Print.Fax.Scan~~~~0.0.1.0' -Online
+# # Print Managment
+# Add-WindowsCapability -Name 'Print.Management.Console~~~~0.0.1.0' -Online
+# # Paint
+# Add-WindowsCapability -Name 'Microsoft.Windows.MSPaint~~~~0.0.1.0' -Online
 
 Write-Host 'Step2: Windows Optional Features: Disabling' -ForegroundColor green -BackgroundColor black
 # Get-WindowsOptionalFeature -Online | Where-Object { $_.State -like 'Enabled' }
@@ -965,11 +962,11 @@ Disable-WindowsOptionalFeature -FeatureName 'NetFx4-AdvSrvs' -Online -NoRestart
 Disable-WindowsOptionalFeature -FeatureName 'SearchEngine-Client-Package' -Online -NoRestart
 Disable-WindowsOptionalFeature -FeatureName 'Microsoft-SnippingTool' -Online -NoRestart
 Disable-WindowsOptionalFeature -FeatureName 'Printing-Foundation-InternetPrinting-Client' -Online -NoRestart
-# RDP
-Enable-WindowsOptionalFeature -FeatureName 'Microsoft-RemoteDesktopConnection' -Online -NoRestart
-# Print
-Enable-WindowsOptionalFeature -FeatureName 'Printing-Foundation-Features' -Online -NoRestart
-# SMB
+# # RDP
+# Enable-WindowsOptionalFeature -FeatureName 'Microsoft-RemoteDesktopConnection' -Online -NoRestart
+# # Print
+# Enable-WindowsOptionalFeature -FeatureName 'Printing-Foundation-Features' -Online -NoRestart
+# # SMB
 if (Get-SmbClientNetworkInterface | Where-Object { $_.RdmaCapable -eq $false } ) {
 	Disable-WindowsOptionalFeature -FeatureName 'SmbDirect' -Online -NoRestart
 }
@@ -978,7 +975,7 @@ elseif (Get-SmbClientNetworkInterface | Where-Object { $_.RdmaCapable -eq $true 
 }
 
 Write-Host 'Step2: Windows Packages: Removing Windows Backup app' -ForegroundColor green -BackgroundColor black
-Remove-WindowsPackage -PackageName 'Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35~amd64~~10.0.19041.4291' -Online -NoRestart
+# Remove-WindowsPackage -PackageName 'Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35~amd64~~10.0.19041.4291' -Online -NoRestart
 Remove-WindowsPackage -PackageName 'Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35~amd64~~10.0.19041.4355' -Online -NoRestart
 
 Write-Host 'Step2: NuGet: Uninstalling' -ForegroundColor green -BackgroundColor black
@@ -1015,11 +1012,16 @@ if ((Test-Path -Path "$env:APPDATA\PackageManagement")) {
 Write-Host 'Settings: Services: Setting to manual' -ForegroundColor green -BackgroundColor black
 # https://docs.microsoft.com/en-us/windows-server/security/windows-services/security-guidelines-for-disabling-system-services-in-windows-server
 # https://github.com/djdallmann/GamingPCSetup/blob/master/CONTENT/DOCS/SERVICES/README.md
+Set-Service CDPSvc -StartupType Manual
+Set-Service UsoSvc -StartupType Manual
+Set-Service StorSvc -StartupType Manual
+Set-Service edgeupdate -StartupType Manual
+Set-Service WpnService -StartupType Manual
+Set-Service vm3dservice -StartupType Manual
 Set-Service AJRouter -StartupType Disabled
 Set-Service AppVClient -StartupType Disabled
 Set-Service AssignedAccessManagerSvc -StartupType Disabled
 Set-Service AxInstSV -StartupType Disabled
-Set-Service CDPSvc -StartupType Manual
 Set-Service CscService -StartupType Disabled
 Set-Service FrameServer -StartupType Disabled
 Set-Service MapsBroker -StartupType Disabled
@@ -1028,8 +1030,6 @@ Set-Service PhoneSvc -StartupType Disabled
 Set-Service PrintNotify -StartupType Disabled
 Set-Service QWAVE -StartupType Disabled
 Set-Service RemoteAccess -StartupType Disabled
-# RmSvc is wifi?
-Set-Service RmSvc -StartupType Disabled
 Set-Service SCardSvr -StartupType Disabled
 Set-Service SSDPSRV -StartupType Disabled
 Set-Service ScDeviceEnum -StartupType Disabled
@@ -1039,30 +1039,27 @@ Set-Service SensrSvc -StartupType Disabled
 Set-Service SharedAccess -StartupType Disabled
 Set-Service ShellHWDetection -StartupType Disabled
 Set-Service Spooler -StartupType Disabled
-Set-Service StorSvc -StartupType Manual
 Set-Service TabletInputService -StartupType Disabled
 Set-Service UevAgentService -StartupType Disabled
 Set-Service UserDataSvc -StartupType Disabled
-Set-Service UsoSvc -StartupType Manual
 Set-Service WSearch -StartupType Disabled
 Set-Service WalletService -StartupType Disabled
 Set-Service WiaRpc -StartupType Disabled
-Set-Service WpnService -StartupType Manual
 Set-Service SEMgrSvc -StartupType Disabled
 Set-Service XblAuthManager -StartupType Disabled
 Set-Service XblGameSave -StartupType Disabled
-# bluthoot
-Set-Service bthserv -StartupType Disabled
 Set-Service dmwappushservice -StartupType Disabled
-Set-Service edgeupdate -StartupType Manual
 Set-Service icssvc -StartupType Disabled
 Set-Service lfsvc -StartupType Disabled
 Set-Service lltdsvc -StartupType Disabled
 Set-Service stisvc -StartupType Disabled
 Set-Service tzautoupdate -StartupType Disabled
 Set-Service upnphost -StartupType Disabled
-Set-Service vm3dservice -StartupType Manual
 Set-Service wisvc -StartupType Disabled
+# bluthoot
+Set-Service bthserv -StartupType Disabled
+# RmSvc is wifi?
+Set-Service RmSvc -StartupType Disabled
 
 Write-Host 'Settings: System Properties: Remote: Allow Remote Assistance connections to this computer: Off' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\System\ControlSet001\Control\Remote Assistance') -ne $true) {
@@ -1322,8 +1319,8 @@ if ($null -ne (Get-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\R
 	Remove-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'SecurityHealth'
 }
 
-Write-Host 'Settings: Boot Options: Standard (default)' -ForegroundColor green -BackgroundColor black
-bcdedit /set `{current`} bootmenupolicy standard
+#Write-Host 'Settings: Boot Options: Standard (default)' -ForegroundColor green -BackgroundColor black
+#bcdedit /set `{current`} bootmenupolicy standard
 
 # https://docs.google.com/document/d/1c2-lUJq74wuYK1WrA_bIvgb89dUN0sj8-hO3vqmrau4/edit
 # This command forces the kernel timer to constantly poll for interrupts instead of wait for them; dynamic tick was implemented as a power saving feature for laptops but hurts desktop performance
@@ -1337,7 +1334,7 @@ bcdedit /set hypervisorlaunchtype off
 New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\DeviceGuard' -Name 'EnableVirtualizationBasedSecurity' -Value 0 -PropertyType DWord -Force
 
 # Process scheduling - 22 = Long, variable, 3x foreground boost (36:12)
-New-ItemProperty -Path 'HKLM:\SYSTEM\ControlSet001\Control\PriorityControl' -Name 'Win32PrioritySeparation' -Value 22 -PropertyType DWord -Force
+# New-ItemProperty -Path 'HKLM:\SYSTEM\ControlSet001\Control\PriorityControl' -Name 'Win32PrioritySeparation' -Value 22 -PropertyType DWord -Force
 
 # https://github.com/djdallmann/GamingPCSetup/blob/master/CONTENT/DOCS/POSTINSTALL/README.md
 fsutil behavior set DisableDeleteNotify 0
@@ -1788,11 +1785,6 @@ New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\
 New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name HideMergeConflicts -PropertyType DWord -Value 0 -Force
 # OpenFileExplorerTo -ThisPC
 New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name LaunchTo -PropertyType DWord -Value 1 -Force
-# FileExplorerRibbon -Expanded
-if (-not (Test-Path -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Ribbon)) {
-	New-Item -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Ribbon -Force
-}
-New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Ribbon -Name MinimizedStateTabletModeOff -PropertyType DWord -Value 0 -Force
 # OneDriveFileExplorerAd -Hide
 New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name ShowSyncProviderNotifications -PropertyType DWord -Value 0 -Force
 # SnapAssist -Disable
@@ -1879,8 +1871,6 @@ New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer 
 New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer -Name ShowFrequent -PropertyType DWord -Value 0 -Force
 # TaskbarSearch -Hide
 New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Search -Name SearchboxTaskbarMode -PropertyType DWord -Value 0 -Force
-# TaskViewButton -Hide
-New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name ShowTaskViewButton -PropertyType DWord -Value 0 -Force
 # WindowsInkWorkspace -Hide
 New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\PenWorkspace -Name PenWorkspaceButtonDesiredVisibility -PropertyType DWord -Value 0 -Force
 # NotificationAreaIcons -Show
@@ -1946,11 +1936,11 @@ New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name SortByList -PropertyType String -Value 'prop:System.ItemNameDisplay' -Force
 # NavigationPaneExpand -Disable
 Remove-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name NavPaneExpandToCurrentFolder -Force
-# StorageSense -Disable
+# StorageSense -Enable
 if (-not (Test-Path -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy)) {
 	New-Item -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy -ItemType Directory -Force
 }
-New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy -Name 01 -PropertyType DWord -Value 0 -Force
+New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy -Name 01 -PropertyType DWord -Value 1 -Force
 # StorageSenseTempFiles -Enable
 if ((Get-ItemPropertyValue -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy -Name 01) -eq '1') {
 	New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy -Name 04 -PropertyType DWord -Value 1 -Force
@@ -1959,8 +1949,6 @@ if ((Get-ItemPropertyValue -Path HKCU:\Software\Microsoft\Windows\CurrentVersion
 if ((Get-ItemPropertyValue -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy -Name 01) -eq '1') {
 	New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy -Name 2048 -PropertyType DWord -Value 30 -Force
 }
-# Hibernation -Disable
-POWERCFG /HIBERNATE OFF
 # Win32LongPathLimit -Disable
 New-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem -Name LongPathsEnabled -PropertyType DWord -Value 1 -Force
 # BSoDStopError -Enable
@@ -2190,8 +2178,8 @@ Remove-Item -Path Registry::HKEY_CLASSES_ROOT\.zip\CompressedFolder\ShellNew -Fo
 Remove-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer -Name MultipleInvokePromptMinimum -Force
 
 # https://github.com/djdallmann/GamingPCSetup/blob/master/CONTENT/DOCS/PSDSC/GamingMinimal.ps1
-# DisableWidgets 
-New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Dsh' -Name AllowNewsAndInterests -PropertyType DWord -Value 0 -Force
+# DisableWidgets - win11
+# New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Dsh' -Name AllowNewsAndInterests -PropertyType DWord -Value 0 -Force
 # DisableMouseTouchFeedback1 
 
 Write-Host 'Network: IPv4: MTU: 1500' -ForegroundColor green -BackgroundColor black
@@ -2615,9 +2603,9 @@ Write-Host 'Hosts: Adding mobile.events.data.microsoft.com' -ForegroundColor gre
 Add-Content -Path $env:windir\System32\drivers\etc\hosts -Value "`n127.0.0.1`tmobile.events.data.microsoft.com" -Force
 
 # NetworkDiscovery -Enable
-# Changed it abit
 Set-NetConnectionProfile -NetworkCategory Private
-Set-NetFirewallRule -Group '@FirewallAPI.dll,-28502', '@FirewallAPI.dll,-32752' -Profile Private -Enabled True
+Set-NetFirewallRule -Group '@FirewallAPI.dll,-28502' -Profile Private -Enabled True
+Set-NetFirewallRule -Group '@FirewallAPI.dll,-32752' -Profile Private -Enabled True
 
 Add-Type -AssemblyName System.Windows.Forms
 $WakeOnLanAnswer = [System.Windows.Forms.MessageBox]::Show('Enable Wake-On-Lan?
