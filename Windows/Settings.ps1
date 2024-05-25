@@ -1,10 +1,5 @@
 Write-Host 'Power Plan: Importing Ultimate Performance' -ForegroundColor green -BackgroundColor black
 powercfg /restoredefaultschemes
-$ultimateScheme = powercfg /LIST | Where-Object { $_ -match 'Ultimate Performance' }
-if ($null -eq $ultimateScheme) {
-	(New-Object System.Net.WebClient).DownloadFile('https://github.com/ByKsTv/Everything/raw/main/Windows/Ultimate_Performance.pow', "$env:TEMP\Ultimate_Performance.pow")
-	powercfg /IMPORT "$env:TEMP\Ultimate_Performance.pow" 'e9a42b02-d5df-448d-aa00-03f14749eb61'
-}
 
 Write-Host 'Power Plan: Activating Ultimate Performance' -ForegroundColor green -BackgroundColor black
 powercfg /SETACTIVE e9a42b02-d5df-448d-aa00-03f14749eb61
@@ -1020,7 +1015,6 @@ Set-Service UsoSvc -StartupType Manual
 Set-Service StorSvc -StartupType Manual
 Set-Service edgeupdate -StartupType Manual
 Set-Service WpnService -StartupType Manual
-Set-Service vm3dservice -StartupType Manual
 Set-Service AJRouter -StartupType Disabled
 Set-Service AppVClient -StartupType Disabled
 Set-Service AssignedAccessManagerSvc -StartupType Disabled
@@ -1028,7 +1022,6 @@ Set-Service AxInstSV -StartupType Disabled
 Set-Service CscService -StartupType Disabled
 Set-Service FrameServer -StartupType Disabled
 Set-Service MapsBroker -StartupType Disabled
-Set-Service NetTcpPortSharing -StartupType Disabled
 Set-Service PhoneSvc -StartupType Disabled
 Set-Service PrintNotify -StartupType Disabled
 Set-Service QWAVE -StartupType Disabled
@@ -1059,8 +1052,12 @@ Set-Service stisvc -StartupType Disabled
 Set-Service tzautoupdate -StartupType Disabled
 Set-Service upnphost -StartupType Disabled
 Set-Service wisvc -StartupType Disabled
+Set-Service BcastDVRUserService -StartupType Disabled
+Set-Service PimIndexMaintenanceSvc -StartupType Disabled
+Set-Service MessagingService -StartupType Disabled
 # bluthoot
 Set-Service bthserv -StartupType Disabled
+Set-Service BluetoothUserService -StartupType Disabled
 # RmSvc is wifi?
 Set-Service RmSvc -StartupType Disabled
 
@@ -1366,75 +1363,75 @@ $HebrewUserLanguage = Get-WinUserLanguageList
 $HebrewUserLanguage.Add('he-IL')
 Set-WinUserLanguageList -LanguageList $HebrewUserLanguage -Force
 
-Write-Host 'Settings: Lock Screen: Setting to black' -ForegroundColor green -BackgroundColor black
-# https://github.com/fr33thytweaks/Ultimate-Windows-Optimization-Guide/blob/main/6%20Windows/13%20Signout%20Lockscreen.ps1
-takeown /f 'C:\Windows\Web\Screen' /r /d y
-icacls 'C:\Windows\Web\Screen' /GRANT Everyone:F, Users:F /t
-Add-Type -AssemblyName System.Drawing
-$file = "$env:C:\Windows\Web\Screen\img100.jpg"
-$edit = New-Object System.Drawing.Bitmap 3840, 2160
-$color = [System.Drawing.Brushes]::Black
-$graphics = [System.Drawing.Graphics]::FromImage($edit)
-$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-$graphics.Dispose()
-$edit.Save($file)
-$file = "$env:C:\Windows\Web\Screen\img101.jpg"
-$edit = New-Object System.Drawing.Bitmap 3840, 2400
-$color = [System.Drawing.Brushes]::Black
-$graphics = [System.Drawing.Graphics]::FromImage($edit)
-$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-$graphics.Dispose()
-$edit.Save($file)
-$file = "$env:C:\Windows\Web\Screen\img101.png"
-$edit = New-Object System.Drawing.Bitmap 3840, 2400
-$color = [System.Drawing.Brushes]::Black
-$graphics = [System.Drawing.Graphics]::FromImage($edit)
-$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-$graphics.Dispose()
-$edit.Save($file)
-$file = "$env:C:\Windows\Web\Screen\img102.jpg"
-$edit = New-Object System.Drawing.Bitmap 6400, 4000
-$color = [System.Drawing.Brushes]::Black
-$graphics = [System.Drawing.Graphics]::FromImage($edit)
-$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-$graphics.Dispose()
-$edit.Save($file)
-$file = "$env:C:\Windows\Web\Screen\img103.jpg"
-$edit = New-Object System.Drawing.Bitmap 3839, 2400
-$color = [System.Drawing.Brushes]::Black
-$graphics = [System.Drawing.Graphics]::FromImage($edit)
-$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-$graphics.Dispose()
-$edit.Save($file)
-$file = "$env:C:\Windows\Web\Screen\img103.png"
-$edit = New-Object System.Drawing.Bitmap 3839, 2400
-$color = [System.Drawing.Brushes]::Black
-$graphics = [System.Drawing.Graphics]::FromImage($edit)
-$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-$graphics.Dispose()
-$edit.Save($file)
-$file = "$env:C:\Windows\Web\Screen\img104.jpg"
-$edit = New-Object System.Drawing.Bitmap 3840, 2400
-$color = [System.Drawing.Brushes]::Black
-$graphics = [System.Drawing.Graphics]::FromImage($edit)
-$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-$graphics.Dispose()
-$edit.Save($file)
-$file = "$env:C:\Windows\Web\Screen\img105.jpg"
-$edit = New-Object System.Drawing.Bitmap 1920, 1200
-$color = [System.Drawing.Brushes]::Black
-$graphics = [System.Drawing.Graphics]::FromImage($edit)
-$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-$graphics.Dispose()
-$edit.Save($file)
-takeown /f 'C:\ProgramData\Microsoft\Windows\SystemData' /r /d y
-icacls 'C:\ProgramData\Microsoft\Windows\SystemData' /GRANT Everyone:F, Users:F /t
-Remove-Item 'C:\ProgramData\Microsoft\Windows\SystemData' -Force -Recurse
-Write-Host 'Settings: Settings: Personalization: Lock screen: Show lock screen background pictures on the sign-in screen: On' -ForegroundColor green -BackgroundColor black
+# Write-Host 'Settings: Lock Screen: Setting to black' -ForegroundColor green -BackgroundColor black
+# # https://github.com/fr33thytweaks/Ultimate-Windows-Optimization-Guide/blob/main/6%20Windows/13%20Signout%20Lockscreen.ps1
+# takeown /f 'C:\Windows\Web\Screen' /r /d y
+# icacls 'C:\Windows\Web\Screen' /GRANT Everyone:F, Users:F /t
+# Add-Type -AssemblyName System.Drawing
+# $file = "$env:C:\Windows\Web\Screen\img100.jpg"
+# $edit = New-Object System.Drawing.Bitmap 3840, 2160
+# $color = [System.Drawing.Brushes]::Black
+# $graphics = [System.Drawing.Graphics]::FromImage($edit)
+# $graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+# $graphics.Dispose()
+# $edit.Save($file)
+# $file = "$env:C:\Windows\Web\Screen\img101.jpg"
+# $edit = New-Object System.Drawing.Bitmap 3840, 2400
+# $color = [System.Drawing.Brushes]::Black
+# $graphics = [System.Drawing.Graphics]::FromImage($edit)
+# $graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+# $graphics.Dispose()
+# $edit.Save($file)
+# $file = "$env:C:\Windows\Web\Screen\img101.png"
+# $edit = New-Object System.Drawing.Bitmap 3840, 2400
+# $color = [System.Drawing.Brushes]::Black
+# $graphics = [System.Drawing.Graphics]::FromImage($edit)
+# $graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+# $graphics.Dispose()
+# $edit.Save($file)
+# $file = "$env:C:\Windows\Web\Screen\img102.jpg"
+# $edit = New-Object System.Drawing.Bitmap 6400, 4000
+# $color = [System.Drawing.Brushes]::Black
+# $graphics = [System.Drawing.Graphics]::FromImage($edit)
+# $graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+# $graphics.Dispose()
+# $edit.Save($file)
+# $file = "$env:C:\Windows\Web\Screen\img103.jpg"
+# $edit = New-Object System.Drawing.Bitmap 3839, 2400
+# $color = [System.Drawing.Brushes]::Black
+# $graphics = [System.Drawing.Graphics]::FromImage($edit)
+# $graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+# $graphics.Dispose()
+# $edit.Save($file)
+# $file = "$env:C:\Windows\Web\Screen\img103.png"
+# $edit = New-Object System.Drawing.Bitmap 3839, 2400
+# $color = [System.Drawing.Brushes]::Black
+# $graphics = [System.Drawing.Graphics]::FromImage($edit)
+# $graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+# $graphics.Dispose()
+# $edit.Save($file)
+# $file = "$env:C:\Windows\Web\Screen\img104.jpg"
+# $edit = New-Object System.Drawing.Bitmap 3840, 2400
+# $color = [System.Drawing.Brushes]::Black
+# $graphics = [System.Drawing.Graphics]::FromImage($edit)
+# $graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+# $graphics.Dispose()
+# $edit.Save($file)
+# $file = "$env:C:\Windows\Web\Screen\img105.jpg"
+# $edit = New-Object System.Drawing.Bitmap 1920, 1200
+# $color = [System.Drawing.Brushes]::Black
+# $graphics = [System.Drawing.Graphics]::FromImage($edit)
+# $graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+# $graphics.Dispose()
+# $edit.Save($file)
+# takeown /f 'C:\ProgramData\Microsoft\Windows\SystemData' /r /d y
+# icacls 'C:\ProgramData\Microsoft\Windows\SystemData' /GRANT Everyone:F, Users:F /t
+# Remove-Item 'C:\ProgramData\Microsoft\Windows\SystemData' -Force -Recurse
+Write-Host 'Settings: Settings: Personalization: Lock screen: Show lock screen background pictures on the sign-in screen: Off' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System') -ne $true) {
 	New-Item 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System' -Force
 }
-New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System' -Name 'DisableLogonBackgroundImage' -Value 0 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System' -Name 'DisableLogonBackgroundImage' -Value 1 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'RotatingLockScreenEnabled' -Value 0 -PropertyType DWord -Force
 
 # Write-Host 'Settings: Compiling Timer Resolution Service' -ForegroundColor green -BackgroundColor black
