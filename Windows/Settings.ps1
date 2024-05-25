@@ -8,181 +8,181 @@ if ($null -eq $ultimateScheme) {
 Write-Host 'Power Plan: Activating Ultimate Performance' -ForegroundColor green -BackgroundColor black
 powercfg /SETACTIVE e9a42b02-d5df-448d-aa00-03f14749eb61
 
-Write-Host 'Power Plan: Deleting all power plans' -ForegroundColor green -BackgroundColor black
-$powerPlans = powercfg /LIST | Select-String -Pattern 'GUID: ([\w-]+)' | ForEach-Object { $_.Matches.Groups[1].Value }
-foreach ($plan in $powerPlans) {
-	powercfg /DELETE $plan
-}
+# Write-Host 'Power Plan: Deleting all power plans' -ForegroundColor green -BackgroundColor black
+# $powerPlans = powercfg /LIST | Select-String -Pattern 'GUID: ([\w-]+)' | ForEach-Object { $_.Matches.Groups[1].Value }
+# foreach ($plan in $powerPlans) {
+# 	powercfg /DELETE $plan
+# }
 
 Write-Host 'Power Plan: Changing screen to never turns off' -ForegroundColor green -BackgroundColor black
 powercfg /CHANGE monitor-timeout-ac 0
-powercfg /CHANGE monitor-timeout-dc 0
-powercfg /CHANGE standby-timeout-ac 0
-powercfg /CHANGE standby-timeout-dc 0
+# powercfg /CHANGE monitor-timeout-dc 0
+# powercfg /CHANGE standby-timeout-ac 0
+# powercfg /CHANGE standby-timeout-dc 0
 
-Write-Host 'Power Plan: Disabling hibernate' -ForegroundColor green -BackgroundColor black
-powercfg /HIBERNATE off
-powercfg /CHANGE hibernate-timeout-ac 0
-powercfg /CHANGE hibernate-timeout-dc 0
-New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' -Name 'HibernateEnabled' -PropertyType DWord -Value 0 -Force
-New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' -Name 'HibernateEnabledDefault' -PropertyType DWord -Value 0 -Force
+# Write-Host 'Power Plan: Disabling hibernate' -ForegroundColor green -BackgroundColor black
+# powercfg /HIBERNATE off
+# powercfg /CHANGE hibernate-timeout-ac 0
+# powercfg /CHANGE hibernate-timeout-dc 0
+# New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' -Name 'HibernateEnabled' -PropertyType DWord -Value 0 -Force
+# New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' -Name 'HibernateEnabledDefault' -PropertyType DWord -Value 0 -Force
 
-Write-Host 'Power Plan: Disabling power throttling' -ForegroundColor green -BackgroundColor black
-New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling' -Name 'PowerThrottlingOff' -PropertyType DWord -Value 1 -Force
+# Write-Host 'Power Plan: Disabling power throttling' -ForegroundColor green -BackgroundColor black
+# New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling' -Name 'PowerThrottlingOff' -PropertyType DWord -Value 1 -Force
 
-Write-Host 'Power Plan: Disabling lock option' -ForegroundColor green -BackgroundColor black
-New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings' -Name 'ShowLockOption' -PropertyType DWord -Value 0 -Force
+# Write-Host 'Power Plan: Disabling lock option' -ForegroundColor green -BackgroundColor black
+# New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings' -Name 'ShowLockOption' -PropertyType DWord -Value 0 -Force
 
-Write-Host 'Power Plan: Disabling sleep option' -ForegroundColor green -BackgroundColor black
-New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings' -Name 'ShowSleepOption' -PropertyType DWord -Value 0 -Force
+# Write-Host 'Power Plan: Disabling sleep option' -ForegroundColor green -BackgroundColor black
+# New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings' -Name 'ShowSleepOption' -PropertyType DWord -Value 0 -Force
 
-Write-Host 'Power Plan: Disabling fast boot option' -ForegroundColor green -BackgroundColor black
-New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power' -Name 'HiberbootEnabled' -PropertyType DWord -Value 0 -Force
+# Write-Host 'Power Plan: Disabling fast boot option' -ForegroundColor green -BackgroundColor black
+# New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power' -Name 'HiberbootEnabled' -PropertyType DWord -Value 0 -Force
 
-Write-Host 'Power Plan: Unparking CPU cores' -ForegroundColor green -BackgroundColor black
-# https://learn.microsoft.com/en-us/previous-versions/windows/hardware/design/dn613985(v=vs.85)
-New-ItemProperty -Path 'HKLM:\SYSTEM\ControlSet001\Control\Power\PowerSettings\54533251-82be-4824-96c1-47b60b740d00\0cc5b647-c1df-4637-891a-dec35c318583' -Name 'ValueMax' -PropertyType DWord -Value 0 -Force
-powercfg /SETACVALUEINDEX SCHEME_CURRENT sub_processor CPMINCORES 100
-powercfg /SETACVALUEINDEX SCHEME_CURRENT sub_processor CPMINCORES1 100
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT sub_processor CPMINCORES 100
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT sub_processor CPMINCORES1 100
+# Write-Host 'Power Plan: Unparking CPU cores' -ForegroundColor green -BackgroundColor black
+# # https://learn.microsoft.com/en-us/previous-versions/windows/hardware/design/dn613985(v=vs.85)
+# New-ItemProperty -Path 'HKLM:\SYSTEM\ControlSet001\Control\Power\PowerSettings\54533251-82be-4824-96c1-47b60b740d00\0cc5b647-c1df-4637-891a-dec35c318583' -Name 'ValueMax' -PropertyType DWord -Value 0 -Force
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT sub_processor CPMINCORES 100
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT sub_processor CPMINCORES1 100
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT sub_processor CPMINCORES 100
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT sub_processor CPMINCORES1 100
 
-Write-Host 'Power Plan: Turn off hard disk after: 0 seconds' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT 0012ee47-9041-4b5d-9b77-535fba8b1442 6738e2c4-e8a5-4a42-b16a-e040e769756e 0x00000000
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT 0012ee47-9041-4b5d-9b77-535fba8b1442 6738e2c4-e8a5-4a42-b16a-e040e769756e 0x00000000
-powercfg /CHANGE disk-timeout-ac 0
-powercfg /CHANGE disk-timeout-dc 0
+# Write-Host 'Power Plan: Turn off hard disk after: 0 seconds' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT 0012ee47-9041-4b5d-9b77-535fba8b1442 6738e2c4-e8a5-4a42-b16a-e040e769756e 0x00000000
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT 0012ee47-9041-4b5d-9b77-535fba8b1442 6738e2c4-e8a5-4a42-b16a-e040e769756e 0x00000000
+# powercfg /CHANGE disk-timeout-ac 0
+# powercfg /CHANGE disk-timeout-dc 0
 
-Write-Host 'Power Plan: Desktop background settings: Slide show: Paused' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT 0d7dbae2-4294-402a-ba8e-26777e8488cd 309dce9b-bef4-4119-9921-a851fb12f0f4 001
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT 0d7dbae2-4294-402a-ba8e-26777e8488cd 309dce9b-bef4-4119-9921-a851fb12f0f4 001
+# Write-Host 'Power Plan: Desktop background settings: Slide show: Paused' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT 0d7dbae2-4294-402a-ba8e-26777e8488cd 309dce9b-bef4-4119-9921-a851fb12f0f4 001
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT 0d7dbae2-4294-402a-ba8e-26777e8488cd 309dce9b-bef4-4119-9921-a851fb12f0f4 001
 
-Write-Host 'Power Plan: Wireless Adapter Settings: Maximum Performance' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT 19cbb8fa-5279-450e-9fac-8a3d5fedd0c1 12bbebe6-58d6-4636-95bb-3217ef867c1a 000
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT 19cbb8fa-5279-450e-9fac-8a3d5fedd0c1 12bbebe6-58d6-4636-95bb-3217ef867c1a 000
+# Write-Host 'Power Plan: Wireless Adapter Settings: Maximum Performance' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT 19cbb8fa-5279-450e-9fac-8a3d5fedd0c1 12bbebe6-58d6-4636-95bb-3217ef867c1a 000
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT 19cbb8fa-5279-450e-9fac-8a3d5fedd0c1 12bbebe6-58d6-4636-95bb-3217ef867c1a 000
 
-Write-Host 'Power Plan: Sleep: Sleep after: 0 seconds' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 29f6c1db-86da-48c5-9fdb-f2b67b1f44da 0x00000000
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 29f6c1db-86da-48c5-9fdb-f2b67b1f44da 0x00000000
+# Write-Host 'Power Plan: Sleep: Sleep after: 0 seconds' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 29f6c1db-86da-48c5-9fdb-f2b67b1f44da 0x00000000
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 29f6c1db-86da-48c5-9fdb-f2b67b1f44da 0x00000000
 
-Write-Host 'Power Plan: Allow hybrid sleep: Off' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 94ac6d29-73ce-41a6-809f-6363ba21b47e 000
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 94ac6d29-73ce-41a6-809f-6363ba21b47e 000
+# Write-Host 'Power Plan: Allow hybrid sleep: Off' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 94ac6d29-73ce-41a6-809f-6363ba21b47e 000
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 94ac6d29-73ce-41a6-809f-6363ba21b47e 000
 
-Write-Host 'Power Plan: Hibernate after: 0 seconds' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 9d7815a6-7ee4-497e-8888-515a05f02364 0x00000000
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 9d7815a6-7ee4-497e-8888-515a05f02364 0x00000000
+# Write-Host 'Power Plan: Hibernate after: 0 seconds' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 9d7815a6-7ee4-497e-8888-515a05f02364 0x00000000
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 9d7815a6-7ee4-497e-8888-515a05f02364 0x00000000
 
-Write-Host 'Power Plan: Allow wake timers: Disable' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 bd3b718a-0680-4d9d-8ab2-e1d2b4ac806d 000
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 bd3b718a-0680-4d9d-8ab2-e1d2b4ac806d 000
+# Write-Host 'Power Plan: Allow wake timers: Disable' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 bd3b718a-0680-4d9d-8ab2-e1d2b4ac806d 000
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 bd3b718a-0680-4d9d-8ab2-e1d2b4ac806d 000
 
 Write-Host 'Power Plan: USB settings: USB selective suspend setting: Disabled' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT 2a737441-1930-4402-8d77-b2bebba308a3 48e6b7a6-50f5-4782-a5d4-53bb8f07e226 000
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT 2a737441-1930-4402-8d77-b2bebba308a3 48e6b7a6-50f5-4782-a5d4-53bb8f07e226 000
+powercfg /SETACVALUEINDEX SCHEME_CURRENT 2a737441-1930-4402-8d77-b2bebba308a3 48e6b7a6-50f5-4782-a5d4-53bb8f07e226 0
+powercfg /SETDCVALUEINDEX SCHEME_CURRENT 2a737441-1930-4402-8d77-b2bebba308a3 48e6b7a6-50f5-4782-a5d4-53bb8f07e226 0
 
-Write-Host 'Power Plan: Power buttons and lid: Start menu power button: Shut down' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT 4f971e89-eebd-4455-a8de-9e59040e7347 a7066653-8d6c-40a8-910e-a1f54b84c7e5 002
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT 4f971e89-eebd-4455-a8de-9e59040e7347 a7066653-8d6c-40a8-910e-a1f54b84c7e5 002
+# Write-Host 'Power Plan: Power buttons and lid: Start menu power button: Shut down' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT 4f971e89-eebd-4455-a8de-9e59040e7347 a7066653-8d6c-40a8-910e-a1f54b84c7e5 002
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT 4f971e89-eebd-4455-a8de-9e59040e7347 a7066653-8d6c-40a8-910e-a1f54b84c7e5 002
 
-Write-Host 'Power Plan: PCI Express: Link State Power Management: Off' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT 501a4d13-42af-4429-9fd1-a8218c268e20 ee12f906-d277-404b-b6da-e5fa1a576df5 000
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT 501a4d13-42af-4429-9fd1-a8218c268e20 ee12f906-d277-404b-b6da-e5fa1a576df5 000
+# Write-Host 'Power Plan: PCI Express: Link State Power Management: Off' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT 501a4d13-42af-4429-9fd1-a8218c268e20 ee12f906-d277-404b-b6da-e5fa1a576df5 000
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT 501a4d13-42af-4429-9fd1-a8218c268e20 ee12f906-d277-404b-b6da-e5fa1a576df5 000
 
-# Write-Host 'Power Plan: Processor idle disable: Processor idle disable: Processor idle enable' -ForegroundColor green -BackgroundColor black
-# Do not enable, CPU will be at 100% Usage constintly
-# https://docs.google.com/document/d/1c2-lUJq74wuYK1WrA_bIvgb89dUN0sj8-hO3vqmrau4/edit
-# powercfg /attributes SUB_PROCESSOR 5d76a2ca-e8c0-402f-a133-2158492d58ad -ATTRIB_HIDE
-# powercfg /SETACVALUEINDEX SCHEME_CURRENT sub_processor 5d76a2ca-e8c0-402f-a133-2158492d58ad 0
-# powercfg /SETDCVALUEINDEX SCHEME_CURRENT sub_processor 5d76a2ca-e8c0-402f-a133-2158492d58ad 0
+# # Write-Host 'Power Plan: Processor idle disable: Processor idle disable: Processor idle enable' -ForegroundColor green -BackgroundColor black
+# # Do not enable, CPU will be at 100% Usage constintly
+# # https://docs.google.com/document/d/1c2-lUJq74wuYK1WrA_bIvgb89dUN0sj8-hO3vqmrau4/edit
+# # powercfg /attributes SUB_PROCESSOR 5d76a2ca-e8c0-402f-a133-2158492d58ad -ATTRIB_HIDE
+# # powercfg /SETACVALUEINDEX SCHEME_CURRENT sub_processor 5d76a2ca-e8c0-402f-a133-2158492d58ad 0
+# # powercfg /SETDCVALUEINDEX SCHEME_CURRENT sub_processor 5d76a2ca-e8c0-402f-a133-2158492d58ad 0
 
-Write-Host 'Power Plan: Processor power management: Minimum processor state: 100%' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 893dee8e-2bef-41e0-89c6-b55d0929964c 0x00000064
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 893dee8e-2bef-41e0-89c6-b55d0929964c 0x00000064
+# Write-Host 'Power Plan: Processor power management: Minimum processor state: 100%' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 893dee8e-2bef-41e0-89c6-b55d0929964c 0x00000064
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 893dee8e-2bef-41e0-89c6-b55d0929964c 0x00000064
 
-Write-Host 'Power Plan: System cooling policy: Active' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 94d3a615-a899-4ac5-ae2b-e4d8f634367f 001
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 94d3a615-a899-4ac5-ae2b-e4d8f634367f 001
+# Write-Host 'Power Plan: System cooling policy: Active' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 94d3a615-a899-4ac5-ae2b-e4d8f634367f 001
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 94d3a615-a899-4ac5-ae2b-e4d8f634367f 001
 
-Write-Host 'Power Plan: Maximum processor state: 100%' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 bc5038f7-23e0-4960-96da-33abaf5935ec 0x00000064
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 bc5038f7-23e0-4960-96da-33abaf5935ec 0x00000064
+# Write-Host 'Power Plan: Maximum processor state: 100%' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 bc5038f7-23e0-4960-96da-33abaf5935ec 0x00000064
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 bc5038f7-23e0-4960-96da-33abaf5935ec 0x00000064
 
-Write-Host 'Power Plan: Display: Turn off display after: 0 seconds' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e 0x00000000
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e 0x00000000
+# Write-Host 'Power Plan: Display: Turn off display after: 0 seconds' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e 0x00000000
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e 0x00000000
 
-Write-Host 'Power Plan: Display brightness: 100%' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 aded5e82-b909-4619-9949-f5d71dac0bcb 0x00000064
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 aded5e82-b909-4619-9949-f5d71dac0bcb 0x00000064
+# Write-Host 'Power Plan: Display brightness: 100%' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 aded5e82-b909-4619-9949-f5d71dac0bcb 0x00000064
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 aded5e82-b909-4619-9949-f5d71dac0bcb 0x00000064
 
-Write-Host 'Power Plan: Dimmed display brightness: 100%' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 f1fbfde2-a960-4165-9f88-50667911ce96 0x00000064
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 f1fbfde2-a960-4165-9f88-50667911ce96 0x00000064
+# Write-Host 'Power Plan: Dimmed display brightness: 100%' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 f1fbfde2-a960-4165-9f88-50667911ce96 0x00000064
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 f1fbfde2-a960-4165-9f88-50667911ce96 0x00000064
 
-Write-Host 'Power Plan: Enable adaptive brightness: Off' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 fbd9aa66-9553-4097-ba44-ed6e9d65eab8 000
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 fbd9aa66-9553-4097-ba44-ed6e9d65eab8 000
+# Write-Host 'Power Plan: Enable adaptive brightness: Off' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 fbd9aa66-9553-4097-ba44-ed6e9d65eab8 000
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 fbd9aa66-9553-4097-ba44-ed6e9d65eab8 000
 
-Write-Host 'Power Plan: Video playback quality bias: Video playback performance bias' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT 9596fb26-9850-41fd-ac3e-f7c3c00afd4b 10778347-1370-4ee0-8bbd-33bdacaade49 001
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT 9596fb26-9850-41fd-ac3e-f7c3c00afd4b 10778347-1370-4ee0-8bbd-33bdacaade49 001
+# Write-Host 'Power Plan: Video playback quality bias: Video playback performance bias' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT 9596fb26-9850-41fd-ac3e-f7c3c00afd4b 10778347-1370-4ee0-8bbd-33bdacaade49 001
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT 9596fb26-9850-41fd-ac3e-f7c3c00afd4b 10778347-1370-4ee0-8bbd-33bdacaade49 001
 
-Write-Host 'Power Plan: When playing video: Optimize video quality' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT 9596fb26-9850-41fd-ac3e-f7c3c00afd4b 34c7b99f-9a6d-4b3c-8dc7-b6693b78cef4 000
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT 9596fb26-9850-41fd-ac3e-f7c3c00afd4b 34c7b99f-9a6d-4b3c-8dc7-b6693b78cef4 000
+# Write-Host 'Power Plan: When playing video: Optimize video quality' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT 9596fb26-9850-41fd-ac3e-f7c3c00afd4b 34c7b99f-9a6d-4b3c-8dc7-b6693b78cef4 000
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT 9596fb26-9850-41fd-ac3e-f7c3c00afd4b 34c7b99f-9a6d-4b3c-8dc7-b6693b78cef4 000
 
-Write-Host 'Power Plan: intel(r) graphics settings intel(r) graphics power plan maximum performance' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT 44f3beca-a7c0-460e-9df2-bb8b99e0cba6 3619c3f2-afb2-4afc-b0e9-e7fef372de36 002
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT 44f3beca-a7c0-460e-9df2-bb8b99e0cba6 3619c3f2-afb2-4afc-b0e9-e7fef372de36 002
+# Write-Host 'Power Plan: intel(r) graphics settings intel(r) graphics power plan maximum performance' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT 44f3beca-a7c0-460e-9df2-bb8b99e0cba6 3619c3f2-afb2-4afc-b0e9-e7fef372de36 002
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT 44f3beca-a7c0-460e-9df2-bb8b99e0cba6 3619c3f2-afb2-4afc-b0e9-e7fef372de36 002
 
-Write-Host 'Power Plan: amd power slider overlay best performance' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT c763b4ec-0e50-4b6b-9bed-2b92a6ee884e 7ec1751b-60ed-4588-afb5-9819d3d77d90 003
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT c763b4ec-0e50-4b6b-9bed-2b92a6ee884e 7ec1751b-60ed-4588-afb5-9819d3d77d90 003
+# Write-Host 'Power Plan: amd power slider overlay best performance' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT c763b4ec-0e50-4b6b-9bed-2b92a6ee884e 7ec1751b-60ed-4588-afb5-9819d3d77d90 003
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT c763b4ec-0e50-4b6b-9bed-2b92a6ee884e 7ec1751b-60ed-4588-afb5-9819d3d77d90 003
 
-Write-Host 'Power Plan: ati graphics power settings ati powerplay settings maximize performance' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT f693fb01-e858-4f00-b20f-f30e12ac06d6 191f65b5-d45c-4a4f-8aae-1ab8bfd980e6 001
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT f693fb01-e858-4f00-b20f-f30e12ac06d6 191f65b5-d45c-4a4f-8aae-1ab8bfd980e6 001
+# Write-Host 'Power Plan: ati graphics power settings ati powerplay settings maximize performance' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT f693fb01-e858-4f00-b20f-f30e12ac06d6 191f65b5-d45c-4a4f-8aae-1ab8bfd980e6 001
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT f693fb01-e858-4f00-b20f-f30e12ac06d6 191f65b5-d45c-4a4f-8aae-1ab8bfd980e6 001
 
-Write-Host 'Power Plan: switchable dynamic graphics global settings maximize performance' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT e276e160-7cb0-43c6-b20b-73f5dce39954 a1662ab2-9d34-4e53-ba8b-2639b9e20857 003
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT e276e160-7cb0-43c6-b20b-73f5dce39954 a1662ab2-9d34-4e53-ba8b-2639b9e20857 003
+# Write-Host 'Power Plan: switchable dynamic graphics global settings maximize performance' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT e276e160-7cb0-43c6-b20b-73f5dce39954 a1662ab2-9d34-4e53-ba8b-2639b9e20857 003
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT e276e160-7cb0-43c6-b20b-73f5dce39954 a1662ab2-9d34-4e53-ba8b-2639b9e20857 003
 
-Write-Host 'Power Plan: Battery: Critical battery notification: Off' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f 5dbb7c9f-38e9-40d2-9749-4f8a0e9f640f 000
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f 5dbb7c9f-38e9-40d2-9749-4f8a0e9f640f 000
+# Write-Host 'Power Plan: Battery: Critical battery notification: Off' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f 5dbb7c9f-38e9-40d2-9749-4f8a0e9f640f 000
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f 5dbb7c9f-38e9-40d2-9749-4f8a0e9f640f 000
 
-Write-Host 'Power Plan: Critical battery action: Do nothing' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f 637ea02f-bbcb-4015-8e2c-a1c7b9c0b546 000
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f 637ea02f-bbcb-4015-8e2c-a1c7b9c0b546 000
+# Write-Host 'Power Plan: Critical battery action: Do nothing' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f 637ea02f-bbcb-4015-8e2c-a1c7b9c0b546 000
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f 637ea02f-bbcb-4015-8e2c-a1c7b9c0b546 000
 
-Write-Host 'Power Plan: Low battery level: 0%' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f 8183ba9a-e910-48da-8769-14ae6dc1170a 0x00000000
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f 8183ba9a-e910-48da-8769-14ae6dc1170a 0x00000000
+# Write-Host 'Power Plan: Low battery level: 0%' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f 8183ba9a-e910-48da-8769-14ae6dc1170a 0x00000000
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f 8183ba9a-e910-48da-8769-14ae6dc1170a 0x00000000
 
-Write-Host 'Power Plan: Critical battery level: 0%' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f 9a66d8d7-4ff7-4ef9-b5a2-5a326ca2a469 0x00000000
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f 9a66d8d7-4ff7-4ef9-b5a2-5a326ca2a469 0x00000000
+# Write-Host 'Power Plan: Critical battery level: 0%' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f 9a66d8d7-4ff7-4ef9-b5a2-5a326ca2a469 0x00000000
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f 9a66d8d7-4ff7-4ef9-b5a2-5a326ca2a469 0x00000000
 
-Write-Host 'Power Plan: Low battery notification: Off' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f bcded951-187b-4d05-bccc-f7e51960c258 000
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f bcded951-187b-4d05-bccc-f7e51960c258 000
+# Write-Host 'Power Plan: Low battery notification: Off' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f bcded951-187b-4d05-bccc-f7e51960c258 000
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f bcded951-187b-4d05-bccc-f7e51960c258 000
 
-Write-Host 'Power Plan: Low battery action: Do nothing' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f d8742dcb-3e6a-4b3c-b3fe-374623cdcf06 000
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f d8742dcb-3e6a-4b3c-b3fe-374623cdcf06 000
+# Write-Host 'Power Plan: Low battery action: Do nothing' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f d8742dcb-3e6a-4b3c-b3fe-374623cdcf06 000
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f d8742dcb-3e6a-4b3c-b3fe-374623cdcf06 000
 
-Write-Host 'Power Plan: Reserve battery level: 0%' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f f3c5027d-cd16-4930-aa6b-90db844a8f00 0x00000000
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f f3c5027d-cd16-4930-aa6b-90db844a8f00 0x00000000
+# Write-Host 'Power Plan: Reserve battery level: 0%' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f f3c5027d-cd16-4930-aa6b-90db844a8f00 0x00000000
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f f3c5027d-cd16-4930-aa6b-90db844a8f00 0x00000000
 
-Write-Host 'Power Plan: low screen brightness when using battery saver disable' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT de830923-a562-41af-a086-e3a2c6bad2da 13d09884-f74e-474a-a852-b6bde8ad03a8 0x00000064
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT de830923-a562-41af-a086-e3a2c6bad2da 13d09884-f74e-474a-a852-b6bde8ad03a8 0x00000064
+# Write-Host 'Power Plan: low screen brightness when using battery saver disable' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT de830923-a562-41af-a086-e3a2c6bad2da 13d09884-f74e-474a-a852-b6bde8ad03a8 0x00000064
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT de830923-a562-41af-a086-e3a2c6bad2da 13d09884-f74e-474a-a852-b6bde8ad03a8 0x00000064
 
-Write-Host 'Power Plan: turn battery saver on automatically at never' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT de830923-a562-41af-a086-e3a2c6bad2da e69653ca-cf7f-4f05-aa73-cb833fa90ad4 0x00000000
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT de830923-a562-41af-a086-e3a2c6bad2da e69653ca-cf7f-4f05-aa73-cb833fa90ad4 0x00000000
+# Write-Host 'Power Plan: turn battery saver on automatically at never' -ForegroundColor green -BackgroundColor black
+# powercfg /SETACVALUEINDEX SCHEME_CURRENT de830923-a562-41af-a086-e3a2c6bad2da e69653ca-cf7f-4f05-aa73-cb833fa90ad4 0x00000000
+# powercfg /SETDCVALUEINDEX SCHEME_CURRENT de830923-a562-41af-a086-e3a2c6bad2da e69653ca-cf7f-4f05-aa73-cb833fa90ad4 0x00000000
 
 # https://learn.microsoft.com/en-us/windows/privacy/manage-connections-from-windows-operating-system-components-to-microsoft-services-using-mdm
 # https://learn.microsoft.com/en-us/windows/privacy/manage-windows-21h2-endpoints
@@ -2327,7 +2327,10 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion
 New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\WinHttpAutoProxySvc' -Name 'Start' -Value 4 -PropertyType DWord -Force
 
 Write-Host 'Hosts: Adding mobile.events.data.microsoft.com' -ForegroundColor green -BackgroundColor black
-Add-Content -Path $env:windir\System32\drivers\etc\hosts -Value "`n127.0.0.1`tmobile.events.data.microsoft.com" -Force
+$mobileeventsdatamicrosoft = Select-String -Path $env:windir\System32\drivers\etc\hosts -Pattern 'mobile.events.data.microsoft.com'
+if ($null -eq $mobileeventsdatamicrosoft) {
+	Add-Content -Path $env:windir\System32\drivers\etc\hosts -Value "`n127.0.0.1`tmobile.events.data.microsoft.com" -Force
+}
 
 # doesnt work
 # NetworkDiscovery -Enable
