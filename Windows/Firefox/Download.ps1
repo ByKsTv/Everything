@@ -42,4 +42,4 @@ Write-Host 'Mozila Firefox: Setting as default browser' -ForegroundColor green -
 [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
 
 Write-Host 'Mozila Firefox: Waiting for user to sign in' -ForegroundColor green -BackgroundColor black
-[System.Diagnostics.Process]::Start('firefox.exe', 'https://accounts.firefox.com/')
+[System.Diagnostics.Process]::Start('firefox.exe', 'https://accounts.firefox.com/?context=fx_desktop_v3&entrypoint=fxa_toolbar_button&action=email&service=sync')
