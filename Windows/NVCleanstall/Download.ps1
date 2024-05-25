@@ -68,6 +68,11 @@ until( ($dirStats.Sum -ne 0) )
 Write-Host 'NVCleanstall: Installing' -ForegroundColor green -BackgroundColor black
 Start-Process -FilePath "$Downloads\NVCleanstall*.exe" -ArgumentList '/install /tasks="DriverUpdateCheck,DesktopIcon" /verysilent' -Wait
 
+Write-Host 'NVCleanstall: Deleting from Downloads folder' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -Path "$Downloads\NVCleanstall*.exe") -eq $true) {
+    Remove-Item -Path ("$Downloads\NVCleanstall*.exe")
+}
+
 Write-Host 'NVCleanstall: Using custom settings' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\techPowerUp\NVCleanstall') -ne $true) {
     New-Item 'HKCU:\SOFTWARE\techPowerUp\NVCleanstall' -Force

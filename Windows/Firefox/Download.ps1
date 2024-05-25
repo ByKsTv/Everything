@@ -4,6 +4,11 @@ Write-Host 'Mozila Firefox: Downloading' -ForegroundColor green -BackgroundColor
 Write-Host 'Mozila Firefox: Installing' -ForegroundColor green -BackgroundColor black
 Start-Process $env:TEMP\firefox.exe -ArgumentList '/S' -Wait
 
+Write-Host 'Mozila Firefox: Deleting Desktop Shortcut' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -Path "$env:PUBLIC\Desktop\Firefox.lnk") -eq $true) {
+    Remove-Item -Path ("$env:PUBLIC\Desktop\Firefox.lnk")
+}
+
 Write-Host 'Mozila Firefox: Starting' -ForegroundColor green -BackgroundColor black
 Start-Process "$env:ProgramFiles\Mozilla Firefox\firefox.exe"
 

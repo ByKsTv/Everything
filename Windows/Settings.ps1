@@ -1293,16 +1293,6 @@ if ((Test-Path -Path 'HKLM:\Software\Microsoft\Windows Defender Security Center\
 }
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows Defender Security Center\Virus and threat protection' -Name 'SummaryNotificationDisabled' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Settings: Desktop: Microsoft Edge: Off' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -Path 'C:\Users\Public\Desktop\Microsoft Edge.lnk') -eq $true) {
-	Remove-Item -Path 'C:\Users\Public\Desktop\Microsoft Edge.lnk'
-}
-
-Write-Host 'Settings: Desktop: Firefox: Off' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -Path "$env:PUBLIC\Desktop\Firefox.lnk") -eq $true) {
-	Remove-Item -Path ("$env:PUBLIC\Desktop\Firefox.lnk")
-}
-
 Write-Host 'Settings: Windows Security Notification Icon: Off' -ForegroundColor green -BackgroundColor black
 if ($null -ne (Get-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run').GetValue('SecurityHealth')) {
 	Remove-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'SecurityHealth'
@@ -2339,6 +2329,7 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\WinHttpAutoProxy
 Write-Host 'Hosts: Adding mobile.events.data.microsoft.com' -ForegroundColor green -BackgroundColor black
 Add-Content -Path $env:windir\System32\drivers\etc\hosts -Value "`n127.0.0.1`tmobile.events.data.microsoft.com" -Force
 
+# doesnt work
 # NetworkDiscovery -Enable
 # Enable file sharing
 Set-NetFirewallRule -Group '@FirewallAPI.dll,-28502' -Profile Private -Enabled True
