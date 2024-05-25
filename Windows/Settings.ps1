@@ -1,4 +1,4 @@
-Write-Host 'Power Plan: Importing Ultimate Performance' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Restoring Defaults' -ForegroundColor green -BackgroundColor black
 powercfg /restoredefaultschemes
 
 Write-Host 'Power Plan: Activating Ultimate Performance' -ForegroundColor green -BackgroundColor black
@@ -510,21 +510,21 @@ Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Syst
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\DeviceInstall\Settings') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\DeviceInstall\Settings' -Force 
 }
-if ((Test-Path -Path 'HKLM:\System\DriverDatabase\Policies\Settings') -ne $true) {
-	New-Item 'HKLM:\System\DriverDatabase\Policies\Settings' -Force 
-}
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\DeviceInstall\Settings' -Name 'DisableSendGenericDriverNotFoundToWER' -Value 1 -PropertyType DWord -Force
-New-ItemProperty -Path 'HKLM:\System\DriverDatabase\Policies\Settings' -Name 'DisableSendGenericDriverNotFoundToWER' -Value 1 -PropertyType DWord -Force
+# if ((Test-Path -Path 'HKLM:\System\DriverDatabase\Policies\Settings') -ne $true) {
+# 	New-Item 'HKLM:\System\DriverDatabase\Policies\Settings' -Force 
+# }
+# New-ItemProperty -Path 'HKLM:\System\DriverDatabase\Policies\Settings' -Name 'DisableSendGenericDriverNotFoundToWER' -Value 1 -PropertyType DWord -Force
 
 Write-Host 'Group Policy: Computer Configuration: Administrative Templates: System: Device Installation: Prevent Windows from sending an error report when a device driver requests additional woftware during installation: Enabled' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\DeviceInstall\Settings') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\DeviceInstall\Settings' -Force 
 }
-if ((Test-Path -Path 'HKLM:\System\DriverDatabase\Policies\Settings') -ne $true) {
-	New-Item 'HKLM:\System\DriverDatabase\Policies\Settings' -Force 
-}
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\DeviceInstall\Settings' -Name 'DisableSendRequestAdditionalSoftwareToWER' -Value 1 -PropertyType DWord -Force
-New-ItemProperty -Path 'HKLM:\System\DriverDatabase\Policies\Settings' -Name 'DisableSendRequestAdditionalSoftwareToWER' -Value 1 -PropertyType DWord -Force
+# if ((Test-Path -Path 'HKLM:\System\DriverDatabase\Policies\Settings') -ne $true) {
+# 	New-Item 'HKLM:\System\DriverDatabase\Policies\Settings' -Force 
+# }
+# New-ItemProperty -Path 'HKLM:\System\DriverDatabase\Policies\Settings' -Name 'DisableSendRequestAdditionalSoftwareToWER' -Value 1 -PropertyType DWord -Force
 
 Write-Host 'Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off handwriting recognition error reporting: Enabled' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\HandwritingErrorReports') -ne $true) {
@@ -799,11 +799,11 @@ if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search')
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Name 'ConnectedSearchSafeSearch' -Value 3 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Set what information is shared in Search: Disabled' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search') -ne $true) {
-	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Force 
-}
-Remove-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Name 'ConnectedSearchPrivacy' -Force
+# Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Set what information is shared in Search: Disabled' -ForegroundColor green -BackgroundColor black
+# if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search') -ne $true) {
+# 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Force 
+# }
+# Remove-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Name 'ConnectedSearchPrivacy' -Force
 
 Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Text Input: Improve inking and typing recognition: Disabled' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\TextInput') -ne $true) {
@@ -817,12 +817,12 @@ if ((Test-Path -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\W
 }
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Windows' -Name 'TurnOffWinCal' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Configure Error Reporting: Disabled' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\PCHealth\ErrorReporting\DW') -ne $true) {
-	New-Item 'HKLM:\Software\Policies\Microsoft\PCHealth\ErrorReporting\DW' -Force 
-}
-Remove-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\PCHealth\ErrorReporting\DW' -Name 'DWReporteeName' -Force
-Remove-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\PCHealth\ErrorReporting\DW' -Name 'DWFileTreeRoot' -Force
+# Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Configure Error Reporting: Disabled' -ForegroundColor green -BackgroundColor black
+# if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\PCHealth\ErrorReporting\DW') -ne $true) {
+# 	New-Item 'HKLM:\Software\Policies\Microsoft\PCHealth\ErrorReporting\DW' -Force 
+# }
+# Remove-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\PCHealth\ErrorReporting\DW' -Name 'DWReporteeName' -Force
+# Remove-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\PCHealth\ErrorReporting\DW' -Name 'DWFileTreeRoot' -Force
 
 Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Automatically send memory dumps for OS-generated error reports: Disabled' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Error Reporting') -ne $true) {
@@ -891,7 +891,7 @@ if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\E
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'HideSCAMeetNow' -Value 1 -PropertyType DWord -Force
 
 Write-Host 'Group Policy: User Configuration: Administrative Templates: Windows Components: File Explorer: Turn off Windows Libraries features that rely on indexed file data: Enabled' -ForegroundColor green -BackgroundColor black
-New-ItemProperty -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer' -Name 'DisableIndexedLibraryExperience' -Value 1 -PropertyType DWord -Force 
+New-ItemProperty -Path HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer -Name 'DisableIndexedLibraryExperience' -Value 1 -PropertyType DWord -Force
 
 Write-Host 'Group Policy: User Configuration: Administrative Templates: Windows Components: Remote Desktop Services: Remote Desktop Connection Client: Allow .rdp files from unkown publishers: Enabled' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services') -ne $true) {
@@ -944,37 +944,40 @@ Remove-WindowsCapability -Name 'OpenSSH.Client~~~~0.0.1.0' -Online
 # # Paint
 # Add-WindowsCapability -Name 'Microsoft.Windows.MSPaint~~~~0.0.1.0' -Online
 
-Write-Host 'Step2: Windows Optional Features: Disabling' -ForegroundColor green -BackgroundColor black
-# Get-WindowsOptionalFeature -Online | Where-Object { $_.State -like 'Enabled' }
-Disable-WindowsOptionalFeature -FeatureName 'LegacyComponents' -Online -NoRestart
-Disable-WindowsOptionalFeature -FeatureName 'MicrosoftWindowsPowerShellV2' -Online -NoRestart
-Disable-WindowsOptionalFeature -FeatureName 'MicrosoftWindowsPowershellV2Root' -Online -NoRestart
-Disable-WindowsOptionalFeature -FeatureName 'Printing-XPSServices-Features' -Online -NoRestart
-Disable-WindowsOptionalFeature -FeatureName 'WorkFolders-Client' -Online -NoRestart
-Disable-WindowsOptionalFeature -FeatureName 'MediaPlayback' -Online -NoRestart
-Disable-WindowsOptionalFeature -FeatureName 'WCF-Services45' -Online -NoRestart
-Disable-WindowsOptionalFeature -FeatureName 'WCF-TCP-PortSharing45' -Online -NoRestart
-Disable-WindowsOptionalFeature -FeatureName 'Printing-PrintToPDFServices-Features' -Online -NoRestart
-Disable-WindowsOptionalFeature -FeatureName 'MSRDC-Infrastructure' -Online -NoRestart
-Disable-WindowsOptionalFeature -FeatureName 'NetFx4-AdvSrvs' -Online -NoRestart
-Disable-WindowsOptionalFeature -FeatureName 'SearchEngine-Client-Package' -Online -NoRestart
-Disable-WindowsOptionalFeature -FeatureName 'Microsoft-SnippingTool' -Online -NoRestart
-Disable-WindowsOptionalFeature -FeatureName 'Printing-Foundation-InternetPrinting-Client' -Online -NoRestart
-# # RDP
-# Enable-WindowsOptionalFeature -FeatureName 'Microsoft-RemoteDesktopConnection' -Online -NoRestart
-# # Print
-# Enable-WindowsOptionalFeature -FeatureName 'Printing-Foundation-Features' -Online -NoRestart
-# # SMB
-if (Get-SmbClientNetworkInterface | Where-Object { $_.RdmaCapable -eq $false } ) {
-	Disable-WindowsOptionalFeature -FeatureName 'SmbDirect' -Online -NoRestart
-}
-elseif (Get-SmbClientNetworkInterface | Where-Object { $_.RdmaCapable -eq $true } ) {
-	Enable-WindowsOptionalFeature -FeatureName 'SmbDirect' -Online -NoRestart
-}
+# Write-Host 'Step2: Windows Optional Features: Disabling' -ForegroundColor green -BackgroundColor black
+# # Get-WindowsOptionalFeature -Online | Where-Object { $_.State -like 'Enabled' }
+# Disable-WindowsOptionalFeature -FeatureName 'LegacyComponents' -Online -NoRestart
+# Disable-WindowsOptionalFeature -FeatureName 'MicrosoftWindowsPowerShellV2' -Online -NoRestart
+# Disable-WindowsOptionalFeature -FeatureName 'MicrosoftWindowsPowershellV2Root' -Online -NoRestart
+# Disable-WindowsOptionalFeature -FeatureName 'Printing-XPSServices-Features' -Online -NoRestart
+# Disable-WindowsOptionalFeature -FeatureName 'WorkFolders-Client' -Online -NoRestart
+# Disable-WindowsOptionalFeature -FeatureName 'MediaPlayback' -Online -NoRestart
+# Disable-WindowsOptionalFeature -FeatureName 'WCF-Services45' -Online -NoRestart
+# Disable-WindowsOptionalFeature -FeatureName 'WCF-TCP-PortSharing45' -Online -NoRestart
+# Disable-WindowsOptionalFeature -FeatureName 'Printing-PrintToPDFServices-Features' -Online -NoRestart
+# Disable-WindowsOptionalFeature -FeatureName 'MSRDC-Infrastructure' -Online -NoRestart
+# Disable-WindowsOptionalFeature -FeatureName 'NetFx4-AdvSrvs' -Online -NoRestart
+# Disable-WindowsOptionalFeature -FeatureName 'SearchEngine-Client-Package' -Online -NoRestart
+# Disable-WindowsOptionalFeature -FeatureName 'Microsoft-SnippingTool' -Online -NoRestart
+# Disable-WindowsOptionalFeature -FeatureName 'Printing-Foundation-InternetPrinting-Client' -Online -NoRestart
+# # # RDP
+# # Enable-WindowsOptionalFeature -FeatureName 'Microsoft-RemoteDesktopConnection' -Online -NoRestart
+# # # Print
+# # Enable-WindowsOptionalFeature -FeatureName 'Printing-Foundation-Features' -Online -NoRestart
+# # # SMB
+# if (Get-SmbClientNetworkInterface | Where-Object { $_.RdmaCapable -eq $false } ) {
+# 	Disable-WindowsOptionalFeature -FeatureName 'SmbDirect' -Online -NoRestart
+# }
+# elseif (Get-SmbClientNetworkInterface | Where-Object { $_.RdmaCapable -eq $true } ) {
+# 	Enable-WindowsOptionalFeature -FeatureName 'SmbDirect' -Online -NoRestart
+# }
 
 Write-Host 'Step2: Windows Packages: Removing Windows Backup app' -ForegroundColor green -BackgroundColor black
-# Remove-WindowsPackage -PackageName 'Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35~amd64~~10.0.19041.4291' -Online -NoRestart
-Remove-WindowsPackage -PackageName 'Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35~amd64~~10.0.19041.4355' -Online -NoRestart
+
+$windowsbackupapp = Get-WindowsPackage -Online | Where-Object { $_.PackageName -eq 'Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35~amd64~~10.0.19041.4355' }
+if ($windowsbackupapp.PackageState -match 'Installed') {
+	Remove-WindowsPackage -PackageName 'Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35~amd64~~10.0.19041.4355' -Online -NoRestart
+}
 
 Write-Host 'Step2: NuGet: Uninstalling' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path "$env:ProgramFiles\PackageManagement")) {
@@ -992,7 +995,9 @@ if ((Test-Path -Path "$env:APPDATA\PackageManagement")) {
 }
 
 Write-Host 'Step2: PSWindowsUpdate: Uninstalling' -ForegroundColor green -BackgroundColor black
-Uninstall-Module PSWindowsUpdate -Force
+if (Get-Module -ListAvailable -Name PSWindowsUpdate) {
+	Uninstall-Module PSWindowsUpdate -Force
+}
 if ((Test-Path -Path "$env:ProgramFiles\PackageManagement")) {
 	Write-Host "Step2: NuGet: Deleting $env:ProgramFiles\PackageManagement" -ForegroundColor green -BackgroundColor black
 	icacls "$env:ProgramFiles\PackageManagement" /grant Users:F
@@ -1007,59 +1012,59 @@ if ((Test-Path -Path "$env:APPDATA\PackageManagement")) {
 	Remove-Item -Path ("$env:APPDATA\PackageManagement") -Force -Recurse
 }
 
-Write-Host 'Settings: Services: Setting to manual' -ForegroundColor green -BackgroundColor black
-# https://docs.microsoft.com/en-us/windows-server/security/windows-services/security-guidelines-for-disabling-system-services-in-windows-server
-# https://github.com/djdallmann/GamingPCSetup/blob/master/CONTENT/DOCS/SERVICES/README.md
-Set-Service CDPSvc -StartupType Manual
-Set-Service UsoSvc -StartupType Manual
-Set-Service StorSvc -StartupType Manual
-Set-Service edgeupdate -StartupType Manual
-Set-Service WpnService -StartupType Manual
-Set-Service AJRouter -StartupType Disabled
-Set-Service AppVClient -StartupType Disabled
-Set-Service AssignedAccessManagerSvc -StartupType Disabled
-Set-Service AxInstSV -StartupType Disabled
-Set-Service CscService -StartupType Disabled
-Set-Service FrameServer -StartupType Disabled
-Set-Service MapsBroker -StartupType Disabled
-Set-Service PhoneSvc -StartupType Disabled
-Set-Service PrintNotify -StartupType Disabled
-Set-Service QWAVE -StartupType Disabled
-Set-Service RemoteAccess -StartupType Disabled
-Set-Service SCardSvr -StartupType Disabled
-Set-Service SSDPSRV -StartupType Disabled
-Set-Service ScDeviceEnum -StartupType Disabled
-Set-Service SensorDataService -StartupType Disabled
-Set-Service SensorService -StartupType Disabled
-Set-Service SensrSvc -StartupType Disabled
-Set-Service SharedAccess -StartupType Disabled
-Set-Service ShellHWDetection -StartupType Disabled
-Set-Service Spooler -StartupType Disabled
-Set-Service TabletInputService -StartupType Disabled
-Set-Service UevAgentService -StartupType Disabled
-Set-Service UserDataSvc -StartupType Disabled
-Set-Service WSearch -StartupType Disabled
-Set-Service WalletService -StartupType Disabled
-Set-Service WiaRpc -StartupType Disabled
-Set-Service SEMgrSvc -StartupType Disabled
-Set-Service XblAuthManager -StartupType Disabled
-Set-Service XblGameSave -StartupType Disabled
-Set-Service dmwappushservice -StartupType Disabled
-Set-Service icssvc -StartupType Disabled
-Set-Service lfsvc -StartupType Disabled
-Set-Service lltdsvc -StartupType Disabled
-Set-Service stisvc -StartupType Disabled
-Set-Service tzautoupdate -StartupType Disabled
-Set-Service upnphost -StartupType Disabled
-Set-Service wisvc -StartupType Disabled
-Set-Service BcastDVRUserService -StartupType Disabled
-Set-Service PimIndexMaintenanceSvc -StartupType Disabled
-Set-Service MessagingService -StartupType Disabled
-# bluthoot
-Set-Service bthserv -StartupType Disabled
-Set-Service BluetoothUserService -StartupType Disabled
-# RmSvc is wifi?
-Set-Service RmSvc -StartupType Disabled
+# Write-Host 'Settings: Services: Setting to manual' -ForegroundColor green -BackgroundColor black
+# # https://docs.microsoft.com/en-us/windows-server/security/windows-services/security-guidelines-for-disabling-system-services-in-windows-server
+# # https://github.com/djdallmann/GamingPCSetup/blob/master/CONTENT/DOCS/SERVICES/README.md
+# Set-Service CDPSvc -StartupType Manual
+# Set-Service UsoSvc -StartupType Manual
+# Set-Service StorSvc -StartupType Manual
+# Set-Service edgeupdate -StartupType Manual
+# Set-Service WpnService -StartupType Manual
+# Set-Service AJRouter -StartupType Disabled
+# Set-Service AppVClient -StartupType Disabled
+# Set-Service AssignedAccessManagerSvc -StartupType Disabled
+# Set-Service AxInstSV -StartupType Disabled
+# Set-Service CscService -StartupType Disabled
+# Set-Service FrameServer -StartupType Disabled
+# Set-Service MapsBroker -StartupType Disabled
+# Set-Service PhoneSvc -StartupType Disabled
+# Set-Service PrintNotify -StartupType Disabled
+# Set-Service QWAVE -StartupType Disabled
+# Set-Service RemoteAccess -StartupType Disabled
+# Set-Service SCardSvr -StartupType Disabled
+# Set-Service SSDPSRV -StartupType Disabled
+# Set-Service ScDeviceEnum -StartupType Disabled
+# Set-Service SensorDataService -StartupType Disabled
+# Set-Service SensorService -StartupType Disabled
+# Set-Service SensrSvc -StartupType Disabled
+# Set-Service SharedAccess -StartupType Disabled
+# Set-Service ShellHWDetection -StartupType Disabled
+# Set-Service Spooler -StartupType Disabled
+# Set-Service TabletInputService -StartupType Disabled
+# Set-Service UevAgentService -StartupType Disabled
+# Set-Service UserDataSvc -StartupType Disabled
+# Set-Service WSearch -StartupType Disabled
+# Set-Service WalletService -StartupType Disabled
+# Set-Service WiaRpc -StartupType Disabled
+# Set-Service SEMgrSvc -StartupType Disabled
+# Set-Service XblAuthManager -StartupType Disabled
+# Set-Service XblGameSave -StartupType Disabled
+# Set-Service dmwappushservice -StartupType Disabled
+# Set-Service icssvc -StartupType Disabled
+# Set-Service lfsvc -StartupType Disabled
+# Set-Service lltdsvc -StartupType Disabled
+# Set-Service stisvc -StartupType Disabled
+# Set-Service tzautoupdate -StartupType Disabled
+# Set-Service upnphost -StartupType Disabled
+# Set-Service wisvc -StartupType Disabled
+# Set-Service BcastDVRUserService -StartupType Disabled
+# Set-Service PimIndexMaintenanceSvc -StartupType Disabled
+# Set-Service MessagingService -StartupType Disabled
+# # bluthoot
+# Set-Service bthserv -StartupType Disabled
+# Set-Service BluetoothUserService -StartupType Disabled
+# # RmSvc is wifi?
+# Set-Service RmSvc -StartupType Disabled
 
 Write-Host 'Settings: System Properties: Remote: Allow Remote Assistance connections to this computer: Off' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\System\ControlSet001\Control\Remote Assistance') -ne $true) {
@@ -1310,22 +1315,22 @@ if ($null -ne (Get-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\R
 
 # https://docs.google.com/document/d/1c2-lUJq74wuYK1WrA_bIvgb89dUN0sj8-hO3vqmrau4/edit
 # This command forces the kernel timer to constantly poll for interrupts instead of wait for them; dynamic tick was implemented as a power saving feature for laptops but hurts desktop performance
-bcdedit /set disabledynamictick yes
+# bcdedit /set disabledynamictick yes
 
-# Disables the hypervisor which is unneeded on a gaming PC
-bcdedit /set hypervisorlaunchtype off
+# # Disables the hypervisor which is unneeded on a gaming PC
+# bcdedit /set hypervisorlaunchtype off
 
-# Disable VBS / HVCI
-# https://www.tomshardware.com/how-to/disable-vbs-windows-11
-New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\DeviceGuard' -Name 'EnableVirtualizationBasedSecurity' -Value 0 -PropertyType DWord -Force
+# # Disable VBS / HVCI
+# # https://www.tomshardware.com/how-to/disable-vbs-windows-11
+# New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\DeviceGuard' -Name 'EnableVirtualizationBasedSecurity' -Value 0 -PropertyType DWord -Force
 
 # Process scheduling - 22 = Long, variable, 3x foreground boost (36:12)
 # New-ItemProperty -Path 'HKLM:\SYSTEM\ControlSet001\Control\PriorityControl' -Name 'Win32PrioritySeparation' -Value 22 -PropertyType DWord -Force
 
 # https://github.com/djdallmann/GamingPCSetup/blob/master/CONTENT/DOCS/POSTINSTALL/README.md
-fsutil behavior set DisableDeleteNotify 0
-fsutil behavior set disableLastAccess 1
-fsutil behavior set disable8dot3 1
+# fsutil behavior set DisableDeleteNotify 0
+# fsutil behavior set disableLastAccess 1
+# fsutil behavior set disable8dot3 1
 
 Write-Host 'Settings: svchost.exe: Group (Decrease Process Number)' -ForegroundColor green -BackgroundColor black
 $svchostram = (Get-CimInstance -ClassName Win32_PhysicalMemory | Measure-Object -Property Capacity -Sum).Sum / 1kb
@@ -1508,7 +1513,7 @@ if (-not (Test-Path -Path HKCU:\Software\Policies\Microsoft\Windows\Explorer)) {
 }
 New-ItemProperty -Path HKCU:\Software\Policies\Microsoft\Windows\Explorer -Name DisableSearchBoxSuggestions -PropertyType DWord -Value 1 -Force
 # ThisPC -Hide
-Remove-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel -Name '{20D04FE0-3AEA-1069-A2D8-08002B30309D}' -Force
+# Remove-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel -Name '{20D04FE0-3AEA-1069-A2D8-08002B30309D}' -Force
 # CheckBoxes -Disable'
 New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name AutoCheckSelect -PropertyType DWord -Value 0 -Force
 # HiddenItems -Enable
@@ -1631,7 +1636,7 @@ New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlo
 # JPEGWallpapersQuality -Max
 New-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name JPEGImportQuality -PropertyType DWord -Value 100 -Force
 # TaskManagerWindow -Expanded
-$Taskmgr = Get-Process -Name Taskmgr
+$Taskmgr = Get-Process -Name Taskmgr -ErrorAction Ignore
 if ($Taskmgr) {
 	$Taskmgr.CloseMainWindow()
 }
@@ -1669,7 +1674,7 @@ New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name PrimaryProperty -PropertyType String -Value 'System.ItemNameDisplay' -Force
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name SortByList -PropertyType String -Value 'prop:System.ItemNameDisplay' -Force
 # NavigationPaneExpand -Disable
-Remove-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name NavPaneExpandToCurrentFolder -Force
+# Remove-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name NavPaneExpandToCurrentFolder -Force
 # StorageSense -Enable
 if (-not (Test-Path -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy)) {
 	New-Item -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy -ItemType Directory -Force
@@ -1704,7 +1709,7 @@ Set-WinDefaultInputMethodOverride -InputTip '0409:00000409'
 New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\.NETFramework -Name OnlyUseLatestCLR -PropertyType DWord -Value 1 -Force
 New-ItemProperty -Path HKLM:\SOFTWARE\Wow6432Node\Microsoft\.NETFramework -Name OnlyUseLatestCLR -PropertyType DWord -Value 1 -Force
 # WinPrtScrFolder -Default
-Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders' -Name '{B7BEDE81-DF94-4682-A7D8-57A52620B86F}' -Force
+# Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders' -Name '{B7BEDE81-DF94-4682-A7D8-57A52620B86F}' -Force
 # FoldersLaunchSeparateProcess -Enable
 New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name SeparateProcess -PropertyType DWord -Value 1 -Force
 # ReservedStorage -Disable
@@ -1717,7 +1722,7 @@ New-ItemProperty -Path 'HKCU:\Software\Classes\Typelib\{8cec5860-07a1-11d9-b15e-
 # NumLock -Enable
 New-ItemProperty -Path 'Registry::HKEY_USERS\.DEFAULT\Control Panel\Keyboard' -Name InitialKeyboardIndicators -PropertyType String -Value 2147483650 -Force
 # CapsLock -Enable
-Remove-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Keyboard Layout' -Name 'Scancode Map' -Force
+# Remove-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Keyboard Layout' -Name 'Scancode Map' -Force
 # StickyShift -Disable
 New-ItemProperty -Path 'HKCU:\Control Panel\Accessibility\StickyKeys' -Name Flags -PropertyType String -Value 506 -Force
 # Autoplay -Disable
@@ -1745,8 +1750,8 @@ Start-Process -FilePath "$env:TEMP\dotnet-runtime-$NET6LatestRelease-win-x64.exe
 $NET8LatestRelease = (Invoke-RestMethod -UseBasicParsing -Uri https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/8.0/releases.json).'latest-release'
 (New-Object System.Net.WebClient).DownloadFile("https://dotnetcli.azureedge.net/dotnet/Runtime/$NET8LatestRelease/dotnet-runtime-$NET8LatestRelease-win-x64.exe", "$env:TEMP\dotnet-runtime-$NET8LatestRelease-win-x64.exe")
 Start-Process -FilePath "$env:TEMP\dotnet-runtime-$NET8LatestRelease-win-x64.exe" -ArgumentList '/install /passive /norestart'
-# RKNBypass -Disable
-Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' -Name AutoConfigURL -Force
+# # RKNBypass -Disable
+# Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' -Name AutoConfigURL -Force
 # PreventEdgeShortcutCreation -Channels Stable, Beta, Dev, Canary
 if (Get-Package -Name 'Microsoft Edge' -ProviderName Programs) {
 	if (-not (Test-Path -Path HKLM:\SOFTWARE\Policies\Microsoft\EdgeUpdate)) {
@@ -1775,7 +1780,7 @@ if (Get-Package -Name 'Microsoft Edge' -ProviderName Programs) {
 # SATADrivesRemovableMedia -Disable
 New-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\storahci\Parameters\Device -Name TreatAsInternalPort -Type MultiString -Value @(0, 1, 2, 3, 4, 5) -Force
 # RegistryBackup -Disable
-Remove-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Configuration Manager' -Name EnablePeriodicBackup -Force
+# Remove-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Configuration Manager' -Name EnablePeriodicBackup -Force
 # RecentlyAddedApps -Hide
 if (-not (Test-Path -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer)) {
 	New-Item -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer -Force
@@ -1830,24 +1835,24 @@ if (Get-CimInstance -ClassName CIM_VideoController | Where-Object -FilterScript 
 	}
 }
 # NetworkProtection -Disable
-Set-MpPreference -EnableNetworkProtection Disabled
-# PUAppsDetection -Disable
-Set-MpPreference -PUAProtection Disabled
-# DefenderSandbox -Disable
-setx /M MP_FORCE_USE_SANDBOX 0
+# Set-MpPreference -EnableNetworkProtection Disabled
+# # PUAppsDetection -Disable
+# Set-MpPreference -PUAProtection Disabled
+# # DefenderSandbox -Disable
+# setx /M MP_FORCE_USE_SANDBOX 0
 # DismissMSAccount
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Security Health\State' -Name AccountProtection_MicrosoftAccount_Disconnected -PropertyType DWord -Value 1 -Force
 # DismissSmartScreenFilter
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Security Health\State' -Name AppAndBrowser_EdgeSmartScreenOff -PropertyType DWord -Value 0 -Force
 # CommandLineProcessAudit -Disable
-Remove-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Audit -Name ProcessCreationIncludeCmdLine_Enabled -Force
+# Remove-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Audit -Name ProcessCreationIncludeCmdLine_Enabled -Force
 # EventViewerCustomView -Disable
-Remove-Item -Path "$env:ProgramData\Microsoft\Event Viewer\Views\ProcessCreation.xml" -Force
+# Remove-Item -Path "$env:ProgramData\Microsoft\Event Viewer\Views\ProcessCreation.xml" -Force
 # # PowerShellModulesLogging -Disable
-Remove-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ModuleLogging -Name EnableModuleLogging -Force
-Remove-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ModuleLogging\ModuleNames -Name * -Force
+# Remove-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ModuleLogging -Name EnableModuleLogging -Force
+# Remove-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ModuleLogging\ModuleNames -Name * -Force
 # PowerShellScriptsLogging -Disable
-Remove-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging -Name EnableScriptBlockLogging -Force
+# Remove-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging -Name EnableScriptBlockLogging -Force
 # AppsSmartScreen -Disable
 New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer -Name SmartScreenEnabled -PropertyType String -Value Off -Force
 # SaveZoneInformation -Disable
@@ -1856,7 +1861,7 @@ if (-not (Test-Path -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Polici
 }
 New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Policies\Attachments -Name SaveZoneInformation -PropertyType DWord -Value 1 -Force
 # WindowsScriptHost -Enable
-Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings' -Name Enabled -Force
+# Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings' -Name Enabled -Force
 # WindowsSandbox -Disable
 # Checking whether x86 virtualization is enabled in the firmware
 if ((Get-CimInstance -ClassName CIM_Processor).VirtualizationFirmwareEnabled) {
@@ -1867,9 +1872,9 @@ if ((Get-CimInstance -ClassName CIM_ComputerSystem).HypervisorPresent) {
 	Disable-WindowsOptionalFeature -FeatureName Containers-DisposableClientVM -Online -NoRestart
 }
 # MSIExtractContext -Hide
-Remove-Item -Path Registry::HKEY_CLASSES_ROOT\Msi.Package\shell\Extract -Recurse -Force
-# CABInstallContext -Hide
-Remove-Item -Path Registry::HKEY_CLASSES_ROOT\CABFolder\Shell\runas -Recurse -Force
+# Remove-Item -Path Registry::HKEY_CLASSES_ROOT\Msi.Package\shell\Extract -Recurse -Force
+# # CABInstallContext -Hide
+# Remove-Item -Path Registry::HKEY_CLASSES_ROOT\CABFolder\Shell\runas -Recurse -Force
 # CastToDeviceContext -Hide
 if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked')) {
 	New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked' -Force
@@ -1898,18 +1903,18 @@ New-ItemProperty -Path Registry::HKEY_CLASSES_ROOT\cmdfile\shell\print -Name Pro
 New-ItemProperty -Path 'Registry::HKEY_CLASSES_ROOT\Folder\ShellEx\ContextMenuHandlers\Library Location' -Name '(default)' -PropertyType String -Value '-{3dad6c5d-2167-4cae-9914-f99e41c12cfa}' -Force
 # SendToContext -Hide
 New-ItemProperty -Path Registry::HKEY_CLASSES_ROOT\AllFilesystemObjects\shellex\ContextMenuHandlers\SendTo -Name '(default)' -PropertyType String -Value '-{7BA4C740-9E81-11CF-99D3-00AA004AE837}' -Force
-# BitmapImageNewContext -Hide
-if ((Get-WindowsCapability -Online -Name 'Microsoft.Windows.MSPaint*').State -eq 'Installed') {
-	Remove-Item -Path Registry::HKEY_CLASSES_ROOT\.bmp\ShellNew -Force
-}
+# # BitmapImageNewContext -Hide
+# if ((Get-WindowsCapability -Online -Name 'Microsoft.Windows.MSPaint*').State -eq 'Installed') {
+# 	Remove-Item -Path Registry::HKEY_CLASSES_ROOT\.bmp\ShellNew -Force
+# }
 # RichTextDocumentNewContext -Hide
 if ((Get-WindowsCapability -Online -Name 'Microsoft.Windows.WordPad*').State -eq 'Installed') {
 	Remove-Item -Path Registry::HKEY_CLASSES_ROOT\.rtf\ShellNew -Force
 }
 # CompressedFolderNewContext -Hide
-Remove-Item -Path Registry::HKEY_CLASSES_ROOT\.zip\CompressedFolder\ShellNew -Force
+# Remove-Item -Path Registry::HKEY_CLASSES_ROOT\.zip\CompressedFolder\ShellNew -Force
 # MultipleInvokeContext -Disable
-Remove-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer -Name MultipleInvokePromptMinimum -Force
+# Remove-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer -Name MultipleInvokePromptMinimum -Force
 
 # https://github.com/djdallmann/GamingPCSetup/blob/master/CONTENT/DOCS/PSDSC/GamingMinimal.ps1
 # DisableWidgets - win11
@@ -2309,29 +2314,29 @@ New-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\
 
 # https://www.thewindowsclub.com/disable-netbios-and-llmnr-protocols-via-gpo
 # Needed for RDP for some reason
-Write-Host 'Network: NetBIOS: Enabling' -ForegroundColor green -BackgroundColor black
-$NetBiosRegistry = 'HKLM:SYSTEM\CurrentControlSet\services\NetBT\Parameters\Interfaces'
-Get-ChildItem $NetBiosRegistry | ForEach-Object { Set-ItemProperty -Path "$NetBiosRegistry\$($_.pschildname)" -Name NetbiosOptions -Value 1 }
+# Write-Host 'Network: NetBIOS: Enabling' -ForegroundColor green -BackgroundColor black
+# $NetBiosRegistry = 'HKLM:SYSTEM\CurrentControlSet\services\NetBT\Parameters\Interfaces'
+# Get-ChildItem $NetBiosRegistry | ForEach-Object { Set-ItemProperty -Path "$NetBiosRegistry\$($_.pschildname)" -Name NetbiosOptions -Value 1 }
 
-Write-Host 'Network: LLMNR: Disabling' -ForegroundColor green -BackgroundColor black
-# Computer Configuration -> Administrative Templates -> Network -> DNS ClientEnable Turn Off Multicast Name Resolution 
-if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows NT\DNSClient') -ne $true) {
-	New-Item 'HKLM:\Software\Policies\Microsoft\Windows NT\DNSClient' -Force 
-}
-New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows NT\DNSClient' -Name 'EnableMulticast' -Value 0 -PropertyType DWord -Force 
+# Write-Host 'Network: LLMNR: Disabling' -ForegroundColor green -BackgroundColor black
+# # Computer Configuration -> Administrative Templates -> Network -> DNS ClientEnable Turn Off Multicast Name Resolution 
+# if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows NT\DNSClient') -ne $true) {
+# 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows NT\DNSClient' -Force 
+# }
+# New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows NT\DNSClient' -Name 'EnableMulticast' -Value 0 -PropertyType DWord -Force 
 
-Write-Host 'Network: LMHOSTS: Disabling' -ForegroundColor green -BackgroundColor black
-New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\NetBT\Parameters' -Name 'EnableLMHOSTS' -Value 0 -PropertyType DWord -Force 
+# Write-Host 'Network: LMHOSTS: Disabling' -ForegroundColor green -BackgroundColor black
+# New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\NetBT\Parameters' -Name 'EnableLMHOSTS' -Value 0 -PropertyType DWord -Force 
 
 Write-Host 'Network: WPAD: Disabling' -ForegroundColor green -BackgroundColor black
 # User Configuration >Policies >Windows Settings > Connection/Automatic Browser Configuration > Automatically detect configuration settings → DISABLE
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\WinHttp' -Name 'DisableWpad' -Value 1 -PropertyType DWord -Force
 # User Configuration\Administrative Templates\Windows Components\Internet Explorer > Disable caching of Auto-Proxy scripts
-if ((Test-Path -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings') -ne $true) {
-	New-Item 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings' -Force
-}
-New-ItemProperty -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings' -Name 'EnableAutoProxyResultCache' -Value 0 -PropertyType DWord -Force
-New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\WinHttpAutoProxySvc' -Name 'Start' -Value 4 -PropertyType DWord -Force
+# if ((Test-Path -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings') -ne $true) {
+# 	New-Item 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings' -Force
+# }
+# New-ItemProperty -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings' -Name 'EnableAutoProxyResultCache' -Value 0 -PropertyType DWord -Force
+# New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\WinHttpAutoProxySvc' -Name 'Start' -Value 4 -PropertyType DWord -Force
 
 Write-Host 'Hosts: Adding mobile.events.data.microsoft.com' -ForegroundColor green -BackgroundColor black
 $mobileeventsdatamicrosoft = Select-String -Path $env:windir\System32\drivers\etc\hosts -Pattern 'mobile.events.data.microsoft.com'
