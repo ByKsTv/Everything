@@ -1,410 +1,399 @@
-Write-Host 'PowerPlan: Importing Ultimate Performance' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Importing Ultimate Performance' -ForegroundColor green -BackgroundColor black
 $ultimateScheme = powercfg /LIST | Where-Object { $_ -match 'Ultimate Performance' }
 if ($null -eq $ultimateScheme) {
 	(New-Object System.Net.WebClient).DownloadFile('https://github.com/ByKsTv/Everything/raw/main/Windows/Ultimate_Performance.pow', "$env:TEMP\Ultimate_Performance.pow")
 	powercfg /IMPORT "$env:TEMP\Ultimate_Performance.pow" 'e9a42b02-d5df-448d-aa00-03f14749eb61'
 }
 
-Write-Host 'PowerPlan: Activating Ultimate Performance' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Activating Ultimate Performance' -ForegroundColor green -BackgroundColor black
 powercfg /SETACTIVE e9a42b02-d5df-448d-aa00-03f14749eb61
 
-Write-Host 'PowerPlan: Deleting all power plans' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Deleting all power plans' -ForegroundColor green -BackgroundColor black
 $powerPlans = powercfg /LIST | Select-String -Pattern 'GUID: ([\w-]+)' | ForEach-Object { $_.Matches.Groups[1].Value }
 foreach ($plan in $powerPlans) {
 	powercfg /DELETE $plan
 }
 
-Write-Host 'PowerPlan: Changing screen to never turns off' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Changing screen to never turns off' -ForegroundColor green -BackgroundColor black
 powercfg /CHANGE monitor-timeout-ac 0
 powercfg /CHANGE monitor-timeout-dc 0
 powercfg /CHANGE standby-timeout-ac 0
 powercfg /CHANGE standby-timeout-dc 0
 
-Write-Host 'PowerPlan: Disabling hibernate' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Disabling hibernate' -ForegroundColor green -BackgroundColor black
 powercfg /HIBERNATE off
 powercfg /CHANGE hibernate-timeout-ac 0
 powercfg /CHANGE hibernate-timeout-dc 0
 New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' -Name 'HibernateEnabled' -PropertyType DWord -Value 0 -Force
 New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' -Name 'HibernateEnabledDefault' -PropertyType DWord -Value 0 -Force
 
-Write-Host 'PowerPlan: Disabling power throttling' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Disabling power throttling' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling' -Name 'PowerThrottlingOff' -PropertyType DWord -Value 1 -Force
 
-Write-Host 'PowerPlan: Disabling lock option' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Disabling lock option' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings' -Name 'ShowLockOption' -PropertyType DWord -Value 0 -Force
 
-Write-Host 'PowerPlan: Disabling sleep option' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Disabling sleep option' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings' -Name 'ShowSleepOption' -PropertyType DWord -Value 0 -Force
 
-Write-Host 'PowerPlan: Disabling fast boot option' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Disabling fast boot option' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power' -Name 'HiberbootEnabled' -PropertyType DWord -Value 0 -Force
 
+Write-Host 'Power Plan: Unparking CPU cores' -ForegroundColor green -BackgroundColor black
 # https://learn.microsoft.com/en-us/previous-versions/windows/hardware/design/dn613985(v=vs.85)
-Write-Host 'PowerPlan: Unparking CPU cores' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKLM:\SYSTEM\ControlSet001\Control\Power\PowerSettings\54533251-82be-4824-96c1-47b60b740d00\0cc5b647-c1df-4637-891a-dec35c318583' -Name 'ValueMax' -PropertyType DWord -Value 0 -Force
 powercfg /SETACVALUEINDEX SCHEME_CURRENT sub_processor CPMINCORES 100
 powercfg /SETACVALUEINDEX SCHEME_CURRENT sub_processor CPMINCORES1 100
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT sub_processor CPMINCORES 100
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT sub_processor CPMINCORES1 100
 
-Write-Host 'PowerPlan: Turn off hard disk after: 0 seconds' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Turn off hard disk after: 0 seconds' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 0012ee47-9041-4b5d-9b77-535fba8b1442 6738e2c4-e8a5-4a42-b16a-e040e769756e 0x00000000
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT 0012ee47-9041-4b5d-9b77-535fba8b1442 6738e2c4-e8a5-4a42-b16a-e040e769756e 0x00000000
 powercfg /CHANGE disk-timeout-ac 0
 powercfg /CHANGE disk-timeout-dc 0
 
-Write-Host 'PowerPlan: Desktop background settings: Slide show: Paused' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Desktop background settings: Slide show: Paused' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 0d7dbae2-4294-402a-ba8e-26777e8488cd 309dce9b-bef4-4119-9921-a851fb12f0f4 001
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT 0d7dbae2-4294-402a-ba8e-26777e8488cd 309dce9b-bef4-4119-9921-a851fb12f0f4 001
 
-Write-Host 'PowerPlan: Wireless Adapter Settings: Maximum Performance' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Wireless Adapter Settings: Maximum Performance' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 19cbb8fa-5279-450e-9fac-8a3d5fedd0c1 12bbebe6-58d6-4636-95bb-3217ef867c1a 000
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT 19cbb8fa-5279-450e-9fac-8a3d5fedd0c1 12bbebe6-58d6-4636-95bb-3217ef867c1a 000
 
-Write-Host 'PowerPlan: Sleep: Sleep after: 0 seconds' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Sleep: Sleep after: 0 seconds' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 29f6c1db-86da-48c5-9fdb-f2b67b1f44da 0x00000000
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 29f6c1db-86da-48c5-9fdb-f2b67b1f44da 0x00000000
 
-Write-Host 'PowerPlan: Allow hybrid sleep: Off' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Allow hybrid sleep: Off' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 94ac6d29-73ce-41a6-809f-6363ba21b47e 000
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 94ac6d29-73ce-41a6-809f-6363ba21b47e 000
 
-Write-Host 'PowerPlan: Hibernate after: 0 seconds' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Hibernate after: 0 seconds' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 9d7815a6-7ee4-497e-8888-515a05f02364 0x00000000
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 9d7815a6-7ee4-497e-8888-515a05f02364 0x00000000
 
-Write-Host 'PowerPlan: Allow wake timers: Disable' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Allow wake timers: Disable' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 bd3b718a-0680-4d9d-8ab2-e1d2b4ac806d 000
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 bd3b718a-0680-4d9d-8ab2-e1d2b4ac806d 000
 
-Write-Host 'PowerPlan: USB settings: USB selective suspend setting: Disabled' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: USB settings: USB selective suspend setting: Disabled' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 2a737441-1930-4402-8d77-b2bebba308a3 48e6b7a6-50f5-4782-a5d4-53bb8f07e226 000
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT 2a737441-1930-4402-8d77-b2bebba308a3 48e6b7a6-50f5-4782-a5d4-53bb8f07e226 000
 
-Write-Host 'PowerPlan: Power buttons and lid: Start menu power button: Shut down' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Power buttons and lid: Start menu power button: Shut down' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 4f971e89-eebd-4455-a8de-9e59040e7347 a7066653-8d6c-40a8-910e-a1f54b84c7e5 002
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT 4f971e89-eebd-4455-a8de-9e59040e7347 a7066653-8d6c-40a8-910e-a1f54b84c7e5 002
 
-Write-Host 'PowerPlan: PCI Express: Link State Power Management: Off' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: PCI Express: Link State Power Management: Off' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 501a4d13-42af-4429-9fd1-a8218c268e20 ee12f906-d277-404b-b6da-e5fa1a576df5 000
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT 501a4d13-42af-4429-9fd1-a8218c268e20 ee12f906-d277-404b-b6da-e5fa1a576df5 000
 
-# https://docs.google.com/document/d/1c2-lUJq74wuYK1WrA_bIvgb89dUN0sj8-hO3vqmrau4/edit
+# Write-Host 'Power Plan: Processor idle disable: Processor idle disable: Processor idle enable' -ForegroundColor green -BackgroundColor black
 # Do not enable, CPU will be at 100% Usage constintly
-# Write-Host 'PowerPlan: Processor idle disable: Processor idle disable: Processor idle enable' -ForegroundColor green -BackgroundColor black
+# https://docs.google.com/document/d/1c2-lUJq74wuYK1WrA_bIvgb89dUN0sj8-hO3vqmrau4/edit
 # powercfg /attributes SUB_PROCESSOR 5d76a2ca-e8c0-402f-a133-2158492d58ad -ATTRIB_HIDE
 # powercfg /SETACVALUEINDEX SCHEME_CURRENT sub_processor 5d76a2ca-e8c0-402f-a133-2158492d58ad 0
 # powercfg /SETDCVALUEINDEX SCHEME_CURRENT sub_processor 5d76a2ca-e8c0-402f-a133-2158492d58ad 0
 
-Write-Host 'PowerPlan: Processor power management: Minimum processor state: 100%' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Processor power management: Minimum processor state: 100%' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 893dee8e-2bef-41e0-89c6-b55d0929964c 0x00000064
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 893dee8e-2bef-41e0-89c6-b55d0929964c 0x00000064
 
-Write-Host 'PowerPlan: System cooling policy: Active' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: System cooling policy: Active' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 94d3a615-a899-4ac5-ae2b-e4d8f634367f 001
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 94d3a615-a899-4ac5-ae2b-e4d8f634367f 001
 
-Write-Host 'PowerPlan: Maximum processor state: 100%' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Maximum processor state: 100%' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 bc5038f7-23e0-4960-96da-33abaf5935ec 0x00000064
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 bc5038f7-23e0-4960-96da-33abaf5935ec 0x00000064
 
-Write-Host 'PowerPlan: Display: Turn off display after: 0 seconds' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Display: Turn off display after: 0 seconds' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e 0x00000000
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e 0x00000000
 
-Write-Host 'PowerPlan: Display brightness: 100%' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Display brightness: 100%' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 aded5e82-b909-4619-9949-f5d71dac0bcb 0x00000064
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 aded5e82-b909-4619-9949-f5d71dac0bcb 0x00000064
 
-Write-Host 'PowerPlan: Dimmed display brightness: 100%' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Dimmed display brightness: 100%' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 f1fbfde2-a960-4165-9f88-50667911ce96 0x00000064
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 f1fbfde2-a960-4165-9f88-50667911ce96 0x00000064
 
-Write-Host 'PowerPlan: Enable adaptive brightness: Off' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Enable adaptive brightness: Off' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 fbd9aa66-9553-4097-ba44-ed6e9d65eab8 000
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 fbd9aa66-9553-4097-ba44-ed6e9d65eab8 000
 
-Write-Host 'PowerPlan: Video playback quality bias: Video playback performance bias' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Video playback quality bias: Video playback performance bias' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 9596fb26-9850-41fd-ac3e-f7c3c00afd4b 10778347-1370-4ee0-8bbd-33bdacaade49 001
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT 9596fb26-9850-41fd-ac3e-f7c3c00afd4b 10778347-1370-4ee0-8bbd-33bdacaade49 001
 
-Write-Host 'PowerPlan: When playing video: Optimize video quality' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: When playing video: Optimize video quality' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 9596fb26-9850-41fd-ac3e-f7c3c00afd4b 34c7b99f-9a6d-4b3c-8dc7-b6693b78cef4 000
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT 9596fb26-9850-41fd-ac3e-f7c3c00afd4b 34c7b99f-9a6d-4b3c-8dc7-b6693b78cef4 000
 
-Write-Host 'PowerPlan: intel(r) graphics settings intel(r) graphics power plan maximum performance' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: intel(r) graphics settings intel(r) graphics power plan maximum performance' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 44f3beca-a7c0-460e-9df2-bb8b99e0cba6 3619c3f2-afb2-4afc-b0e9-e7fef372de36 002
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT 44f3beca-a7c0-460e-9df2-bb8b99e0cba6 3619c3f2-afb2-4afc-b0e9-e7fef372de36 002
 
-Write-Host 'PowerPlan: amd power slider overlay best performance' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: amd power slider overlay best performance' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT c763b4ec-0e50-4b6b-9bed-2b92a6ee884e 7ec1751b-60ed-4588-afb5-9819d3d77d90 003
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT c763b4ec-0e50-4b6b-9bed-2b92a6ee884e 7ec1751b-60ed-4588-afb5-9819d3d77d90 003
 
-Write-Host 'PowerPlan: ati graphics power settings ati powerplay settings maximize performance' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: ati graphics power settings ati powerplay settings maximize performance' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT f693fb01-e858-4f00-b20f-f30e12ac06d6 191f65b5-d45c-4a4f-8aae-1ab8bfd980e6 001
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT f693fb01-e858-4f00-b20f-f30e12ac06d6 191f65b5-d45c-4a4f-8aae-1ab8bfd980e6 001
 
-Write-Host 'PowerPlan: switchable dynamic graphics global settings maximize performance' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: switchable dynamic graphics global settings maximize performance' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT e276e160-7cb0-43c6-b20b-73f5dce39954 a1662ab2-9d34-4e53-ba8b-2639b9e20857 003
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT e276e160-7cb0-43c6-b20b-73f5dce39954 a1662ab2-9d34-4e53-ba8b-2639b9e20857 003
 
-Write-Host 'PowerPlan: Battery: Critical battery notification: Off' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Battery: Critical battery notification: Off' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f 5dbb7c9f-38e9-40d2-9749-4f8a0e9f640f 000
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f 5dbb7c9f-38e9-40d2-9749-4f8a0e9f640f 000
 
-Write-Host 'PowerPlan: Critical battery action: Do nothing' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Critical battery action: Do nothing' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f 637ea02f-bbcb-4015-8e2c-a1c7b9c0b546 000
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f 637ea02f-bbcb-4015-8e2c-a1c7b9c0b546 000
 
-Write-Host 'PowerPlan: Low battery level: 0%' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Low battery level: 0%' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f 8183ba9a-e910-48da-8769-14ae6dc1170a 0x00000000
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f 8183ba9a-e910-48da-8769-14ae6dc1170a 0x00000000
 
-Write-Host 'PowerPlan: Critical battery level: 0%' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Critical battery level: 0%' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f 9a66d8d7-4ff7-4ef9-b5a2-5a326ca2a469 0x00000000
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f 9a66d8d7-4ff7-4ef9-b5a2-5a326ca2a469 0x00000000
 
-Write-Host 'PowerPlan: Low battery notification: Off' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Low battery notification: Off' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f bcded951-187b-4d05-bccc-f7e51960c258 000
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f bcded951-187b-4d05-bccc-f7e51960c258 000
 
-Write-Host 'PowerPlan: Low battery action: Do nothing' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Low battery action: Do nothing' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f d8742dcb-3e6a-4b3c-b3fe-374623cdcf06 000
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f d8742dcb-3e6a-4b3c-b3fe-374623cdcf06 000
 
-Write-Host 'PowerPlan: Reserve battery level: 0%' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Reserve battery level: 0%' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f f3c5027d-cd16-4930-aa6b-90db844a8f00 0x00000000
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f f3c5027d-cd16-4930-aa6b-90db844a8f00 0x00000000
 
-Write-Host 'PowerPlan: low screen brightness when using battery saver disable' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: low screen brightness when using battery saver disable' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT de830923-a562-41af-a086-e3a2c6bad2da 13d09884-f74e-474a-a852-b6bde8ad03a8 0x00000064
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT de830923-a562-41af-a086-e3a2c6bad2da 13d09884-f74e-474a-a852-b6bde8ad03a8 0x00000064
 
-Write-Host 'PowerPlan: turn battery saver on automatically at never' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: turn battery saver on automatically at never' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT de830923-a562-41af-a086-e3a2c6bad2da e69653ca-cf7f-4f05-aa73-cb833fa90ad4 0x00000000
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT de830923-a562-41af-a086-e3a2c6bad2da e69653ca-cf7f-4f05-aa73-cb833fa90ad4 0x00000000
 
 # https://learn.microsoft.com/en-us/windows/privacy/manage-connections-from-windows-operating-system-components-to-microsoft-services-using-mdm
 # https://learn.microsoft.com/en-us/windows/privacy/manage-windows-21h2-endpoints
-
-Write-Host 'O&O ShutUp10++: Downloading' -ForegroundColor green -BackgroundColor black
-(New-Object System.Net.WebClient).DownloadFile('https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe', "$env:TEMP\OOSU10.exe")
-
-Write-Host 'O&O ShutUp10++: Getting latest recommended settings' -ForegroundColor green -BackgroundColor black
-$OOSU10 = '############################################################################
-# This file was created with O&O ShutUp10++ V1.9.1436
-# and can be imported onto another computer. 
-#
-# Download the application at https://www.oo-software.com/shutup10
-# You can then import the file from within the program. 
-#
-# Alternatively you can import it automatically over a command line.
-# Simply use the following parameter: 
-# OOSU10.exe <path to file>
-# 
-# Selecting the Option /quiet ends the app right after the import and the
-# user does not get any feedback about the import.
-#
-# We are always happy to answer any questions you may have!
-# © 2015-2023 O&O Software GmbH, Berlin. All rights reserved.
-# https://www.oo-software.com/
-############################################################################
-
-P001	+
-P002	+
-P003	+
-P004	+
-P005	+
-P006	+
-P008	+
-P026	+
-P027	+
-P028	+
-P064	+
-P065	+
-P066	+
-P067	+
-P070	+
-P069	+
-P009	-
-P010	-
-P015	-
-P068	-
-P016	-
-A001	+
-A002	+
-A003	+
-A004	+
-A006	+
-A005	+
-P007	+
-P036	+
-P025	+
-P033	+
-P023	+
-P056	+
-P057	-
-P012	-
-P034	-
-P013	-
-P035	-
-P062	-
-P063	-
-P081	-
-P047	-
-P019	-
-P048	-
-P049	-
-P020	-
-P037	-
-P011	-
-P038	-
-P050	-
-P051	-
-P018	-
-P039	-
-P021	-
-P040	-
-P022	-
-P041	-
-P014	-
-P042	-
-P052	-
-P053	-
-P054	-
-P055	-
-P029	-
-P043	-
-P030	-
-P044	-
-P031	-
-P045	-
-P032	-
-P046	-
-P058	-
-P059	-
-P060	-
-P061	-
-P024	-
-S001	+
-S002	+
-S003	+
-S008	-
-E001	+
-E002	+
-E003	+
-E008	+
-E007	+
-E010	+
-E011	+
-E012	+
-E009	-
-E004	-
-E005	-
-E013	-
-E014	-
-E006	-
-Y001	+
-Y002	+
-Y003	+
-Y004	+
-Y005	+
-Y006	+
-Y007	+
-C012	+
-C002	+
-C013	+
-C007	+
-C008	+
-C009	+
-C010	+
-C011	+
-C014	+
-C015	+
-L001	+
-L003	+
-L004	-
-L005	-
-U001	+
-U004	+
-U005	+
-U006	+
-U007	+
-W001	+
-W011	+
-W004	-
-W005	-
-W010	-
-W009	-
-P017	-
-W006	-
-W008	-
-M006	+
-M011	-
-M010	-
-O003	-
-O001	-
-S012	-
-S013	-
-S014	-
-K001	+
-K002	+
-K005	+
-M003	-
-M015	-
-M016	-
-M017	-
-M018	-
-M019	-
-M020	-
-M022	+
-M001	+
-M004	+
-M005	+
-M024	+
-M012	-
-M013	-
-M014	-
-M023	-
-N001	-
-'
-
-Write-Host 'O&O ShutUp10++: Writing latest recommended settings' -ForegroundColor green -BackgroundColor black
-New-Item -Path $ENV:temp\OOSU10.cfg -ItemType File -Value $OOSU10 -Force
-
-Write-Host 'O&O ShutUp10++: Modifying settings' -ForegroundColor green -BackgroundColor black
-$PrivacyAccessLanguageBrowser = 'P015	-'
-$PrivacyTextSuggest = 'P068	-'
-$EdgeDRM = 'E004	-'
-$EdgeOptimizeSearch = 'E005	-'
-$ExplorerRecently = 'M011	-'
-$ExplorerAds = 'M010	-'
-$SearchBing = 'M003	-'
-$TaskbarPeople = 'M015	-'
-$TaskbarSearch = 'M016	-'
-$TaskbarMeet = 'M018	-'
-$TaskbarNews = 'M020	-'
-$PrivacyBiometrical = 'P009	-'
-$SecurityDRM = 'S008	-'
-$EdgeBackground = 'E013	-'
-$EdgeBackgroundPages = 'E014	-'
-$LocationSensors = 'L004	-'
-$LocationService = 'L005	-'
-$ExplorerOneDrive = 'O003	-'
-$ExplorerOneDriveDisable = 'O001	-'
-$DefenderSpynet = 'S012	-'
-$DefenderSubmit = 'S013	-'
-$DefenderReport = 'S014	-'
-$TaskbarMeetMachine = 'M017	-'
-$TaskbarNewsMachine = 'M019	-'
-$MiscKeyManagement = 'M012	-'
-$MiscMapData = 'M013	-'
-$MiscMapNetwork = 'M014	-'
-$MiscPCHealth = 'M023	-'
-(Get-Content -Raw $ENV:temp\OOSU10.cfg) -replace $PrivacyAccessLanguageBrowser, 'P015	+' -replace $PrivacyTextSuggest, 'P068	+' -replace $EdgeOptimizeSearch, 'E005	+' -replace $EdgeDRM, 'E004	+' -replace $ExplorerRecently, 'M011	+' -replace $ExplorerAds, 'M010	+' -replace $SearchBing, 'M003	+' -replace $TaskbarPeople, 'M015	+' -replace $TaskbarSearch, 'M016	+' -replace $TaskbarMeet, 'M018	+' -replace $TaskbarNews, 'M020	+' -replace $PrivacyBiometrical, 'P009	+' -replace $SecurityDRM, 'S008	+' -replace $EdgeBackground, 'E013	+' -replace $EdgeBackgroundPages, 'E014	+' -replace $LocationSensors, 'L004	+' -replace $LocationService, 'L005	+' -replace $ExplorerOneDrive, 'O003	+' -replace $ExplorerOneDriveDisable, 'O001	+' -replace $DefenderSpynet, 'S012	+' -replace $DefenderSubmit, 'S013	+' -replace $DefenderReport, 'S014	+' -replace $TaskbarMeetMachine, 'M017	+' -replace $TaskbarNewsMachine, 'M019	+' -replace $MiscKeyManagement, 'M012	+' -replace $MiscMapData, 'M013	+' -replace $MiscMapNetwork, 'M014	+' -replace $MiscPCHealth, 'M023	+' | Set-Content $ENV:temp\OOSU10.cfg
-
-Write-Host 'O&O ShutUp10++: Starting' -ForegroundColor green -BackgroundColor black
-Start-Process $ENV:temp\OOSU10.exe -ArgumentList "$ENV:temp\OOSU10.cfg /quiet" -Wait
+# OO Shutup10
+# Current User
+# Disable transmission of typing information
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Input\TIPC' -Name 'Enabled' -Value 0 -PropertyType DWord -Force
+# Disable suggestions in the timeline
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SubscribedContent-353698Enabled' -Value 0 -PropertyType DWord -Force
+# Disable tips, tricks and suggestions when using Windows
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SubscribedContent-338389Enabled' -Value 0 -PropertyType DWord -Force
+# Disable showing suggested content in the Settings app
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SubscribedContent-353696Enabled' -Value 0 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SubscribedContent-338393Enabled' -Value 0 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SubscribedContent-353694Enabled' -Value 0 -PropertyType DWord -Force
+# Disable storage of clipboard history for current user
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Clipboard' -Name 'EnableClipboardHistory' -Value 0 -PropertyType DWord -Force
+# Disable app access to user account information for current user
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\userAccountInformation' -Name 'Value' -Value Deny -PropertyType String -Force
+# Disable app access to diagnostics information for current user
+if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\appDiagnostics') -ne $true) {
+	New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\appDiagnostics' -Force 
+}
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\appDiagnostics' -Name 'Value' -Value Deny -PropertyType String -Force
+# Edge
+# Disable tracking in the web
+if ((Test-Path -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Main') -ne $true) {
+	New-Item 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Main' -Force 
+}
+New-ItemProperty -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Main' -Name 'DoNotTrack' -Value 1 -PropertyType DWord -Force
+# Disable page prediction
+if ((Test-Path -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\FlipAhead') -ne $true) {
+	New-Item 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\FlipAhead' -Force 
+}
+New-ItemProperty -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\FlipAhead' -Name 'FPEnabled' -Value 0 -PropertyType DWord -Force
+# Disable search and website suggestions
+New-ItemProperty -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Main' -Name 'ShowSearchSuggestionsGlobal' -Value 0 -PropertyType DWord -Force
+# Disable Cortana in Microsoft Edge
+if ((Test-Path -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\ServiceUI') -ne $true) {
+	New-Item 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\ServiceUI' -Force 
+}
+New-ItemProperty -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\ServiceUI' -Name 'EnableCortana' -Value 0 -PropertyType DWord -Force
+# Disable showing search history
+if ((Test-Path -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\ServiceUI\ShowSearchHistory') -ne $true) {
+	New-Item 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\ServiceUI\ShowSearchHistory' -Force 
+}
+New-ItemProperty -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\ServiceUI\ShowSearchHistory' -Name '(default)' -Value 0 -PropertyType DWord -Force
+# Disable synchronization of all settings
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync' -Name 'SyncPolicy' -Value 5 -PropertyType DWord -Force
+# Disable synchronization of design settings
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Personalization' -Name 'Enabled' -Value 0 -PropertyType DWord -Force
+# Disable synchronization of browser settings
+if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\BrowserSettings') -ne $true) {
+	New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\BrowserSettings' -Force 
+}
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\BrowserSettings' -Name 'Enabled' -Value 0 -PropertyType DWord -Force
+# Disable synchronization of credentials (passwords)
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Credentials' -Name 'Enabled' -Value 0 -PropertyType DWord -Force
+# Disable synchronization of language settings
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Language' -Name 'Enabled' -Value 0 -PropertyType DWord -Force
+# Disable synchronization of accessibility settings
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Accessibility' -Name 'Enabled' -Value 0 -PropertyType DWord -Force
+# Disable synchronization of Windows settings
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Windows' -Name 'Enabled' -Value 0 -PropertyType DWord -Force
+# Disable and reset Cortana
+if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Windows Search') -ne $true) {
+	New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Windows Search' -Force 
+}
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Windows Search' -Name 'CortanaConsent' -Value 0 -PropertyType DWord -Force
+# Disable Input Personalization
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\InputPersonalization' -Name 'RestrictImplicitInkCollection' -Value 1 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\InputPersonalization' -Name 'RestrictImplicitTextCollection' -Value 1 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\InputPersonalization\TrainedDataStore' -Name 'HarvestContacts' -Value 0 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Personalization\Settings' -Name 'AcceptedPrivacyPolicy' -Value 0 -PropertyType DWord -Force
+# Disable fun facts, tips, tricks, and more on your lock screen
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SubscribedContent-338387Enabled' -Value 0 -PropertyType DWord -Force
+# Disable notifications on the lock screen
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Notifications\Settings' -Name 'NOC_GLOBAL_SETTING_ALLOW_TOASTS_ABOVE_LOCK' -Value 0 -PropertyType DWord -Force
+# Disable news and interests in the task bar for current user
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds' -Name 'ShellFeedsTaskbarViewMode' -Value 2 -PropertyType DWord -Force
+# Disable Windows Media Player Diagnostics
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\MediaPlayer\Preferences' -Name 'UsageTracking' -Value 0 -PropertyType DWord -Force
+# Local machine
+# Disable camera in logon screen
+if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Personalization') -ne $true) {
+	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Personalization' -Force 
+}
+New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Personalization' -Name 'NoLockScreenCamera' -Value 1 -PropertyType DWord -Force
+# Disable and reset Advertising ID and info for the machine
+if ((Test-Path -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo') -ne $true) {
+	New-Item 'HKLM:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo' -Force 
+}
+New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo' -Name 'Enabled' -Value 0 -PropertyType DWord -Force
+# Disable advertisments via Bluetooth
+if ((Test-Path -Path 'HKLM:\Software\Microsoft\PolicyManager\current\device\Bluetooth') -ne $true) {
+	New-Item 'HKLM:\Software\Microsoft\PolicyManager\current\device\Bluetooth' -Force 
+}
+New-ItemProperty -Path 'HKLM:\Software\Microsoft\PolicyManager\current\device\Bluetooth' -Name 'AllowAdvertising' -Value 0 -PropertyType DWord -Force
+# Disable backup of text messages into the cloud
+if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Messaging') -ne $true) {
+	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Messaging' -Force 
+}
+New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Messaging' -Name 'AllowMessageSync' -Value 0 -PropertyType DWord -Force
+# Disable Windows Error Reporting
+New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\Windows Error Reporting' -Name 'Disabled' -Value 1 -PropertyType DWord -Force
+#Disable biometrical features
+if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Biometrics') -ne $true) {
+	New-Item 'HKLM:\Software\Policies\Microsoft\Biometrics' -Force 
+}
+New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Biometrics' -Name 'Enabled' -Value 0 -PropertyType DWord -Force
+# Disable app access to user account information on this device
+New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\userAccountInformation' -Name 'Value' -Value Deny -PropertyType String -Force
+# Disable app access to diagnostics information on this device
+New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\appDiagnostics' -Name 'Value' -Value Deny -PropertyType String -Force
+# Disable password reveal button
+if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\CredUI') -ne $true) {
+	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\CredUI' -Force 
+}
+New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\CredUI' -Name 'DisablePasswordReveal' -Value 1 -PropertyType DWord -Force
+# Disable Internet access of Windows Media Digital Rights Managment (DRM)
+if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\WMDRM') -ne $true) {
+	New-Item 'HKLM:\Software\Policies\Microsoft\WMDRM' -Force 
+}
+New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\WMDRM' -Name 'DisableOnline' -Value 1 -PropertyType DWord -Force
+# Disable automatic completion of web addresses in address bar
+if ((Test-Path -Path 'HKLM:\Software\Microsoft\PolicyManager\current\device\Browser') -ne $true) {
+	New-Item 'HKLM:\Software\Microsoft\PolicyManager\current\device\Browser' -Force 
+}
+New-ItemProperty -Path 'HKLM:\Software\Microsoft\PolicyManager\current\device\Browser' -Name 'AllowAddressBarDropdown' -Value 0 -PropertyType DWord -Force
+# Disable user feedback in toolbar
+if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Edge') -ne $true) {
+	New-Item 'HKLM:\Software\Policies\Microsoft\Edge' -Force 
+}
+New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Edge' -Name 'UserFeedbackAllowed' -Value 0 -PropertyType DWord -Force
+# Disable storing and autocompleting of credit card data on websites
+New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Edge' -Name 'AutofillCreditCardEnabled' -Value 0 -PropertyType DWord -Force
+# Disable Microsoft Edge launch in the background
+if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\Main') -ne $true) {
+	New-Item 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\Main' -Force 
+}
+New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\Main' -Name 'AllowPrelaunch' -Value 0 -PropertyType DWord -Force
+# Disable loading the start and new tab pages in the background
+if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\TabPreloader') -ne $true) {
+	New-Item 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\TabPreloader' -Force 
+}
+New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\TabPreloader' -Name 'AllowTabPreloading' -Value 0 -PropertyType DWord -Force
+# Disable online speech recognition
+if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\InputPersonalization') -ne $true) {
+	New-Item 'HKLM:\Software\Policies\Microsoft\InputPersonalization' -Force 
+}
+New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\InputPersonalization' -Name 'AllowInputPersonalization' -Value 0 -PropertyType DWord -Force
+# Disable downlaod and updates of speech recognition and speech synthesis models
+New-ItemProperty -Path 'HKLM:\Software\Microsoft\Speech_OneCore\Preferences' -Name 'ModelDownloadAllowed' -Value 0 -PropertyType DWord -Force
+# Disable functionallity to locate the system
+if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\LocationAndSensors') -ne $true) {
+	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\LocationAndSensors' -Force 
+}
+New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\LocationAndSensors' -Name 'DisableWindowsLocationProvider' -Value 1 -PropertyType DWord -Force
+# Disable scripting functionallity to locate the system
+New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\LocationAndSensors' -Name 'DisableLocationScripting' -Value 1 -PropertyType DWord -Force
+# Disable application telemetry
+New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\DataCollection' -Name 'AllowTelemetry' -Value 0 -PropertyType DWord -Force
+# Disable diagnostic log collection
+New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\DataCollection' -Name 'LimitDiagnosticLogCollection' -Value 1 -PropertyType DWord -Force
+# Disable Windows Update via peer-to-peer
+if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization') -ne $true) {
+	New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization' -Force 
+}
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization' -Name 'SystemSettingsDownloadMode' -Value 0 -PropertyType DWord -Force
+if ((Test-Path -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config') -ne $true) {
+	New-Item 'HKLM:\Software\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config' -Force 
+}
+New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config' -Name 'DODownloadMode' -Value 0 -PropertyType DWord -Force
+if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\DeliveryOptimization') -ne $true) {
+	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\DeliveryOptimization' -Force 
+}
+New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\DeliveryOptimization' -Name 'DODownloadMode' -Value 0 -PropertyType DWord -Force
+# Disable updates to the speech recognition and speech syhesis modules
+if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Speech') -ne $true) {
+	New-Item 'HKLM:\Software\Policies\Microsoft\Speech' -Force 
+}
+New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Speech' -Name 'AllowSpeechModelUpdate' -Value 0 -PropertyType DWord -Force
+# Disable OneDrive access to network before login
+if ((Test-Path -Path 'HKLM:\Software\Microsoft\OneDrive') -ne $true) {
+	New-Item 'HKLM:\Software\Microsoft\OneDrive' -Force 
+}
+New-ItemProperty -Path 'HKLM:\Software\Microsoft\OneDrive' -Name 'PreventNetworkTrafficPreUserSignIn' -Value 1 -PropertyType DWord -Force
+# Disable Microsoft SpyNet memembership
+if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows Defender\Spynet') -ne $true) {
+	New-Item 'HKLM:\Software\Policies\Microsoft\Windows Defender\Spynet' -Force 
+}
+New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows Defender\Spynet' -Name 'SpyNetReporting' -Value 0 -PropertyType DWord -Force
+# Disable reporting of malware infection information
+if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\MRT') -ne $true) {
+	New-Item 'HKLM:\Software\Policies\Microsoft\MRT' -Force 
+}
+New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\MRT' -Name 'DontReportInfectionInformation' -Value 1 -PropertyType DWord -Force
+# Disable Meet now in the task bar on this device
+New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'HideSCAMeetNow' -Value 1 -PropertyType DWord -Force
+# Disable news and interests in the taskbar on this device
+if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Feeds') -ne $true) {
+	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Windows Feeds' -Force 
+}
+New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Feeds' -Name 'EnableFeeds' -Value 0 -PropertyType DWord -Force
+# Disable remote assistance connections to this computer
+New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows NT\Terminal Services' -Name 'fAllowToGetHelp' -Value 0 -PropertyType DWord -Force
+# Disable installation of PC Health Check
+if ((Test-Path -Path 'HKLM:\Software\Microsoft\PCHC') -ne $true) {
+	New-Item 'HKLM:\Software\Microsoft\PCHC' -Force 
+}
+New-ItemProperty -Path 'HKLM:\Software\Microsoft\PCHC' -Name 'PreviousUninstall' -Value 1 -PropertyType DWord -Force
 
 Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Network: WLAN Service: WLAN Settings: Allow Windows to automatically connect to suggested open hotspots, to networks shared by contacts, and to hotspots offering paid services: Disabled' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Microsoft\WcmSvc\wifinetworkmanager\config') -ne $true) {
@@ -724,6 +713,9 @@ if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\DataCollection')
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\DataCollection' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\DataCollection' -Name 'DoNotShowFeedbackNotifications' -Value 1 -PropertyType DWord -Force
+if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Siuf\Rules') -ne $true) {
+	New-Item 'HKCU:\SOFTWARE\Microsoft\Siuf\Rules' -Force 
+}
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Siuf\Rules' -Name 'NumberOfSIUFInPeriod' -PropertyType DWord -Value 0 -Force
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Siuf\Rules' -Name 'PeriodInNanoSeconds' -PropertyType DWord -Value 0 -Force
 
@@ -934,7 +926,8 @@ Remove-WindowsCapability -Name 'Hello.Face.18967~~~~0.0.1.0' -Online
 Remove-WindowsCapability -Name 'OneCoreUAP.OneSync~~~~0.0.1.0' -Online
 Remove-WindowsCapability -Name 'MathRecognizer~~~~0.0.1.0' -Online
 Remove-WindowsCapability -Name 'OpenSSH.Client~~~~0.0.1.0' -Online
-Remove-WindowsCapability -Name 'DirectX.Configuration.Database~~~~0.0.1.0' -Online
+# DirectX
+# Remove-WindowsCapability -Name 'DirectX.Configuration.Database~~~~0.0.1.0' -Online
 # # Notepad
 # Add-WindowsCapability -Name 'Microsoft.Windows.Notepad~~~~0.0.1.0' -Online
 # # PowerShell ISE
@@ -1124,22 +1117,18 @@ $data += ',194,60,1,194,70,1,197,90,1,0'
 Set-ItemProperty -Path $key.PSPath -Name 'Data' -Type Binary -Value $data.Split(',')
 
 Write-Host 'Settings: ContentDeliveryManager: Off' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager') -ne $true) {
- New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Force 
-}
+# if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager') -ne $true) {
+#  New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Force 
+# }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'FeatureManagementEnabled' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'OemPreInstalledAppsEnabled' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'PreInstalledAppsEnabled' -Value 0 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'PreInstalledAppsEverEnabled' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'RotatingLockScreenOverlayEnabled' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SilentInstalledAppsEnabled' -Value 0 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SlideshowEnabled' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SoftLandingEnabled' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SystemPaneSuggestionsEnabled' -Value 0 -PropertyType DWord -Force
-New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SlideshowEnabled' -Value 0 -PropertyType DWord -Force
-New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'ContentDeliveryAllowed' -Value 0 -PropertyType DWord -Force
-New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'PreInstalledAppsEverEnabled' -Value 0 -PropertyType DWord -Force
-New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SubscribedContent-338387Enabled' -Value 0 -PropertyType DWord -Force
-New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SubscribedContent-338389Enabled' -Value 0 -PropertyType DWord -Force
-New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SubscribedContent-353698Enabled' -Value 0 -PropertyType DWord -Force
 
 Write-Host 'Settings: Settings: System: Tablet: When I sign in: Never use tablet mode' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell') -ne $true) {
@@ -1448,262 +1437,10 @@ if ((Test-Path -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System') -ne $tr
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System' -Name 'DisableLogonBackgroundImage' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'RotatingLockScreenEnabled' -Value 0 -PropertyType DWord -Force
 
+# Write-Host 'Settings: Compiling Timer Resolution Service' -ForegroundColor green -BackgroundColor black
 # https://github.com/fr33thytweaks/Ultimate-Windows-Optimization-Guide/blob/main/6%20Windows/10%20Timer%20Resolution.ps1
 # https://forums.guru3d.com/threads/windows-timer-resolution-tool-in-form-of-system-service.376458/
-
-# Write-Host 'Settings: Compiling Timer Resolution Service' -ForegroundColor green -BackgroundColor black
 # $SetTimerResService = @'
-# // comand line for compilation:
-# // c:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe SetTimerResolutionService.cs
-
-# using System;
-# using System.Runtime.InteropServices;
-# using System.ServiceProcess;
-# using System.ComponentModel;
-# using System.Configuration.Install;
-# using System.Collections.Generic;
-# using System.Reflection;
-# using System.IO;
-# using System.Management;
-# using System.Threading;
-# using System.Diagnostics;
-
-# [assembly: AssemblyVersion("2.1")]
-# [assembly: AssemblyProduct("Set Timer Resolution service")]
-
-# namespace WindowsService
-# {
-#     class WindowsService : ServiceBase
-#     {
-#         public WindowsService()
-#         {
-#             this.ServiceName = "STR";
-#             this.EventLog.Log = "Application";
-            
-#             // These Flags set whether or not to handle that specific
-#             //  type of event. Set to true if you need it, false otherwise.
-#             this.CanStop = true;
-
-#             this.CanHandlePowerEvent = false;
-#             this.CanHandleSessionChangeEvent = false;
-#             this.CanPauseAndContinue = false;
-#             this.CanShutdown = false;
-#         }
-
-#         static void Main()
-#         {
-#             ServiceBase.Run(new WindowsService());
-#         }
-
-
-#         protected override void OnStart(string[] args)
-#         {
-#             base.OnStart(args);
-
-#             // read processes names from ini-file
-#             ReadProcessList();
-
-#             // retrieve timer resolutions
-#             NtQueryTimerResolution(out this.MininumResolution, out this.MaximumResolution, out this.DefaultResolution);
-#             if(null != this.EventLog)
-#                 try { this.EventLog.WriteEntry(String.Format("Minimum={0}; Maximum={1}; Default={2}; Processes='{3}'", this.MininumResolution, this.MaximumResolution, this.DefaultResolution, null != this.ProcessesNames ? String.Join("','", this.ProcessesNames) : "")); }
-#                 catch {}
-
-#             if(null == this.ProcessesNames)
-#             {
-#                 // there is no ini-file, so just set maximum resolution and exit monitoring
-#                 SetMaximumResolution();
-#                 return;
-#             }
-#             if(0 == this.ProcessesNames.Count)
-#             {
-#                 // ini-file is empty, so just exit monitoring
-#                 return;
-#             }
-
-#             // create delegate for async method execution
-#             this.ProcessStartDelegate = new OnProcessStart(this.ProcessStarted);
-
-#             try
-#             {
-#                 // subscribe for a start of processes
-#                 String query = String.Format("SELECT * FROM __InstanceCreationEvent WITHIN 0.5 WHERE (TargetInstance isa \"Win32_Process\") AND (TargetInstance.Name=\"{0}\")", String.Join("\" OR TargetInstance.Name=\"", this.ProcessesNames));
-#                 this.startWatch = new ManagementEventWatcher(query);
-#                 this.startWatch.EventArrived += this.startWatch_EventArrived;
-#                 this.startWatch.Start();
-#             }
-#             catch(Exception ee)
-#             {
-#                 if(null != this.EventLog)
-#                     try { this.EventLog.WriteEntry(ee.ToString(), EventLogEntryType.Error); }
-#                     catch {}
-#             }
-#         }
-
-#         protected override void OnStop()
-#         {
-#             // stop the event watchers
-#             if(null != this.startWatch)
-#             {
-#                 this.startWatch.Stop();
-#             }
-
-#             base.OnStop();
-#         }
-
-#         ManagementEventWatcher startWatch;
-
-#         void startWatch_EventArrived(object sender, EventArrivedEventArgs e) 
-#         {
-#             try
-#             {
-#                 ManagementBaseObject process = (ManagementBaseObject)e.NewEvent.Properties["TargetInstance"].Value;
-#                 UInt32 processId = (UInt32)process.Properties["ProcessId"].Value;
-#                 this.ProcessStartDelegate.BeginInvoke(processId, null, null);
-#             } 
-#             catch(Exception ee) 
-#             {
-#                 if(null != this.EventLog)
-#                     try { this.EventLog.WriteEntry(ee.ToString(), EventLogEntryType.Warning); }
-#                     catch {}
-
-#             }
-#         }
-
-#         [DllImport("kernel32.dll", SetLastError=true)]
-#         static extern Int32 WaitForSingleObject(IntPtr Handle, Int32 Milliseconds);
-
-#         [DllImport("kernel32.dll", SetLastError=true)]
-#         static extern IntPtr OpenProcess(UInt32 DesiredAccess, Int32 InheritHandle, UInt32 ProcessId);
-
-#         [DllImport("kernel32.dll", SetLastError=true)]
-#         static extern Int32 CloseHandle(IntPtr Handle);
-
-#         const UInt32 SYNCHRONIZE = 0x00100000;
-
-#         delegate void OnProcessStart(UInt32 processId);
-#         OnProcessStart ProcessStartDelegate = null;
-
-#         void ProcessStarted(UInt32 processId)
-#         {
-#             SetMaximumResolution();
-#             IntPtr processHandle = IntPtr.Zero;
-#             try
-#             {
-#                 processHandle = OpenProcess(SYNCHRONIZE, 0, processId);
-#                 if(processHandle != IntPtr.Zero)
-#                     WaitForSingleObject(processHandle, -1);
-#             } 
-#             catch(Exception ee) 
-#             {
-#                 if(null != this.EventLog)
-#                     try { this.EventLog.WriteEntry(ee.ToString(), EventLogEntryType.Warning); }
-#                     catch {}
-#             }
-#             finally
-#             {
-#                 if(processHandle != IntPtr.Zero)
-#                     CloseHandle(processHandle); 
-#             }
-#             SetDefaultResolution();
-#         }
-
-#         List<String> ProcessesNames = null;
-
-#         void ReadProcessList()
-#         {
-#             String iniFilePath = Assembly.GetExecutingAssembly().Location + ".ini";
-#             if(File.Exists(iniFilePath))
-#             {
-#                 this.ProcessesNames = new List<String>();
-#                 String[] iniFileLines = File.ReadAllLines(iniFilePath);
-#                 foreach(var line in iniFileLines)
-#                 {
-#                     String[] names = line.Split(new char[] {',', ' ', ';'} , StringSplitOptions.RemoveEmptyEntries);
-#                     foreach(var name in names)
-#                     {
-#                         String lwr_name = name.ToLower();
-#                         if(!lwr_name.EndsWith(".exe"))
-#                             lwr_name += ".exe";
-#                         if(!this.ProcessesNames.Contains(lwr_name))
-#                             this.ProcessesNames.Add(lwr_name);
-#                     }
-#                 }
-#             }
-#         }
-
-
-#         [DllImport("ntdll.dll", SetLastError=true)]
-#         static extern int NtSetTimerResolution(uint DesiredResolution, bool SetResolution, out uint CurrentResolution);
-
-#         [DllImport("ntdll.dll", SetLastError=true)]
-#         static extern int NtQueryTimerResolution(out uint MinimumResolution, out uint MaximumResolution, out uint ActualResolution);
-
-#         uint DefaultResolution = 0;
-#         uint MininumResolution = 0;
-#         uint MaximumResolution = 0;
-
-#         long processCounter = 0;
-
-#         void SetMaximumResolution()
-#         {
-#             long counter = Interlocked.Increment(ref this.processCounter);
-#             if(counter <= 1)
-#             {
-#                 uint actual = 0;
-#                 NtSetTimerResolution(this.MaximumResolution, true, out actual);
-#                 if(null != this.EventLog)
-#                     try { this.EventLog.WriteEntry(String.Format("Actual resolution = {0}", actual)); }
-#                     catch {}
-#             }
-#         }
-
-#         void SetDefaultResolution()
-#         {
-#             long counter = Interlocked.Decrement(ref this.processCounter);
-#             if(counter < 1)
-#             {
-#                 uint actual = 0;
-#                 NtSetTimerResolution(this.DefaultResolution, true, out actual);
-#                 if(null != this.EventLog)
-#                     try { this.EventLog.WriteEntry(String.Format("Actual resolution = {0}", actual)); }
-#                     catch {}
-#             }
-#         }
-#     }
-
-#     [RunInstaller(true)]
-#     public class WindowsServiceInstaller : Installer
-#     {
-#         /// <summary>
-#         /// Public Constructor for WindowsServiceInstaller.
-#         /// - Put all of your Initialization code here.
-#         /// </summary>
-#         public WindowsServiceInstaller()
-#         {
-#             ServiceProcessInstaller serviceProcessInstaller = 
-#                                new ServiceProcessInstaller();
-#             ServiceInstaller serviceInstaller = new ServiceInstaller();
-
-#             //# Service Account Information
-#             serviceProcessInstaller.Account = ServiceAccount.LocalSystem;
-#             serviceProcessInstaller.Username = null;
-#             serviceProcessInstaller.Password = null;
-
-#             //# Service Information
-#             serviceInstaller.DisplayName = "Set Timer Resolution Service";
-#             serviceInstaller.StartType = ServiceStartMode.Automatic;
-
-#             //# This must be identical to the WindowsService.ServiceBase name
-#             //# set in the constructor of WindowsService.cs
-#             serviceInstaller.ServiceName = "STR";
-
-#             this.Installers.Add(serviceProcessInstaller);
-#             this.Installers.Add(serviceInstaller);
-#         }
-#     }
-
-# }
 # '@
 # Set-Content -Path "$env:C:\Windows\SetTimerResolutionService.cs" -Value $SetTimerResService -Force
 # Start-Process -Wait 'C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe' -ArgumentList '-out:C:\Windows\SetTimerResolutionService.exe C:\Windows\SetTimerResolutionService.cs' -WindowStyle Hidden
@@ -1903,7 +1640,7 @@ if ($Taskmgr) {
 }
 Start-Process -FilePath Taskmgr.exe
 do {
-	$Preferences = Get-ItemPropertyValue -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskManager -Name Preferences
+	$Preferences = Get-ItemPropertyValue -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskManager -Name Preferences -ErrorAction Ignore
 }
 until ($Preferences)
 Stop-Process -Name Taskmgr
@@ -2020,24 +1757,24 @@ if (Get-Package -Name 'Microsoft Edge' -ProviderName Programs) {
 	}
 	New-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\EdgeUpdate -Name 'CreateDesktopShortcut{56EB18F8-B008-4CBD-B6D2-8C97FE7E9062}' -PropertyType DWord -Value 0 -Force
 }
-if (Get-Package -Name 'Microsoft Edge Beta' -ProviderName Programs) {
-	if (-not (Test-Path -Path HKLM:\SOFTWARE\Policies\Microsoft\EdgeUpdate)) {
-		New-Item -Path HKLM:\SOFTWARE\Policies\Microsoft\EdgeUpdate -Force
-	}
-	New-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\EdgeUpdate -Name 'CreateDesktopShortcut{2CD8A007-E189-409D-A2C8-9AF4EF3C72AA}' -PropertyType DWord -Value 0 -Force
-}
-if (Get-Package -Name 'Microsoft Edge Dev' -ProviderName Programs) {
-	if (-not (Test-Path -Path HKLM:\SOFTWARE\Policies\Microsoft\EdgeUpdate)) {
-		New-Item -Path HKLM:\SOFTWARE\Policies\Microsoft\EdgeUpdate -Force
-	}
-	New-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\EdgeUpdate -Name 'CreateDesktopShortcut{0D50BFEC-CD6A-4F9A-964C-C7416E3ACB10}' -PropertyType DWord -Value 0 -Force
-}
-if (Get-Package -Name 'Microsoft Edge Canary' -ProviderName Programs) {
-	if (-not (Test-Path -Path HKLM:\SOFTWARE\Policies\Microsoft\EdgeUpdate)) {
-		New-Item -Path HKLM:\SOFTWARE\Policies\Microsoft\EdgeUpdate -Force
-	}
-	New-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\EdgeUpdate -Name 'CreateDesktopShortcut{65C35B14-6C1D-4122-AC46-7148CC9D6497}' -PropertyType DWord -Value 0 -Force
-}
+# if (Get-Package -Name 'Microsoft Edge Beta' -ProviderName Programs) {
+# 	if (-not (Test-Path -Path HKLM:\SOFTWARE\Policies\Microsoft\EdgeUpdate)) {
+# 		New-Item -Path HKLM:\SOFTWARE\Policies\Microsoft\EdgeUpdate -Force
+# 	}
+# 	New-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\EdgeUpdate -Name 'CreateDesktopShortcut{2CD8A007-E189-409D-A2C8-9AF4EF3C72AA}' -PropertyType DWord -Value 0 -Force
+# }
+# if (Get-Package -Name 'Microsoft Edge Dev' -ProviderName Programs) {
+# 	if (-not (Test-Path -Path HKLM:\SOFTWARE\Policies\Microsoft\EdgeUpdate)) {
+# 		New-Item -Path HKLM:\SOFTWARE\Policies\Microsoft\EdgeUpdate -Force
+# 	}
+# 	New-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\EdgeUpdate -Name 'CreateDesktopShortcut{0D50BFEC-CD6A-4F9A-964C-C7416E3ACB10}' -PropertyType DWord -Value 0 -Force
+# }
+# if (Get-Package -Name 'Microsoft Edge Canary' -ProviderName Programs) {
+# 	if (-not (Test-Path -Path HKLM:\SOFTWARE\Policies\Microsoft\EdgeUpdate)) {
+# 		New-Item -Path HKLM:\SOFTWARE\Policies\Microsoft\EdgeUpdate -Force
+# 	}
+# 	New-ItemProperty -Path HKLM:\SOFTWARE\Policies\Microsoft\EdgeUpdate -Name 'CreateDesktopShortcut{65C35B14-6C1D-4122-AC46-7148CC9D6497}' -PropertyType DWord -Value 0 -Force
+# }
 # SATADrivesRemovableMedia -Disable
 New-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\storahci\Parameters\Device -Name TreatAsInternalPort -Type MultiString -Value @(0, 1, 2, 3, 4, 5) -Force
 # RegistryBackup -Disable
@@ -2603,9 +2340,11 @@ Write-Host 'Hosts: Adding mobile.events.data.microsoft.com' -ForegroundColor gre
 Add-Content -Path $env:windir\System32\drivers\etc\hosts -Value "`n127.0.0.1`tmobile.events.data.microsoft.com" -Force
 
 # NetworkDiscovery -Enable
-Set-NetConnectionProfile -NetworkCategory Private
+# Enable file sharing
 Set-NetFirewallRule -Group '@FirewallAPI.dll,-28502' -Profile Private -Enabled True
-Set-NetFirewallRule -Group '@FirewallAPI.dll,-32752' -Profile Private -Enabled True
+# Set-NetFirewallRule -Group '@FirewallAPI.dll,-32752' -Profile Private -Enabled True
+# Set-NetFirewallRule -Profile Public, Private -Name FPS-SMB-In-TCP -Enabled True
+# Set-NetConnectionProfile -NetworkCategory Private
 
 Add-Type -AssemblyName System.Windows.Forms
 $WakeOnLanAnswer = [System.Windows.Forms.MessageBox]::Show('Enable Wake-On-Lan?
