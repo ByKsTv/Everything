@@ -1,4 +1,5 @@
 Write-Host 'Power Plan: Importing Ultimate Performance' -ForegroundColor green -BackgroundColor black
+powercfg /restoredefaultschemes
 $ultimateScheme = powercfg /LIST | Where-Object { $_ -match 'Ultimate Performance' }
 if ($null -eq $ultimateScheme) {
 	(New-Object System.Net.WebClient).DownloadFile('https://github.com/ByKsTv/Everything/raw/main/Windows/Ultimate_Performance.pow', "$env:TEMP\Ultimate_Performance.pow")
