@@ -16,32 +16,32 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         $settings =
         [PSCustomObject]@{
             Path  = 'SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install'
-            Value = 'https://addons.mozilla.org/firefox/downloads/file/4261710/ublock_origin-1.57.2.xpi'
+            Value = 'https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi'
             Name  = ++$count
         },
         [PSCustomObject]@{
             Path  = 'SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install'
-            Value = 'https://addons.mozilla.org/firefox/downloads/file/4282688/tampermonkey-5.1.1.xpi'
+            Value = 'https://addons.mozilla.org/firefox/downloads/latest/tampermonkey/latest.xpi'
             Name  = ++$count
         },
         [PSCustomObject]@{
             Path  = 'SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install'
-            Value = 'https://addons.mozilla.org/firefox/downloads/file/4064884/clearurls-1.26.1.xpi'
+            Value = 'https://addons.mozilla.org/firefox/downloads/latest/clearurls/latest.xpi'
             Name  = ++$count
         },
         [PSCustomObject]@{
             Path  = 'SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install'
-            Value = 'https://addons.mozilla.org/firefox/downloads/file/3897119/i_m_not_robot_captcha_clicker-1.3.1.xpi'
+            Value = 'https://addons.mozilla.org/firefox/downloads/latest/i-m-not-robot-captcha-clicker/latest.xpi'
             Name  = ++$count
         },
         [PSCustomObject]@{
             Path  = 'SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install'
-            Value = 'https://addons.mozilla.org/firefox/downloads/file/4044701/buster_captcha_solver-2.0.1.xpi'
+            Value = 'https://addons.mozilla.org/firefox/downloads/latest/buster-captcha-solver/latest.xpi'
             Name  = ++$count
         },
         [PSCustomObject]@{
             Path  = 'SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install'
-            Value = 'https://addons.mozilla.org/firefox/downloads/file/4075638/the_camelizer_price_history_ch-3.0.15.xpi'
+            Value = 'https://addons.mozilla.org/firefox/downloads/latest/the-camelizer-price-history-ch/latest.xpi'
             Name  = ++$count
         } | Group-Object Path
         foreach ($setting in $settings) {
@@ -77,6 +77,8 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         # New-ItemProperty -Path 'HKLM:\SOFTWARE\Mozilla\ManagedStorage\firefox@tampermonkey.net' -Name '(default)' -Value "$env:ProgramFiles\Mozilla Firefox\tampermonkey.json" -PropertyType String -Force
         # $Tampermonkey='{"name": "firefox@tampermonkey.net","description": "ignored","type": "storage","data": {"adminSettings": {"created_by":"Tampermonkey","version":"1","scripts":[{"name":"AdsBypasser","options":{"check_for_updates":true,"user_modified":null,"comment":null,"compatopts_for_requires":true,"compat_wrappedjsobject":false,"compat_metadata":false,"compat_foreach":false,"compat_powerful_this":null,"sandbox":null,"noframes":null,"unwrap":null,"run_at":null,"tab_types":null,"override":{"use_includes":[],"orig_includes":["http://*","https://*"],"merge_includes":true,"use_matches":[],"orig_matches":[],"merge_matches":true,"use_excludes":[],"orig_excludes":[],"merge_excludes":true,"use_connects":[],"orig_connects":["*"],"merge_connects":true,"use_blockers":[],"orig_run_at":"document-start","orig_noframes":true}},"storage":{"ts":1716736230041,"data":{}},"enabled":true,"position":1,"file_url":"https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js"}}'
         # New-Item "$env:ProgramFiles\Mozilla Firefox\tampermonkey.json" -Value $Tampermonkey -Force
+
+
 
         Write-Host 'Mozilla Firefox Extensions: Starting browser' -ForegroundColor green -BackgroundColor black
         [System.Diagnostics.Process]::Start('firefox.exe')
