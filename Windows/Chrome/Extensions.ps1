@@ -2,7 +2,7 @@ $InstalledSoftware = Get-Package | Select-Object -Property 'Name'
 
 if ($InstalledSoftware -match 'Google Chrome') {
     Write-Host 'Google Chrome Extensions: Closing browser' -ForegroundColor green -BackgroundColor black
-    Stop-Process -Name Chrome -Force
+    Stop-Process -Name Chrome -Force -ErrorAction SilentlyContinue
 
     Write-Host "Google Chrome Extensions: Adding 'uBlock Origin'" -ForegroundColor green -BackgroundColor black
     Write-Host "Google Chrome Extensions: Adding 'Tampermonkey'" -ForegroundColor green -BackgroundColor black

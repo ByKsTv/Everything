@@ -3,7 +3,7 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
     $CurrentFireFoxProfilePath = "$env:APPDATA\Mozilla\Firefox\Profiles\$CurrentFireFoxProfilePath0"
     if ((Test-Path -Path $CurrentFireFoxProfilePath) -eq $true) {
         Write-Host 'Mozilla Firefox Arkenfox: Closing browser' -ForegroundColor green -BackgroundColor black
-        Stop-Process -Name firefox -Force
+        Stop-Process -Name firefox -Force -ErrorAction SilentlyContinue
 
         Write-Host "Mozilla Firefox Arkenfox: Downloading 'user-overrides.js'" -ForegroundColor green -BackgroundColor black
         (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/user-overrides.js', "$CurrentFireFoxProfilePath\user-overrides.js")

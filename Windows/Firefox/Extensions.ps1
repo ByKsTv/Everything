@@ -3,7 +3,7 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
     $CurrentFirefoxProfile = "$env:APPDATA\Mozilla\Firefox\Profiles\$FirefoxProfiles"
     if ((Test-Path -Path $CurrentFirefoxProfile) -eq $true) {
         Write-Host 'Mozilla Firefox Extensions: Closing browser' -ForegroundColor green -BackgroundColor black
-        Stop-Process -Name firefox -Force
+        Stop-Process -Name firefox -Force -ErrorAction SilentlyContinue
 
         Write-Host "Mozilla Firefox Extensions: Adding 'uBlock Origin'" -ForegroundColor green -BackgroundColor black
         Write-Host "Mozilla Firefox Extensions: Adding 'Tampermonkey'" -ForegroundColor green -BackgroundColor black
@@ -70,6 +70,7 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         $uBlockLatestContent = Get-Content $uBlockDownloadLocation
         $uBlockFinishTemplate = $uBlockTemplate += $uBlockLatestContent += '}}'
         New-Item "$env:TEMP\uBlock_Origin_Backup_Restore.json" -Value $uBlockFinishTemplate -Force
+        Start-Sleep -Milliseconds 1000
         
         # experimental
         # New-Item -Path 'HKLM:\SOFTWARE\Mozilla\ManagedStorage\firefox@tampermonkey.net' -Force
@@ -83,7 +84,7 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         Write-Host 'Mozilla Firefox Extensions: Waiting for browser' -ForegroundColor green -BackgroundColor black
         while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' } -ErrorAction SilentlyContinue))) {
         }
-        Start-Sleep -Milliseconds 10000
+        Start-Sleep -Milliseconds 25000
         
         Write-Host 'Mozilla Firefox Extensions: Adding option to set foreground' -ForegroundColor green -BackgroundColor black
         if (-not ([System.Management.Automation.PSTypeName]'SFW').Type) {
@@ -114,11 +115,11 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
     Add-Type -AssemblyName System.Windows.Forms
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
 
-    Start-Sleep -Milliseconds 1000
-    Stop-Process -Name firefox -Force
-    Write-Host 'Mozilla Firefox Extensions: Starting browser' -ForegroundColor green -BackgroundColor black
-    [System.Diagnostics.Process]::Start('firefox.exe')
-    Start-Sleep -Milliseconds 10000
+    # Start-Sleep -Milliseconds 1000
+    # Stop-Process -Name firefox -Force -ErrorAction SilentlyContinue
+    # Write-Host 'Mozilla Firefox Extensions: Starting browser' -ForegroundColor green -BackgroundColor black
+    # [System.Diagnostics.Process]::Start('firefox.exe')
+    # Start-Sleep -Milliseconds 10000
     
     # Write-Host "Mozilla Firefox Extensions: Downloading 'uBlock Origin' custom settings" -ForegroundColor green -BackgroundColor black
     # (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.json', "$env:TEMP\uBlock_Origin_Backup.json")

@@ -1663,7 +1663,7 @@ do {
 	$Preferences = Get-ItemPropertyValue -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskManager -Name Preferences -ErrorAction Ignore
 }
 until ($Preferences)
-Stop-Process -Name Taskmgr
+Stop-Process -Name Taskmgr -ErrorAction SilentlyContinue
 $Preferences[28] = 0
 New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\TaskManager -Name Preferences -PropertyType Binary -Value $Preferences -Force
 # ShortcutsSuffix -Disable
@@ -1824,7 +1824,7 @@ New-ItemProperty -Path HKCU:\Software\Policies\Microsoft\Windows\Explorer -Name 
 New-ItemProperty -Path HKCU:\Software\Policies\Microsoft\Windows\Explorer -Name StartLayoutFile -PropertyType ExpandString -Value $Script:StartLayout -Force
 Start-Sleep -Seconds 3
 # Restart the Start menu
-Stop-Process -Name StartMenuExperienceHost -Force
+Stop-Process -Name StartMenuExperienceHost -Force -ErrorAction SilentlyContinue
 Start-Sleep -Seconds 3
 # Open the Start menu to load the new layout
 $wshell = New-Object -ComObject WScript.Shell
@@ -1834,7 +1834,7 @@ Start-Sleep -Seconds 3
 Remove-ItemProperty -Path HKCU:\Software\Policies\Microsoft\Windows\Explorer -Name LockedStartLayout -Force
 Remove-ItemProperty -Path HKCU:\Software\Policies\Microsoft\Windows\Explorer -Name StartLayoutFile -Force
 Remove-Item -Path $Script:StartLayout -Force
-Stop-Process -Name StartMenuExperienceHost -Force
+Stop-Process -Name StartMenuExperienceHost -Force -ErrorAction SilentlyContinue
 Start-Sleep -Seconds 3
 # Open the Start menu to load the new layout
 $wshell = New-Object -ComObject WScript.Shell
