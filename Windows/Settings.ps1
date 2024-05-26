@@ -25,6 +25,7 @@ powercfg /HIBERNATE off
 # New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' -Name 'HibernateEnabledDefault' -PropertyType DWord -Value 0 -Force
 
 Write-Host 'Power Plan: Disabling power throttling' -ForegroundColor green -BackgroundColor black
+# group policy
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Control\Power\PowerThrottling' -Name 'PowerThrottlingOff' -PropertyType DWord -Value 1 -Force
 # New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling' -Name 'PowerThrottlingOff' -PropertyType DWord -Value 1 -Force
 
@@ -1017,9 +1018,11 @@ if ($windowsbackupapp.PackageState -match 'Installed') {
 # 	Remove-Item -Path ("$env:APPDATA\PackageManagement") -Force -Recurse
 # }
 
-# Write-Host 'Settings: Services: Setting to manual' -ForegroundColor green -BackgroundColor black
+Write-Host 'Settings: Services: Setting to manual' -ForegroundColor green -BackgroundColor black
 # # https://docs.microsoft.com/en-us/windows-server/security/windows-services/security-guidelines-for-disabling-system-services-in-windows-server
 # # https://github.com/djdallmann/GamingPCSetup/blob/master/CONTENT/DOCS/SERVICES/README.md
+# Disable Windows Indexer
+Set-Service WSearch -StartupType Disabled
 # Set-Service CDPSvc -StartupType Manual
 # Set-Service UsoSvc -StartupType Manual
 # Set-Service StorSvc -StartupType Manual
@@ -1048,7 +1051,6 @@ if ($windowsbackupapp.PackageState -match 'Installed') {
 # Set-Service TabletInputService -StartupType Disabled
 # Set-Service UevAgentService -StartupType Disabled
 # Set-Service UserDataSvc -StartupType Disabled
-# Set-Service WSearch -StartupType Disabled
 # Set-Service WalletService -StartupType Disabled
 # Set-Service WiaRpc -StartupType Disabled
 # Set-Service SEMgrSvc -StartupType Disabled
@@ -1134,9 +1136,9 @@ $data += ',194,60,1,194,70,1,197,90,1,0'
 Set-ItemProperty -Path $key.PSPath -Name 'Data' -Type Binary -Value $data.Split(',')
 
 Write-Host 'Settings: ContentDeliveryManager: Off' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager') -ne $true) {
- New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Force 
-}
+# if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager') -ne $true) {
+#  New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Force 
+# }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'FeatureManagementEnabled' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'OemPreInstalledAppsEnabled' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'PreInstalledAppsEnabled' -Value 0 -PropertyType DWord -Force
@@ -1381,67 +1383,67 @@ $HebrewUserLanguage = Get-WinUserLanguageList
 $HebrewUserLanguage.Add('he-IL')
 Set-WinUserLanguageList -LanguageList $HebrewUserLanguage -Force
 
-# Write-Host 'Settings: Lock Screen: Setting to black' -ForegroundColor green -BackgroundColor black
-# # https://github.com/fr33thytweaks/Ultimate-Windows-Optimization-Guide/blob/main/6%20Windows/13%20Signout%20Lockscreen.ps1
-# takeown /f 'C:\Windows\Web\Screen' /r /d y
-# icacls 'C:\Windows\Web\Screen' /GRANT Everyone:F, Users:F /t
-# Add-Type -AssemblyName System.Drawing
-# $file = "$env:C:\Windows\Web\Screen\img100.jpg"
-# $edit = New-Object System.Drawing.Bitmap 3840, 2160
-# $color = [System.Drawing.Brushes]::Black
-# $graphics = [System.Drawing.Graphics]::FromImage($edit)
-# $graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-# $graphics.Dispose()
-# $edit.Save($file)
-# $file = "$env:C:\Windows\Web\Screen\img101.jpg"
-# $edit = New-Object System.Drawing.Bitmap 3840, 2400
-# $color = [System.Drawing.Brushes]::Black
-# $graphics = [System.Drawing.Graphics]::FromImage($edit)
-# $graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-# $graphics.Dispose()
-# $edit.Save($file)
-# $file = "$env:C:\Windows\Web\Screen\img101.png"
-# $edit = New-Object System.Drawing.Bitmap 3840, 2400
-# $color = [System.Drawing.Brushes]::Black
-# $graphics = [System.Drawing.Graphics]::FromImage($edit)
-# $graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-# $graphics.Dispose()
-# $edit.Save($file)
-# $file = "$env:C:\Windows\Web\Screen\img102.jpg"
-# $edit = New-Object System.Drawing.Bitmap 6400, 4000
-# $color = [System.Drawing.Brushes]::Black
-# $graphics = [System.Drawing.Graphics]::FromImage($edit)
-# $graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-# $graphics.Dispose()
-# $edit.Save($file)
-# $file = "$env:C:\Windows\Web\Screen\img103.jpg"
-# $edit = New-Object System.Drawing.Bitmap 3839, 2400
-# $color = [System.Drawing.Brushes]::Black
-# $graphics = [System.Drawing.Graphics]::FromImage($edit)
-# $graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-# $graphics.Dispose()
-# $edit.Save($file)
-# $file = "$env:C:\Windows\Web\Screen\img103.png"
-# $edit = New-Object System.Drawing.Bitmap 3839, 2400
-# $color = [System.Drawing.Brushes]::Black
-# $graphics = [System.Drawing.Graphics]::FromImage($edit)
-# $graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-# $graphics.Dispose()
-# $edit.Save($file)
-# $file = "$env:C:\Windows\Web\Screen\img104.jpg"
-# $edit = New-Object System.Drawing.Bitmap 3840, 2400
-# $color = [System.Drawing.Brushes]::Black
-# $graphics = [System.Drawing.Graphics]::FromImage($edit)
-# $graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-# $graphics.Dispose()
-# $edit.Save($file)
-# $file = "$env:C:\Windows\Web\Screen\img105.jpg"
-# $edit = New-Object System.Drawing.Bitmap 1920, 1200
-# $color = [System.Drawing.Brushes]::Black
-# $graphics = [System.Drawing.Graphics]::FromImage($edit)
-# $graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-# $graphics.Dispose()
-# $edit.Save($file)
+Write-Host 'Settings: Lock Screen: Setting to black' -ForegroundColor green -BackgroundColor black
+# https://github.com/fr33thytweaks/Ultimate-Windows-Optimization-Guide/blob/main/6%20Windows/13%20Signout%20Lockscreen.ps1
+takeown /f 'C:\Windows\Web\Screen' /r /d y
+icacls 'C:\Windows\Web\Screen' /GRANT Everyone:F, Users:F /t
+Add-Type -AssemblyName System.Drawing
+$file = "$env:C:\Windows\Web\Screen\img100.jpg"
+$edit = New-Object System.Drawing.Bitmap 3840, 2160
+$color = [System.Drawing.Brushes]::Black
+$graphics = [System.Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:C:\Windows\Web\Screen\img101.jpg"
+$edit = New-Object System.Drawing.Bitmap 3840, 2400
+$color = [System.Drawing.Brushes]::Black
+$graphics = [System.Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:C:\Windows\Web\Screen\img101.png"
+$edit = New-Object System.Drawing.Bitmap 3840, 2400
+$color = [System.Drawing.Brushes]::Black
+$graphics = [System.Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:C:\Windows\Web\Screen\img102.jpg"
+$edit = New-Object System.Drawing.Bitmap 6400, 4000
+$color = [System.Drawing.Brushes]::Black
+$graphics = [System.Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:C:\Windows\Web\Screen\img103.jpg"
+$edit = New-Object System.Drawing.Bitmap 3839, 2400
+$color = [System.Drawing.Brushes]::Black
+$graphics = [System.Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:C:\Windows\Web\Screen\img103.png"
+$edit = New-Object System.Drawing.Bitmap 3839, 2400
+$color = [System.Drawing.Brushes]::Black
+$graphics = [System.Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:C:\Windows\Web\Screen\img104.jpg"
+$edit = New-Object System.Drawing.Bitmap 3840, 2400
+$color = [System.Drawing.Brushes]::Black
+$graphics = [System.Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:C:\Windows\Web\Screen\img105.jpg"
+$edit = New-Object System.Drawing.Bitmap 1920, 1200
+$color = [System.Drawing.Brushes]::Black
+$graphics = [System.Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
 # takeown /f 'C:\ProgramData\Microsoft\Windows\SystemData' /r /d y
 # icacls 'C:\ProgramData\Microsoft\Windows\SystemData' /GRANT Everyone:F, Users:F /t
 # Remove-Item 'C:\ProgramData\Microsoft\Windows\SystemData' -Force -Recurse
@@ -1753,16 +1755,16 @@ New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings -Name 
 New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings -Name SmartActiveHoursState -PropertyType DWord -Value 0 -Force
 # InstallVCRedist
 (New-Object System.Net.WebClient).DownloadFile('https://aka.ms/vs/17/release/VC_redist.x86.exe', "$env:TEMP\VC_redist.x86.exe")
-Start-Process -FilePath "$env:TEMP\VC_redist.x86.exe" -ArgumentList '/install /passive /norestart'
+Start-Process -FilePath "$env:TEMP\VC_redist.x86.exe" -ArgumentList '/install /quiet /norestart'
 (New-Object System.Net.WebClient).DownloadFile('https://aka.ms/vs/17/release/VC_redist.x64.exe', "$env:TEMP\VC_redist.x64.exe")
-Start-Process -FilePath "$env:TEMP\VC_redist.x64.exe" -ArgumentList '/install /passive /norestart'
+Start-Process -FilePath "$env:TEMP\VC_redist.x64.exe" -ArgumentList '/install /quiet /norestart'
 # InstallDotNetRuntimes -Runtimes NET6x64, NET8x64
 $NET6LatestRelease = (Invoke-RestMethod -UseBasicParsing -Uri https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/6.0/releases.json).'latest-release'
 (New-Object System.Net.WebClient).DownloadFile("https://dotnetcli.azureedge.net/dotnet/Runtime/$NET6LatestRelease/dotnet-runtime-$NET6LatestRelease-win-x64.exe", "$env:TEMP\dotnet-runtime-$NET6LatestRelease-win-x64.exe")
-Start-Process -FilePath "$env:TEMP\dotnet-runtime-$NET6LatestRelease-win-x64.exe" -ArgumentList '/install /passive /norestart'
+Start-Process -FilePath "$env:TEMP\dotnet-runtime-$NET6LatestRelease-win-x64.exe" -ArgumentList '/install /quiet /norestart'
 $NET8LatestRelease = (Invoke-RestMethod -UseBasicParsing -Uri https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/8.0/releases.json).'latest-release'
 (New-Object System.Net.WebClient).DownloadFile("https://dotnetcli.azureedge.net/dotnet/Runtime/$NET8LatestRelease/dotnet-runtime-$NET8LatestRelease-win-x64.exe", "$env:TEMP\dotnet-runtime-$NET8LatestRelease-win-x64.exe")
-Start-Process -FilePath "$env:TEMP\dotnet-runtime-$NET8LatestRelease-win-x64.exe" -ArgumentList '/install /passive /norestart'
+Start-Process -FilePath "$env:TEMP\dotnet-runtime-$NET8LatestRelease-win-x64.exe" -ArgumentList '/install /quiet /norestart'
 # # RKNBypass -Disable
 # Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' -Name AutoConfigURL -Force
 # PreventEdgeShortcutCreation -Channels Stable, Beta, Dev, Canary
