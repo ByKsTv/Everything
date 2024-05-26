@@ -69,7 +69,7 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         $uBlockTemplate = '{"name": "uBlock0@raymondhill.net","description": "ignored","type": "storage","data": {"adminSettings": '
         $uBlockLatestContent = Get-Content $uBlockDownloadLocation
         $uBlockFinishTemplate = $uBlockTemplate += $uBlockLatestContent += '}}'
-        New-Item 'env:TEMP\ByKsTv_uBlock_Origin_Backup_Restore.json' -Value $uBlockFinishTemplate -Force
+        New-Item "$env:TEMP\ByKsTv_uBlock_Origin_Backup_Restore.json" -Value $uBlockFinishTemplate -Force
         
         # experimental
         # New-Item -Path 'HKLM:\SOFTWARE\Mozilla\ManagedStorage\firefox@tampermonkey.net' -Force
@@ -113,6 +113,12 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
     Write-Host "Mozilla Firefox Extensions: Installing 'AdsBypasser' to 'Tampermonkey'" -ForegroundColor green -BackgroundColor black
     Add-Type -AssemblyName System.Windows.Forms
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
+
+    Start-Sleep -Milliseconds 1000
+    Stop-Process -Name firefox -Force
+    Write-Host 'Mozilla Firefox Extensions: Starting browser' -ForegroundColor green -BackgroundColor black
+    [System.Diagnostics.Process]::Start('firefox.exe')
+    Start-Sleep -Milliseconds 10000
     
     # Write-Host "Mozilla Firefox Extensions: Downloading 'uBlock Origin' custom settings" -ForegroundColor green -BackgroundColor black
     # (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.json', "$env:TEMP\uBlock_Origin_Backup.json")
