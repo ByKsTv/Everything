@@ -16,11 +16,11 @@ $NextStep_Parameters = @{
 }
 Register-ScheduledTask @NextStep_Parameters -Force
 
-Write-Host 'Step2: Windows Update: Checking for updates' -ForegroundColor green -BackgroundColor black
+Write-Host 'Step1: Windows Update: Checking for updates' -ForegroundColor green -BackgroundColor black
 Start-Process -FilePath "$env:SystemRoot\System32\UsoClient.exe" -ArgumentList StartInteractiveScan
 Start-Process -FilePath 'ms-settings:windowsupdate'
 
-# SaveRestartableApps -Disable
+Write-Host 'Step1: Disabling Restart Apps' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name RestartApps -PropertyType DWord -Value 0 -Force
 
 Write-Host "Step1: PC Name: Renaming to $env:username" -ForegroundColor green -BackgroundColor black

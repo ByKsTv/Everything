@@ -1,3 +1,6 @@
+# https://learn.microsoft.com/en-us/windows/privacy/manage-connections-from-windows-operating-system-components-to-microsoft-services-using-mdm
+# https://learn.microsoft.com/en-us/windows/privacy/manage-windows-21h2-endpoints
+
 Write-Host 'Power Plan: Restoring Defaults' -ForegroundColor green -BackgroundColor black
 powercfg /restoredefaultschemes
 
@@ -35,7 +38,7 @@ New-ItemProperty -Path 'HKLM:\System\ControlSet001\Control\Power\PowerThrottling
 # Write-Host 'Power Plan: Disabling sleep option' -ForegroundColor green -BackgroundColor black
 # New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings' -Name 'ShowSleepOption' -PropertyType DWord -Value 0 -Force
 
-Write-Host 'Power Plan: Shutdown settings: Turn on fast startup (recommended): Off' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Shutdown settings: Disabling Fast Startup' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power' -Name 'HiberbootEnabled' -PropertyType DWord -Value 0 -Force
 
 # Write-Host 'Power Plan: Unparking CPU cores' -ForegroundColor green -BackgroundColor black
@@ -76,7 +79,7 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\P
 # powercfg /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 bd3b718a-0680-4d9d-8ab2-e1d2b4ac806d 000
 # powercfg /SETDCVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 bd3b718a-0680-4d9d-8ab2-e1d2b4ac806d 000
 
-Write-Host 'Power Plan: USB settings: USB selective suspend setting: Disabled' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Disabling USB selective suspend setting' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 2a737441-1930-4402-8d77-b2bebba308a3 48e6b7a6-50f5-4782-a5d4-53bb8f07e226 0
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT 2a737441-1930-4402-8d77-b2bebba308a3 48e6b7a6-50f5-4782-a5d4-53bb8f07e226 0
 
@@ -183,170 +186,210 @@ powercfg /SETDCVALUEINDEX SCHEME_CURRENT 2a737441-1930-4402-8d77-b2bebba308a3 48
 # powercfg /SETACVALUEINDEX SCHEME_CURRENT de830923-a562-41af-a086-e3a2c6bad2da e69653ca-cf7f-4f05-aa73-cb833fa90ad4 0x00000000
 # powercfg /SETDCVALUEINDEX SCHEME_CURRENT de830923-a562-41af-a086-e3a2c6bad2da e69653ca-cf7f-4f05-aa73-cb833fa90ad4 0x00000000
 
-# https://learn.microsoft.com/en-us/windows/privacy/manage-connections-from-windows-operating-system-components-to-microsoft-services-using-mdm
-# https://learn.microsoft.com/en-us/windows/privacy/manage-windows-21h2-endpoints
-# OO Shutup10
-# Current User
-# Disable transmission of typing information
+Write-Host 'O&O ShutUp10++: Current User: Disabling transmission of typing information' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Input\TIPC' -Name 'Enabled' -Value 0 -PropertyType DWord -Force
-# Disable suggestions in the timeline
+
+Write-Host 'O&O ShutUp10++: Current User: Disabling suggestions in the timeline' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SubscribedContent-353698Enabled' -Value 0 -PropertyType DWord -Force
-# Disable tips, tricks and suggestions when using Windows
+
+Write-Host 'O&O ShutUp10++: Current User: Disabling tips, tricks and suggestions when using Windows' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SubscribedContent-338389Enabled' -Value 0 -PropertyType DWord -Force
-# Disable showing suggested content in the Settings app
+
+Write-Host 'O&O ShutUp10++: Current User: Disabling showing suggested content in the Settings app' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SubscribedContent-353696Enabled' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SubscribedContent-338393Enabled' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SubscribedContent-353694Enabled' -Value 0 -PropertyType DWord -Force
-# Disable storage of clipboard history for current user
+
+Write-Host 'O&O ShutUp10++: Current User: Disabling storage of clipboard history for current user' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Clipboard' -Name 'EnableClipboardHistory' -Value 0 -PropertyType DWord -Force
-# Disable app access to user account information for current user
+
+Write-Host 'O&O ShutUp10++: Current User: Disabling app access to user account information for current user' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\userAccountInformation' -Name 'Value' -Value Deny -PropertyType String -Force
-# Disable app access to diagnostics information for current user
+
+Write-Host 'O&O ShutUp10++: Current User: Disabling app access to diagnostics information for current user' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\appDiagnostics') -ne $true) {
 	New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\appDiagnostics' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\appDiagnostics' -Name 'Value' -Value Deny -PropertyType String -Force
-# Edge
-# Disable tracking in the web
+
+Write-Host 'O&O ShutUp10++: Current User: Microsoft Edge: Disabling tracking in the web' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Main') -ne $true) {
 	New-Item 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Main' -Force 
 }
 New-ItemProperty -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Main' -Name 'DoNotTrack' -Value 1 -PropertyType DWord -Force
-# Disable page prediction
+
+Write-Host 'O&O ShutUp10++: Current User: Microsoft Edge: Disabling page prediction' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\FlipAhead') -ne $true) {
 	New-Item 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\FlipAhead' -Force 
 }
 New-ItemProperty -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\FlipAhead' -Name 'FPEnabled' -Value 0 -PropertyType DWord -Force
-# Disable search and website suggestions
+
+Write-Host 'O&O ShutUp10++: Current User: Microsoft Edge: Disabling search and website suggestions' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Main' -Name 'ShowSearchSuggestionsGlobal' -Value 0 -PropertyType DWord -Force
-# Disable Cortana in Microsoft Edge
+
+Write-Host 'O&O ShutUp10++: Current User: Microsoft Edge: Disabling Cortana in Microsoft Edge' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\ServiceUI') -ne $true) {
 	New-Item 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\ServiceUI' -Force 
 }
 New-ItemProperty -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\ServiceUI' -Name 'EnableCortana' -Value 0 -PropertyType DWord -Force
-# Disable showing search history
+
+Write-Host 'O&O ShutUp10++: Current User: Microsoft Edge: Disabling showing search history' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\ServiceUI\ShowSearchHistory') -ne $true) {
 	New-Item 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\ServiceUI\ShowSearchHistory' -Force 
 }
 New-ItemProperty -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\ServiceUI\ShowSearchHistory' -Name '(default)' -Value 0 -PropertyType DWord -Force
-# Disable synchronization of all settings
+
+Write-Host 'O&O ShutUp10++: Current User: Disabling synchronization of all settings' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync' -Name 'SyncPolicy' -Value 5 -PropertyType DWord -Force
-# Disable synchronization of design settings
+
+Write-Host 'O&O ShutUp10++: Current User: Disabling synchronization of design settings' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Personalization' -Name 'Enabled' -Value 0 -PropertyType DWord -Force
-# Disable synchronization of browser settings
+
+Write-Host 'O&O ShutUp10++: Current User: Disabling synchronization of browser settings' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\BrowserSettings') -ne $true) {
 	New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\BrowserSettings' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\BrowserSettings' -Name 'Enabled' -Value 0 -PropertyType DWord -Force
-# Disable synchronization of credentials (passwords)
+
+Write-Host 'O&O ShutUp10++: Current User: Disabling synchronization of credentials (passwords)' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Credentials' -Name 'Enabled' -Value 0 -PropertyType DWord -Force
-# Disable synchronization of language settings
+
+Write-Host 'O&O ShutUp10++: Current User: Disabling synchronization of language settings' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Language' -Name 'Enabled' -Value 0 -PropertyType DWord -Force
-# Disable synchronization of accessibility settings
+
+Write-Host 'O&O ShutUp10++: Current User: Disabling synchronization of accessibility settings' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Accessibility' -Name 'Enabled' -Value 0 -PropertyType DWord -Force
-# Disable synchronization of Windows settings
+
+Write-Host 'O&O ShutUp10++: Current User: Disabling synchronization of Windows settings' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Windows' -Name 'Enabled' -Value 0 -PropertyType DWord -Force
-# Disable and reset Cortana
+
+Write-Host 'O&O ShutUp10++: Current User: Disabling and Resetting Cortana' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Windows Search') -ne $true) {
 	New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Windows Search' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Windows Search' -Name 'CortanaConsent' -Value 0 -PropertyType DWord -Force
-# Disable Input Personalization
+
+Write-Host 'O&O ShutUp10++: Current User: Disabling Input Personalization' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\InputPersonalization' -Name 'RestrictImplicitInkCollection' -Value 1 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\InputPersonalization' -Name 'RestrictImplicitTextCollection' -Value 1 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\InputPersonalization\TrainedDataStore' -Name 'HarvestContacts' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Personalization\Settings' -Name 'AcceptedPrivacyPolicy' -Value 0 -PropertyType DWord -Force
-# Disable fun facts, tips, tricks, and more on your lock screen
+
+Write-Host 'O&O ShutUp10++: Current User: Disabling fun facts, tips, tricks, and more on your lock screen' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SubscribedContent-338387Enabled' -Value 0 -PropertyType DWord -Force
-# Disable notifications on the lock screen
+
+Write-Host 'O&O ShutUp10++: Current User: Disabling notifications on the lock screen' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Notifications\Settings' -Name 'NOC_GLOBAL_SETTING_ALLOW_TOASTS_ABOVE_LOCK' -Value 0 -PropertyType DWord -Force
-# Disable news and interests in the task bar for current user
+
+Write-Host 'O&O ShutUp10++: Current User: Disabling news and interests in the task bar for current user' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds' -Name 'ShellFeedsTaskbarViewMode' -Value 2 -PropertyType DWord -Force
-# Disable Windows Media Player Diagnostics
+
+Write-Host 'O&O ShutUp10++: Current User: Disabling Windows Media Player Diagnostics' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\MediaPlayer\Preferences' -Name 'UsageTracking' -Value 0 -PropertyType DWord -Force
-# Local machine
-# Disable camera in logon screen
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling camera in logon screen' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Personalization') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Personalization' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Personalization' -Name 'NoLockScreenCamera' -Value 1 -PropertyType DWord -Force
-# Disable and reset Advertising ID and info for the machine
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling and Resetting Advertising ID and info for the machine' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo') -ne $true) {
 	New-Item 'HKLM:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo' -Name 'Enabled' -Value 0 -PropertyType DWord -Force
-# Disable advertisments via Bluetooth
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling advertisments via Bluetooth' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Microsoft\PolicyManager\current\device\Bluetooth') -ne $true) {
 	New-Item 'HKLM:\Software\Microsoft\PolicyManager\current\device\Bluetooth' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\PolicyManager\current\device\Bluetooth' -Name 'AllowAdvertising' -Value 0 -PropertyType DWord -Force
-# Disable backup of text messages into the cloud
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling backup of text messages into the cloud' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Messaging') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Messaging' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Messaging' -Name 'AllowMessageSync' -Value 0 -PropertyType DWord -Force
-# Disable Windows Error Reporting
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling Windows Error Reporting' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\Windows Error Reporting' -Name 'Disabled' -Value 1 -PropertyType DWord -Force
-#Disable biometrical features
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling biometrical features' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Biometrics') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Biometrics' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Biometrics' -Name 'Enabled' -Value 0 -PropertyType DWord -Force
-# Disable app access to user account information on this device
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling app access to user account information on this device' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\userAccountInformation' -Name 'Value' -Value Deny -PropertyType String -Force
-# Disable app access to diagnostics information on this device
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling app access to diagnostics information on this device' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\appDiagnostics' -Name 'Value' -Value Deny -PropertyType String -Force
-# Disable password reveal button
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling password reveal button' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\CredUI') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\CredUI' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\CredUI' -Name 'DisablePasswordReveal' -Value 1 -PropertyType DWord -Force
-# Disable Internet access of Windows Media Digital Rights Managment (DRM)
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling Internet access of Windows Media Digital Rights Managment (DRM)' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\WMDRM') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\WMDRM' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\WMDRM' -Name 'DisableOnline' -Value 1 -PropertyType DWord -Force
-# Disable automatic completion of web addresses in address bar
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling automatic completion of web addresses in address bar' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Microsoft\PolicyManager\current\device\Browser') -ne $true) {
 	New-Item 'HKLM:\Software\Microsoft\PolicyManager\current\device\Browser' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\PolicyManager\current\device\Browser' -Name 'AllowAddressBarDropdown' -Value 0 -PropertyType DWord -Force
-# Disable user feedback in toolbar
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling user feedback in toolbar' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Edge') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Edge' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Edge' -Name 'UserFeedbackAllowed' -Value 0 -PropertyType DWord -Force
-# Disable storing and autocompleting of credit card data on websites
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling storing and autocompleting of credit card data on websites' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Edge' -Name 'AutofillCreditCardEnabled' -Value 0 -PropertyType DWord -Force
-# Disable Microsoft Edge launch in the background
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling Microsoft Edge launch in the background' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\Main') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\Main' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\Main' -Name 'AllowPrelaunch' -Value 0 -PropertyType DWord -Force
-# Disable loading the start and new tab pages in the background
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling loading the start and new tab pages in the background' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\TabPreloader') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\TabPreloader' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\TabPreloader' -Name 'AllowTabPreloading' -Value 0 -PropertyType DWord -Force
-# Disable online speech recognition
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling online speech recognition' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\InputPersonalization') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\InputPersonalization' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\InputPersonalization' -Name 'AllowInputPersonalization' -Value 0 -PropertyType DWord -Force
-# Disable downlaod and updates of speech recognition and speech synthesis models
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling downlaod and updates of speech recognition and speech synthesis models' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Speech_OneCore\Preferences' -Name 'ModelDownloadAllowed' -Value 0 -PropertyType DWord -Force
-# Disable functionallity to locate the system
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling functionallity to locate the system' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\LocationAndSensors') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\LocationAndSensors' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\LocationAndSensors' -Name 'DisableWindowsLocationProvider' -Value 1 -PropertyType DWord -Force
-# Disable scripting functionallity to locate the system
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling scripting functionallity to locate the system' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\LocationAndSensors' -Name 'DisableLocationScripting' -Value 1 -PropertyType DWord -Force
-# Disable application telemetry
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling application telemetry' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\DataCollection' -Name 'AllowTelemetry' -Value 0 -PropertyType DWord -Force
-# Disable diagnostic log collection
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling diagnostic log collection' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\DataCollection' -Name 'LimitDiagnosticLogCollection' -Value 1 -PropertyType DWord -Force
-# Disable Windows Update via peer-to-peer
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling Windows Update via peer-to-peer' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization') -ne $true) {
 	New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization' -Force 
 }
@@ -359,36 +402,44 @@ if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\DeliveryOptimiza
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\DeliveryOptimization' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\DeliveryOptimization' -Name 'DODownloadMode' -Value 0 -PropertyType DWord -Force
-# Disable updates to the speech recognition and speech syhesis modules
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling updates to the speech recognition and speech syhesis modules' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Speech') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Speech' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Speech' -Name 'AllowSpeechModelUpdate' -Value 0 -PropertyType DWord -Force
-# Disable OneDrive access to network before login
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling OneDrive access to network before login' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Microsoft\OneDrive') -ne $true) {
 	New-Item 'HKLM:\Software\Microsoft\OneDrive' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\OneDrive' -Name 'PreventNetworkTrafficPreUserSignIn' -Value 1 -PropertyType DWord -Force
-# Disable Microsoft SpyNet memembership
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling Microsoft SpyNet memembership' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows Defender\Spynet') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows Defender\Spynet' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows Defender\Spynet' -Name 'SpyNetReporting' -Value 0 -PropertyType DWord -Force
-# Disable reporting of malware infection information
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling reporting of malware infection information' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\MRT') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\MRT' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\MRT' -Name 'DontReportInfectionInformation' -Value 1 -PropertyType DWord -Force
-# Disable Meet now in the task bar on this device
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling Meet now in the task bar on this device' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'HideSCAMeetNow' -Value 1 -PropertyType DWord -Force
-# Disable news and interests in the taskbar on this device
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling news and interests in the taskbar on this device' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Feeds') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Windows Feeds' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Feeds' -Name 'EnableFeeds' -Value 0 -PropertyType DWord -Force
-# Disable remote assistance connections to this computer
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling remote assistance connections to this computer' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows NT\Terminal Services' -Name 'fAllowToGetHelp' -Value 0 -PropertyType DWord -Force
-# Disable installation of PC Health Check
+
+Write-Host 'O&O ShutUp10++: Local Machine: Disabling installation of PC Health Check' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Microsoft\PCHC') -ne $true) {
 	New-Item 'HKLM:\Software\Microsoft\PCHC' -Force 
 }
@@ -514,20 +565,20 @@ if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\DeviceInstall\Se
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\DeviceInstall\Settings' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\DeviceInstall\Settings' -Name 'DisableSendGenericDriverNotFoundToWER' -Value 1 -PropertyType DWord -Force
-# if ((Test-Path -Path 'HKLM:\System\DriverDatabase\Policies\Settings') -ne $true) {
-# 	New-Item 'HKLM:\System\DriverDatabase\Policies\Settings' -Force 
-# }
-# New-ItemProperty -Path 'HKLM:\System\DriverDatabase\Policies\Settings' -Name 'DisableSendGenericDriverNotFoundToWER' -Value 1 -PropertyType DWord -Force
+if ((Test-Path -Path 'HKLM:\System\DriverDatabase\Policies\Settings') -ne $true) {
+	New-Item 'HKLM:\System\DriverDatabase\Policies\Settings' -Force -ErrorAction SilentlyContinue # Access denied 
+}
+New-ItemProperty -Path 'HKLM:\System\DriverDatabase\Policies\Settings' -Name 'DisableSendGenericDriverNotFoundToWER' -Value 1 -PropertyType DWord -Force -ErrorAction SilentlyContinue # Access denied 
 
 Write-Host 'Group Policy: Computer Configuration: Administrative Templates: System: Device Installation: Prevent Windows from sending an error report when a device driver requests additional woftware during installation: Enabled' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\DeviceInstall\Settings') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\DeviceInstall\Settings' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\DeviceInstall\Settings' -Name 'DisableSendRequestAdditionalSoftwareToWER' -Value 1 -PropertyType DWord -Force
-# if ((Test-Path -Path 'HKLM:\System\DriverDatabase\Policies\Settings') -ne $true) {
-# 	New-Item 'HKLM:\System\DriverDatabase\Policies\Settings' -Force 
-# }
-# New-ItemProperty -Path 'HKLM:\System\DriverDatabase\Policies\Settings' -Name 'DisableSendRequestAdditionalSoftwareToWER' -Value 1 -PropertyType DWord -Force
+if ((Test-Path -Path 'HKLM:\System\DriverDatabase\Policies\Settings') -ne $true) {
+	New-Item 'HKLM:\System\DriverDatabase\Policies\Settings' -Force -ErrorAction SilentlyContinue # Access denied 
+}
+New-ItemProperty -Path 'HKLM:\System\DriverDatabase\Policies\Settings' -Name 'DisableSendRequestAdditionalSoftwareToWER' -Value 1 -PropertyType DWord -Force -ErrorAction SilentlyContinue # Access denied 
 
 Write-Host 'Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off handwriting recognition error reporting: Enabled' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\HandwritingErrorReports') -ne $true) {
@@ -802,11 +853,11 @@ if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search')
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Name 'ConnectedSearchSafeSearch' -Value 3 -PropertyType DWord -Force
 
-# Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Set what information is shared in Search: Disabled' -ForegroundColor green -BackgroundColor black
-# if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search') -ne $true) {
-# 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Force 
-# }
-# Remove-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Name 'ConnectedSearchPrivacy' -Force
+Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Set what information is shared in Search: Disabled' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search') -ne $true) {
+	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Force -ErrorAction SilentlyContinue # Access denied 
+}
+Remove-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Name 'ConnectedSearchPrivacy' -Force -ErrorAction SilentlyContinue # Access denied 
 
 Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Text Input: Improve inking and typing recognition: Disabled' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\TextInput') -ne $true) {
@@ -820,12 +871,12 @@ if ((Test-Path -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\W
 }
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Windows' -Name 'TurnOffWinCal' -Value 1 -PropertyType DWord -Force
 
-# Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Configure Error Reporting: Disabled' -ForegroundColor green -BackgroundColor black
-# if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\PCHealth\ErrorReporting\DW') -ne $true) {
-# 	New-Item 'HKLM:\Software\Policies\Microsoft\PCHealth\ErrorReporting\DW' -Force 
-# }
-# Remove-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\PCHealth\ErrorReporting\DW' -Name 'DWReporteeName' -Force
-# Remove-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\PCHealth\ErrorReporting\DW' -Name 'DWFileTreeRoot' -Force
+Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Configure Error Reporting: Disabled' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\PCHealth\ErrorReporting\DW') -ne $true) {
+	New-Item 'HKLM:\Software\Policies\Microsoft\PCHealth\ErrorReporting\DW' -Force 
+}
+Remove-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\PCHealth\ErrorReporting\DW' -Name 'DWReporteeName' -Force -ErrorAction SilentlyContinue
+Remove-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\PCHealth\ErrorReporting\DW' -Name 'DWFileTreeRoot' -Force -ErrorAction SilentlyContinue
 
 Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Automatically send memory dumps for OS-generated error reports: Disabled' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Error Reporting') -ne $true) {
@@ -899,11 +950,11 @@ if (-not (Test-Path -Path HKCU:\Software\Policies\Microsoft\Windows\Explorer)) {
 }
 New-ItemProperty -Path HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer -Name 'DisableIndexedLibraryExperience' -Value 1 -PropertyType DWord -Force
 
-# Write-Host 'Group Policy: User Configuration: Administrative Templates: Windows Components: Remote Desktop Services: Remote Desktop Connection Client: Allow .rdp files from unkown publishers: Enabled' -ForegroundColor green -BackgroundColor black
-# if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services') -ne $true) {
-# 	New-Item 'HKCU:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services' -Force 
-# }
-# New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services' -Name 'AllowUnsignedFiles' -Value 1 -PropertyType DWord -Force
+Write-Host 'Group Policy: User Configuration: Administrative Templates: Windows Components: Remote Desktop Services: Remote Desktop Connection Client: Allow .rdp files from unkown publishers: Enabled' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services') -ne $true) {
+	New-Item 'HKCU:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services' -Force 
+}
+New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services' -Name 'AllowUnsignedFiles' -Value 1 -PropertyType DWord -Force
 
 Write-Host 'Step2: Scheduled tasks: Disabling telemetry' -ForegroundColor green -BackgroundColor black
 Disable-ScheduledTask -TaskName 'Consolidator' -TaskPath '\Microsoft\Windows\Customer Experience Improvement Program\'
@@ -927,7 +978,6 @@ Disable-ScheduledTask -TaskName 'PcaPatchDbTask' -TaskPath '\Microsoft\Windows\A
 Disable-ScheduledTask -TaskName 'WinSAT' -TaskPath '\Microsoft\Windows\Maintenance'
 
 Write-Host 'Step2: Windows Capabilities: Disabling' -ForegroundColor green -BackgroundColor black
-# Get-WindowsCapability -Online | Where-Object { $_.State -ne 'NotPresent' }
 Remove-WindowsCapability -Name 'App.StepsRecorder~~~~0.0.1.0' -Online
 Remove-WindowsCapability -Name 'App.Support.QuickAssist~~~~0.0.1.0' -Online
 Remove-WindowsCapability -Name 'Browser.InternetExplorer~~~~0.0.11.0' -Online
@@ -951,7 +1001,6 @@ Remove-WindowsCapability -Name 'OpenSSH.Client~~~~0.0.1.0' -Online
 # Add-WindowsCapability -Name 'Microsoft.Windows.MSPaint~~~~0.0.1.0' -Online
 
 # Write-Host 'Step2: Windows Optional Features: Disabling' -ForegroundColor green -BackgroundColor black
-# # Get-WindowsOptionalFeature -Online | Where-Object { $_.State -like 'Enabled' }
 # Disable-WindowsOptionalFeature -FeatureName 'LegacyComponents' -Online -NoRestart
 # Disable-WindowsOptionalFeature -FeatureName 'MicrosoftWindowsPowerShellV2' -Online -NoRestart
 # Disable-WindowsOptionalFeature -FeatureName 'MicrosoftWindowsPowershellV2Root' -Online -NoRestart
@@ -979,7 +1028,6 @@ Remove-WindowsCapability -Name 'OpenSSH.Client~~~~0.0.1.0' -Online
 # }
 
 Write-Host 'Step2: Windows Packages: Removing Windows Backup app' -ForegroundColor green -BackgroundColor black
-
 $windowsbackupapp = Get-WindowsPackage -Online | Where-Object { $_.PackageName -eq 'Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35~amd64~~10.0.19041.4355' }
 if ($windowsbackupapp.PackageState -match 'Installed') {
 	Remove-WindowsPackage -PackageName 'Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35~amd64~~10.0.19041.4355' -Online -NoRestart
@@ -1021,7 +1069,7 @@ if ($windowsbackupapp.PackageState -match 'Installed') {
 Write-Host 'Settings: Services: Setting to manual' -ForegroundColor green -BackgroundColor black
 # # https://docs.microsoft.com/en-us/windows-server/security/windows-services/security-guidelines-for-disabling-system-services-in-windows-server
 # # https://github.com/djdallmann/GamingPCSetup/blob/master/CONTENT/DOCS/SERVICES/README.md
-# Disable Windows Indexer
+Write-Host 'Settings: Services: Disabling Windows Search Indexer' -ForegroundColor green -BackgroundColor black
 Set-Service WSearch -StartupType Disabled
 # Set-Service CDPSvc -StartupType Manual
 # Set-Service UsoSvc -StartupType Manual
@@ -1135,10 +1183,7 @@ If ($itemsToDisplay.Length -gt 0) {
 $data += ',194,60,1,194,70,1,197,90,1,0'
 Set-ItemProperty -Path $key.PSPath -Name 'Data' -Type Binary -Value $data.Split(',')
 
-Write-Host 'Settings: ContentDeliveryManager: Off' -ForegroundColor green -BackgroundColor black
-# if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager') -ne $true) {
-#  New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Force 
-# }
+Write-Host 'Settings: ContentDeliveryManager: Disabling' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'FeatureManagementEnabled' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'OemPreInstalledAppsEnabled' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'PreInstalledAppsEnabled' -Value 0 -PropertyType DWord -Force
@@ -1322,7 +1367,7 @@ if ((Test-Path -Path "$env:PUBLIC\Desktop\Microsoft Edge.lnk") -eq $true) {
 	Remove-Item -Path ("$env:PUBLIC\Desktop\Microsoft Edge.lnk")
 }
 
-# hide all rdp end sesstion pop up
+Write-Host 'Remote Desktop Connection: Never show pop-up upon ending session' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client') -ne $true) {
 	New-Item 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client' -Force 
 }
@@ -1692,7 +1737,7 @@ New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name PrimaryProperty -PropertyType String -Value 'System.ItemNameDisplay' -Force
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name SortByList -PropertyType String -Value 'prop:System.ItemNameDisplay' -Force
 # NavigationPaneExpand -Disable
-# Remove-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name NavPaneExpandToCurrentFolder -Force
+Remove-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name NavPaneExpandToCurrentFolder -Force -ErrorAction SilentlyContinue
 # StorageSense -Enable
 if (-not (Test-Path -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy)) {
 	New-Item -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy -ItemType Directory -Force
@@ -1727,7 +1772,7 @@ Set-WinDefaultInputMethodOverride -InputTip '0409:00000409'
 New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\.NETFramework -Name OnlyUseLatestCLR -PropertyType DWord -Value 1 -Force
 New-ItemProperty -Path HKLM:\SOFTWARE\Wow6432Node\Microsoft\.NETFramework -Name OnlyUseLatestCLR -PropertyType DWord -Value 1 -Force
 # WinPrtScrFolder -Default
-# Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders' -Name '{B7BEDE81-DF94-4682-A7D8-57A52620B86F}' -Force
+Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders' -Name '{B7BEDE81-DF94-4682-A7D8-57A52620B86F}' -Force -ErrorAction SilentlyContinue
 # FoldersLaunchSeparateProcess -Enable
 New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name SeparateProcess -PropertyType DWord -Value 1 -Force
 # ReservedStorage -Disable
@@ -1740,7 +1785,7 @@ New-ItemProperty -Path 'HKCU:\Software\Classes\Typelib\{8cec5860-07a1-11d9-b15e-
 # NumLock -Enable
 New-ItemProperty -Path 'Registry::HKEY_USERS\.DEFAULT\Control Panel\Keyboard' -Name InitialKeyboardIndicators -PropertyType String -Value 2147483650 -Force
 # CapsLock -Enable
-# Remove-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Keyboard Layout' -Name 'Scancode Map' -Force
+Remove-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Keyboard Layout' -Name 'Scancode Map' -Force -ErrorAction SilentlyContinue
 # StickyShift -Disable
 New-ItemProperty -Path 'HKCU:\Control Panel\Accessibility\StickyKeys' -Name Flags -PropertyType String -Value 506 -Force
 # Autoplay -Disable
@@ -1766,8 +1811,8 @@ Start-Process -FilePath "$env:TEMP\dotnet-runtime-$NET6LatestRelease-win-x64.exe
 $NET8LatestRelease = (Invoke-RestMethod -UseBasicParsing -Uri https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/8.0/releases.json).'latest-release'
 (New-Object System.Net.WebClient).DownloadFile("https://dotnetcli.azureedge.net/dotnet/Runtime/$NET8LatestRelease/dotnet-runtime-$NET8LatestRelease-win-x64.exe", "$env:TEMP\dotnet-runtime-$NET8LatestRelease-win-x64.exe")
 Start-Process -FilePath "$env:TEMP\dotnet-runtime-$NET8LatestRelease-win-x64.exe" -ArgumentList '/install /quiet /norestart'
-# # RKNBypass -Disable
-# Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' -Name AutoConfigURL -Force
+# RKNBypass -Disable
+Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' -Name AutoConfigURL -Force -ErrorAction SilentlyContinue
 # PreventEdgeShortcutCreation -Channels Stable, Beta, Dev, Canary
 if (Get-Package -Name 'Microsoft Edge' -ProviderName Programs) {
 	if (-not (Test-Path -Path HKLM:\SOFTWARE\Policies\Microsoft\EdgeUpdate)) {
@@ -1796,7 +1841,7 @@ if (Get-Package -Name 'Microsoft Edge' -ProviderName Programs) {
 # SATADrivesRemovableMedia -Disable
 New-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\storahci\Parameters\Device -Name TreatAsInternalPort -Type MultiString -Value @(0, 1, 2, 3, 4, 5) -Force
 # RegistryBackup -Disable
-# Remove-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Configuration Manager' -Name EnablePeriodicBackup -Force
+Remove-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Configuration Manager' -Name EnablePeriodicBackup -Force -ErrorAction SilentlyContinue
 # RecentlyAddedApps -Hide
 if (-not (Test-Path -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer)) {
 	New-Item -Path HKLM:\SOFTWARE\Policies\Microsoft\Windows\Explorer -Force
@@ -2347,14 +2392,14 @@ New-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\
 # New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\NetBT\Parameters' -Name 'EnableLMHOSTS' -Value 0 -PropertyType DWord -Force 
 
 Write-Host 'Network: WPAD: Disabling' -ForegroundColor green -BackgroundColor black
-# User Configuration >Policies >Windows Settings > Connection/Automatic Browser Configuration > Automatically detect configuration settings → DISABLE
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\WinHttp' -Name 'DisableWpad' -Value 1 -PropertyType DWord -Force
 # User Configuration\Administrative Templates\Windows Components\Internet Explorer > Disable caching of Auto-Proxy scripts
 # if ((Test-Path -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings') -ne $true) {
 # 	New-Item 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings' -Force
 # }
+# User Configuration >Policies >Windows Settings > Connection/Automatic Browser Configuration > Automatically detect configuration settings → DISABLE
 # New-ItemProperty -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings' -Name 'EnableAutoProxyResultCache' -Value 0 -PropertyType DWord -Force
-# New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\WinHttpAutoProxySvc' -Name 'Start' -Value 4 -PropertyType DWord -Force
+# New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\WinHttpAutoProxySvc' -Name 'Start' -Value 4 -PropertyType DWord -Force # stopping service
 
 Write-Host 'Hosts: Adding mobile.events.data.microsoft.com' -ForegroundColor green -BackgroundColor black
 $mobileeventsdatamicrosoft = Select-String -Path $env:windir\System32\drivers\etc\hosts -Pattern 'mobile.events.data.microsoft.com'
@@ -2362,9 +2407,7 @@ if ($null -eq $mobileeventsdatamicrosoft) {
 	Add-Content -Path $env:windir\System32\drivers\etc\hosts -Value "`n127.0.0.1`tmobile.events.data.microsoft.com" -Force
 }
 
-# doesnt work
-# NetworkDiscovery -Enable
-# Enable file sharing
+Write-Host 'Network: Enabling file sharing on Private networks' -ForegroundColor green -BackgroundColor black
 Set-NetFirewallRule -Group '@FirewallAPI.dll,-28502' -Profile Private -Enabled True
 # Set-NetFirewallRule -Group '@FirewallAPI.dll,-32752' -Profile Private -Enabled True
 # Set-NetFirewallRule -Profile Public, Private -Name FPS-SMB-In-TCP -Enabled True

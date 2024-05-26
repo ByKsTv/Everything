@@ -55,15 +55,10 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
             $registry.Dispose()
         }
 
+        Write-Host "Mozilla Firefox Extensions: uBlock Origin: Using custom settings" -ForegroundColor green -BackgroundColor black
         # https://github.com/gorhill/uBlock/issues/2986#issuecomment-333198882
-
-        # if ((Test-Path -Path "$env:ProgramFiles\Mozilla Firefox") -ne $true) {
-        #     New-Item -Path "$env:ProgramFiles\Mozilla Firefox" -Force -ItemType Directory
-        # }
-
         New-Item -Path 'HKLM:\SOFTWARE\Mozilla\ManagedStorage\uBlock0@raymondhill.net' -Force
         New-ItemProperty -Path 'HKLM:\SOFTWARE\Mozilla\ManagedStorage\uBlock0@raymondhill.net' -Name '(default)' -Value "$env:TEMP\uBlock_Origin_Backup_Restore.json" -PropertyType String -Force
-
         $uBlockDownloadLocation = "$env:TEMP\uBlock_Origin_Backup.json"
         Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.json -OutFile $uBlockDownloadLocation
         $uBlockTemplate = '{"name": "uBlock0@raymondhill.net","description": "ignored","type": "storage","data": {"adminSettings": '
@@ -77,8 +72,6 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         # New-ItemProperty -Path 'HKLM:\SOFTWARE\Mozilla\ManagedStorage\firefox@tampermonkey.net' -Name '(default)' -Value "$env:ProgramFiles\Mozilla Firefox\tampermonkey.json" -PropertyType String -Force
         # $Tampermonkey='{"name": "firefox@tampermonkey.net","description": "ignored","type": "storage","data": {"adminSettings": {"created_by":"Tampermonkey","version":"1","scripts":[{"name":"AdsBypasser","options":{"check_for_updates":true,"user_modified":null,"comment":null,"compatopts_for_requires":true,"compat_wrappedjsobject":false,"compat_metadata":false,"compat_foreach":false,"compat_powerful_this":null,"sandbox":null,"noframes":null,"unwrap":null,"run_at":null,"tab_types":null,"override":{"use_includes":[],"orig_includes":["http://*","https://*"],"merge_includes":true,"use_matches":[],"orig_matches":[],"merge_matches":true,"use_excludes":[],"orig_excludes":[],"merge_excludes":true,"use_connects":[],"orig_connects":["*"],"merge_connects":true,"use_blockers":[],"orig_run_at":"document-start","orig_noframes":true}},"storage":{"ts":1716736230041,"data":{}},"enabled":true,"position":1,"file_url":"https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js"}}'
         # New-Item "$env:ProgramFiles\Mozilla Firefox\tampermonkey.json" -Value $Tampermonkey -Force
-
-
 
         Write-Host 'Mozilla Firefox Extensions: Starting browser' -ForegroundColor green -BackgroundColor black
         [System.Diagnostics.Process]::Start('firefox.exe')

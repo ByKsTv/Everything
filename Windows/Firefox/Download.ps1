@@ -1,8 +1,8 @@
-Write-Host 'Mozilla Firefox: Disabling scheduled tasks' -ForegroundColor green -BackgroundColor black
+Write-Host 'Mozilla Firefox: Setting Policy' -ForegroundColor green -BackgroundColor black
+# https://mozilla.github.io/policy-templates/
 if ((Test-Path -Path 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox') -ne $true) {
     New-Item 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox' -Force 
 }
-# https://mozilla.github.io/policy-templates/
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox' -Name 'DisableDefaultBrowserAgent' -Value 1 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox' -Name 'BackgroundAppUpdate' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox' -Name 'NoDefaultBookmarks' -Value 1 -PropertyType DWord -Force
@@ -19,6 +19,7 @@ Write-Host 'Mozilla Firefox: Installing' -ForegroundColor green -BackgroundColor
 Start-Process $env:TEMP\firefox.exe -ArgumentList '/S' -Wait
 
 # Write-Host 'Mozilla Firefox: Hosts: Adding incoming.telemetry.mozilla.org' -ForegroundColor green -BackgroundColor black
+# no need for this, fixed by policy? test it on main pc
 # not working, still pings this url even after blocking in hosts file
 # $Mozillaincomingtelemetry = Select-String -Path $env:windir\System32\drivers\etc\hosts -Pattern 'incoming.telemetry.mozilla.org'
 # if ($null -eq $Mozillaincomingtelemetry) {
@@ -75,7 +76,7 @@ Start-Sleep -Milliseconds 1000
 Write-Host 'Mozilla Firefox: Setting foreground' -ForegroundColor green -BackgroundColor black
 [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
 
-Write-Host 'Mozilla Firefox: Deleting scheduled tasks' -ForegroundColor green -BackgroundColor black
+Write-Host 'Mozilla Firefox: Deleting Scheduled Tasks' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree\Mozilla') -eq $true) {
     Remove-Item -Path 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree\Mozilla' -Force
 }
