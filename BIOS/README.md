@@ -61,7 +61,7 @@ Everything about BIOS.
    <!-- 1. `Boot` > `Secure Boot` > `Secure Boot Mode` > `Standard`. -->
 1. `Boot` > `Boot Configuration` > `Fast Boot` > `Disabled`.
 1. `Boot` > `Boot Configuration` > `Boot Logo Display` > `Disabled`.
-<!-- 1. `Boot` > `Boot Configuration` > `Bootup NumLock State` > `Off`. -->
+    <!-- 1. `Boot` > `Boot Configuration` > `Bootup NumLock State` > `Off`. -->
 1. `Tool` > `ASUS Armoury Crate` > `Download & Install ARMOURY CRATE app` > `Disabled`.
 
    > Note: [djdallmann Guide](https://github.com/djdallmann/GamingPCSetup/tree/master/CONTENT/DOCS/BIOS)
