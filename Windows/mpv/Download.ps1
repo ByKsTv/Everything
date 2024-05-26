@@ -83,9 +83,9 @@ Write-Host 'mpv: Waiting for download completion' -ForegroundColor green -Backgr
 while (!($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'cmd.exe' } -ErrorAction SilentlyContinue))) {
 }
 
-Write-Host 'mpv: Updating yt-dlp to master' -ForegroundColor green -BackgroundColor black
-Set-Location $env:ProgramFiles\mpv
-.\yt-dlp --update-to master
+# Write-Host 'mpv: Updating yt-dlp to master' -ForegroundColor green -BackgroundColor black
+# Set-Location $env:ProgramFiles\mpv
+# .\yt-dlp --update-to master
 
 Write-Host 'mpv: Installing' -ForegroundColor green -BackgroundColor black
 Start-Process -FilePath $env:ProgramFiles\mpv\installer\mpv-install.bat -ArgumentList '/u'

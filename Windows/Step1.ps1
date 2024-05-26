@@ -84,12 +84,12 @@ $TextBox_RemotePowerShellIP.Text = 'IP'
 $TextBox_RemotePowerShellIP.Enabled = $false
 $Form_Step1.Controls.Add($TextBox_RemotePowerShellIP)
 
-$CheckBox_MozilaFirefox = New-Object System.Windows.Forms.CheckBox
-$CheckBox_MozilaFirefox.Location = New-Object System.Drawing.Size(30, 210)
-$CheckBox_MozilaFirefox.Size = New-Object System.Drawing.Size(400, 20)
-$CheckBox_MozilaFirefox.Text = 'Mozila Firefox'
-$CheckBox_MozilaFirefox.Checked = $false
-$Form_Step1.Controls.Add($CheckBox_MozilaFirefox)
+$CheckBox_MozillaFirefox = New-Object System.Windows.Forms.CheckBox
+$CheckBox_MozillaFirefox.Location = New-Object System.Drawing.Size(30, 210)
+$CheckBox_MozillaFirefox.Size = New-Object System.Drawing.Size(400, 20)
+$CheckBox_MozillaFirefox.Text = 'Mozilla Firefox'
+$CheckBox_MozillaFirefox.Checked = $false
+$Form_Step1.Controls.Add($CheckBox_MozillaFirefox)
 
 $CheckBox_GoogleChrome = New-Object System.Windows.Forms.CheckBox
 $CheckBox_GoogleChrome.Location = New-Object System.Drawing.Size(30, 240)
@@ -188,8 +188,8 @@ $Form_Step1_OK.Add_Click{
 		Set-Service WinRM -StartupType Manual
 	}
 
-	if ($CheckBox_MozilaFirefox.Checked -eq $true) {
-		Write-Host 'Step1: Mozila Firefox: Initiating' -ForegroundColor green -BackgroundColor black
+	if ($CheckBox_MozillaFirefox.Checked -eq $true) {
+		Write-Host 'Step1: Mozilla Firefox: Initiating' -ForegroundColor green -BackgroundColor black
 		Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Download.ps1')
 	}
 

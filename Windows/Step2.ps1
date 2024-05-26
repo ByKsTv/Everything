@@ -22,7 +22,7 @@ Register-ScheduledTask @NextStep_Parameters -Force
 Write-Host 'Step2: Windows Key: Activating' -ForegroundColor green -BackgroundColor black
 & ([ScriptBlock]::Create(((New-Object System.Net.WebClient).DownloadString('https://get.activated.win/')))) /HWID
 
-Write-Host 'Step2: Mozila Firefox Arkenfox: Initiating' -ForegroundColor green -BackgroundColor black
+Write-Host 'Step2: Mozilla Firefox Arkenfox: Initiating' -ForegroundColor green -BackgroundColor black
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Arkenfox.ps1')
 
 Write-Host 'Step2: Windows Settings: Initiating' -ForegroundColor green -BackgroundColor black
