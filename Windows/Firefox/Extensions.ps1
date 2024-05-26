@@ -57,14 +57,14 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
 
         # https://github.com/gorhill/uBlock/issues/2986#issuecomment-333198882
 
-        if ((Test-Path -Path "$env:ProgramFiles\Mozilla Firefox") -ne $true) {
-            New-Item -Path "$env:ProgramFiles\Mozilla Firefox" -Force -ItemType Directory
-        }
+        # if ((Test-Path -Path "$env:ProgramFiles\Mozilla Firefox") -ne $true) {
+        #     New-Item -Path "$env:ProgramFiles\Mozilla Firefox" -Force -ItemType Directory
+        # }
 
         New-Item -Path 'HKLM:\SOFTWARE\Mozilla\ManagedStorage\uBlock0@raymondhill.net' -Force
-        New-ItemProperty -Path 'HKLM:\SOFTWARE\Mozilla\ManagedStorage\uBlock0@raymondhill.net' -Name '(default)' -Value "$env:TEMP\ByKsTv_uBlock_Origin_Backup_Restore.json" -PropertyType String -Force
+        New-ItemProperty -Path 'HKLM:\SOFTWARE\Mozilla\ManagedStorage\uBlock0@raymondhill.net' -Name '(default)' -Value "$env:TEMP\uBlock_Origin_Backup_Restore.json" -PropertyType String -Force
 
-        $uBlockDownloadLocation = "$env:TEMP\ByKsTv_uBlock_Origin_Backup.json"
+        $uBlockDownloadLocation = "$env:TEMP\uBlock_Origin_Backup.json"
         Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.json -OutFile $uBlockDownloadLocation
         $uBlockTemplate = '{"name": "uBlock0@raymondhill.net","description": "ignored","type": "storage","data": {"adminSettings": '
         $uBlockLatestContent = Get-Content $uBlockDownloadLocation
