@@ -30,6 +30,7 @@ user_pref("browser.urlbar.shortcuts.tabs", false);
 
 // Disable Firefox Default Browser
 user_pref("default-browser-agent.enabled", false);
+user_pref("browser.shell.checkDefaultBrowser", false);
 
 // Disable Pocket
 user_pref("extensions.pocket.enabled", false);

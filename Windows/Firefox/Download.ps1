@@ -1,4 +1,4 @@
-# Disable scheduled tasks
+Write-Host 'Mozilla Firefox: Disabling scheduled tasks' -ForegroundColor green -BackgroundColor black
 # https://mozilla.github.io/policy-templates/
 if ((Test-Path -Path 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox') -ne $true) {
     New-Item 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox' -Force 
@@ -69,7 +69,7 @@ Start-Sleep -Milliseconds 1000
 Write-Host 'Mozilla Firefox: Setting foreground' -ForegroundColor green -BackgroundColor black
 [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
 
-# Delete scheduled tasks
+Write-Host 'Mozilla Firefox: Deleting scheduled tasks' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree\Mozilla') -eq $true) {
     Remove-Item -Path 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree\Mozilla' -Force
 }
