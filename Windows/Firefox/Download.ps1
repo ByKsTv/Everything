@@ -1,10 +1,11 @@
 Write-Host 'Mozilla Firefox: Disabling scheduled tasks' -ForegroundColor green -BackgroundColor black
-# https://mozilla.github.io/policy-templates/
 if ((Test-Path -Path 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox') -ne $true) {
     New-Item 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox' -Force 
 }
+# https://mozilla.github.io/policy-templates/
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox' -Name 'DisableDefaultBrowserAgent' -Value 1 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox' -Name 'BackgroundAppUpdate' -Value 0 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox' -Name 'NoDefaultBookmarks' -Value 1 -PropertyType DWord -Force
 
 Write-Host 'Mozilla Firefox: Downloading' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US', "$env:TEMP\firefox.exe")

@@ -75,7 +75,7 @@ if ($InstalledSoftware -match 'Google Chrome') {
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
 
     Write-Host "Google Chrome Extensions: Downloading 'uBlock Origin' custom settings" -ForegroundColor green -BackgroundColor black
-    (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.txt', "$env:TEMP\uBlock_Origin_Backup.txt")
+    (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.json', "$env:TEMP\uBlock_Origin_Backup.json")
     [System.Diagnostics.Process]::Start('Chrome.exe', 'chrome-extension://cjpalhdlnbpafiamejdnhcphjbkeiagm/dashboard.html#settings.html')
     Start-Sleep -Milliseconds 2000
 
@@ -100,7 +100,7 @@ if ($InstalledSoftware -match 'Google Chrome') {
     Start-Sleep -Milliseconds 1000
 
     Write-Host "Google Chrome Extensions: Selecting file to restore backup from on 'uBlock Origin' settings" -ForegroundColor green -BackgroundColor black
-    [System.Windows.Forms.SendKeys]::SendWait('uBlock_Origin_Backup.txt')
+    [System.Windows.Forms.SendKeys]::SendWait('uBlock_Origin_Backup.json')
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
     Start-Sleep -Milliseconds 1000
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')

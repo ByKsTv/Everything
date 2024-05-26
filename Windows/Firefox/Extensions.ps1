@@ -92,40 +92,53 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
     Add-Type -AssemblyName System.Windows.Forms
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
     
-    Write-Host "Mozilla Firefox Extensions: Downloading 'uBlock Origin' custom settings" -ForegroundColor green -BackgroundColor black
-    (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.txt', "$env:TEMP\uBlock_Origin_Backup.txt")
+    # adding ublock
+    # https://github.com/gorhill/uBlock/issues/2986#issuecomment-333198882
+
+    New-Item -Path 'HKLM:\SOFTWARE\Mozilla\ManagedStorage\uBlock0@raymondhill.net' -Force
+    New-ItemProperty -Path 'HKLM:\SOFTWARE\Mozilla\ManagedStorage\uBlock0@raymondhill.net' -Name '(default)' -Value "$env:ProgramFiles\Mozilla Firefox\ByKsTv_uBlock_Origin_Backup_Restore.json" -PropertyType String -Force
+
+    $uBlockDownloadLocation = "$env:ProgramFiles\Mozilla Firefox\ByKsTv_uBlock_Origin_Backup.json"
+    Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.json -OutFile $uBlockDownloadLocation
+    $uBlockTemplate = '{"name": "uBlock0@raymondhill.net","description": "ignored","type": "storage","data": {"adminSettings": '
+    $uBlockLatestContent = Get-Content $uBlockDownloadLocation
+    $uBlockFinishTemplate = $uBlockTemplate += $uBlockLatestContent += '}}'
+    New-Item "$env:ProgramFiles\Mozilla Firefox\ByKsTv_uBlock_Origin_Backup_Restore.json" -Value $uBlockFinishTemplate -Force
+
+    # Write-Host "Mozilla Firefox Extensions: Downloading 'uBlock Origin' custom settings" -ForegroundColor green -BackgroundColor black
+    # (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.json', "$env:TEMP\uBlock_Origin_Backup.json")
     
-    Write-Host "Mozilla Firefox Extensions: Starting 'uBlock Origin' settings" -ForegroundColor green -BackgroundColor black
-    $uBlockPattern = 'uBlock.+?([a-f0-9]{8}-([a-f0-9]{4}-){3}[a-f0-9]{12})\\'
-    $uBlockUUID = (Select-String -Pattern $uBlockPattern -Path $CurrentFirefoxProfile\prefs.js).Matches.Groups[1].Value
-    [System.Diagnostics.Process]::Start('firefox.exe', "moz-extension://$uBlockUUID/dashboard.html#settings.html")
-    Start-Sleep -Milliseconds 2000
+    # Write-Host "Mozilla Firefox Extensions: Starting 'uBlock Origin' settings" -ForegroundColor green -BackgroundColor black
+    # $uBlockPattern = 'uBlock.+?([a-f0-9]{8}-([a-f0-9]{4}-){3}[a-f0-9]{12})\\'
+    # $uBlockUUID = (Select-String -Pattern $uBlockPattern -Path $CurrentFirefoxProfile\prefs.js).Matches.Groups[1].Value
+    # [System.Diagnostics.Process]::Start('firefox.exe', "moz-extension://$uBlockUUID/dashboard.html#settings.html")
+    # Start-Sleep -Milliseconds 2000
 
-    Write-Host 'Mozilla Firefox Extensions: Setting foreground' -ForegroundColor green -BackgroundColor black
-    [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
-    Start-Sleep -Milliseconds 1000
+    # Write-Host 'Mozilla Firefox Extensions: Setting foreground' -ForegroundColor green -BackgroundColor black
+    # [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
+    # Start-Sleep -Milliseconds 1000
 
-    Write-Host "Mozilla Firefox Extensions: Starting 'Restore from file' on 'uBlock Origin' settings" -ForegroundColor green -BackgroundColor black
-    [System.Windows.Forms.SendKeys]::SendWait('+{TAB 2}')
-    [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
-    Start-Sleep -Milliseconds 1000
+    # Write-Host "Mozilla Firefox Extensions: Starting 'Restore from file' on 'uBlock Origin' settings" -ForegroundColor green -BackgroundColor black
+    # [System.Windows.Forms.SendKeys]::SendWait('+{TAB 2}')
+    # [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
+    # Start-Sleep -Milliseconds 1000
 
-    Write-Host "Mozilla Firefox Extensions: Selecting folder to restore backup from on 'uBlock Origin' settings" -ForegroundColor green -BackgroundColor black
-    [System.Windows.Forms.SendKeys]::SendWait('{F4}')
-    Start-Sleep -Milliseconds 100
-    [System.Windows.Forms.SendKeys]::SendWait('^a')
-    Start-Sleep -Milliseconds 100
-    [System.Windows.Forms.SendKeys]::SendWait($env:TEMP)
-    [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
-    Start-Sleep -Milliseconds 1000
-    [System.Windows.Forms.SendKeys]::SendWait('%n')
-    Start-Sleep -Milliseconds 1000
+    # Write-Host "Mozilla Firefox Extensions: Selecting folder to restore backup from on 'uBlock Origin' settings" -ForegroundColor green -BackgroundColor black
+    # [System.Windows.Forms.SendKeys]::SendWait('{F4}')
+    # Start-Sleep -Milliseconds 100
+    # [System.Windows.Forms.SendKeys]::SendWait('^a')
+    # Start-Sleep -Milliseconds 100
+    # [System.Windows.Forms.SendKeys]::SendWait($env:TEMP)
+    # [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
+    # Start-Sleep -Milliseconds 1000
+    # [System.Windows.Forms.SendKeys]::SendWait('%n')
+    # Start-Sleep -Milliseconds 1000
 
-    Write-Host "Mozilla Firefox Extensions: Selecting file to restore backup from on 'uBlock Origin' settings" -ForegroundColor green -BackgroundColor black
-    [System.Windows.Forms.SendKeys]::SendWait('uBlock_Origin_Backup.txt')
-    [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
-    Start-Sleep -Milliseconds 1000
-    [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
+    # Write-Host "Mozilla Firefox Extensions: Selecting file to restore backup from on 'uBlock Origin' settings" -ForegroundColor green -BackgroundColor black
+    # [System.Windows.Forms.SendKeys]::SendWait('uBlock_Origin_Backup.json')
+    # [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
+    # Start-Sleep -Milliseconds 1000
+    # [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
 
     Write-Host 'Mozilla Firefox Extensions: Cleaning up' -ForegroundColor green -BackgroundColor black
     Remove-Item HKLM:\SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install -Force
