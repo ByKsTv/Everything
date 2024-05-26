@@ -69,7 +69,7 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         $uBlockTemplate = '{"name": "uBlock0@raymondhill.net","description": "ignored","type": "storage","data": {"adminSettings": '
         $uBlockLatestContent = Get-Content $uBlockDownloadLocation
         $uBlockFinishTemplate = $uBlockTemplate += $uBlockLatestContent += '}}'
-        New-Item "$env:TEMP\ByKsTv_uBlock_Origin_Backup_Restore.json" -Value $uBlockFinishTemplate -Force
+        New-Item "$env:TEMP\uBlock_Origin_Backup_Restore.json" -Value $uBlockFinishTemplate -Force
         
         # experimental
         # New-Item -Path 'HKLM:\SOFTWARE\Mozilla\ManagedStorage\firefox@tampermonkey.net' -Force
