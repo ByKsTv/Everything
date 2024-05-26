@@ -16,24 +16,25 @@ powercfg /CHANGE monitor-timeout-ac 0
 # powercfg /CHANGE standby-timeout-ac 0
 # powercfg /CHANGE standby-timeout-dc 0
 
-# Write-Host 'Power Plan: Disabling hibernate' -ForegroundColor green -BackgroundColor black
-# powercfg /HIBERNATE off
+Write-Host 'Power Plan: Disabling hibernate' -ForegroundColor green -BackgroundColor black
+powercfg /HIBERNATE off
 # powercfg /CHANGE hibernate-timeout-ac 0
 # powercfg /CHANGE hibernate-timeout-dc 0
 # New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' -Name 'HibernateEnabled' -PropertyType DWord -Value 0 -Force
 # New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' -Name 'HibernateEnabledDefault' -PropertyType DWord -Value 0 -Force
 
-# Write-Host 'Power Plan: Disabling power throttling' -ForegroundColor green -BackgroundColor black
+Write-Host 'Power Plan: Disabling power throttling' -ForegroundColor green -BackgroundColor black
+New-ItemProperty -Path 'HKLM:\System\ControlSet001\Control\Power\PowerThrottling' -Name 'PowerThrottlingOff' -PropertyType DWord -Value 1 -Force
 # New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling' -Name 'PowerThrottlingOff' -PropertyType DWord -Value 1 -Force
 
 # Write-Host 'Power Plan: Disabling lock option' -ForegroundColor green -BackgroundColor black
-# New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings' -Name 'ShowLockOption' -PropertyType DWord -Value 0 -Force
+#New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings' -Name 'ShowLockOption' -PropertyType DWord -Value 0 -Force
 
 # Write-Host 'Power Plan: Disabling sleep option' -ForegroundColor green -BackgroundColor black
 # New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Explorer\FlyoutMenuSettings' -Name 'ShowSleepOption' -PropertyType DWord -Value 0 -Force
 
-# Write-Host 'Power Plan: Disabling fast boot option' -ForegroundColor green -BackgroundColor black
-# New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power' -Name 'HiberbootEnabled' -PropertyType DWord -Value 0 -Force
+Write-Host 'Power Plan: Shutdown settings: Turn on fast startup (recommended): Off' -ForegroundColor green -BackgroundColor black
+New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power' -Name 'HiberbootEnabled' -PropertyType DWord -Value 0 -Force
 
 # Write-Host 'Power Plan: Unparking CPU cores' -ForegroundColor green -BackgroundColor black
 # # https://learn.microsoft.com/en-us/previous-versions/windows/hardware/design/dn613985(v=vs.85)
@@ -891,13 +892,16 @@ if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\E
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'HideSCAMeetNow' -Value 1 -PropertyType DWord -Force
 
 Write-Host 'Group Policy: User Configuration: Administrative Templates: Windows Components: File Explorer: Turn off Windows Libraries features that rely on indexed file data: Enabled' -ForegroundColor green -BackgroundColor black
+if (-not (Test-Path -Path HKCU:\Software\Policies\Microsoft\Windows\Explorer)) {
+	New-Item -Path HKCU:\Software\Policies\Microsoft\Windows\Explorer -Force
+}
 New-ItemProperty -Path HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer -Name 'DisableIndexedLibraryExperience' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: User Configuration: Administrative Templates: Windows Components: Remote Desktop Services: Remote Desktop Connection Client: Allow .rdp files from unkown publishers: Enabled' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services') -ne $true) {
-	New-Item 'HKCU:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services' -Force 
-}
-New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services' -Name 'AllowUnsignedFiles' -Value 1 -PropertyType DWord -Force
+# Write-Host 'Group Policy: User Configuration: Administrative Templates: Windows Components: Remote Desktop Services: Remote Desktop Connection Client: Allow .rdp files from unkown publishers: Enabled' -ForegroundColor green -BackgroundColor black
+# if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services') -ne $true) {
+# 	New-Item 'HKCU:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services' -Force 
+# }
+# New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services' -Name 'AllowUnsignedFiles' -Value 1 -PropertyType DWord -Force
 
 Write-Host 'Step2: Scheduled tasks: Disabling telemetry' -ForegroundColor green -BackgroundColor black
 Disable-ScheduledTask -TaskName 'Consolidator' -TaskPath '\Microsoft\Windows\Customer Experience Improvement Program\'
@@ -979,38 +983,38 @@ if ($windowsbackupapp.PackageState -match 'Installed') {
 	Remove-WindowsPackage -PackageName 'Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35~amd64~~10.0.19041.4355' -Online -NoRestart
 }
 
-Write-Host 'Step2: NuGet: Uninstalling' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -Path "$env:ProgramFiles\PackageManagement")) {
-	Write-Host "Step2: NuGet: Deleting $env:ProgramFiles\PackageManagement" -ForegroundColor green -BackgroundColor black
-	icacls "$env:ProgramFiles\PackageManagement" /grant Users:F
-	Remove-Item -Path ("$env:ProgramFiles\PackageManagement") -Force -Recurse
-}
-if ((Test-Path -Path "$env:LOCALAPPDATA\PackageManagement")) {
-	Write-Host "Step2: NuGet: Deleting $env:LOCALAPPDATA\PackageManagement" -ForegroundColor green -BackgroundColor black
-	Remove-Item -Path ("$env:LOCALAPPDATA\PackageManagement") -Force -Recurse
-}
-if ((Test-Path -Path "$env:APPDATA\PackageManagement")) {
-	Write-Host "Step2: NuGet: Deleting $env:APPDATA\PackageManagement" -ForegroundColor green -BackgroundColor black
-	Remove-Item -Path ("$env:APPDATA\PackageManagement") -Force -Recurse
-}
+# Write-Host 'Step2: NuGet: Uninstalling' -ForegroundColor green -BackgroundColor black
+# if ((Test-Path -Path "$env:ProgramFiles\PackageManagement")) {
+# 	Write-Host "Step2: NuGet: Deleting $env:ProgramFiles\PackageManagement" -ForegroundColor green -BackgroundColor black
+# 	icacls "$env:ProgramFiles\PackageManagement" /grant Users:F
+# 	Remove-Item -Path ("$env:ProgramFiles\PackageManagement") -Force -Recurse
+# }
+# if ((Test-Path -Path "$env:LOCALAPPDATA\PackageManagement")) {
+# 	Write-Host "Step2: NuGet: Deleting $env:LOCALAPPDATA\PackageManagement" -ForegroundColor green -BackgroundColor black
+# 	Remove-Item -Path ("$env:LOCALAPPDATA\PackageManagement") -Force -Recurse
+# }
+# if ((Test-Path -Path "$env:APPDATA\PackageManagement")) {
+# 	Write-Host "Step2: NuGet: Deleting $env:APPDATA\PackageManagement" -ForegroundColor green -BackgroundColor black
+# 	Remove-Item -Path ("$env:APPDATA\PackageManagement") -Force -Recurse
+# }
 
-Write-Host 'Step2: PSWindowsUpdate: Uninstalling' -ForegroundColor green -BackgroundColor black
-if (Get-Module -ListAvailable -Name PSWindowsUpdate) {
-	Uninstall-Module PSWindowsUpdate -Force
-}
-if ((Test-Path -Path "$env:ProgramFiles\PackageManagement")) {
-	Write-Host "Step2: NuGet: Deleting $env:ProgramFiles\PackageManagement" -ForegroundColor green -BackgroundColor black
-	icacls "$env:ProgramFiles\PackageManagement" /grant Users:F
-	Remove-Item -Path ("$env:ProgramFiles\PackageManagement") -Force -Recurse
-}
-if ((Test-Path -Path "$env:LOCALAPPDATA\PackageManagement")) {
-	Write-Host "Step2: NuGet: Deleting $env:LOCALAPPDATA\PackageManagement" -ForegroundColor green -BackgroundColor black
-	Remove-Item -Path ("$env:LOCALAPPDATA\PackageManagement") -Force -Recurse
-}
-if ((Test-Path -Path "$env:APPDATA\PackageManagement")) {
-	Write-Host "Step2: NuGet: Deleting $env:APPDATA\PackageManagement" -ForegroundColor green -BackgroundColor black
-	Remove-Item -Path ("$env:APPDATA\PackageManagement") -Force -Recurse
-}
+# Write-Host 'Step2: PSWindowsUpdate: Uninstalling' -ForegroundColor green -BackgroundColor black
+# if (Get-Module -ListAvailable -Name PSWindowsUpdate) {
+# 	Uninstall-Module PSWindowsUpdate -Force
+# }
+# if ((Test-Path -Path "$env:ProgramFiles\PackageManagement")) {
+# 	Write-Host "Step2: NuGet: Deleting $env:ProgramFiles\PackageManagement" -ForegroundColor green -BackgroundColor black
+# 	icacls "$env:ProgramFiles\PackageManagement" /grant Users:F
+# 	Remove-Item -Path ("$env:ProgramFiles\PackageManagement") -Force -Recurse
+# }
+# if ((Test-Path -Path "$env:LOCALAPPDATA\PackageManagement")) {
+# 	Write-Host "Step2: NuGet: Deleting $env:LOCALAPPDATA\PackageManagement" -ForegroundColor green -BackgroundColor black
+# 	Remove-Item -Path ("$env:LOCALAPPDATA\PackageManagement") -Force -Recurse
+# }
+# if ((Test-Path -Path "$env:APPDATA\PackageManagement")) {
+# 	Write-Host "Step2: NuGet: Deleting $env:APPDATA\PackageManagement" -ForegroundColor green -BackgroundColor black
+# 	Remove-Item -Path ("$env:APPDATA\PackageManagement") -Force -Recurse
+# }
 
 # Write-Host 'Settings: Services: Setting to manual' -ForegroundColor green -BackgroundColor black
 # # https://docs.microsoft.com/en-us/windows-server/security/windows-services/security-guidelines-for-disabling-system-services-in-windows-server
@@ -1309,6 +1313,14 @@ Write-Host 'Settings: Windows Security Notification Icon: Off' -ForegroundColor 
 if ($null -ne (Get-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run').GetValue('SecurityHealth')) {
 	Remove-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'SecurityHealth'
 }
+
+Write-Host 'Microsoft Edge: Deleting Desktop Shortcut' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -Path "$env:PUBLIC\Desktop\Microsoft Edge.lnk") -eq $true) {
+    Remove-Item -Path ("$env:PUBLIC\Desktop\Microsoft Edge.lnk")
+}
+
+# hide all rdp end sesstion pop up
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client' -Name 'ShowShutdownDialog' -Value 0 -PropertyType DWord -Force
 
 #Write-Host 'Settings: Boot Options: Standard (default)' -ForegroundColor green -BackgroundColor black
 #bcdedit /set `{current`} bootmenupolicy standard
@@ -1903,16 +1915,18 @@ New-ItemProperty -Path Registry::HKEY_CLASSES_ROOT\cmdfile\shell\print -Name Pro
 New-ItemProperty -Path 'Registry::HKEY_CLASSES_ROOT\Folder\ShellEx\ContextMenuHandlers\Library Location' -Name '(default)' -PropertyType String -Value '-{3dad6c5d-2167-4cae-9914-f99e41c12cfa}' -Force
 # SendToContext -Hide
 New-ItemProperty -Path Registry::HKEY_CLASSES_ROOT\AllFilesystemObjects\shellex\ContextMenuHandlers\SendTo -Name '(default)' -PropertyType String -Value '-{7BA4C740-9E81-11CF-99D3-00AA004AE837}' -Force
-# # BitmapImageNewContext -Hide
-# if ((Get-WindowsCapability -Online -Name 'Microsoft.Windows.MSPaint*').State -eq 'Installed') {
-# 	Remove-Item -Path Registry::HKEY_CLASSES_ROOT\.bmp\ShellNew -Force
-# }
-# RichTextDocumentNewContext -Hide
-if ((Get-WindowsCapability -Online -Name 'Microsoft.Windows.WordPad*').State -eq 'Installed') {
-	Remove-Item -Path Registry::HKEY_CLASSES_ROOT\.rtf\ShellNew -Force
+# BitmapImageNewContext -Hide
+# add if path exists here
+if ((Get-WindowsCapability -Online -Name 'Microsoft.Windows.MSPaint*').State -eq 'Installed') {
+	Remove-Item -Path Registry::HKEY_CLASSES_ROOT\.bmp\ShellNew -Force
 }
+# # RichTextDocumentNewContext -Hide
+# if ((Get-WindowsCapability -Online -Name 'Microsoft.Windows.WordPad*').State -eq 'Installed') {
+# 	Remove-Item -Path Registry::HKEY_CLASSES_ROOT\.rtf\ShellNew -Force
+# }
 # CompressedFolderNewContext -Hide
-# Remove-Item -Path Registry::HKEY_CLASSES_ROOT\.zip\CompressedFolder\ShellNew -Force
+# add if path exists here
+Remove-Item -Path Registry::HKEY_CLASSES_ROOT\.zip\CompressedFolder\ShellNew -Force
 # MultipleInvokeContext -Disable
 # Remove-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer -Name MultipleInvokePromptMinimum -Force
 

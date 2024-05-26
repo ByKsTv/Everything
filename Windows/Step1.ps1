@@ -202,6 +202,10 @@ $Form_Step1_OK.Add_Click{
 $Form_Step1.Add_Shown({ $Form_Step1.Activate() })
 [void] $Form_Step1.ShowDialog()
 
+Write-Host 'Step2: Windows Update: Checking for updates' -ForegroundColor green -BackgroundColor black
+Start-Process -FilePath "$env:SystemRoot\System32\UsoClient.exe" -ArgumentList StartInteractiveScan
+Start-Process -FilePath "ms-settings:windowsupdate"
+
 # Write-Host 'Step1: NuGet: Installing' -ForegroundColor green -BackgroundColor black
 # Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
 
