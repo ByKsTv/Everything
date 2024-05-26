@@ -17,6 +17,7 @@ powercfg /CHANGE monitor-timeout-ac 0
 # powercfg /CHANGE standby-timeout-dc 0
 
 Write-Host 'Power Plan: Disabling hibernate' -ForegroundColor green -BackgroundColor black
+# hides the fast startup options aswell
 powercfg /HIBERNATE off
 # powercfg /CHANGE hibernate-timeout-ac 0
 # powercfg /CHANGE hibernate-timeout-dc 0

@@ -4,6 +4,12 @@ Write-Host 'Mozila Firefox: Downloading' -ForegroundColor green -BackgroundColor
 Write-Host 'Mozila Firefox: Installing' -ForegroundColor green -BackgroundColor black
 Start-Process $env:TEMP\firefox.exe -ArgumentList '/S' -Wait
 
+Write-Host 'Mozila Firefox: Hosts: Adding incoming.telemetry.mozilla.org' -ForegroundColor green -BackgroundColor black
+$mozilaincomingtelemetry = Select-String -Path $env:windir\System32\drivers\etc\hosts -Pattern 'incoming.telemetry.mozilla.org'
+if ($null -eq $mozilaincomingtelemetry) {
+	Add-Content -Path $env:windir\System32\drivers\etc\hosts -Value "`n127.0.0.1`tincoming.telemetry.mozilla.org" -Force
+}
+
 Write-Host 'Mozila Firefox: Deleting Desktop Shortcut' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path "$env:PUBLIC\Desktop\Firefox.lnk") -eq $true) {
     Remove-Item -Path ("$env:PUBLIC\Desktop\Firefox.lnk")

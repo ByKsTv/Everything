@@ -50,7 +50,7 @@ Everything about BIOS.
 <!-- 1. `Advanced` > `PCH Configuration` > `PCI Express Configuration` > `M.2_3 Link Speed` > `Gen4`. -->
 <!-- 1. `Advanced` > `PCH Configuration` > `PCI Express Configuration` > `PCIEX16(G4) Link Speed` > `Gen4`. -->
 <!-- 1. `Advanced` > `ThunderBolt(TM) Configuration` > `PCIE Tunneling over USB4` > `Disabled`. -->
-<!-- 1. `Advanced` > `Trusted Computing` > `Security Device Support` > `Disable`. -->
+<!-- 1. `Advanced` > `Trusted Computing` > `Security Device Support` > `Disable`. (default) -->
 1. `Advanced` > `APM Configuration` > `Power On By PCI-E` > `Enabled` (Wake-On-Lan).
 1. `Advanced` > `Onboard Devices Configuration` > `Wi-Fi Controller` > `Disabled`.
 1. `Advanced` > `Onboard Devices Configuration` > `Bluetooth Controller` > `Disabled`.
@@ -59,7 +59,7 @@ Everything about BIOS.
 <!-- 1. `Boot` > `Secure Boot` > `OS Type` > `Windows UEFI mode`. -->
 <!-- 1. `Boot` > `Secure Boot` > `Secure Boot Mode` > `Standard`. -->
 1. `Boot` > `Boot Configuration` > `Fast Boot` > `Disabled`.
-<!-- 1. `Boot` > `Boot Configuration` > `Boot Logo Display` > `Disabled`. -->
+1. `Boot` > `Boot Configuration` > `Boot Logo Display` > `Disabled`.
 <!-- 1. `Boot` > `Boot Configuration` > `Bootup NumLock State` > `Off`. -->
 1. `Tool` > `ASUS Armoury Crate` > `Download & Install ARMOURY CRATE app` > `Disabled`.
 
