@@ -55,6 +55,21 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
             $registry.Dispose()
         }
 
+        # adding ublock
+        # https://github.com/gorhill/uBlock/issues/2986#issuecomment-333198882
+
+        if ((Test-Path -Path "$env:ProgramFiles\Mozilla Firefox") -ne $true) {
+            New-Item -Path "$env:ProgramFiles\Mozilla Firefox" -Force -ItemType Directory
+        }
+        New-Item -Path 'HKLM:\SOFTWARE\Mozilla\ManagedStorage\uBlock0@raymondhill.net' -Force
+        New-ItemProperty -Path 'HKLM:\SOFTWARE\Mozilla\ManagedStorage\uBlock0@raymondhill.net' -Name '(default)' -Value "$env:ProgramFiles\Mozilla Firefox\ByKsTv_uBlock_Origin_Backup_Restore.json" -PropertyType String -Force
+        $uBlockDownloadLocation = "$env:ProgramFiles\Mozilla Firefox\ByKsTv_uBlock_Origin_Backup.json"
+        Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.json -OutFile $uBlockDownloadLocation
+        $uBlockTemplate = '{"name": "uBlock0@raymondhill.net","description": "ignored","type": "storage","data": {"adminSettings": '
+        $uBlockLatestContent = Get-Content $uBlockDownloadLocation
+        $uBlockFinishTemplate = $uBlockTemplate += $uBlockLatestContent += '}}'
+        New-Item "$env:ProgramFiles\Mozilla Firefox\ByKsTv_uBlock_Origin_Backup_Restore.json" -Value $uBlockFinishTemplate -Force
+
         Write-Host 'Mozilla Firefox Extensions: Starting browser' -ForegroundColor green -BackgroundColor black
         [System.Diagnostics.Process]::Start('firefox.exe')
 
@@ -92,21 +107,6 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
     Add-Type -AssemblyName System.Windows.Forms
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
     
-    # adding ublock
-    # https://github.com/gorhill/uBlock/issues/2986#issuecomment-333198882
-
-    if ((Test-Path -Path "$env:ProgramFiles\Mozilla Firefox") -ne $true) {
-        New-Item -Path "$env:ProgramFiles\Mozilla Firefox" -Force -ItemType Directory
-    }
-    New-Item -Path 'HKLM:\SOFTWARE\Mozilla\ManagedStorage\uBlock0@raymondhill.net' -Force
-    New-ItemProperty -Path 'HKLM:\SOFTWARE\Mozilla\ManagedStorage\uBlock0@raymondhill.net' -Name '(default)' -Value "$env:ProgramFiles\Mozilla Firefox\ByKsTv_uBlock_Origin_Backup_Restore.json" -PropertyType String -Force
-    $uBlockDownloadLocation = "$env:ProgramFiles\Mozilla Firefox\ByKsTv_uBlock_Origin_Backup.json"
-    Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.json -OutFile $uBlockDownloadLocation
-    $uBlockTemplate = '{"name": "uBlock0@raymondhill.net","description": "ignored","type": "storage","data": {"adminSettings": '
-    $uBlockLatestContent = Get-Content $uBlockDownloadLocation
-    $uBlockFinishTemplate = $uBlockTemplate += $uBlockLatestContent += '}}'
-    New-Item "$env:ProgramFiles\Mozilla Firefox\ByKsTv_uBlock_Origin_Backup_Restore.json" -Value $uBlockFinishTemplate -Force
-
     # Write-Host "Mozilla Firefox Extensions: Downloading 'uBlock Origin' custom settings" -ForegroundColor green -BackgroundColor black
     # (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.json', "$env:TEMP\uBlock_Origin_Backup.json")
     
@@ -143,5 +143,10 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
     # [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
 
     Write-Host 'Mozilla Firefox Extensions: Cleaning up' -ForegroundColor green -BackgroundColor black
-    Remove-Item HKLM:\SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install -Force
+    if ((Test-Path -Path HKLM:\SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install) -eq $true) {
+        Remove-Item HKLM:\SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install -Force
+    }
+    if ((Test-Path -Path 'HKLM:\SOFTWARE\Mozilla\ManagedStorage\uBlock0@raymondhill.net') -eq $true) {
+        Remove-Item 'HKLM:\SOFTWARE\Mozilla\ManagedStorage\uBlock0@raymondhill.net' -Force
+    }
 }
