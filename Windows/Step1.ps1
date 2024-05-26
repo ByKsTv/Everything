@@ -206,6 +206,9 @@ Write-Host 'Step2: Windows Update: Checking for updates' -ForegroundColor green 
 Start-Process -FilePath "$env:SystemRoot\System32\UsoClient.exe" -ArgumentList StartInteractiveScan
 Start-Process -FilePath "ms-settings:windowsupdate"
 
+# SaveRestartableApps -Disable
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name RestartApps -PropertyType DWord -Value 0 -Force
+
 # Write-Host 'Step1: NuGet: Installing' -ForegroundColor green -BackgroundColor black
 # Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
 
