@@ -1,14 +1,23 @@
+# Disable scheduled tasks
+# https://mozilla.github.io/policy-templates/
+if ((Test-Path -Path 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox') -ne $true) {
+    New-Item 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox' -Force 
+}
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox' -Name 'DisableDefaultBrowserAgent' -Value 1 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox' -Name 'BackgroundAppUpdate' -Value 0 -PropertyType DWord -Force
+
 Write-Host 'Mozilla Firefox: Downloading' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US', "$env:TEMP\firefox.exe")
 
 Write-Host 'Mozilla Firefox: Installing' -ForegroundColor green -BackgroundColor black
 Start-Process $env:TEMP\firefox.exe -ArgumentList '/S' -Wait
 
-Write-Host 'Mozilla Firefox: Hosts: Adding incoming.telemetry.mozilla.org' -ForegroundColor green -BackgroundColor black
-$Mozillaincomingtelemetry = Select-String -Path $env:windir\System32\drivers\etc\hosts -Pattern 'incoming.telemetry.mozilla.org'
-if ($null -eq $Mozillaincomingtelemetry) {
-	Add-Content -Path $env:windir\System32\drivers\etc\hosts -Value "`n127.0.0.1`tincoming.telemetry.mozilla.org" -Force
-}
+# Write-Host 'Mozilla Firefox: Hosts: Adding incoming.telemetry.mozilla.org' -ForegroundColor green -BackgroundColor black
+# not working, still pings this url even after blocking in hosts file
+# $Mozillaincomingtelemetry = Select-String -Path $env:windir\System32\drivers\etc\hosts -Pattern 'incoming.telemetry.mozilla.org'
+# if ($null -eq $Mozillaincomingtelemetry) {
+# 	Add-Content -Path $env:windir\System32\drivers\etc\hosts -Value "`n127.0.0.1`tincoming.telemetry.mozilla.org" -Force
+# }
 
 Write-Host 'Mozilla Firefox: Deleting Desktop Shortcut' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path "$env:PUBLIC\Desktop\Firefox.lnk") -eq $true) {
@@ -51,6 +60,16 @@ Start-Sleep -Milliseconds 100
 Write-Host 'Mozilla Firefox: Setting as default browser' -ForegroundColor green -BackgroundColor black
 [System.Windows.Forms.SendKeys]::SendWait('{TAB}')
 [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
+Start-Sleep -Milliseconds 1000
 
 Write-Host 'Mozilla Firefox: Waiting for user to sign in' -ForegroundColor green -BackgroundColor black
 [System.Diagnostics.Process]::Start('firefox.exe', 'https://accounts.firefox.com/?context=fx_desktop_v3&entrypoint=fxa_toolbar_button&action=email&service=sync')
+Start-Sleep -Milliseconds 1000
+
+Write-Host 'Mozilla Firefox: Setting foreground' -ForegroundColor green -BackgroundColor black
+[SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
+
+# Delete scheduled tasks
+if ((Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree\Mozilla') -eq $true) {
+    Remove-Item -Path 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree\Mozilla' -Force
+}
