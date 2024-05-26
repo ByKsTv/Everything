@@ -99,7 +99,7 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
 '@
         }
     }
-
+    
     Write-Host 'Mozilla Firefox Extensions: Setting foreground' -ForegroundColor green -BackgroundColor black
     [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
 

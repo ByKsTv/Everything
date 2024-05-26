@@ -1319,13 +1319,13 @@ if ($null -ne (Get-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\R
 
 Write-Host 'Microsoft Edge: Deleting Desktop Shortcut' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path "$env:PUBLIC\Desktop\Microsoft Edge.lnk") -eq $true) {
-    Remove-Item -Path ("$env:PUBLIC\Desktop\Microsoft Edge.lnk")
+	Remove-Item -Path ("$env:PUBLIC\Desktop\Microsoft Edge.lnk")
 }
 
 # hide all rdp end sesstion pop up
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client') -ne $true) {
 	New-Item 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client' -Force 
-   }
+}
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client' -Name 'ShowShutdownDialog' -Value 0 -PropertyType DWord -Force
 
 #Write-Host 'Settings: Boot Options: Standard (default)' -ForegroundColor green -BackgroundColor black
