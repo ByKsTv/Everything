@@ -78,5 +78,11 @@ Write-Host 'Mozilla Firefox: Setting foreground' -ForegroundColor green -Backgro
 
 Write-Host 'Mozilla Firefox: Deleting Scheduled Tasks' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree\Mozilla') -eq $true) {
-    Remove-Item -Path 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree\Mozilla' -Force
+    Unregister-ScheduledTask -TaskName 'Firefox Background Update*' -Confirm:$false
+    Unregister-ScheduledTask -TaskName 'Firefox Default Browser Agent*' -Confirm:$false
+    $scheduleObject = New-Object -ComObject Schedule.Service
+    $scheduleObject.connect()
+    $rootFolder = $scheduleObject.GetFolder('\')
+    $rootFolder.DeleteFolder('Mozilla', $null)
+    Remove-Item -Path 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree\Mozilla' -Force -Recurse -ErrorAction SilentlyContinue
 }

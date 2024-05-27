@@ -76,5 +76,19 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
 
         Write-Host 'Mozilla Firefox Arkenfox: Starting' -ForegroundColor green -BackgroundColor black
         Start-ScheduledTask -TaskName $Arkenfox_Update
+
+        Write-Host 'Mozilla Firefox Arkenfox: Cleaning up' -ForegroundColor green -BackgroundColor black
+        if ((Test-Path -Path "$CurrentFireFoxProfilePath\datareporting") -eq $true) {
+            Remove-Item -Path "$CurrentFireFoxProfilePath\datareporting" -Force -Recurse
+        }
+        if ((Test-Path -Path "$CurrentFireFoxProfilePath\crashes") -eq $true) {
+            Remove-Item -Path "$CurrentFireFoxProfilePath\crashes" -Force -Recurse
+        }
+        if ((Test-Path -Path "$CurrentFireFoxProfilePath\saved-telemetry-pings") -eq $true) {
+            Remove-Item -Path "$CurrentFireFoxProfilePath\saved-telemetry-pings" -Force -Recurse
+        }
+        if ((Test-Path -Path "$CurrentFireFoxProfilePath\minidumps") -eq $true) {
+            Remove-Item -Path "$CurrentFireFoxProfilePath\minidumps" -Force -Recurse
+        }
     }
 }
