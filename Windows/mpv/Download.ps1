@@ -245,7 +245,7 @@ Write-Host 'mpv: Adding script toggleconsole.lua' -ForegroundColor green -Backgr
 Write-Host 'mpv: Adding script youtube-alt-tab.lua' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/youtube-alt-tab.lua', "$($env:USERPROFILE)/Desktop/mpv/scripts/youtube-alt-tab.lua")
 
-$sponsorblockanswer = [System.Windows.Forms.MessageBox]::Show($THIS, 'Add sponsorblock?
+$sponsorblockanswer = [System.Windows.Forms.MessageBox]::Show('Add sponsorblock?
 
 Python must be installed.
 ' , 'mpv scripts' , 4, 32)
