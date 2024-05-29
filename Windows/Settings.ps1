@@ -16,16 +16,16 @@ Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' -Name 'CSE
 $PowerCfg = (Get-ChildItem 'HKLM:\SYSTEM\CurrentControlSet\Control\Power\PowerSettings' -Recurse).Name -notmatch '\bDefaultPowerSchemeValues|(\\[0-9]|\b255)$'
 foreach ($item in $PowerCfg) { Set-ItemProperty -Path $item.Replace('HKEY_LOCAL_MACHINE','HKLM:') -Name 'Attributes' -Value 2 -Force }
 
-Write-Host 'Power Plan: Changing screen to never turns off' -ForegroundColor green -BackgroundColor black
-powercfg /CHANGE monitor-timeout-ac 0
-powercfg /CHANGE monitor-timeout-dc 0
-powercfg /CHANGE standby-timeout-ac 0
-powercfg /CHANGE standby-timeout-dc 0
+# Write-Host 'Power Plan: Changing screen to never turns off' -ForegroundColor green -BackgroundColor black
+# powercfg /CHANGE monitor-timeout-ac 0
+# powercfg /CHANGE monitor-timeout-dc 0
+# powercfg /CHANGE standby-timeout-ac 0
+# powercfg /CHANGE standby-timeout-dc 0
 
-Write-Host 'Power Plan: Disabling hibernate' -ForegroundColor green -BackgroundColor black
-powercfg /HIBERNATE off
-powercfg /CHANGE hibernate-timeout-ac 0
-powercfg /CHANGE hibernate-timeout-dc 0
+# Write-Host 'Power Plan: Disabling hibernate' -ForegroundColor green -BackgroundColor black
+# powercfg /HIBERNATE off
+# powercfg /CHANGE hibernate-timeout-ac 0
+# powercfg /CHANGE hibernate-timeout-dc 0
 
 Write-Host 'Power Plan: Disabling power throttling' -ForegroundColor green -BackgroundColor black
 # group policy
@@ -68,8 +68,8 @@ powercfg /SETDCVALUEINDEX SCHEME_CURRENT 0012ee47-9041-4b5d-9b77-535fba8b1442 51
 Write-Host 'Power Plan: Hard disk: Turn off hard disk after: 0 Seconds (Never)' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 0012ee47-9041-4b5d-9b77-535fba8b1442 6738e2c4-e8a5-4a42-b16a-e040e769756e 0
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT 0012ee47-9041-4b5d-9b77-535fba8b1442 6738e2c4-e8a5-4a42-b16a-e040e769756e 0
-powercfg /CHANGE disk-timeout-ac 0
-powercfg /CHANGE disk-timeout-dc 0
+# powercfg /CHANGE disk-timeout-ac 0
+# powercfg /CHANGE disk-timeout-dc 0
 
 Write-Host 'Power Plan: Hard disk: Hard disk burst ignore time: 0 Seconds' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 0012ee47-9041-4b5d-9b77-535fba8b1442 80e3c60e-bb94-4ad8-bbe0-0d3195efc663 0
@@ -83,7 +83,7 @@ powercfg /SETDCVALUEINDEX SCHEME_CURRENT 0012ee47-9041-4b5d-9b77-535fba8b1442 80
 # powercfg /SETACVALUEINDEX SCHEME_CURRENT 0012ee47-9041-4b5d-9b77-535fba8b1442 d639518a-e56d-4345-8af2-b9f32fb26109 0
 # powercfg /SETDCVALUEINDEX SCHEME_CURRENT 0012ee47-9041-4b5d-9b77-535fba8b1442 d639518a-e56d-4345-8af2-b9f32fb26109 0
 
-Write-Host 'Power Plan: Hard disk: AHCI Link Power Management - Adaptive: 0 Milliseconds' -ForegroundColor green -BackgroundColor black
+# Write-Host 'Power Plan: Hard disk: AHCI Link Power Management - Adaptive: 0 Milliseconds' -ForegroundColor green -BackgroundColor black
 # powercfg /SETACVALUEINDEX SCHEME_CURRENT 0012ee47-9041-4b5d-9b77-535fba8b1442 dab60367-53fe-4fbc-825e-521d069d2456 0
 # powercfg /SETDCVALUEINDEX SCHEME_CURRENT 0012ee47-9041-4b5d-9b77-535fba8b1442 dab60367-53fe-4fbc-825e-521d069d2456 0
 
@@ -491,9 +491,9 @@ powercfg /SETDCVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 fd
 # powercfg /SETACVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 17aaa29b-8b43-4b94-aafe-35f64daaf1ee 0
 # powercfg /SETDCVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 17aaa29b-8b43-4b94-aafe-35f64daaf1ee 0
 
-# Write-Host 'Power Plan: Display: Turn off display after: 0 Seconds' -ForegroundColor green -BackgroundColor black
-# powercfg /SETACVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e 0
-# powercfg /SETDCVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e 0
+Write-Host 'Power Plan: Display: Turn off display after: 0 Seconds (Never)' -ForegroundColor green -BackgroundColor black
+powercfg /SETACVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e 0
+powercfg /SETDCVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e 0
 
 Write-Host 'Power Plan: Display: Advanced Color quality bias: Advanced Color visual quality bias' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 684c3e69-a4f7-4014-8754-d45179a56167 1
@@ -1483,11 +1483,11 @@ if ($windowsbackupapp.PackageState -match 'Installed') {
 # 	Remove-Item -Path ("$env:APPDATA\PackageManagement") -Force -Recurse
 # }
 
-Write-Host 'Settings: Services: Setting to manual' -ForegroundColor green -BackgroundColor black
-# # https://docs.microsoft.com/en-us/windows-server/security/windows-services/security-guidelines-for-disabling-system-services-in-windows-server
 # # https://github.com/djdallmann/GamingPCSetup/blob/master/CONTENT/DOCS/SERVICES/README.md
 Write-Host 'Settings: Services: Disabling Windows Search Indexer' -ForegroundColor green -BackgroundColor black
 Set-Service WSearch -StartupType Disabled
+Write-Host 'Settings: Services: Enabling Printer' -ForegroundColor green -BackgroundColor black
+Set-Service Spooler -StartupType Automatic
 # Set-Service CDPSvc -StartupType Manual
 # Set-Service UsoSvc -StartupType Manual
 # Set-Service StorSvc -StartupType Manual
@@ -1512,7 +1512,6 @@ Set-Service WSearch -StartupType Disabled
 # Set-Service SensrSvc -StartupType Disabled
 # Set-Service SharedAccess -StartupType Disabled
 # Set-Service ShellHWDetection -StartupType Disabled
-# Set-Service Spooler -StartupType Disabled
 # Set-Service TabletInputService -StartupType Disabled
 # Set-Service UevAgentService -StartupType Disabled
 # Set-Service UserDataSvc -StartupType Disabled
