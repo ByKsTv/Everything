@@ -87,12 +87,12 @@ $NVCleanstallCustomSettings = @'
     "AddHardwareId": false,
     "ShowDlssIndicator": false,
     "DisableMPO": false,
-    "DisableNvCamera": false,
-    "ShowExpertOptions": false,
+    "DisableNvCamera": true,
+    "ShowExpertOptions": true,
     "DisableDriverTelemetry": false,
     "DisableNvContainer": false,
-    "DisableHDAudioSleepTimer": false,
-    "EnableMSI": false,
+    "DisableHDAudioSleepTimer": true,
+    "EnableMSI": true,
     "DisableHDCP": false,
     "NvEncPatch": false,
     "RunProgram": false,
@@ -104,7 +104,7 @@ $NVCleanstallCustomSettings = @'
     "RunAfter": "",
     "AddIdTemplate": "",
     "MSIPolicy": 0,
-    "MSIPriority": 0,
+    "MSIPriority": 3,
     "NvEncPatchVersions": 0
   }
 '@

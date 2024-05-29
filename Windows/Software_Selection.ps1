@@ -293,7 +293,7 @@ $CheckBox_mpv.Text = 'mpv (Desktop)'
 $CheckBox_mpv.Checked = $false
 $Form_SoftwareSelection.Controls.Add($CheckBox_mpv)
 
-if ((Test-Path -Path "$($env:USERPROFILE)/Desktop/mpv")) {
+if ((Test-Path -Path "$($env:USERPROFILE)\Desktop\mpv")) {
     $CheckBox_mpv.Enabled = $false
     $CheckBox_mpv.Text += ' (Installed)'
 }
