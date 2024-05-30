@@ -2585,6 +2585,8 @@ if ($NetworkSettingsName -match 'Software Timestamp') {
 if ($NetworkSettingsName -match 'Speed & Duplex') {
 	Write-Host 'Network: Speed & Duplex: 1.0 Gbps Full Duplex' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Speed & Duplex' -DisplayValue '1.0 Gbps Full Duplex'
+	# Write-Host 'Network: Speed & Duplex: Auto Negotiation' -ForegroundColor green -BackgroundColor black
+	# Set-NetAdapterAdvancedProperty -DisplayName 'Speed & Duplex' -DisplayValue 'Auto Negotiation'
 }
 
 if ($NetworkSettingsName -match 'System Idle Power Saver') {

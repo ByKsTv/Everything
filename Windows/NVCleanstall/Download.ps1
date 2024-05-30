@@ -95,15 +95,15 @@ $NVCleanstallCustomSettings = @'
     "EnableMSI": true,
     "DisableHDCP": false,
     "NvEncPatch": false,
-    "RunProgram": false,
+    "RunProgram": true,
     "RebuildSignatureEAC": false,
     "SkipUnsignedDriverWarning": false,
     "AddIdId": "",
     "AddIdName": "NVIDIA Graphics Device",
     "RunBefore": "",
-    "RunAfter": "",
+    "RunAfter": "powershell.exe Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/nvidiaProfileInspector/Download.ps1')",
     "AddIdTemplate": "",
-    "MSIPolicy": 0,
+    "MSIPolicy": 5,
     "MSIPriority": 3,
     "NvEncPatchVersions": 0
   }

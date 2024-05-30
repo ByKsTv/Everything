@@ -1,5 +1,5 @@
 Write-Host 'mpv: Getting latest release' -ForegroundColor green -BackgroundColor black
-$mpvshinchirolatestv3 = ((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/shinchiro/mpv-winbuild-cmake/releases/latest').assets | Where-Object name -Like 'mpv-x86_64-v3*' ).browser_download_url
+$mpvshinchirolatestv3 = ((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/zhongfly/mpv-winbuild/releases/latest').assets | Where-Object name -Like 'mpv-x86_64-v3*' ).browser_download_url
 
 Write-Host 'mpv: Downloading' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile($mpvshinchirolatestv3, "$env:TEMP\mpv.7z")
