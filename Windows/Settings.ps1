@@ -2817,6 +2817,16 @@ New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet
 # New-ItemProperty -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings' -Name 'EnableAutoProxyResultCache' -Value 0 -PropertyType DWord -Force
 # New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\WinHttpAutoProxySvc' -Name 'Start' -Value 4 -PropertyType DWord -Force # stopping service
 
+Get-PnpDevice -FriendlyName "WAN Miniport (L2TP)" | Disable-PnpDevice -Confirm:$false
+Get-PnpDevice -FriendlyName "WAN Miniport (SSTP)" | Disable-PnpDevice -Confirm:$false
+Get-PnpDevice -FriendlyName "WAN Miniport (PPTP)" | Disable-PnpDevice -Confirm:$false
+Get-PnpDevice -FriendlyName "WAN Miniport (PPPOE)" | Disable-PnpDevice -Confirm:$false
+Get-PnpDevice -FriendlyName "WAN Miniport (Network Monitor)" | Disable-PnpDevice -Confirm:$false
+Get-PnpDevice -FriendlyName "WAN Miniport (L2TP)" | Disable-PnpDevice -Confirm:$false
+Get-PnpDevice -FriendlyName "WAN Miniport (IPv6)" | Disable-PnpDevice -Confirm:$false
+Get-PnpDevice -FriendlyName "WAN Miniport (IP)" | Disable-PnpDevice -Confirm:$false
+Get-PnpDevice -FriendlyName "WAN Miniport (IKEv2)" | Disable-PnpDevice -Confirm:$false
+
 Write-Host 'Hosts: Adding mobile.events.data.microsoft.com' -ForegroundColor green -BackgroundColor black
 $mobileeventsdatamicrosoft = Select-String -Path $env:windir\System32\drivers\etc\hosts -Pattern 'mobile.events.data.microsoft.com'
 if ($null -eq $mobileeventsdatamicrosoft) {
