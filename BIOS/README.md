@@ -49,7 +49,7 @@ BIOS Update can take around 8 minutes.
 1. `Advanced` > `PCH Configuration` > `PCI Express Configuration` > `M.2_3 Link Speed` > `Gen4`.
 1. `Advanced` > `PCH Configuration` > `PCI Express Configuration` > `PCIEX16(G4) Link Speed` > `Gen4`.
 1. `Advanced` > `ThunderBolt(TM) Configuration` > `PCIE Tunneling over USB4` > `Disabled`.
-1. `Advanced` > `Trusted Computing` > `Security Device Support` > `Disable`. 
+1. `Advanced` > `Trusted Computing` > `Security Device Support` > `Disable`.
 1. `Advanced` > `APM Configuration` > `Power On By PCI-E` > `Enabled` (Wake-On-Lan).
 1. `Advanced` > `Onboard Devices Configuration` > `Wi-Fi Controller` > `Disabled`.
 1. `Advanced` > `Onboard Devices Configuration` > `Bluetooth Controller` > `Disabled`.

@@ -55,7 +55,7 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
             $registry.Dispose()
         }
 
-        Write-Host "Mozilla Firefox Extensions: uBlock Origin: Using custom settings" -ForegroundColor green -BackgroundColor black
+        Write-Host 'Mozilla Firefox Extensions: uBlock Origin: Using custom settings' -ForegroundColor green -BackgroundColor black
         # https://github.com/gorhill/uBlock/issues/2986#issuecomment-333198882
         New-Item -Path 'HKLM:\SOFTWARE\Mozilla\ManagedStorage\uBlock0@raymondhill.net' -Force
         New-ItemProperty -Path 'HKLM:\SOFTWARE\Mozilla\ManagedStorage\uBlock0@raymondhill.net' -Name '(default)' -Value "$env:TEMP\uBlock_Origin_Backup_Restore.json" -PropertyType String -Force
