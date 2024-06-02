@@ -1,11 +1,17 @@
 # https://github.com/djdallmann/GamingPCSetup/blob/master/CONTENT/DOCS/SERVICES/README.md
 # https://learn.microsoft.com/en-us/windows/iot/iot-enterprise/optimize/services
 # https://gist.github.com/Aldaviva/0eb62993639da319dc456cc01efa3fe5
-Write-Host 'Settings: Services: Disabling Windows Search Indexer' -ForegroundColor green -BackgroundColor black
-Set-Service WSearch -StartupType Disabled
-
 Write-Host 'Settings: Services: Enabling Printer' -ForegroundColor green -BackgroundColor black
 Set-Service Spooler -StartupType Automatic
+
+Write-Host 'Settings: Services: Enabling WiFi' -ForegroundColor green -BackgroundColor black
+Set-Service RmSvc -StartupType Automatic
+
+Write-Host 'Settings: Services: Enabling Bluetooth' -ForegroundColor green -BackgroundColor black
+Set-Service bthserv -StartupType Automatic
+
+Write-Host 'Settings: Services: Disabling Windows Search Indexer' -ForegroundColor green -BackgroundColor black
+Set-Service WSearch -StartupType Disabled
 
 Write-Host 'Settings: Services: Disabling GameDVR' -ForegroundColor green -BackgroundColor black
 Set-Service BcastDVRUserService -StartupType Disabled
@@ -80,12 +86,6 @@ Set-Service icssvc -StartupType Disabled
 Set-Service XblAuthManager -StartupType Disabled
 Set-Service XblGameSave -StartupType Disabled
 Set-Service SEMgrSvc -StartupType Disabled
-
-# Bluetooth Support Service?
-# Set-Service bthserv -StartupType Disabled
-
-# WiFI?
-# Set-Service RmSvc -StartupType Disabled
 
 Write-Host 'Power Plan: Restoring Defaults' -ForegroundColor green -BackgroundColor black
 powercfg /restoredefaultschemes
@@ -310,9 +310,9 @@ powercfg /SETDCVALUEINDEX SCHEME_CURRENT 2a737441-1930-4402-8d77-b2bebba308a3 48
 # powercfg /SETACVALUEINDEX SCHEME_CURRENT 4f971e89-eebd-4455-a8de-9e59040e7347 a7066653-8d6c-40a8-910e-a1f54b84c7e5 0
 # powercfg /SETDCVALUEINDEX SCHEME_CURRENT 4f971e89-eebd-4455-a8de-9e59040e7347 a7066653-8d6c-40a8-910e-a1f54b84c7e5 0
 
-# Write-Host 'Power Plan: PCI Express: Link State Power Management: Off=0/ModeratePowerSaving=1/MaximumPowerSavings=2' -ForegroundColor green -BackgroundColor black
-# powercfg /SETACVALUEINDEX SCHEME_CURRENT 501a4d13-42af-4429-9fd1-a8218c268e20 ee12f906-d277-404b-b6da-e5fa1a576df5 0
-# powercfg /SETDCVALUEINDEX SCHEME_CURRENT 501a4d13-42af-4429-9fd1-a8218c268e20 ee12f906-d277-404b-b6da-e5fa1a576df5 0
+Write-Host 'Power Plan: PCI Express: Link State Power Management: Off' -ForegroundColor green -BackgroundColor black
+powercfg /SETACVALUEINDEX SCHEME_CURRENT 501a4d13-42af-4429-9fd1-a8218c268e20 ee12f906-d277-404b-b6da-e5fa1a576df5 0
+powercfg /SETDCVALUEINDEX SCHEME_CURRENT 501a4d13-42af-4429-9fd1-a8218c268e20 ee12f906-d277-404b-b6da-e5fa1a576df5 0
 
 Write-Host 'Power Plan: Processor power management: Processor performance increase threshold: 0%' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 06cadf0e-64ed-448a-8927-ce7bf90eb35d 0
@@ -1495,18 +1495,12 @@ Remove-WindowsCapability -Name 'Hello.Face.18967~~~~0.0.1.0' -Online
 Remove-WindowsCapability -Name 'OneCoreUAP.OneSync~~~~0.0.1.0' -Online
 Remove-WindowsCapability -Name 'MathRecognizer~~~~0.0.1.0' -Online
 Remove-WindowsCapability -Name 'OpenSSH.Client~~~~0.0.1.0' -Online
-# DirectX
 Remove-WindowsCapability -Name 'DirectX.Configuration.Database~~~~0.0.1.0' -Online
-# # Notepad
-# Add-WindowsCapability -Name 'Microsoft.Windows.Notepad~~~~0.0.1.0' -Online
-# # PowerShell ISE
-# Add-WindowsCapability -Name 'Microsoft.Windows.PowerShell.ISE~~~~0.0.1.0' -Online
-# # Windows Fax and Scan
-# Add-WindowsCapability -Name 'Print.Fax.Scan~~~~0.0.1.0' -Online
-# # Print Managment
-# Add-WindowsCapability -Name 'Print.Management.Console~~~~0.0.1.0' -Online
-# # Paint
-# Add-WindowsCapability -Name 'Microsoft.Windows.MSPaint~~~~0.0.1.0' -Online
+# Notepad # Add-WindowsCapability -Name 'Microsoft.Windows.Notepad~~~~0.0.1.0' -Online
+# PowerShell ISE # Add-WindowsCapability -Name 'Microsoft.Windows.PowerShell.ISE~~~~0.0.1.0' -Online
+# Windows Fax and Scan # Add-WindowsCapability -Name 'Print.Fax.Scan~~~~0.0.1.0' -Online
+# Print Managment # Add-WindowsCapability -Name 'Print.Management.Console~~~~0.0.1.0' -Online
+# Paint # Add-WindowsCapability -Name 'Microsoft.Windows.MSPaint~~~~0.0.1.0' -Online
 
 # Write-Host 'Step2: Windows Optional Features: Disabling' -ForegroundColor green -BackgroundColor black
 Disable-WindowsOptionalFeature -FeatureName 'LegacyComponents' -Online -NoRestart
@@ -1523,11 +1517,8 @@ Disable-WindowsOptionalFeature -FeatureName 'NetFx4-AdvSrvs' -Online -NoRestart
 Disable-WindowsOptionalFeature -FeatureName 'SearchEngine-Client-Package' -Online -NoRestart
 Disable-WindowsOptionalFeature -FeatureName 'Microsoft-SnippingTool' -Online -NoRestart
 Disable-WindowsOptionalFeature -FeatureName 'Printing-Foundation-InternetPrinting-Client' -Online -NoRestart
-# # RDP
-# Enable-WindowsOptionalFeature -FeatureName 'Microsoft-RemoteDesktopConnection' -Online -NoRestart
-# # Print
-# Enable-WindowsOptionalFeature -FeatureName 'Printing-Foundation-Features' -Online -NoRestart
-# # SMB
+# RDP # Enable-WindowsOptionalFeature -FeatureName 'Microsoft-RemoteDesktopConnection' -Online -NoRestart
+# Print # Enable-WindowsOptionalFeature -FeatureName 'Printing-Foundation-Features' -Online -NoRestart
 if (Get-SmbClientNetworkInterface | Where-Object { $_.RdmaCapable -eq $false } ) {
 	Disable-WindowsOptionalFeature -FeatureName 'SmbDirect' -Online -NoRestart
 }
@@ -2622,8 +2613,6 @@ if ($NetworkSettingsName -match 'Software Timestamp') {
 if ($NetworkSettingsName -match 'Speed & Duplex') {
 	Write-Host 'Network: Speed & Duplex: 1.0 Gbps Full Duplex' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Speed & Duplex' -DisplayValue '1.0 Gbps Full Duplex'
-	# Write-Host 'Network: Speed & Duplex: Auto Negotiation' -ForegroundColor green -BackgroundColor black
-	# Set-NetAdapterAdvancedProperty -DisplayName 'Speed & Duplex' -DisplayValue 'Auto Negotiation'
 }
 
 if ($NetworkSettingsName -match 'System Idle Power Saver') {
@@ -2713,7 +2702,6 @@ Set-NetTCPSetting -EcnCapability Disabled
 
 Write-Host 'Network: Chimney: Disabled' -ForegroundColor green -BackgroundColor black
 Set-NetOffloadGlobalSetting -Chimney Disabled
-#netsh int tcp set global chimney=disabled 
 
 Write-Host 'Network: Timestamps: Disabled' -ForegroundColor green -BackgroundColor black
 Set-NetTCPSetting -Timestamps Disabled

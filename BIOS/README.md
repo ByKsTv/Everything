@@ -35,10 +35,8 @@ BIOS Update can take around 8 minutes.
 1. `Advanced` > `Platform Misc Configuration` > `PCI Express Native Power Management` > `Enabled` (Wake-On-Lan). (default)
 1. `Advanced` > `Platform Misc Configuration` > `ASPM` > `Disabled`.
 1. `Advanced` > `CPU Configuration` > `Intel (VMX) Virtualization Technology` > `Disabled`.
-1. `Advanced` > `CPU Configuration` > `Hyper-Threading` > `Disabled`.
 1. `Advanced` > `CPU Configuration` > `CPU - Power Management Control` > `Intel(R) SpeedStep(tm)` > `Disabled`.
 1. `Advanced` > `CPU Configuration` > `CPU - Power Management Control` > `Intel(R) Speed Shift Technology` > `Disabled`.
-1. `Advanced` > `CPU Configuration` > `CPU - Power Management Control` > `Turbo Mode` > `Disabled`.
 1. `Advanced` > `CPU Configuration` > `CPU - Power Management Control` > `CPU C-states` > `Disabled`.
 1. `Advanced` > `System Agent (SA) Configuration` > `VT-d` > `Disabled`.
 1. `Advanced` > `System Agent (SA) Configuration` > `PCI Express Configuration` > `M.2_2 Link Speed` > `Gen4`.
@@ -55,8 +53,6 @@ BIOS Update can take around 8 minutes.
 1. `Advanced` > `Onboard Devices Configuration` > `Bluetooth Controller` > `Disabled`.
 1. `Advanced` > `Onboard Devices Configuration` > `LED lighting When system is in working state` > `Stealth Mode`.
 1. `Advanced` > `Onboard Devices Configuration` > `ASM1061 Configuration` > `ASMedia Storage Controller` > `Disabled`.
-   <!-- 1. `Boot` > `Secure Boot` > `OS Type` > `Windows UEFI mode`. -->
-   <!-- 1. `Boot` > `Secure Boot` > `Secure Boot Mode` > `Standard`. -->
 1. `Boot` > `Boot Configuration` > `Fast Boot` > `Disabled`.
 1. `Boot` > `Boot Configuration` > `Boot Logo Display` > `Disabled`.
 1. `Boot` > `Boot Configuration` > `Bootup NumLock State` > `Off`.
