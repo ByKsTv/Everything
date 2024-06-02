@@ -91,7 +91,7 @@ $NVCleanstallCustomSettings = @'
     "ShowExpertOptions": true,
     "DisableDriverTelemetry": false,
     "DisableNvContainer": false,
-    "DisableHDAudioSleepTimer": true,
+    "DisableHDAudioSleepTimer": false,
     "EnableMSI": true,
     "DisableHDCP": false,
     "NvEncPatch": false,

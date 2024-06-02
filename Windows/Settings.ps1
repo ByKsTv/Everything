@@ -1,3 +1,92 @@
+# https://github.com/djdallmann/GamingPCSetup/blob/master/CONTENT/DOCS/SERVICES/README.md
+# https://learn.microsoft.com/en-us/windows/iot/iot-enterprise/optimize/services
+# https://gist.github.com/Aldaviva/0eb62993639da319dc456cc01efa3fe5
+Write-Host 'Settings: Services: Disabling Windows Search Indexer' -ForegroundColor green -BackgroundColor black
+Set-Service WSearch -StartupType Disabled
+
+Write-Host 'Settings: Services: Enabling Printer' -ForegroundColor green -BackgroundColor black
+Set-Service Spooler -StartupType Automatic
+
+Write-Host 'Settings: Services: Disabling GameDVR' -ForegroundColor green -BackgroundColor black
+Set-Service BcastDVRUserService -StartupType Disabled
+$BcastDVRUserService_ = (Get-Service BcastDVRUserService_*).Name
+New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$BcastDVRUserService_" -Name 'Start' -Value 4 -PropertyType DWord -Force
+
+Write-Host 'Settings: Services: Disabling Clipboard' -ForegroundColor green -BackgroundColor black
+Set-Service cbdhsvc -StartupType Disabled
+$cbdhsvc_ = (Get-Service cbdhsvc_*).Name
+New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$cbdhsvc_" -Name 'Start' -Value 4 -PropertyType DWord -Force
+
+Write-Host 'Settings: Services: Disabling Contact Data' -ForegroundColor green -BackgroundColor black
+Set-Service PimIndexMaintenanceSvc -StartupType Disabled
+$PimIndexMaintenanceSvc_ = (Get-Service PimIndexMaintenanceSvc_*).Name
+New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$PimIndexMaintenanceSvc_" -Name 'Start' -Value 4 -PropertyType DWord -Force
+
+Write-Host 'Settings: Services: Disabling MessagingService' -ForegroundColor green -BackgroundColor black
+Set-Service MessagingService -StartupType Disabled
+$MessagingService_ = (Get-Service MessagingService_*).Name
+New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$MessagingService_" -Name 'Start' -Value 4 -PropertyType DWord -Force
+
+Write-Host 'Settings: Services: Disabling CDPUserSvc' -ForegroundColor green -BackgroundColor black
+Set-Service CDPUserSvc -StartupType Disabled
+$CDPUserSvc_ = (Get-Service CDPUserSvc_*).Name
+New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$CDPUserSvc_" -Name 'Start' -Value 4 -PropertyType DWord -Force
+
+Write-Host 'Settings: Services: Disabling Network Data Usage' -ForegroundColor green -BackgroundColor black
+Set-Service DusmSvc -StartupType Disabled
+
+Write-Host 'Settings: Services: Disabling Diagnostic Policy Service' -ForegroundColor green -BackgroundColor black
+Set-Service DPS -StartupType Disabled
+
+Write-Host 'Settings: Services: Disabling IP Helper (IPv6 to IPv4)' -ForegroundColor green -BackgroundColor black
+Set-Service iphlpsvc -StartupType Disabled
+
+Write-Host 'Settings: Services: Disabling Shell Hardware Detection' -ForegroundColor green -BackgroundColor black
+Set-Service ShellHWDetection -StartupType Disabled
+
+Write-Host 'Settings: Services: Disabling Themes' -ForegroundColor green -BackgroundColor black
+Set-Service Themes -StartupType Disabled
+
+Write-Host 'Settings: Services: Disabling Downloaded Maps Manager' -ForegroundColor green -BackgroundColor black
+Set-Service MapsBroker -StartupType Disabled
+
+Set-Service AxInstSV -StartupType Disabled
+Set-Service tzautoupdate -StartupType Disabled
+Set-Service dmwappushservice -StartupType Disabled
+Set-Service lfsvc -StartupType Disabled
+Set-Service SharedAccess -StartupType Disabled
+Set-Service lltdsvc -StartupType Disabled
+Set-Service AppVClient -StartupType Disabled
+Set-Service CscService -StartupType Disabled
+Set-Service PhoneSvc -StartupType Disabled
+Set-Service PrintNotify -StartupType Disabled
+Set-Service QWAVE -StartupType Disabled
+Set-Service RemoteAccess -StartupType Disabled
+Set-Service SensorDataService -StartupType Disabled
+Set-Service SensrSvc -StartupType Disabled
+Set-Service SensorService -StartupType Disabled
+Set-Service SCardSvr -StartupType Disabled
+Set-Service ScDeviceEnum -StartupType Disabled
+Set-Service SSDPSRV -StartupType Disabled
+Set-Service WiaRpc -StartupType Disabled
+Set-Service TabletInputService -StartupType Disabled
+Set-Service upnphost -StartupType Disabled
+Set-Service UevAgentService -StartupType Disabled
+Set-Service WalletService -StartupType Disabled
+Set-Service FrameServer -StartupType Disabled
+Set-Service stisvc -StartupType Disabled
+Set-Service wisvc -StartupType Disabled
+Set-Service icssvc -StartupType Disabled
+Set-Service XblAuthManager -StartupType Disabled
+Set-Service XblGameSave -StartupType Disabled
+Set-Service SEMgrSvc -StartupType Disabled
+
+# Bluetooth Support Service?
+# Set-Service bthserv -StartupType Disabled
+
+# WiFI?
+# Set-Service RmSvc -StartupType Disabled
+
 Write-Host 'Power Plan: Restoring Defaults' -ForegroundColor green -BackgroundColor black
 powercfg /restoredefaultschemes
 
@@ -1375,7 +1464,7 @@ if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Policies\Microsoft\Windows NT\Termin
 }
 New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services' -Name 'AllowUnsignedFiles' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Step2: Scheduled tasks: Disabling telemetry' -ForegroundColor green -BackgroundColor black
+Write-Host 'Step2: Scheduled tasks: Disabling' -ForegroundColor green -BackgroundColor black
 Disable-ScheduledTask -TaskName 'Consolidator' -TaskPath '\Microsoft\Windows\Customer Experience Improvement Program\'
 Disable-ScheduledTask -TaskName 'DmClient' -TaskPath '\Microsoft\Windows\Feedback\Siuf\'
 Disable-ScheduledTask -TaskName 'DmClientOnScenarioDownload' -TaskPath '\Microsoft\Windows\Feedback\Siuf\'
@@ -1484,60 +1573,6 @@ if ($windowsbackupapp.PackageState -match 'Installed') {
 # 	Write-Host "Step2: NuGet: Deleting $env:APPDATA\PackageManagement" -ForegroundColor green -BackgroundColor black
 # 	Remove-Item -Path ("$env:APPDATA\PackageManagement") -Force -Recurse
 # }
-
-# # https://github.com/djdallmann/GamingPCSetup/blob/master/CONTENT/DOCS/SERVICES/README.md
-Write-Host 'Settings: Services: Disabling Windows Search Indexer' -ForegroundColor green -BackgroundColor black
-Set-Service WSearch -StartupType Disabled
-Write-Host 'Settings: Services: Enabling Printer' -ForegroundColor green -BackgroundColor black
-Set-Service Spooler -StartupType Automatic
-# Set-Service CDPSvc -StartupType Manual
-# Set-Service UsoSvc -StartupType Manual
-# Set-Service StorSvc -StartupType Manual
-# Set-Service edgeupdate -StartupType Manual
-# Set-Service WpnService -StartupType Manual
-# Set-Service AJRouter -StartupType Disabled
-# Set-Service AppVClient -StartupType Disabled
-# Set-Service AssignedAccessManagerSvc -StartupType Disabled
-# Set-Service AxInstSV -StartupType Disabled
-# Set-Service CscService -StartupType Disabled
-# Set-Service FrameServer -StartupType Disabled
-# Set-Service MapsBroker -StartupType Disabled
-# Set-Service PhoneSvc -StartupType Disabled
-# Set-Service PrintNotify -StartupType Disabled
-# Set-Service QWAVE -StartupType Disabled
-# Set-Service RemoteAccess -StartupType Disabled
-# Set-Service SCardSvr -StartupType Disabled
-# Set-Service SSDPSRV -StartupType Disabled
-# Set-Service ScDeviceEnum -StartupType Disabled
-# Set-Service SensorDataService -StartupType Disabled
-# Set-Service SensorService -StartupType Disabled
-# Set-Service SensrSvc -StartupType Disabled
-# Set-Service SharedAccess -StartupType Disabled
-# Set-Service ShellHWDetection -StartupType Disabled
-# Set-Service TabletInputService -StartupType Disabled
-# Set-Service UevAgentService -StartupType Disabled
-# Set-Service UserDataSvc -StartupType Disabled
-# Set-Service WalletService -StartupType Disabled
-# Set-Service WiaRpc -StartupType Disabled
-# Set-Service SEMgrSvc -StartupType Disabled
-# Set-Service XblAuthManager -StartupType Disabled
-# Set-Service XblGameSave -StartupType Disabled
-# Set-Service dmwappushservice -StartupType Disabled
-# Set-Service icssvc -StartupType Disabled
-# Set-Service lfsvc -StartupType Disabled
-# Set-Service lltdsvc -StartupType Disabled
-# Set-Service stisvc -StartupType Disabled
-# Set-Service tzautoupdate -StartupType Disabled
-# Set-Service upnphost -StartupType Disabled
-# Set-Service wisvc -StartupType Disabled
-# Set-Service BcastDVRUserService -StartupType Disabled
-# Set-Service PimIndexMaintenanceSvc -StartupType Disabled
-# Set-Service MessagingService -StartupType Disabled
-# # bluthoot
-# Set-Service bthserv -StartupType Disabled
-# Set-Service BluetoothUserService -StartupType Disabled
-# # RmSvc is wifi?
-# Set-Service RmSvc -StartupType Disabled
 
 Write-Host 'Settings: System Properties: Remote: Allow Remote Assistance connections to this computer: Off' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\System\ControlSet001\Control\Remote Assistance') -ne $true) {
