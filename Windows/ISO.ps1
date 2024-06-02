@@ -46,7 +46,7 @@ Write-Host 'Rufus: Selecting .ISO folder' -ForegroundColor green -BackgroundColo
 Start-Sleep -Milliseconds 100
 [System.Windows.Forms.SendKeys]::SendWait('^a')
 Start-Sleep -Milliseconds 100
-[System.Windows.Forms.SendKeys]::SendWait($env:TEMP)
+[System.Windows.Forms.SendKeys]::SendWait("$env:LOCALAPPDATA\Temp")
 [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
 Start-Sleep -Milliseconds 1000
 [System.Windows.Forms.SendKeys]::SendWait('%n')
