@@ -59,8 +59,9 @@ Start-Sleep -Milliseconds 2000
 
 Write-Host "mpv: Downloading 'yt-dlp' and 'ffmpeg'" -ForegroundColor green -BackgroundColor black
 Add-Type -AssemblyName System.Windows.Forms
-Start-Sleep -Milliseconds 2000
+Start-Sleep -Milliseconds 1000
 [System.Windows.Forms.SendKeys]::SendWait('y')
+Start-Sleep -Milliseconds 1000
 [System.Windows.Forms.SendKeys]::SendWait('1')
 
 Write-Host 'mpv: Waiting for updater to finish' -ForegroundColor green -BackgroundColor black
@@ -138,6 +139,8 @@ WHEEL_DOWN osd-bar add volume -1
 Write-Host 'mpv: Using custom settings for mpv.conf' -ForegroundColor green -BackgroundColor black
 New-Item -Path "$($env:USERPROFILE)\Desktop\mpv\mpv.conf" -ItemType File -Value '# High Quality
 profile=high-quality
+glsl-shader="~~/FSRCNNX_x2_16-0-4-1.glsl"
+glsl-shader="~~/KrigBilateral.glsl"
 
 # Player
 fs=yes
@@ -166,6 +169,8 @@ volume-max=100
 # Video
 hwdec=yes
 vo=gpu-next
+gpu-api=vulkan
+swapchain-depth=1
 target-colorspace-hint=yes
 video-sync=display-resample
 
@@ -178,11 +183,29 @@ screenshot-format=png
 screenshot-png-compression=0
 
 # YouTube
-ytdl-raw-options=mark-watched=,playlist-end=100' -Force
+ytdl-raw-options=mark-watched=,playlist-end=100
 
-# Write-Host 'mpv: Updating yt-dlp to master' -ForegroundColor green -BackgroundColor black
-# Set-Location $env:ProgramFiles\mpv
-# .\yt-dlp --update-to master
+# Profiles
+[FSRCNNX x8]
+profile-cond=p["frame-drop-count"]>10 or p["mistimed-frame-count"]>10 or p["vo-delayed-frame-count"]>10
+glsl-shaders-remove="~~/FSRCNNX_x2_16-0-4-1.glsl"
+glsl-shaders-remove="~~/KrigBilateral.glsl"
+glsl-shader="~~/FSRCNNX_x2_8-0-4-1.glsl"
+glsl-shader="~~/KrigBilateral.glsl"
+profile-restore=copy
+
+[No Shaders]
+profile-cond=p["frame-drop-count"]>30 or p["mistimed-frame-count"]>30 or p["vo-delayed-frame-count"]>30
+glsl-shaders-remove="~~/FSRCNNX_x2_8-0-4-1.glsl"
+glsl-shaders-remove="~~/KrigBilateral.glsl"
+profile-restore=copy' -Force
+
+Write-Host 'mpv: Adding FSRCNNX.glsl' -ForegroundColor green -BackgroundColor black
+(New-Object System.Net.WebClient).DownloadFile('https://github.com/igv/FSRCNN-TensorFlow/releases/download/1.1/FSRCNNX_x2_16-0-4-1.glsl', "$($env:USERPROFILE)\Desktop\mpv\FSRCNNX_x2_16-0-4-1.glsl")
+(New-Object System.Net.WebClient).DownloadFile('https://github.com/igv/FSRCNN-TensorFlow/releases/download/1.1/FSRCNNX_x2_8-0-4-1.glsl', "$($env:USERPROFILE)\Desktop\mpv\FSRCNNX_x2_8-0-4-1.glsl")
+
+Write-Host 'mpv: Adding KrigBilateral.glsl' -ForegroundColor green -BackgroundColor black
+(New-Object System.Net.WebClient).DownloadFile('https://gist.github.com/igv/a015fc885d5c22e6891820ad89555637/raw/038064821c5f768dfc6c00261535018d5932cdd5/KrigBilateral.glsl', "$($env:USERPROFILE)\Desktop\mpv\KrigBilateral.glsl")
 
 if (!(Test-Path -Path "$($env:USERPROFILE)\Desktop\mpv\scripts")) {
     Write-Host 'mpv: Creating scripts folder' -ForegroundColor green -BackgroundColor black
@@ -200,13 +223,9 @@ New-Item -Path "$($env:USERPROFILE)\Desktop\mpv\script-opts\osc.conf" -ItemType 
 Write-Host 'mpv: Adding script autoload.lua' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/mpv-player/mpv/master/TOOLS/lua/autoload.lua', "$($env:USERPROFILE)\Desktop\mpv\scripts\autoload.lua")
 
-# Write-Host 'mpv: Using custom settings for autoload.conf' -ForegroundColor green -BackgroundColor black
-# New-Item -Path "$($env:USERPROFILE)\Desktop\mpv\script-opts\autoload.conf" -ItemType File -Value 'directory_mode=recursive
-# additional_video_exts=vob
-# audio=no' -Force
-
 Write-Host 'mpv: Using custom settings for autoload.conf' -ForegroundColor green -BackgroundColor black
-New-Item -Path "$($env:USERPROFILE)\Desktop\mpv\script-opts\autoload.conf" -ItemType File -Value 'additional_video_exts=vob
+New-Item -Path "$($env:USERPROFILE)\Desktop\mpv\script-opts\autoload.conf" -ItemType File -Value 'directory_mode=recursive
+additional_video_exts=vob
 audio=no' -Force
 
 Write-Host 'mpv: Adding script oled-screensaver.lua' -ForegroundColor green -BackgroundColor black
@@ -269,7 +288,6 @@ skip_categories=sponsor,selfpromo,interaction,intro,outro,preview,music_offtopic
 skip_once=yes
 report_views=no
 fast_forward=no
-#fast_forward=yes
 fast_forward_increase=1
 fast_forward_cap=5' -Force
 

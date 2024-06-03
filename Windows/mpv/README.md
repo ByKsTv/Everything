@@ -26,7 +26,7 @@ Everything about mpv.
 1. Download [cookies.txt](https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/) extension.
 2. Open incognito window.
 3. Login to `youtube.com` and export `Current Site` cookies.
-4. Move `cookies-youtube-private.txt` to mpv folder.
+4. Move `cookies.firefox-private.txt` to mpv folder.
 5. Whitelist `s.youtube.com` on Pi-Hole.
 
 ## Summery

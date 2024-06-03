@@ -63,7 +63,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 ### NVCleanstall
 
 1. Restart to Safe Mode (SHIFT+RESTART) `Troubleshoot` > `Advanced options` > `Startup Settings` > `Restart` > Disconnect Ethernet Cable > Open Display Driver Uninstaller (Admin) > `---Select device type---` > `GPU` > `Clean and restart`.
-1. Open NVCleanstall (Admin) > Connect Ethernet Cable > `Refresh` > `Manually select a driver version` > `Studio` > `Next` > `Next` > `Next` > `Use Previous Settings` > `Next` > `Install`.
+1. Open NVCleanstall (Admin) > Connect Ethernet Cable > `Refresh` > `Manually select a driver version` > `Studio` > `Next` > `Recommended` > `Next` > `Use Previous Settings` > `Next` > `Install`.
 
 ### NVIDIA Control Panel
 
@@ -73,7 +73,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 ### Sounds
 
 1. Speaker setup > `5.1 (side)`.
-1. Default Format > `24 bit, 48000 Hz (Studio Quality)`.
+1. Default Format > `24 bit, 192000 Hz (Studio Quality)`.
 1. Enhancements: Disable all.
 1. Set default.
 

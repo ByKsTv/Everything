@@ -5,12 +5,12 @@ Write-Host 'Discord: Installing' -ForegroundColor green -BackgroundColor black
 Start-Process -FilePath $env:TEMP\DiscordSetup.exe -ArgumentList '/S' -Wait
 
 Write-Host 'Discord: Waiting for Desktop shortcut' -ForegroundColor green -BackgroundColor black
-while (($null -eq (Test-Path -Path "C:\Users\$env:USERNAME\Desktop\Discord.lnk") -eq $false)) {
+while (($null -eq (Test-Path -Path "$($env:USERPROFILE)\Desktop\Discord.lnk") -eq $false)) {
 }
 
 Write-Host 'Discord: Deleting Desktop Shortcut' -ForegroundColor green -BackgroundColor black
-if ((Test-Path -Path "C:\Users\$env:USERNAME\Desktop\Discord.lnk") -eq $true) {
-    Remove-Item -Path ("C:\Users\$env:USERNAME\Desktop\Discord.lnk")
+if ((Test-Path -Path "$($env:USERPROFILE)\Desktop\Discord.lnk") -eq $true) {
+    Remove-Item -Path "$($env:USERPROFILE)\Desktop\Discord.lnk"
 }
 
 Write-Host 'Discord: Disabling Startup' -ForegroundColor green -BackgroundColor black

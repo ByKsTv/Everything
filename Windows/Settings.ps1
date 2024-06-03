@@ -13,39 +13,39 @@
 Write-Host 'Settings: Services: Disabling Windows Search Indexer' -ForegroundColor green -BackgroundColor black
 Set-Service WSearch -StartupType Disabled
 
-# Write-Host 'Settings: Services: Disabling GameDVR' -ForegroundColor green -BackgroundColor black
-# Set-Service BcastDVRUserService -StartupType Disabled
-# $BcastDVRUserService_ = (Get-Service BcastDVRUserService_*).Name
-# New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$BcastDVRUserService_" -Name 'Start' -Value 4 -PropertyType DWord -Force
+Write-Host 'Settings: Services: Disabling GameDVR' -ForegroundColor green -BackgroundColor black
+Set-Service BcastDVRUserService -StartupType Disabled
+$BcastDVRUserService_ = (Get-Service BcastDVRUserService_*).Name
+New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$BcastDVRUserService_" -Name 'Start' -Value 4 -PropertyType DWord -Force
 
-# Write-Host 'Settings: Services: Disabling Clipboard' -ForegroundColor green -BackgroundColor black
-# Set-Service cbdhsvc -StartupType Disabled
-# $cbdhsvc_ = (Get-Service cbdhsvc_*).Name
-# New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$cbdhsvc_" -Name 'Start' -Value 4 -PropertyType DWord -Force
+Write-Host 'Settings: Services: Disabling Clipboard' -ForegroundColor green -BackgroundColor black
+Set-Service cbdhsvc -StartupType Disabled
+$cbdhsvc_ = (Get-Service cbdhsvc_*).Name
+New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$cbdhsvc_" -Name 'Start' -Value 4 -PropertyType DWord -Force
 
-# Write-Host 'Settings: Services: Disabling Contact Data' -ForegroundColor green -BackgroundColor black
-# Set-Service PimIndexMaintenanceSvc -StartupType Disabled
-# $PimIndexMaintenanceSvc_ = (Get-Service PimIndexMaintenanceSvc_*).Name
-# New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$PimIndexMaintenanceSvc_" -Name 'Start' -Value 4 -PropertyType DWord -Force
+Write-Host 'Settings: Services: Disabling Contact Data' -ForegroundColor green -BackgroundColor black
+Set-Service PimIndexMaintenanceSvc -StartupType Disabled
+$PimIndexMaintenanceSvc_ = (Get-Service PimIndexMaintenanceSvc_*).Name
+New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$PimIndexMaintenanceSvc_" -Name 'Start' -Value 4 -PropertyType DWord -Force
 
-# Write-Host 'Settings: Services: Disabling MessagingService' -ForegroundColor green -BackgroundColor black
-# Set-Service MessagingService -StartupType Disabled
-# $MessagingService_ = (Get-Service MessagingService_*).Name
-# New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$MessagingService_" -Name 'Start' -Value 4 -PropertyType DWord -Force
+Write-Host 'Settings: Services: Disabling MessagingService' -ForegroundColor green -BackgroundColor black
+Set-Service MessagingService -StartupType Disabled
+$MessagingService_ = (Get-Service MessagingService_*).Name
+New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$MessagingService_" -Name 'Start' -Value 4 -PropertyType DWord -Force
 
 # Write-Host 'Settings: Services: Disabling CDPUserSvc' -ForegroundColor green -BackgroundColor black
 # Set-Service CDPUserSvc -StartupType Disabled
 # $CDPUserSvc_ = (Get-Service CDPUserSvc_*).Name
 # New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$CDPUserSvc_" -Name 'Start' -Value 4 -PropertyType DWord -Force
 
-# Write-Host 'Settings: Services: Disabling Network Data Usage' -ForegroundColor green -BackgroundColor black
-# Set-Service DusmSvc -StartupType Disabled
+Write-Host 'Settings: Services: Disabling Network Data Usage' -ForegroundColor green -BackgroundColor black
+Set-Service DusmSvc -StartupType Disabled
 
 # Write-Host 'Settings: Services: Disabling Diagnostic Policy Service' -ForegroundColor green -BackgroundColor black
 # Set-Service DPS -StartupType Disabled
 
-# Write-Host 'Settings: Services: Disabling IP Helper (IPv6 to IPv4)' -ForegroundColor green -BackgroundColor black
-# Set-Service iphlpsvc -StartupType Disabled
+Write-Host 'Settings: Services: Disabling IP Helper (IPv6 to IPv4)' -ForegroundColor green -BackgroundColor black
+Set-Service iphlpsvc -StartupType Disabled
 
 # Write-Host 'Settings: Services: Disabling Shell Hardware Detection' -ForegroundColor green -BackgroundColor black
 # Set-Service ShellHWDetection -StartupType Disabled
@@ -53,18 +53,31 @@ Set-Service WSearch -StartupType Disabled
 # Write-Host 'Settings: Services: Disabling Themes' -ForegroundColor green -BackgroundColor black
 # Set-Service Themes -StartupType Disabled
 
-# Write-Host 'Settings: Services: Disabling Downloaded Maps Manager' -ForegroundColor green -BackgroundColor black
-# Set-Service MapsBroker -StartupType Disabled
+Write-Host 'Settings: Services: Disabling Downloaded Maps Manager' -ForegroundColor green -BackgroundColor black
+Set-Service MapsBroker -StartupType Disabled
+
+Write-Host 'Settings: Services: Disabling Geolocation Service' -ForegroundColor green -BackgroundColor black
+Set-Service lfsvc -StartupType Disabled
+
+Write-Host 'Settings: Services: Disabling Phone Service' -ForegroundColor green -BackgroundColor black
+Set-Service PhoneSvc -StartupType Disabled
+
+Write-Host 'Settings: Services: Disabling Xbox Live Auth Manager' -ForegroundColor green -BackgroundColor black
+Set-Service XblAuthManager -StartupType Disabled
+
+Write-Host 'Settings: Services: Disabling Xbox Live Game Save' -ForegroundColor green -BackgroundColor black
+Set-Service XblGameSave -StartupType Disabled
+
+Write-Host 'Settings: Services: Disabling Payments and NFC/SE Manager' -ForegroundColor green -BackgroundColor black
+Set-Service SEMgrSvc -StartupType Disabled
 
 # Set-Service AxInstSV -StartupType Disabled
 # Set-Service tzautoupdate -StartupType Disabled
 # Set-Service dmwappushservice -StartupType Disabled
-# Set-Service lfsvc -StartupType Disabled
 # Set-Service SharedAccess -StartupType Disabled
 # Set-Service lltdsvc -StartupType Disabled
 # Set-Service AppVClient -StartupType Disabled
 # Set-Service CscService -StartupType Disabled
-# Set-Service PhoneSvc -StartupType Disabled
 # Set-Service PrintNotify -StartupType Disabled
 # Set-Service QWAVE -StartupType Disabled
 # Set-Service RemoteAccess -StartupType Disabled
@@ -83,9 +96,6 @@ Set-Service WSearch -StartupType Disabled
 # Set-Service stisvc -StartupType Disabled
 # Set-Service wisvc -StartupType Disabled
 # Set-Service icssvc -StartupType Disabled
-# Set-Service XblAuthManager -StartupType Disabled
-# Set-Service XblGameSave -StartupType Disabled
-# Set-Service SEMgrSvc -StartupType Disabled
 
 Write-Host 'Power Plan: Restoring Defaults' -ForegroundColor green -BackgroundColor black
 powercfg /restoredefaultschemes
@@ -1823,26 +1833,26 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client' -Name '
 
 # https://docs.google.com/document/d/1c2-lUJq74wuYK1WrA_bIvgb89dUN0sj8-hO3vqmrau4/edit
 # This command forces the kernel timer to constantly poll for interrupts instead of wait for them; dynamic tick was implemented as a power saving feature for laptops but hurts desktop performance
-# bcdedit /set disabledynamictick yes
+bcdedit /set disabledynamictick yes
 
 # # Disables the hypervisor which is unneeded on a gaming PC
-# bcdedit /set hypervisorlaunchtype off
+bcdedit /set hypervisorlaunchtype off
 
 # # Disable VBS / HVCI
 # # https://www.tomshardware.com/how-to/disable-vbs-windows-11
-# New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\DeviceGuard' -Name 'EnableVirtualizationBasedSecurity' -Value 0 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\DeviceGuard' -Name 'EnableVirtualizationBasedSecurity' -Value 0 -PropertyType DWord -Force
 
 # Process scheduling - 22 = Long, variable, 3x foreground boost (36:12)
-# New-ItemProperty -Path 'HKLM:\SYSTEM\ControlSet001\Control\PriorityControl' -Name 'Win32PrioritySeparation' -Value 22 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\SYSTEM\ControlSet001\Control\PriorityControl' -Name 'Win32PrioritySeparation' -Value 22 -PropertyType DWord -Force
 
 # https://github.com/djdallmann/GamingPCSetup/blob/master/CONTENT/DOCS/POSTINSTALL/README.md
-# fsutil behavior set DisableDeleteNotify 0
-# fsutil behavior set disableLastAccess 1
-# fsutil behavior set disable8dot3 1
+fsutil behavior set DisableDeleteNotify 0
+fsutil behavior set disableLastAccess 1
+fsutil behavior set disable8dot3 1
 
-# Write-Host 'Settings: svchost.exe: Group (Decrease Process Number)' -ForegroundColor green -BackgroundColor black
-# $svchostram = (Get-CimInstance -ClassName Win32_PhysicalMemory | Measure-Object -Property Capacity -Sum).Sum / 1kb
-# Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control' -Name 'SvcHostSplitThresholdInKB' -Type DWord -Value $svchostram -Force
+Write-Host 'Settings: svchost.exe: Group (Decrease Process Number)' -ForegroundColor green -BackgroundColor black
+$svchostram = (Get-CimInstance -ClassName Win32_PhysicalMemory | Measure-Object -Property Capacity -Sum).Sum / 1kb
+Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control' -Name 'SvcHostSplitThresholdInKB' -Type DWord -Value $svchostram -Force
 
 Write-Host 'Settings: Settings: Date & time: Time zone: Jerusalem' -ForegroundColor green -BackgroundColor black
 Set-TimeZone -Id 'Israel Standard Time'
@@ -1876,76 +1886,76 @@ $HebrewUserLanguage = Get-WinUserLanguageList
 $HebrewUserLanguage.Add('he-IL')
 Set-WinUserLanguageList -LanguageList $HebrewUserLanguage -Force
 
-# Write-Host 'Settings: Lock Screen: Setting to black' -ForegroundColor green -BackgroundColor black
+Write-Host 'Settings: Lock Screen: Setting to black' -ForegroundColor green -BackgroundColor black
 # https://github.com/fr33thytweaks/Ultimate-Windows-Optimization-Guide/blob/main/6%20Windows/13%20Signout%20Lockscreen.ps1
-# takeown /f 'C:\Windows\Web\Screen' /r /d y
-# icacls 'C:\Windows\Web\Screen' /GRANT Everyone:F, Users:F /t
-# Add-Type -AssemblyName System.Drawing
-# $file = "$env:C:\Windows\Web\Screen\img100.jpg"
-# $edit = New-Object System.Drawing.Bitmap 3840, 2160
-# $color = [System.Drawing.Brushes]::Black
-# $graphics = [System.Drawing.Graphics]::FromImage($edit)
-# $graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-# $graphics.Dispose()
-# $edit.Save($file)
-# $file = "$env:C:\Windows\Web\Screen\img101.jpg"
-# $edit = New-Object System.Drawing.Bitmap 3840, 2400
-# $color = [System.Drawing.Brushes]::Black
-# $graphics = [System.Drawing.Graphics]::FromImage($edit)
-# $graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-# $graphics.Dispose()
-# $edit.Save($file)
-# $file = "$env:C:\Windows\Web\Screen\img101.png"
-# $edit = New-Object System.Drawing.Bitmap 3840, 2400
-# $color = [System.Drawing.Brushes]::Black
-# $graphics = [System.Drawing.Graphics]::FromImage($edit)
-# $graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-# $graphics.Dispose()
-# $edit.Save($file)
-# $file = "$env:C:\Windows\Web\Screen\img102.jpg"
-# $edit = New-Object System.Drawing.Bitmap 6400, 4000
-# $color = [System.Drawing.Brushes]::Black
-# $graphics = [System.Drawing.Graphics]::FromImage($edit)
-# $graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-# $graphics.Dispose()
-# $edit.Save($file)
-# $file = "$env:C:\Windows\Web\Screen\img103.jpg"
-# $edit = New-Object System.Drawing.Bitmap 3839, 2400
-# $color = [System.Drawing.Brushes]::Black
-# $graphics = [System.Drawing.Graphics]::FromImage($edit)
-# $graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-# $graphics.Dispose()
-# $edit.Save($file)
-# $file = "$env:C:\Windows\Web\Screen\img103.png"
-# $edit = New-Object System.Drawing.Bitmap 3839, 2400
-# $color = [System.Drawing.Brushes]::Black
-# $graphics = [System.Drawing.Graphics]::FromImage($edit)
-# $graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-# $graphics.Dispose()
-# $edit.Save($file)
-# $file = "$env:C:\Windows\Web\Screen\img104.jpg"
-# $edit = New-Object System.Drawing.Bitmap 3840, 2400
-# $color = [System.Drawing.Brushes]::Black
-# $graphics = [System.Drawing.Graphics]::FromImage($edit)
-# $graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-# $graphics.Dispose()
-# $edit.Save($file)
-# $file = "$env:C:\Windows\Web\Screen\img105.jpg"
-# $edit = New-Object System.Drawing.Bitmap 1920, 1200
-# $color = [System.Drawing.Brushes]::Black
-# $graphics = [System.Drawing.Graphics]::FromImage($edit)
-# $graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-# $graphics.Dispose()
-# $edit.Save($file)
-# takeown /f 'C:\ProgramData\Microsoft\Windows\SystemData' /r /d y
-# icacls 'C:\ProgramData\Microsoft\Windows\SystemData' /GRANT Everyone:F, Users:F /t
-# Remove-Item 'C:\ProgramData\Microsoft\Windows\SystemData' -Force -Recurse
-# Write-Host 'Settings: Settings: Personalization: Lock screen: Show lock screen background pictures on the sign-in screen: Off' -ForegroundColor green -BackgroundColor black
-# if ((Test-Path -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System') -ne $true) {
-# 	New-Item 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System' -Force
-# }
-# New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System' -Name 'DisableLogonBackgroundImage' -Value 0 -PropertyType DWord -Force
-# New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'RotatingLockScreenEnabled' -Value 0 -PropertyType DWord -Force
+takeown /f 'C:\Windows\Web\Screen' /r /d y
+icacls 'C:\Windows\Web\Screen' /GRANT Everyone:F, Users:F /t
+Add-Type -AssemblyName System.Drawing
+$file = "$env:C:\Windows\Web\Screen\img100.jpg"
+$edit = New-Object System.Drawing.Bitmap 3840, 2160
+$color = [System.Drawing.Brushes]::Black
+$graphics = [System.Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:C:\Windows\Web\Screen\img101.jpg"
+$edit = New-Object System.Drawing.Bitmap 3840, 2400
+$color = [System.Drawing.Brushes]::Black
+$graphics = [System.Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:C:\Windows\Web\Screen\img101.png"
+$edit = New-Object System.Drawing.Bitmap 3840, 2400
+$color = [System.Drawing.Brushes]::Black
+$graphics = [System.Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:C:\Windows\Web\Screen\img102.jpg"
+$edit = New-Object System.Drawing.Bitmap 6400, 4000
+$color = [System.Drawing.Brushes]::Black
+$graphics = [System.Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:C:\Windows\Web\Screen\img103.jpg"
+$edit = New-Object System.Drawing.Bitmap 3839, 2400
+$color = [System.Drawing.Brushes]::Black
+$graphics = [System.Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:C:\Windows\Web\Screen\img103.png"
+$edit = New-Object System.Drawing.Bitmap 3839, 2400
+$color = [System.Drawing.Brushes]::Black
+$graphics = [System.Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:C:\Windows\Web\Screen\img104.jpg"
+$edit = New-Object System.Drawing.Bitmap 3840, 2400
+$color = [System.Drawing.Brushes]::Black
+$graphics = [System.Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:C:\Windows\Web\Screen\img105.jpg"
+$edit = New-Object System.Drawing.Bitmap 1920, 1200
+$color = [System.Drawing.Brushes]::Black
+$graphics = [System.Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+takeown /f 'C:\ProgramData\Microsoft\Windows\SystemData' /r /d y
+icacls 'C:\ProgramData\Microsoft\Windows\SystemData' /GRANT Everyone:F, Users:F /t
+Remove-Item 'C:\ProgramData\Microsoft\Windows\SystemData' -Force -Recurse
+Write-Host 'Settings: Settings: Personalization: Lock screen: Show lock screen background pictures on the sign-in screen: Off' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System') -ne $true) {
+	New-Item 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System' -Force
+}
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System' -Name 'DisableLogonBackgroundImage' -Value 0 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'RotatingLockScreenEnabled' -Value 0 -PropertyType DWord -Force
 
 # Write-Host 'Settings: Compiling Timer Resolution Service' -ForegroundColor green -BackgroundColor black
 # https://github.com/fr33thytweaks/Ultimate-Windows-Optimization-Guide/blob/main/6%20Windows/10%20Timer%20Resolution.ps1
@@ -2845,15 +2855,15 @@ New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet
 # New-ItemProperty -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings' -Name 'EnableAutoProxyResultCache' -Value 0 -PropertyType DWord -Force
 # New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\WinHttpAutoProxySvc' -Name 'Start' -Value 4 -PropertyType DWord -Force # stopping service
 
-# Get-PnpDevice -FriendlyName 'WAN Miniport (L2TP)' | Disable-PnpDevice -Confirm:$false
-# Get-PnpDevice -FriendlyName 'WAN Miniport (SSTP)' | Disable-PnpDevice -Confirm:$false
-# Get-PnpDevice -FriendlyName 'WAN Miniport (PPTP)' | Disable-PnpDevice -Confirm:$false
-# Get-PnpDevice -FriendlyName 'WAN Miniport (PPPOE)' | Disable-PnpDevice -Confirm:$false
-# Get-PnpDevice -FriendlyName 'WAN Miniport (Network Monitor)' | Disable-PnpDevice -Confirm:$false
-# Get-PnpDevice -FriendlyName 'WAN Miniport (L2TP)' | Disable-PnpDevice -Confirm:$false
-# Get-PnpDevice -FriendlyName 'WAN Miniport (IPv6)' | Disable-PnpDevice -Confirm:$false
-# Get-PnpDevice -FriendlyName 'WAN Miniport (IP)' | Disable-PnpDevice -Confirm:$false
-# Get-PnpDevice -FriendlyName 'WAN Miniport (IKEv2)' | Disable-PnpDevice -Confirm:$false
+Get-PnpDevice -FriendlyName 'WAN Miniport (L2TP)' | Disable-PnpDevice -Confirm:$false
+Get-PnpDevice -FriendlyName 'WAN Miniport (SSTP)' | Disable-PnpDevice -Confirm:$false
+Get-PnpDevice -FriendlyName 'WAN Miniport (PPTP)' | Disable-PnpDevice -Confirm:$false
+Get-PnpDevice -FriendlyName 'WAN Miniport (PPPOE)' | Disable-PnpDevice -Confirm:$false
+Get-PnpDevice -FriendlyName 'WAN Miniport (Network Monitor)' | Disable-PnpDevice -Confirm:$false
+Get-PnpDevice -FriendlyName 'WAN Miniport (L2TP)' | Disable-PnpDevice -Confirm:$false
+Get-PnpDevice -FriendlyName 'WAN Miniport (IPv6)' | Disable-PnpDevice -Confirm:$false
+Get-PnpDevice -FriendlyName 'WAN Miniport (IP)' | Disable-PnpDevice -Confirm:$false
+Get-PnpDevice -FriendlyName 'WAN Miniport (IKEv2)' | Disable-PnpDevice -Confirm:$false
 
 Write-Host 'Hosts: Adding mobile.events.data.microsoft.com' -ForegroundColor green -BackgroundColor black
 $mobileeventsdatamicrosoft = Select-String -Path $env:windir\System32\drivers\etc\hosts -Pattern 'mobile.events.data.microsoft.com'
