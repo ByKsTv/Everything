@@ -67,17 +67,13 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 ### NVIDIA Control Panel
 
-1. `NVIDIA Control Panel` > `3D Settings` > `Manage 3D settings`:
-1. `Power managment mode` > `Perfer maximum performance`.
-1. `NVIDIA Control Panel` > `Display` > `Change resolution`:
-1. `Output color format` > `YCbCr444` (TV) / `RGB` (Gaming).
-1. `Output dynamic range` > `Limited` (TV) / `Full` (Gaming).
-1. `Change resolution` > `Output color depth` > `12bpc`.
+1. `3D Settings` > `Manage 3D settings` > `Power managment mode` > `Perfer maximum performance`.
+1. `Display` > `Change resolution` > `Output color format` > `YCbCr444` (TV) / `RGB` (Gaming) > `Output dynamic range` > `Limited` (TV) / `Full` (Gaming) > `Output color depth` > `12bpc`.
 
 ### Sounds
 
 1. Speaker setup > `5.1 (side)`.
-1. Default Format > `24 bit, 192000 Hz (Studio Quality)`.
+1. Default Format > `24 bit, 48000 Hz (Studio Quality)`.
 1. Enhancements: Disable all.
 1. Set default.
 

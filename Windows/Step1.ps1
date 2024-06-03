@@ -16,10 +16,6 @@ $NextStep_Parameters = @{
 }
 Register-ScheduledTask @NextStep_Parameters -Force
 
-Write-Host 'Step1: Windows Update: Checking for updates' -ForegroundColor green -BackgroundColor black
-Start-Process -FilePath "$env:SystemRoot\System32\UsoClient.exe" -ArgumentList StartInteractiveScan
-Start-Process -FilePath 'ms-settings:windowsupdate'
-
 Write-Host 'Step1: Disabling Restart Apps' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name RestartApps -PropertyType DWord -Value 0 -Force
 
@@ -207,3 +203,7 @@ $Form_Step1_OK.Add_Click{
 
 $Form_Step1.Add_Shown({ $Form_Step1.Activate() })
 [void] $Form_Step1.ShowDialog()
+
+Write-Host 'Step1: Windows Update: Checking for updates' -ForegroundColor green -BackgroundColor black
+Start-Process -FilePath "$env:SystemRoot\System32\UsoClient.exe" -ArgumentList StartInteractiveScan
+Start-Process -FilePath 'ms-settings:windowsupdate'

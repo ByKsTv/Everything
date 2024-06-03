@@ -59,6 +59,7 @@ Start-Sleep -Milliseconds 2000
 
 Write-Host "mpv: Downloading 'yt-dlp' and 'ffmpeg'" -ForegroundColor green -BackgroundColor black
 Add-Type -AssemblyName System.Windows.Forms
+Start-Sleep -Milliseconds 2000
 [System.Windows.Forms.SendKeys]::SendWait('y')
 [System.Windows.Forms.SendKeys]::SendWait('1')
 
@@ -199,9 +200,13 @@ New-Item -Path "$($env:USERPROFILE)\Desktop\mpv\script-opts\osc.conf" -ItemType 
 Write-Host 'mpv: Adding script autoload.lua' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/mpv-player/mpv/master/TOOLS/lua/autoload.lua', "$($env:USERPROFILE)\Desktop\mpv\scripts\autoload.lua")
 
+# Write-Host 'mpv: Using custom settings for autoload.conf' -ForegroundColor green -BackgroundColor black
+# New-Item -Path "$($env:USERPROFILE)\Desktop\mpv\script-opts\autoload.conf" -ItemType File -Value 'directory_mode=recursive
+# additional_video_exts=vob
+# audio=no' -Force
+
 Write-Host 'mpv: Using custom settings for autoload.conf' -ForegroundColor green -BackgroundColor black
-New-Item -Path "$($env:USERPROFILE)\Desktop\mpv\script-opts\autoload.conf" -ItemType File -Value 'directory_mode=recursive
-additional_video_exts=vob
+New-Item -Path "$($env:USERPROFILE)\Desktop\mpv\script-opts\autoload.conf" -ItemType File -Value 'additional_video_exts=vob
 audio=no' -Force
 
 Write-Host 'mpv: Adding script oled-screensaver.lua' -ForegroundColor green -BackgroundColor black
