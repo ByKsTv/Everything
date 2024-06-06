@@ -43,6 +43,7 @@ if ($InstalledSoftware -match 'Google Chrome') {
 
     Write-Host 'Google Chrome Extensions: Waiting for browser' -ForegroundColor green -BackgroundColor black
     while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'Chrome' } -ErrorAction SilentlyContinue))) {
+        Start-Sleep -Milliseconds 1000
     }
     Start-Sleep -Milliseconds 10000
 

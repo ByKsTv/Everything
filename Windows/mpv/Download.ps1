@@ -38,6 +38,7 @@ Start-ScheduledTask -TaskName $MPV_Updater
 
 Write-Host 'mpv: Waiting for updater to start' -ForegroundColor green -BackgroundColor black
 while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'cmd.exe' } -ErrorAction SilentlyContinue))) {
+    Start-Sleep -Milliseconds 1000
 }
 
 Write-Host 'mpv: Adding option to set foreground' -ForegroundColor green -BackgroundColor black
@@ -66,6 +67,7 @@ Start-Sleep -Milliseconds 1000
 
 Write-Host 'mpv: Waiting for updater to finish' -ForegroundColor green -BackgroundColor black
 while (!($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'cmd.exe' } -ErrorAction SilentlyContinue))) {
+    Start-Sleep -Milliseconds 1000
 }
 
 Write-Host 'mpv: Installing' -ForegroundColor green -BackgroundColor black
@@ -139,8 +141,8 @@ WHEEL_DOWN osd-bar add volume -1
 Write-Host 'mpv: Using custom settings for mpv.conf' -ForegroundColor green -BackgroundColor black
 New-Item -Path "$($env:USERPROFILE)\Desktop\mpv\mpv.conf" -ItemType File -Value '# High Quality
 profile=high-quality
-glsl-shader="~~/FSRCNNX_x2_16-0-4-1.glsl"
-glsl-shader="~~/KrigBilateral.glsl"
+# glsl-shader="~~/FSRCNNX_x2_16-0-4-1.glsl"
+# glsl-shader="~~/KrigBilateral.glsl"
 
 # Player
 fs=yes
@@ -169,8 +171,6 @@ volume-max=100
 # Video
 hwdec=yes
 vo=gpu-next
-gpu-api=vulkan
-swapchain-depth=1
 target-colorspace-hint=yes
 video-sync=display-resample
 
@@ -186,19 +186,19 @@ screenshot-png-compression=0
 ytdl-raw-options=mark-watched=,playlist-end=100
 
 # Profiles
-[FSRCNNX x8]
-profile-cond=p["frame-drop-count"]>10 or p["mistimed-frame-count"]>10 or p["vo-delayed-frame-count"]>10
-glsl-shaders-remove="~~/FSRCNNX_x2_16-0-4-1.glsl"
-glsl-shaders-remove="~~/KrigBilateral.glsl"
-glsl-shader="~~/FSRCNNX_x2_8-0-4-1.glsl"
-glsl-shader="~~/KrigBilateral.glsl"
-profile-restore=copy
+# [FSRCNNX x8]
+# profile-cond=p["frame-drop-count"]>10 or p["mistimed-frame-count"]>10 or p["vo-delayed-frame-count"]>10
+# glsl-shaders-remove="~~/FSRCNNX_x2_16-0-4-1.glsl"
+# glsl-shaders-remove="~~/KrigBilateral.glsl"
+# glsl-shader="~~/FSRCNNX_x2_8-0-4-1.glsl"
+# glsl-shader="~~/KrigBilateral.glsl"
+# profile-restore=copy
 
-[No Shaders]
-profile-cond=p["frame-drop-count"]>30 or p["mistimed-frame-count"]>30 or p["vo-delayed-frame-count"]>30
-glsl-shaders-remove="~~/FSRCNNX_x2_8-0-4-1.glsl"
-glsl-shaders-remove="~~/KrigBilateral.glsl"
-profile-restore=copy' -Force
+# [No Shaders]
+# profile-cond=p["frame-drop-count"]>30 or p["mistimed-frame-count"]>30 or p["vo-delayed-frame-count"]>30
+# glsl-shaders-remove="~~/FSRCNNX_x2_8-0-4-1.glsl"
+# glsl-shaders-remove="~~/KrigBilateral.glsl"
+# profile-restore=copy' -Force
 
 Write-Host 'mpv: Adding FSRCNNX.glsl' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://github.com/igv/FSRCNN-TensorFlow/releases/download/1.1/FSRCNNX_x2_16-0-4-1.glsl', "$($env:USERPROFILE)\Desktop\mpv\FSRCNNX_x2_16-0-4-1.glsl")

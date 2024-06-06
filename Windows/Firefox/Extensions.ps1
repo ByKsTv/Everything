@@ -78,6 +78,7 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
 
         Write-Host 'Mozilla Firefox Extensions: Waiting for browser' -ForegroundColor green -BackgroundColor black
         while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' } -ErrorAction SilentlyContinue))) {
+            Start-Sleep -Milliseconds 1000
         }
         Start-Sleep -Milliseconds 25000
         

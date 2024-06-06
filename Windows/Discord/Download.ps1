@@ -4,8 +4,14 @@ Write-Host 'Discord: Downloading' -ForegroundColor green -BackgroundColor black
 Write-Host 'Discord: Installing' -ForegroundColor green -BackgroundColor black
 Start-Process -FilePath $env:TEMP\DiscordSetup.exe -ArgumentList '/S' -Wait
 
-Write-Host 'Discord: Waiting for Desktop shortcut' -ForegroundColor green -BackgroundColor black
-while (($null -eq (Test-Path -Path "$($env:USERPROFILE)\Desktop\Discord.lnk") -eq $false)) {
+Write-Host 'Discord: Waiting for Discord Updater to Open' -ForegroundColor green -BackgroundColor black
+while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'Discord Updater' } -ErrorAction SilentlyContinue))) {
+    Start-Sleep -Milliseconds 1000
+}
+
+Write-Host 'Discord: Waiting for Discord Updater to Close' -ForegroundColor green -BackgroundColor black
+while (($true -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'Discord Updater' } -ErrorAction SilentlyContinue))) {
+    Start-Sleep -Milliseconds 1000
 }
 
 Write-Host 'Discord: Deleting Desktop Shortcut' -ForegroundColor green -BackgroundColor black

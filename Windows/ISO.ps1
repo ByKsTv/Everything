@@ -17,6 +17,7 @@ Start-Process "$env:TEMP\Rufus.exe"
 
 Write-Host 'Rufus: Waiting for window' -ForegroundColor green -BackgroundColor black
 while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'Rufus' } -ErrorAction SilentlyContinue))) {
+    Start-Sleep -Milliseconds 1000
 }
 
 Write-Host 'Rufus: Adding option to set foreground' -ForegroundColor green -BackgroundColor black

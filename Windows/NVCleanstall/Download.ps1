@@ -23,6 +23,7 @@ if ($InstalledSoftware -match 'Firefox') {
 }
 Write-Host 'NVCleanstall: Waiting for browser' -ForegroundColor green -BackgroundColor black
 while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'chrome' -or $_.mainWindowTitle -match 'firefox' } -ErrorAction SilentlyContinue))) {
+    Start-Sleep -Milliseconds 1000
 }
 Start-Sleep -Milliseconds 1000
 
@@ -59,6 +60,7 @@ if ($InstalledSoftware -match 'Firefox') {
 Write-Host 'NVCleanstall: Waiting for download to complete' -ForegroundColor green -BackgroundColor black
 $Downloads = (New-Object -ComObject Shell.Application).NameSpace('shell:Downloads').Self.Path
 While (!(Test-Path "$Downloads\NVCleanstall*.exe" -ErrorAction SilentlyContinue)) {
+    Start-Sleep -Milliseconds 1000
 }
 do {
     $dirStats = Get-Item "$Downloads\NVCleanstall*.exe" | Measure-Object -Sum Length

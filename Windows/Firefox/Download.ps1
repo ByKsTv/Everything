@@ -28,6 +28,7 @@ Start-Process "$env:ProgramFiles\Mozilla Firefox\firefox.exe"
 
 Write-Host 'Mozilla Firefox: Waiting for browser' -ForegroundColor green -BackgroundColor black
 while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' } -ErrorAction SilentlyContinue))) {
+    Start-Sleep -Milliseconds 1000
 }
 Start-Sleep -Milliseconds 10000
 
