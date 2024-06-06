@@ -39,12 +39,24 @@ Write-Host 'BetterDiscord: Adding PluginRepo.plugin.js' -ForegroundColor green -
 Write-Host 'BetterDiscord: Adding 0BDFDB.plugin.js (PluginRepo)' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/mwittrien/BetterDiscordAddons/master/Library/0BDFDB.plugin.js', "$env:APPDATA\BetterDiscord\plugins\0BDFDB.plugin.js")
 
+Write-Host 'BetterDiscord: Adding CallTimeCounter.plugin.js' -ForegroundColor green -BackgroundColor black
+(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/QWERTxD/BetterDiscordPlugins/main/CallTimeCounter/CallTimeCounter.plugin.js', "$env:APPDATA\BetterDiscord\plugins\CallTimeCounter.plugin.js")
+
+Write-Host 'BetterDiscord: Adding BetterRoleColors.plugin.js' -ForegroundColor green -BackgroundColor black
+(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/rauenzi/BetterDiscordAddons/master/Plugins/BetterRoleColors/BetterRoleColors.plugin.js', "$env:APPDATA\BetterDiscord\plugins\BetterRoleColors.plugin.js")
+
+Write-Host 'BetterDiscord: Adding ThemeRepo.plugin.js' -ForegroundColor green -BackgroundColor black
+(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/mwittrien/BetterDiscordAddons/master/Plugins/ThemeRepo/ThemeRepo.plugin.js', "$env:APPDATA\BetterDiscord\plugins\ThemeRepo.plugin.js")
+
 Write-Host 'BetterDiscord: Enabling All Plugins' -ForegroundColor green -BackgroundColor black
 New-Item -Path "$env:APPDATA\BetterDiscord\data\stable\plugins.json" -ItemType File -Value '{
     "DoNotTrack": true,
     "ZeresPluginLibrary": true,
     "PluginRepo": true,
-    "BDFDB": true
+    "BDFDB": true,
+    "CallTimeCounter": true,
+    "BetterRoleColors": true,
+    "ThemeRepo": true
 }' -Force
 
 Write-Host 'BetterDiscord: Enabling All Themes' -ForegroundColor green -BackgroundColor black

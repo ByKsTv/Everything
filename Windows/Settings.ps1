@@ -1881,6 +1881,12 @@ if ((Test-Path -Path 'HKCU:\Control Panel\International') -ne $true) {
 }
 New-ItemProperty -Path 'HKCU:\Control Panel\International' -Name 'sTimeFormat' -Value 'HH:mm:ss' -PropertyType String -Force
 
+Write-Host 'Settings: Settings: Devices: Typing: Typing Insights: Disabling' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Input\Settings') -ne $true) {
+	New-Item 'HKCU:\SOFTWARE\Microsoft\Input\Settings' -Force
+}
+New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Input\Settings' -Name 'InsightsEnabled' -Value 0 -PropertyType DWord -Force
+
 Write-Host 'Settings: Settings: Time & Language: Language: Hebrew Keyboard' -ForegroundColor green -BackgroundColor black
 $HebrewUserLanguage = Get-WinUserLanguageList
 $HebrewUserLanguage.Add('he-IL')
