@@ -44,6 +44,9 @@ Write-Host 'BetterDiscord: Adding BetterRoleColors.plugin.js' -ForegroundColor g
 Write-Host 'BetterDiscord: Adding ThemeRepo.plugin.js' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/mwittrien/BetterDiscordAddons/master/Plugins/ThemeRepo/ThemeRepo.plugin.js', "$env:APPDATA\BetterDiscord\plugins\ThemeRepo.plugin.js")
 
+Write-Host 'BetterDiscord: Adding YABDP4Nitro.plugin.js' -ForegroundColor green -BackgroundColor black
+(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/riolubruh/YABDP4Nitro/main/YABDP4Nitro.plugin.js', "$env:APPDATA\BetterDiscord\plugins\YABDP4Nitro.plugin.js")
+
 Write-Host 'BetterDiscord: Enabling All Plugins' -ForegroundColor green -BackgroundColor black
 New-Item -Path "$env:APPDATA\BetterDiscord\data\stable\plugins.json" -ItemType File -Value '{
     "DoNotTrack": true,
@@ -52,7 +55,8 @@ New-Item -Path "$env:APPDATA\BetterDiscord\data\stable\plugins.json" -ItemType F
     "BDFDB": true,
     "CallTimeCounter": true,
     "BetterRoleColors": true,
-    "ThemeRepo": true
+    "ThemeRepo": true,
+    "YABDP4Nitro": true
 }' -Force
 
 Write-Host 'BetterDiscord: Enabling All Themes' -ForegroundColor green -BackgroundColor black
