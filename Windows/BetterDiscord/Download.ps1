@@ -1,7 +1,3 @@
-
-Write-Host 'BetterDiscord: Discord: Initiating' -ForegroundColor green -BackgroundColor black
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Discord/Download.ps1')
-
 Write-Host 'BetterDiscord: Closing Discord' -ForegroundColor green -BackgroundColor black
 Get-Process Discord -ea 0 | ForEach-Object { $_.CloseMainWindow() | Out-Null }
 Start-Sleep 1
