@@ -8,13 +8,15 @@ Write-Host 'Mediainfo: Downloading' -ForegroundColor green -BackgroundColor blac
 Write-Host 'Mediainfo: Installing' -ForegroundColor green -BackgroundColor black
 Start-Process -FilePath $env:TEMP\MediaInfo.exe -ArgumentList '/S'
 
-Write-Host 'Mediainfo: Using custom settings' -ForegroundColor green -BackgroundColor black
-$MediaInfoSetting = 'Output = Tree
-Donated = 1'
+Write-Host 'Mediainfo: Checking folders' -ForegroundColor green -BackgroundColor black
 if (!(Test-Path -Path $env:APPDATA\MediaInfo)) {
 	New-Item -Path $env:APPDATA\MediaInfo -Value MediaInfo -ItemType Directory
 }
 if (!(Test-Path -Path $env:APPDATA\MediaInfo\Plugin)) {
 	New-Item -Path $env:APPDATA\MediaInfo\Plugin -Value Plugin -ItemType Directory
 }
-Set-Content -Path $env:APPDATA\MediaInfo\Plugin\MediaInfo.cfg -Value $MediaInfoSetting -Force
+
+Write-Host 'Mediainfo: Using custom settings' -ForegroundColor green -BackgroundColor black
+Set-Content -Path $env:APPDATA\MediaInfo\Plugin\MediaInfo.cfg -Value 'Output = Tree 
+Donated = 1 
+ShellInfoTip = 1 ' -Force

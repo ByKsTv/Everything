@@ -3,7 +3,7 @@
 
 $Form_SoftwareSelection = New-Object System.Windows.Forms.Form
 $Form_SoftwareSelection.width = 500
-$Form_SoftwareSelection.height = 640
+$Form_SoftwareSelection.height = 660
 $Form_SoftwareSelection.Text = 'Software Selection'
 $Form_SoftwareSelection.StartPosition = 'CenterScreen'
 $Form_SoftwareSelection.Font = New-Object System.Drawing.Font('Tahoma', 11)
@@ -321,15 +321,22 @@ if (!($InstalledSoftware -match 'Microsoft Edge')) {
     $CheckBox_UninstallEdge.Text += ' (Uninstalled)'
 }
 
+$CheckBox_BetterDiscord = New-Object System.Windows.Forms.CheckBox
+$CheckBox_BetterDiscord.Location = New-Object System.Drawing.Size(30, 520)
+$CheckBox_BetterDiscord.Size = New-Object System.Drawing.Size(400, 20)
+$CheckBox_BetterDiscord.Text = 'BetterDiscord'
+$CheckBox_BetterDiscord.Checked = $false
+$Form_SoftwareSelection.Controls.Add($CheckBox_BetterDiscord)
+
 $Form_SoftwareSelection_OK = New-Object System.Windows.Forms.Button
-$Form_SoftwareSelection_OK.Location = New-Object System.Drawing.Size(100, 540)
+$Form_SoftwareSelection_OK.Location = New-Object System.Drawing.Size(100, 560)
 $Form_SoftwareSelection_OK.Size = New-Object System.Drawing.Size(100, 40)
 $Form_SoftwareSelection_OK.Text = 'OK'
 $Form_SoftwareSelection_OK.Add_Click({ $Form_SoftwareSelection.Close() })
 $Form_SoftwareSelection.Controls.Add($Form_SoftwareSelection_OK)
 
 $Form_SoftwareSelection_Cancel = New-Object System.Windows.Forms.Button
-$Form_SoftwareSelection_Cancel.Location = New-Object System.Drawing.Size(300, 540)
+$Form_SoftwareSelection_Cancel.Location = New-Object System.Drawing.Size(300, 560)
 $Form_SoftwareSelection_Cancel.Size = New-Object System.Drawing.Size(100, 40)
 $Form_SoftwareSelection_Cancel.Text = 'Cancel'
 $Form_SoftwareSelection_Cancel.Add_Click({ $Form_SoftwareSelection.Close() })
@@ -465,6 +472,11 @@ $Form_SoftwareSelection_OK.Add_Click{
     if ($CheckBox_UninstallEdge.Checked) {
         Write-Host 'Software Selection: Microsoft Edge: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Edge/Uninstall.ps1')
+    }
+
+    if ($CheckBox_BetterDiscord.Checked) {
+        Write-Host 'Software Selection: BetterDiscord: Initiating' -ForegroundColor green -BackgroundColor black
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/BetterDiscord/Download.ps1')
     }
 }
 
