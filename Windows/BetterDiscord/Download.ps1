@@ -47,6 +47,12 @@ Write-Host 'BetterDiscord: Adding ThemeRepo.plugin.js' -ForegroundColor green -B
 Write-Host 'BetterDiscord: Adding YABDP4Nitro.plugin.js' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/riolubruh/YABDP4Nitro/main/YABDP4Nitro.plugin.js', "$env:APPDATA\BetterDiscord\plugins\YABDP4Nitro.plugin.js")
 
+Write-Host 'BetterDiscord: Adding RemoveChatButtons.plugin.js' -ForegroundColor green -BackgroundColor black
+(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/BleedingBD/plugin-RemoveChatButtons/main/RemoveChatButtons.plugin.js', "$env:APPDATA\BetterDiscord\plugins\RemoveChatButtons.plugin.js")
+
+Write-Host 'BetterDiscord: Adding StaffTag.plugin.js' -ForegroundColor green -BackgroundColor black
+(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/mwittrien/BetterDiscordAddons/master/Plugins/StaffTag/StaffTag.plugin.js', "$env:APPDATA\BetterDiscord\plugins\StaffTag.plugin.js")
+
 Write-Host 'BetterDiscord: Enabling All Plugins' -ForegroundColor green -BackgroundColor black
 New-Item -Path "$env:APPDATA\BetterDiscord\data\stable\plugins.json" -ItemType File -Value '{
     "DoNotTrack": true,
@@ -56,7 +62,9 @@ New-Item -Path "$env:APPDATA\BetterDiscord\data\stable\plugins.json" -ItemType F
     "CallTimeCounter": true,
     "BetterRoleColors": true,
     "ThemeRepo": true,
-    "YABDP4Nitro": true
+    "YABDP4Nitro": true,
+    "RemoveChatButtons": true,
+    "StaffTag": true
 }' -Force
 
 Write-Host 'BetterDiscord: Enabling All Themes' -ForegroundColor green -BackgroundColor black
