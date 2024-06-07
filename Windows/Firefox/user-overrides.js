@@ -53,11 +53,13 @@ user_pref("media.autoplay.blocking_policy", 2);
 // Enable picture-in-picture video controls > Off
 user_pref("media.videocontrols.picture-in-picture.video-toggle.enabled", false);
 
-// Don't auto delete cookies
+// Don't auto delete
 user_pref("privacy.clearOnShutdown.cookies", false);
-
-// Don't auto delete history
 user_pref("privacy.clearOnShutdown.history", false);
+user_pref("privacy.clearOnShutdown.offlineApps", false);
+user_pref("privacy.clearOnShutdown.sessions", false);
+user_pref("privacy.clearOnShutdown_v2.cookiesAndStorage", false);
+user_pref("privacy.clearSiteData.cookiesAndStorage", false);
 
 // Maximize Window
 user_pref("privacy.resistFingerprinting", false);
