@@ -4,6 +4,9 @@ $TranslucentTBURL = ((Invoke-RestMethod -Method GET -Uri 'https://api.github.com
 Write-Host 'TranslucentTB: Downloading' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile("$TranslucentTBURL", "$env:TEMP\TranslucentTB.appinstaller")
 
+Write-Host 'TranslucentTB: Installing' -ForegroundColor green -BackgroundColor black
+Add-AppxPackage -AppInstallerFile "$env:TEMP\TranslucentTB.appinstaller"
+
 Write-Host 'TranslucentTB: Using custom settings' -ForegroundColor green -BackgroundColor black
 $TranslucentTBSettings = @'
 // See https://TranslucentTB.github.io/config for more information
@@ -80,6 +83,4 @@ $TranslucentTBSettings = @'
 $TranslucentTBLoc = Get-Item -Path "$env:LOCALAPPDATA\Packages\*TranslucentTB*\RoamingState\"
 $TranslucentTBSettingsLoc = "$TranslucentTBLoc\settings.json"
 New-Item -Path $TranslucentTBSettingsLoc -ItemType File -Value $TranslucentTBSettings -Force
-
-Write-Host 'TranslucentTB: Installing' -ForegroundColor green -BackgroundColor black
-Add-AppxPackage -AppInstallerFile "$env:TEMP\TranslucentTB.appinstaller"
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppModel\SystemAppData\*TranslucentTB*' -Name 'WasEverActivated' -Value 1 -PropertyType DWord -Force
