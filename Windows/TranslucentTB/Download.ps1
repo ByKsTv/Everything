@@ -8,7 +8,9 @@ Write-Host 'TranslucentTB: Installing' -ForegroundColor green -BackgroundColor b
 Add-AppxPackage -AppInstallerFile "$env:TEMP\TranslucentTB.appinstaller"
 
 Write-Host 'TranslucentTB: Using custom settings' -ForegroundColor green -BackgroundColor black
-$TranslucentTBSettings = @'
+$TranslucentTBLoc = Get-Item -Path "$env:LOCALAPPDATA\Packages\*TranslucentTB*\RoamingState\"
+$TranslucentTBSettingsLoc = "$TranslucentTBLoc\settings.json"
+New-Item -Path $TranslucentTBSettingsLoc -ItemType File -Value @'
 // See https://TranslucentTB.github.io/config for more information
 {
   "$schema": "https://TranslucentTB.github.io/settings.schema.json",
@@ -79,8 +81,7 @@ $TranslucentTBSettings = @'
   "disable_saving": false,
   "verbosity": "warn"
 }
-'@
-$TranslucentTBLoc = Get-Item -Path "$env:LOCALAPPDATA\Packages\*TranslucentTB*\RoamingState\"
-$TranslucentTBSettingsLoc = "$TranslucentTBLoc\settings.json"
-New-Item -Path $TranslucentTBSettingsLoc -ItemType File -Value $TranslucentTBSettings -Force
+'@ -Force
+
+Write-Host 'TranslucentTB: Hiding pop-up' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppModel\SystemAppData\*TranslucentTB*' -Name 'WasEverActivated' -Value 1 -PropertyType DWord -Force
