@@ -3,7 +3,7 @@
 
 $Form_SoftwareSelection = New-Object System.Windows.Forms.Form
 $Form_SoftwareSelection.width = 500
-$Form_SoftwareSelection.height = 660
+$Form_SoftwareSelection.height = 680
 $Form_SoftwareSelection.Text = 'Software Selection'
 $Form_SoftwareSelection.StartPosition = 'CenterScreen'
 $Form_SoftwareSelection.Font = New-Object System.Drawing.Font('Tahoma', 11)
@@ -328,15 +328,22 @@ $CheckBox_BetterDiscord.Text = 'BetterDiscord'
 $CheckBox_BetterDiscord.Checked = $false
 $Form_SoftwareSelection.Controls.Add($CheckBox_BetterDiscord)
 
+$CheckBox_TranslucentTB = New-Object System.Windows.Forms.CheckBox
+$CheckBox_TranslucentTB.Location = New-Object System.Drawing.Size(30, 540)
+$CheckBox_TranslucentTB.Size = New-Object System.Drawing.Size(400, 20)
+$CheckBox_TranslucentTB.Text = 'TranslucentTB'
+$CheckBox_TranslucentTB.Checked = $false
+$Form_SoftwareSelection.Controls.Add($CheckBox_TranslucentTB)
+
 $Form_SoftwareSelection_OK = New-Object System.Windows.Forms.Button
-$Form_SoftwareSelection_OK.Location = New-Object System.Drawing.Size(100, 560)
+$Form_SoftwareSelection_OK.Location = New-Object System.Drawing.Size(100, 580)
 $Form_SoftwareSelection_OK.Size = New-Object System.Drawing.Size(100, 40)
 $Form_SoftwareSelection_OK.Text = 'OK'
 $Form_SoftwareSelection_OK.Add_Click({ $Form_SoftwareSelection.Close() })
 $Form_SoftwareSelection.Controls.Add($Form_SoftwareSelection_OK)
 
 $Form_SoftwareSelection_Cancel = New-Object System.Windows.Forms.Button
-$Form_SoftwareSelection_Cancel.Location = New-Object System.Drawing.Size(300, 560)
+$Form_SoftwareSelection_Cancel.Location = New-Object System.Drawing.Size(300, 580)
 $Form_SoftwareSelection_Cancel.Size = New-Object System.Drawing.Size(100, 40)
 $Form_SoftwareSelection_Cancel.Text = 'Cancel'
 $Form_SoftwareSelection_Cancel.Add_Click({ $Form_SoftwareSelection.Close() })
@@ -477,6 +484,11 @@ $Form_SoftwareSelection_OK.Add_Click{
     if ($CheckBox_BetterDiscord.Checked) {
         Write-Host 'Software Selection: BetterDiscord: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/BetterDiscord/Download.ps1')
+    }
+
+    if ($CheckBox_TranslucentTB.Checked) {
+        Write-Host 'Software Selection: TranslucentTB: Initiating' -ForegroundColor green -BackgroundColor black
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/TranslucentTB/Download.ps1')
     }
 }
 
