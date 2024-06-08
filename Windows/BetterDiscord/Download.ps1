@@ -83,9 +83,6 @@ foreach ($DiscordAppDir in $DiscordAppDirs) {
             Write-Host 'BetterDiscord: Adding RemoveChatButtons.plugin.js' -ForegroundColor green -BackgroundColor black
             (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/BleedingBD/plugin-RemoveChatButtons/main/RemoveChatButtons.plugin.js', "$env:APPDATA\BetterDiscord\plugins\RemoveChatButtons.plugin.js")
 
-            Write-Host 'BetterDiscord: Adding StaffTag.plugin.js' -ForegroundColor green -BackgroundColor black
-            (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/mwittrien/BetterDiscordAddons/master/Plugins/StaffTag/StaffTag.plugin.js', "$env:APPDATA\BetterDiscord\plugins\StaffTag.plugin.js")
-
             Write-Host 'BetterDiscord: Enabling All Plugins' -ForegroundColor green -BackgroundColor black
             New-Item -Path "$env:APPDATA\BetterDiscord\data\stable\plugins.json" -ItemType File -Value '{
     "DoNotTrack": true,
@@ -96,8 +93,7 @@ foreach ($DiscordAppDir in $DiscordAppDirs) {
     "BetterRoleColors": true,
     "ThemeRepo": true,
     "YABDP4Nitro": true,
-    "RemoveChatButtons": true,
-    "StaffTag": true
+    "RemoveChatButtons": true
 }' -Force
 
             Write-Host 'BetterDiscord: Enabling All Themes' -ForegroundColor green -BackgroundColor black
