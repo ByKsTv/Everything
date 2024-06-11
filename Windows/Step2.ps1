@@ -19,6 +19,9 @@ $NextStep_Parameters = @{
 }
 Register-ScheduledTask @NextStep_Parameters -Force
 
+Write-Host 'Step2: Windows Update: Checking for updates' -ForegroundColor green -BackgroundColor black
+Start-Process -FilePath "$env:SystemRoot\System32\UsoClient.exe" -ArgumentList StartInteractiveScan
+
 Write-Host 'Step2: Windows Key: Activating' -ForegroundColor green -BackgroundColor black
 & ([ScriptBlock]::Create(((New-Object System.Net.WebClient).DownloadString('https://get.activated.win/')))) /HWID
 

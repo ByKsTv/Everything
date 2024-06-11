@@ -205,5 +205,18 @@ $Form_Step1.Add_Shown({ $Form_Step1.Activate() })
 [void] $Form_Step1.ShowDialog()
 
 Write-Host 'Step1: Windows Update: Checking for updates' -ForegroundColor green -BackgroundColor black
-Start-Process -FilePath "$env:SystemRoot\System32\UsoClient.exe" -ArgumentList StartInteractiveScan
-Start-Process -FilePath 'ms-settings:windowsupdate'
+# https://stackoverflow.com/questions/15175054/powershell-install-windows-updates
+# Start-Process powershell -ArgumentList '-noexit', '-noprofile', '-command &{Get-Content C:\Windows\SoftwareDistribution\ReportingEvents.log -Tail 1 -Wait}'
+$Criteria = 'IsInstalled=0'
+$Searcher = New-Object -ComObject Microsoft.Update.Searcher
+$SearchResult = $Searcher.Search($Criteria).Updates
+$Session = New-Object -ComObject Microsoft.Update.Session
+$Downloader = $Session.CreateUpdateDownloader()
+$Downloader.Updates = $SearchResult
+$Downloader.Download()
+$Installer = New-Object -ComObject Microsoft.Update.Installer
+$Installer.Updates = $SearchResult
+$Result = $Installer.Install()
+If ($Result.rebootRequired) {
+	shutdown /r /t 00
+}

@@ -203,9 +203,9 @@ powercfg /SETDCVALUEINDEX SCHEME_CURRENT 19cbb8fa-5279-450e-9fac-8a3d5fedd0c1 12
 # powercfg /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 1a34bdc3-7e6b-442e-a9d0-64b6ef378e84 0
 # powercfg /SETDCVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 1a34bdc3-7e6b-442e-a9d0-64b6ef378e84 0
 
-# Write-Host 'Power Plan: Sleep: Allow Away Mode Policy: No=0/Yes=1' -ForegroundColor green -BackgroundColor black
-# powercfg /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 25dfa149-5dd1-4736-b5ab-e8a37b5b8187 0
-# powercfg /SETDCVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 25dfa149-5dd1-4736-b5ab-e8a37b5b8187 0
+Write-Host 'Power Plan: Sleep: Allow Away Mode Policy: No' -ForegroundColor green -BackgroundColor black
+powercfg /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 25dfa149-5dd1-4736-b5ab-e8a37b5b8187 0
+powercfg /SETDCVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 25dfa149-5dd1-4736-b5ab-e8a37b5b8187 0
 
 Write-Host 'Power Plan: Sleep: Sleep after: 0 Seconds' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 29f6c1db-86da-48c5-9fdb-f2b67b1f44da 0
@@ -215,9 +215,9 @@ powercfg /SETDCVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 29
 # powercfg /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 7bc4a2f9-d8fc-4469-b07b-33eb785aaca0 0
 # powercfg /SETDCVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 7bc4a2f9-d8fc-4469-b07b-33eb785aaca0 0
 
-# Write-Host 'Power Plan: Sleep: Allow hybrid sleep: Off=0/On=1' -ForegroundColor green -BackgroundColor black
-# powercfg /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 29f6c1db-86da-48c5-9fdb-f2b67b1f44da 0
-# powercfg /SETDCVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 29f6c1db-86da-48c5-9fdb-f2b67b1f44da 0
+Write-Host 'Power Plan: Sleep: Allow hybrid sleep: Off' -ForegroundColor green -BackgroundColor black
+powercfg /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 29f6c1db-86da-48c5-9fdb-f2b67b1f44da 0
+powercfg /SETDCVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 29f6c1db-86da-48c5-9fdb-f2b67b1f44da 0
 
 Write-Host 'Power Plan: Sleep: Hibernate after: 0 Seconds' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 9d7815a6-7ee4-497e-8888-515a05f02364 0
@@ -2273,7 +2273,7 @@ $NET8LatestRelease = (Invoke-RestMethod -UseBasicParsing -Uri https://dotnetcli.
 (New-Object System.Net.WebClient).DownloadFile("https://dotnetcli.azureedge.net/dotnet/Runtime/$NET8LatestRelease/dotnet-runtime-$NET8LatestRelease-win-x64.exe", "$env:TEMP\dotnet-runtime-$NET8LatestRelease-win-x64.exe")
 Start-Process -FilePath "$env:TEMP\dotnet-runtime-$NET8LatestRelease-win-x64.exe" -ArgumentList '/install /quiet /norestart'
 # RKNBypass -Disable
-Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' -Name AutoConfigURL -Force # Error
+# Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' -Name AutoConfigURL -Force # Error
 # PreventEdgeShortcutCreation -Channels Stable, Beta, Dev, Canary
 if (Get-Package -Name 'Microsoft Edge' -ProviderName Programs) {
 	if (-not (Test-Path -Path HKLM:\SOFTWARE\Policies\Microsoft\EdgeUpdate)) {
@@ -2439,11 +2439,6 @@ if ((Get-WindowsCapability -Online -Name 'Microsoft.Windows.MSPaint*').State -eq
 Remove-Item -Path Registry::HKEY_CLASSES_ROOT\.zip\CompressedFolder\ShellNew -Force
 # MultipleInvokeContext -Disable
 # Remove-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer -Name MultipleInvokePromptMinimum -Force
-
-# https://github.com/djdallmann/GamingPCSetup/blob/master/CONTENT/DOCS/PSDSC/GamingMinimal.ps1
-# DisableWidgets - win11
-# New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Dsh' -Name AllowNewsAndInterests -PropertyType DWord -Value 0 -Force
-# DisableMouseTouchFeedback1 
 
 Write-Host 'Network: IPv4: MTU: 1500' -ForegroundColor green -BackgroundColor black
 $AdapterName = $(Get-NetAdapter | Where-Object { $_.Status -eq 'Up' }).Name
