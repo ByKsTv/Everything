@@ -9,16 +9,3 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 
 Write-Host 'Step3: Software Selection: Initiating' -ForegroundColor green -BackgroundColor black
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software_Selection.ps1')
-
-# I don't think we need it
-# Write-Host 'Step2: Windows Resource Protection: Searching for Integrity Violations' -ForegroundColor green -BackgroundColor black
-# sfc /scannow
-
-# Write-Host 'Step2: Searching for component store corruption' -ForegroundColor green -BackgroundColor black
-# dism /Online /Cleanup-image /Scanhealth
-
-# Write-Host 'Step2: Restoring health' -ForegroundColor green -BackgroundColor black
-# dism /Online /Cleanup-image /Restorehealth
-
-# Write-Host 'Step2: Cleaning up' -ForegroundColor green -BackgroundColor black
-# dism /online /cleanup-image /startcomponentcleanup

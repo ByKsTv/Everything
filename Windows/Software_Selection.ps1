@@ -102,7 +102,7 @@ $CheckBox_HyperXNGENUITY.Text = 'HyperX NGENUITY'
 $CheckBox_HyperXNGENUITY.Checked = $false
 $Form_SoftwareSelection.Controls.Add($CheckBox_HyperXNGENUITY)
 
-if ((Get-ChildItem $env:ProgramFiles\WindowsApps) -like '*NGENUITY*') {
+if ((Get-ChildItem $env:ProgramFiles\WindowsApps -ErrorAction SilentlyContinue) -like '*NGENUITY*') {
     $CheckBox_HyperXNGENUITY.Enabled = $false
     $CheckBox_HyperXNGENUITY.Text += ' (Installed)'
 }
@@ -328,12 +328,24 @@ $CheckBox_BetterDiscord.Text = 'BetterDiscord'
 $CheckBox_BetterDiscord.Checked = $false
 $Form_SoftwareSelection.Controls.Add($CheckBox_BetterDiscord)
 
+$BetterDiscord = 'BetterDiscord Updater'
+$BetterDiscord_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $BetterDiscord }
+if (($BetterDiscord_Exists)) {
+    $CheckBox_BetterDiscord.Enabled = $false
+    $CheckBox_BetterDiscord.Text += ' (Installed)'
+}
+
 $CheckBox_TranslucentTB = New-Object System.Windows.Forms.CheckBox
 $CheckBox_TranslucentTB.Location = New-Object System.Drawing.Size(30, 540)
 $CheckBox_TranslucentTB.Size = New-Object System.Drawing.Size(400, 20)
 $CheckBox_TranslucentTB.Text = 'TranslucentTB'
 $CheckBox_TranslucentTB.Checked = $false
 $Form_SoftwareSelection.Controls.Add($CheckBox_TranslucentTB)
+
+if ($InstalledSoftware -match 'TranslucentTB') {
+    $CheckBox_TranslucentTB.Enabled = $false
+    $CheckBox_TranslucentTB.Text += ' (Installed)'
+}
 
 $Form_SoftwareSelection_OK = New-Object System.Windows.Forms.Button
 $Form_SoftwareSelection_OK.Location = New-Object System.Drawing.Size(100, 580)
