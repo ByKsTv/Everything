@@ -155,7 +155,9 @@ $CheckBox_MediaInfo.Text = 'MediaInfo'
 $CheckBox_MediaInfo.Checked = $false
 $Form_SoftwareSelection.Controls.Add($CheckBox_MediaInfo)
 
-if ($InstalledSoftware -match 'MediaInfo') {
+$Mediainfo = 'Mediainfo Updater'
+$Mediainfo_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $Mediainfo }
+if (($Mediainfo_Exists)) {
     $CheckBox_MediaInfo.Enabled = $false
     $CheckBox_MediaInfo.Text += ' (Installed)'
 }
