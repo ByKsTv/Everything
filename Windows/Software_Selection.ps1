@@ -189,7 +189,9 @@ $CheckBox_NotepadPlusPlus.Text = 'Notepad++'
 $CheckBox_NotepadPlusPlus.Checked = $false
 $Form_SoftwareSelection.Controls.Add($CheckBox_NotepadPlusPlus)
 
-if ($InstalledSoftware -match 'Notepad..') {
+$Notepad = 'Notepad++ Updater'
+$Notepad_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $Notepad }
+if (($Notepad_Exists)) {
     $CheckBox_NotepadPlusPlus.Enabled = $false
     $CheckBox_NotepadPlusPlus.Text += ' (Installed)'
 }
