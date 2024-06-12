@@ -47,8 +47,22 @@ if ($InstalledSoftware -match 'Battle.net') {
 
 }
 
+$CheckBox_BetterDiscord = New-Object System.Windows.Forms.CheckBox
+$CheckBox_BetterDiscord.Location = New-Object System.Drawing.Size(30, 80)
+$CheckBox_BetterDiscord.Size = New-Object System.Drawing.Size(400, 20)
+$CheckBox_BetterDiscord.Text = 'BetterDiscord'
+$CheckBox_BetterDiscord.Checked = $false
+$Form_SoftwareSelection.Controls.Add($CheckBox_BetterDiscord)
+
+$BetterDiscord = 'BetterDiscord Updater'
+$BetterDiscord_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $BetterDiscord }
+if (($BetterDiscord_Exists)) {
+    $CheckBox_BetterDiscord.Enabled = $false
+    $CheckBox_BetterDiscord.Text += ' (Installed)'
+}
+
 $CheckBox_CrystalDiskInfo = New-Object System.Windows.Forms.CheckBox
-$CheckBox_CrystalDiskInfo.Location = New-Object System.Drawing.Size(30, 80)
+$CheckBox_CrystalDiskInfo.Location = New-Object System.Drawing.Size(30, 100)
 $CheckBox_CrystalDiskInfo.Size = New-Object System.Drawing.Size(400, 20)
 $CheckBox_CrystalDiskInfo.Text = 'CrystalDiskInfo'
 $CheckBox_CrystalDiskInfo.Checked = $false
@@ -60,7 +74,7 @@ if ($InstalledSoftware -match 'CrystalDiskInfo') {
 }
 
 $CheckBox_CrystalDiskMark = New-Object System.Windows.Forms.CheckBox
-$CheckBox_CrystalDiskMark.Location = New-Object System.Drawing.Size(30, 100)
+$CheckBox_CrystalDiskMark.Location = New-Object System.Drawing.Size(30, 120)
 $CheckBox_CrystalDiskMark.Size = New-Object System.Drawing.Size(400, 20)
 $CheckBox_CrystalDiskMark.Text = 'CrystalDiskMark'
 $CheckBox_CrystalDiskMark.Checked = $false
@@ -72,7 +86,7 @@ if ($InstalledSoftware -match 'CrystalDiskMark') {
 }
 
 $CheckBox_Discord = New-Object System.Windows.Forms.CheckBox
-$CheckBox_Discord.Location = New-Object System.Drawing.Size(30, 120)
+$CheckBox_Discord.Location = New-Object System.Drawing.Size(30, 140)
 $CheckBox_Discord.Size = New-Object System.Drawing.Size(400, 20)
 $CheckBox_Discord.Text = 'Discord'
 $CheckBox_Discord.Checked = $false
@@ -84,7 +98,7 @@ if ($InstalledSoftware -match 'Discord') {
 }
 
 $CheckBox_DisplayDriverUninstaller = New-Object System.Windows.Forms.CheckBox
-$CheckBox_DisplayDriverUninstaller.Location = New-Object System.Drawing.Size(30, 140)
+$CheckBox_DisplayDriverUninstaller.Location = New-Object System.Drawing.Size(30, 160)
 $CheckBox_DisplayDriverUninstaller.Size = New-Object System.Drawing.Size(400, 20)
 $CheckBox_DisplayDriverUninstaller.Text = 'Display Driver Uninstaller'
 $CheckBox_DisplayDriverUninstaller.Checked = $false
@@ -96,7 +110,7 @@ if ($InstalledSoftware -match 'Display Driver Uninstaller') {
 }
 
 $CheckBox_HyperXNGENUITY = New-Object System.Windows.Forms.CheckBox
-$CheckBox_HyperXNGENUITY.Location = New-Object System.Drawing.Size(30, 160)
+$CheckBox_HyperXNGENUITY.Location = New-Object System.Drawing.Size(30, 180)
 $CheckBox_HyperXNGENUITY.Size = New-Object System.Drawing.Size(400, 20)
 $CheckBox_HyperXNGENUITY.Text = 'HyperX NGENUITY'
 $CheckBox_HyperXNGENUITY.Checked = $false
@@ -109,7 +123,7 @@ if ((Get-ChildItem $env:ProgramFiles\WindowsApps -ErrorAction SilentlyContinue) 
 
 
 $CheckBox_Jellyfin = New-Object System.Windows.Forms.CheckBox
-$CheckBox_Jellyfin.Location = New-Object System.Drawing.Size(30, 180)
+$CheckBox_Jellyfin.Location = New-Object System.Drawing.Size(30, 200)
 $CheckBox_Jellyfin.Size = New-Object System.Drawing.Size(400, 20)
 $CheckBox_Jellyfin.Text = 'Jellyfin'
 $CheckBox_Jellyfin.Checked = $false
@@ -121,7 +135,7 @@ if ($InstalledSoftware -match 'Jellyfin') {
 }
 
 $CheckBox_LogitechGHUB = New-Object System.Windows.Forms.CheckBox
-$CheckBox_LogitechGHUB.Location = New-Object System.Drawing.Size(30, 200)
+$CheckBox_LogitechGHUB.Location = New-Object System.Drawing.Size(30, 220)
 $CheckBox_LogitechGHUB.Size = New-Object System.Drawing.Size(400, 20)
 $CheckBox_LogitechGHUB.Text = 'Logitech G HUB'
 $CheckBox_LogitechGHUB.Checked = $false
@@ -133,7 +147,7 @@ if ($InstalledSoftware -match 'Logitech G HUB') {
 }
 
 $CheckBox_MediaInfo = New-Object System.Windows.Forms.CheckBox
-$CheckBox_MediaInfo.Location = New-Object System.Drawing.Size(30, 220)
+$CheckBox_MediaInfo.Location = New-Object System.Drawing.Size(30, 240)
 $CheckBox_MediaInfo.Size = New-Object System.Drawing.Size(400, 20)
 $CheckBox_MediaInfo.Text = 'MediaInfo'
 $CheckBox_MediaInfo.Checked = $false
@@ -144,8 +158,44 @@ if ($InstalledSoftware -match 'MediaInfo') {
     $CheckBox_MediaInfo.Text += ' (Installed)'
 }
 
+$CheckBox_mpv = New-Object System.Windows.Forms.CheckBox
+$CheckBox_mpv.Location = New-Object System.Drawing.Size(30, 260)
+$CheckBox_mpv.Size = New-Object System.Drawing.Size(400, 20)
+$CheckBox_mpv.Text = 'mpv (Desktop)'
+$CheckBox_mpv.Checked = $false
+$Form_SoftwareSelection.Controls.Add($CheckBox_mpv)
+
+if ((Test-Path -Path "$($env:USERPROFILE)\Desktop\mpv")) {
+    $CheckBox_mpv.Enabled = $false
+    $CheckBox_mpv.Text += ' (Installed)'
+}
+
+$CheckBox_NordVPN = New-Object System.Windows.Forms.CheckBox
+$CheckBox_NordVPN.Location = New-Object System.Drawing.Size(30, 280)
+$CheckBox_NordVPN.Size = New-Object System.Drawing.Size(400, 20)
+$CheckBox_NordVPN.Text = 'NordVPN'
+$CheckBox_NordVPN.Checked = $false
+$Form_SoftwareSelection.Controls.Add($CheckBox_NordVPN)
+
+if ($InstalledSoftware -match 'NordVPN') {
+    $CheckBox_NordVPN.Enabled = $false
+    $CheckBox_NordVPN.Text += ' (Installed)'
+}
+
+$CheckBox_NotepadPlusPlus = New-Object System.Windows.Forms.CheckBox
+$CheckBox_NotepadPlusPlus.Location = New-Object System.Drawing.Size(30, 300)
+$CheckBox_NotepadPlusPlus.Size = New-Object System.Drawing.Size(400, 20)
+$CheckBox_NotepadPlusPlus.Text = 'Notepad++'
+$CheckBox_NotepadPlusPlus.Checked = $false
+$Form_SoftwareSelection.Controls.Add($CheckBox_NotepadPlusPlus)
+
+if ($InstalledSoftware -match 'Notepad..') {
+    $CheckBox_NotepadPlusPlus.Enabled = $false
+    $CheckBox_NotepadPlusPlus.Text += ' (Installed)'
+}
+
 $CheckBox_NVCleanstall = New-Object System.Windows.Forms.CheckBox
-$CheckBox_NVCleanstall.Location = New-Object System.Drawing.Size(30, 240)
+$CheckBox_NVCleanstall.Location = New-Object System.Drawing.Size(30, 320)
 $CheckBox_NVCleanstall.Size = New-Object System.Drawing.Size(400, 20)
 $CheckBox_NVCleanstall.Text = 'NVCleanstall'
 $CheckBox_NVCleanstall.Checked = $false
@@ -165,32 +215,8 @@ if ($InstalledSoftware -match 'NVCleanstall') {
     $CheckBox_NVCleanstall.Text += ' (Installed)'
 }
 
-$CheckBox_NordVPN = New-Object System.Windows.Forms.CheckBox
-$CheckBox_NordVPN.Location = New-Object System.Drawing.Size(30, 260)
-$CheckBox_NordVPN.Size = New-Object System.Drawing.Size(400, 20)
-$CheckBox_NordVPN.Text = 'NordVPN'
-$CheckBox_NordVPN.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_NordVPN)
-
-if ($InstalledSoftware -match 'NordVPN') {
-    $CheckBox_NordVPN.Enabled = $false
-    $CheckBox_NordVPN.Text += ' (Installed)'
-}
-
-$CheckBox_NotepadPlusPlus = New-Object System.Windows.Forms.CheckBox
-$CheckBox_NotepadPlusPlus.Location = New-Object System.Drawing.Size(30, 280)
-$CheckBox_NotepadPlusPlus.Size = New-Object System.Drawing.Size(400, 20)
-$CheckBox_NotepadPlusPlus.Text = 'Notepad++'
-$CheckBox_NotepadPlusPlus.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_NotepadPlusPlus)
-
-if ($InstalledSoftware -match 'Notepad..') {
-    $CheckBox_NotepadPlusPlus.Enabled = $false
-    $CheckBox_NotepadPlusPlus.Text += ' (Installed)'
-}
-
 $CheckBox_MicrosoftOffice = New-Object System.Windows.Forms.CheckBox
-$CheckBox_MicrosoftOffice.Location = New-Object System.Drawing.Size(30, 300)
+$CheckBox_MicrosoftOffice.Location = New-Object System.Drawing.Size(30, 340)
 $CheckBox_MicrosoftOffice.Size = New-Object System.Drawing.Size(400, 20)
 $CheckBox_MicrosoftOffice.Text = 'Microsoft Office'
 $CheckBox_MicrosoftOffice.Checked = $false
@@ -202,7 +228,7 @@ if ($InstalledSoftware -match 'Microsoft Office' -or $InstalledSoftware -match '
 }
 
 $CheckBox_Plex = New-Object System.Windows.Forms.CheckBox
-$CheckBox_Plex.Location = New-Object System.Drawing.Size(30, 320)
+$CheckBox_Plex.Location = New-Object System.Drawing.Size(30, 360)
 $CheckBox_Plex.Size = New-Object System.Drawing.Size(400, 20)
 $CheckBox_Plex.Text = 'Plex'
 $CheckBox_Plex.Checked = $false
@@ -214,7 +240,7 @@ if ($InstalledSoftware -match 'Plex') {
 }
 
 $CheckBox_PuTTY = New-Object System.Windows.Forms.CheckBox
-$CheckBox_PuTTY.Location = New-Object System.Drawing.Size(30, 340)
+$CheckBox_PuTTY.Location = New-Object System.Drawing.Size(30, 380)
 $CheckBox_PuTTY.Size = New-Object System.Drawing.Size(400, 20)
 $CheckBox_PuTTY.Text = 'PuTTY'
 $CheckBox_PuTTY.Checked = $false
@@ -226,7 +252,7 @@ if ($InstalledSoftware -match 'PuTTY') {
 }
 
 $CheckBox_Python = New-Object System.Windows.Forms.CheckBox
-$CheckBox_Python.Location = New-Object System.Drawing.Size(30, 360)
+$CheckBox_Python.Location = New-Object System.Drawing.Size(30, 400)
 $CheckBox_Python.Size = New-Object System.Drawing.Size(400, 20)
 $CheckBox_Python.Text = 'Python'
 $CheckBox_Python.Checked = $false
@@ -237,8 +263,20 @@ if ($InstalledSoftware -match 'Python') {
     $CheckBox_Python.Text += ' (Installed)'
 }
 
+$CheckBox_qBittorrent = New-Object System.Windows.Forms.CheckBox
+$CheckBox_qBittorrent.Location = New-Object System.Drawing.Size(30, 420)
+$CheckBox_qBittorrent.Size = New-Object System.Drawing.Size(400, 20)
+$CheckBox_qBittorrent.Text = 'qBittorrent'
+$CheckBox_qBittorrent.Checked = $false
+$Form_SoftwareSelection.Controls.Add($CheckBox_qBittorrent)
+
+if ($InstalledSoftware -match 'qBittorrent') {
+    $CheckBox_qBittorrent.Enabled = $false
+    $CheckBox_qBittorrent.Text += ' (Installed)'
+}
+
 $CheckBox_RazerSynapse = New-Object System.Windows.Forms.CheckBox
-$CheckBox_RazerSynapse.Location = New-Object System.Drawing.Size(30, 380)
+$CheckBox_RazerSynapse.Location = New-Object System.Drawing.Size(30, 440)
 $CheckBox_RazerSynapse.Size = New-Object System.Drawing.Size(400, 20)
 $CheckBox_RazerSynapse.Text = 'Razer Synapse'
 $CheckBox_RazerSynapse.Checked = $false
@@ -250,7 +288,7 @@ if ($InstalledSoftware -match 'Razer Synapse') {
 }
 
 $CheckBox_Steam = New-Object System.Windows.Forms.CheckBox
-$CheckBox_Steam.Location = New-Object System.Drawing.Size(30, 400)
+$CheckBox_Steam.Location = New-Object System.Drawing.Size(30, 460)
 $CheckBox_Steam.Size = New-Object System.Drawing.Size(400, 20)
 $CheckBox_Steam.Text = 'Steam'
 $CheckBox_Steam.Checked = $false
@@ -262,7 +300,7 @@ if ($InstalledSoftware -match 'Steam') {
 }
 
 $CheckBox_Telegram = New-Object System.Windows.Forms.CheckBox
-$CheckBox_Telegram.Location = New-Object System.Drawing.Size(30, 420)
+$CheckBox_Telegram.Location = New-Object System.Drawing.Size(30, 480)
 $CheckBox_Telegram.Size = New-Object System.Drawing.Size(400, 20)
 $CheckBox_Telegram.Text = 'Telegram'
 $CheckBox_Telegram.Checked = $false
@@ -273,8 +311,20 @@ if ($InstalledSoftware -match 'Telegram') {
     $CheckBox_Telegram.Text += ' (Installed)'
 }
 
+$CheckBox_TranslucentTB = New-Object System.Windows.Forms.CheckBox
+$CheckBox_TranslucentTB.Location = New-Object System.Drawing.Size(30, 500)
+$CheckBox_TranslucentTB.Size = New-Object System.Drawing.Size(400, 20)
+$CheckBox_TranslucentTB.Text = 'TranslucentTB'
+$CheckBox_TranslucentTB.Checked = $false
+$Form_SoftwareSelection.Controls.Add($CheckBox_TranslucentTB)
+
+if ($InstalledSoftware -match 'TranslucentTB') {
+    $CheckBox_TranslucentTB.Enabled = $false
+    $CheckBox_TranslucentTB.Text += ' (Installed)'
+}
+
 $CheckBox_VisualStudioCode = New-Object System.Windows.Forms.CheckBox
-$CheckBox_VisualStudioCode.Location = New-Object System.Drawing.Size(30, 440)
+$CheckBox_VisualStudioCode.Location = New-Object System.Drawing.Size(30, 520)
 $CheckBox_VisualStudioCode.Size = New-Object System.Drawing.Size(400, 20)
 $CheckBox_VisualStudioCode.Text = 'Visual Studio Code'
 $CheckBox_VisualStudioCode.Checked = $false
@@ -285,32 +335,8 @@ if ($InstalledSoftware -match 'Visual Studio Code') {
     $CheckBox_VisualStudioCode.Text += ' (Installed)'
 }
 
-$CheckBox_mpv = New-Object System.Windows.Forms.CheckBox
-$CheckBox_mpv.Location = New-Object System.Drawing.Size(30, 460)
-$CheckBox_mpv.Size = New-Object System.Drawing.Size(400, 20)
-$CheckBox_mpv.Text = 'mpv (Desktop)'
-$CheckBox_mpv.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_mpv)
-
-if ((Test-Path -Path "$($env:USERPROFILE)\Desktop\mpv")) {
-    $CheckBox_mpv.Enabled = $false
-    $CheckBox_mpv.Text += ' (Installed)'
-}
-
-$CheckBox_qBittorrent = New-Object System.Windows.Forms.CheckBox
-$CheckBox_qBittorrent.Location = New-Object System.Drawing.Size(30, 480)
-$CheckBox_qBittorrent.Size = New-Object System.Drawing.Size(400, 20)
-$CheckBox_qBittorrent.Text = 'qBittorrent'
-$CheckBox_qBittorrent.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_qBittorrent)
-
-if ($InstalledSoftware -match 'qBittorrent') {
-    $CheckBox_qBittorrent.Enabled = $false
-    $CheckBox_qBittorrent.Text += ' (Installed)'
-}
-
 $CheckBox_UninstallEdge = New-Object System.Windows.Forms.CheckBox
-$CheckBox_UninstallEdge.Location = New-Object System.Drawing.Size(30, 500)
+$CheckBox_UninstallEdge.Location = New-Object System.Drawing.Size(30, 540)
 $CheckBox_UninstallEdge.Size = New-Object System.Drawing.Size(400, 20)
 $CheckBox_UninstallEdge.Text = 'Uninstall Edge (Not Recommended)'
 $CheckBox_UninstallEdge.Checked = $false
@@ -319,32 +345,6 @@ $Form_SoftwareSelection.Controls.Add($CheckBox_UninstallEdge)
 if (!($InstalledSoftware -match 'Microsoft Edge')) {
     $CheckBox_UninstallEdge.Enabled = $false
     $CheckBox_UninstallEdge.Text += ' (Uninstalled)'
-}
-
-$CheckBox_BetterDiscord = New-Object System.Windows.Forms.CheckBox
-$CheckBox_BetterDiscord.Location = New-Object System.Drawing.Size(30, 520)
-$CheckBox_BetterDiscord.Size = New-Object System.Drawing.Size(400, 20)
-$CheckBox_BetterDiscord.Text = 'BetterDiscord'
-$CheckBox_BetterDiscord.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_BetterDiscord)
-
-$BetterDiscord = 'BetterDiscord Updater'
-$BetterDiscord_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $BetterDiscord }
-if (($BetterDiscord_Exists)) {
-    $CheckBox_BetterDiscord.Enabled = $false
-    $CheckBox_BetterDiscord.Text += ' (Installed)'
-}
-
-$CheckBox_TranslucentTB = New-Object System.Windows.Forms.CheckBox
-$CheckBox_TranslucentTB.Location = New-Object System.Drawing.Size(30, 540)
-$CheckBox_TranslucentTB.Size = New-Object System.Drawing.Size(400, 20)
-$CheckBox_TranslucentTB.Text = 'TranslucentTB'
-$CheckBox_TranslucentTB.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_TranslucentTB)
-
-if ($InstalledSoftware -match 'TranslucentTB') {
-    $CheckBox_TranslucentTB.Enabled = $false
-    $CheckBox_TranslucentTB.Text += ' (Installed)'
 }
 
 $Form_SoftwareSelection_OK = New-Object System.Windows.Forms.Button
@@ -422,6 +422,11 @@ $Form_SoftwareSelection_OK.Add_Click{
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Discord/Download.ps1')
     }
 
+    if ($CheckBox_BetterDiscord.Checked) {
+        Write-Host 'Software Selection: BetterDiscord: Initiating' -ForegroundColor green -BackgroundColor black
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/BetterDiscord/Download.ps1')
+    }
+
     if ($CheckBox_DisplayDriverUninstaller.Checked) {
         Write-Host 'Software Selection: Display Driver Uninstaller: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Display_Driver_Uninstaller/Download.ps1')
@@ -449,7 +454,7 @@ $Form_SoftwareSelection_OK.Add_Click{
 
     if ($CheckBox_NotepadPlusPlus.Checked) {
         Write-Host 'Software Selection: Notepad++: Initiating' -ForegroundColor green -BackgroundColor black
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Notepad_Plus_Plus/Download.ps1')
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Notepad++/Download.ps1')
     }
 
     if ($CheckBox_PuTTY.Checked) {
@@ -462,6 +467,11 @@ $Form_SoftwareSelection_OK.Add_Click{
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Python/Download.ps1')
     }
 
+    if ($CheckBox_qBittorrent.Checked) {
+        Write-Host 'Software Selection: qBittorrent: Initiating' -ForegroundColor green -BackgroundColor black
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
+    }
+
     if ($CheckBox_Steam.Checked) {
         Write-Host 'Software Selection: Steam: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Steam/Download.ps1')
@@ -472,24 +482,14 @@ $Form_SoftwareSelection_OK.Add_Click{
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Telegram/Download.ps1')
     }
 
-    if ($CheckBox_VisualStudioCode.Checked) {
-        Write-Host 'Software Selection: Visual Studio Code: Initiating' -ForegroundColor green -BackgroundColor black
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Visual_Studio_Code/Download.ps1')
-    }
-
-    if ($CheckBox_qBittorrent.Checked) {
-        Write-Host 'Software Selection: qBittorrent: Initiating' -ForegroundColor green -BackgroundColor black
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
-    }
-
-    if ($CheckBox_BetterDiscord.Checked) {
-        Write-Host 'Software Selection: BetterDiscord: Initiating' -ForegroundColor green -BackgroundColor black
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/BetterDiscord/Download.ps1')
-    }
-
     if ($CheckBox_TranslucentTB.Checked) {
         Write-Host 'Software Selection: TranslucentTB: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/TranslucentTB/Download.ps1')
+    }
+    
+    if ($CheckBox_VisualStudioCode.Checked) {
+        Write-Host 'Software Selection: Visual Studio Code: Initiating' -ForegroundColor green -BackgroundColor black
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Visual_Studio_Code/Download.ps1')
     }
 
     if ($CheckBox_UninstallEdge.Checked) {
