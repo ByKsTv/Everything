@@ -17,7 +17,9 @@ $CheckBox_7Zip.Text = '7-Zip'
 $CheckBox_7Zip.Checked = $false
 $Form_SoftwareSelection.Controls.Add($CheckBox_7Zip)
 
-if ($InstalledSoftware -match '7-Zip') {
+$7Zip = '7-Zip Updater'
+$7Zip_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $7Zip }
+if (($7Zip_Exists)) {
     $CheckBox_7Zip.Enabled = $false
     $CheckBox_7Zip.Text += ' (Installed)'
 }
