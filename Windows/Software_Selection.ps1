@@ -264,7 +264,9 @@ $CheckBox_Python.Text = 'Python'
 $CheckBox_Python.Checked = $false
 $Form_SoftwareSelection.Controls.Add($CheckBox_Python)
 
-if ($InstalledSoftware -match 'Python') {
+$Python = 'Python Updater'
+$Python_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $Python }
+if (($Python_Exists)) {
     $CheckBox_Python.Enabled = $false
     $CheckBox_Python.Text += ' (Installed)'
 }
