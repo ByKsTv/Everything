@@ -125,7 +125,7 @@ module.exports = require("./core.asar");
     }
 }
 
-Write-Host 'BetterDiscord: Updating Themes and Plugins' -ForegroundColor green -BackgroundColor black
+Write-Host 'BetterDiscord: Updating BetterDiscord, Themes and Plugins' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path "$env:APPDATA\BetterDiscord\themes\amoled-cord.theme.css")) {
     Write-Host 'BetterDiscord: Updating amoled-cord.theme.css' -ForegroundColor green -BackgroundColor black
     (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/LuckFire/amoled-cord/main/clients/amoled-cord.theme.css', "$env:APPDATA\BetterDiscord\themes\amoled-cord.theme.css")
@@ -174,3 +174,8 @@ if ((Test-Path -Path "$env:APPDATA\BetterDiscord\plugins\UncompressedImages.plug
     Write-Host 'BetterDiscord: Updating UncompressedImages.plugin.js' -ForegroundColor green -BackgroundColor black
     (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/Knewest/uncompressed-discord-images/main/UncompressedImages.plugin.js', "$env:APPDATA\BetterDiscord\plugins\UncompressedImages.plugin.js")
 }
+Write-Host 'BetterDiscord: Getting latest release' -ForegroundColor green -BackgroundColor black
+$BetterDiscordURL = ((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/BetterDiscord/BetterDiscord/releases/latest').assets | Where-Object name -Like '*betterdiscord*' ).browser_download_url
+
+Write-Host 'BetterDiscord: Downloading' -ForegroundColor green -BackgroundColor black
+(New-Object System.Net.WebClient).DownloadFile("$BetterDiscordURL", "$env:APPDATA\BetterDiscord\data\betterdiscord.asar")
