@@ -169,7 +169,7 @@ alang=ja,en
 volume-max=100
 
 # Video
-hwdec=yes
+hwdec=no
 vo=gpu-next
 target-colorspace-hint=yes
 video-sync=display-resample
