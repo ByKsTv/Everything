@@ -11,7 +11,7 @@ Everything about Android apps.
 - ~~[WhatsApp](https://4pda.to/forum/index.php?showtopic=186375#Spoil-5125511-12) - FouadWhatsApp~~
 - [YouTube ReVanced](https://4pda.to/forum/index.php?act=findpost&pid=115638129&anchor=Spoil-115638129-4)
 - [Spotify](https://4pda.to/forum/index.php?act=findpost&pid=8030514&anchor=Spoil-8030514-11) - Mod Lite by Balatan.
-- [Truecaller](https://4pda.to/forum/index.php?showtopic=417409#Spoil-18455027-5) - Mod Lite by Balatan
+- [Truecaller](https://4pda.to/forum/index.php?showtopic=417409#Spoil-18455027-5) - Mod by Balatan
 - [Wheres My Droid](https://forum.mobilism.me/search.php?keywords=Wheres+My+Droid&sr=topics&sf=titleonly)
 - [Instagram](https://4pda.to/forum/index.php?showtopic=326697#Spoil-12392478-7) - AeroInsta
 - [FX File Explorer](https://4pda.to/forum/index.php?showtopic=268117#entry9048468) - Plus/Root by Balatan
@@ -27,7 +27,7 @@ Everything about Android apps.
 - [MacroDroid](https://4pda.to/forum/index.php?act=findpost&pid=15401143&anchor=Spoil-15401143-14) - Pro by Alex.Strannik
 - [Symbolab: AI Math Photo Solver](https://4pda.to/forum/index.php?showtopic=702296&view=findpost&p=44337245)
 - [Autel MaxiAP200](https://4pda.to/forum/index.php?showtopic=961129&st=2400#entry93164749) + [AliExpress](https://www.aliexpress.com/item/32991837323.html)
-- [HeliBoard](https://github.com/Helium314/HeliBoard/releases/latest) + [Hebrew Dictionary](https://codeberg.org/Helium314/aosp-dictionaries/src/branch/main/dictionaries_experimental/main_he.dict) - Keyboard App ([Backup](https://github.com/ByKsTv/Everything/raw/main/Android_Smartphone/HeliBoard.zip))
+- [HeliBoard](https://github.com/Helium314/HeliBoard/releases/latest) + [Hebrew Dictionary](https://codeberg.org/Helium314/aosp-dictionaries/src/branch/main/dictionaries_experimental/main_he.dict) - Keyboard App
 
 ## Mull Settings
 
