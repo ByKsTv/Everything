@@ -31,21 +31,23 @@ if ($InstalledSoftware -match 'Google Chrome') {
     }
     $registry.Dispose()
 
+    Write-Host 'Google Chrome Extensions: uBlock Origin: Using custom settings' -ForegroundColor green -BackgroundColor black
+    # https://www.reddit.com/r/sysadmin/comments/u9fg8c/comment/i5tudv7/
+    'HKLM:\Software\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy'
+    New-Item -Path 'HKLM:\Software\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy' -Force
+    (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.json', "$uBlockDownloadLocation")
+    $uBlockLatestContent = Get-Content $uBlockDownloadLocation
+    New-ItemProperty -Path 'HKLM:\Software\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy' -Name 'adminSettings' -Value "$uBlockLatestContent" -PropertyType String -Force
+
     Write-Host 'Google Chrome Extensions: Starting browser' -ForegroundColor green -BackgroundColor black
     [System.Diagnostics.Process]::Start('Chrome.exe')
     Start-Sleep -Milliseconds 1000
-
-    Write-Host 'Google Chrome Extensions: Opening Registry Key' -ForegroundColor green -BackgroundColor black
-    $ChromeExtensionsKey = [Microsoft.Win32.Registry]::CurrentUser.OpenSubKey('Software\Microsoft\Windows\CurrentVersion\Applets\Regedit', $true)
-    $ChromeExtensionsKey.SetValue('LastKey', 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Google\Chrome\ExtensionInstallForcelist', [Microsoft.Win32.RegistryValueKind]::String)
-    $ChromeExtensionsKey.Close()
-    [void]([System.Diagnostics.Process]::Start('regedit.exe'))
 
     Write-Host 'Google Chrome Extensions: Waiting for browser' -ForegroundColor green -BackgroundColor black
     while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'Chrome' } -ErrorAction SilentlyContinue))) {
         Start-Sleep -Milliseconds 1000
     }
-    Start-Sleep -Milliseconds 10000
+    Start-Sleep -Milliseconds 25000
 
     Write-Host 'Google Chrome Extensions: Adding option to set foreground' -ForegroundColor green -BackgroundColor black
     if (-not ([System.Management.Automation.PSTypeName]'SFW').Type) {
@@ -74,35 +76,9 @@ if ($InstalledSoftware -match 'Google Chrome') {
     Write-Host "Google Chrome Extensions: Installing 'AdsBypasser' to 'Tampermonkey'" -ForegroundColor green -BackgroundColor black
     Add-Type -AssemblyName System.Windows.Forms
     [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
-
-    Write-Host "Google Chrome Extensions: Downloading 'uBlock Origin' custom settings" -ForegroundColor green -BackgroundColor black
-    (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.json', "$env:TEMP\uBlock_Origin_Backup.json")
-    [System.Diagnostics.Process]::Start('Chrome.exe', 'chrome-extension://cjpalhdlnbpafiamejdnhcphjbkeiagm/dashboard.html#settings.html')
-    Start-Sleep -Milliseconds 2000
-
-    Write-Host 'Google Chrome Extensions: Setting foreground' -ForegroundColor green -BackgroundColor black
-    [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'Chrome' }).MainWindowHandle)
-    Start-Sleep -Milliseconds 1000
-
-    Write-Host "Google Chrome Extensions: Starting 'Restore from file' on 'uBlock Origin' settings" -ForegroundColor green -BackgroundColor black
-    [System.Windows.Forms.SendKeys]::SendWait('+{TAB 5}')
-    [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
-    Start-Sleep -Milliseconds 1000
-
-    Write-Host "Google Chrome Extensions: Selecting folder to restore backup from on 'uBlock Origin' settings" -ForegroundColor green -BackgroundColor black
-    [System.Windows.Forms.SendKeys]::SendWait('{F4}')
-    Start-Sleep -Milliseconds 100
-    [System.Windows.Forms.SendKeys]::SendWait('^a')
-    Start-Sleep -Milliseconds 100
-    [System.Windows.Forms.SendKeys]::SendWait($env:TEMP)
-    [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
-    Start-Sleep -Milliseconds 1000
-    [System.Windows.Forms.SendKeys]::SendWait('%n')
-    Start-Sleep -Milliseconds 1000
-
-    Write-Host "Google Chrome Extensions: Selecting file to restore backup from on 'uBlock Origin' settings" -ForegroundColor green -BackgroundColor black
-    [System.Windows.Forms.SendKeys]::SendWait('uBlock_Origin_Backup.json')
-    [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
-    Start-Sleep -Milliseconds 1000
-    [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
+    
+    Write-Host 'Google Chrome Extensions: Cleaning up' -ForegroundColor green -BackgroundColor black
+    if ((Test-Path -Path HKLM:\Software\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy) -eq $true) {
+        Remove-Item HKLM:\Software\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy -Force
+    }
 }
