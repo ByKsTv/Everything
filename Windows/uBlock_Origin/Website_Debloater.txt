@@ -544,6 +544,9 @@ minecraft.fandom.com##.global-footer__bottom
 minecraft.fandom.com##.license-description
 ministryofcommunication.force.com##.uiOutputRichText
 miraculoushub.ml###animatedshowsblock
+missav.com##.lg\:mb-10.mb-5
+missav.com##.space-y-6.text-nord9.mt-4.md\:justify-center.md\:items-center.md\:flex-col.md\:flex.hidden
+missav.com##footer.px-4.mx-auto.sm\:container
 mobile.mako.co.il##.mistake-title
 mobile.mako.co.il##.not-for-print.status-bar
 mobile.mako.co.il##footer

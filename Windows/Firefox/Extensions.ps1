@@ -94,6 +94,7 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
     [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
 
     Write-Host "Mozilla Firefox Extensions: Adding 'AdsBypasser' to 'Tampermonkey'" -ForegroundColor green -BackgroundColor black
+    # Greasemonkey has no such support today.
     [System.Diagnostics.Process]::Start('firefox.exe', 'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js')
     Start-Sleep -Milliseconds 3000
 
