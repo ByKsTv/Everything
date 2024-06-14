@@ -17,6 +17,11 @@ if (!($BetterDiscord_Exists)) {
 }
 
 Write-Host 'BetterDiscord: Checking if Discord is Installed' -ForegroundColor green -BackgroundColor black
+if (!(Test-Path -Path $env:LOCALAPPDATA\Discord)) {
+    Write-Host 'BetterDiscord: Discord is not Installed' -ForegroundColor green -BackgroundColor black
+    Write-Host 'BetterDiscord: Discord: Initiating' -ForegroundColor green -BackgroundColor black
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Discord/Download.ps1')
+}
 if ((Test-Path -Path $env:LOCALAPPDATA\Discord)) {
     Write-Host 'BetterDiscord: Discord is already Installed' -ForegroundColor green -BackgroundColor black
     
