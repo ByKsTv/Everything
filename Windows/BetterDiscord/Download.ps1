@@ -18,7 +18,7 @@ if (!($BetterDiscord_Exists)) {
 
 Write-Host 'BetterDiscord: Checking if Discord is Installed' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path $env:LOCALAPPDATA\Discord)) {
-    Write-Host 'BetterDiscord: Discord is Installed' -ForegroundColor green -BackgroundColor black
+    Write-Host 'BetterDiscord: Discord is already Installed' -ForegroundColor green -BackgroundColor black
     
     Write-Host 'BetterDiscord: Checking if BetterDiscord is Installed' -ForegroundColor green -BackgroundColor black
     $DiscordAppDir = Get-Item -Path "$env:LOCALAPPDATA\Discord\app*\modules\discord_desktop*\discord_desktop*\" | Sort-Object -Descending | Select-Object -First 1
@@ -121,11 +121,8 @@ if ((Test-Path -Path $env:LOCALAPPDATA\Discord)) {
 }' -Force
         }
         
-        Write-Host 'BetterDiscord: Getting latest release' -ForegroundColor green -BackgroundColor black
-        $BetterDiscordURL = ((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/BetterDiscord/BetterDiscord/releases/latest').assets | Where-Object name -Like '*betterdiscord*' ).browser_download_url
-
         Write-Host 'BetterDiscord: Downloading' -ForegroundColor green -BackgroundColor black
-        (New-Object System.Net.WebClient).DownloadFile("$BetterDiscordURL", "$env:APPDATA\BetterDiscord\data\betterdiscord.asar")
+        (New-Object System.Net.WebClient).DownloadFile(((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/BetterDiscord/BetterDiscord/releases/latest').assets | Where-Object name -Like '*betterdiscord*').browser_download_url, "$env:APPDATA\BetterDiscord\data\betterdiscord.asar")
 
         Write-Host 'BetterDiscord: Installing' -ForegroundColor green -BackgroundColor black
         New-Item -Path $DiscordIndex -ItemType File -Value @"
@@ -137,11 +134,8 @@ module.exports = require("./core.asar");
 }
 
 Write-Host 'BetterDiscord: Updating BetterDiscord, Themes and Plugins' -ForegroundColor green -BackgroundColor black
-Write-Host 'BetterDiscord: Getting latest release' -ForegroundColor green -BackgroundColor black
-$BetterDiscordURL = ((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/BetterDiscord/BetterDiscord/releases/latest').assets | Where-Object name -Like '*betterdiscord*' ).browser_download_url
-
 Write-Host 'BetterDiscord: Downloading' -ForegroundColor green -BackgroundColor black
-(New-Object System.Net.WebClient).DownloadFile("$BetterDiscordURL", "$env:APPDATA\BetterDiscord\data\betterdiscord.asar")
+(New-Object System.Net.WebClient).DownloadFile(((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/BetterDiscord/BetterDiscord/releases/latest').assets | Where-Object name -Like '*betterdiscord*').browser_download_url, "$env:APPDATA\BetterDiscord\data\betterdiscord.asar")
 
 if ((Test-Path -Path "$env:APPDATA\BetterDiscord\themes\amoled-cord.theme.css")) {
     Write-Host 'BetterDiscord: Updating Theme: AMOLED-Cord' -ForegroundColor green -BackgroundColor black
