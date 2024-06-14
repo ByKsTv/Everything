@@ -134,7 +134,7 @@ module.exports = require("./core.asar");
 }
 
 Write-Host 'BetterDiscord: Updating BetterDiscord, Themes and Plugins' -ForegroundColor green -BackgroundColor black
-Write-Host 'BetterDiscord: Downloading' -ForegroundColor green -BackgroundColor black
+Write-Host 'BetterDiscord: Updating' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile(((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/BetterDiscord/BetterDiscord/releases/latest').assets | Where-Object name -Like '*betterdiscord*').browser_download_url, "$env:APPDATA\BetterDiscord\data\betterdiscord.asar")
 
 if ((Test-Path -Path "$env:APPDATA\BetterDiscord\themes\amoled-cord.theme.css")) {
