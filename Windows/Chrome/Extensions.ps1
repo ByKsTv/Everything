@@ -33,7 +33,6 @@ if ($InstalledSoftware -match 'Google Chrome') {
 
     Write-Host 'Google Chrome Extensions: uBlock Origin: Using custom settings' -ForegroundColor green -BackgroundColor black
     # https://www.reddit.com/r/sysadmin/comments/u9fg8c/comment/i5tudv7/
-    'HKLM:\Software\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy'
     New-Item -Path 'HKLM:\Software\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy' -Force
     $uBlockDownloadLocation = "$env:TEMP\uBlock_Origin_Backup.json"
     (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.json', "$uBlockDownloadLocation")
