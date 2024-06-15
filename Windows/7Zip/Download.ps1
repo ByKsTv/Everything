@@ -1,7 +1,7 @@
 $7Zip = '7-Zip Updater'
 $7Zip_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $7Zip }
 if (!($7Zip_Exists)) {
-    Write-Host "7Zip++: Task Scheduler: Adding $7Zip" -ForegroundColor green -BackgroundColor black
+    Write-Host "7Zip: Task Scheduler: Adding $7Zip" -ForegroundColor green -BackgroundColor black
     $7Zip_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
     $7Zip_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')"
     $7Zip_Trigger = New-ScheduledTaskTrigger -AtLogOn
