@@ -1,7 +1,7 @@
 local function read_time1(_, time_pos)
     if time_pos and time_pos > mp.get_property_native('duration', math.huge) - 1 then
         local url = mp.get_property("path")
-        if string.match(url, "youtube") then
+        if string.match(url, "http") then
             if mp.get_property_number('playlist-count') == 1 then
                 mp.command_native({
                     name = 'subprocess',
