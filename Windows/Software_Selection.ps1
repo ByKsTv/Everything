@@ -350,7 +350,9 @@ $CheckBox_UninstallEdge.Text = 'Uninstall Edge (Not Recommended)'
 $CheckBox_UninstallEdge.Checked = $false
 $Form_SoftwareSelection.Controls.Add($CheckBox_UninstallEdge)
 
-if (!($InstalledSoftware -match 'Microsoft Edge')) {
+$EdgeUninstaller = 'Edge Uninstaller'
+$EdgeUninstaller_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $EdgeUninstaller }
+if (($EdgeUninstaller_Exists)) {
     $CheckBox_UninstallEdge.Enabled = $false
     $CheckBox_UninstallEdge.Text += ' (Uninstalled)'
 }
