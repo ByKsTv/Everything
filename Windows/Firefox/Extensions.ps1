@@ -5,12 +5,12 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         Write-Host 'Mozilla Firefox Extensions: Closing browser' -ForegroundColor green -BackgroundColor black
         Stop-Process -Name firefox -Force -ErrorAction SilentlyContinue
 
-        Write-Host "Mozilla Firefox Extensions: Adding 'uBlock Origin'" -ForegroundColor green -BackgroundColor black
-        Write-Host "Mozilla Firefox Extensions: Adding 'Tampermonkey'" -ForegroundColor green -BackgroundColor black
-        Write-Host "Mozilla Firefox Extensions: Adding 'ClearURLs'" -ForegroundColor green -BackgroundColor black
-        Write-Host "Mozilla Firefox Extensions: Adding 'I'm not robot captcha clicker'" -ForegroundColor green -BackgroundColor black
-        Write-Host "Mozilla Firefox Extensions: Adding 'Buster: Captcha Solver for Humans'" -ForegroundColor green -BackgroundColor black
-        Write-Host "Mozilla Firefox Extensions: Adding 'The Camelizer - Price Tracker'" -ForegroundColor green -BackgroundColor black
+        Write-Host "Mozilla Firefox Extensions: Adding uBlock Origin" -ForegroundColor green -BackgroundColor black
+        Write-Host "Mozilla Firefox Extensions: Adding Violentmonkey" -ForegroundColor green -BackgroundColor black
+        Write-Host "Mozilla Firefox Extensions: Adding ClearURLs" -ForegroundColor green -BackgroundColor black
+        Write-Host "Mozilla Firefox Extensions: Adding I'm not robot captcha clicker" -ForegroundColor green -BackgroundColor black
+        Write-Host "Mozilla Firefox Extensions: Adding Buster: Captcha Solver for Humans" -ForegroundColor green -BackgroundColor black
+        Write-Host "Mozilla Firefox Extensions: Adding The Camelizer - Price Tracker" -ForegroundColor green -BackgroundColor black
 
         # https://github.com/letsdoautomation/powershell/tree/main/Firefox%20deploy%20Extension
         $settings =
@@ -21,7 +21,7 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         },
         [PSCustomObject]@{
             Path  = 'SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install'
-            Value = 'https://addons.mozilla.org/firefox/downloads/latest/tampermonkey/latest.xpi'
+            Value = 'https://addons.mozilla.org/firefox/downloads/latest/violentmonkey/latest.xpi'
             Name  = ++$count
         },
         [PSCustomObject]@{
@@ -74,7 +74,7 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' } -ErrorAction SilentlyContinue))) {
             Start-Sleep -Milliseconds 1000
         }
-        Start-Sleep -Milliseconds 25000
+        Start-Sleep -Milliseconds 20000
         
         Write-Host 'Mozilla Firefox Extensions: Adding option to set foreground' -ForegroundColor green -BackgroundColor black
         if (-not ([System.Management.Automation.PSTypeName]'SFW').Type) {
@@ -93,18 +93,17 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
     Write-Host 'Mozilla Firefox Extensions: Setting foreground' -ForegroundColor green -BackgroundColor black
     [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
 
-    Write-Host "Mozilla Firefox Extensions: Adding 'AdsBypasser' to 'Tampermonkey'" -ForegroundColor green -BackgroundColor black
-    # Greasemonkey has no such support today.
+    Write-Host "Mozilla Firefox Extensions: Adding AdsBypasser to Violentmonkey" -ForegroundColor green -BackgroundColor black
     [System.Diagnostics.Process]::Start('firefox.exe', 'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js')
-    Start-Sleep -Milliseconds 3000
+    Start-Sleep -Milliseconds 5000
 
     Write-Host 'Mozilla Firefox Extensions: Setting foreground' -ForegroundColor green -BackgroundColor black
     [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
     Start-Sleep -Milliseconds 1000
     
-    Write-Host "Mozilla Firefox Extensions: Installing 'AdsBypasser' to 'Tampermonkey'" -ForegroundColor green -BackgroundColor black
+    Write-Host "Mozilla Firefox Extensions: Installing AdsBypasser to Violentmonkey" -ForegroundColor green -BackgroundColor black
     Add-Type -AssemblyName System.Windows.Forms
-    [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
+    [System.Windows.Forms.SendKeys]::SendWait('^{ENTER}')
 
     Write-Host 'Mozilla Firefox Extensions: Cleaning up' -ForegroundColor green -BackgroundColor black
     if ((Test-Path -Path HKLM:\SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install) -eq $true) {

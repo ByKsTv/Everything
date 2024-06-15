@@ -47,7 +47,7 @@ if ($InstalledSoftware -match 'Google Chrome') {
     while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'Chrome' } -ErrorAction SilentlyContinue))) {
         Start-Sleep -Milliseconds 1000
     }
-    Start-Sleep -Milliseconds 25000
+    Start-Sleep -Milliseconds 20000
 
     Write-Host 'Google Chrome Extensions: Adding option to set foreground' -ForegroundColor green -BackgroundColor black
     if (-not ([System.Management.Automation.PSTypeName]'SFW').Type) {
@@ -67,7 +67,7 @@ if ($InstalledSoftware -match 'Google Chrome') {
 
     Write-Host "Google Chrome Extensions: Adding 'AdsBypasser' to 'Tampermonkey'" -ForegroundColor green -BackgroundColor black
     [System.Diagnostics.Process]::Start('Chrome.exe', 'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js')
-    Start-Sleep -Milliseconds 3000
+    Start-Sleep -Milliseconds 5000
 
     Write-Host 'Google Chrome Extensions: Setting foreground' -ForegroundColor green -BackgroundColor black
     [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'Chrome' }).MainWindowHandle)
