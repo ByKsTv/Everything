@@ -141,8 +141,6 @@ WHEEL_DOWN osd-bar add volume -1
 Write-Host 'mpv: Using custom settings for mpv.conf' -ForegroundColor green -BackgroundColor black
 New-Item -Path "$($env:USERPROFILE)\Desktop\mpv\mpv.conf" -ItemType File -Value '# High Quality
 profile=high-quality
-# glsl-shader="~~/FSRCNNX_x2_16-0-4-1.glsl"
-# glsl-shader="~~/KrigBilateral.glsl"
 
 # Player
 fs=yes
@@ -183,29 +181,7 @@ screenshot-format=png
 screenshot-png-compression=0
 
 # YouTube
-ytdl-raw-options=mark-watched=,playlist-end=100
-
-# Profiles
-# [FSRCNNX x8]
-# profile-cond=p["frame-drop-count"]>10 or p["mistimed-frame-count"]>10 or p["vo-delayed-frame-count"]>10
-# glsl-shaders-remove="~~/FSRCNNX_x2_16-0-4-1.glsl"
-# glsl-shaders-remove="~~/KrigBilateral.glsl"
-# glsl-shader="~~/FSRCNNX_x2_8-0-4-1.glsl"
-# glsl-shader="~~/KrigBilateral.glsl"
-# profile-restore=copy
-
-# [No Shaders]
-# profile-cond=p["frame-drop-count"]>30 or p["mistimed-frame-count"]>30 or p["vo-delayed-frame-count"]>30
-# glsl-shaders-remove="~~/FSRCNNX_x2_8-0-4-1.glsl"
-# glsl-shaders-remove="~~/KrigBilateral.glsl"
-# profile-restore=copy' -Force
-
-Write-Host 'mpv: Adding FSRCNNX.glsl' -ForegroundColor green -BackgroundColor black
-(New-Object System.Net.WebClient).DownloadFile('https://github.com/igv/FSRCNN-TensorFlow/releases/download/1.1/FSRCNNX_x2_16-0-4-1.glsl', "$($env:USERPROFILE)\Desktop\mpv\FSRCNNX_x2_16-0-4-1.glsl")
-(New-Object System.Net.WebClient).DownloadFile('https://github.com/igv/FSRCNN-TensorFlow/releases/download/1.1/FSRCNNX_x2_8-0-4-1.glsl', "$($env:USERPROFILE)\Desktop\mpv\FSRCNNX_x2_8-0-4-1.glsl")
-
-Write-Host 'mpv: Adding KrigBilateral.glsl' -ForegroundColor green -BackgroundColor black
-(New-Object System.Net.WebClient).DownloadFile('https://gist.github.com/igv/a015fc885d5c22e6891820ad89555637/raw/038064821c5f768dfc6c00261535018d5932cdd5/KrigBilateral.glsl', "$($env:USERPROFILE)\Desktop\mpv\KrigBilateral.glsl")
+ytdl-raw-options=mark-watched=,playlist-end=100' -Force
 
 if (!(Test-Path -Path "$($env:USERPROFILE)\Desktop\mpv\scripts")) {
     Write-Host 'mpv: Creating scripts folder' -ForegroundColor green -BackgroundColor black
