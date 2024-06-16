@@ -18,7 +18,7 @@ Everything about BIOS.
 1. Plug the USB to the motherboard.
 1. Boot to BIOS.
 
-   > Note: Restart to BIOS using CMD (Admin):
+   > Note: Restart to BIOS - CMD (Admin):
    >
    > ```cmd
    > shutdown /r /fw /t 00

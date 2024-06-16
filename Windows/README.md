@@ -33,7 +33,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. Disconnect Every Hard Drive Except Windows Drive.
 1. Boot to UEFI USB (F12/DEL/F11).
 
-   > Note: Restart to BIOS using CMD (Admin):
+   > Note: Restart to BIOS - CMD (Admin):
    >
    > ```cmd
    > shutdown /r /fw /t 00
