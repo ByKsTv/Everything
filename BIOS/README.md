@@ -6,7 +6,12 @@ Everything about BIOS.
 
 1. Search the motherboard model on Google.
 
-   > Note: Motherboard model can be found on `System Information` > `BaseBoard Product`
+   > Note: Find Motherboard Model - PowerShell (Admin):
+   >
+   > ```powershell
+   > (wmic baseboard get product)
+   >
+   > ```
 
 1. Use the official manufacter site to download the latest BIOS.
 1. Move BIOS to USB.
