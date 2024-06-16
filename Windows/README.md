@@ -19,7 +19,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. `START` > Enable all except `Set regional options to the same values as this user's` > `OK` > `OK`.
 1. Download Motherboard LAN driver and Chipset drivers to USB.
 
-   > Note: Motherboard model can be found using:
+   > Note: Find Motherboard Model - PowerShell (Admin):
    >
    > ```powershell
    > (wmic baseboard get product)
