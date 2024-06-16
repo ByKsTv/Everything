@@ -28,8 +28,7 @@ Everything about BIOS.
 1. Update BIOS Firmware.
 
    > Note: Update PC BIOS at night hours to avoid power loss.
-
-BIOS Update can take around 8 minutes.
+   > Note: BIOS Update can take around 8 minutes.
 
 ## BIOS Settings
 
