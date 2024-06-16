@@ -17,9 +17,14 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 1. Connect USB with at least 8GB.
 1. `START` > Enable all except `Set regional options to the same values as this user's` > `OK` > `OK`.
-1. Download Motherboard LAN driver to USB.
+1. Download Motherboard LAN driver and Chipset drivers to USB.
 
-   > Note: Motherboard model can be found on `System Information` > `BaseBoard Product`
+```powershell-interactive
+# get motherboard id
+$instanceID = (wmic baseboard get product)
+# search motherboard id in web browser
+Start-Process "https://www.google.com/search?q=$instanceID"
+```
 
 ## Pre Installation
 
@@ -41,6 +46,8 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. `Yes` > `Yes` > `Skip` > `I don't have internet` > `Continue with limited setup`.
 1. Connect Ethernet Cable (After Windows Boots Up).
 1. `Do you want to allow your PC to be discoverable by other PCs and devices on this network?` > Yes.
+
+   > Note: Install Motherboard LAN driver and Chipset drivers from USB.
 
 ## Initial Setup - Auto Install
 
@@ -76,12 +83,6 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. Default Format > `24 bit, 192000 Hz (Studio Quality)`.
 1. Enhancements: Disable all.
 1. Set default.
-
-### Drivers
-
-1. Download and Install Motherboard Drivers.
-
-   > Note: Download and Install only what's needed such as LAN and Chipset drivers.
 
 ### Printers
 
