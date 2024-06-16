@@ -19,12 +19,12 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. `START` > Enable all except `Set regional options to the same values as this user's` > `OK` > `OK`.
 1. Download Motherboard LAN driver and Chipset drivers to USB.
 
-```powershell-interactive
-# get motherboard id
-$instanceID = (wmic baseboard get product)
-# search motherboard id in web browser
-Start-Process "https://www.google.com/search?q=$instanceID"
-```
+   > Note: Motherboard model can be found using:
+   >
+   > ```powershell
+   > (wmic baseboard get product)
+   >
+   > ```
 
 ## Pre Installation
 
@@ -46,8 +46,7 @@ Start-Process "https://www.google.com/search?q=$instanceID"
 1. `Yes` > `Yes` > `Skip` > `I don't have internet` > `Continue with limited setup`.
 1. Connect Ethernet Cable (After Windows Boots Up).
 1. `Do you want to allow your PC to be discoverable by other PCs and devices on this network?` > Yes.
-
-   > Note: Install Motherboard LAN driver and Chipset drivers from USB.
+1. Install Motherboard LAN driver and Chipset drivers from USB.
 
 ## Initial Setup - Auto Install
 
