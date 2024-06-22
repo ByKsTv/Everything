@@ -55,9 +55,9 @@ public class SFW {
 
 Write-Host 'mpv: Setting foreground' -ForegroundColor green -BackgroundColor black
 [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'cmd.exe' }).MainWindowHandle)
-Start-Sleep -Milliseconds 2000
+Start-Sleep -Milliseconds 3000
 
-Write-Host "mpv: Downloading 'yt-dlp' and 'ffmpeg'" -ForegroundColor green -BackgroundColor black
+Write-Host "mpv: Downloading 'yt-dlp'" -ForegroundColor green -BackgroundColor black
 Add-Type -AssemblyName System.Windows.Forms
 Start-Sleep -Milliseconds 1000
 [System.Windows.Forms.SendKeys]::SendWait('y')
