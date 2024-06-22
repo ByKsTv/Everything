@@ -21,8 +21,8 @@ $7ZipLatestVer = (Invoke-RestMethod -Method GET -Uri 'https://api.github.com/rep
 
 if ($7ZipInstalledVer -notmatch $7ZipLatestVer ) {
     Write-Host '7-Zip: Downloading' -ForegroundColor green -BackgroundColor black
-    (New-Object System.Net.WebClient).DownloadFile(((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/ip7z/7zip/releases/latest').assets | Where-Object name -Like '*-x64.msi*').browser_download_url, "$env:TEMP\7zip-x64.msi")
+    (New-Object System.Net.WebClient).DownloadFile(((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/ip7z/7zip/releases/latest').assets | Where-Object name -Like '*-x64.exe*').browser_download_url, "$env:TEMP\7zip-x64.exe")
     
     Write-Host '7-Zip: Installing' -ForegroundColor green -BackgroundColor black
-    Start-Process -FilePath "$env:TEMP\7zip-x64.msi" -ArgumentList '/quiet /norestart' -Wait
+    Start-Process -FilePath "$env:TEMP\7zip-x64.exe" -ArgumentList '/S' -Wait
 }
