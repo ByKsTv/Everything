@@ -673,6 +673,7 @@ prnt.sc##.footer
 prnt.sc##body > .page-constrain
 qbforums.shiki.hu##.copyright
 qoob.name##.footer
+qoob.name##.pad5-tb.layout-wrap
 rapidgator.net##.footer
 rarbgto.org##.lista-rounded > tbody > tr:nth-of-type(4)
 rarbgto.org##.lista-rounded > tbody > tr:nth-of-type(4) > td
