@@ -39,7 +39,7 @@ Everything about Android apps.
 6. `Settings` > `Homepage` > Disable all.
 7. `Settings` > `Homepage` > `Last tab`.
 8. `Settings` > `Customise` > `Buttom`.
-9. `Settings` > `Add-ons` > Add `uBlock Origin` > `Settings` > [Restore from file](https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.txt).
+9. `Settings` > `Add-ons` > Add `uBlock Origin` > `Settings` > [Restore from file](https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Website_Debloater.txt).
 10. `Settings` > `Add-ons` > Add `ClearURLs`.
 11. `about:config` > `browser.cache.disk.enable` > `false`.
 12. `about:config` > `webgl.disabled` > `false`.
