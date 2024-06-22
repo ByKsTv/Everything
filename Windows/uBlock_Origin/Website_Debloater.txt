@@ -260,6 +260,9 @@ finance.walla.co.il##.whatsapp-share-wrapper
 financemonk.net##.btn-danger.btn-lg.btn-block.btn
 financemonk.net##.footer
 financemonk.net##.modalpop
+fitgirl-repacks.site###lbjoin2
+fitgirl-repacks.site##.donatebutton
+fitgirl-repacks.site##.nav-links
 fitgirl-repacks.site##[href="http://fitgirl-repacks.site/donations/"]
 fitgirl-repacks.site##[href="https://fitgirl-repacks.site/donations/"]
 forum.mobilism.me##.space10
