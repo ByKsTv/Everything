@@ -184,6 +184,10 @@ djxmaza.in##.position-absolute.p-5.footer
 djxmaza.in##.report
 dl-deltalabs.blogspot.com##.center.white-text.darken-2.black
 docs.github.com##.mb-xl-0.mb-2.flex-xl-justify-between.flex-justify-center.col-12.flex-wrap.d-flex.list-style-none
+dodi-repacks.site##.post-navigation.navigation
+dodi-repacks.site##.site-footer
+dodi-repacks.site##.site-info
+dodi-repacks.site##[href="https://dodi-repacks.site/donate/"]
 download.oxy.st###abuse
 download.oxy.st##.section-padding_bottom_m.section-padding_top_none.section-padding.text-block_align_center.text-block
 download.oxy.st##.section-padding_bottom_s.section-padding_top_s.section-padding.text-block_align_center.text-block
@@ -256,6 +260,7 @@ finance.walla.co.il##.whatsapp-share-wrapper
 financemonk.net##.btn-danger.btn-lg.btn-block.btn
 financemonk.net##.footer
 financemonk.net##.modalpop
+fitgirl-repacks.site##[href="https://fitgirl-repacks.site/donations/"]
 forum.mobilism.me##.space10
 forum.mobilism.me##.welcome-bar
 forum.mobilism.me##footer
@@ -283,6 +288,10 @@ forums.thinkbroadband.com###footer
 frdl.to##.copyright
 frdl.to##.position-absolute.p-5.footer
 frdl.to##.report
+freegogpcgames.com###post-nav
+freegogpcgames.com##.jp-relatedposts
+freegogpcgames.com##.ns-no-print.large.ns-floating.ns-buttons
+freegogpcgames.com##.site-info
 freepaste.link##.bg-dark.navbar-light.navbar
 freepaste.link##.pt-4.mt-0.text-md-left.text-center.page-footer
 fs0.releaseload.com##.copyright.dark-bluish-grey-bg
@@ -663,6 +672,7 @@ pornolab.net##tr.tCenter.row3 > .med
 prnt.sc##.footer
 prnt.sc##body > .page-constrain
 qbforums.shiki.hu##.copyright
+qoob.name##.footer
 rapidgator.net##.footer
 rarbgto.org##.lista-rounded > tbody > tr:nth-of-type(4)
 rarbgto.org##.lista-rounded > tbody > tr:nth-of-type(4) > td
@@ -1197,6 +1207,7 @@ www.dlink.ru##.copyright
 www.driverscape.com##.footer
 www.dvdcenter.co.il###eshop-footer
 www.dvdcenter.co.il###footer
+www.elamigos-games.net##.bg-dark.py-5
 www.electra-trade.co.il###credits
 www.engadget.com##.Bgc\(\#fff\).Jc\(sa\).D\(f\).W\(100vw\).rwd-outer-container
 www.engadget.com##.Bgc\(engadgetSteelGray\)--md.Bgc\(engadgetGray\).Jc\(sa\).D\(f\).W\(100vw\).rwd-outer-container
@@ -1704,6 +1715,7 @@ www.pornhubpremium.com##.tagsForWomen
 www.pornhubpremium.com##.upsellWrapper
 www.pornhubpremium.com##footer
 www.qbittorrent.org##.copyright
+www.qoob.name##.clearfix.mso-page-other-pages.hide-print
 www.rami-levy.co.il##.banner-img.mb-3
 www.rami-levy.co.il##.mt-3.py-2.px-3.border-radius-15.bg-gray-100
 www.rami-levy.co.il##.p-2.justify-content-center.align-items-center.d-flex.kashrut-item
