@@ -14,7 +14,7 @@ Everything about websites.
 - [AniDex - BDMV](https://anidex.info/?q=BDMV)
 - [ACG.RIP - BDMV](https://acg.rip/?term=BDMV)
 
-  > Note: Follow [Watch Order](https://www.reddit.com/r/anime/wiki/watch_order/)
+> Note: Follow [Watch Order](https://www.reddit.com/r/anime/wiki/watch_order/)
 
 ### Non-Anime
 
@@ -23,9 +23,23 @@ Everything about websites.
 - [1337x REMUX 2160p](https://1337x.to/sort-search/REMUX%202160p/time/desc/1/)
 - [RUTOR BDREMUX 2160p](https://rutor.info/search/0/0/000/0/BDRemux%202160p)
 
+## Games
+
+- [RuTracker.org](https://rutracker.org/forum/index.php)
+- [FitGirl Repacks](https://fitgirl-repacks.site/)
+- [Skidrow Repacks](https://skidrowrepacks.com/)
+- [ElAmigos Games](https://www.elamigos-games.net/)
+- [DODI Repacks](https://dodi-repacks.site/)
+- [RePack.Info](https://repack.info/en/)
+- [Qoob.NAME](https://qoob.name/)
+- [freegogpcgames](https://freegogpcgames.com/)
+- [cs.rin.ru](https://cs.rin.ru/forum/index.php)
+
+> Note: Source [awesome-piracy](https://github.com/Shakil-Shahadat/awesome-piracy?tab=readme-ov-file#gaming)
+
 ## Extra Websites
 
-- [RuTracker.org](https://rutracker.org/forum/index.php) - Movies & TV Shows & Anime & Software & Music
+- [RuTracker.org](https://rutracker.org/forum/index.php) - Movies & TV Shows & Anime & Software & Music & Games
 - [4pda](https://4pda.to/forum/index.php?showforum=212) - APKs
 - [mobilism](https://forum.mobilism.me/viewforum.php?f=398) - APKs
 - [Nyaa](https://nyaa.si/) - Anime
