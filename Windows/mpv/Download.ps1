@@ -1,11 +1,10 @@
-Write-Host 'mpv: Getting latest release' -ForegroundColor green -BackgroundColor black
-$mpvshinchirolatestv3 = ((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/zhongfly/mpv-winbuild/releases/latest').assets | Where-Object name -Like 'mpv-x86_64-v3*' ).browser_download_url
-
 Write-Host 'mpv: Downloading' -ForegroundColor green -BackgroundColor black
-(New-Object System.Net.WebClient).DownloadFile($mpvshinchirolatestv3, "$env:TEMP\mpv.7z")
+(New-Object System.Net.WebClient).DownloadFile(((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/zhongfly/mpv-winbuild/releases/latest').assets | Where-Object name -Like 'mpv-x86_64-v3*' ).browser_download_url, "$env:TEMP\mpv.7z")
 
 Write-Host 'mpv: Extracting' -ForegroundColor green -BackgroundColor black
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
+if ($false -eq (Test-Path "$env:ProgramFiles\7-Zip\7z.exe")) {
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
+}
 & "$env:ProgramFiles\7-Zip\7z.exe" x "$env:TEMP\mpv.7z" -o"$($env:USERPROFILE)\Desktop\mpv" -y
 
 Write-Host 'mpv: Using custom settings for updater.bat' -ForegroundColor green -BackgroundColor black
@@ -230,8 +229,8 @@ preferred_sub_lang=en/he/iw
 excluded_sub_words=sign/sdh/song
 expected_sub_words=' -Force
 
-Write-Host 'mpv: Adding script cookies-youtube-private.lua' -ForegroundColor green -BackgroundColor black
-(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/cookies-youtube-private.lua', "$($env:USERPROFILE)\Desktop\mpv\scripts\cookies-youtube-private.lua")
+Write-Host 'mpv: Adding script cookies.firefox-private.lua' -ForegroundColor green -BackgroundColor black
+(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/cookies.firefox-private.lua', "$($env:USERPROFILE)\Desktop\mpv\scripts\cookies.firefox-private.lua")
 
 Write-Host 'mpv: Adding script hidecursor.lua' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/hidecursor.lua', "$($env:USERPROFILE)\Desktop\mpv\scripts\hidecursor.lua")
@@ -242,12 +241,12 @@ Write-Host 'mpv: Adding script show-chapter.lua' -ForegroundColor green -Backgro
 Write-Host 'mpv: Adding script toggleconsole.lua' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/toggleconsole.lua', "$($env:USERPROFILE)\Desktop\mpv\scripts\toggleconsole.lua")
 
-Write-Host 'mpv: Adding script youtube-alt-tab.lua' -ForegroundColor green -BackgroundColor black
-(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/youtube-alt-tab.lua', "$($env:USERPROFILE)\Desktop\mpv\scripts\youtube-alt-tab.lua")
+Write-Host 'mpv: Adding script alt-tab-1sec-remaining.lua' -ForegroundColor green -BackgroundColor black
+(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/alt-tab-1sec-remaining.lua', "$($env:USERPROFILE)\Desktop\mpv\scripts\alt-tab-1sec-remaining.lua")
 
 $sponsorblockanswer = [System.Windows.Forms.MessageBox]::Show('Add sponsorblock?
 
-Python must be installed.
+Python will be installed.
 ' , 'mpv scripts' , 4, 32)
 if ($sponsorblockanswer -eq 'Yes') {
     if (!(Test-Path -Path "$($env:USERPROFILE)\Desktop\mpv\scripts\sponsorblock_shared")) {
@@ -273,8 +272,11 @@ fast_forward_cap=5' -Force
     Write-Host 'mpv: Adding script main.py' -ForegroundColor green -BackgroundColor black
     (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblock_shared/main.lua', "$($env:USERPROFILE)\Desktop\mpv\scripts\sponsorblock_shared/main.lua")
     
-    Write-Host 'Python: Initiating' -ForegroundColor green -BackgroundColor black
-    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Python/Download.ps1')
+    $InstalledSoftware = Get-Package | Select-Object -Property 'Name'
+    if (!($InstalledSoftware -match 'Python')) {
+        Write-Host 'Python: Initiating' -ForegroundColor green -BackgroundColor black
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Python/Download.ps1')
+    }
 }
 
 $deletefileanswer = [System.Windows.Forms.MessageBox]::Show('Add delete file?
