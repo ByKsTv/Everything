@@ -260,9 +260,17 @@ finance.walla.co.il##.whatsapp-share-wrapper
 financemonk.net##.btn-danger.btn-lg.btn-block.btn
 financemonk.net##.footer
 financemonk.net##.modalpop
+fitgirl-repacks.site###custom_html-4
+fitgirl-repacks.site###custom_html-5
 fitgirl-repacks.site###lbjoin2
 fitgirl-repacks.site##.donatebutton
 fitgirl-repacks.site##.nav-links
+fitgirl-repacks.site##.secondary-navigation.site-navigation.navigation
+fitgirl-repacks.site##.site-description
+fitgirl-repacks.site##.site-footer
+fitgirl-repacks.site##.site-info
+fitgirl-repacks.site##.widget-area.content-sidebar
+fitgirl-repacks.site##.widget_archive.widget
 fitgirl-repacks.site##[href="http://fitgirl-repacks.site/donations/"]
 fitgirl-repacks.site##[href="https://fitgirl-repacks.site/donations/"]
 forum.mobilism.me##.space10
@@ -347,6 +355,7 @@ github.com##.mt-3.mb-2.mt-md-2.mx-md-2.color-text-secondary.text-small
 github.com##.mt-3.mb-2.mt-md-2.mx-md-2.text-gray.text-small
 github.com##.mt-3.text-small > [href]
 github.com##.mt-4.f6.color-fg-muted
+github.com##.my-2.color-fg-muted.text-small
 github.com##.open.Details.js-details-container.branch-action-item
 github.com##.p-responsive.color-fg-muted.f6.pb-6.pt-8.footer
 github.com##.p-responsive.container-lg.width-full.footer
