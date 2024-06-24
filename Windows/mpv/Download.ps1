@@ -13,6 +13,7 @@ New-Item -Path "$($env:USERPROFILE)\Desktop\mpv\settings.xml" -ItemType File -Va
   <arch>x86_64-v3</arch>
   <autodelete>true</autodelete>
   <getffmpeg>true</getffmpeg>
+  <getytdl>ytdlp</getytdl>
 </settings>' -Force
 
 Write-Host 'mpv: Updating' -ForegroundColor green -BackgroundColor black
@@ -39,30 +40,6 @@ Write-Host 'mpv: Waiting for updater to start' -ForegroundColor green -Backgroun
 while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'cmd.exe' } -ErrorAction SilentlyContinue))) {
     Start-Sleep -Milliseconds 1000
 }
-
-Write-Host 'mpv: Adding option to set foreground' -ForegroundColor green -BackgroundColor black
-if (-not ([System.Management.Automation.PSTypeName]'SFW').Type) {
-    Add-Type @'
-using System;
-using System.Runtime.InteropServices;
-public class SFW {
-    [DllImport("user32.dll")]
-    [return: MarshalAs(UnmanagedType.Bool)]
-    public static extern bool SetForegroundWindow(IntPtr hWnd);
-}
-'@
-}
-
-Write-Host 'mpv: Setting foreground' -ForegroundColor green -BackgroundColor black
-[SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'cmd.exe' }).MainWindowHandle)
-Start-Sleep -Milliseconds 3000
-
-Write-Host "mpv: Downloading 'yt-dlp'" -ForegroundColor green -BackgroundColor black
-Add-Type -AssemblyName System.Windows.Forms
-Start-Sleep -Milliseconds 1000
-[System.Windows.Forms.SendKeys]::SendWait('y')
-Start-Sleep -Milliseconds 1000
-[System.Windows.Forms.SendKeys]::SendWait('1')
 
 Write-Host 'mpv: Waiting for updater to finish' -ForegroundColor green -BackgroundColor black
 while (!($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'cmd.exe' } -ErrorAction SilentlyContinue))) {
