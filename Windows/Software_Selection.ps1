@@ -358,7 +358,7 @@ if ($InstalledSoftware -match 'Visual Studio Code') {
 $CheckBox_UninstallEdge = New-Object System.Windows.Forms.CheckBox
 $CheckBox_UninstallEdge.Location = New-Object System.Drawing.Size(30, 560)
 $CheckBox_UninstallEdge.Size = New-Object System.Drawing.Size(400, 20)
-$CheckBox_UninstallEdge.Text = 'Uninstall Edge (Not Recommended)'
+$CheckBox_UninstallEdge.Text = 'Uninstall Edge'
 $CheckBox_UninstallEdge.Checked = $false
 $Form_SoftwareSelection.Controls.Add($CheckBox_UninstallEdge)
 
