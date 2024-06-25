@@ -143,6 +143,8 @@ cracked.to##.footer-back
 cracked.to##[href="https://ping.fo"]
 cracked.to##[href="https://t.me/accountvaultupdates"]
 crackingpatching.com###wrapper-footer
+cs.rin.ru###wrapfooter
+cs.rin.ru##.copyright
 danbooru.donmai.us##.gap-1.justify-center.items-center.flex-wrap.flex.border-t.w-full.py-3.mt-4.flex-initial.text-center.text-sm
 danbooru.donmai.us##.hidden-posts-notice.fineprint
 ddownload.com##.plans-wrapper
@@ -184,10 +186,15 @@ djxmaza.in##.position-absolute.p-5.footer
 djxmaza.in##.report
 dl-deltalabs.blogspot.com##.center.white-text.darken-2.black
 docs.github.com##.mb-xl-0.mb-2.flex-xl-justify-between.flex-justify-center.col-12.flex-wrap.d-flex.list-style-none
+dodi-repacks.site###block-14
+dodi-repacks.site###block-16
 dodi-repacks.site##.post-navigation.navigation
 dodi-repacks.site##.site-footer
 dodi-repacks.site##.site-info
+dodi-repacks.site##.widget_archive.widget
+dodi-repacks.site##.widget_recent_entries.widget_block.widget
 dodi-repacks.site##[href="https://dodi-repacks.site/donate/"]
+dodi-repacks.site##[href="https://game-repack.site/"]
 download.oxy.st###abuse
 download.oxy.st##.section-padding_bottom_m.section-padding_top_none.section-padding.text-block_align_center.text-block
 download.oxy.st##.section-padding_bottom_s.section-padding_top_s.section-padding.text-block_align_center.text-block
@@ -301,6 +308,7 @@ frdl.to##.copyright
 frdl.to##.position-absolute.p-5.footer
 frdl.to##.report
 freegogpcgames.com###post-nav
+freegogpcgames.com##.is-right-sidebar.sidebar.widget-area
 freegogpcgames.com##.jp-relatedposts
 freegogpcgames.com##.ns-no-print.large.ns-floating.ns-buttons
 freegogpcgames.com##.site-info
@@ -682,6 +690,7 @@ pornolab.net##[href^="https://bongacams2.com/track"]
 pornolab.net##div.spacer_12
 pornolab.net##table.w100:nth-of-type(6)
 pornolab.net##tr.tCenter.row3 > .med
+privatebin.rinuploads.org##footer.container
 prnt.sc##.footer
 prnt.sc##body > .page-constrain
 qbforums.shiki.hu##.copyright
@@ -937,6 +946,19 @@ videocardz.com##.clearfix.socialbar
 videocardz.com##.comment-policy-hider
 videocardz.com##div.relatedblock
 vpn5.health.gov.il###page_footer
+w14.monkrus.ws###HTML1
+w14.monkrus.ws###HTML4
+w14.monkrus.ws###HTML5
+w14.monkrus.ws###HTML6
+w14.monkrus.ws###HTML7
+w14.monkrus.ws##.BlogArchive.widget
+w14.monkrus.ws##.Label.widget
+w14.monkrus.ws##.PopularPosts.widget
+w14.monkrus.ws##.Stats.widget
+w14.monkrus.ws##.blog-pager
+w14.monkrus.ws##.post-footer
+w14.monkrus.ws##a.shareme
+w14.monkrus.ws##footer
 walla.*###main-footer
 walla.*##.css-12flape > aside
 walla.*##.no-mobile-app.tags-list.css-1234ruv
@@ -2036,6 +2058,13 @@ www.zdnet.com##.ad-disclosure
 www.zdnet.com##.breaking-news-container
 www.zdnet.com##.placeholder.mobile-nav-ad-plus-banner
 www.zdnet.com##.social-links
+www.zpaste.net###share
+www.zpaste.net##.uk-divider-icon
+www.zpaste.net##.uk-first-column.uk-width-expand\@s.uk-width-1-1 > div > center > div
+www.zpaste.net##.uk-section.uk-section-small.uk-section-muted
+www.zpaste.net##.uk-section.uk-section-small.uk-section-secondary
+www.zpaste.net##.uk-text-truncate.uk-button-primary.uk-button
+www.zpaste.net##div.uk-margin.uk-card-body.uk-card-small.uk-card-secondary.uk-card
 www2.bittools.net###USSE > .container > .row
 www2.bittools.net###footer2
 www2.bittools.net###footer2 > .container
