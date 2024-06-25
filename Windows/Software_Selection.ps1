@@ -181,7 +181,7 @@ $CheckBox_mpv.Text = 'mpv'
 $CheckBox_mpv.Checked = $false
 $Form_SoftwareSelection.Controls.Add($CheckBox_mpv)
 
-if ((Test-Path -Path "$env:APPDATA\mpv")) {
+if ((Test-Path -Path "$env:LOCALAPPDATA\mpv")) {
     $CheckBox_mpv.Enabled = $false
     $CheckBox_mpv.Text += ' (Installed)'
 }
