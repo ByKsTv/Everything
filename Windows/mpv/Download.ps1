@@ -221,6 +221,7 @@ Write-Host 'mpv: Adding script toggleconsole.lua' -ForegroundColor green -Backgr
 Write-Host 'mpv: Adding script alt-tab-1sec-remaining.lua' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/alt-tab-1sec-remaining.lua', "$env:APPDATA\mpv\scripts\alt-tab-1sec-remaining.lua")
 
+Add-Type -AssemblyName System.Windows.Forms
 $sponsorblockanswer = [System.Windows.Forms.MessageBox]::Show('Add sponsorblock?
 
 Python will be installed.
