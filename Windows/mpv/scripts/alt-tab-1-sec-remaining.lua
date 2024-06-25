@@ -5,13 +5,9 @@ local function read_time1(_, time_pos)
             if mp.get_property_number('playlist-count') == 1 then
                 mp.command_native({
                     name = 'subprocess',
-                    capture_stdout=true,
-                    args = { 
-                        'powershell', 
-                        '-NoProfile',
-                        '-Command', 
-                        'Add-Type -AssemblyName System.Windows.Forms;[System.Windows.Forms.SendKeys]::SendWait(\'%{TAB}\')'
-                    }
+                    capture_stdout = true,
+                    args = {'powershell', '-NoProfile', '-Command',
+                            '(New-Object -ComObject WScript.Shell).AppActivate((Get-Process firefox).Where({ $_.MainWindowTitle }, \'First\').Id)'}
                 })
                 mp.unobserve_property(read_time1)
             end
@@ -19,6 +15,6 @@ local function read_time1(_, time_pos)
     end
 end
 
-mp.register_event('file-loaded', function ()
+mp.register_event('file-loaded', function()
     mp.observe_property('time-pos', 'native', read_time1)
 end)
