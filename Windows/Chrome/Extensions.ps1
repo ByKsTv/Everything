@@ -12,7 +12,7 @@ if ($InstalledSoftware -match 'Google Chrome') {
     Write-Host "Google Chrome Extensions: Adding 'The Camelizer - Price Tracker'" -ForegroundColor green -BackgroundColor black
 
     # https://github.com/letsdoautomation/powershell/tree/main/Install%20Google%20Chrome%20Extensions
-    $extensions = 'cjpalhdlnbpafiamejdnhcphjbkeiagm', 'dhdgffkkebhmkfjojejmpbldmpobfkfo', 'lckanjgmijmafbedllaakclkaicjfmnk', 'ceipnlhmjohemhfpbjdgeigkababhmjc', 'mpbjkejclgfgadiemmefgebjfooflfhl', 'ghnomdcacenbmilgjigehppbamfndblo'
+    $extensions = 'cjpalhdlnbpafiamejdnhcphjbkeiagm', 'dhdgffkkebhmkfjojejmpbldmpobfkfo', 'lckanjgmijmafbedllaakclkaicjfmnk', 'mpbjkejclgfgadiemmefgebjfooflfhl', 'ghnomdcacenbmilgjigehppbamfndblo'
     $key_path = 'Software\Policies\Google\Chrome\ExtensionInstallForcelist'
     $registry = [Microsoft.Win32.Registry]::LocalMachine.OpenSubKey($key_path, $true)
     $extensions | ForEach-Object {

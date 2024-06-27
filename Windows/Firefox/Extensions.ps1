@@ -8,7 +8,6 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         Write-Host 'Mozilla Firefox Extensions: Adding uBlock Origin' -ForegroundColor green -BackgroundColor black
         Write-Host 'Mozilla Firefox Extensions: Adding Violentmonkey' -ForegroundColor green -BackgroundColor black
         Write-Host 'Mozilla Firefox Extensions: Adding ClearURLs' -ForegroundColor green -BackgroundColor black
-        Write-Host "Mozilla Firefox Extensions: Adding I'm not robot captcha clicker" -ForegroundColor green -BackgroundColor black
         Write-Host 'Mozilla Firefox Extensions: Adding Buster: Captcha Solver for Humans' -ForegroundColor green -BackgroundColor black
         Write-Host 'Mozilla Firefox Extensions: Adding The Camelizer - Price Tracker' -ForegroundColor green -BackgroundColor black
 
@@ -27,11 +26,6 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         [PSCustomObject]@{
             Path  = 'SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install'
             Value = 'https://addons.mozilla.org/firefox/downloads/latest/clearurls/latest.xpi'
-            Name  = ++$count
-        },
-        [PSCustomObject]@{
-            Path  = 'SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install'
-            Value = 'https://addons.mozilla.org/firefox/downloads/latest/i-m-not-robot-captcha-clicker/latest.xpi'
             Name  = ++$count
         },
         [PSCustomObject]@{
