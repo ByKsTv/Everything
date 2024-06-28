@@ -14,6 +14,7 @@ New-Item -Path "$env:LOCALAPPDATA\mpv\settings.xml" -ItemType File -Value '<sett
   <autodelete>true</autodelete>
   <getffmpeg>true</getffmpeg>
   <getytdl>ytdlp</getytdl>
+  <ytdlpchannel>master</ytdlpchannel>
 </settings>' -Force
 
 Write-Host 'mpv: Updating' -ForegroundColor green -BackgroundColor black
