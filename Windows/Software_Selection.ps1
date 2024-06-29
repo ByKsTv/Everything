@@ -177,11 +177,11 @@ if ($null -ne (Get-AppxPackage -Name Microsoft.WindowsStore)) {
 $CheckBox_mpv = New-Object System.Windows.Forms.CheckBox
 $CheckBox_mpv.Location = New-Object System.Drawing.Size(30, 280)
 $CheckBox_mpv.Size = New-Object System.Drawing.Size(400, 20)
-$CheckBox_mpv.Text = 'mpv'
+$CheckBox_mpv.Text = 'mpv (Desktop)'
 $CheckBox_mpv.Checked = $false
 $Form_SoftwareSelection.Controls.Add($CheckBox_mpv)
 
-if ((Test-Path -Path "$env:LOCALAPPDATA\mpv")) {
+if ((Test-Path -Path "$($env:USERPROFILE)\Desktop\mpv")) {
     $CheckBox_mpv.Enabled = $false
     $CheckBox_mpv.Text += ' (Installed)'
 }
