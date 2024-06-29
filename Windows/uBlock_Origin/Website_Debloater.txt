@@ -973,7 +973,6 @@ w14.monkrus.ws##.BlogArchive.widget
 w14.monkrus.ws##.Label.widget
 w14.monkrus.ws##.PopularPosts.widget
 w14.monkrus.ws##.Stats.widget
-w14.monkrus.ws##.blog-pager
 w14.monkrus.ws##.post-footer
 w14.monkrus.ws##a.shareme
 w14.monkrus.ws##footer
