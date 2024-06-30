@@ -144,14 +144,14 @@ alang=ja,en
 volume-max=100
 
 # Video
-hwdec=no
+hwdec=yes
 vo=gpu-next
 target-colorspace-hint=yes
 video-sync=display-resample
 
 # Subtitles
 sub-auto=fuzzy
-sub-file-paths=Subs;eng
+sub-file-paths=Subs;eng;sub
 
 # Screenshot
 screenshot-format=png
