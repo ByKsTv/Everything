@@ -144,7 +144,7 @@ alang=ja,en
 volume-max=100
 
 # Video
-hwdec=yes
+hwdec=no
 vo=gpu-next
 target-colorspace-hint=yes
 video-sync=display-resample
@@ -158,7 +158,9 @@ screenshot-format=png
 screenshot-png-compression=0
 
 # YouTube
-ytdl-raw-options=mark-watched=,playlist-end=100' -Force
+ytdl-raw-options=mark-watched=,playlist-end=100
+ytdl-format=(bestvideo[vcodec^=av01]/bestvideo)+bestaudio/best
+' -Force
 
 if (!(Test-Path -Path "$($env:USERPROFILE)\Desktop\mpv\scripts")) {
     Write-Host 'mpv: Creating scripts folder' -ForegroundColor green -BackgroundColor black
