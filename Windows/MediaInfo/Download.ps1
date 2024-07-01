@@ -22,7 +22,7 @@ $MediaInfoDL = 'https:' + $MediaInfoHREF
 
 Write-Host 'Mediainfo: Checking if updated' -ForegroundColor green -BackgroundColor black
 $MediainfoInstalledVer = (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Mediainfo' -ErrorAction SilentlyContinue).DisplayVersion
-$MediaInfoGit = Invoke-WebRequest -UseBasicParsing 'https://api.github.com/repos/MediaArea/MediaInfo/releases/latest' | ConvertFrom-Json
+$MediaInfoGit = Invoke-RestMethod 'https://api.github.com/repos/MediaArea/MediaInfo/releases/latest'
 $MediaInfoLatestVer = $MediaInfoGit.name
 
 if ($null -eq $MediainfoInstalledVer) {
