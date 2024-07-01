@@ -11,33 +11,4 @@ Write-Host 'Display Driver Uninstaller: Installing' -ForegroundColor green -Back
 Start-Process -FilePath $env:TEMP\DDU.exe -ArgumentList '/S'
 
 Write-Host 'Display Driver Uninstaller: Using custom settings' -ForegroundColor green -BackgroundColor black
-$DDUSettings = '<?xml version="1.0" encoding="utf-8"?>
-<DisplayDriverUninstaller Version="18.0.7.6">
-	<Settings>
-		<SelectedLanguage>en-US</SelectedLanguage>
-		<RemoveMonitors>True</RemoveMonitors>
-		<RemoveCrimsonCache>True</RemoveCrimsonCache>
-		<RemoveAMDDirs>True</RemoveAMDDirs>
-		<RemoveAudioBus>False</RemoveAudioBus>
-		<RemoveAMDKMPFD>False</RemoveAMDKMPFD>
-		<RemoveNvidiaDirs>True</RemoveNvidiaDirs>
-		<RemovePhysX>True</RemovePhysX>
-		<Remove3DTVPlay>True</Remove3DTVPlay>
-		<RemoveGFE>True</RemoveGFE>
-		<RemoveNVBROADCAST>True</RemoveNVBROADCAST>
-		<RemoveNVCP>True</RemoveNVCP>
-		<RemoveINTELCP>True</RemoveINTELCP>
-		<RemoveAMDCP>True</RemoveAMDCP>
-		<UseRoamingConfig>False</UseRoamingConfig>
-		<CheckUpdates>True</CheckUpdates>
-		<CreateRestorePoint>True</CreateRestorePoint>
-		<SaveLogs>True</SaveLogs>
-		<RemoveVulkan>True</RemoveVulkan>
-		<ShowOffer>False</ShowOffer>
-		<EnableSafeModeDialog>False</EnableSafeModeDialog>
-		<PreventWinUpdate>False</PreventWinUpdate>
-		<UsedBCD>False</UsedBCD>
-		<KeepNVCPopt>False</KeepNVCPopt>
-	</Settings>
-</DisplayDriverUninstaller>'
-New-Item -Path "${env:ProgramFiles(x86)}\Display Driver Uninstaller\Settings\Settings.xml" -ItemType File -Value $DDUSettings -Force
+(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Display_Driver_Uninstaller/Settings.xml', "${env:ProgramFiles(x86)}\Display Driver Uninstaller\Settings\Settings.xml")
