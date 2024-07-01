@@ -6,5 +6,7 @@ $qBittorrent.DownloadFile('https://sourceforge.net/projects/qbittorrent/files/la
 Write-Host 'qBittorrent: Installing' -ForegroundColor green -BackgroundColor black
 Start-Process $ENV:temp\qBittorrent.exe -ArgumentList '/S'
 
-Write-Host 'qBittorrent: Using custom settings' -ForegroundColor green -BackgroundColor black
-(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/qBittorrent.ini', "$env:APPDATA\qBittorrent\qBittorrent.ini")
+if (!(Test-Path -Path "$env:APPDATA\qBittorrent\qBittorrent.ini")) {
+    Write-Host 'qBittorrent: Using custom settings' -ForegroundColor green -BackgroundColor black
+    (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/qBittorrent.ini', "$env:APPDATA\qBittorrent\qBittorrent.ini")
+}
