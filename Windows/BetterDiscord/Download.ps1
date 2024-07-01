@@ -106,24 +106,10 @@ if ((Test-Path -Path $env:LOCALAPPDATA\Discord)) {
             (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/Knewest/uncompressed-discord-images/main/UncompressedImages.plugin.js', "$env:APPDATA\BetterDiscord\plugins\UncompressedImages.plugin.js")
 
             Write-Host 'BetterDiscord: Enabling All Plugins' -ForegroundColor green -BackgroundColor black
-            New-Item -Path "$env:APPDATA\BetterDiscord\data\stable\plugins.json" -ItemType File -Value '{
-    "DoNotTrack": true,
-    "ZeresPluginLibrary": true,
-    "PluginRepo": true,
-    "BDFDB": true,
-    "CallTimeCounter": true,
-    "BetterRoleColors": true,
-    "ThemeRepo": true,
-    "YABDP4Nitro": true,
-    "RemoveChatButtons": true,
-    "removeTrackingURL": true,
-    "Uncompressed Images": true
-}' -Force
-
+            (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/BetterDiscord/plugins.json', "$env:APPDATA\BetterDiscord\data\stable\plugins.json")
+            
             Write-Host 'BetterDiscord: Enabling AMOLED-Cord Theme' -ForegroundColor green -BackgroundColor black
-            New-Item -Path "$env:APPDATA\BetterDiscord\data\stable\themes.json" -ItemType File -Value '{
-    "AMOLED-Cord": true
-}' -Force
+            (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/BetterDiscord/themes.json', "$env:APPDATA\BetterDiscord\data\stable\themes.json")
         }
         
         Write-Host 'BetterDiscord: Downloading' -ForegroundColor green -BackgroundColor black
