@@ -8,14 +8,7 @@ if ($false -eq (Test-Path "$env:ProgramFiles\7-Zip\7z.exe")) {
 & "$env:ProgramFiles\7-Zip\7z.exe" x "$env:TEMP\mpv.7z" -o"$($env:USERPROFILE)\Desktop\mpv" -y
 
 Write-Host 'mpv: Using custom settings for updater.bat' -ForegroundColor green -BackgroundColor black
-New-Item -Path "$($env:USERPROFILE)\Desktop\mpv\settings.xml" -ItemType File -Value '<settings>
-  <channel>daily</channel>
-  <arch>x86_64-v3</arch>
-  <autodelete>true</autodelete>
-  <getffmpeg>true</getffmpeg>
-  <getytdl>ytdlp</getytdl>
-  <ytdlpchannel>master</ytdlpchannel>
-</settings>' -Force
+(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/settings.xml', "$($env:USERPROFILE)\Desktop\mpv\settings.xml")
 
 Write-Host 'mpv: Updating' -ForegroundColor green -BackgroundColor black
 $MPV_Updater = 'MPV Updater'
@@ -51,116 +44,10 @@ Write-Host 'mpv: Installing' -ForegroundColor green -BackgroundColor black
 Start-Process -FilePath "$($env:USERPROFILE)\Desktop\mpv\installer\mpv-install.bat" -ArgumentList '/u'
 
 Write-Host 'mpv: Using custom settings for input.conf' -ForegroundColor green -BackgroundColor black
-New-Item -Path "$($env:USERPROFILE)\Desktop\mpv\input.conf" -ItemType File -Value @'
-# audio
-a cycle audio
-Ctrl+UP add audio-delay 0.1
-Ctrl+DOWN add audio-delay -0.1
-
-# fullscreen
-f cycle fullscreen
-MBTN_LEFT_DBL cycle fullscreen
-
-# pause
-ENTER cycle pause
-SPACE cycle pause
-MBTN_LEFT cycle pause
-
-# run
-GO_BACK run powershell -command "Add-Type -AssemblyName System.Windows.Forms;[System.Windows.Forms.SendKeys]::SendWait('%{TAB}')"
-
-# quit
-ESC quit
-MENU quit
-
-# screenshot
-F12 screenshot
-
-# script: console
-` script-binding console/enable
-
-# script: delete_file
-BS script-binding delete_file/delete_file
-DEL script-binding delete_file/delete_file
-
-# script: stats
-F11 script-binding stats/display-stats-toggle
-TAB script-binding stats/display-stats-toggle
-PLAYPAUSE script-binding stats/display-stats-toggle
-
-# script: toggleconsole
-PREV script-binding toggleconsole/__keybinding1
-
-# seek
-LEFT seek -1
-NEXT seek +85
-RIGHT seek +1
-WHEEL_LEFT seek -1
-WHEEL_RIGHT seek +1
-
-# show
-\ show-text ${metadata} 10000
-
-# sub
-s cycle sub
-CTRL+- set sub-delay 0
-CTRL+= add sub-delay -60
-CTRL+LEFT add sub-delay -0.1
-CTRL+RIGHT add sub-delay +0.1
-
-# volume
-UP osd-bar add volume +1
-DOWN osd-bar add volume -1
-WHEEL_UP osd-bar add volume +1
-WHEEL_DOWN osd-bar add volume -1
-'@ -Force
+(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/input.conf', "$($env:USERPROFILE)\Desktop\mpv\input.conf")
 
 Write-Host 'mpv: Using custom settings for mpv.conf' -ForegroundColor green -BackgroundColor black
-New-Item -Path "$($env:USERPROFILE)\Desktop\mpv\mpv.conf" -ItemType File -Value '# High Quality
-profile=high-quality
-
-# Player
-fs=yes
-keep-open=yes
-hr-seek=yes
-keep-open-pause=no
-auto-window-resize=no
-osd-bar-border-size=0.5
-image-display-duration=0.4
-input-default-bindings=no
-watch-later-options-remove=pause
-
-# Demuxer
-demuxer-max-bytes=1GiB
-demuxer-max-back-bytes=1GiB
-
-# OSD
-osd-bar-align-y=-0.98
-osd-border-size=1
-osd-font-size=30
-
-# Audio
-alang=ja,en
-volume-max=100
-
-# Video
-hwdec=yes
-vo=gpu-next
-target-colorspace-hint=yes
-video-sync=display-resample
-
-# Subtitles
-sub-auto=fuzzy
-sub-file-paths=Subs;eng;sub
-
-# Screenshot
-screenshot-format=png
-screenshot-png-compression=0
-
-# YouTube
-ytdl-raw-options=mark-watched=,playlist-end=100
-ytdl-format=(bestvideo[vcodec^=av01]/bestvideo)+bestaudio/best
-' -Force
+(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/mpv.conf', "$($env:USERPROFILE)\Desktop\mpv\mpv.conf")
 
 if (!(Test-Path -Path "$($env:USERPROFILE)\Desktop\mpv\scripts")) {
     Write-Host 'mpv: Creating scripts folder' -ForegroundColor green -BackgroundColor black
@@ -173,41 +60,31 @@ if (!(Test-Path -Path "$($env:USERPROFILE)\Desktop\mpv\script-opts")) {
 }
 
 Write-Host 'mpv: Using custom settings for osc.conf' -ForegroundColor green -BackgroundColor black
-New-Item -Path "$($env:USERPROFILE)\Desktop\mpv\script-opts\osc.conf" -ItemType File -Value 'idlescreen=no' -Force
+(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/script-opts/osc.conf', "$($env:USERPROFILE)\Desktop\mpv\script-opts\osc.conf")
 
 Write-Host 'mpv: Adding script autoload.lua' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/mpv-player/mpv/master/TOOLS/lua/autoload.lua', "$($env:USERPROFILE)\Desktop\mpv\scripts\autoload.lua")
 
 Write-Host 'mpv: Using custom settings for autoload.conf' -ForegroundColor green -BackgroundColor black
-New-Item -Path "$($env:USERPROFILE)\Desktop\mpv\script-opts\autoload.conf" -ItemType File -Value 'directory_mode=recursive
-additional_video_exts=vob
-audio=no' -Force
+(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/script-opts/autoload.conf', "$($env:USERPROFILE)\Desktop\mpv\script-opts\autoload.conf")
 
 Write-Host 'mpv: Adding script oled-screensaver.lua' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/Akemi/mpv-oled-screensaver/master/oled-screensaver.lua', "$($env:USERPROFILE)\Desktop\mpv\scripts\oled-screensaver.lua")
 
 Write-Host 'mpv: Using custom settings for oled_screensaver.conf' -ForegroundColor green -BackgroundColor black
-New-Item -Path "$($env:USERPROFILE)\Desktop\mpv\script-opts\oled_screensaver.conf" -ItemType File -Value 'startAfter=1
-alphaStep=255' -Force
+(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/script-opts/oled_screensaver.conf', "$($env:USERPROFILE)\Desktop\mpv\script-opts\oled_screensaver.conf")
 
 Write-Host 'mpv: Adding script celebi.lua' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/po5/celebi/master/celebi.lua', "$($env:USERPROFILE)\Desktop\mpv\scripts\celebi.lua")
 
 Write-Host 'mpv: Using custom settings for celebi.conf' -ForegroundColor green -BackgroundColor black
-New-Item -Path "$($env:USERPROFILE)\Desktop\mpv\script-opts\celebi.conf" -ItemType File -Value 'volume=yes' -Force
+(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/script-opts/celebi.conf', "$($env:USERPROFILE)\Desktop\mpv\script-opts\celebi.conf")
 
 Write-Host 'mpv: Adding script trackselect.lua' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/po5/trackselect/master/trackselect.lua', "$($env:USERPROFILE)\Desktop\mpv\scripts\trackselect.lua")
 
 Write-Host 'mpv: Using custom settings for trackselect.conf' -ForegroundColor green -BackgroundColor black
-New-Item -Path "$($env:USERPROFILE)\Desktop\mpv\script-opts\trackselect.conf" -ItemType File -Value 'preferred_audio_lang=jp/ja/en
-preferred_audio_channels=8/7/6/5/4/3/2/1
-excluded_audio_words=Reanimedia
-expected_audio_words=
-
-preferred_sub_lang=en/he/iw
-excluded_sub_words=sign/sdh/song
-expected_sub_words=' -Force
+(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/script-opts/trackselect.conf', "$($env:USERPROFILE)\Desktop\mpv\script-opts\trackselect.conf")
 
 Write-Host 'mpv: Adding script cookies.firefox-private.lua' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/cookies.firefox-private.lua', "$($env:USERPROFILE)\Desktop\mpv\scripts\cookies.firefox-private.lua")
@@ -239,13 +116,7 @@ if ($sponsorblockanswer -eq 'Yes') {
     (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblock.lua', "$($env:USERPROFILE)\Desktop\mpv\scripts\sponsorblock.lua")
     
     Write-Host 'mpv: Using custom settings for sponsorblock.conf' -ForegroundColor green -BackgroundColor black
-    New-Item -Path "$($env:USERPROFILE)\Desktop\mpv\script-opts\sponsorblock.conf" -ItemType File -Value 'categories=sponsor,selfpromo,interaction,intro,outro,preview,music_offtopic,filler
-skip_categories=sponsor,selfpromo,interaction,intro,outro,preview,music_offtopic,filler
-skip_once=yes
-report_views=no
-fast_forward=no
-fast_forward_increase=1
-fast_forward_cap=5' -Force
+    (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/script-opts/sponsorblock.conf', "$($env:USERPROFILE)\Desktop\mpv\script-opts\sponsorblock.conf")
 
     Write-Host 'mpv: Adding script sponsorblock.py' -ForegroundColor green -BackgroundColor black
     (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblock_shared/sponsorblock.py', "$($env:USERPROFILE)\Desktop\mpv\scripts\sponsorblock_shared/sponsorblock.py")

@@ -1,0 +1,8 @@
+<settings>
+    <channel>daily</channel>
+    <arch>x86_64-v3</arch>
+    <autodelete>true</autodelete>
+    <getffmpeg>true</getffmpeg>
+    <getytdl>ytdlp</getytdl>
+    <ytdlpchannel>master</ytdlpchannel>
+</settings>
