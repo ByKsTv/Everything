@@ -35,9 +35,7 @@ if ($null -eq $MediainfoInstalledVer) {
 	}
 	
 	Write-Host 'Mediainfo: Using custom settings' -ForegroundColor green -BackgroundColor black
-	Set-Content -Path $env:APPDATA\MediaInfo\Plugin\MediaInfo.cfg -Value 'Output = Tree 
-	Donated = 1 
-	ShellInfoTip = 1 ' -Force
+	(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/MediaInfo/MediaInfo.cfg', "$env:APPDATA\MediaInfo\Plugin\MediaInfo.cfg")
 }
 
 if ($MediainfoInstalledVer -match $MediaInfoLatestVer) {
