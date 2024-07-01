@@ -10,78 +10,7 @@ Add-AppxPackage -AppInstallerFile "$env:TEMP\TranslucentTB.appinstaller"
 Write-Host 'TranslucentTB: Using custom settings' -ForegroundColor green -BackgroundColor black
 $TranslucentTBLoc = Get-Item -Path "$env:LOCALAPPDATA\Packages\*TranslucentTB*\RoamingState\"
 $TranslucentTBSettingsLoc = "$TranslucentTBLoc\settings.json"
-New-Item -Path $TranslucentTBSettingsLoc -ItemType File -Value @'
-// See https://TranslucentTB.github.io/config for more information
-{
-  "$schema": "https://TranslucentTB.github.io/settings.schema.json",
-  "desktop_appearance": {
-    "accent": "clear",
-    "color": "#00000000",
-    "show_peek": false,
-    "show_line": false
-  },
-  "visible_window_appearance": {
-    "enabled": true,
-    "accent": "clear",
-    "color": "#00000000",
-    "show_peek": false,
-    "show_line": false,
-    "rules": {
-      "window_class": {},
-      "window_title": {},
-      "process_name": {}
-    }
-  },
-  "maximized_window_appearance": {
-    "enabled": true,
-    "accent": "clear",
-    "color": "#00000000",
-    "show_peek": false,
-    "show_line": true,
-    "rules": {
-      "window_class": {},
-      "window_title": {},
-      "process_name": {}
-    }
-  },
-  "start_opened_appearance": {
-    "enabled": false,
-    "accent": "normal",
-    "color": "#00000000",
-    "show_peek": true,
-    "show_line": true
-  },
-  "search_opened_appearance": {
-    "enabled": false,
-    "accent": "normal",
-    "color": "#00000000",
-    "show_peek": true,
-    "show_line": true
-  },
-  "task_view_opened_appearance": {
-    "enabled": false,
-    "accent": "clear",
-    "color": "#00000000",
-    "show_peek": false,
-    "show_line": true
-  },
-  "battery_saver_appearance": {
-    "enabled": false,
-    "accent": "opaque",
-    "color": "#00000000",
-    "show_peek": true,
-    "show_line": false
-  },
-  "ignored_windows": {
-    "window_class": [],
-    "window_title": [],
-    "process_name": []
-  },
-  "hide_tray": true,
-  "disable_saving": false,
-  "verbosity": "warn"
-}
-'@ -Force
+(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/TranslucentTB/settings.json', "$TranslucentTBSettingsLoc")
 
 Write-Host 'TranslucentTB: Hiding pop-up' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppModel\SystemAppData\*TranslucentTB*' -Name 'WasEverActivated' -Value 1 -PropertyType DWord -Force
