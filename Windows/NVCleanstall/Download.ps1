@@ -79,35 +79,5 @@ Write-Host 'NVCleanstall: Using custom settings' -ForegroundColor green -Backgro
 if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\techPowerUp\NVCleanstall') -ne $true) {
     New-Item 'HKCU:\SOFTWARE\techPowerUp\NVCleanstall' -Force
 }
-$NVCleanstallCustomSettings = @'
-{
-    "DisableInstallerTelemetry": true,
-    "Unattended": true,
-    "UnattendedReboot": true,
-    "CleanInstall": false,
-    "InstallDCHControlPanel": false,
-    "AddHardwareId": false,
-    "ShowDlssIndicator": false,
-    "DisableMPO": false,
-    "DisableNvCamera": true,
-    "ShowExpertOptions": true,
-    "DisableDriverTelemetry": true,
-    "DisableNvContainer": false,
-    "DisableHDAudioSleepTimer": true,
-    "EnableMSI": true,
-    "DisableHDCP": false,
-    "NvEncPatch": false,
-    "RunProgram": false,
-    "RebuildSignatureEAC": false,
-    "SkipUnsignedDriverWarning": true,
-    "AddIdId": "",
-    "AddIdName": "NVIDIA Graphics Device",
-    "RunBefore": "",
-    "RunAfter": "",
-    "AddIdTemplate": "",
-    "MSIPolicy": 5,
-    "MSIPriority": 3,
-    "NvEncPatchVersions": 0
-  }
-'@
+$NVCleanstallCustomSettings = (New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/NVCleanstall/settings.json')
 New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\techPowerUp\NVCleanstall' -Name 'PreviousTweaks' -Value $NVCleanstallCustomSettings -PropertyType String -Force
