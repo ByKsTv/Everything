@@ -2266,12 +2266,10 @@ Start-Process -FilePath "$env:TEMP\VC_redist.x86.exe" -ArgumentList '/install /q
 (New-Object System.Net.WebClient).DownloadFile('https://aka.ms/vs/17/release/VC_redist.x64.exe', "$env:TEMP\VC_redist.x64.exe")
 Start-Process -FilePath "$env:TEMP\VC_redist.x64.exe" -ArgumentList '/install /quiet /norestart'
 # InstallDotNetRuntimes -Runtimes NET6x64, NET8x64
-$NET6LatestRelease = (Invoke-RestMethod -UseBasicParsing -Uri https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/6.0/releases.json).'latest-release'
-(New-Object System.Net.WebClient).DownloadFile("https://dotnetcli.azureedge.net/dotnet/Runtime/$NET6LatestRelease/dotnet-runtime-$NET6LatestRelease-win-x64.exe", "$env:TEMP\dotnet-runtime-$NET6LatestRelease-win-x64.exe")
-Start-Process -FilePath "$env:TEMP\dotnet-runtime-$NET6LatestRelease-win-x64.exe" -ArgumentList '/install /quiet /norestart'
-$NET8LatestRelease = (Invoke-RestMethod -UseBasicParsing -Uri https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/8.0/releases.json).'latest-release'
-(New-Object System.Net.WebClient).DownloadFile("https://dotnetcli.azureedge.net/dotnet/Runtime/$NET8LatestRelease/dotnet-runtime-$NET8LatestRelease-win-x64.exe", "$env:TEMP\dotnet-runtime-$NET8LatestRelease-win-x64.exe")
-Start-Process -FilePath "$env:TEMP\dotnet-runtime-$NET8LatestRelease-win-x64.exe" -ArgumentList '/install /quiet /norestart'
+(New-Object System.Net.WebClient).DownloadFile(((((Invoke-WebRequest -UseBasicParsing -Uri "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/6.0/releases.json" | ConvertFrom-Json).Releases | Select-Object -First 1).sdk).files | Where-Object -Property 'name' -like "dotnet-sdk-win-x64.exe").url, "$env:TEMP\dotnet-6-sdk-win-x64.exe")
+Start-Process -FilePath "$env:TEMP\dotnet-6-sdk-win-x64.exe" -ArgumentList '/install /quiet /norestart'
+(New-Object System.Net.WebClient).DownloadFile(((((Invoke-WebRequest -UseBasicParsing -Uri "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/8.0/releases.json" | ConvertFrom-Json).Releases | Select-Object -First 1).sdk).files | Where-Object -Property 'name' -like "dotnet-sdk-win-x64.exe").url, "$env:TEMP\dotnet-8-sdk-win-x64.exe")
+Start-Process -FilePath "$env:TEMP\dotnet-8-sdk-win-x64.exe" -ArgumentList '/install /quiet /norestart'
 # RKNBypass -Disable
 # Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' -Name AutoConfigURL -Force # Error
 # PreventEdgeShortcutCreation -Channels Stable, Beta, Dev, Canary
