@@ -2265,11 +2265,6 @@ New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings -Name 
 Start-Process -FilePath "$env:TEMP\VC_redist.x86.exe" -ArgumentList '/install /quiet /norestart'
 (New-Object System.Net.WebClient).DownloadFile('https://aka.ms/vs/17/release/VC_redist.x64.exe', "$env:TEMP\VC_redist.x64.exe")
 Start-Process -FilePath "$env:TEMP\VC_redist.x64.exe" -ArgumentList '/install /quiet /norestart'
-# InstallDotNetRuntimes -Runtimes NET6x64, NET8x64
-(New-Object System.Net.WebClient).DownloadFile(((((Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/6.0/releases.json).Releases | Select-Object -First 1).sdk).files | Where-Object -Property 'name' -Like 'dotnet-sdk-win-x64.exe').url, "$env:TEMP\dotnet-6-sdk-win-x64.exe")
-Start-Process -FilePath "$env:TEMP\dotnet-6-sdk-win-x64.exe" -ArgumentList '/install /quiet /norestart'
-(New-Object System.Net.WebClient).DownloadFile(((((Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/6.0/releases.json).Releases | Select-Object -First 1).sdk).files | Where-Object -Property 'name' -Like 'dotnet-sdk-win-x64.exe').url, "$env:TEMP\dotnet-8-sdk-win-x64.exe")
-Start-Process -FilePath "$env:TEMP\dotnet-8-sdk-win-x64.exe" -ArgumentList '/install /quiet /norestart'
 # RKNBypass -Disable
 # Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' -Name AutoConfigURL -Force # Error
 # PreventEdgeShortcutCreation -Channels Stable, Beta, Dev, Canary
