@@ -28,11 +28,7 @@ $NotepadInstalledVer = (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\Curre
 $NotepadLatestVer = $npp.tag_name 
 $NotepadLatestVer = $NotepadLatestVer.Replace('v', '')
 
-if ($NotepadInstalledVer -match $NotepadLatestVer) {
-    Write-Host 'Notepad++: Latest Version Is Already Installed' -ForegroundColor green -BackgroundColor black
-}
-
-elseif ($NotepadInstalledVer -notmatch $NotepadLatestVer ) {
+if (($null -eq $NotepadInstalledVer) -or ($NotepadInstalledVer -notmatch $NotepadLatestVer)) {
     Write-Host 'Notepad++: Downloading' -ForegroundColor green -BackgroundColor black
     (New-Object System.Net.WebClient).DownloadFile($dlUrl, $installerPath)
 

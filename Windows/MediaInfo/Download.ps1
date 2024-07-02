@@ -38,11 +38,7 @@ if ($null -eq $MediainfoInstalledVer) {
 	(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/MediaInfo/MediaInfo.cfg', "$env:APPDATA\MediaInfo\Plugin\MediaInfo.cfg")
 }
 
-if ($MediainfoInstalledVer -match $MediaInfoLatestVer) {
-	Write-Host 'Mediainfo: Latest Version Is Already Installed' -ForegroundColor green -BackgroundColor black
-}
-
-elseif ($MediainfoInstalledVer -notmatch $MediaInfoLatestVer ) {
+if (($null -eq $MediainfoInstalledVer) -or ($MediainfoInstalledVer -notmatch $MediaInfoLatestVer)) {
 	Write-Host 'Mediainfo: Downloading' -ForegroundColor green -BackgroundColor black
 	(New-Object System.Net.WebClient).DownloadFile($MediaInfoDL, "$env:TEMP\MediaInfo.exe")
 

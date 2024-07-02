@@ -30,11 +30,7 @@ Write-Host 'Python: Checking if updated' -ForegroundColor green -BackgroundColor
 $PythonInstalledVer = py -V
 $PythonInstalledVer = $PythonInstalledVer.Replace('Python ', '')
 
-if ($PythonInstalledVer -match $PyLatestVersion) {
-    Write-Host 'Python: Latest Version Is Already Installed' -ForegroundColor green -BackgroundColor black
-}
-
-elseif ($PythonInstalledVer -notmatch $PyLatestVersion -or $null -eq $PythonInstalledVer) {
+if (($null -eq $PythonInstalledVer) -or ($PythonInstalledVer -notmatch $PyLatestVersion)) {
     Write-Host 'Python: Downloading' -ForegroundColor green -BackgroundColor black
     (New-Object System.Net.WebClient).DownloadFile($PyUrl, "$env:TEMP\${PyPkg}")
     

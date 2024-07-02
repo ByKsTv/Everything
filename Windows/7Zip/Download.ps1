@@ -19,7 +19,7 @@ if (!($7Zip_Exists)) {
 $7ZipInstalledVer = (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\7-Zip' -ErrorAction SilentlyContinue).DisplayVersion
 $7ZipLatestVer = (Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/ip7z/7zip/releases/latest').tag_name
 
-if ($7ZipInstalledVer -notmatch $7ZipLatestVer) {
+if (($null -eq $7ZipInstalledVer) -or ($7ZipInstalledVer -notmatch $7ZipLatestVer)) {
     Write-Host '7-Zip: Downloading' -ForegroundColor green -BackgroundColor black
     (New-Object System.Net.WebClient).DownloadFile(((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/ip7z/7zip/releases/latest').assets | Where-Object name -Like '*-x64.exe*').browser_download_url, "$env:TEMP\7zip-x64.exe")
     
