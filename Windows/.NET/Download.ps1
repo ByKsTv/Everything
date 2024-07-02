@@ -16,13 +16,21 @@ if (!($DotNET_Exists)) {
 	Register-ScheduledTask @DotNET_Parameters -Force
 }
 
-Write-Host '.NET: Getting latest release' -ForegroundColor green -BackgroundColor black
-$DotNET6_Installed = ((Get-Package -Name 'Microsoft .NET SDK 6*' -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'Name').Replace('Microsoft .NET SDK ', '')).Replace(' (x64)', '')
+Write-Host '.NET: Getting current version' -ForegroundColor green -BackgroundColor black
+$DotNET6_Installed = Get-Package -Name 'Microsoft .NET SDK 6*' -ErrorAction SilentlyContinue
+if ($DotNet6_Installed) {
+	$DotNet6_Installed = (($DotNET6_Installed | Select-Object -ExpandProperty 'Name').Replace('Microsoft .NET SDK ', '')).Replace(' (x64)', '')
+}
+$DotNET8_Installed = Get-Package -Name 'Microsoft .NET SDK 8*' -ErrorAction SilentlyContinue
+if ($DotNet8_Installed) {
+	$DotNet8_Installed = (($DotNET8_Installed | Select-Object -ExpandProperty 'Name').Replace('Microsoft .NET SDK ', '')).Replace(' (x64)', '')
+}
+
+Write-Host '.NET: Getting latest version' -ForegroundColor green -BackgroundColor black
 $DotNET6_Latest = (Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/6.0/releases.json).'latest-sdk'
-$DotNET8_Installed = ((Get-Package -Name 'Microsoft .NET SDK 8*' -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'Name').Replace('Microsoft .NET SDK ', '')).Replace(' (x64)', '')
 $DotNET8_Latest = (Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/8.0/releases.json).'latest-sdk'
 
-Write-Host '.NET: Checking if .NET 6 updated' -ForegroundColor green -BackgroundColor black
+Write-Host '.NET: Comparing current version against latest version' -ForegroundColor green -BackgroundColor black
 if (($null -eq $DotNET6_Installed) -or ($DotNET6_Installed -notmatch $DotNET6_Latest)) {
 	Write-Host ".NET: Downloading .NET $DotNET6_Latest" -ForegroundColor green -BackgroundColor black
 	(New-Object System.Net.WebClient).DownloadFile(((((Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/6.0/releases.json).Releases | Select-Object -First 1).sdk).files | Where-Object -Property 'name' -Like 'dotnet-sdk-win-x64.exe').url, "$env:TEMP\dotnet-$DotNET6_Latest-sdk-win-x64.exe")
@@ -30,8 +38,6 @@ if (($null -eq $DotNET6_Installed) -or ($DotNET6_Installed -notmatch $DotNET6_La
 	Write-Host ".NET: Installing .NET $DotNET6_Latest" -ForegroundColor green -BackgroundColor black
 	Start-Process -FilePath "$env:TEMP\dotnet-$DotNET6_Latest-sdk-win-x64.exe" -ArgumentList '/install /quiet /norestart'
 }
-
-Write-Host '.NET: Checking if .NET 8 updated' -ForegroundColor green -BackgroundColor black
 if (($null -eq $DotNET8_Installed) -or ($DotNET8_Installed -notmatch $DotNET8_Latest)) {
 	Write-Host ".NET: Downloading .NET $DotNET8_Latest" -ForegroundColor green -BackgroundColor black
 	(New-Object System.Net.WebClient).DownloadFile(((((Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/8.0/releases.json).Releases | Select-Object -First 1).sdk).files | Where-Object -Property 'name' -Like 'dotnet-sdk-win-x64.exe').url, "$env:TEMP\dotnet-$DotNET8_Latest-sdk-win-x64.exe")
