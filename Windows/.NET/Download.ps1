@@ -17,9 +17,9 @@ if (!($DotNET_Exists)) {
 }
 
 Write-Host '.NET: Getting latest release' -ForegroundColor green -BackgroundColor black
-$DotNET6_Installed = ((Get-Package -Name 'Microsoft .NET SDK 6*' | Select-Object -ExpandProperty 'Name').Replace('Microsoft .NET SDK ', '')).Replace(' (x64)', '')
+$DotNET6_Installed = ((Get-Package -Name 'Microsoft .NET SDK 6*' -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'Name').Replace('Microsoft .NET SDK ', '')).Replace(' (x64)', '')
 $DotNET6_Latest = (Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/6.0/releases.json).'latest-sdk'
-$DotNET8_Installed = ((Get-Package -Name 'Microsoft .NET SDK 8*' | Select-Object -ExpandProperty 'Name').Replace('Microsoft .NET SDK ', '')).Replace(' (x64)', '')
+$DotNET8_Installed = ((Get-Package -Name 'Microsoft .NET SDK 8*' -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'Name').Replace('Microsoft .NET SDK ', '')).Replace(' (x64)', '')
 $DotNET8_Latest = (Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/8.0/releases.json).'latest-sdk'
 
 Write-Host '.NET: Checking if .NET 6 updated' -ForegroundColor green -BackgroundColor black
