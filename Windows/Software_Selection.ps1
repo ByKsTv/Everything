@@ -365,7 +365,9 @@ $CheckBox_VisualStudioCode.Text = 'Visual Studio Code'
 $CheckBox_VisualStudioCode.Checked = $false
 $Form_SoftwareSelection.Controls.Add($CheckBox_VisualStudioCode)
 
-if ($InstalledSoftware -match 'Visual Studio Code') {
+$VSCode = 'Visual Studio Code Updater'
+$VSCode_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $VSCode }
+if (($VSCode_Exists)) {
     $CheckBox_VisualStudioCode.Enabled = $false
     $CheckBox_VisualStudioCode.Text += ' (Installed)'
 }
