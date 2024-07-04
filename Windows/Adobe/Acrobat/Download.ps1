@@ -8,7 +8,7 @@ $Adrobat3 = (Invoke-WebRequest -UseBasicParsing -Uri $Adrobat2 | Select-Object -
 
 Write-Host 'Adobe Acrbat: Cleaning log file' -ForegroundColor green -BackgroundColor black
 if (Test-Path "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log") {
-    Remove-Item "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log"
+    Remove-Item "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Force -ErrorAction SilentlyContinue
 }
 
 Write-Host 'Adobe Acrbat: Opening magnet' -ForegroundColor green -BackgroundColor black
