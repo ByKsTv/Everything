@@ -9,10 +9,13 @@ if ($null -eq $Adrobat2) {
 }
 $Adrobat3 = (Invoke-WebRequest -UseBasicParsing -Uri $Adrobat2 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'magnet') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
 
-Write-Host 'Adobe Acrobat: Cleaning log file' -ForegroundColor green -BackgroundColor black
+Write-Host 'Adobe Photoshop: Deleting qBittorrent log file' -ForegroundColor green -BackgroundColor black
 if (Test-Path "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log") {
     Remove-Item "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Force -ErrorAction SilentlyContinue
 }
+
+Write-Host 'Adobe Photoshop: Deleting temp folder' -ForegroundColor green -BackgroundColor black
+Remove-Item -Path "$env:TEMP\*" -Recurse -Force -ErrorAction SilentlyContinue
 
 Write-Host 'Adobe Acrobat: Opening magnet' -ForegroundColor green -BackgroundColor black
 Start-Process -FilePath "$env:ProgramFiles\qBittorrent\qBittorrent.exe" -ArgumentList "--skip-dialog=true --add-paused=false --save-path=$env:TEMP ""$($Adrobat3)"""
@@ -33,7 +36,7 @@ While ($null -eq (Get-ChildItem -Path "$AcrobatTempDir" -Filter '*iso*' | Select
 $AcrobatTempISO = Get-ChildItem -Path "$AcrobatTempDir" -Filter '*iso*' | Select-Object FullName -ExpandProperty 'FullName'
 
 Write-Host 'Adobe Acrobat: Waiting download to complete' -ForegroundColor green -BackgroundColor black
-$null = Get-Content "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Wait | Where-Object { $_ -match "Removed torrent. Torrent: .*Acrobat*" } | Select-Object -First 1
+$null = Get-Content "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Wait | Where-Object { $_ -match 'Removed torrent. Torrent: .*Acrobat*' } | Select-Object -First 1
 
 Write-Host 'Adobe Acrobat: Initiating 7-Zip' -ForegroundColor green -BackgroundColor black
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
