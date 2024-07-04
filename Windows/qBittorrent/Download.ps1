@@ -29,7 +29,7 @@ if (($null -eq $qBittorrent_Installed) -or ($qBittorrent_Installed -notmatch $qB
     (New-Object System.Net.WebClient).DownloadFile("$qBittorrentURL", "$ENV:temp\qBittorrent.exe")
     
     Write-Host "qBittorrent: Installing $qBittorrent_Latest" -ForegroundColor green -BackgroundColor black
-    Start-Process "$ENV:temp\qBittorrent.exe" -ArgumentList '/S'
+    Start-Process "$ENV:temp\qBittorrent.exe" -ArgumentList '/S' -Wait
     
     if (!(Test-Path -Path "$env:APPDATA\qBittorrent\qBittorrent.ini")) {
         Write-Host 'qBittorrent: Creating qBittorrent folder' -ForegroundColor green -BackgroundColor black
