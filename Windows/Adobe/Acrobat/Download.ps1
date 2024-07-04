@@ -15,7 +15,7 @@ if (Test-Path "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log") {
 }
 
 Write-Host 'Adobe Acrbat: Opening magnet' -ForegroundColor green -BackgroundColor black
-Start-Process -FilePath "$env:ProgramFiles\qBittorrent\qBittorrent.exe" -ArgumentList "--skip-dialog=true --add-paused=false --save-path=$env:TEMP $Adrobat3"
+Start-Process -FilePath "$env:ProgramFiles\qBittorrent\qBittorrent.exe" -ArgumentList "--skip-dialog=true --add-paused=false --save-path=$env:TEMP ""$($Adrobat3)"""
 
 Write-Host 'Adobe Acrbat: Waiting for folder to be created' -ForegroundColor green -BackgroundColor black
 while (($null -eq (Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*Acrobat.*' -ErrorAction SilentlyContinue))) {
