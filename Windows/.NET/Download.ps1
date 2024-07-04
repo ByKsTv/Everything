@@ -29,6 +29,10 @@ $DotNET8_Installed = Get-Package -Name 'Microsoft .NET SDK 8*' -ErrorAction Sile
 if ($DotNet8_Installed) {
 	$DotNet8_Installed = (($DotNET8_Installed | Select-Object -ExpandProperty 'Name').Replace('Microsoft .NET SDK ', '')).Replace(' (x64)', '')
 }
+$DotNET9_Installed = Get-Package -Name 'Microsoft .NET SDK 9*' -ErrorAction SilentlyContinue
+if ($DotNet9_Installed) {
+	$DotNet9_Installed = (($DotNET9_Installed | Select-Object -ExpandProperty 'Name').Replace('Microsoft .NET SDK ', '')).Replace(' (x64)', '')
+}
 
 Write-Host '.NET: Getting latest versions' -ForegroundColor green -BackgroundColor black
 $DotNET6_Latest = (Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/6.0/releases.json).'latest-sdk'
