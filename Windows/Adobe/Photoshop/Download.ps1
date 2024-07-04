@@ -4,6 +4,9 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 Write-Host 'Adobe Photoshop: Getting magnet' -ForegroundColor green -BackgroundColor black
 $Photoshop1 = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w14.monkrus.ws/search/label/Photoshop' | Select-Object -ExpandProperty Links | Where-Object { (($_.outerHTML -notmatch 'Elements') -and ($_.outerHTML -notmatch 'Collection') -and ($_.outerHTML -match 'Multilingual')) } | Select-Object -First 1 | Select-Object -ExpandProperty href)
 $Photoshop2 = (Invoke-WebRequest -UseBasicParsing -Uri $Photoshop1 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'uniondht.org') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
+if ($null -eq $Adrobat2) {
+    $Adrobat2 = (Invoke-WebRequest -UseBasicParsing -Uri $Adrobat1 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'pb.wtf') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
+}
 $Photoshop3 = (Invoke-WebRequest -UseBasicParsing -Uri $Photoshop2 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'magnet') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
 
 Write-Host 'Adobe Photoshop: Opening magnet' -ForegroundColor green -BackgroundColor black
