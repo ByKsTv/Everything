@@ -24,8 +24,9 @@ $qBittorrent_Latest = ((Invoke-RestMethod https://api.github.com/repos/qbittorre
 
 if (($null -eq $qBittorrent_Installed) -or ($qBittorrent_Installed -notmatch $qBittorrent_Latest)) {
     Write-Host "qBittorrent: Downloading $qBittorrent_Latest" -ForegroundColor green -BackgroundColor black
-    # (New-Object System.Net.WebClient).DownloadFile((Invoke-WebRequest 'https://sourceforge.net/projects/qbittorrent/files/latest/download' -UseBasicParsing).links.'data-release-url', "$ENV:temp\qBittorrent.exe")
-    (New-Object System.Net.WebClient).DownloadFile((Invoke-WebRequest 'https://sourceforge.net/projects/qbittorrent/files/qbittorrent-win32/qbittorrent-4.6.5/qbittorrent_4.6.5_x64_setup.exe/download' -UseBasicParsing).links.'data-release-url', "$ENV:temp\qBittorrent.exe")
+    # $qBittorrentURL = (Invoke-WebRequest 'https://sourceforge.net/projects/qbittorrent/files/latest/download' -UseBasicParsing).links.'data-release-url'
+    $qBittorrentURL = (Invoke-WebRequest 'https://sourceforge.net/projects/qbittorrent/files/qbittorrent-win32/qbittorrent-4.6.5/qbittorrent_4.6.5_x64_setup.exe/download' -UseBasicParsing).links.'data-release-url'
+    (New-Object System.Net.WebClient).DownloadFile("$qBittorrentURL", "$ENV:temp\qBittorrent.exe")
     
     Write-Host "qBittorrent: Installing $qBittorrent_Latest" -ForegroundColor green -BackgroundColor black
     Start-Process "$ENV:temp\qBittorrent.exe" -ArgumentList '/S'
