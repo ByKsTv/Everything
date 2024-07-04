@@ -303,7 +303,9 @@ $CheckBox_qBittorrent.Text = 'qBittorrent'
 $CheckBox_qBittorrent.Checked = $false
 $Form_SoftwareSelection.Controls.Add($CheckBox_qBittorrent)
 
-if ($InstalledSoftware -match 'qBittorrent') {
+$qBittorrent = 'qBittorrent Updater'
+$qBittorrent_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $qBittorrent }
+if (($qBittorrent_Exists)) {
     $CheckBox_qBittorrent.Enabled = $false
     $CheckBox_qBittorrent.Text += ' (Installed)'
 }
