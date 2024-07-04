@@ -9,6 +9,11 @@ $Photoshop3 = (Invoke-WebRequest -UseBasicParsing -Uri $Photoshop2 | Select-Obje
 Write-Host 'Adobe Photoshop: Opening magnet' -ForegroundColor green -BackgroundColor black
 Start-Process -FilePath "$env:ProgramFiles\qBittorrent\qBittorrent.exe" -ArgumentList "--skip-dialog=true --add-paused=false --save-path=$env:TEMP $Photoshop3"
 
+Write-Host 'Adobe Photoshop: Cleaning log file' -ForegroundColor green -BackgroundColor black
+if (Test-Path "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log") {
+    Remove-Item "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log"
+}
+
 Write-Host 'Adobe Photoshop: Waiting for folder to be created' -ForegroundColor green -BackgroundColor black
 while (($null -eq (Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*Photoshop.*' -ErrorAction SilentlyContinue))) {
     Start-Sleep -Milliseconds 1000
