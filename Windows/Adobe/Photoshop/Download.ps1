@@ -18,11 +18,10 @@ Write-Host 'Adobe Photoshop: Opening magnet' -ForegroundColor green -BackgroundC
 Start-Process -FilePath "$env:ProgramFiles\qBittorrent\qBittorrent.exe" -ArgumentList "--skip-dialog=true --add-paused=false --save-path=$env:TEMP ""$($Photoshop3)"""
 
 Write-Host 'Adobe Photoshop: Waiting for folder to be created' -ForegroundColor green -BackgroundColor black
-while (($null -eq (Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*Photoshop.*' -ErrorAction SilentlyContinue))) {
+while (($null -eq (Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*Photoshop*' -ErrorAction SilentlyContinue))) {
     Start-Sleep -Milliseconds 1000
 }
-$PhotoshopTempDir = Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*Photoshop.*' | Select-Object FullName -ExpandProperty 'FullName'
-$PhotoshopTempName = Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*Photoshop.*' | Select-Object FullName -ExpandProperty 'Name'
+$PhotoshopTempDir = Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*Photoshop*' | Select-Object FullName -ExpandProperty 'FullName'
 
 Write-Host 'Adobe Photoshop: Adding Defender Exclusion' -ForegroundColor green -BackgroundColor black
 Add-MpPreference -ExclusionPath "$PhotoshopTempDir"
@@ -34,7 +33,7 @@ While ($null -eq (Get-ChildItem -Path "$PhotoshopTempDir" -Filter '*iso*' | Sele
 $PhotoshopTempISO = Get-ChildItem -Path "$PhotoshopTempDir" -Filter '*iso*' | Select-Object FullName -ExpandProperty 'FullName'
 
 Write-Host 'Adobe Photoshop: Waiting download to complete' -ForegroundColor green -BackgroundColor black
-$null = Get-Content "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Wait | Where-Object { $_ -match "Removed torrent. Torrent: .$PhotoshopTempName." } | Select-Object -First 1
+$null = Get-Content "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Wait | Where-Object { $_ -match "Removed torrent. Torrent: .*Photoshop*" } | Select-Object -First 1
 
 Write-Host 'Adobe Photoshop: Initiating 7-Zip' -ForegroundColor green -BackgroundColor black
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
