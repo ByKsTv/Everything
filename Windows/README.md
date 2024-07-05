@@ -66,15 +66,6 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
    ```
 
-## Software Selection Plus
-
-1. PowerShell (Admin):
-
-   ```powershell
-   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software_Selection_Plus.ps1')
-
-   ```
-
 ### NVCleanstall
 
 1. Restart to Safe Mode (SHIFT+RESTART) `Troubleshoot` > `Advanced options` > `Startup Settings` > `Restart` > Disconnect Ethernet Cable > Open Display Driver Uninstaller (Admin) > `---Select device type---` > `GPU` > `Clean and restart`.
