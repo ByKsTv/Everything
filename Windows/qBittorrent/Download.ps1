@@ -21,11 +21,11 @@ $qBittorrent_Installed = Get-Package -Name 'qBittorrent' -ErrorAction SilentlyCo
 
 Write-Host 'qBittorrent: Getting latest version' -ForegroundColor green -BackgroundColor black
 $qBittorrent_Latest = ((Invoke-RestMethod https://api.github.com/repos/qbittorrent/qbittorrent/tags).Name | Where-Object { $_ -NotMatch 'beta' -And $_ -NotMatch 'rc' } | Select-Object -First 1).Replace('release-', '')
+$qBittorrent_SourceForge = (Invoke-WebRequest -UseBasicParsing -Uri 'https://www.qbittorrent.org/download' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'SourceForge') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
 
 if (($null -eq $qBittorrent_Installed) -or ($qBittorrent_Installed -notmatch $qBittorrent_Latest)) {
     Write-Host "qBittorrent: Downloading $qBittorrent_Latest" -ForegroundColor green -BackgroundColor black
-    # $qBittorrentURL = (Invoke-WebRequest 'https://sourceforge.net/projects/qbittorrent/files/latest/download' -UseBasicParsing).links.'data-release-url'
-    $qBittorrentURL = (Invoke-WebRequest 'https://sourceforge.net/projects/qbittorrent/files/qbittorrent-win32/qbittorrent-4.6.5/qbittorrent_4.6.5_x64_setup.exe/download' -UseBasicParsing).links.'data-release-url'
+    $qBittorrentURL = (Invoke-WebRequest -Uri "$qBittorrent_SourceForge" -UseBasicParsing).links.'data-release-url'
     (New-Object System.Net.WebClient).DownloadFile("$qBittorrentURL", "$ENV:temp\qBittorrent.exe")
     
     Write-Host "qBittorrent: Installing $qBittorrent_Latest" -ForegroundColor green -BackgroundColor black
