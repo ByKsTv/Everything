@@ -10,3 +10,7 @@ Everything about JitBit Macro Recorder.
    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/JitBit_Macro_Recorder/Download.ps1')
 
    ```
+
+## Notes
+
+- [JitBit Macro Recorder](https://rutracker.org/forum/tracker.php?nm=JitBit)
