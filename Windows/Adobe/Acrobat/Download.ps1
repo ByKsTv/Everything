@@ -9,12 +9,12 @@ if ($null -eq $Adrobat2) {
 }
 $Adrobat3 = (Invoke-WebRequest -UseBasicParsing -Uri $Adrobat2 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'magnet') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
 
-Write-Host 'Adobe Photoshop: Deleting qBittorrent log file' -ForegroundColor green -BackgroundColor black
+Write-Host 'Adobe Acrobat: Deleting qBittorrent log file' -ForegroundColor green -BackgroundColor black
 if (Test-Path "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log") {
     Remove-Item "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Force -ErrorAction SilentlyContinue
 }
 
-Write-Host 'Adobe Photoshop: Deleting temp folder' -ForegroundColor green -BackgroundColor black
+Write-Host 'Adobe Acrobat: Deleting temp folder' -ForegroundColor green -BackgroundColor black
 Remove-Item -Path "$env:TEMP\*" -Recurse -Force -ErrorAction SilentlyContinue
 
 Write-Host 'Adobe Acrobat: Opening magnet' -ForegroundColor green -BackgroundColor black
