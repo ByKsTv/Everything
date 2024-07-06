@@ -1,12 +1,13 @@
-[void] [System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms')
-[void] [System.Reflection.Assembly]::LoadWithPartialName('System.Drawing')
+Add-Type -AssemblyName System.Windows.Forms
+Add-Type -AssemblyName System.Drawing
+[System.Windows.Forms.Application]::EnableVisualStyles()
 
 $Form_OfficeSelection = New-Object System.Windows.Forms.Form
 $Form_OfficeSelection.width = 900
 $Form_OfficeSelection.height = 400
 $Form_OfficeSelection.Text = 'Office Selection'
 $Form_OfficeSelection.StartPosition = 'CenterScreen'
-$Form_OfficeSelection.Font = New-Object System.Drawing.Font('Tahoma', 11)
+$Form_OfficeSelection.Font = New-Object System.Drawing.Font('Tahoma', 10)
 
 $CheckBox_Microsoft365ProPlus = New-Object System.Windows.Forms.CheckBox
 $CheckBox_Microsoft365ProPlus.Location = New-Object System.Drawing.Size(30, 30)
@@ -71,17 +72,16 @@ $CheckBox_Office2021Word.Text = 'Office 2021 - Word'
 $CheckBox_Office2021Word.Checked = $false
 $Form_OfficeSelection.Controls.Add($CheckBox_Office2021Word)
 
-
 $Form_OfficeSelection_OK = New-Object System.Windows.Forms.Button
-$Form_OfficeSelection_OK.Location = New-Object System.Drawing.Size(300, 300)
-$Form_OfficeSelection_OK.Size = New-Object System.Drawing.Size(100, 40)
+$Form_OfficeSelection_OK.Location = New-Object System.Drawing.Size((($Form_OfficeSelection.Width) / 3 ), (($Form_OfficeSelection.height) - 65))
+$Form_OfficeSelection_OK.Size = New-Object System.Drawing.Size(53, 20)
 $Form_OfficeSelection_OK.Text = 'OK'
 $Form_OfficeSelection_OK.Add_Click({ $Form_OfficeSelection.Close() })
 $Form_OfficeSelection.Controls.Add($Form_OfficeSelection_OK)
 
 $Form_OfficeSelection_Cancel = New-Object System.Windows.Forms.Button
-$Form_OfficeSelection_Cancel.Location = New-Object System.Drawing.Size(500, 300)
-$Form_OfficeSelection_Cancel.Size = New-Object System.Drawing.Size(100, 40)
+$Form_OfficeSelection_Cancel.Location = New-Object System.Drawing.Size((($Form_OfficeSelection.Width) / 2 ), (($Form_OfficeSelection.height) - 65))
+$Form_OfficeSelection_Cancel.Size = New-Object System.Drawing.Size(53, 20)
 $Form_OfficeSelection_Cancel.Text = 'Cancel'
 $Form_OfficeSelection_Cancel.Add_Click({ $Form_OfficeSelection.Close() })
 $Form_OfficeSelection.Controls.Add($Form_OfficeSelection_Cancel)
