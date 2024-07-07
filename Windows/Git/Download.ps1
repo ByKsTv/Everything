@@ -3,7 +3,7 @@ $GitUpdater_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $GitUp
 if (!($GitUpdater_Exists)) {
     Write-Host "Git Updater: Task Scheduler: Adding $GitUpdater" -ForegroundColor green -BackgroundColor black
     $GitUpdater_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-    $GitUpdater_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Git/Download.ps1')"
+    $GitUpdater_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "-WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Git/Download.ps1')"
     $GitUpdater_Trigger = New-ScheduledTaskTrigger -AtLogOn
     $GitUpdater_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
     $GitUpdater_Parameters = @{

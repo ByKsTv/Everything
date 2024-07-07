@@ -3,7 +3,7 @@ $SubtitleEdit_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $Sub
 if (!($SubtitleEdit_Exists)) {
     Write-Host "Subtitle Edit: Task Scheduler: Adding $SubtitleEdit" -ForegroundColor green -BackgroundColor black
     $SubtitleEdit_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-    $SubtitleEdit_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Subtitle_Edit/Download.ps1')"
+    $SubtitleEdit_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "-WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Subtitle_Edit/Download.ps1')"
     $SubtitleEdit_Trigger = New-ScheduledTaskTrigger -AtLogOn
     $SubtitleEdit_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
     $SubtitleEdit_Parameters = @{

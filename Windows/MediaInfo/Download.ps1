@@ -3,7 +3,7 @@ $Mediainfo_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $Mediai
 if (!($Mediainfo_Exists)) {
 	Write-Host "Mediainfo: Task Scheduler: Adding $Mediainfo" -ForegroundColor green -BackgroundColor black
 	$Mediainfo_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-	$Mediainfo_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/MediaInfo/Download.ps1')"
+	$Mediainfo_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "-WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/MediaInfo/Download.ps1')"
 	$Mediainfo_Trigger = New-ScheduledTaskTrigger -AtLogOn
 	$Mediainfo_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
 	$Mediainfo_Parameters = @{
