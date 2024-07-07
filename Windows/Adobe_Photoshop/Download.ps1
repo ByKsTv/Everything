@@ -15,7 +15,7 @@ if (Test-Path "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log") {
 }
 
 Write-Host 'Adobe Photoshop: Deleting temp folder' -ForegroundColor green -BackgroundColor black
-Remove-Item -Path "$env:TEMP\*" -Recurse -Force -ErrorAction SilentlyContinue
+Remove-Item -Path "$env:TEMP\*Photoshop*" -Force -ErrorAction SilentlyContinue
 
 Write-Host 'Adobe Photoshop: Opening magnet' -ForegroundColor green -BackgroundColor black
 Start-Process -FilePath "$env:ProgramFiles\qBittorrent\qBittorrent.exe" -ArgumentList "--skip-dialog=true --add-paused=false --save-path=$env:TEMP ""$($Photoshop3)"""

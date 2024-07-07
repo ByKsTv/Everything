@@ -15,7 +15,7 @@ if (Test-Path "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log") {
 }
 
 Write-Host 'Adobe Acrobat: Deleting temp folder' -ForegroundColor green -BackgroundColor black
-Remove-Item -Path "$env:TEMP\*" -Recurse -Force -ErrorAction SilentlyContinue
+Remove-Item -Path "$env:TEMP\*Acrobat*" -Force -ErrorAction SilentlyContinue
 
 Write-Host 'Adobe Acrobat: Opening magnet' -ForegroundColor green -BackgroundColor black
 Start-Process -FilePath "$env:ProgramFiles\qBittorrent\qBittorrent.exe" -ArgumentList "--skip-dialog=true --add-paused=false --save-path=$env:TEMP ""$($Adrobat3)"""
