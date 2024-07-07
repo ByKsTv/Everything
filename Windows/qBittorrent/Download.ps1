@@ -3,7 +3,7 @@ $qBittorrent_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $qBit
 if (!($qBittorrent_Exists)) {
     Write-Host "qBittorrent: Task Scheduler: Adding $qBittorrent" -ForegroundColor green -BackgroundColor black
     $qBittorrent_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-    $qBittorrent_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "-WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')"
+    $qBittorrent_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')"
     $qBittorrent_Trigger = New-ScheduledTaskTrigger -AtLogOn
     $qBittorrent_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
     $qBittorrent_Parameters = @{

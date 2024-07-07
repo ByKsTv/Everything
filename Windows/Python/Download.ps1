@@ -3,7 +3,7 @@ $Python_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $Python }
 if (!($Python_Exists)) {
     Write-Host "Python: Task Scheduler: Adding $Python" -ForegroundColor green -BackgroundColor black
     $Python_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-    $Python_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "-WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Python/Download.ps1')"
+    $Python_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Python/Download.ps1')"
     $Python_Trigger = New-ScheduledTaskTrigger -AtLogOn
     $Python_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
     $Python_Parameters = @{

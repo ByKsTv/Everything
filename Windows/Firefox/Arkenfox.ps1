@@ -61,7 +61,7 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         if (!($Arkenfox_Overrides_Exists)) {
             Write-Host "Mozilla Firefox Arkenfox: Task Scheduler: Adding $Arkenfox_Overrides" -ForegroundColor green -BackgroundColor black
             $Arkenfox_Overrides_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-            $Arkenfox_Overrides_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "-WindowStyle Minimized Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/user-overrides.js -OutFile $CurrentFireFoxProfilePath\user-overrides.js"
+            $Arkenfox_Overrides_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/user-overrides.js -OutFile $CurrentFireFoxProfilePath\user-overrides.js"
             $Arkenfox_Overrides_Trigger = New-ScheduledTaskTrigger -AtLogOn
             $Arkenfox_Overrides_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
             $Arkenfox_Overrides_Parameters = @{
