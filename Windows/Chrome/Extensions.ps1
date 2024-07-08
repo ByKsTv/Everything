@@ -4,12 +4,12 @@ if ($InstalledSoftware -match 'Google Chrome') {
     Write-Host 'Google Chrome Extensions: Closing browser' -ForegroundColor green -BackgroundColor black
     Stop-Process -Name Chrome -Force -ErrorAction SilentlyContinue
 
-    Write-Host "Google Chrome Extensions: Adding uBlock Origin" -ForegroundColor green -BackgroundColor black
-    Write-Host "Google Chrome Extensions: Adding Violentmonkey" -ForegroundColor green -BackgroundColor black
-    Write-Host "Google Chrome Extensions: Adding ClearURLs" -ForegroundColor green -BackgroundColor black
+    Write-Host 'Google Chrome Extensions: Adding uBlock Origin' -ForegroundColor green -BackgroundColor black
+    Write-Host 'Google Chrome Extensions: Adding Violentmonkey' -ForegroundColor green -BackgroundColor black
+    Write-Host 'Google Chrome Extensions: Adding ClearURLs' -ForegroundColor green -BackgroundColor black
     Write-Host "Google Chrome Extensions: Adding I'm not robot captcha clicker" -ForegroundColor green -BackgroundColor black
-    Write-Host "Google Chrome Extensions: Adding Buster: Captcha Solver for Humans" -ForegroundColor green -BackgroundColor black
-    Write-Host "Google Chrome Extensions: Adding The Camelizer - Price Tracker" -ForegroundColor green -BackgroundColor black
+    Write-Host 'Google Chrome Extensions: Adding Buster: Captcha Solver for Humans' -ForegroundColor green -BackgroundColor black
+    Write-Host 'Google Chrome Extensions: Adding The Camelizer - Price Tracker' -ForegroundColor green -BackgroundColor black
 
     # https://github.com/letsdoautomation/powershell/tree/main/Install%20Google%20Chrome%20Extensions
     $extensions = 'cjpalhdlnbpafiamejdnhcphjbkeiagm', 'jinjaccalgkegednnccohejagnlnfdag', 'lckanjgmijmafbedllaakclkaicjfmnk', 'mpbjkejclgfgadiemmefgebjfooflfhl', 'ghnomdcacenbmilgjigehppbamfndblo'
@@ -65,7 +65,7 @@ if ($InstalledSoftware -match 'Google Chrome') {
     Write-Host 'Google Chrome Extensions: Setting foreground' -ForegroundColor green -BackgroundColor black
     [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'Chrome' }).MainWindowHandle)
 
-    Write-Host "Google Chrome Extensions: Opening AdsBypasser" -ForegroundColor green -BackgroundColor black
+    Write-Host 'Google Chrome Extensions: Opening AdsBypasser' -ForegroundColor green -BackgroundColor black
     [System.Diagnostics.Process]::Start('Chrome.exe', 'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js')
     Start-Sleep -Milliseconds 5000
 
@@ -73,7 +73,7 @@ if ($InstalledSoftware -match 'Google Chrome') {
     [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'Chrome' }).MainWindowHandle)
     Start-Sleep -Milliseconds 1000
 
-    Write-Host "Google Chrome Extensions: Installing AdsBypasser" -ForegroundColor green -BackgroundColor black
+    Write-Host 'Google Chrome Extensions: Installing AdsBypasser' -ForegroundColor green -BackgroundColor black
     Add-Type -AssemblyName System.Windows.Forms
     [System.Windows.Forms.SendKeys]::SendWait('^{ENTER}')
     

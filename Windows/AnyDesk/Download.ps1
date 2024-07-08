@@ -6,6 +6,6 @@ Start-Process -FilePath $env:TEMP\AnyDesk.exe -ArgumentList '--install "C:\Progr
 
 Write-Host 'AnyDesk: Optional Offer - Recommended by AnyDesk: Decline' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Google\No Chrome Offer Until') -ne $true) {
- New-Item 'HKCU:\SOFTWARE\Google\No Chrome Offer Until' -Force 
+    New-Item 'HKCU:\SOFTWARE\Google\No Chrome Offer Until' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Google\No Chrome Offer Until' -Name 'AnyDesk Software GmbH' -Value 30241008 -PropertyType DWord -Force

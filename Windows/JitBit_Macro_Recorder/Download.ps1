@@ -41,7 +41,7 @@ Remove-MpPreference -ExclusionPath "$JitBitTempDir"
 
 Write-Host 'Jitbit Macro Recorder: Settings: General: Disable the welcome screen: On' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder') -ne $true) {
- New-Item 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Force 
+    New-Item 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Force 
 }
 
 Write-Host 'Jitbit Macro Recorder: Disabling Startup Screen' -ForegroundColor green -BackgroundColor black
