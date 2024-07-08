@@ -3,23 +3,27 @@ Add-Type -AssemblyName System.Drawing
 [System.Windows.Forms.Application]::EnableVisualStyles()
 
 $Form_SoftwareSelection = New-Object System.Windows.Forms.Form
-$Form_SoftwareSelection.width = 600
-$Form_SoftwareSelection.height = 685
+$Form_SoftwareSelection.width = 300
+$Form_SoftwareSelection.height = 500
 $Form_SoftwareSelection.Text = 'Software Selection'
 $Form_SoftwareSelection.StartPosition = 'CenterScreen'
 $Form_SoftwareSelection.Font = New-Object System.Drawing.Font('Tahoma', 10)
 
 $InstalledSoftware = Get-Package | Select-Object -Property 'Name'
-$CheckBox_X_Axis = 10
-$CheckBox_Right_X_Axis = (($Form_SoftwareSelection.width / 2) + 10)
+$CheckBox_X_Axis = 5
 $CheckBox_Y_Axis = 0
-$CheckBox_Right_Y_Axis = 0
-$CheckBox_Size_X = ($Form_SoftwareSelection.width / 2)
-$CheckBox_Right_Size_X = ($Form_SoftwareSelection.width / 2)
+$CheckBox_Size_X = (($Form_SoftwareSelection.width) - 50)
 $CheckBox_Size_Y = 26
-$CheckBox_Right_Size_Y = 26
 # Icons size 16x16, format .ico from .exe file use 7zip
 # [Convert]::ToBase64String((Get-Content "path" -Encoding Byte)) | Clip
+
+# Create panel
+$Panel_SoftwareSelection = New-Object System.Windows.Forms.Panel
+$Panel_SoftwareSelection.Location = New-Object System.Drawing.Size(0, 0)
+$Panel_SoftwareSelection.Size = New-Object System.Drawing.Size((($Form_SoftwareSelection.width) - 20), (($Form_SoftwareSelection.Height) - 65))
+$Panel_SoftwareSelection.AutoScroll = $true
+$Panel_SoftwareSelection.AutoSize = $false
+$Form_SoftwareSelection.Controls.Add($Panel_SoftwareSelection)
 
 $CheckBox_7Zip = New-Object System.Windows.Forms.CheckBox
 $CheckBox_7Zip.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
@@ -35,13 +39,54 @@ $CheckBox_7Zip.Text = '    7-Zip'
 $CheckBox_7Zip.TextAlign = 'MiddleLeft'
 $CheckBox_7Zip.CheckAlign = 'MiddleLeft'
 $CheckBox_7Zip.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_7Zip)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_7Zip)
 
 $7Zip = '7-Zip Updater'
 $7Zip_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $7Zip }
 if (($7Zip_Exists)) {
     $CheckBox_7Zip.Enabled = $false
     $CheckBox_7Zip.Text += ' (Installed)'
+}
+
+$CheckBox_AdobeAcrobat = New-Object System.Windows.Forms.CheckBox
+$CheckBox_AdobeAcrobat.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
+$CheckBox_Y_Axis += 22
+$CheckBox_AdobeAcrobat.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
+# Official ICO from EXE
+$CheckBox_AdobeAcrobat_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAACMuAAAjLgAAAAAAAAAAAAAAAAAGAAAATQAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAE0AAAAGAAIgWAAKn9kAC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8ACp/ZAAIgWAAKn9kAC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wAKn9kAC7P/AAuz/4CF2f/g4fb/0NLx/yAqvf8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs//Aw+z/EBq4/7Cz5//Q0vH/EBq4/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/ICq9/7Cz5//Q0vH//////5CV3v8AC7P/AAuz/wALs/9gZ9D/8PH7/8DD7P8gKr3/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/ICq9/8DD7P//////4OH2/5CV3v+Ahdn/0NLx/xAauP/g4fb/sLPn/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8gKr3//////yAqvf+gpOP/8PH7/8DD7P/Aw+z/sLPn/zA5wf8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/6Ck4/+gpOP//////zA5wf8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/9QWMv//////5CV3v8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/QEjG//////+gpOP/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/6Ck4//Aw+z/wMPs/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs//Aw+z/ICq9/7Cz5/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/cHbU//Dx+/8gKr3/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALssEAC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALssEAC7MQAAuzwAALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs8AAC7MQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
+$CheckBox_AdobeAcrobat_IconBytes = [Convert]::FromBase64String($CheckBox_AdobeAcrobat_Icon64)
+$CheckBox_AdobeAcrobat_IconStream = [System.IO.MemoryStream]::new($CheckBox_AdobeAcrobat_IconBytes, 0, $CheckBox_AdobeAcrobat_IconBytes.Length)
+$CheckBox_AdobeAcrobat.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_AdobeAcrobat_IconStream).GetHIcon()))
+$CheckBox_AdobeAcrobat.ImageAlign = 'MiddleLeft'
+$CheckBox_AdobeAcrobat.Text = '    Adobe Acrobat'
+$CheckBox_AdobeAcrobat.TextAlign = 'MiddleLeft'
+$CheckBox_AdobeAcrobat.CheckAlign = 'MiddleLeft'
+$CheckBox_AdobeAcrobat.Checked = $false
+$Panel_SoftwareSelection.Controls.Add($CheckBox_AdobeAcrobat)
+
+if ($InstalledSoftware -match 'Adobe Acrobat') {
+    $CheckBox_AdobeAcrobat.Enabled = $false
+    $CheckBox_AdobeAcrobat.Text += ' (Installed)'
+}
+
+$CheckBox_AdobePhotoshop = New-Object System.Windows.Forms.CheckBox
+$CheckBox_AdobePhotoshop.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
+$CheckBox_Y_Axis += 22
+$CheckBox_AdobePhotoshop.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
+$CheckBox_AdobePhotoshopt_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAAAAAAAAAAAAAGAAAATQAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAE0AAAAGCgUAWDAbANk2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP8wGwDZCgUAWDAbANk2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zAbANk2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP//qDH/Nh4A/zYeAP82HgD/Nh4A//OgLv//qDH/55cr/1w4Cf82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD//6gx/zYeAP82HgD/Nh4A/zYeAP+CUhL/dUkP//OgLv/NhiX/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A//+oMf/NhiX/tHUf/1w4Cf82HgD/QycD/8F9Iv//qDH/wX0i/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP//qDH/zYYl/+eXK//zoC7/Nh4A/9qPKP/zoC7/jlsW/1w4Cf82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD//6gx/zYeAP9PLwb//6gx/zYeAP/nlyv/86Au//OgLv//qDH/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A//+oMf+bYxn/wX0i//+oMf82HgD/QycD/45bFv+bYxn/glIS/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP//qDH//6gx//+oMf+obBz/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAME2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAME2HgAQNh4AwDYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAMA2HgAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
+$CheckBox_AdobePhotoshop_IconBytes = [Convert]::FromBase64String($CheckBox_AdobePhotoshopt_Icon64)
+$CheckBox_AdobePhotoshop_IconStream = [System.IO.MemoryStream]::new($CheckBox_AdobePhotoshop_IconBytes, 0, $CheckBox_AdobePhotoshop_IconBytes.Length)
+$CheckBox_AdobePhotoshop.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_AdobePhotoshop_IconStream).GetHIcon()))
+$CheckBox_AdobePhotoshop.ImageAlign = 'MiddleLeft'
+$CheckBox_AdobePhotoshop.Text = '    Adobe Photoshop'
+$CheckBox_AdobePhotoshop.TextAlign = 'MiddleLeft'
+$CheckBox_AdobePhotoshop.CheckAlign = 'MiddleLeft'
+$CheckBox_AdobePhotoshop.Checked = $false
+$Panel_SoftwareSelection.Controls.Add($CheckBox_AdobePhotoshop)
+
+if ($InstalledSoftware -match 'Adobe Photoshop') {
+    $CheckBox_AdobePhotoshop.Enabled = $false
+    $CheckBox_AdobePhotoshop.Text += ' (Installed)'
 }
 
 $CheckBox_AnyDesk = New-Object System.Windows.Forms.CheckBox
@@ -58,7 +103,7 @@ $CheckBox_AnyDesk.Text = '    AnyDesk'
 $CheckBox_AnyDesk.TextAlign = 'MiddleLeft'
 $CheckBox_AnyDesk.CheckAlign = 'MiddleLeft'
 $CheckBox_AnyDesk.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_AnyDesk)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_AnyDesk)
 
 if ($InstalledSoftware -match 'AnyDesk') {
     $CheckBox_AnyDesk.Enabled = $false
@@ -79,7 +124,7 @@ $CheckBox_BattleNet.Text = '    Battle.net'
 $CheckBox_BattleNet.TextAlign = 'MiddleLeft'
 $CheckBox_BattleNet.CheckAlign = 'MiddleLeft'
 $CheckBox_BattleNet.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_BattleNet)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_BattleNet)
 
 if ($InstalledSoftware -match 'Battle.net') {
     $CheckBox_BattleNet.Enabled = $false
@@ -101,7 +146,7 @@ $CheckBox_BetterDiscord.Text = '    BetterDiscord'
 $CheckBox_BetterDiscord.TextAlign = 'MiddleLeft'
 $CheckBox_BetterDiscord.CheckAlign = 'MiddleLeft'
 $CheckBox_BetterDiscord.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_BetterDiscord)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_BetterDiscord)
 
 $BetterDiscord = 'BetterDiscord Updater'
 $BetterDiscord_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $BetterDiscord }
@@ -124,7 +169,7 @@ $CheckBox_CrystalDiskInfo.Text = '    CrystalDiskInfo'
 $CheckBox_CrystalDiskInfo.TextAlign = 'MiddleLeft'
 $CheckBox_CrystalDiskInfo.CheckAlign = 'MiddleLeft'
 $CheckBox_CrystalDiskInfo.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_CrystalDiskInfo)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_CrystalDiskInfo)
 
 if ($InstalledSoftware -match 'CrystalDiskInfo') {
     $CheckBox_CrystalDiskInfo.Enabled = $false
@@ -145,7 +190,7 @@ $CheckBox_CrystalDiskMark.Text = '    CrystalDiskMark'
 $CheckBox_CrystalDiskMark.TextAlign = 'MiddleLeft'
 $CheckBox_CrystalDiskMark.CheckAlign = 'MiddleLeft'
 $CheckBox_CrystalDiskMark.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_CrystalDiskMark)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_CrystalDiskMark)
 
 if ($InstalledSoftware -match 'CrystalDiskMark') {
     $CheckBox_CrystalDiskMark.Enabled = $false
@@ -166,7 +211,7 @@ $CheckBox_Discord.Text = '    Discord'
 $CheckBox_Discord.TextAlign = 'MiddleLeft'
 $CheckBox_Discord.CheckAlign = 'MiddleLeft'
 $CheckBox_Discord.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_Discord)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_Discord)
 
 if ($InstalledSoftware -match 'Discord') {
     $CheckBox_Discord.Enabled = $false
@@ -186,7 +231,7 @@ $CheckBox_DisplayDriverUninstaller.Text = '    Display Driver Uninstaller'
 $CheckBox_DisplayDriverUninstaller.TextAlign = 'MiddleLeft'
 $CheckBox_DisplayDriverUninstaller.CheckAlign = 'MiddleLeft'
 $CheckBox_DisplayDriverUninstaller.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_DisplayDriverUninstaller)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_DisplayDriverUninstaller)
 
 if ($InstalledSoftware -match 'Display Driver Uninstaller') {
     $CheckBox_DisplayDriverUninstaller.Enabled = $false
@@ -207,7 +252,7 @@ $CheckBox_Git.Text = '    Git'
 $CheckBox_Git.TextAlign = 'MiddleLeft'
 $CheckBox_Git.CheckAlign = 'MiddleLeft'
 $CheckBox_Git.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_Git)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_Git)
 
 $GitUpdater = 'Git Updater'
 $GitUpdater_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $GitUpdater }
@@ -230,7 +275,7 @@ $CheckBox_HyperXNGENUITY.Text = '    HyperX NGENUITY'
 $CheckBox_HyperXNGENUITY.TextAlign = 'MiddleLeft'
 $CheckBox_HyperXNGENUITY.CheckAlign = 'MiddleLeft'
 $CheckBox_HyperXNGENUITY.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_HyperXNGENUITY)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_HyperXNGENUITY)
 
 if ((Get-ChildItem $env:ProgramFiles\WindowsApps -ErrorAction SilentlyContinue) -like '*NGENUITY*') {
     $CheckBox_HyperXNGENUITY.Enabled = $false
@@ -251,11 +296,32 @@ $CheckBox_Jellyfin.Text = '    Jellyfin'
 $CheckBox_Jellyfin.TextAlign = 'MiddleLeft'
 $CheckBox_Jellyfin.CheckAlign = 'MiddleLeft'
 $CheckBox_Jellyfin.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_Jellyfin)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_Jellyfin)
 
 if ($InstalledSoftware -match 'Jellyfin') {
     $CheckBox_Jellyfin.Enabled = $false
     $CheckBox_Jellyfin.Text += ' (Installed)'
+}
+
+$CheckBox_JitBit_Macro_Recorder = New-Object System.Windows.Forms.CheckBox
+$CheckBox_JitBit_Macro_Recorder.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
+$CheckBox_Y_Axis += 22
+$CheckBox_JitBit_Macro_Recorder.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
+# Official ICO from EXE
+$CheckBox_JitBit_Macro_Recorder_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACgAAACoAAAA/AgICSQICAkoAAABCAAAAMAAAABUAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABUVFTdfXFijcGxnt4N9dsZwa2e3a2dksHVyb64+OzmAAAAAEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWFRUVVlNPZVVQS4laU0uuTEI4sEE6M5lMRT93PTgyUQICAgUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAABwAAABkwIxGgdV4184tzRf9yWzHuKB4NjgAAABMAAAAHAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAEHhoWXygjHnggGA6BhXdo/7mzrv/Mx8T/p56X/3dnVf4WDwhtMiwmihMQDkYAAAABAAAAAAAAAAAAAAAAAAAAA3RsY7KdkXz2Qzszuayjmf/Z1M//5uPg/8W+tf+ZjYH/PjUqvrSpl/9RS0SGAAAAAQAAAAAAAAAAAAAAAAAAAAAwJAZvnHwD/1JIOti0qqD/2tXP/+bi3//Gvrb/oZWI/1JFK+Kjggb/FhADQAAAAAAAAAAAAAAAAAAAAAAAAAAAFA4CPKSCBv9lVzr2lYyg/9rVz/+9zbD/xb21/52Ndf9qWSv8nHsJ+AIBABQAAAAAAAAAAAAAAAAAAAAAAAAAAAYEASR0WSb+c2BF/62il/+3rqX/tq6l/62il/+dkIT/blo5/2xVKuYAAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAOCwQYvrCH6p+Oa/9dTT7/ZVdL/3BjWP9kVkr/ZFRF/6iYcv+uo4fOBgUDBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABoWDAwwKiF2dWhe/5KFef+ckIP/k4d8/3hsYv4jHhZWGhcOBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIOy0buaeelv9waGH/sqqh/4B5cv+nn5j/KBsLmgAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgEAA11NL6rMx8L/c25o/8XAu/+Mh4L/y8bC/0k6HIoCAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANDAobs6+t4/Du7f/y8e//8O/u/5qWlM4HBgULAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABw0MCzFua2mgrqWX73ZtYcElHRBeAwICAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQNBREzKRlIKh8KPT42IToUDgIKFQ8EBAAAAAAAAAAAAAAAAAAAAAAAAAAA8AesQfAHrEHwB6xB4AOsQcABrEHAAaxB4AOsQeADrEHgA6xB4AOsQfAHrEHwB6xB8AesQfgPrEH4D6xB+B+sQQ=='
+$CheckBox_JitBit_Macro_Recorder_IconBytes = [Convert]::FromBase64String($CheckBox_JitBit_Macro_Recorder_Icon64)
+$CheckBox_JitBit_Macro_Recorder_IconStream = [System.IO.MemoryStream]::new($CheckBox_JitBit_Macro_Recorder_IconBytes, 0, $CheckBox_JitBit_Macro_Recorder_IconBytes.Length)
+$CheckBox_JitBit_Macro_Recorder.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_JitBit_Macro_Recorder_IconStream).GetHIcon()))
+$CheckBox_JitBit_Macro_Recorder.ImageAlign = 'MiddleLeft'
+$CheckBox_JitBit_Macro_Recorder.Text = '    JitBit Macro Recorder'
+$CheckBox_JitBit_Macro_Recorder.TextAlign = 'MiddleLeft'
+$CheckBox_JitBit_Macro_Recorder.CheckAlign = 'MiddleLeft'
+$CheckBox_JitBit_Macro_Recorder.Checked = $false
+$Panel_SoftwareSelection.Controls.Add($CheckBox_JitBit_Macro_Recorder)
+
+if ($InstalledSoftware -match 'Macro Recorder') {
+    $CheckBox_JitBit_Macro_Recorder.Enabled = $false
+    $CheckBox_JitBit_Macro_Recorder.Text += ' (Installed)'
 }
 
 $CheckBox_LogitechGHUB = New-Object System.Windows.Forms.CheckBox
@@ -272,7 +338,7 @@ $CheckBox_LogitechGHUB.Text = '    Logitech G HUB'
 $CheckBox_LogitechGHUB.TextAlign = 'MiddleLeft'
 $CheckBox_LogitechGHUB.CheckAlign = 'MiddleLeft'
 $CheckBox_LogitechGHUB.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_LogitechGHUB)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_LogitechGHUB)
 
 if ($InstalledSoftware -match 'Logitech G HUB') {
     $CheckBox_LogitechGHUB.Enabled = $false
@@ -293,7 +359,7 @@ $CheckBox_MediaInfo.Text = '    MediaInfo'
 $CheckBox_MediaInfo.TextAlign = 'MiddleLeft'
 $CheckBox_MediaInfo.CheckAlign = 'MiddleLeft'
 $CheckBox_MediaInfo.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_MediaInfo)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_MediaInfo)
 
 $Mediainfo = 'Mediainfo Updater'
 $Mediainfo_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $Mediainfo }
@@ -316,7 +382,7 @@ $CheckBox_MicrosoftStore.Text = '    Microsoft Store'
 $CheckBox_MicrosoftStore.TextAlign = 'MiddleLeft'
 $CheckBox_MicrosoftStore.CheckAlign = 'MiddleLeft'
 $CheckBox_MicrosoftStore.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_MicrosoftStore)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_MicrosoftStore)
 
 if ($null -ne (Get-AppxPackage -Name Microsoft.WindowsStore)) {
     $CheckBox_MicrosoftStore.Enabled = $false
@@ -337,7 +403,7 @@ $CheckBox_mpv.Text = '    mpv (Desktop)'
 $CheckBox_mpv.TextAlign = 'MiddleLeft'
 $CheckBox_mpv.CheckAlign = 'MiddleLeft'
 $CheckBox_mpv.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_mpv)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_mpv)
 
 if ((Test-Path -Path "$($env:USERPROFILE)\Desktop\mpv")) {
     $CheckBox_mpv.Enabled = $false
@@ -358,7 +424,7 @@ $CheckBox_NordVPN.Text = '    NordVPN'
 $CheckBox_NordVPN.TextAlign = 'MiddleLeft'
 $CheckBox_NordVPN.CheckAlign = 'MiddleLeft'
 $CheckBox_NordVPN.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_NordVPN)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_NordVPN)
 
 if ($InstalledSoftware -match 'NordVPN') {
     $CheckBox_NordVPN.Enabled = $false
@@ -379,7 +445,7 @@ $CheckBox_NotepadPlusPlus.Text = '    Notepad++'
 $CheckBox_NotepadPlusPlus.TextAlign = 'MiddleLeft'
 $CheckBox_NotepadPlusPlus.CheckAlign = 'MiddleLeft'
 $CheckBox_NotepadPlusPlus.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_NotepadPlusPlus)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_NotepadPlusPlus)
 
 $Notepad = 'Notepad++ Updater'
 $Notepad_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $Notepad }
@@ -402,11 +468,11 @@ $CheckBox_NVCleanstall.Text = '    NVCleanstall'
 $CheckBox_NVCleanstall.TextAlign = 'MiddleLeft'
 $CheckBox_NVCleanstall.CheckAlign = 'MiddleLeft'
 $CheckBox_NVCleanstall.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_NVCleanstall)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_NVCleanstall)
 
-If ((Get-WmiObject Win32_VideoController).Name -like '*NVIDIA*') {
-    $CheckBox_NVCleanstall.Text += ' (Compatible GPU)'
-}
+# If ((Get-WmiObject Win32_VideoController).Name -like '*NVIDIA*') {
+#     $CheckBox_NVCleanstall.Text += ' (Compatible GPU)'
+# }
 
 If ((Get-WmiObject Win32_VideoController).Name -notlike '*NVIDIA*') {
     $CheckBox_NVCleanstall.Text += ' (Incompatible GPU)'
@@ -432,7 +498,7 @@ $CheckBox_MicrosoftOffice.Text = '    Microsoft Office'
 $CheckBox_MicrosoftOffice.TextAlign = 'MiddleLeft'
 $CheckBox_MicrosoftOffice.CheckAlign = 'MiddleLeft'
 $CheckBox_MicrosoftOffice.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_MicrosoftOffice)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_MicrosoftOffice)
 
 if ($InstalledSoftware -match 'Microsoft Office' -or $InstalledSoftware -match 'Microsoft 365') {
     $CheckBox_MicrosoftOffice.Enabled = $false
@@ -453,7 +519,7 @@ $CheckBox_Plex.Text = '    Plex'
 $CheckBox_Plex.TextAlign = 'MiddleLeft'
 $CheckBox_Plex.CheckAlign = 'MiddleLeft'
 $CheckBox_Plex.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_Plex)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_Plex)
 
 if ($InstalledSoftware -match 'Plex') {
     $CheckBox_Plex.Enabled = $false
@@ -474,7 +540,7 @@ $CheckBox_PuTTY.Text = '    PuTTY'
 $CheckBox_PuTTY.TextAlign = 'MiddleLeft'
 $CheckBox_PuTTY.CheckAlign = 'MiddleLeft'
 $CheckBox_PuTTY.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_PuTTY)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_PuTTY)
 
 if ($InstalledSoftware -match 'PuTTY') {
     $CheckBox_PuTTY.Enabled = $false
@@ -495,7 +561,7 @@ $CheckBox_Python.Text = '    Python'
 $CheckBox_Python.TextAlign = 'MiddleLeft'
 $CheckBox_Python.CheckAlign = 'MiddleLeft'
 $CheckBox_Python.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_Python)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_Python)
 
 $Python = 'Python Updater'
 $Python_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $Python }
@@ -518,7 +584,7 @@ $CheckBox_qBittorrent.Text = '    qBittorrent'
 $CheckBox_qBittorrent.TextAlign = 'MiddleLeft'
 $CheckBox_qBittorrent.CheckAlign = 'MiddleLeft'
 $CheckBox_qBittorrent.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_qBittorrent)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_qBittorrent)
 
 $qBittorrent = 'qBittorrent Updater'
 $qBittorrent_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $qBittorrent }
@@ -541,7 +607,7 @@ $CheckBox_RazerSynapse.Text = '    Razer Synapse'
 $CheckBox_RazerSynapse.TextAlign = 'MiddleLeft'
 $CheckBox_RazerSynapse.CheckAlign = 'MiddleLeft'
 $CheckBox_RazerSynapse.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_RazerSynapse)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_RazerSynapse)
 
 if ($InstalledSoftware -match 'Razer Synapse') {
     $CheckBox_RazerSynapse.Enabled = $false
@@ -562,11 +628,32 @@ $CheckBox_Steam.Text = '    Steam'
 $CheckBox_Steam.TextAlign = 'MiddleLeft'
 $CheckBox_Steam.CheckAlign = 'MiddleLeft'
 $CheckBox_Steam.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_Steam)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_Steam)
 
 if ($InstalledSoftware -match 'Steam') {
     $CheckBox_Steam.Enabled = $false
     $CheckBox_Steam.Text += ' (Installed)'
+}
+
+$CheckBox_SubtitleEdit = New-Object System.Windows.Forms.CheckBox
+$CheckBox_SubtitleEdit.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
+$CheckBox_Y_Axis += 22
+$CheckBox_SubtitleEdit.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
+# Official ICO from EXE
+$CheckBox_SubtitleEdit_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAiIs4DIiLOfSIiztgiIs7kIiLO5CIizuQiIs7kIiLO5CIizuQiIs7kIiLO5CIizuQiIs7kIiLO2CIizn4iIs4DIiLOfiIizv8iIs7/IiLO/yIizv8iIs7/IiLO/yIizv8iIs7/IiLO/yIizv8iIs7/IiLO/yIizv8iIs7/IiLOfyIiztoiIs7/IiLO/yIizv8iIs7/IiLO/yIizv8iIs7/IiLO/yIizv8iIs7/IiLO/yIizv8iIs7/IiLO/yIiztsiIs7mIyPO/5KS5f+zs+3/s7Pt/7Oz7f+jo+n/S0vX/11d2v+zs+3/s7Pt/7Oz7f+zs+3/j4/l/yMjzv8iIs7nIiLO5iIizv84ONP/29v1//39/f/9/f3//f39//b2+/9QUNj/19f0//39/f/9/f3/2dn1/zY20v8iIs7/IiLO5yIizuYiIs7/IiLO/ykpz/8zM9H/MzPR/2tr3f/9/f3/q6vr/yws0P8zM9H/MzPR/ykpz/8iIs7/IiLO/yIizuciIs7mIiLO/yIizv8iIs7/IiLO/yIizv9ERNX//f39/7S07f8iIs7/IiLO/yIizv8iIs7/IiLO/yIizv8iIs7nIiLO5iIizv8rK9D/m5vo/9fX9P/c3PX/8/P7//39/f9nZ93/r6/s/9zc9f/c3PX/Z2fc/yIizv8iIs7/IiLO5yIizuYiIs7/sbHs//39/f/v7/r/5ub3/9XV9P91dd//X1/a/+bm9//m5vf/5ub3/2pq3f8iIs7/IiLO/yIizuciIs7mKirQ//r6/P/R0fP/JibP/yIizv8iIs7/IiLO/yIizv8iIs7/IiLO/yIizv8iIs7/IiLO/yIizv8iIs7nIiLO5igoz//39/v/29v1/zY20v8oKM//KCjP/ygoz/8kJM//JibP/ygoz/8oKM//JSXP/yIizv8iIs7/IiLO5yIizuYiIs7/nZ3o//39/f/9/f3//f39//39/f/BwfD/U1PY/+3t+f/9/f3//f39/9PT9P8yMtH/IiLO/yIizuciIs7mIiLO/yQkz/99feH/ubnu/76+7/+oqOr/NTXS/66u6/++vu//vr7v/76+7/++vu//lJTm/yMjzv8iIs7nIiLO2iIizv8iIs7/IiLO/yIizv8iIs7/IiLO/yIizv8iIs7/IiLO/yIizv8iIs7/IiLO/yIizv8iIs7/IiLO3CIizoEiIs7/IiLO/yIizv8iIs7/IiLO/yIizv8iIs7/IiLO/yIizv8iIs7/IiLO/yIizv8iIs7/IiLO/yIizoIiIs4EIiLOgiIizt0iIs7pIiLO6SIizukiIs7pIiLO6SIizukiIs7pIiLO6SIizukiIs7pIiLO3SIizoMiIs4EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
+$CheckBox_SubtitleEdit_IconBytes = [Convert]::FromBase64String($CheckBox_SubtitleEdit_Icon64)
+$CheckBox_SubtitleEdit_IconStream = [System.IO.MemoryStream]::new($CheckBox_SubtitleEdit_IconBytes, 0, $CheckBox_SubtitleEdit_IconBytes.Length)
+$CheckBox_SubtitleEdit.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_SubtitleEdit_IconStream).GetHIcon()))
+$CheckBox_SubtitleEdit.ImageAlign = 'MiddleLeft'
+$CheckBox_SubtitleEdit.Text = '    Subtitle Edit'
+$CheckBox_SubtitleEdit.TextAlign = 'MiddleLeft'
+$CheckBox_SubtitleEdit.CheckAlign = 'MiddleLeft'
+$CheckBox_SubtitleEdit.Checked = $false
+$Panel_SoftwareSelection.Controls.Add($CheckBox_SubtitleEdit)
+
+if ($InstalledSoftware -match 'Subtitle Edit') {
+    $CheckBox_SubtitleEdit.Enabled = $false
+    $CheckBox_SubtitleEdit.Text += ' (Installed)'
 }
 
 $CheckBox_Telegram = New-Object System.Windows.Forms.CheckBox
@@ -583,7 +670,7 @@ $CheckBox_Telegram.Text = '    Telegram'
 $CheckBox_Telegram.TextAlign = 'MiddleLeft'
 $CheckBox_Telegram.CheckAlign = 'MiddleLeft'
 $CheckBox_Telegram.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_Telegram)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_Telegram)
 
 if ($InstalledSoftware -match 'Telegram') {
     $CheckBox_Telegram.Enabled = $false
@@ -604,7 +691,7 @@ $CheckBox_TranslucentTB.Text = '    TranslucentTB'
 $CheckBox_TranslucentTB.TextAlign = 'MiddleLeft'
 $CheckBox_TranslucentTB.CheckAlign = 'MiddleLeft'
 $CheckBox_TranslucentTB.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_TranslucentTB)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_TranslucentTB)
 
 if ($InstalledSoftware -match 'TranslucentTB') {
     $CheckBox_TranslucentTB.Enabled = $false
@@ -625,7 +712,7 @@ $CheckBox_VisualStudioCode.Text = '    Visual Studio Code'
 $CheckBox_VisualStudioCode.TextAlign = 'MiddleLeft'
 $CheckBox_VisualStudioCode.CheckAlign = 'MiddleLeft'
 $CheckBox_VisualStudioCode.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_VisualStudioCode)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_VisualStudioCode)
 
 $VSCode = 'Visual Studio Code Updater'
 $VSCode_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $VSCode }
@@ -634,72 +721,10 @@ if (($VSCode_Exists)) {
     $CheckBox_VisualStudioCode.Text += ' (Installed)'
 }
 
-$CheckBox_AdobeAcrobat = New-Object System.Windows.Forms.CheckBox
-$CheckBox_AdobeAcrobat.Location = New-Object System.Drawing.Size($CheckBox_Right_X_Axis, $CheckBox_Right_Y_Axis)
-$CheckBox_Right_Y_Axis += 22
-$CheckBox_AdobeAcrobat.Size = New-Object System.Drawing.Size($CheckBox_Right_Size_X, $CheckBox_Right_Size_Y)
-# Official ICO from EXE
-$CheckBox_AdobeAcrobat_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAACMuAAAjLgAAAAAAAAAAAAAAAAAGAAAATQAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAE0AAAAGAAIgWAAKn9kAC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8ACp/ZAAIgWAAKn9kAC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wAKn9kAC7P/AAuz/4CF2f/g4fb/0NLx/yAqvf8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs//Aw+z/EBq4/7Cz5//Q0vH/EBq4/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/ICq9/7Cz5//Q0vH//////5CV3v8AC7P/AAuz/wALs/9gZ9D/8PH7/8DD7P8gKr3/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/ICq9/8DD7P//////4OH2/5CV3v+Ahdn/0NLx/xAauP/g4fb/sLPn/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8gKr3//////yAqvf+gpOP/8PH7/8DD7P/Aw+z/sLPn/zA5wf8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/6Ck4/+gpOP//////zA5wf8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/9QWMv//////5CV3v8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/QEjG//////+gpOP/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/6Ck4//Aw+z/wMPs/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs//Aw+z/ICq9/7Cz5/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/cHbU//Dx+/8gKr3/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALssEAC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALssEAC7MQAAuzwAALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs8AAC7MQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
-$CheckBox_AdobeAcrobat_IconBytes = [Convert]::FromBase64String($CheckBox_AdobeAcrobat_Icon64)
-$CheckBox_AdobeAcrobat_IconStream = [System.IO.MemoryStream]::new($CheckBox_AdobeAcrobat_IconBytes, 0, $CheckBox_AdobeAcrobat_IconBytes.Length)
-$CheckBox_AdobeAcrobat.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_AdobeAcrobat_IconStream).GetHIcon()))
-$CheckBox_AdobeAcrobat.ImageAlign = 'MiddleLeft'
-$CheckBox_AdobeAcrobat.Text = '    Adobe Acrobat'
-$CheckBox_AdobeAcrobat.TextAlign = 'MiddleLeft'
-$CheckBox_AdobeAcrobat.CheckAlign = 'MiddleLeft'
-$CheckBox_AdobeAcrobat.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_AdobeAcrobat)
-
-if ($InstalledSoftware -match 'Adobe Acrobat') {
-    $CheckBox_AdobeAcrobat.Enabled = $false
-    $CheckBox_AdobeAcrobat.Text += ' (Installed)'
-}
-
-$CheckBox_AdobePhotoshop = New-Object System.Windows.Forms.CheckBox
-$CheckBox_AdobePhotoshop.Location = New-Object System.Drawing.Size($CheckBox_Right_X_Axis, $CheckBox_Right_Y_Axis)
-$CheckBox_Right_Y_Axis += 22
-$CheckBox_AdobePhotoshop.Size = New-Object System.Drawing.Size($CheckBox_Right_Size_X, $CheckBox_Right_Size_Y)
-$CheckBox_AdobePhotoshopt_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAAAAAAAAAAAAAGAAAATQAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAE0AAAAGCgUAWDAbANk2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP8wGwDZCgUAWDAbANk2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zAbANk2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP//qDH/Nh4A/zYeAP82HgD/Nh4A//OgLv//qDH/55cr/1w4Cf82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD//6gx/zYeAP82HgD/Nh4A/zYeAP+CUhL/dUkP//OgLv/NhiX/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A//+oMf/NhiX/tHUf/1w4Cf82HgD/QycD/8F9Iv//qDH/wX0i/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP//qDH/zYYl/+eXK//zoC7/Nh4A/9qPKP/zoC7/jlsW/1w4Cf82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD//6gx/zYeAP9PLwb//6gx/zYeAP/nlyv/86Au//OgLv//qDH/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A//+oMf+bYxn/wX0i//+oMf82HgD/QycD/45bFv+bYxn/glIS/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP//qDH//6gx//+oMf+obBz/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAME2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAME2HgAQNh4AwDYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAMA2HgAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
-$CheckBox_AdobePhotoshop_IconBytes = [Convert]::FromBase64String($CheckBox_AdobePhotoshopt_Icon64)
-$CheckBox_AdobePhotoshop_IconStream = [System.IO.MemoryStream]::new($CheckBox_AdobePhotoshop_IconBytes, 0, $CheckBox_AdobePhotoshop_IconBytes.Length)
-$CheckBox_AdobePhotoshop.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_AdobePhotoshop_IconStream).GetHIcon()))
-$CheckBox_AdobePhotoshop.ImageAlign = 'MiddleLeft'
-$CheckBox_AdobePhotoshop.Text = '    Adobe Photoshop'
-$CheckBox_AdobePhotoshop.TextAlign = 'MiddleLeft'
-$CheckBox_AdobePhotoshop.CheckAlign = 'MiddleLeft'
-$CheckBox_AdobePhotoshop.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_AdobePhotoshop)
-
-if ($InstalledSoftware -match 'Adobe Photoshop') {
-    $CheckBox_AdobePhotoshop.Enabled = $false
-    $CheckBox_AdobePhotoshop.Text += ' (Installed)'
-}
-
-$CheckBox_JitBit_Macro_Recorder = New-Object System.Windows.Forms.CheckBox
-$CheckBox_JitBit_Macro_Recorder.Location = New-Object System.Drawing.Size($CheckBox_Right_X_Axis, $CheckBox_Right_Y_Axis)
-$CheckBox_Right_Y_Axis += 22
-$CheckBox_JitBit_Macro_Recorder.Size = New-Object System.Drawing.Size($CheckBox_Right_Size_X, $CheckBox_Right_Size_Y)
-# Official ICO from EXE
-$CheckBox_JitBit_Macro_Recorder_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACgAAACoAAAA/AgICSQICAkoAAABCAAAAMAAAABUAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABUVFTdfXFijcGxnt4N9dsZwa2e3a2dksHVyb64+OzmAAAAAEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWFRUVVlNPZVVQS4laU0uuTEI4sEE6M5lMRT93PTgyUQICAgUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAABwAAABkwIxGgdV4184tzRf9yWzHuKB4NjgAAABMAAAAHAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAEHhoWXygjHnggGA6BhXdo/7mzrv/Mx8T/p56X/3dnVf4WDwhtMiwmihMQDkYAAAABAAAAAAAAAAAAAAAAAAAAA3RsY7KdkXz2Qzszuayjmf/Z1M//5uPg/8W+tf+ZjYH/PjUqvrSpl/9RS0SGAAAAAQAAAAAAAAAAAAAAAAAAAAAwJAZvnHwD/1JIOti0qqD/2tXP/+bi3//Gvrb/oZWI/1JFK+Kjggb/FhADQAAAAAAAAAAAAAAAAAAAAAAAAAAAFA4CPKSCBv9lVzr2lYyg/9rVz/+9zbD/xb21/52Ndf9qWSv8nHsJ+AIBABQAAAAAAAAAAAAAAAAAAAAAAAAAAAYEASR0WSb+c2BF/62il/+3rqX/tq6l/62il/+dkIT/blo5/2xVKuYAAAAOAAAAAAAAAAAAAAAAAAAAAAAAAAAOCwQYvrCH6p+Oa/9dTT7/ZVdL/3BjWP9kVkr/ZFRF/6iYcv+uo4fOBgUDBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABoWDAwwKiF2dWhe/5KFef+ckIP/k4d8/3hsYv4jHhZWGhcOBwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIOy0buaeelv9waGH/sqqh/4B5cv+nn5j/KBsLmgAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgEAA11NL6rMx8L/c25o/8XAu/+Mh4L/y8bC/0k6HIoCAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANDAobs6+t4/Du7f/y8e//8O/u/5qWlM4HBgULAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABw0MCzFua2mgrqWX73ZtYcElHRBeAwICAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABQNBREzKRlIKh8KPT42IToUDgIKFQ8EBAAAAAAAAAAAAAAAAAAAAAAAAAAA8AesQfAHrEHwB6xB4AOsQcABrEHAAaxB4AOsQeADrEHgA6xB4AOsQfAHrEHwB6xB8AesQfgPrEH4D6xB+B+sQQ=='
-$CheckBox_JitBit_Macro_Recorder_IconBytes = [Convert]::FromBase64String($CheckBox_JitBit_Macro_Recorder_Icon64)
-$CheckBox_JitBit_Macro_Recorder_IconStream = [System.IO.MemoryStream]::new($CheckBox_JitBit_Macro_Recorder_IconBytes, 0, $CheckBox_JitBit_Macro_Recorder_IconBytes.Length)
-$CheckBox_JitBit_Macro_Recorder.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_JitBit_Macro_Recorder_IconStream).GetHIcon()))
-$CheckBox_JitBit_Macro_Recorder.ImageAlign = 'MiddleLeft'
-$CheckBox_JitBit_Macro_Recorder.Text = '    JitBit Macro Recorder'
-$CheckBox_JitBit_Macro_Recorder.TextAlign = 'MiddleLeft'
-$CheckBox_JitBit_Macro_Recorder.CheckAlign = 'MiddleLeft'
-$CheckBox_JitBit_Macro_Recorder.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_JitBit_Macro_Recorder)
-
-if ($InstalledSoftware -match 'Macro Recorder') {
-    $CheckBox_JitBit_Macro_Recorder.Enabled = $false
-    $CheckBox_JitBit_Macro_Recorder.Text += ' (Installed)'
-}
-
 $CheckBox_UninstallEdge = New-Object System.Windows.Forms.CheckBox
-$CheckBox_UninstallEdge.Location = New-Object System.Drawing.Size($CheckBox_Right_X_Axis, $CheckBox_Right_Y_Axis)
-$CheckBox_Right_Y_Axis += 22
-$CheckBox_UninstallEdge.Size = New-Object System.Drawing.Size($CheckBox_Right_Size_X, $CheckBox_Right_Size_Y)
+$CheckBox_UninstallEdge.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
+$CheckBox_Y_Axis += 22
+$CheckBox_UninstallEdge.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
 # Official ICO from EXE
 $CheckBox_UninstallEdge_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1HgAnNN5BPTTeQP/zHYF/7tqCP+tYwv/o10S+ZJOD50AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADUeAA81HgA9tR5Af/SeAP/qV0K/5RQDP+QTQ3/kE4N/5JOD/+STg//kE0Q9o9MEDwAAAAAAAAAAAAAAADUeAA81HgA/tR5Af/VewL/p10K/5RQDP+STwz/lVEO/5hSDv+WUA//lE8P/5FOEP+PTBD+jUsRPAAAAAAAAAAA1HgA9tR5Af/VewL/xHAF/5VQDP+UUAz/llEM/5pTDv+YUg77llAP3JRPD8CRThDvj0wQ+41LEfYAAAAA1HgAnNV5Af/VewL/1nwD/7dpB/+WUQz/lFAM/5xUDf6aUw6cAAAAAAAAAAAAAAAAAAAAAAAAAACNSxFXAAAAANV5Ae/VewL/1n0D/9d/Bf+tYwr/llEM/5dSDP6dVQ1XAAAAAIW+NjyGvzevacE/51fDRe9NyEyvQM5UPAAAAADVewL/1n0E/9d/Bf/XgQf/u24J/5RQDP+ZUw3CAAAAAAAAAACavzPniL83/4DCO/9mw0L/UM1Q/0XRVv461FtX1X0E/9d/Bf/XgQf/2IQI/9aDCv+TUAv/mFINcwAAAAAAAAAAm78znJLBN/+Nxjz/Z8pI/2PRT/9S11n/QNdd79uMD//WgAf/2IQJ/9mGCv/aiQz/wHUO/4tLC8cAAAAAAAAAAMWxN92XxDj/jck//4XORf9v1E//VdZX/0zdX//fnB3/0X8J/9mHC//biQ3/3IwP/92PEf/OhRP/0o4fodyXGMHIrCT/pcc3/5HLQP+H00r/b9RP/2LgXf9M5Gb/6q8s/cWDEP/Vhg3/24wP/92PEf/ekhP/35YW/92XGP/JlRv/0cIq/7/EMP+qyzv/jtVK/4DcU/9o4V3/WOZl//e8MJzzvTD/15we/8mHE//QiRL/0YsV/8eOGP/NpyH/0cIq/9HCKv/BxzL/tM08/5rUR/+M21D/aetn/1rubdwAAAAA9r0x9vO+Mv/svzD/58Aw/+DBLv/XwSv/0sIq/9HCKv/LxzH/vsw4/6rUQ/+a203/fuZe/23qZf9h7208AAAAAPi+MzzzvjL+778y/+jAMf/hwS//28It/9bELv/SxC3/z8Yw/8bKNv+r1kb/qdlJ/4jmXf926mScAAAAAAAAAAAAAAAA+L40PPW/NPbwwDT/5cEx/97DMf/WxC7/0sYw/8/GMP/DzTr/utJA/6TbTP6W4lacAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8sA1nOvCNO/lwjP/18Yy/9XHNP/OzDn/wtE/9rbVRMCp20wfAAAAAAAAAAAAAAAA8A8AAMADAACAAQAAgAEAAAB9AAAAgQAAAYAAAAGAAAABgAAAAAAAAAAAAAAAAAAAgAAAAIABAADAAwAA8AcAAA=='
 $CheckBox_UninstallEdge_IconBytes = [Convert]::FromBase64String($CheckBox_UninstallEdge_Icon64)
@@ -710,7 +735,7 @@ $CheckBox_UninstallEdge.Text = '    Uninstall Edge'
 $CheckBox_UninstallEdge.TextAlign = 'MiddleLeft'
 $CheckBox_UninstallEdge.CheckAlign = 'MiddleLeft'
 $CheckBox_UninstallEdge.Checked = $false
-$Form_SoftwareSelection.Controls.Add($CheckBox_UninstallEdge)
+$Panel_SoftwareSelection.Controls.Add($CheckBox_UninstallEdge)
 
 $EdgeUninstaller = 'Edge Uninstaller'
 $EdgeUninstaller_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $EdgeUninstaller }
@@ -857,6 +882,11 @@ $Form_SoftwareSelection_OK.Add_Click{
     if ($CheckBox_Steam.Checked) {
         Write-Host 'Software Selection: Steam: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Steam/Download.ps1')
+    }
+
+    if ($CheckBox_SubtitleEdit.Checked) {
+        Write-Host 'Software Selection: Subtitle Edit: Initiating' -ForegroundColor green -BackgroundColor black
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Subtitle_Edit/Download.ps1')
     }
 
     if ($CheckBox_Telegram.Checked) {
