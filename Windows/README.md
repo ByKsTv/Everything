@@ -93,15 +93,3 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. Set up print quality and print size.
 
    > Note: HP Printer: Only Original Ink Cartridges.
-
-## Extra Software
-
-- [Valorant](https://playvalorant.com/en-us/download/)
-- [JitBit Macro Recorder](https://rutracker.org/forum/tracker.php?nm=JitBit)
-- [Microsoft Visual Studio](https://rutracker.org/forum/tracker.php?nm=Microsoft%20Visual%20Studio)
-- [Lumion](https://rutracker.org/forum/tracker.php?nm=Lumion)
-- [Image-Line - FL Studio](https://rutracker.org/forum/tracker.php?nm=Image-Line%20-%20FL%20Studio)
-- [RegistryChangesView](https://www.nirsoft.net/utils/registry_changes_view.html)
-- HWMonitor Pro [Diakov](https://diakov.net/10934-cpuid-hwmonitor-pro-153-portable.html) / [RuTracker.org](https://rutracker.org/forum/tracker.php?nm=HWMonitor)
-- Adobe Acrobat Pro [m0nkrus](http://www.monkrus.ws/) / [RuTracker.org](https://rutracker.org/forum/tracker.php?nm=Adobe%20Acrobat) / [RuTracker.ru](http://rutracker.ru/viewforum.php?f=220)
-- [VMware Workstation](https://rutracker.org/forum/tracker.php?nm=VMware%20Workstation) (Download 17.0.2 to avoid [High CPU Usage](https://communities.vmware.com/t5/VMware-Workstation-Pro/High-CPU-usage-by-vmnat-exe-after-upgrade-to-VMware-Workstation/m-p/2992080/highlight/true#M183202))
