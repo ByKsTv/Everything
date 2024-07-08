@@ -183,57 +183,75 @@ $Form_OfficeSelection.Controls.Add($Form_OfficeSelection_Cancel)
 
 $Form_OfficeSelection_OK.Add_Click{
 	if ($CheckBox_Microsoft365ProPlus.Checked) {
-		Write-Host 'Microsoft 365 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Skype for Business, Word): Installing' -ForegroundColor green -BackgroundColor black
-		(New-Object System.Net.WebClient).DownloadFile('https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=O365ProPlusRetail&platform=x64&language=en-us&version=O16GA', "$env:TEMP\O365ProPlus.exe")
+		Write-Host 'Microsoft 365 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Skype for Business, Word): Downloading' -ForegroundColor green -BackgroundColor black
+		(New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'O365ProPlus') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\O365ProPlus.exe")
+		
+		Write-Host 'Microsoft 365 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Skype for Business, Word): Installing' -ForegroundColor green 
 		Start-Process $env:TEMP\O365ProPlus.exe -Wait
 	}
 
 	if ($CheckBox_Office2021ProPlus.Checked) {
+		Write-Host 'Office 2021 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Word): Downloading' -ForegroundColor green -BackgroundColor black
+		(New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'ProPlus2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\ProPlus2021.exe")
+
 		Write-Host 'Office 2021 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Word): Installing' -ForegroundColor green -BackgroundColor black
-		(New-Object System.Net.WebClient).DownloadFile('https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=ProPlus2021Retail&platform=x64&language=en-us&version=O16GA', "$env:TEMP\2021ProPlus.exe")
-		Start-Process $env:TEMP\2021ProPlus.exe -Wait
+		Start-Process $env:TEMP\ProPlus2021.exe -Wait
 	}
 
 	if ($CheckBox_Office2021Access.Checked) {
+		Write-Host 'Office 2021 - (Access): Downloading' -ForegroundColor green -BackgroundColor black
+		(New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Access2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Access2021.exe")
+
 		Write-Host 'Office 2021 - (Access): Installing' -ForegroundColor green -BackgroundColor black
-		(New-Object System.Net.WebClient).DownloadFile('https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=Access2021Retail&platform=x64&language=en-us&version=O16GA', "$env:TEMP\2021Access.exe")
-		Start-Process $env:TEMP\2021Access.exe -Wait
+		Start-Process $env:TEMP\Access2021.exe -Wait
 	}
 
 	if ($CheckBox_Office2021Excel.Checked) {
+		Write-Host 'Office 2021 - Excel: Downloading' -ForegroundColor green -BackgroundColor black
+		(New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Excel2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Excel2021.exe")
+
 		Write-Host 'Office 2021 - Excel: Installing' -ForegroundColor green -BackgroundColor black
-		(New-Object System.Net.WebClient).DownloadFile('https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=Excel2021Retail&platform=x64&language=en-us&version=O16GA', "$env:TEMP\2021Excel.exe")
-		Start-Process $env:TEMP\2021Excel.exe -Wait
+		Start-Process $env:TEMP\Excel2021.exe -Wait
 	}
 
 	if ($CheckBox_Office2021OneNote.Checked) {
+		Write-Host 'Office 2021 - OneNote: Downloading' -ForegroundColor green -BackgroundColor black
+		(New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'OneNote2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\OneNote2021.exe")
+
 		Write-Host 'Office 2021 - OneNote: Installing' -ForegroundColor green -BackgroundColor black
-		(New-Object System.Net.WebClient).DownloadFile('https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=OneNote2021Retail&platform=x64&language=en-us&version=O16GA', "$env:TEMP\2021OneNote.exe")
-		Start-Process $env:TEMP\2021OneNote.exe -Wait
+		Start-Process $env:TEMP\OneNote2021.exe -Wait
 	}
 
 	if ($CheckBox_Office2021Outlook.Checked) {
+		Write-Host 'Office 2021 - Outlook: Downloading' -ForegroundColor green -BackgroundColor black
+		(New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Outlook2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Outlook2021.exe")
+
 		Write-Host 'Office 2021 - Outlook: Installing' -ForegroundColor green -BackgroundColor black
-		(New-Object System.Net.WebClient).DownloadFile('https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=Outlook2021Retail&platform=x64&language=en-us&version=O16GA', "$env:TEMP\2021Outlook.exe")
-		Start-Process $env:TEMP\2021Outlook.exe -Wait
+		Start-Process $env:TEMP\Outlook2021.exe -Wait
 	}
 
 	if ($CheckBox_Office2021PowerPoint.Checked) {
+		Write-Host 'Office 2021 - PowerPoint: Downloading' -ForegroundColor green -BackgroundColor black
+		(New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'PowerPoint2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\PowerPoint2021.exe")
+
 		Write-Host 'Office 2021 - PowerPoint: Installing' -ForegroundColor green -BackgroundColor black
-		(New-Object System.Net.WebClient).DownloadFile('https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=PowerPoint2021Retail&platform=x64&language=en-us&version=O16GA', "$env:TEMP\2021PowerPoint.exe")
-		Start-Process $env:TEMP\2021PowerPoint.exe -Wait
+		Start-Process $env:TEMP\PowerPoint2021.exe -Wait
 	}
 
 	if ($CheckBox_Office2021Publisher.Checked) {
+		Write-Host 'Office 2021 - Publisher: Downloading' -ForegroundColor green -BackgroundColor black
+		(New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Publisher2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Publisher2021.exe")
+
 		Write-Host 'Office 2021 - Publisher: Installing' -ForegroundColor green -BackgroundColor black
-		(New-Object System.Net.WebClient).DownloadFile('https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=Publisher2021Retail&platform=x64&language=en-us&version=O16GA', "$env:TEMP\2021Publisher.exe")
-		Start-Process $env:TEMP\2021Publisher.exe -Wait
+		Start-Process $env:TEMP\Publisher2021.exe -Wait
 	}
 
 	if ($CheckBox_Office2021Word.Checked) {
+		Write-Host 'Office 2021 - Word: Downloading' -ForegroundColor green -BackgroundColor black
+		(New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Word2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Word2021.exe")
+
 		Write-Host 'Office 2021 - Word: Installing' -ForegroundColor green -BackgroundColor black
-		(New-Object System.Net.WebClient).DownloadFile('https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=Word2021Retail&platform=x64&language=en-us&version=O16GA', "$env:TEMP\2021Word.exe")
-		Start-Process $env:TEMP\2021Word.exe -Wait
+		Start-Process $env:TEMP\Word2021.exe -Wait
 	}
 
 	Write-Host 'Office Key: Activating' -ForegroundColor green -BackgroundColor black
