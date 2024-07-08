@@ -765,6 +765,27 @@ if (($VSCode_Exists)) {
     $CheckBox_VisualStudioCode.Text += ' (Installed)'
 }
 
+$CheckBox_Zoom = New-Object System.Windows.Forms.CheckBox
+$CheckBox_Zoom.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
+$CheckBox_Y_Axis += 22
+$CheckBox_Zoom.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
+# Official ICO from EXE
+$CheckBox_Zoom_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADKSgggwkcJj8RHCL/GSQnvykgI/81KCf/RTAnu0ksJz9hOCY/KSgggAAAAAAAAAAAAAAAAAAAAAAAAAAC/RgiAxUcI/8VHCP/KSAj/zUoJ/9FKCP/TTAn/1k0J/9hOCf/cTwn/4FAJ/+FSCXAAAAAAAAAAAAAAAADCRwlwxUcI/8pICP/NSgn/zUoJ/9NMCf/WTQn/2E4J/9tPCf/gUAn/4FAJ/+RSCf/oUwr/61QKfwAAAADKSgggxUcI/8pICP/NSgn/0UoI/9NMCf/YTgn/208J/+BQCf/gUAn/5FIJ/+hTCv/qVAr/7VUK//JXCv/3WAwgykoJkM1KCf/RSgj/00wJ/9ZNCf/YTgn/3E8J/+BQCf/kUgn/6FMK/+pUCv/tVQr/8lcK//JXCv/2WQr/+FkLkNJLCc/TTAn/4oRW/+2nhP/tp4T/7aeE/+yTZv/rdDj/6FMK/+1VCv/3hEf/8lcK//ZZCv/5jVf//FsL//5cDL/VTQnu2E4J//bTwf/+6+L/8aiE//KphP/xilb//NXC//RsKf/yVwr//vXw//laC//9cSr//uvi//5dDP/+YxLu208J/9xPCf/iXBn/+9/S//KphP/qVAr/7VUK//zVwv/0bCn/9lkK///////+XQz//XEq//7r4v/9ZBX//God/+BQCf/kUgn/5FIJ/+tfGv/739L/96qF//JXCv/81cL/+nk5//xbC////////mAQ//13Mv/+6+L//God//lwJv/lUgrv6FMK//GKVv/2qoX/+7eT///////7l2b/+7eT//7Msv//wqT///////7FqP/+z7j/+7eT//hyKP/2di3v61QJv+1VCv/4oXb//KyF//yshf/8rIX//XEq//5dDP/9qHv//ah7//eER//8rIX//ah7//h1LP/3eDD/9Xw2z/FWC4/yVwr/9lkK//laC//8Wwv//l0M//5gEP/9ZBX//Gca//puIv/5cCb/+HUs//d4MP/1fDT/9H44//OBPpD3WAwg+VoL//xbC//+XQz//mAQ//1kFf/8Zxr//God//lwJv/4cij/93gw//V8NP/0fjj/9IE8//KGQf/vi0wgAAAAAP1cCn/+YBD//WQV//xnGv/8ah3/+m4i//hyKP/4dSz/93gw//R+OP/0gTz/8oZB//GJRf/xikpvAAAAAAAAAAAAAAAA/WUXb/xqHf/6biL/+XAm//h1LP/3eDD/9Xw0//SBPP/zhD7/8YlF//CMSv7vj0x/AAAAAAAAAAAAAAAAAAAAAAAAAAD3cCgg+nQnj/Z3L8/1fDXu9H44//OEPv/xhkPv8ItHv++PTY/vi0wgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
+$CheckBox_Zoom_IconBytes = [Convert]::FromBase64String($CheckBox_Zoom_Icon64)
+$CheckBox_Zoom_IconStream = [System.IO.MemoryStream]::new($CheckBox_Zoom_IconBytes, 0, $CheckBox_Zoom_IconBytes.Length)
+$CheckBox_Zoom.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_Zoom_IconStream).GetHIcon()))
+$CheckBox_Zoom.ImageAlign = 'MiddleLeft'
+$CheckBox_Zoom.Text = '    Zoom'
+$CheckBox_Zoom.TextAlign = 'MiddleLeft'
+$CheckBox_Zoom.CheckAlign = 'MiddleLeft'
+$CheckBox_Zoom.Checked = $false
+$Panel_SoftwareSelection.Controls.Add($CheckBox_Zoom)
+
+if ($InstalledSoftware -match 'Zoom') {
+    $CheckBox_Zoom.Enabled = $false
+    $CheckBox_Zoom.Text += ' (Uninstalled)'
+}
+
 $CheckBox_UninstallEdge = New-Object System.Windows.Forms.CheckBox
 $CheckBox_UninstallEdge.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
 $CheckBox_Y_Axis += 22
@@ -951,6 +972,11 @@ $Form_SoftwareSelection_OK.Add_Click{
     if ($CheckBox_VisualStudioCode.Checked) {
         Write-Host 'Software Selection: Visual Studio Code: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Visual_Studio_Code/Download.ps1')
+    }
+
+    if ($CheckBox_Zoom.Checked) {
+        Write-Host 'Software Selection: Zoom: Initiating' -ForegroundColor green -BackgroundColor black
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Zoom/Download.ps1')
     }
 
     if ($CheckBox_UninstallEdge.Checked) {
