@@ -3,7 +3,7 @@ Add-Type -AssemblyName System.Drawing
 [System.Windows.Forms.Application]::EnableVisualStyles()
 
 $Form_SoftwareSelection = New-Object System.Windows.Forms.Form
-$Form_SoftwareSelection.width = 300
+$Form_SoftwareSelection.width = 310
 $Form_SoftwareSelection.height = 500
 $Form_SoftwareSelection.Text = 'Software Selection'
 $Form_SoftwareSelection.StartPosition = 'CenterScreen'
