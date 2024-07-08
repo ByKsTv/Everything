@@ -91,6 +91,27 @@ if ($InstalledSoftware -match 'Adobe Acrobat') {
     $CheckBox_AdobeAcrobat.Text += ' (Installed)'
 }
 
+$CheckBox_AdobeLightroomClassic = New-Object System.Windows.Forms.CheckBox
+$CheckBox_AdobeLightroomClassic.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
+$CheckBox_Y_Axis += 22
+$CheckBox_AdobeLightroomClassic.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
+# Official ICO from EXE
+$CheckBox_AdobeLightroomClassic_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAAAAAAAAAAAAAGAAAATQAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAE0AAAAGCgUAWDAbANk2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP8wGwDZCgUAWDAbANk2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zAbANk2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP+bYxn//6gx//+oMf//qDH/86Au/zYeAP//qDH/m2MZ/zYeAP82HgD/Ty8G/7R1H//nlyv/zYYl/zYeAP82HgD/m2MZ//+oMf/NhiX/zYYl/82GJf82HgD//6gx/5tjGf82HgD/Nh4A/7R1H///qDH/tHUf/8F9Iv82HgD/Nh4A/5tjGf//qDH/Nh4A/zYeAP82HgD/Nh4A//+oMf+bYxn/Nh4A/zYeAP/zoC7/m2MZ/zYeAP82HgD/Nh4A/zYeAP+bYxn//6gx/zYeAP82HgD/Nh4A/zYeAP//qDH/qGwc/zYeAP82HgD/86Au/2hBDP82HgD/Nh4A/zYeAP82HgD/m2MZ//+oMf82HgD/Nh4A/zYeAP82HgD//6gx//+oMf/NhiX/Nh4A/7R1H//BfSL/Nh4A/zYeAP82HgD/Nh4A/5tjGf//qDH/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP9DJwP/wX0i//OgLv//qDH/Nh4A/zYeAP+bYxn//6gx/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAME2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAME2HgAQNh4AwDYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAMA2HgAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
+$CheckBox_AdobeLightroomClassic_IconBytes = [Convert]::FromBase64String($CheckBox_AdobeLightroomClassic_Icon64)
+$CheckBox_AdobeLightroomClassic_IconStream = [System.IO.MemoryStream]::new($CheckBox_AdobeLightroomClassic_IconBytes, 0, $CheckBox_AdobeLightroomClassic_IconBytes.Length)
+$CheckBox_AdobeLightroomClassic.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_AdobeLightroomClassic_IconStream).GetHIcon()))
+$CheckBox_AdobeLightroomClassic.ImageAlign = 'MiddleLeft'
+$CheckBox_AdobeLightroomClassic.Text = '    Adobe Lightroom Classic'
+$CheckBox_AdobeLightroomClassic.TextAlign = 'MiddleLeft'
+$CheckBox_AdobeLightroomClassic.CheckAlign = 'MiddleLeft'
+$CheckBox_AdobeLightroomClassic.Checked = $false
+$Panel_SoftwareSelection.Controls.Add($CheckBox_AdobeLightroomClassic)
+
+if ($InstalledSoftware -match 'Adobe Lightroom Classic') {
+    $CheckBox_AdobeLightroomClassic.Enabled = $false
+    $CheckBox_AdobeLightroomClassic.Text += ' (Installed)'
+}
+
 $CheckBox_AdobePhotoshop = New-Object System.Windows.Forms.CheckBox
 $CheckBox_AdobePhotoshop.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
 $CheckBox_Y_Axis += 22
@@ -946,6 +967,11 @@ $Form_SoftwareSelection_OK.Add_Click{
     if ($CheckBox_AdobeAcrobat.Checked) {
         Write-Host 'Software Selection: Adobe Acrobat: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Adobe_Acrobat/Download.ps1')
+    }
+    
+    if ($CheckBox_AdobeLightroomClassic.Checked) {
+        Write-Host 'Software Selection: Adobe Lightroom Classic: Initiating' -ForegroundColor green -BackgroundColor black
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Adobe_Lightroom_Classic/Download.ps1')
     }
 
     if ($CheckBox_AdobePhotoshop.Checked) {
