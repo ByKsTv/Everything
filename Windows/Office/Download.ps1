@@ -235,13 +235,13 @@ $Form_OfficeSelection_OK.Add_Click{
 		(New-Object System.Net.WebClient).DownloadFile('https://c2rsetup.officeapps.live.com/c2r/download.aspx?ProductreleaseID=Word2021Retail&platform=x64&language=en-us&version=O16GA', "$env:TEMP\2021Word.exe")
 		Start-Process $env:TEMP\2021Word.exe -Wait
 	}
+
+	Write-Host 'Office Key: Activating' -ForegroundColor green -BackgroundColor black
+	& ([ScriptBlock]::Create(((New-Object Net.WebClient).DownloadString('https://get.activated.win/')))) /Ohook
+
+	Write-Host 'Office Telemetry: Disabling' -ForegroundColor green -BackgroundColor black
+	Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/abbodi1406/WHD/master/scripts/OC2R_DisableTelemetry.ps1')
 }
 
 $Form_OfficeSelection.Add_Shown({ $Form_OfficeSelection.Activate() })
 [void] $Form_OfficeSelection.ShowDialog()
-
-Write-Host 'Office Key: Activating' -ForegroundColor green -BackgroundColor black
-& ([ScriptBlock]::Create(((New-Object Net.WebClient).DownloadString('https://get.activated.win/')))) /Ohook
-
-Write-Host 'Office Telemetry: Disabling' -ForegroundColor green -BackgroundColor black
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/abbodi1406/WHD/master/scripts/OC2R_DisableTelemetry.ps1')
