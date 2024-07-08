@@ -25,6 +25,29 @@ $Panel_SoftwareSelection.AutoScroll = $true
 $Panel_SoftwareSelection.AutoSize = $false
 $Form_SoftwareSelection.Controls.Add($Panel_SoftwareSelection)
 
+$CheckBox_DotNET = New-Object System.Windows.Forms.CheckBox
+$CheckBox_DotNET.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
+$CheckBox_Y_Axis += 22
+$CheckBox_DotNET.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
+# Resized from Official ICO from Website
+$CheckBox_DotNET_Icon64 = 'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAFaSURBVDhPYwjUvvKfEjzcDAjQAuHLUPZlvBimB24ASLO/5uX/tsLn//tpXP7vrXLpv6fipf9Okhf+u8peBLNdZS7+dxA7/99D4SLcELgBIM3eqpf/gwBIU1vuw/9Tap78f3r/x//TBz79n9327P/lk1/A8luWvPnvLn8R0wB/oCuunv7y/9zhT/8Lgu787y159P/Gha//Mz1v/Q/Ru/LfWeri/wvHPv235DsH1oNiAMiJIAMOb/vwf1r90/+717z735bzEGxAd9Gj//E21//7qV8GW+AsdQHVAG/lS/8nVT35n+V16//1c1/+6zCcBju1M//h/ydALyzofv6/Lunef1+1y/8f3PyGaYA/MNAS7W/8D9a98j/a/BpYISiQQM4G8XN8bv2Ps4a4IMbyGjiQUQyAGRIADAeYJDhMQHygJpCBYHmgociaQRhuALmYcgMgqY98TKELrvwHAGRka8PdqgvVAAAAAElFTkSuQmCC'
+$CheckBox_DotNET_IconBytes = [Convert]::FromBase64String($CheckBox_DotNET_Icon64)
+$CheckBox_DotNET_IconStream = [System.IO.MemoryStream]::new($CheckBox_DotNET_IconBytes, 0, $CheckBox_DotNET_IconBytes.Length)
+$CheckBox_DotNET.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_DotNET_IconStream).GetHIcon()))
+$CheckBox_DotNET.ImageAlign = 'MiddleLeft'
+$CheckBox_DotNET.Text = '    .NET'
+$CheckBox_DotNET.TextAlign = 'MiddleLeft'
+$CheckBox_DotNET.CheckAlign = 'MiddleLeft'
+$CheckBox_DotNET.Checked = $false
+$Panel_SoftwareSelection.Controls.Add($CheckBox_DotNET)
+
+$DotNET = '.NET Updater'
+$DotNET_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $DotNET }
+if (($DotNET_Exists)) {
+    $CheckBox_DotNET.Enabled = $false
+    $CheckBox_DotNET.Text += ' (Installed)'
+}
+
 $CheckBox_7Zip = New-Object System.Windows.Forms.CheckBox
 $CheckBox_7Zip.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
 $CheckBox_Y_Axis += 22
@@ -222,6 +245,7 @@ $CheckBox_DisplayDriverUninstaller = New-Object System.Windows.Forms.CheckBox
 $CheckBox_DisplayDriverUninstaller.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
 $CheckBox_Y_Axis += 22
 $CheckBox_DisplayDriverUninstaller.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
+# Resized from Official ICO from Website
 $CheckBox_DisplayDriverUninstaller_Icon64 = 'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJdSURBVDhPjVK/b9pQEPaznw1GCkx1BwSlEg0gpQtKyFI6MNEBUYY0BaX/Qfd0bqS2QzqkEsoaVUlL82+ABGphKJBQqiBhIFBUfplgG2zHzoH/gZylp/ed797dfd8hRVG1W83CMIZBwKepy7uqabquI0QgkiQRiRCCGPhNMzQ6+5Y5Pk5PBeHmZibL88PPhwcH76PRF+JMbLVbF9XKmt0RiUTOz3/QNP3xwyf062fx5OuJx/N4OBi8TCTOTk/dbvcDjvN6n2Qy38PPwqIoGoZRrVY3tzY5jkNXV43O9fWyKiIXysLC0Lpu3K7MYrGomkoQiDAMjLEoSQG/jwiFtoh7297eG3Jn5xVUNK3Vanm93slkYsJOp2O1WtPptBkNNR2ONVJRlPF4/HZlLpcrHo+Xy+VkMgnQ6XRGo1EIMBNmsxkwiWGmXC5nPpNKpSC5VCplMhmAEM2y7Hw+X8UTPM/DScqyXKvVTFc2m63X641Gw4T5fB66Go1GJiwUCiAKliS51+v5/X5wQXK/3wfJ1tfXl4oh1G63QYRgMAhwMBiAyBiotNnYRCIBLsgE8/l8drudoihoutlsgicWi8FzUJ/jHhLboe1VwXvZ7u5r1OT5Xu8fa7WCNMbKC52AUkAi3JYnQdCYpihSmAqeRx5UrlxMhWm58vvysmZjrZimAeqGDlMNh8ONjaewgcVS8W/9z/7+O5phsKaqFKa+HB0FAoFKpeJyu7rdbjj8nOdh86pAMczO801REueLBbSA/g+GkiQ67A54FVMYKILpFVU1dJ3CGHqDloAAWChBmFoY+g6NAldmasGCvgAAAABJRU5ErkJggg=='
 $CheckBox_DisplayDriverUninstaller_IconBytes = [Convert]::FromBase64String($CheckBox_DisplayDriverUninstaller_Icon64)
 $CheckBox_DisplayDriverUninstaller_IconStream = [System.IO.MemoryStream]::new($CheckBox_DisplayDriverUninstaller_IconBytes, 0, $CheckBox_DisplayDriverUninstaller_IconBytes.Length)
@@ -787,6 +811,11 @@ $Form_SoftwareSelection_OK.Add_Click{
     if ($CheckBox_HyperXNGENUITY.Checked) {
         Write-Host 'Software Selection: HyperX NGENUITY: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/HyperX_NGENUITY/Download.ps1')
+    }
+
+    if ($CheckBox_DotNET.Checked) {
+        Write-Host 'Software Selection: .NET: Initiating' -ForegroundColor green -BackgroundColor black
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/.NET/Download.ps1')
     }
 
     if ($CheckBox_7Zip.Checked) {
