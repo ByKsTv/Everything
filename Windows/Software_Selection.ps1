@@ -17,7 +17,6 @@ $CheckBox_Size_Y = 26
 # Icons size 16x16, format .ico from .exe file use 7zip
 # [Convert]::ToBase64String((Get-Content "path" -Encoding Byte)) | Clip
 
-# Create panel
 $Panel_SoftwareSelection = New-Object System.Windows.Forms.Panel
 $Panel_SoftwareSelection.Location = New-Object System.Drawing.Size(0, 0)
 $Panel_SoftwareSelection.Size = New-Object System.Drawing.Size((($Form_SoftwareSelection.width) - 20), (($Form_SoftwareSelection.Height) - 65))
