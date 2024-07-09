@@ -451,6 +451,7 @@ justpaste.it##.btn-default.btn-sm.btn
 katfile.com##.page-buffer
 katfile.com##.premium
 katfile.com##footer
+kin8-av.com###protection
 ksp.co.il###compare-prices-modal-trigger
 ksp.co.il###footer > div > .container-fluid
 ksp.co.il###footerGlobal
@@ -903,7 +904,9 @@ tst-israel.co.il##.products.upsells.up-sells
 tst-israel.co.il##.w-copyright
 turbobit.net###copyright-block
 turbobit.net##.btn-red
+turbobit.net##.footer
 turbobit.net##.max-speed-time
+turbobit.net##.payment-block
 turbobit.net##.row.footer-links
 turbobit.net##td.minus-ok-cell:nth-of-type(3)
 up-load.io##.buyPremium.alert-success.alert
