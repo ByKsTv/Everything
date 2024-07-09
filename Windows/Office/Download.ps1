@@ -18,7 +18,7 @@ $CheckBox_Size_Y = 26
 
 $Panel_OfficeSelection = New-Object System.Windows.Forms.Panel
 $Panel_OfficeSelection.Location = New-Object System.Drawing.Size(0, 0)
-$Panel_OfficeSelection.Size = New-Object System.Drawing.Size((($Form_OfficeSelection.width) - 20), (($Form_OfficeSelection.Height) - 65))
+$Panel_OfficeSelection.Size = New-Object System.Drawing.Size((($Form_OfficeSelection.width) - 17), (($Form_OfficeSelection.Height) - 65))
 $Panel_OfficeSelection.AutoScroll = $true
 $Panel_OfficeSelection.AutoSize = $false
 $Form_OfficeSelection.Controls.Add($Panel_OfficeSelection)
@@ -183,18 +183,18 @@ $Form_OfficeSelection.Controls.Add($Form_OfficeSelection_Cancel)
 
 $Form_OfficeSelection_OK.Add_Click{
 	if ($CheckBox_Microsoft365ProPlus.Checked) {
-		Write-Host 'Office Selection: Microsoft 365 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Skype for Business, Word): Downloading' -ForegroundColor green -BackgroundColor black
+		Write-Host 'Office Selection: Microsoft 365 - Pro Plus: Downloading' -ForegroundColor green -BackgroundColor black
 		(New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'O365ProPlus') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\O365ProPlus.exe")
 		
-		Write-Host 'Office Selection: Microsoft 365 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Skype for Business, Word): Installing' -ForegroundColor green 
+		Write-Host 'Office Selection: Microsoft 365 - Pro Plus: Installing' -ForegroundColor green 
 		Start-Process $env:TEMP\O365ProPlus.exe -Wait
 	}
 
 	if ($CheckBox_Office2021ProPlus.Checked) {
-		Write-Host 'Office Selection: Office 2021 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Word): Downloading' -ForegroundColor green -BackgroundColor black
+		Write-Host 'Office Selection: Office 2021 - Pro Plus: Downloading' -ForegroundColor green -BackgroundColor black
 		(New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'ProPlus2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\ProPlus2021.exe")
 
-		Write-Host 'Office Selection: Office 2021 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Word): Installing' -ForegroundColor green -BackgroundColor black
+		Write-Host 'Office Selection: Office 2021 - Pro Plus: Installing' -ForegroundColor green -BackgroundColor black
 		Start-Process $env:TEMP\ProPlus2021.exe -Wait
 	}
 

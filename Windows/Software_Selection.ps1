@@ -19,7 +19,7 @@ $CheckBox_Size_Y = 26
 
 $Panel_SoftwareSelection = New-Object System.Windows.Forms.Panel
 $Panel_SoftwareSelection.Location = New-Object System.Drawing.Size(0, 0)
-$Panel_SoftwareSelection.Size = New-Object System.Drawing.Size((($Form_SoftwareSelection.width) - 20), (($Form_SoftwareSelection.Height) - 65))
+$Panel_SoftwareSelection.Size = New-Object System.Drawing.Size((($Form_SoftwareSelection.width) - 17), (($Form_SoftwareSelection.Height) - 65))
 $Panel_SoftwareSelection.AutoScroll = $true
 $Panel_SoftwareSelection.AutoSize = $false
 $Form_SoftwareSelection.Controls.Add($Panel_SoftwareSelection)
