@@ -64,7 +64,7 @@
     "window_title": [],
     "process_name": []
   },
-  "hide_tray": true,
+  "hide_tray": false,
   "disable_saving": false,
   "verbosity": "warn"
 }
