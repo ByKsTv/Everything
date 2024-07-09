@@ -1,6 +1,5 @@
 Write-Host 'nvidiaProfileInspector: Downloading' -ForegroundColor green -BackgroundColor black
-$nvidiaProfileInspectorURL = ((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/Orbmu2k/nvidiaProfileInspector/releases/latest').assets.browser_download_url)
-(New-Object System.Net.WebClient).DownloadFile("$nvidiaProfileInspectorURL", "$env:TEMP\nvidiaProfileInspector.zip")
+(New-Object System.Net.WebClient).DownloadFile((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/Orbmu2k/nvidiaProfileInspector/releases/latest').assets.browser_download_url, "$env:TEMP\nvidiaProfileInspector.zip")
 
 Write-Host 'nvidiaProfileInspector: Extracting' -ForegroundColor green -BackgroundColor black
 if (!(Test-Path -Path $env:TEMP\nvidiaProfileInspector)) {

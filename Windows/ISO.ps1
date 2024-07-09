@@ -1,16 +1,10 @@
 if (!(Test-Path -Path "$env:TEMP\Windows 10 IoT Enterprise LTSC 2021.iso")) {
-    Write-Host 'Windows 10 IoT Enterprise LTSC 2021: Getting latest release' -ForegroundColor green -BackgroundColor black
-    $windows_10_iot_enterprise_ltsc_2021_x64 = (Invoke-WebRequest -UseBasicParsing -Uri 'https://massgrave.dev/windows_ltsc_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'windows_10_iot_enterprise_ltsc_2021_x64') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
-
     Write-Host 'Windows 10 IoT Enterprise LTSC 2021: Downloading' -ForegroundColor green -BackgroundColor black
-    (New-Object System.Net.WebClient).DownloadFile($windows_10_iot_enterprise_ltsc_2021_x64, "$env:TEMP\Windows 10 IoT Enterprise LTSC 2021.iso")
+    (New-Object System.Net.WebClient).DownloadFile((Invoke-WebRequest -UseBasicParsing -Uri 'https://massgrave.dev/windows_ltsc_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'windows_10_iot_enterprise_ltsc_2021_x64') } | Select-Object -First 1 | Select-Object -ExpandProperty href), "$env:TEMP\Windows 10 IoT Enterprise LTSC 2021.iso")
 }
 
-Write-Host 'Rufus: Getting latest release' -ForegroundColor green -BackgroundColor black
-$rufus = (Invoke-WebRequest -UseBasicParsing -Uri 'https://rufus.ie/en/' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match '.exe') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
-
 Write-Host 'Rufus: Downloading' -ForegroundColor green -BackgroundColor black
-(New-Object System.Net.WebClient).DownloadFile($rufus, "$env:TEMP\Rufus.exe")
+(New-Object System.Net.WebClient).DownloadFile((Invoke-WebRequest -UseBasicParsing -Uri 'https://rufus.ie/en/' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match '.exe') } | Select-Object -First 1 | Select-Object -ExpandProperty href), "$env:TEMP\Rufus.exe")
 
 Write-Host 'Rufus: Starting' -ForegroundColor green -BackgroundColor black
 Start-Process "$env:TEMP\Rufus.exe"

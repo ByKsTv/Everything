@@ -1,8 +1,5 @@
-Write-Host 'TranslucentTB: Getting latest release' -ForegroundColor green -BackgroundColor black
-$TranslucentTBURL = ((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/TranslucentTB/TranslucentTB/releases/latest').assets | Where-Object name -Like '*appinstaller*').browser_download_url
-
 Write-Host 'TranslucentTB: Downloading' -ForegroundColor green -BackgroundColor black
-(New-Object System.Net.WebClient).DownloadFile("$TranslucentTBURL", "$env:TEMP\TranslucentTB.appinstaller")
+(New-Object System.Net.WebClient).DownloadFile(((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/TranslucentTB/TranslucentTB/releases/latest').assets | Where-Object name -Like '*appinstaller*').browser_download_url, "$env:TEMP\TranslucentTB.appinstaller")
 
 Write-Host 'TranslucentTB: Installing' -ForegroundColor green -BackgroundColor black
 Add-AppxPackage -AppInstallerFile "$env:TEMP\TranslucentTB.appinstaller"
