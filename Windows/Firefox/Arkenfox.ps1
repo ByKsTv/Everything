@@ -25,7 +25,7 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         if (!($Arkenfox_Update_Exists)) {
             Write-Host "Mozilla Firefox Arkenfox: Task Scheduler: Adding $Arkenfox_Update" -ForegroundColor green -BackgroundColor black
             $Arkenfox_Update_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-            $Arkenfox_Update_Action = New-ScheduledTaskAction -Execute "$CurrentFireFoxProfilePath\updater.bat" -Argument '-unattended -updatebatch'
+            $Arkenfox_Update_Action = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN $CurrentFireFoxProfilePath\updater.bat -unattended -updatebatch ^&exit"
             $Arkenfox_Update_Trigger = New-ScheduledTaskTrigger -AtLogOn
             $Arkenfox_Update_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
             $Arkenfox_Update_Parameters = @{
@@ -43,7 +43,7 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         if (!($Arkenfox_Clean_Exists)) {
             Write-Host "Mozilla Firefox Arkenfox: Task Scheduler: Adding $Arkenfox_Clean" -ForegroundColor green -BackgroundColor black
             $Arkenfox_Clean_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-            $Arkenfox_Clean_Action = New-ScheduledTaskAction -Execute "$CurrentFireFoxProfilePath\prefsCleaner.bat" -Argument '-unattended'
+            $Arkenfox_Clean_Action = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN $CurrentFireFoxProfilePath\prefsCleaner.bat -unattended ^&exit"
             $Arkenfox_Clean_Trigger = New-ScheduledTaskTrigger -AtLogOn
             $Arkenfox_Clean_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
             $Arkenfox_Clean_Parameters = @{

@@ -16,7 +16,7 @@ $MPV_Updater_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $MPV_
 if (!($MPV_Updater_Exists)) {
     Write-Host "mpv: Task Scheduler: Adding $MPV_Updater" -ForegroundColor green -BackgroundColor black
     $MPV_Updater_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-    $MPV_Updater_Action = New-ScheduledTaskAction -Execute "$($env:USERPROFILE)\Desktop\mpv\updater.bat"
+    $MPV_Updater_Action = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN $($env:USERPROFILE)\Desktop\mpv\updater.bat ^&exit"
     $MPV_Updater_Trigger = New-ScheduledTaskTrigger -AtLogOn
     $MPV_Updater_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
     $MPV_Updater_Parameters = @{
