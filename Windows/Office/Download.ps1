@@ -3,11 +3,11 @@ Add-Type -AssemblyName System.Drawing
 [System.Windows.Forms.Application]::EnableVisualStyles()
 
 $Form_OfficeSelection = New-Object System.Windows.Forms.Form
-$Form_OfficeSelection.width = 820
+$Form_OfficeSelection.width = 340
 $Form_OfficeSelection.height = 270
 $Form_OfficeSelection.Text = 'Office Selection'
 $Form_OfficeSelection.StartPosition = 'CenterScreen'
-$Form_OfficeSelection.Font = New-Object System.Drawing.Font('Tahoma', 10)
+$Form_OfficeSelection.Font = New-Object System.Drawing.Font('Tahoma', 11)
 
 $CheckBox_X_Axis = 5
 $CheckBox_Y_Axis = 0
@@ -33,7 +33,7 @@ $CheckBox_Microsoft365ProPlus_IconBytes = [Convert]::FromBase64String($CheckBox_
 $CheckBox_Microsoft365ProPlus_IconStream = [System.IO.MemoryStream]::new($CheckBox_Microsoft365ProPlus_IconBytes, 0, $CheckBox_Microsoft365ProPlus_IconBytes.Length)
 $CheckBox_Microsoft365ProPlus.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_Microsoft365ProPlus_IconStream).GetHIcon()))
 $CheckBox_Microsoft365ProPlus.ImageAlign = 'MiddleLeft'
-$CheckBox_Microsoft365ProPlus.Text = '    Microsoft 365 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Skype for Business, Word)'
+$CheckBox_Microsoft365ProPlus.Text = '    Microsoft 365 - Pro Plus'
 $CheckBox_Microsoft365ProPlus.TextAlign = 'MiddleLeft'
 $CheckBox_Microsoft365ProPlus.CheckAlign = 'MiddleLeft'
 $CheckBox_Microsoft365ProPlus.Checked = $false
@@ -49,7 +49,7 @@ $CheckBox_Office2021ProPlus_IconBytes = [Convert]::FromBase64String($CheckBox_Of
 $CheckBox_Office2021ProPlus_IconStream = [System.IO.MemoryStream]::new($CheckBox_Office2021ProPlus_IconBytes, 0, $CheckBox_Office2021ProPlus_IconBytes.Length)
 $CheckBox_Office2021ProPlus.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_Office2021ProPlus_IconStream).GetHIcon()))
 $CheckBox_Office2021ProPlus.ImageAlign = 'MiddleLeft'
-$CheckBox_Office2021ProPlus.Text = '    Office 2021 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Word)'
+$CheckBox_Office2021ProPlus.Text = '    Office 2021 - Pro Plus'
 $CheckBox_Office2021ProPlus.TextAlign = 'MiddleLeft'
 $CheckBox_Office2021ProPlus.CheckAlign = 'MiddleLeft'
 $CheckBox_Office2021ProPlus.Checked = $false
@@ -169,14 +169,14 @@ $Panel_OfficeSelection.Controls.Add($CheckBox_Office2021Word)
 
 $Form_OfficeSelection_OK = New-Object System.Windows.Forms.Button
 $Form_OfficeSelection_OK.Location = New-Object System.Drawing.Size((($Form_OfficeSelection.Width) / 3 ), (($Form_OfficeSelection.height) - 65))
-$Form_OfficeSelection_OK.Size = New-Object System.Drawing.Size(53, 20)
+$Form_OfficeSelection_OK.Size = New-Object System.Drawing.Size(57, 20)
 $Form_OfficeSelection_OK.Text = 'OK'
 $Form_OfficeSelection_OK.Add_Click({ $Form_OfficeSelection.Close() })
 $Form_OfficeSelection.Controls.Add($Form_OfficeSelection_OK)
 
 $Form_OfficeSelection_Cancel = New-Object System.Windows.Forms.Button
 $Form_OfficeSelection_Cancel.Location = New-Object System.Drawing.Size((($Form_OfficeSelection.Width) / 2 ), (($Form_OfficeSelection.height) - 65))
-$Form_OfficeSelection_Cancel.Size = New-Object System.Drawing.Size(53, 20)
+$Form_OfficeSelection_Cancel.Size = New-Object System.Drawing.Size(57, 20)
 $Form_OfficeSelection_Cancel.Text = 'Cancel'
 $Form_OfficeSelection_Cancel.Add_Click({ $Form_OfficeSelection.Close() })
 $Form_OfficeSelection.Controls.Add($Form_OfficeSelection_Cancel)

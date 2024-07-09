@@ -3,11 +3,11 @@ Add-Type -AssemblyName System.Drawing
 [System.Windows.Forms.Application]::EnableVisualStyles()
 
 $Form_SoftwareSelection = New-Object System.Windows.Forms.Form
-$Form_SoftwareSelection.width = 310
+$Form_SoftwareSelection.width = 340
 $Form_SoftwareSelection.height = 600
 $Form_SoftwareSelection.Text = 'Software Selection'
 $Form_SoftwareSelection.StartPosition = 'CenterScreen'
-$Form_SoftwareSelection.Font = New-Object System.Drawing.Font('Tahoma', 10)
+$Form_SoftwareSelection.Font = New-Object System.Drawing.Font('Tahoma', 11)
 
 $InstalledSoftware = Get-Package | Select-Object -Property 'Name'
 $CheckBox_X_Axis = 5
@@ -811,14 +811,14 @@ if (($EdgeUninstaller_Exists)) {
 
 $Form_SoftwareSelection_OK = New-Object System.Windows.Forms.Button
 $Form_SoftwareSelection_OK.Location = New-Object System.Drawing.Size((($Form_SoftwareSelection.Width) / 3 ), (($Form_SoftwareSelection.height) - 65))
-$Form_SoftwareSelection_OK.Size = New-Object System.Drawing.Size(53, 20)
+$Form_SoftwareSelection_OK.Size = New-Object System.Drawing.Size(57, 20)
 $Form_SoftwareSelection_OK.Text = 'OK'
 $Form_SoftwareSelection_OK.Add_Click({ $Form_SoftwareSelection.Close() })
 $Form_SoftwareSelection.Controls.Add($Form_SoftwareSelection_OK)
 
 $Form_SoftwareSelection_Cancel = New-Object System.Windows.Forms.Button
 $Form_SoftwareSelection_Cancel.Location = New-Object System.Drawing.Size((($Form_SoftwareSelection.Width) / 2 ), (($Form_SoftwareSelection.height) - 65))
-$Form_SoftwareSelection_Cancel.Size = New-Object System.Drawing.Size(53, 20)
+$Form_SoftwareSelection_Cancel.Size = New-Object System.Drawing.Size(57, 20)
 $Form_SoftwareSelection_Cancel.Text = 'Cancel'
 $Form_SoftwareSelection_Cancel.Add_Click({ $Form_SoftwareSelection.Close() })
 $Form_SoftwareSelection.Controls.Add($Form_SoftwareSelection_Cancel)

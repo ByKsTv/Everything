@@ -42,7 +42,7 @@ $Form_Step1.width = 500
 $Form_Step1.height = 400
 $Form_Step1.Text = 'Initial Setup'
 $Form_Step1.StartPosition = 'CenterScreen'
-$Form_Step1.Font = New-Object System.Drawing.Font('Tahoma', 10)
+$Form_Step1.Font = New-Object System.Drawing.Font('Tahoma', 11)
 
 $CheckBox_PCPassword = New-Object System.Windows.Forms.CheckBox
 $CheckBox_PCPassword.Location = New-Object System.Drawing.Size(30, 30)
@@ -103,14 +103,14 @@ $Form_Step1.Controls.Add($CheckBox_GoogleChrome)
 
 $Form_Step1_OK = New-Object System.Windows.Forms.Button
 $Form_Step1_OK.Location = New-Object System.Drawing.Size((($Form_Step1.Width) / 3 ), (($Form_Step1.height) - 65))
-$Form_Step1_OK.Size = New-Object System.Drawing.Size(53, 20)
+$Form_Step1_OK.Size = New-Object System.Drawing.Size(57, 20)
 $Form_Step1_OK.Text = 'OK'
 $Form_Step1_OK.Add_Click({ $Form_Step1.Close() })
 $Form_Step1.Controls.Add($Form_Step1_OK)
 
 $Form_Step1_Cancel = New-Object System.Windows.Forms.Button
 $Form_Step1_Cancel.Location = New-Object System.Drawing.Size((($Form_Step1.Width) / 2 ), (($Form_Step1.height) - 65))
-$Form_Step1_Cancel.Size = New-Object System.Drawing.Size(53, 20)
+$Form_Step1_Cancel.Size = New-Object System.Drawing.Size(57, 20)
 $Form_Step1_Cancel.Text = 'Cancel'
 $Form_Step1_Cancel.Add_Click({ $Form_Step1.Close() })
 $Form_Step1.Controls.Add($Form_Step1_Cancel)
