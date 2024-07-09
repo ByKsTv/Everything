@@ -3,7 +3,7 @@ $Notepad_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $Notepad 
 if (!($Notepad_Exists)) {
     Write-Host "Notepad++: Task Scheduler: Adding $Notepad" -ForegroundColor green -BackgroundColor black
     $Notepad_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-    $Notepad_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "-WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Notepad++/Download.ps1')"
+    $Notepad_Action = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Notepad++/Download.ps1')"
     $Notepad_Trigger = New-ScheduledTaskTrigger -AtLogOn
     $Notepad_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
     $Notepad_Parameters = @{

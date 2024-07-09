@@ -3,7 +3,7 @@ $7Zip_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $7Zip }
 if (!($7Zip_Exists)) {
     Write-Host "7-Zip: Task Scheduler: Adding $7Zip" -ForegroundColor green -BackgroundColor black
     $7Zip_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-    $7Zip_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "-WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')"
+    $7Zip_Action = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')"
     $7Zip_Trigger = New-ScheduledTaskTrigger -AtLogOn
     $7Zip_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
     $7Zip_Parameters = @{

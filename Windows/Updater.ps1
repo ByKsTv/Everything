@@ -3,7 +3,7 @@ $WindowsUpdaterTask_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -lik
 if (!($WindowsUpdaterTask_Exists)) {
     Write-Host "Windows Updater: Task Scheduler: Adding $WindowsUpdaterTask" -ForegroundColor green -BackgroundColor black
     $WindowsUpdaterTask_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-    $WindowsUpdaterTask_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "-WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Updater.ps1')"
+    $WindowsUpdaterTask_Action = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Updater.ps1')"
     $WindowsUpdaterTask_Trigger = New-ScheduledTaskTrigger -AtLogOn
     $WindowsUpdaterTask_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
     $WindowsUpdaterTask_Parameters = @{

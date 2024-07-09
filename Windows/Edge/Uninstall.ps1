@@ -3,7 +3,7 @@ $EdgeUninstaller_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $
 if (!($EdgeUninstaller_Exists)) {
     Write-Host "Edge Uninstaller: Task Scheduler: Adding $EdgeUninstaller" -ForegroundColor green -BackgroundColor black
     $EdgeUninstaller_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-    $EdgeUninstaller_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "-WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Edge/Uninstall.ps1')"
+    $EdgeUninstaller_Action = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Edge/Uninstall.ps1')"
     $EdgeUninstaller_Trigger = New-ScheduledTaskTrigger -AtLogOn
     $EdgeUninstaller_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
     $EdgeUninstaller_Parameters = @{

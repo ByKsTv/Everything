@@ -3,7 +3,7 @@ $VSCode_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $VSCode }
 if (!($VSCode_Exists)) {
     Write-Host "VSCode: Task Scheduler: Adding $VSCode" -ForegroundColor green -BackgroundColor black
     $VSCode_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-    $VSCode_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "-WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Visual_Studio_Code/Download.ps1')"
+    $VSCode_Action = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Visual_Studio_Code/Download.ps1')"
     $VSCode_Trigger = New-ScheduledTaskTrigger -AtLogOn
     $VSCode_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
     $VSCode_Parameters = @{

@@ -3,7 +3,7 @@ $eM_Client_License_Fix_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -
 if (!($eM_Client_License_Fix_Exists)) {
     Write-Host "Task Scheduler > $eM_Client_License_Fix" -ForegroundColor green -BackgroundColor black
     $eM_Client_License_Fix_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-    $eM_Client_License_Fix_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "-WindowStyle Minimized Remove-Item -Path '$env:APPDATA\eM Client\Local Folders\folders.dat'"
+    $eM_Client_License_Fix_Action = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Remove-Item -Path '$env:APPDATA\eM Client\Local Folders\folders.dat'"
     $eM_Client_License_Fix_Trigger = New-ScheduledTaskTrigger -AtLogOn
     $eM_Client_License_Fix_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
     $eM_Client_License_Fix_Parameters = @{
