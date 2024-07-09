@@ -3,7 +3,7 @@ $BetterDiscord_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $Be
 if (!($BetterDiscord_Exists)) {
     Write-Host "BetterDiscord: Task Scheduler: Adding $BetterDiscord" -ForegroundColor green -BackgroundColor black
     $BetterDiscord_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-    $BetterDiscord_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/BetterDiscord/Download.ps1')"
+    $BetterDiscord_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "-WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/BetterDiscord/Download.ps1')"
     $BetterDiscord_Trigger = New-ScheduledTaskTrigger -AtLogOn
     $BetterDiscord_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
     $BetterDiscord_Parameters = @{
