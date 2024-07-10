@@ -41,7 +41,7 @@ while (!($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'cmd.
 }
 
 Write-Host 'mpv: Installing' -ForegroundColor green -BackgroundColor black
-Start-Process -FilePath "$($env:USERPROFILE)\Desktop\mpv\installer\mpv-install.bat" -ArgumentList '/u'
+Start-Process cmd.exe -ArgumentList "/C start /MIN $($env:USERPROFILE)\Desktop\mpv\installer\mpv-install.bat /u ^&exit"
 
 Write-Host 'mpv: Using custom settings for input.conf' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/input.conf', "$($env:USERPROFILE)\Desktop\mpv\input.conf")
