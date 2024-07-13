@@ -18,7 +18,6 @@ if (!($WindowsUpdaterTask_Exists)) {
 
 # https://stackoverflow.com/questions/15175054/powershell-install-windows-updates
 Write-Host 'Windows Updater: Checking updates' -ForegroundColor green -BackgroundColor black
-Start-Process -FilePath "$env:SystemRoot\System32\UsoClient.exe" -ArgumentList StartInteractiveScan
 $Criteria = 'IsInstalled=0'
 $Searcher = New-Object -ComObject Microsoft.Update.Searcher
 $SearchResult = $Searcher.Search($Criteria).Updates
@@ -38,3 +37,5 @@ If ($Result.rebootRequired) {
     Write-Host 'Windows Updater: Restarting' -ForegroundColor green -BackgroundColor black
     shutdown /r /t 00
 }
+
+Start-Process -FilePath "$env:SystemRoot\System32\UsoClient.exe" -ArgumentList StartInteractiveScan
