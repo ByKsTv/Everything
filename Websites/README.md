@@ -69,3 +69,7 @@ Everything about websites.
 
 - Amazon - [Honey](https://www.joinhoney.com/shop/amazon) / [CouponFollow](https://couponfollow.com/site/amazon.com)
 - AliExpress - [Honey](https://www.joinhoney.com/shop/aliexpress) / [CouponFollow](https://couponfollow.com/site/aliexpress.com)
+
+## NSFW
+
+- [NSFW](https://theporndude.com/)
