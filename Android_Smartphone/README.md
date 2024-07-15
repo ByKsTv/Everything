@@ -9,6 +9,7 @@ Everything about Android apps.
 - [Nova Launcher](https://4pda.to/forum/index.php?act=findpost&pid=10706661&anchor=Spoil-10706661-8) - Prime by Balatan
 - [Sesame Shortcuts](https://4pda.to/forum/index.php?showtopic=921566#entry77882334) - Search add-ons for Nova Launcher
 - ~~[WhatsApp](https://4pda.to/forum/index.php?showtopic=186375#Spoil-5125511-12) - FouadWhatsApp~~
+- [Friendly for Facebook](https://4pda.to/forum/index.php?showtopic=819152&view=findpost&p=60515623) - Premium by Balatan
 - [YouTube ReVanced](https://4pda.to/forum/index.php?act=findpost&pid=115638129&anchor=Spoil-115638129-4)
 - [Spotify](https://4pda.to/forum/index.php?act=findpost&pid=8030514&anchor=Spoil-8030514-11) - Mod Lite by Balatan.
 - [Truecaller](https://4pda.to/forum/index.php?showtopic=417409#Spoil-18455027-5) - Mod by Balatan
