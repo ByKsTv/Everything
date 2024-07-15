@@ -17,3 +17,8 @@ Everything about Flights.
 - [Booking](https://www.booking.com/)
 
   > Use multiple devices to check the price.
+
+## Travel
+
+- [Google Lens](https://play.google.com/store/apps/details?id=com.google.ar.lens) - Translate foreign text
+- [Google Maps](https://play.google.com/store/apps/details?id=com.google.android.apps.maps) - Download offline map
