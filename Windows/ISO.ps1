@@ -7,7 +7,7 @@ Write-Host 'Rufus: Downloading' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile((Invoke-WebRequest -UseBasicParsing -Uri 'https://rufus.ie/en/' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match '.exe') } | Select-Object -First 1 | Select-Object -ExpandProperty href), "$env:TEMP\Rufus.exe")
 
 Write-Host 'Rufus: Starting' -ForegroundColor green -BackgroundColor black
-Start-Process "$env:TEMP\Rufus.exe"
+Start-Process cmd -ArgumentList "/C start $env:TEMP\Rufus.exe"
 
 Write-Host 'Rufus: Waiting for window' -ForegroundColor green -BackgroundColor black
 while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'Rufus' } -ErrorAction SilentlyContinue))) {
@@ -34,13 +34,13 @@ Start-Sleep -Milliseconds 1000
 Write-Host 'Rufus: Selecting .ISO' -ForegroundColor green -BackgroundColor black
 Add-Type -AssemblyName System.Windows.Forms
 [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
-Start-Sleep -Milliseconds 1000
+Start-Sleep -Milliseconds 2000
 
 Write-Host 'Rufus: Selecting .ISO folder' -ForegroundColor green -BackgroundColor black
 [System.Windows.Forms.SendKeys]::SendWait('{F4}')
-Start-Sleep -Milliseconds 100
+Start-Sleep -Milliseconds 1000
 [System.Windows.Forms.SendKeys]::SendWait('^a')
-Start-Sleep -Milliseconds 100
+Start-Sleep -Milliseconds 1000
 [System.Windows.Forms.SendKeys]::SendWait("$env:LOCALAPPDATA\Temp")
 [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
 Start-Sleep -Milliseconds 1000
