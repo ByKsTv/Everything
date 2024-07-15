@@ -26,7 +26,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
    >
    > ```
    >
-   > Note: Update BIOS.
+   > Note: [Update BIOS](https://github.com/ByKsTv/Everything/tree/main/BIOS).
 
 ## Pre Installation
 
