@@ -11,5 +11,5 @@ Everything about Flights.
 
 ## Hotels
 
-- [Booking.com](https://www.booking.com/)
+- [Booking](https://www.booking.com/)
 - Use multiple devices to check the price.
