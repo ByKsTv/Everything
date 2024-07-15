@@ -8,6 +8,8 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 ## Download
 
+> Note: Update BIOS before.
+
 1. PowerShell (Admin):
 
    ```powershell
@@ -17,7 +19,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 1. Connect USB with at least 8GB.
 1. `START` > Enable all except `Set regional options to the same values as this user's` > `OK` > `OK`.
-1. Download Motherboard LAN driver and Chipset drivers to USB.
+1. Download Motherboard LAN driver, Chipset drivers and Intel(R) Rapid Storage Technology to USB.
 
    > Note: Find Motherboard Model - PowerShell (Admin):
    >
@@ -43,10 +45,11 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 ## Installation
 
 1. `Next` > `Install now` > `I don't have a product key` > `Windows 10 IoT Enterprise LTSC` > `Next` > `I accept the license terms` > `Next` > `Custom: Install Windows only (advanced)` > Delete all > `Next`.
+   > Note: If drives not found - Extract `Intel Rapid Storage Technology (IRST)` driver matching to the motherboard.
 1. `Yes` > `Yes` > `Skip` > `I don't have internet` > `Continue with limited setup`.
 1. Connect Ethernet Cable (After Windows Boots Up).
 1. `Do you want to allow your PC to be discoverable by other PCs and devices on this network?` > Yes.
-1. Install Motherboard LAN driver and Chipset drivers from USB.
+1. Install Motherboard LAN driver, Chipset drivers and Intel(R) Rapid Storage Technology from USB.
 
 ## Initial Setup - Auto Install
 
