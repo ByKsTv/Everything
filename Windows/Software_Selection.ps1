@@ -303,6 +303,27 @@ if ($InstalledSoftware -match 'Microsoft Edge WebView2 Runtime') {
     $CheckBox_EdgeWebView2.Text += ' (Installed)'
 }
 
+$CheckBox_EpicGames = New-Object System.Windows.Forms.CheckBox
+$CheckBox_EpicGames.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
+$CheckBox_Y_Axis += 22
+$CheckBox_EpicGames.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
+# Official ICO from EXE
+$CheckBox_EpicGames_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAACUAAABxAAAAwwAAAMUAAAB0AAAAJwAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAAPgAAAJQGBgTdPT09/KWkpP+joqL/PT09/AYGBt8AAACXAAAAQAAAAA0AAAAAAAAAAAAAAAIAAABMAAAAtQAAAO4AAAD+DAwM/zY3N/9APj7/Pz4+/zg3N/8ODg7/AAAA/gAAAO8AAAC3AAAAUAAAAAMAAAAPAAAAxQAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAMoAAAASAAAAEgAAAM0AAAD/XVxc/3p5ef9aWFj/VVVW/1NSUv8jIiL/VVRU/3h3d/9LSkr/f39//wAAAP8AAADRAAAAFQAAABIAAADNAAAA/66sqv+JiIj/eHl3/7a0tP+sq6v/4N3d/7Wysv+zsrL/iYiI/62rq/8AAAD/AAAA0QAAABUAAAASAAAAzQAAAP8QERH/DA0N/wAAAP8AAAD/AAEB/wAAAP8GBwf/GBYW/wQFBf8bGxv/AAAA/wAAANEAAAAVAAAAEgAAAM0AAAD/Kikp/zAvL/8HCAj/HyAg/wAAAP8AAAD/CwwM/wAAAP84Nzf/Dw4O/wAAAP8AAADRAAAAFQAAABIAAADNAAAA//v4+P+2s7P/enl5/8fFxf8AAAD/SkhI/7+9vf/CwcH/u7q6/+Ti4v8AAAD/AAAA0QAAABUAAAASAAAAzQAAAP/a1tb/AAAA/xUUFP+6ubn/AAAA/yYlJf+oqKj/trS0/w0MDP/l5OT/AAAA/wAAANEAAAAVAAAAEgAAAM0AAAD/8u/v/5OSkv9UU1P///7+/8bExP9hYGD/np2d/7++vv8AAAD/JCUl/wAAAP8AAADRAAAAFQAAABIAAADNAAAA/+fk5P9BQED/Ojk5/5CPj/+DgID/gX9//5aVlf+9vLz/AAAA/1dVVf8AAAD/AAAA0QAAABUAAAASAAAAzQAAAP/i39//AAAA/ygmJv+dnJz/k5KS/4iHh/+hoKD/urq6/y8uLv/v6+v/AAAA/wAAANEAAAAVAAAAEgAAAM0AAAD/1tLS/9rY2P9ycHD/7Orq/8jGx/9YV1f/jo2L/5GOjv/h3t7/qqmp/wAAAP8AAADRAAAAFQAAABEAAADMAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA0AAAABQAAAAIAAAAlQAAAN4AAADfAAAA3wAAAN8AAADfAAAA3wAAAN8AAADfAAAA3wAAAN8AAADfAAAA3gAAAJoAAAAJ8A8AAMADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
+$CheckBox_EpicGames_IconBytes = [Convert]::FromBase64String($CheckBox_EpicGames_Icon64)
+$CheckBox_EpicGames_IconStream = [System.IO.MemoryStream]::new($CheckBox_EpicGames_IconBytes, 0, $CheckBox_EpicGames_IconBytes.Length)
+$CheckBox_EpicGames.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_EpicGames_IconStream).GetHIcon()))
+$CheckBox_EpicGames.ImageAlign = 'MiddleLeft'
+$CheckBox_EpicGames.Text = '    Epic Games Launcher'
+$CheckBox_EpicGames.TextAlign = 'MiddleLeft'
+$CheckBox_EpicGames.CheckAlign = 'MiddleLeft'
+$CheckBox_EpicGames.Checked = $false
+$Panel_SoftwareSelection.Controls.Add($CheckBox_EpicGames)
+
+if ($InstalledSoftware -match 'Epic Games Launcher') {
+    $CheckBox_EpicGames.Enabled = $false
+    $CheckBox_EpicGames.Text += ' (Installed)'
+}
+
 $CheckBox_Git = New-Object System.Windows.Forms.CheckBox
 $CheckBox_Git.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
 $CheckBox_Y_Axis += 22
@@ -976,6 +997,14 @@ $Form_SoftwareSelection_OK.Add_Click{
         
         Write-Host 'Software Selection: Logitech G HUB: Installing' -ForegroundColor green -BackgroundColor black
         Start-Process -FilePath $env:TEMP\lghub_installer.exe -ArgumentList '--silent'
+    }
+
+    if ($CheckBox_EpicGames.Checked) {
+        Write-Host 'Software Selection: Epic Games Launcher: Downloading' -ForegroundColor green -BackgroundColor black
+        (New-Object System.Net.WebClient).DownloadFile('https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncherInstaller.msi', "$env:TEMP\EpicInstaller.msi")
+                
+        Write-Host 'Software Selection: Epic Games Launcher: Installing' -ForegroundColor green -BackgroundColor black
+        Start-Process $env:TEMP\EpicInstaller.msi -ArgumentList '/quiet /norestart'
     }
 
     if ($CheckBox_Git.Checked) {
