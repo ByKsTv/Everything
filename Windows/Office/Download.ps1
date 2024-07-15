@@ -4,7 +4,7 @@ Add-Type -AssemblyName System.Drawing
 
 $Form_OfficeSelection = New-Object System.Windows.Forms.Form
 $Form_OfficeSelection.width = 900
-$Form_OfficeSelection.height = 400
+$Form_OfficeSelection.height = 470
 $Form_OfficeSelection.Text = 'Office Selection'
 $Form_OfficeSelection.StartPosition = 'CenterScreen'
 $Form_OfficeSelection.Font = New-Object System.Drawing.Font('Tahoma', 11)
@@ -263,6 +263,75 @@ $CheckBox_Office2021Word.CheckAlign = 'MiddleLeft'
 $CheckBox_Office2021Word.Checked = $false
 $Panel_OfficeSelection.Controls.Add($CheckBox_Office2021Word)
 
+$CheckBox_ActivateOffice = New-Object System.Windows.Forms.CheckBox
+$CheckBox_ActivateOffice.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
+$CheckBox_Y_Axis += 22
+$CheckBox_ActivateOffice.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
+# Which ICO to Use?
+$CheckBox_ActivateOffice_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADpi74Y5Ie4cN2CsXDYfqwYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPmYzwj0lMl47Y7B8uWIuf/dgbH/1Xup8s51oXbIcJsIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA95fPAvua0VD9m9Pc95fN/++QxP/miLr/3IGw/9N5pv/Lc53/w22V3LxnjlCvYIACAAAAAAAAAAAAAAAA0HUmEsVuIbiyYhj/rmEv/9Z/jP/yksf/54m8/9yAr//Qd6P/xm+Z/75pkP+4Y4n/sl+DuK1bfhIAAAAAAAAAANd5OZrTdi3/ynEi/7xpGP+rXhH/r2I5/9Z+mf/af67/zHSf/8Fqk/+4Y4n/sV6C/6xafP+pWHmaAAAAAAAAAADZekjW2XpF/9d5PP/RdS//x28h/7dlFeigVxBi1nyqYsVul+i4Y4n/r1x//6lYef+lVXb/olRx1gAAAAAAAAAA2ntU2tp7VP/ae1T/2npR/9d5R+rNcy0eAAAAAAAAAAC3Y4keqll77KRUdf+fUHD/l0to/69zXNoAAAAAAAAAANt7Ydrce2P/3Htl/9x8af/cfG6QAAAAAAAAAAAAAAAAAAAAAJpNa5CVSWb/i0Nd/6RsU//010/aAAAAAAAAAADcfG3a3Xxw/918df/efH3/3n2FfAAAAAAAAAAAAAAAAAAAAACKQl18klNU/9OqT//84E///eFP2gAAAAAAAAAA3Xx42t58ff/efYP/332N/8dteLCjVTcOAAAAAAAAAADrt0oO1qRMsPHKTf/3003/+NZO//nYTtoAAAAAAAAAAN59gdbefYf/332P/+B+mf+2Ymj/r1w66M55Q5DdlUeQ5qlJ6Oy4Sv/wwUv/8shM//TMTf/20E3WAAAAAAAAAADffYqa332Q/+B9mP/hfqL/tmJs/7FeOv/Qe0P/3JJG/+KhSP/orkn/7LhK/++/S//xxEz/8shMmgAAAAAAAAAA332REuB9mLjgfqD/4X6p/7ZibP+yYDv/0H1D/9uQRv/gnUf/5adJ/+mwSv/suEr/7r5LuPDDSxIAAAAAAAAAAAAAAADfgJ8C4X6lUOF+rNy9Z3T/smE7/9F+Q//bj0b/35lH/+OjSP/mq0nc6bJKUO+3UAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADhfqoI1HaTdrdlQvLRfkP/245G/96XR/Lhn0h25KVJCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBbkMY0n9EcNqORnDdlEcYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAPw/AADwDwAAwAMAAIABAACBgQAAg8EAAIPBAACH4QAAg8EAAIABAACAAQAAwAMAAPAPAAD8PwAA//8AAA=='
+$CheckBox_ActivateOffice_IconBytes = [Convert]::FromBase64String($CheckBox_ActivateOffice_Icon64)
+$CheckBox_ActivateOffice_IconStream = [System.IO.MemoryStream]::new($CheckBox_ActivateOffice_IconBytes, 0, $CheckBox_ActivateOffice_IconBytes.Length)
+$CheckBox_ActivateOffice.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_ActivateOffice_IconStream).GetHIcon()))
+$CheckBox_ActivateOffice.ImageAlign = 'MiddleLeft'
+$CheckBox_ActivateOffice.Text = '    Activate Office (Recommended)'
+$CheckBox_ActivateOffice.TextAlign = 'MiddleLeft'
+$CheckBox_ActivateOffice.CheckAlign = 'MiddleLeft'
+$CheckBox_ActivateOffice.Checked = $true
+$Panel_OfficeSelection.Controls.Add($CheckBox_ActivateOffice)
+
+$CheckBox_DisableTelemetry = New-Object System.Windows.Forms.CheckBox
+$CheckBox_DisableTelemetry.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
+$CheckBox_Y_Axis += 22
+$CheckBox_DisableTelemetry.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
+# Which ICO to Use?
+$CheckBox_DisableTelemetry_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADpi74Y5Ie4cN2CsXDYfqwYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPmYzwj0lMl47Y7B8uWIuf/dgbH/1Xup8s51oXbIcJsIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA95fPAvua0VD9m9Pc95fN/++QxP/miLr/3IGw/9N5pv/Lc53/w22V3LxnjlCvYIACAAAAAAAAAAAAAAAA0HUmEsVuIbiyYhj/rmEv/9Z/jP/yksf/54m8/9yAr//Qd6P/xm+Z/75pkP+4Y4n/sl+DuK1bfhIAAAAAAAAAANd5OZrTdi3/ynEi/7xpGP+rXhH/r2I5/9Z+mf/af67/zHSf/8Fqk/+4Y4n/sV6C/6xafP+pWHmaAAAAAAAAAADZekjW2XpF/9d5PP/RdS//x28h/7dlFeigVxBi1nyqYsVul+i4Y4n/r1x//6lYef+lVXb/olRx1gAAAAAAAAAA2ntU2tp7VP/ae1T/2npR/9d5R+rNcy0eAAAAAAAAAAC3Y4keqll77KRUdf+fUHD/l0to/69zXNoAAAAAAAAAANt7Ydrce2P/3Htl/9x8af/cfG6QAAAAAAAAAAAAAAAAAAAAAJpNa5CVSWb/i0Nd/6RsU//010/aAAAAAAAAAADcfG3a3Xxw/918df/efH3/3n2FfAAAAAAAAAAAAAAAAAAAAACKQl18klNU/9OqT//84E///eFP2gAAAAAAAAAA3Xx42t58ff/efYP/332N/8dteLCjVTcOAAAAAAAAAADrt0oO1qRMsPHKTf/3003/+NZO//nYTtoAAAAAAAAAAN59gdbefYf/332P/+B+mf+2Ymj/r1w66M55Q5DdlUeQ5qlJ6Oy4Sv/wwUv/8shM//TMTf/20E3WAAAAAAAAAADffYqa332Q/+B9mP/hfqL/tmJs/7FeOv/Qe0P/3JJG/+KhSP/orkn/7LhK/++/S//xxEz/8shMmgAAAAAAAAAA332REuB9mLjgfqD/4X6p/7ZibP+yYDv/0H1D/9uQRv/gnUf/5adJ/+mwSv/suEr/7r5LuPDDSxIAAAAAAAAAAAAAAADfgJ8C4X6lUOF+rNy9Z3T/smE7/9F+Q//bj0b/35lH/+OjSP/mq0nc6bJKUO+3UAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADhfqoI1HaTdrdlQvLRfkP/245G/96XR/Lhn0h25KVJCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBbkMY0n9EcNqORnDdlEcYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAPw/AADwDwAAwAMAAIABAACBgQAAg8EAAIPBAACH4QAAg8EAAIABAACAAQAAwAMAAPAPAAD8PwAA//8AAA=='
+$CheckBox_DisableTelemetry_IconBytes = [Convert]::FromBase64String($CheckBox_DisableTelemetry_Icon64)
+$CheckBox_DisableTelemetry_IconStream = [System.IO.MemoryStream]::new($CheckBox_DisableTelemetry_IconBytes, 0, $CheckBox_DisableTelemetry_IconBytes.Length)
+$CheckBox_DisableTelemetry.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_DisableTelemetry_IconStream).GetHIcon()))
+$CheckBox_DisableTelemetry.ImageAlign = 'MiddleLeft'
+$CheckBox_DisableTelemetry.Text = '    Disable Telemetry (Recommended)'
+$CheckBox_DisableTelemetry.TextAlign = 'MiddleLeft'
+$CheckBox_DisableTelemetry.CheckAlign = 'MiddleLeft'
+$CheckBox_DisableTelemetry.Checked = $true
+$Panel_OfficeSelection.Controls.Add($CheckBox_DisableTelemetry)
+
+$CheckBox_DisableTelemetry.Add_Click( {
+	if ($CheckBox_DisableTelemetry.Checked -eq $true) {
+		$CheckBox_EnableTelemetry.Enabled = $false
+	}
+	elseif ($CheckBox_DisableTelemetry.Checked -eq $false) {
+		$CheckBox_EnableTelemetry.Enabled = $true
+	}   
+}
+)
+
+$CheckBox_EnableTelemetry = New-Object System.Windows.Forms.CheckBox
+$CheckBox_EnableTelemetry.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
+$CheckBox_Y_Axis += 22
+$CheckBox_EnableTelemetry.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
+# Which ICO to Use?
+$CheckBox_EnableTelemetry_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADpi74Y5Ie4cN2CsXDYfqwYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPmYzwj0lMl47Y7B8uWIuf/dgbH/1Xup8s51oXbIcJsIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA95fPAvua0VD9m9Pc95fN/++QxP/miLr/3IGw/9N5pv/Lc53/w22V3LxnjlCvYIACAAAAAAAAAAAAAAAA0HUmEsVuIbiyYhj/rmEv/9Z/jP/yksf/54m8/9yAr//Qd6P/xm+Z/75pkP+4Y4n/sl+DuK1bfhIAAAAAAAAAANd5OZrTdi3/ynEi/7xpGP+rXhH/r2I5/9Z+mf/af67/zHSf/8Fqk/+4Y4n/sV6C/6xafP+pWHmaAAAAAAAAAADZekjW2XpF/9d5PP/RdS//x28h/7dlFeigVxBi1nyqYsVul+i4Y4n/r1x//6lYef+lVXb/olRx1gAAAAAAAAAA2ntU2tp7VP/ae1T/2npR/9d5R+rNcy0eAAAAAAAAAAC3Y4keqll77KRUdf+fUHD/l0to/69zXNoAAAAAAAAAANt7Ydrce2P/3Htl/9x8af/cfG6QAAAAAAAAAAAAAAAAAAAAAJpNa5CVSWb/i0Nd/6RsU//010/aAAAAAAAAAADcfG3a3Xxw/918df/efH3/3n2FfAAAAAAAAAAAAAAAAAAAAACKQl18klNU/9OqT//84E///eFP2gAAAAAAAAAA3Xx42t58ff/efYP/332N/8dteLCjVTcOAAAAAAAAAADrt0oO1qRMsPHKTf/3003/+NZO//nYTtoAAAAAAAAAAN59gdbefYf/332P/+B+mf+2Ymj/r1w66M55Q5DdlUeQ5qlJ6Oy4Sv/wwUv/8shM//TMTf/20E3WAAAAAAAAAADffYqa332Q/+B9mP/hfqL/tmJs/7FeOv/Qe0P/3JJG/+KhSP/orkn/7LhK/++/S//xxEz/8shMmgAAAAAAAAAA332REuB9mLjgfqD/4X6p/7ZibP+yYDv/0H1D/9uQRv/gnUf/5adJ/+mwSv/suEr/7r5LuPDDSxIAAAAAAAAAAAAAAADfgJ8C4X6lUOF+rNy9Z3T/smE7/9F+Q//bj0b/35lH/+OjSP/mq0nc6bJKUO+3UAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADhfqoI1HaTdrdlQvLRfkP/245G/96XR/Lhn0h25KVJCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBbkMY0n9EcNqORnDdlEcYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAPw/AADwDwAAwAMAAIABAACBgQAAg8EAAIPBAACH4QAAg8EAAIABAACAAQAAwAMAAPAPAAD8PwAA//8AAA=='
+$CheckBox_EnableTelemetry_IconBytes = [Convert]::FromBase64String($CheckBox_EnableTelemetry_Icon64)
+$CheckBox_EnableTelemetry_IconStream = [System.IO.MemoryStream]::new($CheckBox_EnableTelemetry_IconBytes, 0, $CheckBox_EnableTelemetry_IconBytes.Length)
+$CheckBox_EnableTelemetry.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_EnableTelemetry_IconStream).GetHIcon()))
+$CheckBox_EnableTelemetry.ImageAlign = 'MiddleLeft'
+$CheckBox_EnableTelemetry.Text = '    Enable Telemetry'
+$CheckBox_EnableTelemetry.TextAlign = 'MiddleLeft'
+$CheckBox_EnableTelemetry.CheckAlign = 'MiddleLeft'
+$CheckBox_EnableTelemetry.Checked = $false
+$CheckBox_EnableTelemetry.Enabled = $false
+$Panel_OfficeSelection.Controls.Add($CheckBox_EnableTelemetry)
+
+$CheckBox_EnableTelemetry.Add_Click( {
+	if ($CheckBox_EnableTelemetry.Checked -eq $true) {
+		$CheckBox_DisableTelemetry.Enabled = $false
+	}
+	elseif ($CheckBox_EnableTelemetry.Checked -eq $false) {
+		$CheckBox_DisableTelemetry.Enabled = $true
+	}   
+}
+)
+
 $Form_OfficeSelection_OK = New-Object System.Windows.Forms.Button
 $Form_OfficeSelection_OK.Location = New-Object System.Drawing.Size((($Form_OfficeSelection.Width) / 3 ), (($Form_OfficeSelection.height) - 65))
 $Form_OfficeSelection_OK.Size = New-Object System.Drawing.Size(57, 20)
@@ -398,11 +467,21 @@ $Form_OfficeSelection_OK.Add_Click{
 		Start-Process $env:TEMP\Word2021.exe -Wait
 	}
 
-	Write-Host 'Office Selection: Activating' -ForegroundColor green -BackgroundColor black
-	& ([ScriptBlock]::Create(((New-Object Net.WebClient).DownloadString('https://get.activated.win/')))) /Ohook
+	if ($CheckBox_ActivateOffice.Checked) {
+		Write-Host 'Office Selection: Activating' -ForegroundColor green -BackgroundColor black
+		& ([ScriptBlock]::Create(((New-Object Net.WebClient).DownloadString('https://get.activated.win/')))) /Ohook
+	}
 
-	Write-Host 'Office Selection: Disabling Telemetry' -ForegroundColor green -BackgroundColor black
-	Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/abbodi1406/WHD/master/scripts/OC2R_DisableTelemetry.ps1')
+	if ($CheckBox_DisableTelemetry.Checked) {
+		Write-Host 'Office Selection: Disabling Telemetry' -ForegroundColor green -BackgroundColor black
+		Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/abbodi1406/WHD/master/scripts/OC2R_DisableTelemetry.ps1')
+	}
+
+	if ($CheckBox_EnableTelemetry.Checked) {
+		Write-Host 'Office Selection: Enabling Telemetry' -ForegroundColor green -BackgroundColor black
+		Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/abbodi1406/WHD/master/scripts/OC2R_RevertTelemetry.ps1')
+	}
+
 }
 
 $Form_OfficeSelection.Add_Shown({ $Form_OfficeSelection.Activate() })
