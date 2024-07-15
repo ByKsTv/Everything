@@ -2642,9 +2642,7 @@ if ($NetworkSettingsName -match 'Wake on Pattern Match') {
 # Packet Coalescing          
 # ARP offload for WoWLAN     
 # NS offload for WoWLAN      
-# GTK rekeying for WoWLAN    
-# Wake on Magic Packet       
-# Wake on Pattern Match      
+# GTK rekeying for WoWLAN          
 # Global BG Scan blocking    
 # Channel Width for 2.4GHz   
 # Channel Width for 5GHz     
