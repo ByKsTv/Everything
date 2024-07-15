@@ -282,6 +282,27 @@ if ($InstalledSoftware -match 'Display Driver Uninstaller') {
     $CheckBox_DisplayDriverUninstaller.Text += ' (Installed)'
 }
 
+$CheckBox_EdgeWebView2 = New-Object System.Windows.Forms.CheckBox
+$CheckBox_EdgeWebView2.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
+$CheckBox_Y_Axis += 22
+$CheckBox_EdgeWebView2.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
+# Official ICO from EXE
+$CheckBox_EdgeWebView2_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANR4APDUeQD/1XoB/9V7Av/GdQ30fUIP/45MEP+RThD/k08P/5VQD/+XUQ//mVMO/5tUDv+eVQ3/oFYN/6JYDPDTdwD/1HkA/9V6Af/VewL/1n0E/59bDPqERg7/kE4Q/5NPD/+VUA//l1EP/5lTDv+bVA7/nlUN/6BWDf+iWAz/68A9+dB3AP/VegH/1XsC/9Z9BP/XfwX/mVgM+YhJD/+STg//lVAP/5dRD/+ZUw7/m1QO/55VDf+gVg3/olgM///mUP/110z50oML/9N6Av/WfQT/138F/9eBB/+ZWQz5hkcO/5JOD/+XUQ//mVMO/5tUDv+eVQ3/oFYN/6JYDP//5lD//eZQ//bjU/vbqCr80nsE/9Z/Bf/XgQf/2IMI/7NuEPOFSAz/jkwO/5VRDv+aUw7/nVUN/6BWDf+iWAz//+ZQ//3mUP/45lH/8uZS/+jfU/rWpSf70n4H/9aCCP/Zhgr/1YcS96BeD/mBRgz/jUwN/5VQDP+aUwz/nlYM///mUP/95lD/+OZR//LmUv/r51P/5OdU/9rfVfrNrzT4zYYO/9SEDP/YiQ7/2o0U+sN+Ge+eXg3/mFcN/49NC///5lD//eZQ//jmUf/y5lL/6+dT/+TnVP/c51X/0+hX/8roWP/C1lb1wLtA98OdI//Kixb/z4kT/9WPFf/ZlRj//+ZQ//3mUP/45lH/8uZS/+vnU//k51T/3OdV/9PoV//K6Fj/wOha/7XpW/+q6V3/n+lf/5PqYP+S32H3jt5j8v/mUP/95lD/+OZR//LmUv/r51P/5OdU/9znVf/T6Ff/yuhY/8DoWv+16Vv/quld/5/pX/+T6mD/h+pi/3vrZP+iWAz/oVcN/6BXDf+fVg3/nVUN/5xUDv+bUw7/mVMO/5hSDv+XUQ//llAP/5RQD/+TTw//kk4Q/5BNEP+PTRD/pFkM8KNZDP+iWAz/oVcN/59WDf+eVg3/nVUN/5xUDv+aUw7/mVIO/5hSDv+XUQ//lVAP/5RPD/+TTw//kU4Q8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//9G9f//RPgAACb/AAAo/wAAUP8AAFD/AABR/wAAUf8AAFL/AABT/wAAVP8AAFX/AABW/wAAV////1j///9Z/w=='
+$CheckBox_EdgeWebView2_IconBytes = [Convert]::FromBase64String($CheckBox_EdgeWebView2_Icon64)
+$CheckBox_EdgeWebView2_IconStream = [System.IO.MemoryStream]::new($CheckBox_EdgeWebView2_IconBytes, 0, $CheckBox_EdgeWebView2_IconBytes.Length)
+$CheckBox_EdgeWebView2.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_EdgeWebView2_IconStream).GetHIcon()))
+$CheckBox_EdgeWebView2.ImageAlign = 'MiddleLeft'
+$CheckBox_EdgeWebView2.Text = '    Edge WebView2'
+$CheckBox_EdgeWebView2.TextAlign = 'MiddleLeft'
+$CheckBox_EdgeWebView2.CheckAlign = 'MiddleLeft'
+$CheckBox_EdgeWebView2.Checked = $false
+$Panel_SoftwareSelection.Controls.Add($CheckBox_EdgeWebView2)
+
+if ($InstalledSoftware -match 'Microsoft Edge WebView2 Runtime') {
+    $CheckBox_EdgeWebView2.Enabled = $false
+    $CheckBox_EdgeWebView2.Text += ' (Installed)'
+}
+
 $CheckBox_Git = New-Object System.Windows.Forms.CheckBox
 $CheckBox_Git.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
 $CheckBox_Y_Axis += 22
@@ -897,6 +918,11 @@ $Form_SoftwareSelection_OK.Add_Click{
     if ($CheckBox_DisplayDriverUninstaller.Checked) {
         Write-Host 'Software Selection: Display Driver Uninstaller: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Display_Driver_Uninstaller/Download.ps1')
+    }
+
+    if ($CheckBox_EdgeWebView2.Checked) {
+        Write-Host 'Software Selection: Edge WebView2: Initiating' -ForegroundColor green -BackgroundColor black
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Edge/WebView2/Download.ps1')
     }
 
     if ($CheckBox_Jellyfin.Checked) {
