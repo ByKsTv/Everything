@@ -296,13 +296,13 @@ $CheckBox_DisableTelemetry.Checked = $true
 $Panel_OfficeSelection.Controls.Add($CheckBox_DisableTelemetry)
 
 $CheckBox_DisableTelemetry.Add_Click( {
-	if ($CheckBox_DisableTelemetry.Checked -eq $true) {
-		$CheckBox_EnableTelemetry.Enabled = $false
+		if ($CheckBox_DisableTelemetry.Checked -eq $true) {
+			$CheckBox_EnableTelemetry.Enabled = $false
+		}
+		elseif ($CheckBox_DisableTelemetry.Checked -eq $false) {
+			$CheckBox_EnableTelemetry.Enabled = $true
+		}   
 	}
-	elseif ($CheckBox_DisableTelemetry.Checked -eq $false) {
-		$CheckBox_EnableTelemetry.Enabled = $true
-	}   
-}
 )
 
 $CheckBox_EnableTelemetry = New-Object System.Windows.Forms.CheckBox
@@ -323,13 +323,13 @@ $CheckBox_EnableTelemetry.Enabled = $false
 $Panel_OfficeSelection.Controls.Add($CheckBox_EnableTelemetry)
 
 $CheckBox_EnableTelemetry.Add_Click( {
-	if ($CheckBox_EnableTelemetry.Checked -eq $true) {
-		$CheckBox_DisableTelemetry.Enabled = $false
+		if ($CheckBox_EnableTelemetry.Checked -eq $true) {
+			$CheckBox_DisableTelemetry.Enabled = $false
+		}
+		elseif ($CheckBox_EnableTelemetry.Checked -eq $false) {
+			$CheckBox_DisableTelemetry.Enabled = $true
+		}   
 	}
-	elseif ($CheckBox_EnableTelemetry.Checked -eq $false) {
-		$CheckBox_DisableTelemetry.Enabled = $true
-	}   
-}
 )
 
 $Form_OfficeSelection_OK = New-Object System.Windows.Forms.Button
