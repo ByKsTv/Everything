@@ -103,11 +103,11 @@ powercfg /restoredefaultschemes
 Write-Host 'Power Plan: Activating Ultimate Performance' -ForegroundColor green -BackgroundColor black
 powercfg /SETACTIVE e9a42b02-d5df-448d-aa00-03f14749eb61
 
-# Write-Host 'Power Plan: Deleting all power plans' -ForegroundColor green -BackgroundColor black
-# $powerPlans = powercfg /LIST | Select-String -Pattern 'GUID: ([\w-]+)' | ForEach-Object { $_.Matches.Groups[1].Value }
-# foreach ($plan in $powerPlans) {
-# 	powercfg /DELETE $plan
-# }
+Write-Host 'Power Plan: Deleting all power plans' -ForegroundColor green -BackgroundColor black
+$powerPlans = powercfg /LIST | Select-String -Pattern 'GUID: ([\w-]+)' | ForEach-Object { $_.Matches.Groups[1].Value }
+foreach ($plan in $powerPlans) {
+	powercfg /DELETE $plan
+}
 
 Write-Host 'Power Plan: Showing all hidden options' -ForegroundColor green -BackgroundColor black
 # https://gist.github.com/Velocet/7ded4cd2f7e8c5fa475b8043b76561b5 - Unlock-PowerCfg - v22.05.11
@@ -2637,6 +2637,27 @@ if ($NetworkSettingsName -match 'Wake on Pattern Match') {
 	Write-Host 'Network: Wake on Pattern Match: Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Wake on Pattern Match' -DisplayValue 'Disabled'
 }
+
+# Sleep on WoWLAN Disconnect 
+# Packet Coalescing          
+# ARP offload for WoWLAN     
+# NS offload for WoWLAN      
+# GTK rekeying for WoWLAN    
+# Wake on Magic Packet       
+# Wake on Pattern Match      
+# Global BG Scan blocking    
+# Channel Width for 2.4GHz   
+# Channel Width for 5GHz     
+# Mixed Mode Protection      
+# Fat Channel Intolerant     
+# Transmit Power             
+# 802.11n/ac/ax Wireless Mode
+# MIMO Power Save Mode       
+# Roaming Aggressiveness     
+# Preferred Band             
+# Throughput Booster         
+# U-APSD support             
+# 802.11a/b/g Wireless Mode
 
 Write-Host 'Network: Auto Tuning Level Local: Normal' -ForegroundColor green -BackgroundColor black
 Set-NetTCPSetting -AutoTuningLevelLocal Normal
