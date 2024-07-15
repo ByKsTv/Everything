@@ -8,8 +8,6 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 ## Download
 
-> Note: Update BIOS before.
-
 1. PowerShell (Admin):
 
    ```powershell
@@ -27,6 +25,8 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
    > (wmic baseboard get product)
    >
    > ```
+   >
+   > Note: Update BIOS.
 
 ## Pre Installation
 
