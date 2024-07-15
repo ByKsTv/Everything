@@ -86,8 +86,8 @@ Write-Host 'mpv: Adding script trackselect.lua' -ForegroundColor green -Backgrou
 Write-Host 'mpv: Using custom settings for trackselect.conf' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/script-opts/trackselect.conf', "$($env:USERPROFILE)\Desktop\mpv\script-opts\trackselect.conf")
 
-# Write-Host 'mpv: Adding script cookies.firefox-private.lua' -ForegroundColor green -BackgroundColor black
-# (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/cookies.firefox-private.lua', "$($env:USERPROFILE)\Desktop\mpv\scripts\cookies.firefox-private.lua")
+Write-Host 'mpv: Adding script cookies.firefox-private.lua' -ForegroundColor green -BackgroundColor black
+(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/cookies.firefox-private.lua', "$($env:USERPROFILE)\Desktop\mpv\scripts\cookies.firefox-private.lua")
 
 Write-Host 'mpv: Adding script hidecursor.lua' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/hidecursor.lua', "$($env:USERPROFILE)\Desktop\mpv\scripts\hidecursor.lua")
