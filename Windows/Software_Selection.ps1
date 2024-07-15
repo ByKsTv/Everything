@@ -865,14 +865,22 @@ $Form_SoftwareSelection_OK.Add_Click{
 
     # Priority: Manual input
     if ($CheckBox_RazerSynapse.Checked) {
-        Write-Host 'Software Selection: Razer Synapse: Initiating' -ForegroundColor green -BackgroundColor black
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Razer_Synapse/Download.ps1')
+        Write-Host 'Software Selection: Razer Synapse: Downloading' -ForegroundColor green -BackgroundColor black
+        (New-Object System.Net.WebClient).DownloadFile('https://rzr.to/synapse-3-pc-download', "$env:TEMP\Synapse.exe")
+        
+        Write-Host 'Software Selection: Razer Synapse: Installing' -ForegroundColor green -BackgroundColor black
+        Start-Process -FilePath $env:TEMP\Synapse.exe
     }
 
     # Priority: Manual input
     if ($CheckBox_HyperXNGENUITY.Checked) {
-        Write-Host 'Software Selection: HyperX NGENUITY: Initiating' -ForegroundColor green -BackgroundColor black
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/HyperX_NGENUITY/Download.ps1')
+        Write-Host 'Software Selection: HyperX NGENUITY: Downloading' -ForegroundColor green -BackgroundColor black
+        $Hyperx = New-Object System.Net.WebClient
+        $Hyperx.Headers.Add('user-agent', 'Wget')
+        $Hyperx.DownloadFile((Invoke-WebRequest -UseBasicParsing -Uri 'https://hyperx.com/pages/ngenuity' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match '.exe') } | Select-Object -First 1 | Select-Object -ExpandProperty href), "$ENV:temp\HyperX_NGENUITY.exe")
+        
+        Write-Host 'Software Selection: HyperX NGENUITY: Installing' -ForegroundColor green -BackgroundColor black
+        Start-Process -FilePath $env:TEMP\HyperX_NGENUITY.exe
     }
 
     if ($CheckBox_DotNET.Checked) {
@@ -886,23 +894,45 @@ $Form_SoftwareSelection_OK.Add_Click{
     }
 
     if ($CheckBox_AnyDesk.Checked) {
-        Write-Host 'Software Selection: AnyDesk: Initiating' -ForegroundColor green -BackgroundColor black
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/AnyDesk/Download.ps1')
+        Write-Host 'Software Selection: AnyDesk: Downloading' -ForegroundColor green -BackgroundColor black
+        (New-Object System.Net.WebClient).DownloadFile('https://download.anydesk.com/AnyDesk.exe', "$env:TEMP\AnyDesk.exe")
+        
+        Write-Host 'Software Selection: AnyDesk: Installing' -ForegroundColor green -BackgroundColor black
+        Start-Process -FilePath $env:TEMP\AnyDesk.exe -ArgumentList '--install "C:\Program Files (x86)\AnyDesk" --create-shortcuts --create-desktop-icon --silent'
+        
+        Write-Host 'Software Selection: AnyDesk: Optional Offer - Recommended by AnyDesk: Decline' -ForegroundColor green -BackgroundColor black
+        if ((Test-Path -Path 'HKCU:\SOFTWARE\Google\No Chrome Offer Until') -ne $true) {
+            New-Item 'HKCU:\SOFTWARE\Google\No Chrome Offer Until' -Force 
+        }
+        New-ItemProperty -Path 'HKCU:\SOFTWARE\Google\No Chrome Offer Until' -Name 'AnyDesk Software GmbH' -Value 30241008 -PropertyType DWord -Force
     }
 
     if ($CheckBox_BattleNet.Checked) {
-        Write-Host 'Software Selection: Battle.net: Initiating' -ForegroundColor green -BackgroundColor black
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Battle.net/Download.ps1')
+        Write-Host 'Software Selection: Battle.net: Downloading' -ForegroundColor green -BackgroundColor black
+        (New-Object System.Net.WebClient).DownloadFile('https://downloader.battle.net/download/getInstaller?os=win&installer=Battle.net-Setup.exe', "$env:TEMP\Battle.net-Setup.exe")
+        
+        Write-Host 'Software Selection: Battle.net: Installing' -ForegroundColor green -BackgroundColor black
+        Start-Process -FilePath $env:TEMP\Battle.net-Setup.exe -ArgumentList '--lang=enUS --installpath="C:\Program Files (x86)\Battle.net"'
     }
 
     if ($CheckBox_CrystalDiskInfo.Checked) {
-        Write-Host 'Software Selection: CrystalDiskInfo: Initiating' -ForegroundColor green -BackgroundColor black
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/CrystalDiskInfo/Download.ps1')
+        Write-Host 'Software Selection: CrystalDiskInfo: Downloading' -ForegroundColor green -BackgroundColor black
+        $CrystalDiskInfo = New-Object System.Net.WebClient
+        $CrystalDiskInfo.Headers.Add('user-agent', 'Wget')
+        $CrystalDiskInfo.DownloadFile('https://crystalmark.info/redirect.php?product=CrystalDiskInfoInstaller', "$ENV:temp\CrystalDiskInfo.exe")
+        
+        Write-Host 'Software Selection: CrystalDiskInfo: Installing' -ForegroundColor green -BackgroundColor black
+        Start-Process $ENV:temp\CrystalDiskInfo.exe -ArgumentList '/VERYSILENT'
     }
 
     if ($CheckBox_CrystalDiskMark.Checked) {
-        Write-Host 'Software Selection: CrystalDiskMark: Initiating' -ForegroundColor green -BackgroundColor black
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/CrystalDiskMark/Download.ps1')
+        Write-Host 'Software Selection: CrystalDiskMark: Downloading' -ForegroundColor green -BackgroundColor black
+        $CrystalDiskMark = New-Object System.Net.WebClient
+        $CrystalDiskMark.Headers.Add('user-agent', 'Wget')
+        $CrystalDiskMark.DownloadFile('https://crystalmark.info/redirect.php?product=CrystalDiskMarkInstaller', "$ENV:temp\CrystalDiskMark.exe")
+        
+        Write-Host 'Software Selection: CrystalDiskMark: Installing' -ForegroundColor green -BackgroundColor black
+        Start-Process $ENV:temp\CrystalDiskMark.exe -ArgumentList '/VERYSILENT'
     }
     
     if ($CheckBox_Discord.Checked) {
@@ -926,13 +956,23 @@ $Form_SoftwareSelection_OK.Add_Click{
     }
 
     if ($CheckBox_Jellyfin.Checked) {
-        Write-Host 'Software Selection: Jellyfin: Initiating' -ForegroundColor green -BackgroundColor black
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Jellyfin/Download.ps1')
+        Write-Host 'Software Selection: Jellyfin: Get latest release' -ForegroundColor green -BackgroundColor black
+        $JellyfinLatest = (Invoke-WebRequest -UseBasicParsing -Uri 'https://repo.jellyfin.org/?path=/server/windows/latest-stable/amd64' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'x64.exe') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
+        $JellyfinURL = 'https://repo.jellyfin.org' + $JellyfinLatest
+        
+        Write-Host 'Software Selection: Jellyfin: Downloading' -ForegroundColor green -BackgroundColor black
+        (New-Object System.Net.WebClient).DownloadFile($JellyfinURL, "$env:TEMP\Jelly.exe")
+        
+        Write-Host 'Software Selection: Jellyfin: Installing' -ForegroundColor green -BackgroundColor black
+        Start-Process -FilePath $env:TEMP\Jelly.exe -ArgumentList '/S'
     }
 
     if ($CheckBox_LogitechGHUB.Checked) {
-        Write-Host 'Software Selection: Logitech G HUB: Initiating' -ForegroundColor green -BackgroundColor black
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Logitech_G_HUB/Download.ps1')
+        Write-Host 'Software Selection: Logitech G HUB: Downloading' -ForegroundColor green -BackgroundColor black
+        (New-Object System.Net.WebClient).DownloadFile('https://download01.logi.com/web/ftp/pub/techsupport/gaming/lghub_installer.exe', "$env:TEMP\lghub_installer.exe")
+        
+        Write-Host 'Software Selection: Logitech G HUB: Installing' -ForegroundColor green -BackgroundColor black
+        Start-Process -FilePath $env:TEMP\lghub_installer.exe -ArgumentList '--silent'
     }
 
     if ($CheckBox_Git.Checked) {
@@ -946,13 +986,25 @@ $Form_SoftwareSelection_OK.Add_Click{
     }
 
     if ($CheckBox_MicrosoftStore.Checked) {
-        Write-Host 'Software Selection: Microsoft Store: Initiating' -ForegroundColor green -BackgroundColor black
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Microsoft_Store/Download.ps1')
+        Write-Host 'Software Selection: Microsoft Store: Downloading' -ForegroundColor green -BackgroundColor black
+        (New-Object System.Net.WebClient).DownloadFile('https://github.com/kkkgo/LTSC-Add-MicrosoftStore/archive/refs/heads/master.zip', "$env:TEMP\LTSC-Add-MicrosoftStore.zip")
+        
+        Write-Host 'Software Selection: Microsoft Store: Extracting' -ForegroundColor green -BackgroundColor black
+        Expand-Archive -Path "$env:TEMP\LTSC-Add-MicrosoftStore.zip" -DestinationPath "$env:TEMP\LTSC-Add-MicrosoftStore" -Force
+        
+        Write-Host 'Software Selection: Microsoft Store: Setting Unattended' -ForegroundColor green -BackgroundColor black
+        (Get-Content "$env:TEMP\LTSC-Add-MicrosoftStore\LTSC-Add-MicrosoftStore-master\Add-Store.cmd").Replace('pause >nul', '') | Set-Content "$env:TEMP\LTSC-Add-MicrosoftStore\LTSC-Add-MicrosoftStore-master\Add-Store.cmd"
+        
+        Write-Host 'Software Selection: Microsoft Store: Installing' -ForegroundColor green -BackgroundColor black
+        Start-Process -FilePath "$env:TEMP\LTSC-Add-MicrosoftStore\LTSC-Add-MicrosoftStore-master\Add-Store.cmd"
     }
 
     if ($CheckBox_NordVPN.Checked) {
-        Write-Host 'Software Selection: NordVPN: Initiating' -ForegroundColor green -BackgroundColor black
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/NordVPN/Download.ps1')
+        Write-Host 'Software Selection: NordVPN: Downloading' -ForegroundColor green -BackgroundColor black
+        (New-Object System.Net.WebClient).DownloadFile('https://downloads.nordcdn.com/apps/windows/NordVPN/latest/NordVPNInstall.exe', "$env:TEMP\NordVPNInstall.exe")
+        
+        Write-Host 'Software Selection: NordVPN: Installing' -ForegroundColor green -BackgroundColor black
+        Start-Process -FilePath $env:TEMP\NordVPNInstall.exe -ArgumentList '/verysilent'
     }
 
     if ($CheckBox_NotepadPlusPlus.Checked) {
@@ -961,8 +1013,12 @@ $Form_SoftwareSelection_OK.Add_Click{
     }
 
     if ($CheckBox_PuTTY.Checked) {
-        Write-Host 'Software Selection: PuTTY: Initiating' -ForegroundColor green -BackgroundColor black
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/PuTTY/Download.ps1')
+        Write-Host 'Software Selection: PuTTY: Downloading' -ForegroundColor green -BackgroundColor black
+        (New-Object System.Net.WebClient).DownloadFile((Invoke-WebRequest -UseBasicParsing -Uri 'https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'putty-64bit') } | Select-Object -First 1 | Select-Object -ExpandProperty href), "$env:TEMP\PuTTY.msi")
+        
+        Write-Host 'Software Selection: PuTTY: Installing' -ForegroundColor green -BackgroundColor black
+        Start-Process $env:TEMP\PuTTY.msi -ArgumentList '/quiet' -Wait
+        
     }
 
     if ($CheckBox_Python.Checked) {
@@ -976,8 +1032,11 @@ $Form_SoftwareSelection_OK.Add_Click{
     }
 
     if ($CheckBox_Steam.Checked) {
-        Write-Host 'Software Selection: Steam: Initiating' -ForegroundColor green -BackgroundColor black
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Steam/Download.ps1')
+        Write-Host 'Software Selection: Steam: Downloading' -ForegroundColor green -BackgroundColor black
+        (New-Object System.Net.WebClient).DownloadFile('https://cdn.cloudflare.steamstatic.com/client/installer/SteamSetup.exe', "$env:TEMP\SteamSetup.exe")
+        
+        Write-Host 'Software Selection: Steam: Installing' -ForegroundColor green -BackgroundColor black
+        Start-Process -FilePath $env:TEMP\SteamSetup.exe -ArgumentList '/S'
     }
 
     if ($CheckBox_SubtitleEdit.Checked) {
@@ -986,8 +1045,11 @@ $Form_SoftwareSelection_OK.Add_Click{
     }
 
     if ($CheckBox_Telegram.Checked) {
-        Write-Host 'Software Selection: Telegram: Initiating' -ForegroundColor green -BackgroundColor black
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Telegram/Download.ps1')
+        Write-Host 'Software Selection: Telegram: Downloading' -ForegroundColor green -BackgroundColor black
+        (New-Object System.Net.WebClient).DownloadFile('https://telegram.org/dl/desktop/win64', "$env:TEMP\Telegram.exe")
+        
+        Write-Host 'Software Selection: Telegram: Installing' -ForegroundColor green -BackgroundColor black
+        Start-Process -FilePath $env:TEMP\Telegram.exe -ArgumentList '/VERYSILENT'
     }
 
     if ($CheckBox_TranslucentTB.Checked) {
@@ -1001,8 +1063,11 @@ $Form_SoftwareSelection_OK.Add_Click{
     }
 
     if ($CheckBox_Zoom.Checked) {
-        Write-Host 'Software Selection: Zoom: Initiating' -ForegroundColor green -BackgroundColor black
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Zoom/Download.ps1')
+        Write-Host 'Software Selection: Zoom: Downloading' -ForegroundColor green -BackgroundColor black
+        (New-Object System.Net.WebClient).DownloadFile('https://zoom.us/client/latest/ZoomInstaller.exe?archType=x64', "$env:TEMP\ZoomInstallerFull-x64.exe")
+        
+        Write-Host 'Software Selection: Zoom: Installing' -ForegroundColor green -BackgroundColor black
+        Start-Process -FilePath $env:TEMP\ZoomInstallerFull-x64.exe
     }
 
     if ($CheckBox_UninstallEdge.Checked) {
