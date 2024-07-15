@@ -952,10 +952,10 @@ $Form_SoftwareSelection_OK.Add_Click{
 
     if ($CheckBox_EdgeWebView2.Checked) {
         Write-Host 'Software Selection: Edge WebView2: Downloading' -ForegroundColor green -BackgroundColor black
-        (New-Object System.Net.WebClient).DownloadFile('https://go.microsoft.com/fwlink/?linkid=2124701', "$env:TEMP\MicrosoftEdgeWebView2RuntimeInstallerX64.exe")
+        (New-Object System.Net.WebClient).DownloadFile('https://go.microsoft.com/fwlink/p/?LinkId=2124703', "$env:TEMP\MicrosoftEdgeWebview2Setup.exe")
         
         Write-Host 'Software Selection: Edge WebView2: Installing' -ForegroundColor green -BackgroundColor black
-        Start-Process $env:TEMP\MicrosoftEdgeWebView2RuntimeInstallerX64.exe
+        Start-Process $env:TEMP\MicrosoftEdgeWebview2Setup.exe
     }
 
     if ($CheckBox_Jellyfin.Checked) {
