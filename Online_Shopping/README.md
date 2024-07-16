@@ -1,6 +1,6 @@
 # Information
 
-Everything about Tips.
+Everything about Online Shopping.
 
 ## Amazon
 
@@ -12,3 +12,9 @@ Everything about Tips.
 1. In case of package delayed or not received contact support and say `Item not received`.
 1. Do not return packages.
 1. Do not use filters when searching for products.
+
+## AliExpress
+
+1. Use [PayPal](https://www.paypal.com/).
+1. Use [Copuons](https://github.com/ByKsTv/Everything/tree/main/Websites#coupons).
+1. In case of issues click on `Returns/refunds`.
