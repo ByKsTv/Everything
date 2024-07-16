@@ -784,6 +784,27 @@ if ($InstalledSoftware -match 'TranslucentTB') {
     $CheckBox_TranslucentTB.Text += ' (Installed)'
 }
 
+$CheckBox_Valorant = New-Object System.Windows.Forms.CheckBox
+$CheckBox_Valorant.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
+$CheckBox_Y_Axis += 22
+$CheckBox_Valorant.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
+# Resized from Official ICO from Website
+$CheckBox_Valorant_Icon64 = 'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAFPSURBVDhPxZO7SkNBEIY/L5FoxEtjFMRXEAQLS5tAwFJQUbFIFWIjCBbWWohoIYKNhZViKoVEvICVTSx8AMXWCxIlYiIGEmfOLIRoCFELv2Z3Zmf+859ht64o8Afq3fprTCCb85Yf4XpMYG4Rnl+8bU1orfYIJtDZAeExb1sT4XHrEUygsQF0ltNRL6zKlNQUC9YjlIbo98P1LSyvu0QFltbgRmq01mECuXdz0N4G+weQPPXSZRydQfzQarRWewS7B/ePEBqF7i4vyd0DJHahr9didTYyAT1Bi9MyxJO41AedgHKRgui8iRQklclAyjmZiUFrQPyKYf1yZBKGBr2j8pu4uQ07ezbhjzw0y78mJa5CaYhKLAID/fCWhSafuHiF2QV3WJlyAWVrFQIt8JSGvLg4PoeVDXf4ncqPSRsvr8AnLhS9eaFh23/hv18jfAIHJ22Acc+kJQAAAABJRU5ErkJggg=='
+$CheckBox_Valorant_IconBytes = [Convert]::FromBase64String($CheckBox_Valorant_Icon64)
+$CheckBox_Valorant_IconStream = [System.IO.MemoryStream]::new($CheckBox_Valorant_IconBytes, 0, $CheckBox_Valorant_IconBytes.Length)
+$CheckBox_Valorant.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_Valorant_IconStream).GetHIcon()))
+$CheckBox_Valorant.ImageAlign = 'MiddleLeft'
+$CheckBox_Valorant.Text = '    Valorant'
+$CheckBox_Valorant.TextAlign = 'MiddleLeft'
+$CheckBox_Valorant.CheckAlign = 'MiddleLeft'
+$CheckBox_Valorant.Checked = $false
+$Panel_SoftwareSelection.Controls.Add($CheckBox_Valorant)
+
+if ($InstalledSoftware -match 'VALORANT') {
+    $CheckBox_Valorant.Enabled = $false
+    $CheckBox_Valorant.Text += ' (Installed)'
+}
+
 $CheckBox_VisualStudioCode = New-Object System.Windows.Forms.CheckBox
 $CheckBox_VisualStudioCode.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
 $CheckBox_Y_Axis += 22
@@ -1089,6 +1110,14 @@ $Form_SoftwareSelection_OK.Add_Click{
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/TranslucentTB/Download.ps1')
     }
     
+    if ($CheckBox_Valorant.Checked) {
+        Write-Host 'Software Selection: Valorant: Downloading' -ForegroundColor green -BackgroundColor black
+        (New-Object System.Net.WebClient).DownloadFile('https://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.live.ap.exe', "$env:TEMP\VALORANT.exe")
+                
+        Write-Host 'Software Selection: Valorant: Installing' -ForegroundColor green -BackgroundColor black
+        Start-Process $env:TEMP\VALORANT.exe -ArgumentList '--skip-to-install'
+    }
+
     if ($CheckBox_VisualStudioCode.Checked) {
         Write-Host 'Software Selection: Visual Studio Code: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Visual_Studio_Code/Download.ps1')
