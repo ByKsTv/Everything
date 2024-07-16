@@ -57,18 +57,12 @@ Everything about websites.
 - [awesome-piracy](https://github.com/Shakil-Shahadat/awesome-piracy) - Piracy
 - [Ratiborus](https://msfree.su/index.php?forums/32/) - Software by Ratiborus
 - [m0nkrus](http://www.monkrus.ws/) - Adobe
-- [Valorant](https://playvalorant.com/en-us/download/)
 - [Microsoft Visual Studio](https://rutracker.org/forum/tracker.php?nm=Microsoft%20Visual%20Studio)
 - [Lumion](https://rutracker.org/forum/tracker.php?nm=Lumion)
 - [Image-Line - FL Studio](https://rutracker.org/forum/tracker.php?nm=Image-Line%20-%20FL%20Studio)
 - [RegistryChangesView](https://www.nirsoft.net/utils/registry_changes_view.html)
 - HWMonitor Pro [Diakov](https://diakov.net/10934-cpuid-hwmonitor-pro-153-portable.html) / [RuTracker.org](https://rutracker.org/forum/tracker.php?nm=HWMonitor)
 - [VMware Workstation](https://rutracker.org/forum/tracker.php?nm=VMware%20Workstation) (Download 17.0.2 to avoid [High CPU Usage](https://communities.vmware.com/t5/VMware-Workstation-Pro/High-CPU-usage-by-vmnat-exe-after-upgrade-to-VMware-Workstation/m-p/2992080/highlight/true#M183202))
-
-## Coupons
-
-- Amazon - [Honey](https://www.joinhoney.com/shop/amazon) / [CouponFollow](https://couponfollow.com/site/amazon.com)
-- AliExpress - [Honey](https://www.joinhoney.com/shop/aliexpress) / [CouponFollow](https://couponfollow.com/site/aliexpress.com)
 
 ## NSFW
 
