@@ -31,6 +31,8 @@ Everything about Flights.
 - [Hamara](https://www.hamara.co.il/currency-exchange-2/changes-index/) - Locations
 - [Airport](https://www.bankhapoalim.co.il/he/foreign-currency/foreign-exchange-in-the-terminal)
 
+> Bank exchange is only digital currency, not cash.
+
 ## Credit Card
 
 - Use credit card with low fees.
