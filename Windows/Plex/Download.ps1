@@ -18,7 +18,10 @@ if (!($PlexMediaServer_Exists)) {
 
 Write-Host 'Plex: Getting current version' -ForegroundColor green -BackgroundColor black
 $Plex_Installed1 = Get-Package -Name 'Plex Media Server*' -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'Version'
-$Plex_Installed2 = (Get-ChildItem -Directory -Path "$env:ProgramFiles\Plex\Plex Media Server\Resources\Plug-ins-*" -ErrorAction SilentlyContinue | Sort-Object -Descending -Property Name | Select-Object -First 1 -ExpandProperty 'Name').Replace('Plug-ins-', '')
+$Plex_Installed2 = Get-ChildItem -Directory -Path "$env:ProgramFiles\Plex\Plex Media Server\Resources\Plug-ins-*" -ErrorAction SilentlyContinue | Sort-Object -Descending -Property Name | Select-Object -First 1 -ExpandProperty 'Name'
+if ($Plex_Installed2) {
+    $Plex_Installed2.Replace('Plug-ins-', '')
+}
 $Plex_Installed = $Plex_Installed1 + '-' + $Plex_Installed2
 
 Write-Host 'Plex: Getting latest release' -ForegroundColor green -BackgroundColor black
