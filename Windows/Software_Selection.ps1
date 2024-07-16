@@ -607,7 +607,9 @@ $CheckBox_Plex.CheckAlign = 'MiddleLeft'
 $CheckBox_Plex.Checked = $false
 $Panel_SoftwareSelection.Controls.Add($CheckBox_Plex)
 
-if ($InstalledSoftware -match 'Plex') {
+$PlexMediaServer = 'PlexMediaServer Updater'
+$PlexMediaServer_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $PlexMediaServer }
+if (($PlexMediaServer_Exists)) {
     $CheckBox_Plex.Enabled = $false
     $CheckBox_Plex.Text += ' (Installed)'
 }

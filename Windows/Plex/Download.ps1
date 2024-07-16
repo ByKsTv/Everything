@@ -1,73 +1,36 @@
-Write-Host 'Plex: Adding option to set foreground' -ForegroundColor green -BackgroundColor black
-if (-not ([System.Management.Automation.PSTypeName]'SFW').Type) {
-    Add-Type @'
-using System;
-using System.Runtime.InteropServices;
-public class SFW {
-    [DllImport("user32.dll")]
-    [return: MarshalAs(UnmanagedType.Bool)]
-    public static extern bool SetForegroundWindow(IntPtr hWnd);
-}
-'@
-}
-
-Write-Host 'Plex: Checking which browser is installed' -ForegroundColor green -BackgroundColor black
-$InstalledSoftware = Get-Package | Select-Object -Property 'Name'
-
-Write-Host 'Plex: Downloading' -ForegroundColor green -BackgroundColor black
-if ($InstalledSoftware -match 'Chrome') {
-    [System.Diagnostics.Process]::Start('chrome.exe', 'https://www.plex.tv/media-server-downloads/#plex-media-server')
-}
-if ($InstalledSoftware -match 'Firefox') {
-    [System.Diagnostics.Process]::Start('firefox.exe', 'https://www.plex.tv/media-server-downloads/#plex-media-server')
+$PlexMediaServer = 'PlexMediaServer Updater'
+$PlexMediaServer_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $PlexMediaServer }
+if (!($PlexMediaServer_Exists)) {
+    Write-Host "Plex: Task Scheduler: Adding $PlexMediaServer" -ForegroundColor green -BackgroundColor black
+    $PlexMediaServer_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
+    $PlexMediaServer_Action = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Plex/Download.ps1')"
+    $PlexMediaServer_Trigger = New-ScheduledTaskTrigger -AtLogOn
+    $PlexMediaServer_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
+    $PlexMediaServer_Parameters = @{
+        TaskName  = $PlexMediaServer
+        Principal = $PlexMediaServer_Principal
+        Action    = $PlexMediaServer_Action
+        Trigger   = $PlexMediaServer_Trigger
+        Settings  = $PlexMediaServer_Settings
+    }
+    Register-ScheduledTask @PlexMediaServer_Parameters -Force
 }
 
-Write-Host 'Plex: Waiting for browser' -ForegroundColor green -BackgroundColor black
-while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'chrome' -or $_.mainWindowTitle -match 'firefox' } -ErrorAction SilentlyContinue))) {
-    Start-Sleep -Milliseconds 1000
-}
-Start-Sleep -Milliseconds 1000
+Write-Host 'Plex: Getting current version' -ForegroundColor green -BackgroundColor black
+$Plex_Installed = Get-ChildItem -Directory -Path "$env:LOCALAPPDATA\Plex Media Server\Updates" | Sort-Object -Descending -Property Name | Select-Object -First 1 -ExpandProperty 'Name'
 
-Write-Host 'Plex: Setting foreground' -ForegroundColor green -BackgroundColor black
-[SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'chrome' -or $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
-Start-Sleep -Milliseconds 1000
+Write-Host 'Plex: Getting latest release' -ForegroundColor green -BackgroundColor black
+# https://github.com/mkevenaar/chocolatey-packages/blob/master/automatic/plexmediaserver/update.ps1
+$PlexTimeStamp = [DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds()
+$PlexFeedURL = 'https://plex.tv/pms/downloads/5.json?_=' + $PlexTimeStamp
+$PlexURL = Invoke-RestMethod -Uri $PlexFeedURL
+$PlexURL64bit = ($PlexURL.computer.windows.releases | Where-Object -Property build -EQ windows-x86_64).url
+$PlexLatestVersion = $PlexURL.computer.windows.version
 
-Write-Host 'Plex: Starting browser console' -ForegroundColor green -BackgroundColor black
-Add-Type -AssemblyName System.Windows.Forms
-if ($InstalledSoftware -match 'Chrome') {
-    [System.Windows.Forms.SendKeys]::SendWait('^+j')
-}
-if ($InstalledSoftware -match 'Firefox') {
-    [System.Windows.Forms.SendKeys]::SendWait('^+k')
-}
-Start-Sleep -Milliseconds 2000
+if (($null -eq $Plex_Installed) -or ($Plex_Installed -notmatch $PlexLatestVersion)) {
+    Write-Host "Plex: Downloading $PlexLatestVersion" -ForegroundColor green -BackgroundColor black
+    (New-Object System.Net.WebClient).DownloadFile("$PlexURL64bit", "$env:TEMP\PlexMediaServer-$PlexLatestVersion.exe")
 
-Write-Host 'Plex: Sending download click using browser console' -ForegroundColor green -BackgroundColor black
-[System.Windows.Forms.SendKeys]::SendWait("document.getElementsByClassName{(}'user-arch'{)}{[}0{]}.click{(}{)}")
-[System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
-Start-Sleep -Milliseconds 1000
-
-Write-Host 'Plex: Closing browser console' -ForegroundColor green -BackgroundColor black
-if ($InstalledSoftware -match 'Chrome') {
-    [System.Windows.Forms.SendKeys]::SendWait('^+j')
+    Write-Host "Plex: Installing $PlexLatestVersion" -ForegroundColor green -BackgroundColor black
+    Start-Process -FilePath "$env:TEMP\$env:TEMP\PlexMediaServer-$PlexLatestVersion.exe" -ArgumentList '/quiet /VERYSILENT'
 }
-if ($InstalledSoftware -match 'Firefox') {
-    [System.Windows.Forms.SendKeys]::SendWait('^+i')
-    Start-Sleep -Milliseconds 1000
-    [System.Windows.Forms.SendKeys]::SendWait('%o')
-    Start-Sleep -Milliseconds 1000
-    [System.Windows.Forms.SendKeys]::SendWait('s')
-}
-
-Write-Host 'Plex: Waiting for download to complete' -ForegroundColor green -BackgroundColor black
-$Downloads = (New-Object -ComObject Shell.Application).NameSpace('shell:Downloads').Self.Path
-While (!(Test-Path "$Downloads\PlexMediaServer*.exe" -ErrorAction SilentlyContinue)) {
-    Start-Sleep -Milliseconds 1000
-}
-do {
-    $dirStats = Get-Item "$Downloads\PlexMediaServer*.exe" | Measure-Object -Sum Length
-} 
-until( ($dirStats.Sum -ne 0) )
-
-Write-Host 'Plex: Installing' -ForegroundColor green -BackgroundColor black
-Start-Process -FilePath "$Downloads\PlexMediaServer*.exe" -ArgumentList '/VERYSILENT'
