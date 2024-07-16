@@ -2,26 +2,22 @@
 
 Everything about Flights.
 
-## Passport
-
-- a
-
 ## Tickets
 
 - [Skyscanner](https://www.skyscanner.co.il/)
 
-  > Use multiple devices to check the price.
-  >
-  > Use same name on passport to order tickets.
-  >
-  > Use Fly Card.
+> Use multiple devices to check the price.
+>
+> Use same name on passport to order tickets.
+>
+> Use Fly Card.
 
 ## Hotels
 
 - [Booking](https://www.booking.com/)
 - [Airbnb](https://www.airbnb.com/)
 
-  > Use multiple devices to check the price.
+> Use multiple devices to check the price.
 
 ## Travel
 
@@ -33,13 +29,16 @@ Everything about Flights.
 
 - [Israelpost](https://services.israelpost.co.il/postcurrency.nsf) - No fees on USD($), EURO(€) and GBP(£)
 - [Hamara](https://www.hamara.co.il/currency-exchange-2/changes-index/) - Locations
-- Check exchange fees from BNGAirport
-- Check the rest of the exchange fees and rates
+- [Airport](https://www.bankhapoalim.co.il/he/foreign-currency/foreign-exchange-in-the-terminal)
 
 ## Credit Card
 
-- Check the credit card commissions on foreign exchange fees and rates
+- Use credit card with low fees.
+
+> [Comapre](https://www.supermarker.themarker.com/CreditCards/CompareCreditCards.aspx)
 
 ## SIM
 
-- Sim (buy either an eSIM or buy abroad) don’t do a plan with the carrier
+- Buy SIM in the destination country.
+
+> Do not buy plans from the local carrier.
