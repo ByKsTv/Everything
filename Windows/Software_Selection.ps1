@@ -895,12 +895,6 @@ $Form_SoftwareSelection_OK.Add_Click{
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/NVCleanstall/Download.ps1')
     }
 
-    # Priority: Browser required, manual input
-    if ($CheckBox_Plex.Checked) {
-        Write-Host 'Software Selection: Plex: Initiating' -ForegroundColor green -BackgroundColor black
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Plex/Download.ps1')
-    }
-
     # Priority: Manual input
     if ($CheckBox_mpv.Checked) {
         Write-Host 'Software Selection: mpv: Initiating' -ForegroundColor green -BackgroundColor black
@@ -1074,6 +1068,11 @@ $Form_SoftwareSelection_OK.Add_Click{
         Write-Host 'Software Selection: PuTTY: Installing' -ForegroundColor green -BackgroundColor black
         Start-Process $env:TEMP\PuTTY.msi -ArgumentList '/quiet'
         
+    }
+
+    if ($CheckBox_Plex.Checked) {
+        Write-Host 'Software Selection: Plex: Initiating' -ForegroundColor green -BackgroundColor black
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Plex/Download.ps1')
     }
 
     if ($CheckBox_Python.Checked) {
