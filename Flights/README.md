@@ -2,6 +2,10 @@
 
 Everything about Flights.
 
+## Passport
+
+- a
+
 ## Tickets
 
 - [Skyscanner](https://www.skyscanner.co.il/)
@@ -11,6 +15,11 @@ Everything about Flights.
   > Use same name on passport to order tickets.
   >
   > Use Fly Card.
+
+## Bags
+
+- 8kg
+- 23kg
 
 ## Hotels
 

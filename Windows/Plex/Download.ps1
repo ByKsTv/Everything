@@ -17,7 +17,7 @@ if (!($PlexMediaServer_Exists)) {
 }
 
 Write-Host 'Plex: Getting current version' -ForegroundColor green -BackgroundColor black
-$Plex_Installed = Get-ChildItem -Directory -Path "$env:LOCALAPPDATA\Plex Media Server\Updates" | Sort-Object -Descending -Property Name | Select-Object -First 1 -ExpandProperty 'Name'
+$Plex_Installed = Get-ChildItem -Directory -Path "$env:LOCALAPPDATA\Plex Media Server\Updates" -ErrorAction SilentlyContinue | Sort-Object -Descending -Property Name | Select-Object -First 1 -ExpandProperty 'Name'
 
 Write-Host 'Plex: Getting latest release' -ForegroundColor green -BackgroundColor black
 # https://github.com/mkevenaar/chocolatey-packages/blob/master/automatic/plexmediaserver/update.ps1
