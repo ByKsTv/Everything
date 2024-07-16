@@ -16,11 +16,6 @@ Everything about Flights.
   >
   > Use Fly Card.
 
-## Bags
-
-- 8kg
-- 23kg
-
 ## Hotels
 
 - [Booking](https://www.booking.com/)
