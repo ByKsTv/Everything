@@ -3,7 +3,7 @@ Add-Type -AssemblyName System.Drawing
 [System.Windows.Forms.Application]::EnableVisualStyles()
 
 $Form_SoftwareSelection = New-Object System.Windows.Forms.Form
-$Form_SoftwareSelection.width = 340
+$Form_SoftwareSelection.width = 350
 $Form_SoftwareSelection.height = 600
 $Form_SoftwareSelection.Text = 'Software Selection'
 $Form_SoftwareSelection.StartPosition = 'CenterScreen'
@@ -86,10 +86,10 @@ $CheckBox_AdobeAcrobat.CheckAlign = 'MiddleLeft'
 $CheckBox_AdobeAcrobat.Checked = $false
 $Panel_SoftwareSelection.Controls.Add($CheckBox_AdobeAcrobat)
 
-if ($InstalledSoftware -match 'Adobe Acrobat') {
-    $CheckBox_AdobeAcrobat.Enabled = $false
-    $CheckBox_AdobeAcrobat.Text += ' (Installed)'
-}
+# if ($InstalledSoftware -match 'Adobe Acrobat') {
+#     $CheckBox_AdobeAcrobat.Enabled = $false
+#     $CheckBox_AdobeAcrobat.Text += ' (Installed)'
+# }
 
 $CheckBox_AdobeLightroomClassic = New-Object System.Windows.Forms.CheckBox
 $CheckBox_AdobeLightroomClassic.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
@@ -107,10 +107,10 @@ $CheckBox_AdobeLightroomClassic.CheckAlign = 'MiddleLeft'
 $CheckBox_AdobeLightroomClassic.Checked = $false
 $Panel_SoftwareSelection.Controls.Add($CheckBox_AdobeLightroomClassic)
 
-if ($InstalledSoftware -match 'Adobe Lightroom Classic') {
-    $CheckBox_AdobeLightroomClassic.Enabled = $false
-    $CheckBox_AdobeLightroomClassic.Text += ' (Installed)'
-}
+# if ($InstalledSoftware -match 'Adobe Lightroom Classic') {
+#     $CheckBox_AdobeLightroomClassic.Enabled = $false
+#     $CheckBox_AdobeLightroomClassic.Text += ' (Installed)'
+# }
 
 $CheckBox_AdobePhotoshop = New-Object System.Windows.Forms.CheckBox
 $CheckBox_AdobePhotoshop.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
@@ -127,10 +127,10 @@ $CheckBox_AdobePhotoshop.CheckAlign = 'MiddleLeft'
 $CheckBox_AdobePhotoshop.Checked = $false
 $Panel_SoftwareSelection.Controls.Add($CheckBox_AdobePhotoshop)
 
-if ($InstalledSoftware -match 'Adobe Photoshop') {
-    $CheckBox_AdobePhotoshop.Enabled = $false
-    $CheckBox_AdobePhotoshop.Text += ' (Installed)'
-}
+# if ($InstalledSoftware -match 'Adobe Photoshop') {
+#     $CheckBox_AdobePhotoshop.Enabled = $false
+#     $CheckBox_AdobePhotoshop.Text += ' (Installed)'
+# }
 
 $CheckBox_AnyDesk = New-Object System.Windows.Forms.CheckBox
 $CheckBox_AnyDesk.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
@@ -197,6 +197,43 @@ if (($BetterDiscord_Exists)) {
     $CheckBox_BetterDiscord.Enabled = $false
     $CheckBox_BetterDiscord.Text += ' (Installed)'
 }
+
+$CheckBox_Chrome = New-Object System.Windows.Forms.CheckBox
+$CheckBox_Chrome.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
+$CheckBox_Y_Axis += 22
+$CheckBox_Chrome.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
+# Official ICO from Website
+$CheckBox_Chrome_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQI8gIECPIKA/jx/PPo4e/hysqf8HvfrfB7z6kAi7+0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAjyAQQJEgkECQIP9AkSD/QJEg/0CRIP46lzz/C777/wu++/8Kvvv/C737kBC//xAAAAAAAAAAAAAAAABAjyAQQZMiz0KTIv9CkyP/QpMi/0KTIv9BkiL/QpMi/yWsnf8Pv/z+Dr/7/w6++/8OvvvPEL//EAAAAAAAAAAARJYkj0OWI/5EliT+RJUk/0SVJP9DlSP+Q5Uj/kSVJP89mj7/GLrg/xPA/P8SwPv/Er/7/xLA/Y8AAAAARJcoQEWXJv9GmCb/RZcm/0aYJv9dpEH/xd67//738v/x6Nf/0OXI/0u0kf8Wwfv/FsH8/xXA+/8VwPv/GL//IEeZKY9Hmij/SJoo/0iaKP9epkL/8ejX/++TUP/seSj/7Hko//GbXv/y6Nf/Nsn7/xrB+/8Zwfv/GcL8/xrC/J9JnCrfSZ0q/kmcKf9JnCr/0ebJ//GbX//teir/7Xoq/+16Kv/teiv/8JNS/7js/v8ew/z/HsP8/x3D/P8cw/vPS54s/0ueK/9Lniv/QHxi/u/i4v/ufC3/7Xst/+57Lf/ufC3/7nwt/+57Lf/+9/L/IsT8/yLE/P8hxPz/IcT8/02gLf9MoS3+Spk4/y9DyP/97+X/7n0v/+59L//vfTD/7n0w/+59MP/ufS//7+vk/ybF+/8lxfz+JcX7/yXE+/9Poi/PT6Mw/z1tiP8rOOD/vcH1//GOTP/wfjL/734y/+9+Mv/vfjL/855l/8nw/v8qxvz/Ksb8/ynG/P4pxvzfUKUwn0yXR/8vQdf/LTri/0dT5f/w4+T/9J9n//B/Nf/wfzX/85da//Ds5f9Izvz/Lcf7/y7H/P8tx/z+LMb7kFCnMCA9ZKH/Lzzj/y885P4uO+L/SFTn/8vO+P/w4+T//vfy/7/v/v9Nz/3/Msn8/jLJ/f4xyPz/Mcn9/jDH+0AAAAAAMD7mjzA95f8wPeX/MD3l/zA95f8wPOT/MD3k/zA85P8uO+T+Ljvj/y884/8uO+P/Ljvj/y474o8AAAAAAAAAADBA3xAyQObPMj/n/jJA5/8yQOb/MT/m/zE+5v4xP+b/MD3m/jA95f4wPeX+MD3l/i885M8wQN8QAAAAAAAAAAAAAAAAMEDfEDRA6I8zQej/M0Ho/zNA6P4yQOf/MkDn/zJA5/8yQOf/Mj/m/zI+5o8wQN8QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANEDrQDNB6JAzQunfNELp/zRC6v40QejPM0DonzBA5yAAAAAAAAAAAAAAAAAAAAAA8A8AAMADAACAAQAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAEAAIABAADAAwAA8A8AAA=='
+$CheckBox_Chrome_IconBytes = [Convert]::FromBase64String($CheckBox_Chrome_Icon64)
+$CheckBox_Chrome_IconStream = [System.IO.MemoryStream]::new($CheckBox_Chrome_IconBytes, 0, $CheckBox_Chrome_IconBytes.Length)
+$CheckBox_Chrome.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_Chrome_IconStream).GetHIcon()))
+$CheckBox_Chrome.ImageAlign = 'MiddleLeft'
+$CheckBox_Chrome.Text = '    Chrome'
+$CheckBox_Chrome.TextAlign = 'MiddleLeft'
+$CheckBox_Chrome.CheckAlign = 'MiddleLeft'
+$CheckBox_Chrome.Checked = $false
+$Panel_SoftwareSelection.Controls.Add($CheckBox_Chrome)
+
+if ($InstalledSoftware -match 'Google Chrome') {
+    $CheckBox_Chrome.Enabled = $false
+    $CheckBox_Chrome.Text += ' (Installed)'
+}
+
+$CheckBox_ChromeExtensions = New-Object System.Windows.Forms.CheckBox
+$CheckBox_ChromeExtensions.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
+$CheckBox_Y_Axis += 22
+$CheckBox_ChromeExtensions.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
+# Official ICO from Website
+$CheckBox_ChromeExtensions_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQI8gIECPIKA/jx/PPo4e/hysqf8HvfrfB7z6kAi7+0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAjyAQQJEgkECQIP9AkSD/QJEg/0CRIP46lzz/C777/wu++/8Kvvv/C737kBC//xAAAAAAAAAAAAAAAABAjyAQQZMiz0KTIv9CkyP/QpMi/0KTIv9BkiL/QpMi/yWsnf8Pv/z+Dr/7/w6++/8OvvvPEL//EAAAAAAAAAAARJYkj0OWI/5EliT+RJUk/0SVJP9DlSP+Q5Uj/kSVJP89mj7/GLrg/xPA/P8SwPv/Er/7/xLA/Y8AAAAARJcoQEWXJv9GmCb/RZcm/0aYJv9dpEH/xd67//738v/x6Nf/0OXI/0u0kf8Wwfv/FsH8/xXA+/8VwPv/GL//IEeZKY9Hmij/SJoo/0iaKP9epkL/8ejX/++TUP/seSj/7Hko//GbXv/y6Nf/Nsn7/xrB+/8Zwfv/GcL8/xrC/J9JnCrfSZ0q/kmcKf9JnCr/0ebJ//GbX//teir/7Xoq/+16Kv/teiv/8JNS/7js/v8ew/z/HsP8/x3D/P8cw/vPS54s/0ueK/9Lniv/QHxi/u/i4v/ufC3/7Xst/+57Lf/ufC3/7nwt/+57Lf/+9/L/IsT8/yLE/P8hxPz/IcT8/02gLf9MoS3+Spk4/y9DyP/97+X/7n0v/+59L//vfTD/7n0w/+59MP/ufS//7+vk/ybF+/8lxfz+JcX7/yXE+/9Poi/PT6Mw/z1tiP8rOOD/vcH1//GOTP/wfjL/734y/+9+Mv/vfjL/855l/8nw/v8qxvz/Ksb8/ynG/P4pxvzfUKUwn0yXR/8vQdf/LTri/0dT5f/w4+T/9J9n//B/Nf/wfzX/85da//Ds5f9Izvz/Lcf7/y7H/P8tx/z+LMb7kFCnMCA9ZKH/Lzzj/y885P4uO+L/SFTn/8vO+P/w4+T//vfy/7/v/v9Nz/3/Msn8/jLJ/f4xyPz/Mcn9/jDH+0AAAAAAMD7mjzA95f8wPeX/MD3l/zA95f8wPOT/MD3k/zA85P8uO+T+Ljvj/y884/8uO+P/Ljvj/y474o8AAAAAAAAAADBA3xAyQObPMj/n/jJA5/8yQOb/MT/m/zE+5v4xP+b/MD3m/jA95f4wPeX+MD3l/i885M8wQN8QAAAAAAAAAAAAAAAAMEDfEDRA6I8zQej/M0Ho/zNA6P4yQOf/MkDn/zJA5/8yQOf/Mj/m/zI+5o8wQN8QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANEDrQDNB6JAzQunfNELp/zRC6v40QejPM0DonzBA5yAAAAAAAAAAAAAAAAAAAAAA8A8AAMADAACAAQAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAEAAIABAADAAwAA8A8AAA=='
+$CheckBox_ChromeExtensions_IconBytes = [Convert]::FromBase64String($CheckBox_ChromeExtensions_Icon64)
+$CheckBox_ChromeExtensions_IconStream = [System.IO.MemoryStream]::new($CheckBox_ChromeExtensions_IconBytes, 0, $CheckBox_ChromeExtensions_IconBytes.Length)
+$CheckBox_ChromeExtensions.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_ChromeExtensions_IconStream).GetHIcon()))
+$CheckBox_ChromeExtensions.ImageAlign = 'MiddleLeft'
+$CheckBox_ChromeExtensions.Text = '    Chrome - Extensions'
+$CheckBox_ChromeExtensions.TextAlign = 'MiddleLeft'
+$CheckBox_ChromeExtensions.CheckAlign = 'MiddleLeft'
+$CheckBox_ChromeExtensions.Checked = $false
+$Panel_SoftwareSelection.Controls.Add($CheckBox_ChromeExtensions)
 
 $CheckBox_CrystalDiskInfo = New-Object System.Windows.Forms.CheckBox
 $CheckBox_CrystalDiskInfo.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
@@ -323,6 +360,89 @@ if ($InstalledSoftware -match 'Epic Games Launcher') {
     $CheckBox_EpicGames.Enabled = $false
     $CheckBox_EpicGames.Text += ' (Installed)'
 }
+
+$CheckBox_eMClientLicenseFix = New-Object System.Windows.Forms.CheckBox
+$CheckBox_eMClientLicenseFix.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
+$CheckBox_Y_Axis += 22
+$CheckBox_eMClientLicenseFix.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
+# Official ICO from EXE
+$CheckBox_eMClientLicenseFix_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAACwAAAA8AAAANAAAADwAAABwAAAAtAAAAOAAAADsAAAA7AAAANgAAACoAAAAXAAAABwAAAAEAAAAAAAAACwAAACQAAAAzAAAAMwAAADUAQXNHAITilwCQ9tEAk/ztAJP76QCP9ckAgNuIACdJOwAAAB8AAAAIAAAAAAAAAAsAjPGpAInqtQCG5KgAheKYAJP76ACU/vwAkfq6AJH4iwCQ+o8Ak/vIAJT+/wCS+NsAXaVSAAAAHAAAAAUAAAAEAI3zkQCU/v8Ak/zzAJT+/ACU/MwAiO0rAAAAAQAAAAAAAAAAAAAAAQCL70AAk/zkAJL76ABRk0IAAAAQAAAAAQBywyYAlP35AIbmlgAAABQAgP8CAAAAAAAAAAUAAAANAAAADAAAAAQAAAABAIPgKQCT/O4AjPG6AAAAHwAAAAAAAAAQAIzwrQCT/OwALE4XAAAAAQAAAAgAAAAcAAAAMQAAAC8AAAAYAAAABgAAAAQAiex3AJT+/gBkskIAAAAAAAAAEQCL7qcAkvrgAAAAFAAAAA0AAAAkAEV8RgCN8cQAiOqtACpRPAAAAB8AAAALAFWTIQCU/fkAg+SCAAAAAAAAABEAj/XEAIzxuwAAACQAAAArAGi1YACS+uIAlP32AJT+/QCQ9tEAWJpRAAAAJwAAACUAkfndAIvtngAAAAAAAAAOAJD2xQCM774AAABCAH3ZhQCU/fcAk/vaAIjpLwCK8EYAlP3rAJP87QB0xnAAAABCAJD32wCM76IAAAAAAAAACACO86cAj/fgAIfotQCU/v8AkvuvAIfhEQAAAAAAAAABAITmHwCS+8kAlP79AIDeowCU/fkAi+1/AAAAAAAAAAIAiOleAJT+/wCU/vwAiOyFAAAACQAAAAEAAAAAAAAAAAAAAAEAWpYRAIzvogCU/v8AlP7/AIDeNgAAAAAAAAAAAFWVDACT/N4AkfjZAC1WPgAAACIAAAASAAAADQAAAA0AAAAUAAAAJQBPikoAk/ztAJD6vQAAAAYAAAAAAAAAAAAAAAEAie1FAJT++wCO9MgATolOAAAANwAAADIAAAAyAAAAOQBfqFsAkfjaAJT97wCG5igAAAABAAAAAAAAAAAAAAAAAAAAAgCN81MAlP3xAJT99wCL8LUAhOKTAIXklgCO88AAlP78AJT95ACJ8DQAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAI3tHQCS+pMAlP3fAJT+/wCU/v0Ak/vWAJD5gQCH4REAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
+$CheckBox_eMClientLicenseFix_IconBytes = [Convert]::FromBase64String($CheckBox_eMClientLicenseFix_Icon64)
+$CheckBox_eMClientLicenseFix_IconStream = [System.IO.MemoryStream]::new($CheckBox_eMClientLicenseFix_IconBytes, 0, $CheckBox_eMClientLicenseFix_IconBytes.Length)
+$CheckBox_eMClientLicenseFix.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_eMClientLicenseFix_IconStream).GetHIcon()))
+$CheckBox_eMClientLicenseFix.ImageAlign = 'MiddleLeft'
+$CheckBox_eMClientLicenseFix.Text = '    eM Client - License Fix'
+$CheckBox_eMClientLicenseFix.TextAlign = 'MiddleLeft'
+$CheckBox_eMClientLicenseFix.CheckAlign = 'MiddleLeft'
+$CheckBox_eMClientLicenseFix.Checked = $false
+$Panel_SoftwareSelection.Controls.Add($CheckBox_eMClientLicenseFix)
+
+$eM_Client_License_Fix = 'eM Client License Fix'
+$eM_Client_License_Fix_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $eM_Client_License_Fix }
+if (($eM_Client_License_Fix_Exists)) {
+    $CheckBox_eMClientLicenseFix.Enabled = $false
+    $CheckBox_eMClientLicenseFix.Text += ' (Installed)'
+}
+
+$CheckBox_Firefox = New-Object System.Windows.Forms.CheckBox
+$CheckBox_Firefox.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
+$CheckBox_Y_Axis += 22
+$CheckBox_Firefox.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
+# Official ICO from EXE
+$CheckBox_Firefox_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcQvlYG0M479qDeL/aA7h/2kO4f9tDeP/cAvlr3QK52AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABxC+UQbQzjv2MT4v9YIu3/Uirz/00x+v9LM/v/TC72/1Mm8P9iF+n/bBLrv2se8BAAAAAAAAAAAAAAAAByCuUQbA3jz1ki7v9OMvz/STb+/0U5//9DPf//QUH//z9D//8+Rf//QET9/1I28/9hOPPPYU33EAAAAAAAAAAAbQ/mv1Ms9/9JNv7/RDv//0FB//89R///O0v//zhP//83Uv//NVX//zZd//85a///TWH3/1ti+K8AAAAAcwrmQFkj8v9FOf//QUH//z1I//8xY///XlfB/4dFjf+JQ4//UlHZ/zNj//8zdf//NIb//zeS//9Rfvr/Von8QGUY7Z9EPP//P0X//zpN//8sbf//d2KX/7ZBWP/ASlr/xEVj/8I2cP9iY83/M4j//zyM/v81qP//Q6P9/1Kd/Z9KNvu/PUf//zdR//8yWv//Ooni/7w+Yf/PUmH/21pm/+BVcv/cRH//wTeN/ymr//86n///QqX+/z28/v9PsP6/Sjn5/zdS//8wXf//Kmf//ymo9v+9VIX/51h2//Jeff/2V4j/7UqQ/9c3kf8swv//Nbn//0qm//88zv//TMT+vztN/c8wXf//I33//xyr//8jtv//K8D//2Ov4f+zhrz/+FGc/+9IoP/ITKr/NtD//zvE//9HvP//RtD//0nV/r8wXf+vKmj//xyN//8dpf//IK3//x2t//8jtf//XaPr/9dUuf/gS7T/Xr/v/z3Y//8/yv//Rs3//0jY//9F3P+vKmj/YCRy//8cgP//FY3//xOd//8opPr/tVrE/+k+uP/oPLv/zk69/3Gh4v860///Qdf//0bZ//9I2///ReH/YAAAAAAefP/fFor//xqU/+8rmv//R5X2j942sI/AWcXfpHTQ/3yg4P8+2///QN7//0Lf//9G3f//S+L/30jj/xAAAAAAGIb/MBSZ/+8Xpf9gO57/jzu0/4AAAAAANc7/QDjT//9A3///Reb//0Xm//9D4v//SuL/j0/m/zAAAAAAAAAAAAAAAAAaqP8wHq7/IAAAAAAAAAAAAAAAAAAAAABB4f/vSOr//0rt//9I6f//ReX/YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASOr/cEzv//9M8P//Sez/jwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABN8f+PTfH/3wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
+$CheckBox_Firefox_IconBytes = [Convert]::FromBase64String($CheckBox_Firefox_Icon64)
+$CheckBox_Firefox_IconStream = [System.IO.MemoryStream]::new($CheckBox_Firefox_IconBytes, 0, $CheckBox_Firefox_IconBytes.Length)
+$CheckBox_Firefox.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_Firefox_IconStream).GetHIcon()))
+$CheckBox_Firefox.ImageAlign = 'MiddleLeft'
+$CheckBox_Firefox.Text = '    Firefox'
+$CheckBox_Firefox.TextAlign = 'MiddleLeft'
+$CheckBox_Firefox.CheckAlign = 'MiddleLeft'
+$CheckBox_Firefox.Checked = $false
+$Panel_SoftwareSelection.Controls.Add($CheckBox_Firefox)
+
+if ($InstalledSoftware -match 'Mozilla Firefox') {
+    $CheckBox_Firefox.Enabled = $false
+    $CheckBox_Firefox.Text += ' (Installed)'
+}
+
+$CheckBox_FirefoxArkenfox = New-Object System.Windows.Forms.CheckBox
+$CheckBox_FirefoxArkenfox.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
+$CheckBox_Y_Axis += 22
+$CheckBox_FirefoxArkenfox.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
+# Official ICO from EXE
+$CheckBox_FirefoxArkenfox_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcQvlYG0M479qDeL/aA7h/2kO4f9tDeP/cAvlr3QK52AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABxC+UQbQzjv2MT4v9YIu3/Uirz/00x+v9LM/v/TC72/1Mm8P9iF+n/bBLrv2se8BAAAAAAAAAAAAAAAAByCuUQbA3jz1ki7v9OMvz/STb+/0U5//9DPf//QUH//z9D//8+Rf//QET9/1I28/9hOPPPYU33EAAAAAAAAAAAbQ/mv1Ms9/9JNv7/RDv//0FB//89R///O0v//zhP//83Uv//NVX//zZd//85a///TWH3/1ti+K8AAAAAcwrmQFkj8v9FOf//QUH//z1I//8xY///XlfB/4dFjf+JQ4//UlHZ/zNj//8zdf//NIb//zeS//9Rfvr/Von8QGUY7Z9EPP//P0X//zpN//8sbf//d2KX/7ZBWP/ASlr/xEVj/8I2cP9iY83/M4j//zyM/v81qP//Q6P9/1Kd/Z9KNvu/PUf//zdR//8yWv//Ooni/7w+Yf/PUmH/21pm/+BVcv/cRH//wTeN/ymr//86n///QqX+/z28/v9PsP6/Sjn5/zdS//8wXf//Kmf//ymo9v+9VIX/51h2//Jeff/2V4j/7UqQ/9c3kf8swv//Nbn//0qm//88zv//TMT+vztN/c8wXf//I33//xyr//8jtv//K8D//2Ov4f+zhrz/+FGc/+9IoP/ITKr/NtD//zvE//9HvP//RtD//0nV/r8wXf+vKmj//xyN//8dpf//IK3//x2t//8jtf//XaPr/9dUuf/gS7T/Xr/v/z3Y//8/yv//Rs3//0jY//9F3P+vKmj/YCRy//8cgP//FY3//xOd//8opPr/tVrE/+k+uP/oPLv/zk69/3Gh4v860///Qdf//0bZ//9I2///ReH/YAAAAAAefP/fFor//xqU/+8rmv//R5X2j942sI/AWcXfpHTQ/3yg4P8+2///QN7//0Lf//9G3f//S+L/30jj/xAAAAAAGIb/MBSZ/+8Xpf9gO57/jzu0/4AAAAAANc7/QDjT//9A3///Reb//0Xm//9D4v//SuL/j0/m/zAAAAAAAAAAAAAAAAAaqP8wHq7/IAAAAAAAAAAAAAAAAAAAAABB4f/vSOr//0rt//9I6f//ReX/YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASOr/cEzv//9M8P//Sez/jwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABN8f+PTfH/3wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
+$CheckBox_FirefoxArkenfox_IconBytes = [Convert]::FromBase64String($CheckBox_FirefoxArkenfox_Icon64)
+$CheckBox_FirefoxArkenfox_IconStream = [System.IO.MemoryStream]::new($CheckBox_FirefoxArkenfox_IconBytes, 0, $CheckBox_FirefoxArkenfox_IconBytes.Length)
+$CheckBox_FirefoxArkenfox.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_FirefoxArkenfox_IconStream).GetHIcon()))
+$CheckBox_FirefoxArkenfox.ImageAlign = 'MiddleLeft'
+$CheckBox_FirefoxArkenfox.Text = '    Firefox - Arkenfox'
+$CheckBox_FirefoxArkenfox.TextAlign = 'MiddleLeft'
+$CheckBox_FirefoxArkenfox.CheckAlign = 'MiddleLeft'
+$CheckBox_FirefoxArkenfox.Checked = $false
+$Panel_SoftwareSelection.Controls.Add($CheckBox_FirefoxArkenfox)
+
+$Arkenfox_Update = 'Arkenfox Update'
+$Arkenfox_Update_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $Arkenfox_Update }
+if (($Arkenfox_Update_Exists)) {
+    $CheckBox_FirefoxArkenfox.Enabled = $false
+    $CheckBox_FirefoxArkenfox.Text += ' (Installed)'
+}
+
+$CheckBox_FirefoxExtensions = New-Object System.Windows.Forms.CheckBox
+$CheckBox_FirefoxExtensions.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
+$CheckBox_Y_Axis += 22
+$CheckBox_FirefoxExtensions.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
+# Official ICO from EXE
+$CheckBox_FirefoxExtensions_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcQvlYG0M479qDeL/aA7h/2kO4f9tDeP/cAvlr3QK52AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABxC+UQbQzjv2MT4v9YIu3/Uirz/00x+v9LM/v/TC72/1Mm8P9iF+n/bBLrv2se8BAAAAAAAAAAAAAAAAByCuUQbA3jz1ki7v9OMvz/STb+/0U5//9DPf//QUH//z9D//8+Rf//QET9/1I28/9hOPPPYU33EAAAAAAAAAAAbQ/mv1Ms9/9JNv7/RDv//0FB//89R///O0v//zhP//83Uv//NVX//zZd//85a///TWH3/1ti+K8AAAAAcwrmQFkj8v9FOf//QUH//z1I//8xY///XlfB/4dFjf+JQ4//UlHZ/zNj//8zdf//NIb//zeS//9Rfvr/Von8QGUY7Z9EPP//P0X//zpN//8sbf//d2KX/7ZBWP/ASlr/xEVj/8I2cP9iY83/M4j//zyM/v81qP//Q6P9/1Kd/Z9KNvu/PUf//zdR//8yWv//Ooni/7w+Yf/PUmH/21pm/+BVcv/cRH//wTeN/ymr//86n///QqX+/z28/v9PsP6/Sjn5/zdS//8wXf//Kmf//ymo9v+9VIX/51h2//Jeff/2V4j/7UqQ/9c3kf8swv//Nbn//0qm//88zv//TMT+vztN/c8wXf//I33//xyr//8jtv//K8D//2Ov4f+zhrz/+FGc/+9IoP/ITKr/NtD//zvE//9HvP//RtD//0nV/r8wXf+vKmj//xyN//8dpf//IK3//x2t//8jtf//XaPr/9dUuf/gS7T/Xr/v/z3Y//8/yv//Rs3//0jY//9F3P+vKmj/YCRy//8cgP//FY3//xOd//8opPr/tVrE/+k+uP/oPLv/zk69/3Gh4v860///Qdf//0bZ//9I2///ReH/YAAAAAAefP/fFor//xqU/+8rmv//R5X2j942sI/AWcXfpHTQ/3yg4P8+2///QN7//0Lf//9G3f//S+L/30jj/xAAAAAAGIb/MBSZ/+8Xpf9gO57/jzu0/4AAAAAANc7/QDjT//9A3///Reb//0Xm//9D4v//SuL/j0/m/zAAAAAAAAAAAAAAAAAaqP8wHq7/IAAAAAAAAAAAAAAAAAAAAABB4f/vSOr//0rt//9I6f//ReX/YAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASOr/cEzv//9M8P//Sez/jwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABN8f+PTfH/3wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
+$CheckBox_FirefoxExtensions_IconBytes = [Convert]::FromBase64String($CheckBox_FirefoxExtensions_Icon64)
+$CheckBox_FirefoxExtensions_IconStream = [System.IO.MemoryStream]::new($CheckBox_FirefoxExtensions_IconBytes, 0, $CheckBox_FirefoxExtensions_IconBytes.Length)
+$CheckBox_FirefoxExtensions.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_FirefoxExtensions_IconStream).GetHIcon()))
+$CheckBox_FirefoxExtensions.ImageAlign = 'MiddleLeft'
+$CheckBox_FirefoxExtensions.Text = '    Firefox - Extensions'
+$CheckBox_FirefoxExtensions.TextAlign = 'MiddleLeft'
+$CheckBox_FirefoxExtensions.CheckAlign = 'MiddleLeft'
+$CheckBox_FirefoxExtensions.Checked = $false
+$Panel_SoftwareSelection.Controls.Add($CheckBox_FirefoxExtensions)
 
 $CheckBox_Git = New-Object System.Windows.Forms.CheckBox
 $CheckBox_Git.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
@@ -570,6 +690,22 @@ if ($InstalledSoftware -match 'NVCleanstall') {
     $CheckBox_NVCleanstall.Text += ' (Installed)'
 }
 
+$CheckBox_nvidiaProfileInspector = New-Object System.Windows.Forms.CheckBox
+$CheckBox_nvidiaProfileInspector.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
+$CheckBox_Y_Axis += 22
+$CheckBox_nvidiaProfileInspector.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
+# Official ICO from EXE
+$CheckBox_nvidiaProfileInspector_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAEgAAACAAAAAeAAAADwAAAAYAAAAIAAAACAAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAKAAAAJgAAAE8AAABlAAAATgAAACsAAAAoAAAAMAAAAB8AAAAHAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAPAAAANwZcR6EJkG/mCIts4ARJOHcBDAlNAzcqgwRCM4QAAAAnAAAABgAAAAAAAAAAAAAAAAAAAAIAAAATAiYdTQmWdNkLvZL/C7SL+QVUQX4BGBJXCZJx3QmTcvEDMCVfAAAAEwAAAAEAAAAAAAAAAAAAAAQAAAAZBD0vYwqvh+4MyZv/DL+T+AVZRXoDLyRVCq6H5wu0i/0EPzGRAAAAKAAAAAQAAAAAAAAAAAAAAAIAAAAYBVA+dAu8kvQN1aX/DMud/QRLOpIDKiBCCreN3AzMnv8GalLPAAAAhQAAAEcAAAAZAAAABQAAAAAAAAAECH9ibQzEmPoN4K3/DeKv/wZnUNMAAACICZBvsQvDl/8Mz6D/Cq2G4gIpIKYAAACFAAAAUgAAABoAAAACCIdoMgqshfkMzp//Duay/w7nsv8LuY/wAiYduQAEA5IHfmKtDMWY9QzJm/8LuY/7BmBKswAAAHAAAAA4AAAADAAAAAAJmXYlC7iOugzSov8N3qz/Dd2r/wzQoP0IgmTaARIOqgEYE5EIjW62C7iO8QqrhP0EPzBxAAAANwAAABEAAAAAAAAAAAAAAAAKqYJRC8GV3gzQof8N1qX/DNSk/wvGmfgHe1/UARgSqwAIBo8GZE2iB39iuQAIBjMAAAAPAAAAAAAAAAAAAAAAAAAAAAAAAAYKq4RmC72S0wzLnf8M0KH/DNGh/wzKnPsIjGzZAikgrwAAAI4AAABgAAAAJQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKp4FBC7eNsgzGmf8My53/DMqc/wvBlf8Hf2LRAAAAfQAAAEkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKn3scCqyGfAu3jcsLu5D/Cq+H/wd1WqEAAAA+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACZl3HAmUclkJi2yXBmFKPQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/h8AAPgDAADwAwAA4AMAAMAHAACAAwAAgAEAAAAAAACAAAAA4AAAAPgAAAD+AAAA/4AAAP/wAAD//wAA//8AAA=='
+$CheckBox_nvidiaProfileInspector_IconBytes = [Convert]::FromBase64String($CheckBox_nvidiaProfileInspector_Icon64)
+$CheckBox_nvidiaProfileInspector_IconStream = [System.IO.MemoryStream]::new($CheckBox_nvidiaProfileInspector_IconBytes, 0, $CheckBox_nvidiaProfileInspector_IconBytes.Length)
+$CheckBox_nvidiaProfileInspector.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_nvidiaProfileInspector_IconStream).GetHIcon()))
+$CheckBox_nvidiaProfileInspector.ImageAlign = 'MiddleLeft'
+$CheckBox_nvidiaProfileInspector.Text = '    nvidiaProfileInspector'
+$CheckBox_nvidiaProfileInspector.TextAlign = 'MiddleLeft'
+$CheckBox_nvidiaProfileInspector.CheckAlign = 'MiddleLeft'
+$CheckBox_nvidiaProfileInspector.Checked = $false
+$Panel_SoftwareSelection.Controls.Add($CheckBox_nvidiaProfileInspector)
+
 $CheckBox_MicrosoftOffice = New-Object System.Windows.Forms.CheckBox
 $CheckBox_MicrosoftOffice.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
 $CheckBox_Y_Axis += 22
@@ -586,10 +722,10 @@ $CheckBox_MicrosoftOffice.CheckAlign = 'MiddleLeft'
 $CheckBox_MicrosoftOffice.Checked = $false
 $Panel_SoftwareSelection.Controls.Add($CheckBox_MicrosoftOffice)
 
-if ($InstalledSoftware -match 'Microsoft Office' -or $InstalledSoftware -match 'Microsoft 365') {
-    $CheckBox_MicrosoftOffice.Enabled = $false
-    $CheckBox_MicrosoftOffice.Text += ' (Installed)'
-}
+# if ($InstalledSoftware -match 'Microsoft Office' -or $InstalledSoftware -match 'Microsoft 365') {
+#     $CheckBox_MicrosoftOffice.Enabled = $false
+#     $CheckBox_MicrosoftOffice.Text += ' (Installed)'
+# }
 
 $CheckBox_Plex = New-Object System.Windows.Forms.CheckBox
 $CheckBox_Plex.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
@@ -791,7 +927,7 @@ $CheckBox_Valorant.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $
 $CheckBox_Y_Axis += 22
 $CheckBox_Valorant.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
 # Resized from Official ICO from Website
-$CheckBox_Valorant_Icon64 = 'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAFPSURBVDhPxZO7SkNBEIY/L5FoxEtjFMRXEAQLS5tAwFJQUbFIFWIjCBbWWohoIYKNhZViKoVEvICVTSx8AMXWCxIlYiIGEmfOLIRoCFELv2Z3Zmf+859ht64o8Afq3fprTCCb85Yf4XpMYG4Rnl+8bU1orfYIJtDZAeExb1sT4XHrEUygsQF0ltNRL6zKlNQUC9YjlIbo98P1LSyvu0QFltbgRmq01mECuXdz0N4G+weQPPXSZRydQfzQarRWewS7B/ePEBqF7i4vyd0DJHahr9didTYyAT1Bi9MyxJO41AedgHKRgui8iRQklclAyjmZiUFrQPyKYf1yZBKGBr2j8pu4uQ07ezbhjzw0y78mJa5CaYhKLAID/fCWhSafuHiF2QV3WJlyAWVrFQIt8JSGvLg4PoeVDXf4ncqPSRsvr8AnLhS9eaFh23/hv18jfAIHJ22Acc+kJQAAAABJRU5ErkJggg=='
+$CheckBox_Valorant_Icon64 = 'AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFVG/wBURv8AVEb/KFRG/1lURv9aVEb/W1RG/09URv8LVEb/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFNF/wBURv8AVEb/IVRG/8VURv//VEb//lRG//tURv+FVEb/BVRG/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABURv8AVEb/EVRG/6lURv//VEb//1RG//9URv+nVEb/EFRG/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABURv8AVEb/BlRG/4lURv/8VEb//1RG//9URv/EVEb/IVVG/wNVRv8FVUb/BVVG/wRVRv8BVUb/AAAAAABURv8AUkX/AVRG/2hURv/1VEb//1RG//9URv/bVEb/NVRG/w9URv+PVEb/tVRG/7NURv+zVEb/XVRF/wFURv8AVEb/AFRG/0ZURv/oVEb//1RG//9URv/tVEb/UlRG/wBURv8AVEb/VlRG/+9URv//VEb//1RG/+hURv9HVEb/AFBE/wFURv+fVEb//1RG//9URv/4VEb/clRG/wJURv8AVEb/AFRG/wJURv9yVEb/+FRG//9URv//VEb/n1ZE/wFRRf8CVEb/pFRG//9URv/+VEb/k1RG/wlURv8AAAAAAAAAAABURv8AVEb/CVRG/5RURv/+VEb//1RG/6RVRf8CUUX/AlRG/6RURv//VEb/s1RG/xVURv8AAAAAAAAAAAAAAAAAAAAAAFRG/wBURv8VVEb/s1RG//9URv+kVUX/AlFF/wJURv+mVEb/0lRG/yhURv8AVEX/AAAAAAAAAAAAAAAAAAAAAABVR/8AVEb/AFRG/yhURv/SVEb/plVF/wJSRf8EVEb/iFRG/0VURv8AVEX/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFRG/wBURv8AVEb/RVRG/4hVRf8EU0b/AlRG/xpURv8DVEb/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVEb/AFRG/wNURv8aVEb/AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAP//AAD4HwAA8B8AAOA/AADAAwAAgAEAAIGBAAABgAAAA8AAAAfgAAAP8AAAH/gAAB/4AAD//wAA//8AAA=='
 $CheckBox_Valorant_IconBytes = [Convert]::FromBase64String($CheckBox_Valorant_Icon64)
 $CheckBox_Valorant_IconStream = [System.IO.MemoryStream]::new($CheckBox_Valorant_IconBytes, 0, $CheckBox_Valorant_IconBytes.Length)
 $CheckBox_Valorant.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_Valorant_IconStream).GetHIcon()))
@@ -829,6 +965,22 @@ if (($VSCode_Exists)) {
     $CheckBox_VisualStudioCode.Enabled = $false
     $CheckBox_VisualStudioCode.Text += ' (Installed)'
 }
+
+$CheckBox_Windows10IoTEnterprise2021 = New-Object System.Windows.Forms.CheckBox
+$CheckBox_Windows10IoTEnterprise2021.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
+$CheckBox_Y_Axis += 22
+$CheckBox_Windows10IoTEnterprise2021.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
+# Official ICO from EXE
+$CheckBox_Windows10IoTEnterprise2021_Icon64 = 'AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANR4CgDUeAoF1HgKEtR4CiLUeAo71HgKWNR4CnrUeApRAAAAANR4CgDUeAoG1HgKEtR4CiDUeAo51HgKI9R4CjzUeAqP1HgKq9R4CsXUeArd1HgK69R4CvfUeAr/1HgKkNR4CknUeAqT1HgKsdR4CsvUeArh1HgK8dR4CnnUeAp+1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4CpDUeAqR1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAp91HgKfdR4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAqQ1HgKkNR4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgKfdR4Cn3UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgKkNR4CpDUeAr/1HgK/9R4Cv/UeAr/1HgK/9R4Cn3UeAp91HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4CpDUeAqR1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAp+1HgKftR4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAqR1HgKR9R4Cn7UeAp91HgKfdR4Cn3UeAp+1HgKPtR4Cj7UeAp+1HgKfdR4Cn3UeAp91HgKfdR4Cn3UeAp+1HgKR9R4CkfUeAp+1HgKfdR4Cn3UeAp91HgKftR4Cj7UeAo+1HgKftR4Cn3UeAp91HgKfdR4Cn3UeAp91HgKftR4CkfUeAqR1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAp+1HgKftR4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAqR1HgKkNR4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgKfdR4Cn3UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgKkNR4CpDUeAr/1HgK/9R4Cv/UeAr/1HgK/9R4Cn3UeAp91HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4CpDUeAqR1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAp91HgKfdR4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAqQ1HgKSdR4CpPUeAqx1HgKy9R4CuHUeArx1HgKedR4Cn7UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgKkAAAAADUeAoA1HgKBtR4ChLUeAog1HgKOdR4CiPUeAo81HgKj9R4CqvUeArF1HgK3dR4CuvUeAr31HgK/9R4CpAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANR4CgDUeAoF1HgKEtR4CiLUeAo71HgKWNR4CnrUeApR/4AAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAA/4AAAA=='
+$CheckBox_Windows10IoTEnterprise2021_IconBytes = [Convert]::FromBase64String($CheckBox_Windows10IoTEnterprise2021_Icon64)
+$CheckBox_Windows10IoTEnterprise2021_IconStream = [System.IO.MemoryStream]::new($CheckBox_Windows10IoTEnterprise2021_IconBytes, 0, $CheckBox_Windows10IoTEnterprise2021_IconBytes.Length)
+$CheckBox_Windows10IoTEnterprise2021.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_Windows10IoTEnterprise2021_IconStream).GetHIcon()))
+$CheckBox_Windows10IoTEnterprise2021.ImageAlign = 'MiddleLeft'
+$CheckBox_Windows10IoTEnterprise2021.Text = '    Windows 10 IoT Enterprise LTSC 2021'
+$CheckBox_Windows10IoTEnterprise2021.TextAlign = 'MiddleLeft'
+$CheckBox_Windows10IoTEnterprise2021.CheckAlign = 'MiddleLeft'
+$CheckBox_Windows10IoTEnterprise2021.Checked = $false
+$Panel_SoftwareSelection.Controls.Add($CheckBox_Windows10IoTEnterprise2021)
 
 $CheckBox_Zoom = New-Object System.Windows.Forms.CheckBox
 $CheckBox_Zoom.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
@@ -983,6 +1135,16 @@ $Form_SoftwareSelection_OK.Add_Click{
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/BetterDiscord/Download.ps1')
     }
 
+    if ($CheckBox_Chrome.Checked) {
+        Write-Host 'Software Selection: Google Chrome: Initiating' -ForegroundColor green -BackgroundColor black
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Chrome/Download.ps1')
+    }
+
+    if ($CheckBox_ChromeExtensions.Checked) {
+        Write-Host 'Software Selection: Google Chrome - Extensions: Initiating' -ForegroundColor green -BackgroundColor black
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Chrome/Extensions.ps1')
+    }
+
     if ($CheckBox_DisplayDriverUninstaller.Checked) {
         Write-Host 'Software Selection: Display Driver Uninstaller: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Display_Driver_Uninstaller/Download.ps1')
@@ -1024,6 +1186,26 @@ $Form_SoftwareSelection_OK.Add_Click{
         Start-Process $env:TEMP\EpicInstaller.msi -ArgumentList '/quiet /norestart'
     }
 
+    if ($CheckBox_eMClientLicenseFix.Checked) {
+        Write-Host 'Software Selection: eM Client - License Fix: Initiating' -ForegroundColor green -BackgroundColor black
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/eM_Client/License.ps1')
+    }
+
+    if ($CheckBox_Firefox.Checked) {
+        Write-Host 'Software Selection: Mozilla Firefox: Initiating' -ForegroundColor green -BackgroundColor black
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Download.ps1')
+    }
+
+    if ($CheckBox_FirefoxArkenfox.Checked) {
+        Write-Host 'Software Selection: Mozilla Firefox - Arkenfox: Initiating' -ForegroundColor green -BackgroundColor black
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Arkenfox.ps1')
+    }
+
+    if ($CheckBox_FirefoxExtensions.Checked) {
+        Write-Host 'Software Selection: Mozilla Firefox - Extensions: Initiating' -ForegroundColor green -BackgroundColor black
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Extensions.ps1')
+    }
+
     if ($CheckBox_Git.Checked) {
         Write-Host 'Software Selection: Git: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Git/Download.ps1')
@@ -1059,6 +1241,11 @@ $Form_SoftwareSelection_OK.Add_Click{
     if ($CheckBox_NotepadPlusPlus.Checked) {
         Write-Host 'Software Selection: Notepad++: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Notepad++/Download.ps1')
+    }
+
+    if ($CheckBox_nvidiaProfileInspector.Checked) {
+        Write-Host 'Software Selection: nvidiaProfileInspector: Initiating' -ForegroundColor green -BackgroundColor black
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/nvidiaProfileInspector/Download.ps1')
     }
 
     if ($CheckBox_PuTTY.Checked) {
@@ -1124,6 +1311,11 @@ $Form_SoftwareSelection_OK.Add_Click{
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Visual_Studio_Code/Download.ps1')
     }
 
+    if ($CheckBox_Windows10IoTEnterprise2021.Checked) {
+        Write-Host 'Software Selection: Windows 10 IoT Enterprise LTSC 2021: Initiating' -ForegroundColor green -BackgroundColor black
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/ISO.ps1')
+    }
+
     if ($CheckBox_Zoom.Checked) {
         Write-Host 'Software Selection: Zoom: Downloading' -ForegroundColor green -BackgroundColor black
         (New-Object System.Net.WebClient).DownloadFile('https://zoom.us/client/latest/ZoomInstaller.exe?archType=x64', "$env:TEMP\ZoomInstallerFull-x64.exe")
@@ -1137,30 +1329,810 @@ $Form_SoftwareSelection_OK.Add_Click{
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Edge/Uninstall.ps1')
     }
     
-    # Priority: Manual input
     if ($CheckBox_MicrosoftOffice.Checked) {
-        Write-Host 'Software Selection: Microsoft Office: Initiating' -ForegroundColor green -BackgroundColor black
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Office/Download.ps1')
+
+        Add-Type -AssemblyName System.Windows.Forms
+        Add-Type -AssemblyName System.Drawing
+        [System.Windows.Forms.Application]::EnableVisualStyles()
+        
+        $Form_OfficeSelection = New-Object System.Windows.Forms.Form
+        $Form_OfficeSelection.width = 900
+        $Form_OfficeSelection.height = 470
+        $Form_OfficeSelection.Text = 'Office Selection'
+        $Form_OfficeSelection.StartPosition = 'CenterScreen'
+        $Form_OfficeSelection.Font = New-Object System.Drawing.Font('Tahoma', 11)
+        
+        $CheckBox_X_Axis1 = 5
+        $CheckBox_Y_Axis2 = 0
+        $CheckBox_Size_X1 = (($Form_OfficeSelection.width) - 50)
+        $CheckBox_Size_Y2 = 26
+        
+        $Panel_OfficeSelection = New-Object System.Windows.Forms.Panel
+        $Panel_OfficeSelection.Location = New-Object System.Drawing.Size(0, 0)
+        $Panel_OfficeSelection.Size = New-Object System.Drawing.Size((($Form_OfficeSelection.width) - 20), (($Form_OfficeSelection.Height) - 65))
+        $Panel_OfficeSelection.AutoScroll = $true
+        $Panel_OfficeSelection.AutoSize = $false
+        $Form_OfficeSelection.Controls.Add($Panel_OfficeSelection)
+        
+        $CheckBox_Microsoft365ProPlus = New-Object System.Windows.Forms.CheckBox
+        $CheckBox_Microsoft365ProPlus.Location = New-Object System.Drawing.Size($CheckBox_X_Axis1, $CheckBox_Y_Axis2)
+        $CheckBox_Y_Axis2 += 22
+        $CheckBox_Microsoft365ProPlus.Size = New-Object System.Drawing.Size($CheckBox_Size_X1, $CheckBox_Size_Y2)
+        # Resized from Official ICO from Website
+        $CheckBox_Microsoft365ProPlus_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADpi74Y5Ie4cN2CsXDYfqwYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPmYzwj0lMl47Y7B8uWIuf/dgbH/1Xup8s51oXbIcJsIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA95fPAvua0VD9m9Pc95fN/++QxP/miLr/3IGw/9N5pv/Lc53/w22V3LxnjlCvYIACAAAAAAAAAAAAAAAA0HUmEsVuIbiyYhj/rmEv/9Z/jP/yksf/54m8/9yAr//Qd6P/xm+Z/75pkP+4Y4n/sl+DuK1bfhIAAAAAAAAAANd5OZrTdi3/ynEi/7xpGP+rXhH/r2I5/9Z+mf/af67/zHSf/8Fqk/+4Y4n/sV6C/6xafP+pWHmaAAAAAAAAAADZekjW2XpF/9d5PP/RdS//x28h/7dlFeigVxBi1nyqYsVul+i4Y4n/r1x//6lYef+lVXb/olRx1gAAAAAAAAAA2ntU2tp7VP/ae1T/2npR/9d5R+rNcy0eAAAAAAAAAAC3Y4keqll77KRUdf+fUHD/l0to/69zXNoAAAAAAAAAANt7Ydrce2P/3Htl/9x8af/cfG6QAAAAAAAAAAAAAAAAAAAAAJpNa5CVSWb/i0Nd/6RsU//010/aAAAAAAAAAADcfG3a3Xxw/918df/efH3/3n2FfAAAAAAAAAAAAAAAAAAAAACKQl18klNU/9OqT//84E///eFP2gAAAAAAAAAA3Xx42t58ff/efYP/332N/8dteLCjVTcOAAAAAAAAAADrt0oO1qRMsPHKTf/3003/+NZO//nYTtoAAAAAAAAAAN59gdbefYf/332P/+B+mf+2Ymj/r1w66M55Q5DdlUeQ5qlJ6Oy4Sv/wwUv/8shM//TMTf/20E3WAAAAAAAAAADffYqa332Q/+B9mP/hfqL/tmJs/7FeOv/Qe0P/3JJG/+KhSP/orkn/7LhK/++/S//xxEz/8shMmgAAAAAAAAAA332REuB9mLjgfqD/4X6p/7ZibP+yYDv/0H1D/9uQRv/gnUf/5adJ/+mwSv/suEr/7r5LuPDDSxIAAAAAAAAAAAAAAADfgJ8C4X6lUOF+rNy9Z3T/smE7/9F+Q//bj0b/35lH/+OjSP/mq0nc6bJKUO+3UAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADhfqoI1HaTdrdlQvLRfkP/245G/96XR/Lhn0h25KVJCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBbkMY0n9EcNqORnDdlEcYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAPw/AADwDwAAwAMAAIABAACBgQAAg8EAAIPBAACH4QAAg8EAAIABAACAAQAAwAMAAPAPAAD8PwAA//8AAA=='
+        $CheckBox_Microsoft365ProPlus_IconBytes = [Convert]::FromBase64String($CheckBox_Microsoft365ProPlus_Icon64)
+        $CheckBox_Microsoft365ProPlus_IconStream = [System.IO.MemoryStream]::new($CheckBox_Microsoft365ProPlus_IconBytes, 0, $CheckBox_Microsoft365ProPlus_IconBytes.Length)
+        $CheckBox_Microsoft365ProPlus.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_Microsoft365ProPlus_IconStream).GetHIcon()))
+        $CheckBox_Microsoft365ProPlus.ImageAlign = 'MiddleLeft'
+        $CheckBox_Microsoft365ProPlus.Text = '    Microsoft 365 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Skype for Business, Word)'
+        $CheckBox_Microsoft365ProPlus.TextAlign = 'MiddleLeft'
+        $CheckBox_Microsoft365ProPlus.CheckAlign = 'MiddleLeft'
+        $CheckBox_Microsoft365ProPlus.Checked = $false
+        $Panel_OfficeSelection.Controls.Add($CheckBox_Microsoft365ProPlus)
+        
+        $CheckBox_Office2024ProPlus = New-Object System.Windows.Forms.CheckBox
+        $CheckBox_Office2024ProPlus.Location = New-Object System.Drawing.Size($CheckBox_X_Axis1, $CheckBox_Y_Axis2)
+        $CheckBox_Y_Axis2 += 22
+        $CheckBox_Office2024ProPlus.Size = New-Object System.Drawing.Size($CheckBox_Size_X1, $CheckBox_Size_Y2)
+        # Resized from Official ICO from Website
+        $CheckBox_Office2024ProPlus_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADpi74Y5Ie4cN2CsXDYfqwYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPmYzwj0lMl47Y7B8uWIuf/dgbH/1Xup8s51oXbIcJsIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA95fPAvua0VD9m9Pc95fN/++QxP/miLr/3IGw/9N5pv/Lc53/w22V3LxnjlCvYIACAAAAAAAAAAAAAAAA0HUmEsVuIbiyYhj/rmEv/9Z/jP/yksf/54m8/9yAr//Qd6P/xm+Z/75pkP+4Y4n/sl+DuK1bfhIAAAAAAAAAANd5OZrTdi3/ynEi/7xpGP+rXhH/r2I5/9Z+mf/af67/zHSf/8Fqk/+4Y4n/sV6C/6xafP+pWHmaAAAAAAAAAADZekjW2XpF/9d5PP/RdS//x28h/7dlFeigVxBi1nyqYsVul+i4Y4n/r1x//6lYef+lVXb/olRx1gAAAAAAAAAA2ntU2tp7VP/ae1T/2npR/9d5R+rNcy0eAAAAAAAAAAC3Y4keqll77KRUdf+fUHD/l0to/69zXNoAAAAAAAAAANt7Ydrce2P/3Htl/9x8af/cfG6QAAAAAAAAAAAAAAAAAAAAAJpNa5CVSWb/i0Nd/6RsU//010/aAAAAAAAAAADcfG3a3Xxw/918df/efH3/3n2FfAAAAAAAAAAAAAAAAAAAAACKQl18klNU/9OqT//84E///eFP2gAAAAAAAAAA3Xx42t58ff/efYP/332N/8dteLCjVTcOAAAAAAAAAADrt0oO1qRMsPHKTf/3003/+NZO//nYTtoAAAAAAAAAAN59gdbefYf/332P/+B+mf+2Ymj/r1w66M55Q5DdlUeQ5qlJ6Oy4Sv/wwUv/8shM//TMTf/20E3WAAAAAAAAAADffYqa332Q/+B9mP/hfqL/tmJs/7FeOv/Qe0P/3JJG/+KhSP/orkn/7LhK/++/S//xxEz/8shMmgAAAAAAAAAA332REuB9mLjgfqD/4X6p/7ZibP+yYDv/0H1D/9uQRv/gnUf/5adJ/+mwSv/suEr/7r5LuPDDSxIAAAAAAAAAAAAAAADfgJ8C4X6lUOF+rNy9Z3T/smE7/9F+Q//bj0b/35lH/+OjSP/mq0nc6bJKUO+3UAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADhfqoI1HaTdrdlQvLRfkP/245G/96XR/Lhn0h25KVJCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBbkMY0n9EcNqORnDdlEcYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAPw/AADwDwAAwAMAAIABAACBgQAAg8EAAIPBAACH4QAAg8EAAIABAACAAQAAwAMAAPAPAAD8PwAA//8AAA=='
+        $CheckBox_Office2024ProPlus_IconBytes = [Convert]::FromBase64String($CheckBox_Office2024ProPlus_Icon64)
+        $CheckBox_Office2024ProPlus_IconStream = [System.IO.MemoryStream]::new($CheckBox_Office2024ProPlus_IconBytes, 0, $CheckBox_Office2024ProPlus_IconBytes.Length)
+        $CheckBox_Office2024ProPlus.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_Office2024ProPlus_IconStream).GetHIcon()))
+        $CheckBox_Office2024ProPlus.ImageAlign = 'MiddleLeft'
+        $CheckBox_Office2024ProPlus.Text = '    Office 2024 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Word)'
+        $CheckBox_Office2024ProPlus.TextAlign = 'MiddleLeft'
+        $CheckBox_Office2024ProPlus.CheckAlign = 'MiddleLeft'
+        $CheckBox_Office2024ProPlus.Checked = $false
+        $Panel_OfficeSelection.Controls.Add($CheckBox_Office2024ProPlus)
+        
+        $CheckBox_Office2024Access = New-Object System.Windows.Forms.CheckBox
+        $CheckBox_Office2024Access.Location = New-Object System.Drawing.Size($CheckBox_X_Axis1, $CheckBox_Y_Axis2)
+        $CheckBox_Y_Axis2 += 22
+        $CheckBox_Office2024Access.Size = New-Object System.Drawing.Size($CheckBox_Size_X1, $CheckBox_Size_Y2)
+        # Official ICO from EXE
+        $CheckBox_Office2024Access_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhFIgQIRSIcCEUiL8hFIjvIRSI/yEUiP8hFIj/IRSI/yEUiP8hFIjvIRSIvyEUiHAhFIgQAAAAAAAAAAAAAAAAIRSI7yEUiP8hFIj/IRSI/yEUiP8hFIj/IRSI/yEUiP8hFIj/IRSI/yEUiP8hFIj/IRSI7wAAAAAAAAAAAAAAABAKRP8QCkT/EApE/xAKRP8QCkT/EApE/xAKRP8ZD2b/IRSI/yEUiP8hFIj/IRSI/yEUiP8xIK/vMSCv/zEgr/8xIK//MSCv/zEgr/8xIK//MSCv/zEgr/8vH6j/EApE/yEUiP8hFIj/IRSI/yEUiP8hFIj/MSCv/zEgr/8xIK//MSCv/zEgr/8xIK//MSCv/zEgr/8xIK//MSCv/xgQV/8xIK//MB+t/y0dpf8oGZn/IhWK/zEgr/8xIK//5eP1/7+55v8xIK//MSCv/7+55v/l4/X/MSCv/zEgr/8YEFf/MSCv/zEgr/8xIK//MSCv/zAfrf8xIK//MSCv/5iQ1///////zMfr/8zH6///////mJDX/zEgr/8xIK//GBBX/zEgr/8xIK//MSCv/zEgr/8xIK//MSCv/zEgr/9LPLn//////8zH6//Mx+v//////0s8uf8xIK//MSCv/xgQV/8xIK//MSCv/zEgr/8xIK//MSCv/zEgr/8xIK//MSCv/8zH6/+/ueb/v7nm/9jV8P8xIK//MSCv/zEgr/8wJ2T/YE/J/11Mx/9UQ8P/RjW6/zQjsf8xIK//MSCv/zEgr/9+dM3///////////9+dM3/MSCv/zEgr/8xIK//MCdk/2BPyf9gT8n/YE/J/2BPyf9dTMf/MSCv/zEgr/8xIK//Pi60////////////Pi60/zEgr/8xIK//MSCv/zAnZP9gT8n/YE/J/2BPyf9gT8n/YE/J/zEgr/8xIK//MSCv/zEgr/8xIK//MSCv/zEgr/8xIK//MSCv/zEgr/8zKmr/YE/J/2BPyf9gT8n/YE/J/2BPyf8xIK/vMSCv/zEgr/8xIK//MSCv/zEgr/8xIK//MSCv/zEgr/83JrL/lYDg/5WA4P+Sfd//iHTa/3dk0/9jUsr/AAAAAAAAAAAAAAAAkn3f/5WA4P+VgOD/lYDg/5WA4P+VgOD/lYDg/5WA4P+VgOD/lYDg/5WA4P+VgOD/kn3f/wAAAAAAAAAAAAAAAJWA4O+VgOD/lYDg/5WA4P+VgOD/lYDg/5WA4P+VgOD/lYDg/5WA4P+VgOD/lYDg/5WA4O8AAAAAAAAAAAAAAACVgOAQlYDgcJWA4L+VgODvlYDg/5WA4P+VgOD/lYDg/5WA4P+VgODvlYDgv5WA4HCVgOAQ4AAAAOAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAADgAAAA4AAAAA=='
+        $CheckBox_Office2024Access_IconBytes = [Convert]::FromBase64String($CheckBox_Office2024Access_Icon64)
+        $CheckBox_Office2024Access_IconStream = [System.IO.MemoryStream]::new($CheckBox_Office2024Access_IconBytes, 0, $CheckBox_Office2024Access_IconBytes.Length)
+        $CheckBox_Office2024Access.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_Office2024Access_IconStream).GetHIcon()))
+        $CheckBox_Office2024Access.ImageAlign = 'MiddleLeft'
+        $CheckBox_Office2024Access.Text = '    Office 2024 - Access'
+        $CheckBox_Office2024Access.TextAlign = 'MiddleLeft'
+        $CheckBox_Office2024Access.CheckAlign = 'MiddleLeft'
+        $CheckBox_Office2024Access.Checked = $false
+        $Panel_OfficeSelection.Controls.Add($CheckBox_Office2024Access)
+        
+        $CheckBox_Office2024Excel = New-Object System.Windows.Forms.CheckBox
+        $CheckBox_Office2024Excel.Location = New-Object System.Drawing.Size($CheckBox_X_Axis1, $CheckBox_Y_Axis2)
+        $CheckBox_Y_Axis2 += 22
+        $CheckBox_Office2024Excel.Size = New-Object System.Drawing.Size($CheckBox_Size_X1, $CheckBox_Size_Y2)
+        # Official ICO from EXE
+        $CheckBox_Office2024Excel_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA3XBjvN1wY/zdcGP83XBj/N1wY/zdcGP83XBj/N1wY/zdcGP83XBj/N1wY/zdcGP83XBjvAAAAAAAAAAAAAAAAMFEV/zBRFf8wURX/MFEV/zBRFf8wURX/NVkX/zdcGP83XBj/N1wY/zdcGP83XBj/N1wY/wAAAAAAAAAAAAAAACVCDf8lQg3/JUIN/yVCDf8lQg3/JUIN/xsuDP8pRRL/N1wY/zdcGP83XBj/N1wY/zdcGP9BfBDvQXwQ/0F8EP9BfBD/QXwQ/0F8EP9BfBD/QXwQ/0F8EP8/dxD/Gy4M/zdcGP83XBj/N1wY/zdcGP83XBj/QXwQ/0F8EP9llT3/ZZU9/0F8EP9BfBD/ZZU9/2WVPf9BfBD/QXwQ/yA+CP9BfBD/QXwQ/0F8EP9BfBD/QXwQ/0F8EP9BfBD/rMaW//////9ZjC7/cZ1M//////+gvoj/QXwQ/0F8EP8gPgj/QXwQ/0F8EP9BfBD/QXwQ/0F8EP9BfBD/QXwQ/02EH//n7+H/0N7D/9Dew//n7+H/TYQf/0F8EP9BfBD/ID4I/0F8EP9BfBD/QXwQ/0F8EP9BfBD/QXwQ/0F8EP9BfBD/fKVb////////////fKVb/0F8EP9BfBD/QXwQ/yA+CP9BfBD/QXwQ/0F8EP9BfBD/QXwQ/0F8EP9BfBD/QXwQ/3GdTP///////////3GdTP9BfBD/QXwQ/0F8EP8zURD/ZqMh/2ajIf9moyH/ZqMh/2ajIf9BfBD/QXwQ/0F8EP/n7+H/5+/h/9Dew//n7+H/QXwQ/0F8EP9BfBD/M1EQ/2ajIf9moyH/ZqMh/2ajIf9moyH/QXwQ/0F8EP+UtXn//////4itav9llT3//////6C+iP9BfBD/QXwQ/zNREP9moyH/ZqMh/2ajIf9moyH/ZqMh/0F8EP9BfBD/QXwQ/0F8EP9BfBD/QXwQ/0F8EP9BfBD/QXwQ/0F8EP82VhH/ZqMh/2ajIf9moyH/ZqMh/2ajIf9BfBDvQXwQ/0F8EP9BfBD/QXwQ/0F8EP9BfBD/QXwQ/0F8EP9DfhH/gcQz/4HEM/+BxDP/gcQz/4HEM/+BxDP/AAAAAAAAAAAAAAAAZqMh/2ajIf9moyH/ZqMh/2ajIf9moyH/ZqMh/4HEM/+BxDP/gcQz/4HEM/+BxDP/gcQz/wAAAAAAAAAAAAAAAGajIf9moyH/ZqMh/2ajIf9moyH/ZqMh/2ajIf+BxDP/gcQz/4HEM/+BxDP/gcQz/4HEM/8AAAAAAAAAAAAAAABmoyHvZqMh/2ajIf9moyH/ZqMh/2ajIf9moyH/gcQz/4HEM/+BxDP/gcQz/4HEM/+BxDPv4AAAAOAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAADgAAAA4AAAAA=='
+        $CheckBox_Office2024Excel_IconBytes = [Convert]::FromBase64String($CheckBox_Office2024Excel_Icon64)
+        $CheckBox_Office2024Excel_IconStream = [System.IO.MemoryStream]::new($CheckBox_Office2024Excel_IconBytes, 0, $CheckBox_Office2024Excel_IconBytes.Length)
+        $CheckBox_Office2024Excel.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_Office2024Excel_IconStream).GetHIcon()))
+        $CheckBox_Office2024Excel.ImageAlign = 'MiddleLeft'
+        $CheckBox_Office2024Excel.Text = '    Office 2024 - Excel'
+        $CheckBox_Office2024Excel.TextAlign = 'MiddleLeft'
+        $CheckBox_Office2024Excel.CheckAlign = 'MiddleLeft'
+        $CheckBox_Office2024Excel.Checked = $false
+        $Panel_OfficeSelection.Controls.Add($CheckBox_Office2024Excel)
+        
+        $CheckBox_Office2024Outlook = New-Object System.Windows.Forms.CheckBox
+        $CheckBox_Office2024Outlook.Location = New-Object System.Drawing.Size($CheckBox_X_Axis1, $CheckBox_Y_Axis2)
+        $CheckBox_Y_Axis2 += 22
+        $CheckBox_Office2024Outlook.Size = New-Object System.Drawing.Size($CheckBox_Size_X1, $CheckBox_Size_Y2)
+        # Official ICO from EXE
+        $CheckBox_Office2024Outlook_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOqoKO/qqCj/6qgo/+qoKP/qqCj/6qgo/+qoKP/qqCj/6qgo/+qoKP/qqCj/6qgo/+imJ//YkxzvAAAAAAAAAADqqCj/6qgo/+qoKP/qqCj/6qgo/+qoKP/qqCj/6qgo/+qoKP/qqCj/6qgo/92ZIP/KgxP/0YcT/wAAAAAAAAAAjV0P/41dD/+NXQ//jV0P/41dD/+NXQ//jV0P/3VUFP+wfh7/4p4j/86IFv/OhRP/240U/9+QFP/UeADv1HgA/9R4AP/UeAD/1HgA/9R4AP/UeAD/1HgA/9R4AP/OdgH/aUYM/8uDEv/YixP/35AU/9+QFP/fkBT/1HgA/9R4AP/UeAD/1HgA/9R4AP/UeAD/1HgA/9R4AP/UeAD/1HgA/2hDCv/fkBT/35AU/9+QFP/fkBT/35AU/9R4AP/UeAD/3JEw//ru3/////////////ru3//ckTD/1HgA/9R4AP9WNAz/xHwX/9+QFP/fkBT/35AU/9+QFP/UeAD/1HgA//ru3//89+//4aJQ/+GiUP/89+//9N2//9R4AP/UeAD/b04T/7l3Hf+vbBj/zoMW/9+QFP/fkBT/1HgA/9R4AP//////6ryA/9R4AP/UeAD/6ryA///////UeAD/1HgA/3VUFP/qqCj/1ZQj/7BvG/+2cRj/yXwS/9R4AP/UeAD//////+q8gP/UeAD/1HgA/+q8gP//////1HgA/9R4AP91VBT/6qgo/+qoKP/qqCj/zYwh/3AvC9/UeAD/1HgA//Tdv//89+//4aJQ/9+aQP/67t//+u7f/9R4AP/UeAD/f2wo///ZUP//2VD//9lQ///ZUP8AAAAA1HgA/9R4AP/ckTD/9+bP////////////+u7f/9yRMP/UeAD/1HgA/39sKP//2VD//9lQ///ZUP//2VD/AAAAANR4AP/UeAD/1HgA/9R4AP/XgBD/2Ykg/9R4AP/UeAD/1HgA/9R4AP+Hcyv//9lQ///ZUP//2VD//9lQ/wAAAADUeADv1HgA/9R4AP/UeAD/1HgA/9R4AP/UeAD/1HgA/9R4AP/XfgX//9lQ///ZUP//2VD//9lQ///ZUP8AAAAAAAAAAAAAAAAAAAAA6qgo/+qoKP/qqCj/6qgo/+qoKP/qqCj//9lQ///ZUP//2VD//9lQ///ZUP//2VD/AAAAAAAAAAAAAAAAAAAAAOqoKP/qqCj/6qgo/+qoKP/qqCj/6qgo///ZUP//2VD//9lQ///ZUP//2VD//9lQ/wAAAAAAAAAAAAAAAAAAAADFdg3vxXUM/8V1DP/FdQz/xXUM/8V1DP/KgRb/yoEW/8qBFv/KgRb/yoEW/8uDGO8AAAAAwAAAAMAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAQAAAAEAAOABAADgAQAA4AEAAA=='
+        $CheckBox_Office2024Outlook_IconBytes = [Convert]::FromBase64String($CheckBox_Office2024Outlook_Icon64)
+        $CheckBox_Office2024Outlook_IconStream = [System.IO.MemoryStream]::new($CheckBox_Office2024Outlook_IconBytes, 0, $CheckBox_Office2024Outlook_IconBytes.Length)
+        $CheckBox_Office2024Outlook.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_Office2024Outlook_IconStream).GetHIcon()))
+        $CheckBox_Office2024Outlook.ImageAlign = 'MiddleLeft'
+        $CheckBox_Office2024Outlook.Text = '    Office 2024 - Outlook'
+        $CheckBox_Office2024Outlook.TextAlign = 'MiddleLeft'
+        $CheckBox_Office2024Outlook.CheckAlign = 'MiddleLeft'
+        $CheckBox_Office2024Outlook.Checked = $false
+        $Panel_OfficeSelection.Controls.Add($CheckBox_Office2024Outlook)
+        
+        $CheckBox_Office2024PowerPoint = New-Object System.Windows.Forms.CheckBox
+        $CheckBox_Office2024PowerPoint.Location = New-Object System.Drawing.Size($CheckBox_X_Axis1, $CheckBox_Y_Axis2)
+        $CheckBox_Y_Axis2 += 22
+        $CheckBox_Office2024PowerPoint.Size = New-Object System.Drawing.Size($CheckBox_Size_X1, $CheckBox_Size_Y2)
+        # Official ICO from EXE
+        $CheckBox_Office2024PowerPoint_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMFLTYDBS078wUtP/MFLT/zBS0/8wUtP/MFLTvzBS02AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwUtMgMFLTzzBS0/8wUtP/MFLT/zBS0/8wUtP/MFLT/zBS0/8wUtP/MFLTzzBS0yAAAAAAAAAAAAAAAAAWJV4gFiVe7xYlXv8WJV7/FiVe/xYlXv8WJV7/FiVe/xYlXv8jPJn/MFLT/zBS0/8wUtPvMFLTIAAAAAAcPsTvHD7E/xw+xP8cPsT/HD7E/xw+xP8cPsT/HD7E/xw+xP8cPL7/FiVe/zBS0/8wUtP/MFLT/zBS088AAAAAHD7E/xw+xP8cPsT/HD7E/xw+xP8cPsT/HD7E/xw+xP8cPsT/HD7E/xYlXv8wUtP/MFLT/zBS0/8wUtP/MFLTYBw+xP8cPsT/HD7E//////9VbtP/HD7E/xw+xP8cPsT/HD7E/xw+xP8WJV7/MFLT/zBS0/8wUtP/MFLT/zBS078cPsT/HD7E/xw+xP//////VW7T/xw+xP8cPsT/HD7E/xw+xP8cPsT/FiVe/zBS0/8wUtP/MFLT/zBS0/8wUtP/HD7E/xw+xP8cPsT/////////////////xs/w/ypKyP8cPsT/HD7E/xYlXv8wUtP/MFLT/zBS0/8wUtP/MFLT/xw+xP8cPsT/HD7E//////9/kt7/Y3rW//////+On+L/HD7E/xw+xP8wQHL/a4///2uP//9rj///a4///2uP//8cPsT/HD7E/xw+xP//////VW7T/zhWy//x8/v/jp/i/xw+xP8cPsT/MEBy/2uP//9rj///a4///2uP//9rj///HD7E/xw+xP8cPsT/////////////////8fP7/0diz/8cPsT/HD7E/zBAcv9rj///a4///2uP//9rj///a4//vxw+xP8cPsT/HD7E/xw+xP8cPsT/HD7E/xw+xP8cPsT/HD7E/xw+xP80RXv/a4///2uP//9rj///a4///2uP/2AcPsTvHD7E/xw+xP8cPsT/HD7E/xw+xP8cPsT/HD7E/xw+xP8hQ8j/a4///2uP//9rj///a4///2uP/88AAAAAAAAAAEds7SBHbO3vR2zt/0ds7f9HbO3/R2zt/0ds7f9rj///a4///2uP//9rj///a4///2uP/+9rj/8gAAAAAAAAAAAAAAAAR2ztIEds7c9HbO3/R2zt/0ds7f9HbO3/a4///2uP//9rj///a4///2uP/89rj/8gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAR2ztYEds7b9HbO3/R2zt/2uP//9rj///a4//v2uP/2AAAAAAAAAAAAAAAAAAAAAA8A8AAMADAACAAQAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAIABAADAAwAA8A8AAA=='
+        $CheckBox_Office2024PowerPoint_IconBytes = [Convert]::FromBase64String($CheckBox_Office2024PowerPoint_Icon64)
+        $CheckBox_Office2024PowerPoint_IconStream = [System.IO.MemoryStream]::new($CheckBox_Office2024PowerPoint_IconBytes, 0, $CheckBox_Office2024PowerPoint_IconBytes.Length)
+        $CheckBox_Office2024PowerPoint.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_Office2024PowerPoint_IconStream).GetHIcon()))
+        $CheckBox_Office2024PowerPoint.ImageAlign = 'MiddleLeft'
+        $CheckBox_Office2024PowerPoint.Text = '    Office 2024 - PowerPoint'
+        $CheckBox_Office2024PowerPoint.TextAlign = 'MiddleLeft'
+        $CheckBox_Office2024PowerPoint.CheckAlign = 'MiddleLeft'
+        $CheckBox_Office2024PowerPoint.Checked = $false
+        $Panel_OfficeSelection.Controls.Add($CheckBox_Office2024PowerPoint)
+        
+        $CheckBox_Office2024Word = New-Object System.Windows.Forms.CheckBox
+        $CheckBox_Office2024Word.Location = New-Object System.Drawing.Size($CheckBox_X_Axis1, $CheckBox_Y_Axis2)
+        $CheckBox_Y_Axis2 += 22
+        $CheckBox_Office2024Word.Size = New-Object System.Drawing.Size($CheckBox_Size_X1, $CheckBox_Size_Y2)
+        # Official ICO from EXE
+        $CheckBox_Office2024Word_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACRPxDvkT8Q/5E/EP+RPxD/kT8Q/5E/EP+RPxD/kT8Q/5E/EP+RPxD/kT8Q/5E/EP+RPxDvAAAAAAAAAAAAAAAAkT8Q/5E/EP+RPxD/kT8Q/5E/EP+RPxD/kT8Q/5E/EP+RPxD/kT8Q/5E/EP+RPxD/kT8Q/wAAAAAAAAAAAAAAAEgfCP9IHwj/SB8I/0gfCP9IHwj/SB8I/0gfCP9tLwz/kT8Q/5E/EP+RPxD/kT8Q/5E/EP+9WhjvvVoY/71aGP+9Whj/vVoY/71aGP+9Whj/vVoY/71aGP+2Vhf/SB8I/5E/EP+RPxD/kT8Q/5E/EP+RPxD/vVoY/71aGP+9Whj/vVoY/71aGP+9Whj/vVoY/71aGP+9Whj/vVoY/14tDP+9Whj/vVoY/71aGP+9Whj/vVoY/71aGP+9Whj/4rea///////Og1L/zoNS///////it5r/vVoY/71aGP9eLQz/vVoY/71aGP+9Whj/vVoY/71aGP+9Whj/vVoY/+/Wxf//////3q2M/9qiff//////79bF/71aGP+9Whj/Xi0M/71aGP+9Whj/vVoY/71aGP+9Whj/vVoY/71aGP//////8+DU/+rLt//qy7f/8+DU//////+9Whj/vVoY/14tDP+9Whj/vVoY/71aGP+9Whj/vVoY/71aGP/Og1L//////9aYb//36uL/+/Xx/9aYb///////zoNS/71aGP9pPhX/03wr/9N8K//TfCv/03wr/9N8K/+9Whj/2qJ9//v18f/BZCb////////////FbzX/9+ri/9qiff+9Whj/aT4V/9N8K//TfCv/03wr/9N8K//TfCv/vVoY/+rLt//v1sX/vVoY//Pg1P/36uL/vVoY/+/Wxf/qy7f/vVoY/2k+Ff/TfCv/03wr/9N8K//TfCv/03wr/71aGP+9Whj/vVoY/71aGP+9Whj/vVoY/71aGP+9Whj/vVoY/71aGP9wQhb/03wr/9N8K//TfCv/03wr/9N8K/+9WhjvvVoY/71aGP+9Whj/vVoY/71aGP+9Whj/vVoY/71aGP/AXxv/7qVB/+6lQf/upUH/7qVB/+6lQf/upUH/AAAAAAAAAAAAAAAA7qVB/+6lQf/upUH/7qVB/+6lQf/upUH/7qVB/+6lQf/upUH/7qVB/+6lQf/upUH/7qVB/wAAAAAAAAAAAAAAAO6lQf/upUH/7qVB/+6lQf/upUH/7qVB/+6lQf/upUH/7qVB/+6lQf/upUH/7qVB/+6lQf8AAAAAAAAAAAAAAADupUHv7qVB/+6lQf/upUH/7qVB/+6lQf/upUH/7qVB/+6lQf/upUH/7qVB/+6lQf/upUHv4AAAAOAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAADgAAAA4AAAAA=='
+        $CheckBox_Office2024Word_IconBytes = [Convert]::FromBase64String($CheckBox_Office2024Word_Icon64)
+        $CheckBox_Office2024Word_IconStream = [System.IO.MemoryStream]::new($CheckBox_Office2024Word_IconBytes, 0, $CheckBox_Office2024Word_IconBytes.Length)
+        $CheckBox_Office2024Word.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_Office2024Word_IconStream).GetHIcon()))
+        $CheckBox_Office2024Word.ImageAlign = 'MiddleLeft'
+        $CheckBox_Office2024Word.Text = '    Office 2024 - Word'
+        $CheckBox_Office2024Word.TextAlign = 'MiddleLeft'
+        $CheckBox_Office2024Word.CheckAlign = 'MiddleLeft'
+        $CheckBox_Office2024Word.Checked = $false
+        $Panel_OfficeSelection.Controls.Add($CheckBox_Office2024Word)
+        
+        $CheckBox_Office2021ProPlus = New-Object System.Windows.Forms.CheckBox
+        $CheckBox_Office2021ProPlus.Location = New-Object System.Drawing.Size($CheckBox_X_Axis1, $CheckBox_Y_Axis2)
+        $CheckBox_Y_Axis2 += 22
+        $CheckBox_Office2021ProPlus.Size = New-Object System.Drawing.Size($CheckBox_Size_X1, $CheckBox_Size_Y2)
+        # Resized from Official ICO from Website
+        $CheckBox_Office2021ProPlus_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADpi74Y5Ie4cN2CsXDYfqwYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPmYzwj0lMl47Y7B8uWIuf/dgbH/1Xup8s51oXbIcJsIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA95fPAvua0VD9m9Pc95fN/++QxP/miLr/3IGw/9N5pv/Lc53/w22V3LxnjlCvYIACAAAAAAAAAAAAAAAA0HUmEsVuIbiyYhj/rmEv/9Z/jP/yksf/54m8/9yAr//Qd6P/xm+Z/75pkP+4Y4n/sl+DuK1bfhIAAAAAAAAAANd5OZrTdi3/ynEi/7xpGP+rXhH/r2I5/9Z+mf/af67/zHSf/8Fqk/+4Y4n/sV6C/6xafP+pWHmaAAAAAAAAAADZekjW2XpF/9d5PP/RdS//x28h/7dlFeigVxBi1nyqYsVul+i4Y4n/r1x//6lYef+lVXb/olRx1gAAAAAAAAAA2ntU2tp7VP/ae1T/2npR/9d5R+rNcy0eAAAAAAAAAAC3Y4keqll77KRUdf+fUHD/l0to/69zXNoAAAAAAAAAANt7Ydrce2P/3Htl/9x8af/cfG6QAAAAAAAAAAAAAAAAAAAAAJpNa5CVSWb/i0Nd/6RsU//010/aAAAAAAAAAADcfG3a3Xxw/918df/efH3/3n2FfAAAAAAAAAAAAAAAAAAAAACKQl18klNU/9OqT//84E///eFP2gAAAAAAAAAA3Xx42t58ff/efYP/332N/8dteLCjVTcOAAAAAAAAAADrt0oO1qRMsPHKTf/3003/+NZO//nYTtoAAAAAAAAAAN59gdbefYf/332P/+B+mf+2Ymj/r1w66M55Q5DdlUeQ5qlJ6Oy4Sv/wwUv/8shM//TMTf/20E3WAAAAAAAAAADffYqa332Q/+B9mP/hfqL/tmJs/7FeOv/Qe0P/3JJG/+KhSP/orkn/7LhK/++/S//xxEz/8shMmgAAAAAAAAAA332REuB9mLjgfqD/4X6p/7ZibP+yYDv/0H1D/9uQRv/gnUf/5adJ/+mwSv/suEr/7r5LuPDDSxIAAAAAAAAAAAAAAADfgJ8C4X6lUOF+rNy9Z3T/smE7/9F+Q//bj0b/35lH/+OjSP/mq0nc6bJKUO+3UAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADhfqoI1HaTdrdlQvLRfkP/245G/96XR/Lhn0h25KVJCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBbkMY0n9EcNqORnDdlEcYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAPw/AADwDwAAwAMAAIABAACBgQAAg8EAAIPBAACH4QAAg8EAAIABAACAAQAAwAMAAPAPAAD8PwAA//8AAA=='
+        $CheckBox_Office2021ProPlus_IconBytes = [Convert]::FromBase64String($CheckBox_Office2021ProPlus_Icon64)
+        $CheckBox_Office2021ProPlus_IconStream = [System.IO.MemoryStream]::new($CheckBox_Office2021ProPlus_IconBytes, 0, $CheckBox_Office2021ProPlus_IconBytes.Length)
+        $CheckBox_Office2021ProPlus.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_Office2021ProPlus_IconStream).GetHIcon()))
+        $CheckBox_Office2021ProPlus.ImageAlign = 'MiddleLeft'
+        $CheckBox_Office2021ProPlus.Text = '    Office 2021 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Word)'
+        $CheckBox_Office2021ProPlus.TextAlign = 'MiddleLeft'
+        $CheckBox_Office2021ProPlus.CheckAlign = 'MiddleLeft'
+        $CheckBox_Office2021ProPlus.Checked = $false
+        $Panel_OfficeSelection.Controls.Add($CheckBox_Office2021ProPlus)
+        
+        $CheckBox_Office2021Access = New-Object System.Windows.Forms.CheckBox
+        $CheckBox_Office2021Access.Location = New-Object System.Drawing.Size($CheckBox_X_Axis1, $CheckBox_Y_Axis2)
+        $CheckBox_Y_Axis2 += 22
+        $CheckBox_Office2021Access.Size = New-Object System.Drawing.Size($CheckBox_Size_X1, $CheckBox_Size_Y2)
+        # Official ICO from EXE
+        $CheckBox_Office2021Access_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhFIgQIRSIcCEUiL8hFIjvIRSI/yEUiP8hFIj/IRSI/yEUiP8hFIjvIRSIvyEUiHAhFIgQAAAAAAAAAAAAAAAAIRSI7yEUiP8hFIj/IRSI/yEUiP8hFIj/IRSI/yEUiP8hFIj/IRSI/yEUiP8hFIj/IRSI7wAAAAAAAAAAAAAAABAKRP8QCkT/EApE/xAKRP8QCkT/EApE/xAKRP8ZD2b/IRSI/yEUiP8hFIj/IRSI/yEUiP8xIK/vMSCv/zEgr/8xIK//MSCv/zEgr/8xIK//MSCv/zEgr/8vH6j/EApE/yEUiP8hFIj/IRSI/yEUiP8hFIj/MSCv/zEgr/8xIK//MSCv/zEgr/8xIK//MSCv/zEgr/8xIK//MSCv/xgQV/8xIK//MB+t/y0dpf8oGZn/IhWK/zEgr/8xIK//5eP1/7+55v8xIK//MSCv/7+55v/l4/X/MSCv/zEgr/8YEFf/MSCv/zEgr/8xIK//MSCv/zAfrf8xIK//MSCv/5iQ1///////zMfr/8zH6///////mJDX/zEgr/8xIK//GBBX/zEgr/8xIK//MSCv/zEgr/8xIK//MSCv/zEgr/9LPLn//////8zH6//Mx+v//////0s8uf8xIK//MSCv/xgQV/8xIK//MSCv/zEgr/8xIK//MSCv/zEgr/8xIK//MSCv/8zH6/+/ueb/v7nm/9jV8P8xIK//MSCv/zEgr/8wJ2T/YE/J/11Mx/9UQ8P/RjW6/zQjsf8xIK//MSCv/zEgr/9+dM3///////////9+dM3/MSCv/zEgr/8xIK//MCdk/2BPyf9gT8n/YE/J/2BPyf9dTMf/MSCv/zEgr/8xIK//Pi60////////////Pi60/zEgr/8xIK//MSCv/zAnZP9gT8n/YE/J/2BPyf9gT8n/YE/J/zEgr/8xIK//MSCv/zEgr/8xIK//MSCv/zEgr/8xIK//MSCv/zEgr/8zKmr/YE/J/2BPyf9gT8n/YE/J/2BPyf8xIK/vMSCv/zEgr/8xIK//MSCv/zEgr/8xIK//MSCv/zEgr/83JrL/lYDg/5WA4P+Sfd//iHTa/3dk0/9jUsr/AAAAAAAAAAAAAAAAkn3f/5WA4P+VgOD/lYDg/5WA4P+VgOD/lYDg/5WA4P+VgOD/lYDg/5WA4P+VgOD/kn3f/wAAAAAAAAAAAAAAAJWA4O+VgOD/lYDg/5WA4P+VgOD/lYDg/5WA4P+VgOD/lYDg/5WA4P+VgOD/lYDg/5WA4O8AAAAAAAAAAAAAAACVgOAQlYDgcJWA4L+VgODvlYDg/5WA4P+VgOD/lYDg/5WA4P+VgODvlYDgv5WA4HCVgOAQ4AAAAOAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAADgAAAA4AAAAA=='
+        $CheckBox_Office2021Access_IconBytes = [Convert]::FromBase64String($CheckBox_Office2021Access_Icon64)
+        $CheckBox_Office2021Access_IconStream = [System.IO.MemoryStream]::new($CheckBox_Office2021Access_IconBytes, 0, $CheckBox_Office2021Access_IconBytes.Length)
+        $CheckBox_Office2021Access.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_Office2021Access_IconStream).GetHIcon()))
+        $CheckBox_Office2021Access.ImageAlign = 'MiddleLeft'
+        $CheckBox_Office2021Access.Text = '    Office 2021 - Access'
+        $CheckBox_Office2021Access.TextAlign = 'MiddleLeft'
+        $CheckBox_Office2021Access.CheckAlign = 'MiddleLeft'
+        $CheckBox_Office2021Access.Checked = $false
+        $Panel_OfficeSelection.Controls.Add($CheckBox_Office2021Access)
+        
+        $CheckBox_Office2021Excel = New-Object System.Windows.Forms.CheckBox
+        $CheckBox_Office2021Excel.Location = New-Object System.Drawing.Size($CheckBox_X_Axis1, $CheckBox_Y_Axis2)
+        $CheckBox_Y_Axis2 += 22
+        $CheckBox_Office2021Excel.Size = New-Object System.Drawing.Size($CheckBox_Size_X1, $CheckBox_Size_Y2)
+        # Official ICO from EXE
+        $CheckBox_Office2021Excel_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA3XBjvN1wY/zdcGP83XBj/N1wY/zdcGP83XBj/N1wY/zdcGP83XBj/N1wY/zdcGP83XBjvAAAAAAAAAAAAAAAAMFEV/zBRFf8wURX/MFEV/zBRFf8wURX/NVkX/zdcGP83XBj/N1wY/zdcGP83XBj/N1wY/wAAAAAAAAAAAAAAACVCDf8lQg3/JUIN/yVCDf8lQg3/JUIN/xsuDP8pRRL/N1wY/zdcGP83XBj/N1wY/zdcGP9BfBDvQXwQ/0F8EP9BfBD/QXwQ/0F8EP9BfBD/QXwQ/0F8EP8/dxD/Gy4M/zdcGP83XBj/N1wY/zdcGP83XBj/QXwQ/0F8EP9llT3/ZZU9/0F8EP9BfBD/ZZU9/2WVPf9BfBD/QXwQ/yA+CP9BfBD/QXwQ/0F8EP9BfBD/QXwQ/0F8EP9BfBD/rMaW//////9ZjC7/cZ1M//////+gvoj/QXwQ/0F8EP8gPgj/QXwQ/0F8EP9BfBD/QXwQ/0F8EP9BfBD/QXwQ/02EH//n7+H/0N7D/9Dew//n7+H/TYQf/0F8EP9BfBD/ID4I/0F8EP9BfBD/QXwQ/0F8EP9BfBD/QXwQ/0F8EP9BfBD/fKVb////////////fKVb/0F8EP9BfBD/QXwQ/yA+CP9BfBD/QXwQ/0F8EP9BfBD/QXwQ/0F8EP9BfBD/QXwQ/3GdTP///////////3GdTP9BfBD/QXwQ/0F8EP8zURD/ZqMh/2ajIf9moyH/ZqMh/2ajIf9BfBD/QXwQ/0F8EP/n7+H/5+/h/9Dew//n7+H/QXwQ/0F8EP9BfBD/M1EQ/2ajIf9moyH/ZqMh/2ajIf9moyH/QXwQ/0F8EP+UtXn//////4itav9llT3//////6C+iP9BfBD/QXwQ/zNREP9moyH/ZqMh/2ajIf9moyH/ZqMh/0F8EP9BfBD/QXwQ/0F8EP9BfBD/QXwQ/0F8EP9BfBD/QXwQ/0F8EP82VhH/ZqMh/2ajIf9moyH/ZqMh/2ajIf9BfBDvQXwQ/0F8EP9BfBD/QXwQ/0F8EP9BfBD/QXwQ/0F8EP9DfhH/gcQz/4HEM/+BxDP/gcQz/4HEM/+BxDP/AAAAAAAAAAAAAAAAZqMh/2ajIf9moyH/ZqMh/2ajIf9moyH/ZqMh/4HEM/+BxDP/gcQz/4HEM/+BxDP/gcQz/wAAAAAAAAAAAAAAAGajIf9moyH/ZqMh/2ajIf9moyH/ZqMh/2ajIf+BxDP/gcQz/4HEM/+BxDP/gcQz/4HEM/8AAAAAAAAAAAAAAABmoyHvZqMh/2ajIf9moyH/ZqMh/2ajIf9moyH/gcQz/4HEM/+BxDP/gcQz/4HEM/+BxDPv4AAAAOAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAADgAAAA4AAAAA=='
+        $CheckBox_Office2021Excel_IconBytes = [Convert]::FromBase64String($CheckBox_Office2021Excel_Icon64)
+        $CheckBox_Office2021Excel_IconStream = [System.IO.MemoryStream]::new($CheckBox_Office2021Excel_IconBytes, 0, $CheckBox_Office2021Excel_IconBytes.Length)
+        $CheckBox_Office2021Excel.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_Office2021Excel_IconStream).GetHIcon()))
+        $CheckBox_Office2021Excel.ImageAlign = 'MiddleLeft'
+        $CheckBox_Office2021Excel.Text = '    Office 2021 - Excel'
+        $CheckBox_Office2021Excel.TextAlign = 'MiddleLeft'
+        $CheckBox_Office2021Excel.CheckAlign = 'MiddleLeft'
+        $CheckBox_Office2021Excel.Checked = $false
+        $Panel_OfficeSelection.Controls.Add($CheckBox_Office2021Excel)
+        
+        $CheckBox_Office2021OneNote = New-Object System.Windows.Forms.CheckBox
+        $CheckBox_Office2021OneNote.Location = New-Object System.Drawing.Size($CheckBox_X_Axis1, $CheckBox_Y_Axis2)
+        $CheckBox_Y_Axis2 += 22
+        $CheckBox_Office2021OneNote.Size = New-Object System.Drawing.Size($CheckBox_Size_X1, $CheckBox_Size_Y2)
+        # Official ICO from EXE
+        $CheckBox_Office2021OneNote_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADqZMrv6mTK/+pkyv/qZMr/6mTK/+pkyv/qZMr/6mTK/+pkyv+qGXf/qhl3/6oZd/+qGXfvAAAAAAAAAAAAAAAA6mTK/+pkyv/qZMr/6mTK/+pkyv/qZMr/6mTK/+pkyv/qZMr/qhl3/6oZd/+qGXf/qhl3/wAAAAAAAAAAAAAAADsZM/87GTP/Oxkz/zsZM/87GTP/Oxkz/zsZM/99NWz/6mTK/6oZd/+qGXf/qhl3/6oZd/+qGXfvqhl3/6oZd/+qGXf/qhl3/6oZd/+qGXf/qhl3/6oZd/+jGXP/Oxkz/+pkyv+qGXf/qhl3/6oZd/+qGXf/qhl3/6oZd/+qGXf/qhl3/6oZd/+qGXf/qhl3/6oZd/+qGXf/qhl3/zsZM//qZMr/vzKT/78yk/+/MpP/vzKT/6oZd/+qGXf//////9WMu/+qGXf/ryeA/+/U5v//////qhl3/6oZd/87GTP/6mTK/78yk/+/MpP/vzKT/78yk/+qGXf/qhl3///////VjLv/qhl3/+S31f///////////6oZd/+qGXf/Oxkz/+pkyv+/MpP/vzKT/78yk/+/MpP/qhl3/6oZd///////1Yy7/89+s///////5LfV//////+qGXf/qhl3/zsZM//qZMr/vzKT/78yk/+/MpP/vzKT/6oZd/+qGXf//////+rG3f//////36nM/79Tmf//////qhl3/6oZd/87GTP/6mTK/9VLrv/VS67/1Uuu/9VLrv+qGXf/qhl3////////////79Tm/68ngP+/U5n//////6oZd/+qGXf/Oxkz/+pkyv/VS67/1Uuu/9VLrv/VS67/qhl3/6oZd///////+vH3/7pEkf+qGXf/v1OZ//////+qGXf/qhl3/zsZM//qZMr/1Uuu/9VLrv/VS67/1Uuu/6oZd/+qGXf/qhl3/6oZd/+qGXf/qhl3/6oZd/+qGXf/qhl3/6oZd/9GHjz/6mTK/9VLrv/VS67/1Uuu/9VLrv+qGXfvqhl3/6oZd/+qGXf/qhl3/6oZd/+qGXf/qhl3/6oZd/+uHnz/6mTK/+pkyv/qZMr/6mTK/+pkyv/qZMr/AAAAAAAAAAAAAAAA6mTK/+pkyv/qZMr/6mTK/+pkyv/qZMr/6mTK/+pkyv/qZMr/6mTK/+pkyv/qZMr/6mTK/wAAAAAAAAAA6mTKEOpkyv/qZMr/6mTK/+pkyv/qZMr/6mTK/+pkyv/qZMr/6mTK/+pkyv/qZMr/6mTK/+pkyv8AAAAAAAAAAOpkyhDqZMrv6mTK/+pkyv/qZMr/6mTK/+pkyv/qZMr/6mTK/+pkyv/qZMr/6mTK/+pkyv/qZMrv4AAAAOAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAADAAAAAwAAAAA=='
+        $CheckBox_Office2021OneNote_IconBytes = [Convert]::FromBase64String($CheckBox_Office2021OneNote_Icon64)
+        $CheckBox_Office2021OneNote_IconStream = [System.IO.MemoryStream]::new($CheckBox_Office2021OneNote_IconBytes, 0, $CheckBox_Office2021OneNote_IconBytes.Length)
+        $CheckBox_Office2021OneNote.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_Office2021OneNote_IconStream).GetHIcon()))
+        $CheckBox_Office2021OneNote.ImageAlign = 'MiddleLeft'
+        $CheckBox_Office2021OneNote.Text = '    Office 2021 - OneNote'
+        $CheckBox_Office2021OneNote.TextAlign = 'MiddleLeft'
+        $CheckBox_Office2021OneNote.CheckAlign = 'MiddleLeft'
+        $CheckBox_Office2021OneNote.Checked = $false
+        $Panel_OfficeSelection.Controls.Add($CheckBox_Office2021OneNote)
+        
+        $CheckBox_Office2021Outlook = New-Object System.Windows.Forms.CheckBox
+        $CheckBox_Office2021Outlook.Location = New-Object System.Drawing.Size($CheckBox_X_Axis1, $CheckBox_Y_Axis2)
+        $CheckBox_Y_Axis2 += 22
+        $CheckBox_Office2021Outlook.Size = New-Object System.Drawing.Size($CheckBox_Size_X1, $CheckBox_Size_Y2)
+        # Official ICO from EXE
+        $CheckBox_Office2021Outlook_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOqoKO/qqCj/6qgo/+qoKP/qqCj/6qgo/+qoKP/qqCj/6qgo/+qoKP/qqCj/6qgo/+imJ//YkxzvAAAAAAAAAADqqCj/6qgo/+qoKP/qqCj/6qgo/+qoKP/qqCj/6qgo/+qoKP/qqCj/6qgo/92ZIP/KgxP/0YcT/wAAAAAAAAAAjV0P/41dD/+NXQ//jV0P/41dD/+NXQ//jV0P/3VUFP+wfh7/4p4j/86IFv/OhRP/240U/9+QFP/UeADv1HgA/9R4AP/UeAD/1HgA/9R4AP/UeAD/1HgA/9R4AP/OdgH/aUYM/8uDEv/YixP/35AU/9+QFP/fkBT/1HgA/9R4AP/UeAD/1HgA/9R4AP/UeAD/1HgA/9R4AP/UeAD/1HgA/2hDCv/fkBT/35AU/9+QFP/fkBT/35AU/9R4AP/UeAD/3JEw//ru3/////////////ru3//ckTD/1HgA/9R4AP9WNAz/xHwX/9+QFP/fkBT/35AU/9+QFP/UeAD/1HgA//ru3//89+//4aJQ/+GiUP/89+//9N2//9R4AP/UeAD/b04T/7l3Hf+vbBj/zoMW/9+QFP/fkBT/1HgA/9R4AP//////6ryA/9R4AP/UeAD/6ryA///////UeAD/1HgA/3VUFP/qqCj/1ZQj/7BvG/+2cRj/yXwS/9R4AP/UeAD//////+q8gP/UeAD/1HgA/+q8gP//////1HgA/9R4AP91VBT/6qgo/+qoKP/qqCj/zYwh/3AvC9/UeAD/1HgA//Tdv//89+//4aJQ/9+aQP/67t//+u7f/9R4AP/UeAD/f2wo///ZUP//2VD//9lQ///ZUP8AAAAA1HgA/9R4AP/ckTD/9+bP////////////+u7f/9yRMP/UeAD/1HgA/39sKP//2VD//9lQ///ZUP//2VD/AAAAANR4AP/UeAD/1HgA/9R4AP/XgBD/2Ykg/9R4AP/UeAD/1HgA/9R4AP+Hcyv//9lQ///ZUP//2VD//9lQ/wAAAADUeADv1HgA/9R4AP/UeAD/1HgA/9R4AP/UeAD/1HgA/9R4AP/XfgX//9lQ///ZUP//2VD//9lQ///ZUP8AAAAAAAAAAAAAAAAAAAAA6qgo/+qoKP/qqCj/6qgo/+qoKP/qqCj//9lQ///ZUP//2VD//9lQ///ZUP//2VD/AAAAAAAAAAAAAAAAAAAAAOqoKP/qqCj/6qgo/+qoKP/qqCj/6qgo///ZUP//2VD//9lQ///ZUP//2VD//9lQ/wAAAAAAAAAAAAAAAAAAAADFdg3vxXUM/8V1DP/FdQz/xXUM/8V1DP/KgRb/yoEW/8qBFv/KgRb/yoEW/8uDGO8AAAAAwAAAAMAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAQAAAAEAAOABAADgAQAA4AEAAA=='
+        $CheckBox_Office2021Outlook_IconBytes = [Convert]::FromBase64String($CheckBox_Office2021Outlook_Icon64)
+        $CheckBox_Office2021Outlook_IconStream = [System.IO.MemoryStream]::new($CheckBox_Office2021Outlook_IconBytes, 0, $CheckBox_Office2021Outlook_IconBytes.Length)
+        $CheckBox_Office2021Outlook.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_Office2021Outlook_IconStream).GetHIcon()))
+        $CheckBox_Office2021Outlook.ImageAlign = 'MiddleLeft'
+        $CheckBox_Office2021Outlook.Text = '    Office 2021 - Outlook'
+        $CheckBox_Office2021Outlook.TextAlign = 'MiddleLeft'
+        $CheckBox_Office2021Outlook.CheckAlign = 'MiddleLeft'
+        $CheckBox_Office2021Outlook.Checked = $false
+        $Panel_OfficeSelection.Controls.Add($CheckBox_Office2021Outlook)
+        
+        $CheckBox_Office2021PowerPoint = New-Object System.Windows.Forms.CheckBox
+        $CheckBox_Office2021PowerPoint.Location = New-Object System.Drawing.Size($CheckBox_X_Axis1, $CheckBox_Y_Axis2)
+        $CheckBox_Y_Axis2 += 22
+        $CheckBox_Office2021PowerPoint.Size = New-Object System.Drawing.Size($CheckBox_Size_X1, $CheckBox_Size_Y2)
+        # Official ICO from EXE
+        $CheckBox_Office2021PowerPoint_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMFLTYDBS078wUtP/MFLT/zBS0/8wUtP/MFLTvzBS02AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwUtMgMFLTzzBS0/8wUtP/MFLT/zBS0/8wUtP/MFLT/zBS0/8wUtP/MFLTzzBS0yAAAAAAAAAAAAAAAAAWJV4gFiVe7xYlXv8WJV7/FiVe/xYlXv8WJV7/FiVe/xYlXv8jPJn/MFLT/zBS0/8wUtPvMFLTIAAAAAAcPsTvHD7E/xw+xP8cPsT/HD7E/xw+xP8cPsT/HD7E/xw+xP8cPL7/FiVe/zBS0/8wUtP/MFLT/zBS088AAAAAHD7E/xw+xP8cPsT/HD7E/xw+xP8cPsT/HD7E/xw+xP8cPsT/HD7E/xYlXv8wUtP/MFLT/zBS0/8wUtP/MFLTYBw+xP8cPsT/HD7E//////9VbtP/HD7E/xw+xP8cPsT/HD7E/xw+xP8WJV7/MFLT/zBS0/8wUtP/MFLT/zBS078cPsT/HD7E/xw+xP//////VW7T/xw+xP8cPsT/HD7E/xw+xP8cPsT/FiVe/zBS0/8wUtP/MFLT/zBS0/8wUtP/HD7E/xw+xP8cPsT/////////////////xs/w/ypKyP8cPsT/HD7E/xYlXv8wUtP/MFLT/zBS0/8wUtP/MFLT/xw+xP8cPsT/HD7E//////9/kt7/Y3rW//////+On+L/HD7E/xw+xP8wQHL/a4///2uP//9rj///a4///2uP//8cPsT/HD7E/xw+xP//////VW7T/zhWy//x8/v/jp/i/xw+xP8cPsT/MEBy/2uP//9rj///a4///2uP//9rj///HD7E/xw+xP8cPsT/////////////////8fP7/0diz/8cPsT/HD7E/zBAcv9rj///a4///2uP//9rj///a4//vxw+xP8cPsT/HD7E/xw+xP8cPsT/HD7E/xw+xP8cPsT/HD7E/xw+xP80RXv/a4///2uP//9rj///a4///2uP/2AcPsTvHD7E/xw+xP8cPsT/HD7E/xw+xP8cPsT/HD7E/xw+xP8hQ8j/a4///2uP//9rj///a4///2uP/88AAAAAAAAAAEds7SBHbO3vR2zt/0ds7f9HbO3/R2zt/0ds7f9rj///a4///2uP//9rj///a4///2uP/+9rj/8gAAAAAAAAAAAAAAAAR2ztIEds7c9HbO3/R2zt/0ds7f9HbO3/a4///2uP//9rj///a4///2uP/89rj/8gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAR2ztYEds7b9HbO3/R2zt/2uP//9rj///a4//v2uP/2AAAAAAAAAAAAAAAAAAAAAA8A8AAMADAACAAQAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAIABAADAAwAA8A8AAA=='
+        $CheckBox_Office2021PowerPoint_IconBytes = [Convert]::FromBase64String($CheckBox_Office2021PowerPoint_Icon64)
+        $CheckBox_Office2021PowerPoint_IconStream = [System.IO.MemoryStream]::new($CheckBox_Office2021PowerPoint_IconBytes, 0, $CheckBox_Office2021PowerPoint_IconBytes.Length)
+        $CheckBox_Office2021PowerPoint.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_Office2021PowerPoint_IconStream).GetHIcon()))
+        $CheckBox_Office2021PowerPoint.ImageAlign = 'MiddleLeft'
+        $CheckBox_Office2021PowerPoint.Text = '    Office 2021 - PowerPoint'
+        $CheckBox_Office2021PowerPoint.TextAlign = 'MiddleLeft'
+        $CheckBox_Office2021PowerPoint.CheckAlign = 'MiddleLeft'
+        $CheckBox_Office2021PowerPoint.Checked = $false
+        $Panel_OfficeSelection.Controls.Add($CheckBox_Office2021PowerPoint)
+        
+        $CheckBox_Office2021Publisher = New-Object System.Windows.Forms.CheckBox
+        $CheckBox_Office2021Publisher.Location = New-Object System.Drawing.Size($CheckBox_X_Axis1, $CheckBox_Y_Axis2)
+        $CheckBox_Y_Axis2 += 22
+        $CheckBox_Office2021Publisher.Size = New-Object System.Drawing.Size($CheckBox_Size_X1, $CheckBox_Size_Y2)
+        # Official ICO from EXE
+        $CheckBox_Office2021Publisher_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACHgwPvh4MD/4eDA/+HgwP/h4MD/4eDA/+HgwP/h4MD/4eDA/+HgwP/h4MD7wAAAAAAAAAAAAAAAAAAAAAAAAAAh4MD/4eDA/+HgwP/h4MD/4eDA/+HgwP/h4MD/4eDA/+HgwP/h4MD/4eDA/9saQL/h4MD7wAAAAAAAAAAAAAAADw6Af88OgH/PDoB/zw6Af88OgH/PDoB/zw6Af9iXwL/h4MD/4eDA/+HgwP/bGkC/4eDA/+HgwPvh4MD/4eDA/+HgwP/h4MD/4eDA/+HgwP/h4MD/4eDA/+CfgP/QT8B/4eDA/+HgwP/h4MD/2xpAv+HgwP/h4MD/4eDA/+HgwP/h4MD/4eDA/+HgwP/h4MD/4eDA/+HgwP/h4MD/1hVCv+hmxr/oZsa/6GbGv9saQL/h4MD/4eDA/+HgwP/h4MD//////+lokL/h4MD/4eDA/+HgwP/h4MD/4eDA/9YVQr/oZsa/6GbGv+hmxr/bGkC/4eDA/+HgwP/h4MD/4eDA///////paJC/4eDA/+HgwP/h4MD/4eDA/+HgwP/WFUK/6GbGv+hmxr/oZsa/2xpAv+HgwP/h4MD/4eDA/+HgwP/////////////////4eDA/4+LE/+HgwP/h4MD/1hVCv+hmxr/oZsa/6GbGv9saQL/h4MD/4eDA/+HgwP/h4MD//////+8uXH/rapS///////DwYH/h4MD/4eDA/9oZBP/0MY3/9DGN//Qxjf/bGkC/4eDA/+HgwP/h4MD/4eDA///////paJC/5aTI//49+//w8GB/4eDA/+HgwP/aGQT/9DGN//Qxjf/0MY3/2xpAv+HgwP/h4MD/4eDA/+HgwP/////////////////+Pfv/56aMv+HgwP/h4MD/2hkE//Qxjf/0MY3/9DGN/9saQL/h4MD/4eDA/+HgwP/h4MD/4eDA/+HgwP/h4MD/4eDA/+HgwP/h4MD/4eDA/9vahX/0MY3/9DGN//Qxjf/bGkC/4eDA/+HgwPvh4MD/4eDA/+HgwP/h4MD/4eDA/+HgwP/h4MD/4eDA/+Mhwb/0MY3/9DGN//Qxjf/0MY3/2xpAv+HgwP/AAAAAAAAAAAAAAAA0MY3/9DGN//Qxjf/0MY3/9DGN//Qxjf/0MY3/9DGN//Qxjf/0MY3/9DGN/9saQL/h4MD/wAAAAAAAAAAAAAAANDGN//Qxjf/0MY3/9DGN//Qxjf/0MY3/9DGN//Qxjf/0MY3/9DGN//Qxjf/bGkC/4eDA+8AAAAAAAAAAAAAAADQxjfv0MY3/9DGN//Qxjf/0MY3/9DGN//Qxjf/0MY3/9DGN//Qxjf/0MY37wAAAAAAAAAA4AMAAOAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAADgAAAA4AMAAA=='
+        $CheckBox_Office2021Publisher_IconBytes = [Convert]::FromBase64String($CheckBox_Office2021Publisher_Icon64)
+        $CheckBox_Office2021Publisher_IconStream = [System.IO.MemoryStream]::new($CheckBox_Office2021Publisher_IconBytes, 0, $CheckBox_Office2021Publisher_IconBytes.Length)
+        $CheckBox_Office2021Publisher.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_Office2021Publisher_IconStream).GetHIcon()))
+        $CheckBox_Office2021Publisher.ImageAlign = 'MiddleLeft'
+        $CheckBox_Office2021Publisher.Text = '    Office 2021 - Publisher'
+        $CheckBox_Office2021Publisher.TextAlign = 'MiddleLeft'
+        $CheckBox_Office2021Publisher.CheckAlign = 'MiddleLeft'
+        $CheckBox_Office2021Publisher.Checked = $false
+        $Panel_OfficeSelection.Controls.Add($CheckBox_Office2021Publisher)
+        
+        $CheckBox_Office2021Word = New-Object System.Windows.Forms.CheckBox
+        $CheckBox_Office2021Word.Location = New-Object System.Drawing.Size($CheckBox_X_Axis1, $CheckBox_Y_Axis2)
+        $CheckBox_Y_Axis2 += 22
+        $CheckBox_Office2021Word.Size = New-Object System.Drawing.Size($CheckBox_Size_X1, $CheckBox_Size_Y2)
+        # Official ICO from EXE
+        $CheckBox_Office2021Word_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACRPxDvkT8Q/5E/EP+RPxD/kT8Q/5E/EP+RPxD/kT8Q/5E/EP+RPxD/kT8Q/5E/EP+RPxDvAAAAAAAAAAAAAAAAkT8Q/5E/EP+RPxD/kT8Q/5E/EP+RPxD/kT8Q/5E/EP+RPxD/kT8Q/5E/EP+RPxD/kT8Q/wAAAAAAAAAAAAAAAEgfCP9IHwj/SB8I/0gfCP9IHwj/SB8I/0gfCP9tLwz/kT8Q/5E/EP+RPxD/kT8Q/5E/EP+9WhjvvVoY/71aGP+9Whj/vVoY/71aGP+9Whj/vVoY/71aGP+2Vhf/SB8I/5E/EP+RPxD/kT8Q/5E/EP+RPxD/vVoY/71aGP+9Whj/vVoY/71aGP+9Whj/vVoY/71aGP+9Whj/vVoY/14tDP+9Whj/vVoY/71aGP+9Whj/vVoY/71aGP+9Whj/4rea///////Og1L/zoNS///////it5r/vVoY/71aGP9eLQz/vVoY/71aGP+9Whj/vVoY/71aGP+9Whj/vVoY/+/Wxf//////3q2M/9qiff//////79bF/71aGP+9Whj/Xi0M/71aGP+9Whj/vVoY/71aGP+9Whj/vVoY/71aGP//////8+DU/+rLt//qy7f/8+DU//////+9Whj/vVoY/14tDP+9Whj/vVoY/71aGP+9Whj/vVoY/71aGP/Og1L//////9aYb//36uL/+/Xx/9aYb///////zoNS/71aGP9pPhX/03wr/9N8K//TfCv/03wr/9N8K/+9Whj/2qJ9//v18f/BZCb////////////FbzX/9+ri/9qiff+9Whj/aT4V/9N8K//TfCv/03wr/9N8K//TfCv/vVoY/+rLt//v1sX/vVoY//Pg1P/36uL/vVoY/+/Wxf/qy7f/vVoY/2k+Ff/TfCv/03wr/9N8K//TfCv/03wr/71aGP+9Whj/vVoY/71aGP+9Whj/vVoY/71aGP+9Whj/vVoY/71aGP9wQhb/03wr/9N8K//TfCv/03wr/9N8K/+9WhjvvVoY/71aGP+9Whj/vVoY/71aGP+9Whj/vVoY/71aGP/AXxv/7qVB/+6lQf/upUH/7qVB/+6lQf/upUH/AAAAAAAAAAAAAAAA7qVB/+6lQf/upUH/7qVB/+6lQf/upUH/7qVB/+6lQf/upUH/7qVB/+6lQf/upUH/7qVB/wAAAAAAAAAAAAAAAO6lQf/upUH/7qVB/+6lQf/upUH/7qVB/+6lQf/upUH/7qVB/+6lQf/upUH/7qVB/+6lQf8AAAAAAAAAAAAAAADupUHv7qVB/+6lQf/upUH/7qVB/+6lQf/upUH/7qVB/+6lQf/upUH/7qVB/+6lQf/upUHv4AAAAOAAAADgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOAAAADgAAAA4AAAAA=='
+        $CheckBox_Office2021Word_IconBytes = [Convert]::FromBase64String($CheckBox_Office2021Word_Icon64)
+        $CheckBox_Office2021Word_IconStream = [System.IO.MemoryStream]::new($CheckBox_Office2021Word_IconBytes, 0, $CheckBox_Office2021Word_IconBytes.Length)
+        $CheckBox_Office2021Word.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_Office2021Word_IconStream).GetHIcon()))
+        $CheckBox_Office2021Word.ImageAlign = 'MiddleLeft'
+        $CheckBox_Office2021Word.Text = '    Office 2021 - Word'
+        $CheckBox_Office2021Word.TextAlign = 'MiddleLeft'
+        $CheckBox_Office2021Word.CheckAlign = 'MiddleLeft'
+        $CheckBox_Office2021Word.Checked = $false
+        $Panel_OfficeSelection.Controls.Add($CheckBox_Office2021Word)
+        
+        $CheckBox_ActivateOffice = New-Object System.Windows.Forms.CheckBox
+        $CheckBox_ActivateOffice.Location = New-Object System.Drawing.Size($CheckBox_X_Axis1, $CheckBox_Y_Axis2)
+        $CheckBox_Y_Axis2 += 22
+        $CheckBox_ActivateOffice.Size = New-Object System.Drawing.Size($CheckBox_Size_X1, $CheckBox_Size_Y2)
+        # Which ICO to Use?
+        $CheckBox_ActivateOffice_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADpi74Y5Ie4cN2CsXDYfqwYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPmYzwj0lMl47Y7B8uWIuf/dgbH/1Xup8s51oXbIcJsIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA95fPAvua0VD9m9Pc95fN/++QxP/miLr/3IGw/9N5pv/Lc53/w22V3LxnjlCvYIACAAAAAAAAAAAAAAAA0HUmEsVuIbiyYhj/rmEv/9Z/jP/yksf/54m8/9yAr//Qd6P/xm+Z/75pkP+4Y4n/sl+DuK1bfhIAAAAAAAAAANd5OZrTdi3/ynEi/7xpGP+rXhH/r2I5/9Z+mf/af67/zHSf/8Fqk/+4Y4n/sV6C/6xafP+pWHmaAAAAAAAAAADZekjW2XpF/9d5PP/RdS//x28h/7dlFeigVxBi1nyqYsVul+i4Y4n/r1x//6lYef+lVXb/olRx1gAAAAAAAAAA2ntU2tp7VP/ae1T/2npR/9d5R+rNcy0eAAAAAAAAAAC3Y4keqll77KRUdf+fUHD/l0to/69zXNoAAAAAAAAAANt7Ydrce2P/3Htl/9x8af/cfG6QAAAAAAAAAAAAAAAAAAAAAJpNa5CVSWb/i0Nd/6RsU//010/aAAAAAAAAAADcfG3a3Xxw/918df/efH3/3n2FfAAAAAAAAAAAAAAAAAAAAACKQl18klNU/9OqT//84E///eFP2gAAAAAAAAAA3Xx42t58ff/efYP/332N/8dteLCjVTcOAAAAAAAAAADrt0oO1qRMsPHKTf/3003/+NZO//nYTtoAAAAAAAAAAN59gdbefYf/332P/+B+mf+2Ymj/r1w66M55Q5DdlUeQ5qlJ6Oy4Sv/wwUv/8shM//TMTf/20E3WAAAAAAAAAADffYqa332Q/+B9mP/hfqL/tmJs/7FeOv/Qe0P/3JJG/+KhSP/orkn/7LhK/++/S//xxEz/8shMmgAAAAAAAAAA332REuB9mLjgfqD/4X6p/7ZibP+yYDv/0H1D/9uQRv/gnUf/5adJ/+mwSv/suEr/7r5LuPDDSxIAAAAAAAAAAAAAAADfgJ8C4X6lUOF+rNy9Z3T/smE7/9F+Q//bj0b/35lH/+OjSP/mq0nc6bJKUO+3UAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADhfqoI1HaTdrdlQvLRfkP/245G/96XR/Lhn0h25KVJCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBbkMY0n9EcNqORnDdlEcYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAPw/AADwDwAAwAMAAIABAACBgQAAg8EAAIPBAACH4QAAg8EAAIABAACAAQAAwAMAAPAPAAD8PwAA//8AAA=='
+        $CheckBox_ActivateOffice_IconBytes = [Convert]::FromBase64String($CheckBox_ActivateOffice_Icon64)
+        $CheckBox_ActivateOffice_IconStream = [System.IO.MemoryStream]::new($CheckBox_ActivateOffice_IconBytes, 0, $CheckBox_ActivateOffice_IconBytes.Length)
+        $CheckBox_ActivateOffice.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_ActivateOffice_IconStream).GetHIcon()))
+        $CheckBox_ActivateOffice.ImageAlign = 'MiddleLeft'
+        $CheckBox_ActivateOffice.Text = '    Activate Office (Recommended)'
+        $CheckBox_ActivateOffice.TextAlign = 'MiddleLeft'
+        $CheckBox_ActivateOffice.CheckAlign = 'MiddleLeft'
+        $CheckBox_ActivateOffice.Checked = $true
+        $Panel_OfficeSelection.Controls.Add($CheckBox_ActivateOffice)
+        
+        $CheckBox_DisableTelemetry = New-Object System.Windows.Forms.CheckBox
+        $CheckBox_DisableTelemetry.Location = New-Object System.Drawing.Size($CheckBox_X_Axis1, $CheckBox_Y_Axis2)
+        $CheckBox_Y_Axis2 += 22
+        $CheckBox_DisableTelemetry.Size = New-Object System.Drawing.Size($CheckBox_Size_X1, $CheckBox_Size_Y2)
+        # Which ICO to Use?
+        $CheckBox_DisableTelemetry_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADpi74Y5Ie4cN2CsXDYfqwYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPmYzwj0lMl47Y7B8uWIuf/dgbH/1Xup8s51oXbIcJsIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA95fPAvua0VD9m9Pc95fN/++QxP/miLr/3IGw/9N5pv/Lc53/w22V3LxnjlCvYIACAAAAAAAAAAAAAAAA0HUmEsVuIbiyYhj/rmEv/9Z/jP/yksf/54m8/9yAr//Qd6P/xm+Z/75pkP+4Y4n/sl+DuK1bfhIAAAAAAAAAANd5OZrTdi3/ynEi/7xpGP+rXhH/r2I5/9Z+mf/af67/zHSf/8Fqk/+4Y4n/sV6C/6xafP+pWHmaAAAAAAAAAADZekjW2XpF/9d5PP/RdS//x28h/7dlFeigVxBi1nyqYsVul+i4Y4n/r1x//6lYef+lVXb/olRx1gAAAAAAAAAA2ntU2tp7VP/ae1T/2npR/9d5R+rNcy0eAAAAAAAAAAC3Y4keqll77KRUdf+fUHD/l0to/69zXNoAAAAAAAAAANt7Ydrce2P/3Htl/9x8af/cfG6QAAAAAAAAAAAAAAAAAAAAAJpNa5CVSWb/i0Nd/6RsU//010/aAAAAAAAAAADcfG3a3Xxw/918df/efH3/3n2FfAAAAAAAAAAAAAAAAAAAAACKQl18klNU/9OqT//84E///eFP2gAAAAAAAAAA3Xx42t58ff/efYP/332N/8dteLCjVTcOAAAAAAAAAADrt0oO1qRMsPHKTf/3003/+NZO//nYTtoAAAAAAAAAAN59gdbefYf/332P/+B+mf+2Ymj/r1w66M55Q5DdlUeQ5qlJ6Oy4Sv/wwUv/8shM//TMTf/20E3WAAAAAAAAAADffYqa332Q/+B9mP/hfqL/tmJs/7FeOv/Qe0P/3JJG/+KhSP/orkn/7LhK/++/S//xxEz/8shMmgAAAAAAAAAA332REuB9mLjgfqD/4X6p/7ZibP+yYDv/0H1D/9uQRv/gnUf/5adJ/+mwSv/suEr/7r5LuPDDSxIAAAAAAAAAAAAAAADfgJ8C4X6lUOF+rNy9Z3T/smE7/9F+Q//bj0b/35lH/+OjSP/mq0nc6bJKUO+3UAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADhfqoI1HaTdrdlQvLRfkP/245G/96XR/Lhn0h25KVJCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBbkMY0n9EcNqORnDdlEcYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAPw/AADwDwAAwAMAAIABAACBgQAAg8EAAIPBAACH4QAAg8EAAIABAACAAQAAwAMAAPAPAAD8PwAA//8AAA=='
+        $CheckBox_DisableTelemetry_IconBytes = [Convert]::FromBase64String($CheckBox_DisableTelemetry_Icon64)
+        $CheckBox_DisableTelemetry_IconStream = [System.IO.MemoryStream]::new($CheckBox_DisableTelemetry_IconBytes, 0, $CheckBox_DisableTelemetry_IconBytes.Length)
+        $CheckBox_DisableTelemetry.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_DisableTelemetry_IconStream).GetHIcon()))
+        $CheckBox_DisableTelemetry.ImageAlign = 'MiddleLeft'
+        $CheckBox_DisableTelemetry.Text = '    Disable Telemetry (Recommended)'
+        $CheckBox_DisableTelemetry.TextAlign = 'MiddleLeft'
+        $CheckBox_DisableTelemetry.CheckAlign = 'MiddleLeft'
+        $CheckBox_DisableTelemetry.Checked = $true
+        $Panel_OfficeSelection.Controls.Add($CheckBox_DisableTelemetry)
+        
+        $CheckBox_DisableTelemetry.Add_Click( {
+                if ($CheckBox_DisableTelemetry.Checked -eq $true) {
+                    $CheckBox_EnableTelemetry.Enabled = $false
+                }
+                elseif ($CheckBox_DisableTelemetry.Checked -eq $false) {
+                    $CheckBox_EnableTelemetry.Enabled = $true
+                }   
+            }
+        )
+        
+        $CheckBox_EnableTelemetry = New-Object System.Windows.Forms.CheckBox
+        $CheckBox_EnableTelemetry.Location = New-Object System.Drawing.Size($CheckBox_X_Axis1, $CheckBox_Y_Axis2)
+        $CheckBox_Y_Axis2 += 22
+        $CheckBox_EnableTelemetry.Size = New-Object System.Drawing.Size($CheckBox_Size_X1, $CheckBox_Size_Y2)
+        # Which ICO to Use?
+        $CheckBox_EnableTelemetry_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADpi74Y5Ie4cN2CsXDYfqwYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPmYzwj0lMl47Y7B8uWIuf/dgbH/1Xup8s51oXbIcJsIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA95fPAvua0VD9m9Pc95fN/++QxP/miLr/3IGw/9N5pv/Lc53/w22V3LxnjlCvYIACAAAAAAAAAAAAAAAA0HUmEsVuIbiyYhj/rmEv/9Z/jP/yksf/54m8/9yAr//Qd6P/xm+Z/75pkP+4Y4n/sl+DuK1bfhIAAAAAAAAAANd5OZrTdi3/ynEi/7xpGP+rXhH/r2I5/9Z+mf/af67/zHSf/8Fqk/+4Y4n/sV6C/6xafP+pWHmaAAAAAAAAAADZekjW2XpF/9d5PP/RdS//x28h/7dlFeigVxBi1nyqYsVul+i4Y4n/r1x//6lYef+lVXb/olRx1gAAAAAAAAAA2ntU2tp7VP/ae1T/2npR/9d5R+rNcy0eAAAAAAAAAAC3Y4keqll77KRUdf+fUHD/l0to/69zXNoAAAAAAAAAANt7Ydrce2P/3Htl/9x8af/cfG6QAAAAAAAAAAAAAAAAAAAAAJpNa5CVSWb/i0Nd/6RsU//010/aAAAAAAAAAADcfG3a3Xxw/918df/efH3/3n2FfAAAAAAAAAAAAAAAAAAAAACKQl18klNU/9OqT//84E///eFP2gAAAAAAAAAA3Xx42t58ff/efYP/332N/8dteLCjVTcOAAAAAAAAAADrt0oO1qRMsPHKTf/3003/+NZO//nYTtoAAAAAAAAAAN59gdbefYf/332P/+B+mf+2Ymj/r1w66M55Q5DdlUeQ5qlJ6Oy4Sv/wwUv/8shM//TMTf/20E3WAAAAAAAAAADffYqa332Q/+B9mP/hfqL/tmJs/7FeOv/Qe0P/3JJG/+KhSP/orkn/7LhK/++/S//xxEz/8shMmgAAAAAAAAAA332REuB9mLjgfqD/4X6p/7ZibP+yYDv/0H1D/9uQRv/gnUf/5adJ/+mwSv/suEr/7r5LuPDDSxIAAAAAAAAAAAAAAADfgJ8C4X6lUOF+rNy9Z3T/smE7/9F+Q//bj0b/35lH/+OjSP/mq0nc6bJKUO+3UAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADhfqoI1HaTdrdlQvLRfkP/245G/96XR/Lhn0h25KVJCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADBbkMY0n9EcNqORnDdlEcYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAPw/AADwDwAAwAMAAIABAACBgQAAg8EAAIPBAACH4QAAg8EAAIABAACAAQAAwAMAAPAPAAD8PwAA//8AAA=='
+        $CheckBox_EnableTelemetry_IconBytes = [Convert]::FromBase64String($CheckBox_EnableTelemetry_Icon64)
+        $CheckBox_EnableTelemetry_IconStream = [System.IO.MemoryStream]::new($CheckBox_EnableTelemetry_IconBytes, 0, $CheckBox_EnableTelemetry_IconBytes.Length)
+        $CheckBox_EnableTelemetry.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_EnableTelemetry_IconStream).GetHIcon()))
+        $CheckBox_EnableTelemetry.ImageAlign = 'MiddleLeft'
+        $CheckBox_EnableTelemetry.Text = '    Enable Telemetry'
+        $CheckBox_EnableTelemetry.TextAlign = 'MiddleLeft'
+        $CheckBox_EnableTelemetry.CheckAlign = 'MiddleLeft'
+        $CheckBox_EnableTelemetry.Checked = $false
+        $CheckBox_EnableTelemetry.Enabled = $false
+        $Panel_OfficeSelection.Controls.Add($CheckBox_EnableTelemetry)
+        
+        $CheckBox_EnableTelemetry.Add_Click( {
+                if ($CheckBox_EnableTelemetry.Checked -eq $true) {
+                    $CheckBox_DisableTelemetry.Enabled = $false
+                }
+                elseif ($CheckBox_EnableTelemetry.Checked -eq $false) {
+                    $CheckBox_DisableTelemetry.Enabled = $true
+                }   
+            }
+        )
+        
+        $Form_OfficeSelection_OK = New-Object System.Windows.Forms.Button
+        $Form_OfficeSelection_OK.Location = New-Object System.Drawing.Size((($Form_OfficeSelection.Width) / 3 ), (($Form_OfficeSelection.height) - 65))
+        $Form_OfficeSelection_OK.Size = New-Object System.Drawing.Size(57, 20)
+        $Form_OfficeSelection_OK.Text = 'OK'
+        $Form_OfficeSelection_OK.Add_Click({ $Form_OfficeSelection.Close() })
+        $Form_OfficeSelection.Controls.Add($Form_OfficeSelection_OK)
+        
+        $Form_OfficeSelection_Cancel = New-Object System.Windows.Forms.Button
+        $Form_OfficeSelection_Cancel.Location = New-Object System.Drawing.Size((($Form_OfficeSelection.Width) / 2 ), (($Form_OfficeSelection.height) - 65))
+        $Form_OfficeSelection_Cancel.Size = New-Object System.Drawing.Size(57, 20)
+        $Form_OfficeSelection_Cancel.Text = 'Cancel'
+        $Form_OfficeSelection_Cancel.Add_Click({ $Form_OfficeSelection.Close() })
+        $Form_OfficeSelection.Controls.Add($Form_OfficeSelection_Cancel)
+        
+        $Form_OfficeSelection_OK.Add_Click{
+            if ($CheckBox_Microsoft365ProPlus.Checked) {
+                Write-Host 'Office Selection: Microsoft 365 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Skype for Business, Word): Downloading' -ForegroundColor green -BackgroundColor black
+                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'O365ProPlus') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\O365ProPlus.exe")
+                
+                Write-Host 'Office Selection: Microsoft 365 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Skype for Business, Word): Installing' -ForegroundColor green 
+                Start-Process $env:TEMP\O365ProPlus.exe -Wait
+            }
+        
+            if ($CheckBox_Office2024ProPlus.Checked) {
+                Write-Host 'Office Selection: Office 2024 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Word): Downloading' -ForegroundColor green -BackgroundColor black
+                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'ProPlus2024') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\ProPlus2024.exe")
+        
+                Write-Host 'Office Selection: Office 2024 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Word): Installing' -ForegroundColor green -BackgroundColor black
+                Start-Process $env:TEMP\ProPlus2024.exe -Wait
+            }
+        
+            if ($CheckBox_Office2024Access.Checked) {
+                Write-Host 'Office Selection: Office 2024 - (Access): Downloading' -ForegroundColor green -BackgroundColor black
+                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Access2024') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Access2024.exe")
+        
+                Write-Host 'Office Selection: Office 2024 - (Access): Installing' -ForegroundColor green -BackgroundColor black
+                Start-Process $env:TEMP\Access2024.exe -Wait
+            }
+        
+            if ($CheckBox_Office2024Excel.Checked) {
+                Write-Host 'Office Selection: Office 2024 - Excel: Downloading' -ForegroundColor green -BackgroundColor black
+                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Excel2024') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Excel2024.exe")
+        
+                Write-Host 'Office Selection: Office 2024 - Excel: Installing' -ForegroundColor green -BackgroundColor black
+                Start-Process $env:TEMP\Excel2024.exe -Wait
+            }
+        
+            if ($CheckBox_Office2024Outlook.Checked) {
+                Write-Host 'Office Selection: Office 2024 - Outlook: Downloading' -ForegroundColor green -BackgroundColor black
+                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Outlook2024') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Outlook2024.exe")
+        
+                Write-Host 'Office Selection: Office 2024 - Outlook: Installing' -ForegroundColor green -BackgroundColor black
+                Start-Process $env:TEMP\Outlook2024.exe -Wait
+            }
+        
+            if ($CheckBox_Office2024PowerPoint.Checked) {
+                Write-Host 'Office Selection: Office 2024 - PowerPoint: Downloading' -ForegroundColor green -BackgroundColor black
+                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'PowerPoint2024') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\PowerPoint2024.exe")
+        
+                Write-Host 'Office Selection: Office 2024 - PowerPoint: Installing' -ForegroundColor green -BackgroundColor black
+                Start-Process $env:TEMP\PowerPoint2024.exe -Wait
+            }
+        
+            if ($CheckBox_Office2024Word.Checked) {
+                Write-Host 'Office Selection: Office 2024 - Word: Downloading' -ForegroundColor green -BackgroundColor black
+                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Word2024') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Word2024.exe")
+        
+                Write-Host 'Office Selection: Office 2024 - Word: Installing' -ForegroundColor green -BackgroundColor black
+                Start-Process $env:TEMP\Word2024.exe -Wait
+            }
+        
+            if ($CheckBox_Office2021ProPlus.Checked) {
+                Write-Host 'Office Selection: Office 2021 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Word): Downloading' -ForegroundColor green -BackgroundColor black
+                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'ProPlus2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\ProPlus2021.exe")
+        
+                Write-Host 'Office Selection: Office 2021 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Word): Installing' -ForegroundColor green -BackgroundColor black
+                Start-Process $env:TEMP\ProPlus2021.exe -Wait
+            }
+        
+            if ($CheckBox_Office2021Access.Checked) {
+                Write-Host 'Office Selection: Office 2021 - (Access): Downloading' -ForegroundColor green -BackgroundColor black
+                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Access2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Access2021.exe")
+        
+                Write-Host 'Office Selection: Office 2021 - (Access): Installing' -ForegroundColor green -BackgroundColor black
+                Start-Process $env:TEMP\Access2021.exe -Wait
+            }
+        
+            if ($CheckBox_Office2021Excel.Checked) {
+                Write-Host 'Office Selection: Office 2021 - Excel: Downloading' -ForegroundColor green -BackgroundColor black
+                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Excel2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Excel2021.exe")
+        
+                Write-Host 'Office Selection: Office 2021 - Excel: Installing' -ForegroundColor green -BackgroundColor black
+                Start-Process $env:TEMP\Excel2021.exe -Wait
+            }
+        
+            if ($CheckBox_Office2021OneNote.Checked) {
+                Write-Host 'Office Selection: Office 2021 - OneNote: Downloading' -ForegroundColor green -BackgroundColor black
+                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'OneNote2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\OneNote2021.exe")
+        
+                Write-Host 'Office Selection: Office 2021 - OneNote: Installing' -ForegroundColor green -BackgroundColor black
+                Start-Process $env:TEMP\OneNote2021.exe -Wait
+            }
+        
+            if ($CheckBox_Office2021Outlook.Checked) {
+                Write-Host 'Office Selection: Office 2021 - Outlook: Downloading' -ForegroundColor green -BackgroundColor black
+                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Outlook2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Outlook2021.exe")
+        
+                Write-Host 'Office Selection: Office 2021 - Outlook: Installing' -ForegroundColor green -BackgroundColor black
+                Start-Process $env:TEMP\Outlook2021.exe -Wait
+            }
+        
+            if ($CheckBox_Office2021PowerPoint.Checked) {
+                Write-Host 'Office Selection: Office 2021 - PowerPoint: Downloading' -ForegroundColor green -BackgroundColor black
+                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'PowerPoint2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\PowerPoint2021.exe")
+        
+                Write-Host 'Office Selection: Office 2021 - PowerPoint: Installing' -ForegroundColor green -BackgroundColor black
+                Start-Process $env:TEMP\PowerPoint2021.exe -Wait
+            }
+        
+            if ($CheckBox_Office2021Publisher.Checked) {
+                Write-Host 'Office Selection: Office 2021 - Publisher: Downloading' -ForegroundColor green -BackgroundColor black
+                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Publisher2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Publisher2021.exe")
+        
+                Write-Host 'Office Selection: Office 2021 - Publisher: Installing' -ForegroundColor green -BackgroundColor black
+                Start-Process $env:TEMP\Publisher2021.exe -Wait
+            }
+        
+            if ($CheckBox_Office2021Word.Checked) {
+                Write-Host 'Office Selection: Office 2021 - Word: Downloading' -ForegroundColor green -BackgroundColor black
+                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Word2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Word2021.exe")
+        
+                Write-Host 'Office Selection: Office 2021 - Word: Installing' -ForegroundColor green -BackgroundColor black
+                Start-Process $env:TEMP\Word2021.exe -Wait
+            }
+        
+            if ($CheckBox_ActivateOffice.Checked) {
+                Write-Host 'Office Selection: Activating' -ForegroundColor green -BackgroundColor black
+                & ([ScriptBlock]::Create(((New-Object Net.WebClient).DownloadString('https://get.activated.win/')))) /Ohook
+            }
+        
+            if ($CheckBox_DisableTelemetry.Checked) {
+                Write-Host 'Office Selection: Disabling Telemetry' -ForegroundColor green -BackgroundColor black
+                Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/abbodi1406/WHD/master/scripts/OC2R_DisableTelemetry.ps1')
+            }
+        
+            if ($CheckBox_EnableTelemetry.Checked) {
+                Write-Host 'Office Selection: Enabling Telemetry' -ForegroundColor green -BackgroundColor black
+                Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/abbodi1406/WHD/master/scripts/OC2R_RevertTelemetry.ps1')
+            }
+        
+        }
+        
+        $Form_OfficeSelection.Add_Shown({ $Form_OfficeSelection.Activate() })
+        [void] $Form_OfficeSelection.ShowDialog()
+
     }
 
     if ($CheckBox_AdobeAcrobat.Checked) {
-        Write-Host 'Software Selection: Adobe Acrobat: Initiating' -ForegroundColor green -BackgroundColor black
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Adobe_Acrobat/Download.ps1')
+        Write-Host 'Adobe Acrobat: Initiating qBittorrent' -ForegroundColor green -BackgroundColor black
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
+        
+        Write-Host 'Adobe Acrobat: Getting magnet' -ForegroundColor green -BackgroundColor black
+        $Adrobat1 = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w14.monkrus.ws/search/label/Acrobat' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'x64') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
+        $Adrobat2 = (Invoke-WebRequest -UseBasicParsing -Uri $Adrobat1 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'uniondht.org') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
+        if ($null -eq $Adrobat2) {
+            $Adrobat2 = (Invoke-WebRequest -UseBasicParsing -Uri $Adrobat1 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'pb.wtf') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
+        }
+        $Adrobat3 = (Invoke-WebRequest -UseBasicParsing -Uri $Adrobat2 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'magnet') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
+        
+        Write-Host 'Adobe Acrobat: Deleting qBittorrent log file' -ForegroundColor green -BackgroundColor black
+        if (Test-Path "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log") {
+            Remove-Item "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Force -ErrorAction SilentlyContinue
+        }
+        
+        Write-Host 'Adobe Acrobat: Deleting temp folder' -ForegroundColor green -BackgroundColor black
+        Remove-Item -Path "$env:TEMP\*Acrobat*" -Force -ErrorAction SilentlyContinue
+        
+        Write-Host 'Adobe Acrobat: Opening magnet' -ForegroundColor green -BackgroundColor black
+        Start-Process -FilePath "$env:ProgramFiles\qBittorrent\qBittorrent.exe" -ArgumentList "--skip-dialog=true --add-paused=false --save-path=$env:TEMP ""$($Adrobat3)"""
+        
+        Write-Host 'Adobe Acrobat: Waiting for folder to be created' -ForegroundColor green -BackgroundColor black
+        while (($null -eq (Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*Acrobat*' -ErrorAction SilentlyContinue))) {
+            Start-Sleep -Milliseconds 1000
+        }
+        $AcrobatTempDir = Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*Acrobat*' | Select-Object FullName -ExpandProperty 'FullName'
+        
+        Write-Host 'Adobe Acrobat: Adding Defender Exclusion' -ForegroundColor green -BackgroundColor black
+        Add-MpPreference -ExclusionPath "$AcrobatTempDir"
+        
+        Write-Host 'Adobe Acrobat: Waiting for ISO file to be created' -ForegroundColor green -BackgroundColor black
+        While ($null -eq (Get-ChildItem -Path "$AcrobatTempDir" -Filter '*iso*' | Select-Object FullName -ExpandProperty 'FullName' -ErrorAction SilentlyContinue)) {
+            Start-Sleep -Milliseconds 1000
+        }
+        $AcrobatTempISO = Get-ChildItem -Path "$AcrobatTempDir" -Filter '*iso*' | Select-Object FullName -ExpandProperty 'FullName'
+        
+        Write-Host 'Adobe Acrobat: Waiting download to complete' -ForegroundColor green -BackgroundColor black
+        $null = Get-Content "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Wait | Where-Object { $_ -match 'Removed torrent. Torrent: .*Acrobat*' } | Select-Object -First 1
+        
+        Write-Host 'Adobe Acrobat: Initiating 7-Zip' -ForegroundColor green -BackgroundColor black
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
+        
+        Write-Host 'Adobe Acrobat: Extracting ISO' -ForegroundColor green -BackgroundColor black
+        & "$env:ProgramFiles\7-Zip\7z.exe" x "$AcrobatTempISO" -o"$AcrobatTempDir" -y
+            
+        Write-Host 'Adobe Acrobat: Opening Installer' -ForegroundColor green -BackgroundColor black
+        $AcrobatTEMPinstaller = Get-ChildItem -Path "$AcrobatTempDir" -Filter '*exe*' | Select-Object FullName -ExpandProperty 'FullName'
+        Start-Process $AcrobatTEMPinstaller
+            
+        Write-Host 'Adobe Acrobat: Waiting for installer to open' -ForegroundColor green -BackgroundColor black
+        while (($null -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Acrobat * Installer' } -ErrorAction SilentlyContinue))) {
+            Start-Sleep -Milliseconds 1000
+        }
+        
+        Write-Host 'Adobe Acrobat: Waiting for installer to close' -ForegroundColor green -BackgroundColor black
+        while (($true -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Acrobat * Installer' } -ErrorAction SilentlyContinue))) {
+            Write-Host 'Adobe Acrobat: Installing' -ForegroundColor green -BackgroundColor black
+            $wshell = New-Object -ComObject wscript.shell
+            $wshell.SendKeys('{ENTER}')
+            Start-Sleep -Milliseconds 1000
+        }
+            
+        Write-Host 'Adobe Acrobat: Waiting for process to open' -ForegroundColor green -BackgroundColor black
+        while (($null -eq (Get-Process | Where-Object { $_.Name -like 'crack' } -ErrorAction SilentlyContinue))) {
+            Start-Sleep -Milliseconds 1000
+        }
+        
+        Write-Host 'Adobe Acrobat: Waiting for process to close' -ForegroundColor green -BackgroundColor black
+        while (($true -eq (Get-Process | Where-Object { $_.Name -like 'crack' } -ErrorAction SilentlyContinue))) {
+            Start-Sleep -Milliseconds 1000
+        }
+            
+        Write-Host 'Adobe Acrobat: Removing Defender Exclusion' -ForegroundColor green -BackgroundColor black
+        Remove-MpPreference -ExclusionPath "$AcrobatTempDir"
+        
+        Write-Host 'Adobe Acrobat: Edit: Prefrences: Security (Enhanced): Protected View: All Files' -ForegroundColor green -BackgroundColor black
+        if ((Test-Path -Path 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\TrustManager') -ne $true) {
+            New-Item 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\TrustManager' -Force 
+        }
+        New-ItemProperty -Path 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\TrustManager' -Name 'iProtectedView' -Value 2 -PropertyType DWord -Force
     }
     
     if ($CheckBox_AdobeLightroomClassic.Checked) {
-        Write-Host 'Software Selection: Adobe Lightroom Classic: Initiating' -ForegroundColor green -BackgroundColor black
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Adobe_Lightroom_Classic/Download.ps1')
+        Write-Host 'Adobe Lightroom Classic: Initiating qBittorrent' -ForegroundColor green -BackgroundColor black
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
+        
+        Write-Host 'Adobe Lightroom Classic: Getting magnet' -ForegroundColor green -BackgroundColor black
+        $Lightroom_Classic1 = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w14.monkrus.ws/search/label/Lightroom' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Classic') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
+        $Lightroom_Classic2 = (Invoke-WebRequest -UseBasicParsing -Uri $Lightroom_Classic1 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'uniondht.org') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
+        if ($null -eq $Lightroom_Classic2) {
+            $Lightroom_Classic2 = (Invoke-WebRequest -UseBasicParsing -Uri $Lightroom_Classic2 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'pb.wtf') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
+        }
+        $Lightroom_Classic3 = (Invoke-WebRequest -UseBasicParsing -Uri $Lightroom_Classic2 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'magnet') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
+        
+        Write-Host 'Adobe Lightroom Classic: Deleting qBittorrent log file' -ForegroundColor green -BackgroundColor black
+        if (Test-Path "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log") {
+            Remove-Item "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Force -ErrorAction SilentlyContinue
+        }
+        
+        Write-Host 'Adobe Lightroom Classic: Deleting temp folder' -ForegroundColor green -BackgroundColor black
+        Remove-Item -Path "$env:TEMP\*Classic*" -Force -ErrorAction SilentlyContinue
+        
+        Write-Host 'Adobe Lightroom Classic: Opening magnet' -ForegroundColor green -BackgroundColor black
+        Start-Process -FilePath "$env:ProgramFiles\qBittorrent\qBittorrent.exe" -ArgumentList "--skip-dialog=true --add-paused=false --save-path=$env:TEMP ""$($Lightroom_Classic3)"""
+        
+        Write-Host 'Adobe Lightroom Classic: Waiting for folder to be created' -ForegroundColor green -BackgroundColor black
+        while (($null -eq (Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*Classic*' -ErrorAction SilentlyContinue))) {
+            Start-Sleep -Milliseconds 1000
+        }
+        $Lightroom_ClassicTempDir = Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*Classic*' | Select-Object FullName -ExpandProperty 'FullName'
+        
+        Write-Host 'Adobe Lightroom Classic: Adding Defender Exclusion' -ForegroundColor green -BackgroundColor black
+        Add-MpPreference -ExclusionPath "$Lightroom_ClassicTempDir"
+        
+        Write-Host 'Adobe Lightroom Classic: Waiting for ISO file to be created' -ForegroundColor green -BackgroundColor black
+        While ($null -eq (Get-ChildItem -Path "$Lightroom_ClassicTempDir" -Filter '*iso*' | Select-Object FullName -ExpandProperty 'FullName' -ErrorAction SilentlyContinue)) {
+            Start-Sleep -Milliseconds 1000
+        }
+        $Lightroom_ClassicTempISO = Get-ChildItem -Path "$Lightroom_ClassicTempDir" -Filter '*iso*' | Select-Object FullName -ExpandProperty 'FullName'
+        
+        Write-Host 'Adobe Lightroom Classic: Waiting download to complete' -ForegroundColor green -BackgroundColor black
+        $null = Get-Content "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Wait | Where-Object { $_ -match 'Removed torrent. Torrent: .*Classic*' } | Select-Object -First 1
+        
+        Write-Host 'Adobe Lightroom Classic: Initiating 7-Zip' -ForegroundColor green -BackgroundColor black
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
+        
+        Write-Host 'Adobe Lightroom Classic: Extracting ISO' -ForegroundColor green -BackgroundColor black
+        & "$env:ProgramFiles\7-Zip\7z.exe" x "$Lightroom_ClassicTempISO" -o"$Lightroom_ClassicTempDir" -y
+            
+        Write-Host 'Adobe Lightroom Classic: Opening Installer' -ForegroundColor green -BackgroundColor black
+        $Lightroom_ClassicTempInstaller = Get-ChildItem -Path "$Lightroom_ClassicTempDir" -Filter '*exe*' | Select-Object FullName -ExpandProperty 'FullName'
+        Start-Process $Lightroom_ClassicTempInstaller
+            
+        Write-Host 'Adobe Lightroom Classic: Waiting for installer to open' -ForegroundColor green -BackgroundColor black
+        while (($null -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Lightroom * Installer' } -ErrorAction SilentlyContinue))) {
+            Start-Sleep -Milliseconds 1000
+        }
+        
+        Write-Host 'Adobe Lightroom Classic: Waiting for installer to close' -ForegroundColor green -BackgroundColor black
+        while (($true -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Lightroom * Installer' } -ErrorAction SilentlyContinue))) {
+            Write-Host 'Adobe Lightroom Classic: Installing' -ForegroundColor green -BackgroundColor black
+            $wshell = New-Object -ComObject wscript.shell
+            $wshell.SendKeys('{ENTER}')
+            Start-Sleep -Milliseconds 1000
+        }
+        
+        Write-Host 'Adobe Lightroom Classic: Waiting for installer to open' -ForegroundColor green -BackgroundColor black
+        while (($null -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Lightroom * Installer' } -ErrorAction SilentlyContinue))) {
+            Start-Sleep -Milliseconds 1000
+        }
+        
+        Write-Host 'Adobe Lightroom Classic: Waiting for installer to close' -ForegroundColor green -BackgroundColor black
+        while (($true -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Lightroom * Installer' } -ErrorAction SilentlyContinue))) {
+            Start-Sleep -Milliseconds 1000
+        }
+            
+        Write-Host 'Adobe Lightroom Classic: Removing Defender Exclusion' -ForegroundColor green -BackgroundColor black
+        Remove-MpPreference -ExclusionPath "$Lightroom_ClassicTempDir"
     }
 
     if ($CheckBox_AdobePhotoshop.Checked) {
-        Write-Host 'Software Selection: Adobe Photoshop: Initiating' -ForegroundColor green -BackgroundColor black
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Adobe_Photoshop/Download.ps1')
+        Write-Host 'Adobe Photoshop: Initiating qBittorrent' -ForegroundColor green -BackgroundColor black
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
+        
+        Write-Host 'Adobe Photoshop: Getting magnet' -ForegroundColor green -BackgroundColor black
+        $Photoshop1 = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w14.monkrus.ws/search/label/Photoshop' | Select-Object -ExpandProperty Links | Where-Object { (($_.outerHTML -notmatch 'Elements') -and ($_.outerHTML -notmatch 'Collection') -and ($_.outerHTML -match 'Multilingual')) } | Select-Object -First 1 | Select-Object -ExpandProperty href)
+        $Photoshop2 = (Invoke-WebRequest -UseBasicParsing -Uri $Photoshop1 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'uniondht.org') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
+        if ($null -eq $Photoshop2) {
+            $Photoshop2 = (Invoke-WebRequest -UseBasicParsing -Uri $Photoshop2 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'pb.wtf') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
+        }
+        $Photoshop3 = (Invoke-WebRequest -UseBasicParsing -Uri $Photoshop2 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'magnet') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
+        
+        Write-Host 'Adobe Photoshop: Deleting qBittorrent log file' -ForegroundColor green -BackgroundColor black
+        if (Test-Path "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log") {
+            Remove-Item "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Force -ErrorAction SilentlyContinue
+        }
+        
+        Write-Host 'Adobe Photoshop: Deleting temp folder' -ForegroundColor green -BackgroundColor black
+        Remove-Item -Path "$env:TEMP\*Photoshop*" -Force -ErrorAction SilentlyContinue
+        
+        Write-Host 'Adobe Photoshop: Opening magnet' -ForegroundColor green -BackgroundColor black
+        Start-Process -FilePath "$env:ProgramFiles\qBittorrent\qBittorrent.exe" -ArgumentList "--skip-dialog=true --add-paused=false --save-path=$env:TEMP ""$($Photoshop3)"""
+        
+        Write-Host 'Adobe Photoshop: Waiting for folder to be created' -ForegroundColor green -BackgroundColor black
+        while (($null -eq (Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*Photoshop*' -ErrorAction SilentlyContinue))) {
+            Start-Sleep -Milliseconds 1000
+        }
+        $PhotoshopTempDir = Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*Photoshop*' | Select-Object FullName -ExpandProperty 'FullName'
+        
+        Write-Host 'Adobe Photoshop: Adding Defender Exclusion' -ForegroundColor green -BackgroundColor black
+        Add-MpPreference -ExclusionPath "$PhotoshopTempDir"
+        
+        Write-Host 'Adobe Photoshop: Waiting for ISO file to be created' -ForegroundColor green -BackgroundColor black
+        While ($null -eq (Get-ChildItem -Path "$PhotoshopTempDir" -Filter '*iso*' | Select-Object FullName -ExpandProperty 'FullName' -ErrorAction SilentlyContinue)) {
+            Start-Sleep -Milliseconds 1000
+        }
+        $PhotoshopTempISO = Get-ChildItem -Path "$PhotoshopTempDir" -Filter '*iso*' | Select-Object FullName -ExpandProperty 'FullName'
+        
+        Write-Host 'Adobe Photoshop: Waiting download to complete' -ForegroundColor green -BackgroundColor black
+        $null = Get-Content "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Wait | Where-Object { $_ -match 'Removed torrent. Torrent: .*Photoshop*' } | Select-Object -First 1
+        
+        Write-Host 'Adobe Photoshop: Initiating 7-Zip' -ForegroundColor green -BackgroundColor black
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
+        
+        Write-Host 'Adobe Photoshop: Extracting ISO' -ForegroundColor green -BackgroundColor black
+        & "$env:ProgramFiles\7-Zip\7z.exe" x "$PhotoshopTempISO" -o"$PhotoshopTempDir" -y
+            
+        Write-Host 'Adobe Photoshop: Opening Installer' -ForegroundColor green -BackgroundColor black
+        $PhotoshopTempInstaller = Get-ChildItem -Path "$PhotoshopTempDir" -Filter '*exe*' | Select-Object FullName -ExpandProperty 'FullName'
+        Start-Process $PhotoshopTempInstaller
+            
+        Write-Host 'Adobe Photoshop: Waiting for installer to open' -ForegroundColor green -BackgroundColor black
+        while (($null -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Photoshop * Installer' } -ErrorAction SilentlyContinue))) {
+            Start-Sleep -Milliseconds 1000
+        }
+        
+        Write-Host 'Adobe Photoshop: Waiting for installer to close' -ForegroundColor green -BackgroundColor black
+        while (($true -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Photoshop * Installer' } -ErrorAction SilentlyContinue))) {
+            Write-Host 'Adobe Photoshop: Installing' -ForegroundColor green -BackgroundColor black
+            $wshell = New-Object -ComObject wscript.shell
+            $wshell.SendKeys('{ENTER}')
+            Start-Sleep -Milliseconds 1000
+        }
+        
+        Write-Host 'Adobe Photoshop: Waiting for installer to open' -ForegroundColor green -BackgroundColor black
+        while (($null -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Photoshop * Installer' } -ErrorAction SilentlyContinue))) {
+            Start-Sleep -Milliseconds 1000
+        }
+        
+        Write-Host 'Adobe Photoshop: Waiting for installer to close' -ForegroundColor green -BackgroundColor black
+        while (($true -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Photoshop * Installer' } -ErrorAction SilentlyContinue))) {
+            Start-Sleep -Milliseconds 1000
+        }
+            
+        Write-Host 'Adobe Photoshop: Removing Defender Exclusion' -ForegroundColor green -BackgroundColor black
+        Remove-MpPreference -ExclusionPath "$PhotoshopTempDir"
     }
 
     if ($CheckBox_JitBit_Macro_Recorder.Checked) {
-        Write-Host 'Software Selection: JitBit Macro Recorder: Initiating' -ForegroundColor green -BackgroundColor black
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/JitBit_Macro_Recorder/Download.ps1')
+        Write-Host 'JitBit Macro Recorder: Initiating qBittorrent' -ForegroundColor green -BackgroundColor black
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
+        
+        Write-Host 'JitBit Macro Recorder: Getting magnet' -ForegroundColor green -BackgroundColor black
+        $JitBit1 = (Invoke-WebRequest -UseBasicParsing -Uri 'https://rutracker.org/forum/viewtopic.php?t=6357418' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'magnet') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
+        
+        Write-Host 'JitBit Macro Recorder: Deleting qBittorrent log file' -ForegroundColor green -BackgroundColor black
+        if (Test-Path "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log") {
+            Remove-Item "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Force -ErrorAction SilentlyContinue
+        }
+        
+        Write-Host 'JitBit Macro Recorder: Deleting temp folder' -ForegroundColor green -BackgroundColor black
+        Remove-Item -Path "$env:TEMP\*JitBit*" -Force -ErrorAction SilentlyContinue
+        
+        Write-Host 'JitBit Macro Recorder: Opening magnet' -ForegroundColor green -BackgroundColor black
+        Start-Process -FilePath "$env:ProgramFiles\qBittorrent\qBittorrent.exe" -ArgumentList "--skip-dialog=true --add-paused=false --save-path=$env:TEMP ""$($JitBit1)"""
+        
+        Write-Host 'JitBit Macro Recorder: Waiting for folder to be created' -ForegroundColor green -BackgroundColor black
+        while (($null -eq (Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*JitBit*' -ErrorAction SilentlyContinue))) {
+            Start-Sleep -Milliseconds 1000
+        }
+        $JitBitTempDir = Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*JitBit*' | Select-Object FullName -ExpandProperty 'FullName'
+        
+        Write-Host 'JitBit Macro Recorder: Adding Defender Exclusion' -ForegroundColor green -BackgroundColor black
+        Add-MpPreference -ExclusionPath "$JitBitTempDir"
+        
+        Write-Host 'JitBit Macro Recorder: Waiting for installer file to be created' -ForegroundColor green -BackgroundColor black
+        While ($null -eq (Get-ChildItem -Path "$JitBitTempDir" -Filter '*exe*' | Select-Object FullName -ExpandProperty 'FullName' -ErrorAction SilentlyContinue)) {
+            Start-Sleep -Milliseconds 1000
+        }
+        $JitBitTempInstaller = Get-ChildItem -Path "$JitBitTempDir" -Filter '*exe*' | Select-Object FullName -ExpandProperty 'FullName'
+        
+        Write-Host 'JitBit Macro Recorder: Waiting download to complete' -ForegroundColor green -BackgroundColor black
+        $null = Get-Content "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Wait | Where-Object { $_ -match 'Removed torrent. Torrent: .*JitBit*' } | Select-Object -First 1
+        
+        Write-Host 'JitBit Macro Recorder: Installing' -ForegroundColor green -BackgroundColor black
+        Start-Process $JitBitTempInstaller -ArgumentList '/verysilent /Tasks=create_start_menu_entry' -Wait
+        
+        Write-Host 'JitBit Macro Recorder: Removing Defender Exclusion' -ForegroundColor green -BackgroundColor black
+        Remove-MpPreference -ExclusionPath "$JitBitTempDir"
+        
+        Write-Host 'Jitbit Macro Recorder: Settings: General: Disable the welcome screen: On' -ForegroundColor green -BackgroundColor black
+        if ((Test-Path -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder') -ne $true) {
+            New-Item 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Force 
+        }
+        
+        Write-Host 'Jitbit Macro Recorder: Disabling Startup Screen' -ForegroundColor green -BackgroundColor black
+        New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'DisableStartupScreen' -Value 'True' -PropertyType String -Force
+        
+        Write-Host 'Jitbit Macro Recorder: Settings: Playback settings: Continuous reply: Infinite playback' -ForegroundColor green -BackgroundColor black
+        New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'NumberOfPlaybacks' -Value 0 -PropertyType DWord -Force
+        
+        Write-Host 'Jitbit Macro Recorder: Settings: Playback settings: Hide the topmost playing... bar: Off' -ForegroundColor green -BackgroundColor black
+        New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'HidePlayWnd' -Value 'False' -PropertyType String -Force
+        
+        Write-Host 'Jitbit Macro Recorder: Settings: General: Move the playback toolbar to the right: On' -ForegroundColor green -BackgroundColor black
+        New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'PlayRecFormsOnTheRight' -Value 'True' -PropertyType String -Force
+        
+        Write-Host 'Jitbit Macro Recorder: Settings: Keyboard shortcuts (hotkeys): Play / Pause / Resume playback: F8' -ForegroundColor green -BackgroundColor black
+        New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'PausePlayKey' -Value 119 -PropertyType DWord -Force
+        
+        Write-Host 'Jitbit Macro Recorder: Settings: Keyboard shortcuts (hotkeys): Abort playback: F9' -ForegroundColor green -BackgroundColor black
+        New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'AbortPlayKey' -Value 120 -PropertyType DWord -Force
+        
+        Write-Host 'Jitbit Macro Recorder: Settings: Keyboard shortcuts (hotkeys): Step-by-step playback: F10' -ForegroundColor green -BackgroundColor black
+        New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'StepByStepPlayKey' -Value 121 -PropertyType DWord -Force
+        
+        Write-Host 'Jitbit Macro Recorder: Settings: Keyboard shortcuts (hotkeys): Start / Pause / Resume recording: F11' -ForegroundColor green -BackgroundColor black
+        New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'RecordKey' -Value 122 -PropertyType DWord -Force
+        
+        Write-Host 'Jitbit Macro Recorder: Settings: Keyboard shortcuts (hotkeys): Abort recording: F12' -ForegroundColor green -BackgroundColor black
+        New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'AbortRecKey' -Value 123 -PropertyType DWord -Force
     }
 
 }
