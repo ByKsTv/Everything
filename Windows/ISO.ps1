@@ -50,4 +50,3 @@ Start-Sleep -Milliseconds 1000
 Write-Host 'Rufus: Selecting .ISO file' -ForegroundColor green -BackgroundColor black
 [System.Windows.Forms.SendKeys]::SendWait('Windows 10 IoT Enterprise LTSC 2021.iso')
 [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
-Start-Sleep -Milliseconds 1000
