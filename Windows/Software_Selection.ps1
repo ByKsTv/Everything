@@ -1902,6 +1902,11 @@ $Form_SoftwareSelection_OK.Add_Click{
             New-Item 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\TrustManager' -Force 
         }
         New-ItemProperty -Path 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\TrustManager' -Name 'iProtectedView' -Value 2 -PropertyType DWord -Force
+
+        # https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/index.html
+        # https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/FeatureLockDown.html#idkeyname_1_13262
+        Write-Host 'Adobe Acrobat: Turn off the generative AI features' -ForegroundColor green -BackgroundColor black
+        New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name "bEnableGentech" -PropertyType DWord -Value 0
     }
     
     if ($CheckBox_AdobeLightroomClassic.Checked) {
