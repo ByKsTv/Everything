@@ -1906,6 +1906,9 @@ $Form_SoftwareSelection_OK.Add_Click{
         # https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/index.html
         # https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/FeatureLockDown.html#idkeyname_1_13262
         Write-Host 'Adobe Acrobat: Turn off the generative AI features' -ForegroundColor green -BackgroundColor black
+        if ((Test-Path -LiteralPath 'HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown') -ne $true) {
+            New-Item 'HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Force
+        }
         New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name 'bEnableGentech' -PropertyType DWord -Value 0
 
         Write-Host 'Adobe Acrobat: Preferences: Catalog: Enable Logging: Off' -ForegroundColor green -BackgroundColor black
