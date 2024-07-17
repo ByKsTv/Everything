@@ -45,7 +45,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 ## Installation
 
 1. `Next` > `Install now` > `I don't have a product key` > `Windows 10 IoT Enterprise LTSC` > `Next` > `I accept the license terms` > `Next` > `Custom: Install Windows only (advanced)` > Delete all > `Next`.
-   > Note: If drives not found - Extract `Intel Rapid Storage Technology (IRST)` driver matching to the motherboard.
+   > If drives not found - Extract `Intel Rapid Storage Technology (IRST)` driver matching to the motherboard.
 1. `Yes` > `Yes` > `Skip` > `I don't have internet` > `Continue with limited setup`.
 1. Connect Ethernet Cable (After Windows Boots Up).
 1. `Do you want to allow your PC to be discoverable by other PCs and devices on this network?` > Yes.
