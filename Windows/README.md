@@ -19,14 +19,14 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. `START` > Enable all except `Set regional options to the same values as this user's` > `OK` > `OK`.
 1. Download Motherboard LAN driver, Chipset drivers and Intel(R) Rapid Storage Technology to USB.
 
-   > Note: Find Motherboard Model - PowerShell (Admin):
-   >
-   > ```powershell
-   > (wmic baseboard get product)
-   >
-   > ```
-   >
-   > Note: [Update BIOS](https://github.com/ByKsTv/Everything/tree/main/BIOS).
+> Find Motherboard Model - PowerShell (Admin):
+>
+> ```powershell
+> (wmic baseboard get product)
+>
+> ```
+>
+> [Update BIOS](https://github.com/ByKsTv/Everything/tree/main/BIOS).
 
 ## Pre Installation
 
@@ -35,12 +35,12 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. Disconnect Every Hard Drive Except Windows Drive.
 1. Boot to UEFI USB (F12/DEL/F11).
 
-   > Note: Restart to BIOS - CMD (Admin):
-   >
-   > ```cmd
-   > shutdown /r /fw /t 00
-   >
-   > ```
+> Restart to BIOS - CMD (Admin):
+>
+> ```cmd
+> shutdown /r /fw /t 00
+>
+> ```
 
 ## Installation
 
