@@ -1906,7 +1906,25 @@ $Form_SoftwareSelection_OK.Add_Click{
         # https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/index.html
         # https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/FeatureLockDown.html#idkeyname_1_13262
         Write-Host 'Adobe Acrobat: Turn off the generative AI features' -ForegroundColor green -BackgroundColor black
-        New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name "bEnableGentech" -PropertyType DWord -Value 0
+        New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name 'bEnableGentech' -PropertyType DWord -Value 0
+
+        Write-Host 'Adobe Acrobat: Preferences: Catalog: Enable Logging: Off' -ForegroundColor green -BackgroundColor black
+        if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Catalog\cOptions') -ne $true) {
+            New-Item 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Catalog\cOptions' -Force
+        }
+        New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Catalog\cOptions' -Name 'bCreateLog' -Value 0 -PropertyType DWord -Force
+
+        Write-Host 'Adobe Acrobat: Preferences: Page Display: Zoom: Fit Visible' -ForegroundColor green -BackgroundColor black
+        if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals') -ne $true) {
+            New-Item 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals' -Force
+        }
+        New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals' -Name 'iDefaultZoomType' -Value '4' -PropertyType String -Force
+
+        Write-Host 'Adobe Acrobat: General: Show me messages when I launch Adobe Acrobat: Disable' -ForegroundColor green -BackgroundColor black
+        if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\IPM') -ne $true) {
+            New-Item 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\IPM' -Force
+        }
+        New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\IPM' -Name 'bShowMsgAtLaunch' -Value 0 -PropertyType DWord -Force
     }
     
     if ($CheckBox_AdobeLightroomClassic.Checked) {
