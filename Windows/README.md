@@ -95,4 +95,4 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. Set up scan profile.
 1. Set up print quality and print size.
 
-   > Note: HP Printer: Only Original Ink Cartridges.
+> Note: HP Printer: Only Original Ink Cartridges.
