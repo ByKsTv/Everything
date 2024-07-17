@@ -1838,7 +1838,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         }
         
         Write-Host 'Adobe Acrobat: Deleting temp folder' -ForegroundColor green -BackgroundColor black
-        Remove-Item -Path "$env:TEMP\*Acrobat*" -Force -ErrorAction SilentlyContinue
+        Remove-Item -Path "$env:TEMP\*Acrobat*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
         
         Write-Host 'Adobe Acrobat: Opening magnet' -ForegroundColor green -BackgroundColor black
         Start-Process -FilePath "$env:ProgramFiles\qBittorrent\qBittorrent.exe" -ArgumentList "--skip-dialog=true --add-paused=false --save-path=$env:TEMP ""$($Adrobat3)"""
@@ -1922,7 +1922,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         }
         
         Write-Host 'Adobe Lightroom Classic: Deleting temp folder' -ForegroundColor green -BackgroundColor black
-        Remove-Item -Path "$env:TEMP\*Classic*" -Force -ErrorAction SilentlyContinue
+        Remove-Item -Path "$env:TEMP\*Classic*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
         
         Write-Host 'Adobe Lightroom Classic: Opening magnet' -ForegroundColor green -BackgroundColor black
         Start-Process -FilePath "$env:ProgramFiles\qBittorrent\qBittorrent.exe" -ArgumentList "--skip-dialog=true --add-paused=false --save-path=$env:TEMP ""$($Lightroom_Classic3)"""
@@ -2000,7 +2000,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         }
         
         Write-Host 'Adobe Photoshop: Deleting temp folder' -ForegroundColor green -BackgroundColor black
-        Remove-Item -Path "$env:TEMP\*Photoshop*" -Force -ErrorAction SilentlyContinue
+        Remove-Item -Path "$env:TEMP\*Photoshop*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
         
         Write-Host 'Adobe Photoshop: Opening magnet' -ForegroundColor green -BackgroundColor black
         Start-Process -FilePath "$env:ProgramFiles\qBittorrent\qBittorrent.exe" -ArgumentList "--skip-dialog=true --add-paused=false --save-path=$env:TEMP ""$($Photoshop3)"""
@@ -2073,7 +2073,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         }
         
         Write-Host 'JitBit Macro Recorder: Deleting temp folder' -ForegroundColor green -BackgroundColor black
-        Remove-Item -Path "$env:TEMP\*JitBit*" -Force -ErrorAction SilentlyContinue
+        Remove-Item -Path "$env:TEMP\*JitBit*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
         
         Write-Host 'JitBit Macro Recorder: Opening magnet' -ForegroundColor green -BackgroundColor black
         Start-Process -FilePath "$env:ProgramFiles\qBittorrent\qBittorrent.exe" -ArgumentList "--skip-dialog=true --add-paused=false --save-path=$env:TEMP ""$($JitBit1)"""
