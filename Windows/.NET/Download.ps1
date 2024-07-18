@@ -109,7 +109,7 @@ if ('4.8.1 or later' -ne $DotNETVersionNumber) {
     (New-Object System.Net.WebClient).DownloadFile("$DotNET4SDK5_URL", "$env:TEMP\NET-Framework-Latest-SDK.exe")
 
 	Write-Host '.NET: Installing .NET Framework Latest SDK' -ForegroundColor green -BackgroundColor black
-	Start-Process -FilePath "$env:TEMP\NET-Framework-Latest-SDK.exe" -ArgumentList '/quiet /norestart'
+	Start-Process -FilePath "$env:TEMP\NET-Framework-Latest-SDK.exe" -ArgumentList '/install /quiet /norestart'
 }
 
 if (($null -eq $DotNET6_Installed) -or ($DotNET6_Installed -notmatch $DotNET6_Latest) -and ($DotNET6_EOL -ne 'eol') -and ($DotNET6_EOL -eq 'active')) {
