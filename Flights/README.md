@@ -27,9 +27,9 @@ Everything about Flights.
 
 ## Exchange
 
-- [Israelpost](https://services.israelpost.co.il/postcurrency.nsf) - No fees on USD($), EURO(€) and GBP(£)
-- [Hamara](https://www.hamara.co.il/currency-exchange-2/changes-index/) - Locations
-- [Airport](https://www.bankhapoalim.co.il/he/foreign-currency/foreign-exchange-in-the-terminal)
+- Check local office for no fees on USD($), EURO(€) and GBP(£)
+- Check for change locations
+- Check for Airport pickup change
 
 > Bank exchange is only digital currency, not cash.
 
@@ -37,7 +37,7 @@ Everything about Flights.
 
 - Use credit card with low fees.
 
-> [Comapre](https://www.supermarker.themarker.com/CreditCards/CompareCreditCards.aspx)
+> Compare all credit cards options for lowest fee to change and lowest fee to withdraw from ATM.
 
 ## SIM
 
