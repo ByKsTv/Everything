@@ -112,7 +112,7 @@ if ('4.8.1 or later' -ne $DotNETVersionNumber) {
 	Start-Process -FilePath "$env:TEMP\NET-Framework-Latest-SDK.exe" -ArgumentList '/install /quiet /norestart'
 }
 
-if (($null -eq $DotNET6_Installed) -or ($DotNET6_Installed -notmatch $DotNET6_Latest) -and ($DotNET6_EOL -ne 'eol') -and ($DotNET6_EOL -eq 'active')) {
+if (($null -eq $DotNET6_Installed) -or ($DotNET6_Installed -notmatch $DotNET6_Latest) -and ($DotNET6_EOL -ne 'eol') -and ($DotNET6_EOL -eq 'maintenance')) {
 	Write-Host ".NET: Downloading .NET SDK $DotNET6_Latest" -ForegroundColor green -BackgroundColor black
 	(New-Object System.Net.WebClient).DownloadFile(((((Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/6.0/releases.json).Releases | Select-Object -First 1).sdk).files | Where-Object -Property 'name' -Like 'dotnet-sdk-win-x64.exe').url, "$env:TEMP\dotnet-$DotNET6_Latest-sdk-win-x64.exe")
 
