@@ -95,11 +95,17 @@ $DotNET9_EOL = (Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet
 Write-Host '.NET: Comparing current versions against latest versions' -ForegroundColor green -BackgroundColor black
 # https://dotnet.microsoft.com/en-us/download/dotnet-framework
 if ('4.8.1 or later' -ne $DotNETVersionNumber) {
-	Write-Host '.NET: Downloading .NET Framework 4.8.1 DevPack' -ForegroundColor green -BackgroundColor black
-    (New-Object System.Net.WebClient).DownloadFile('https://go.microsoft.com/fwlink/?linkid=2203306', "$env:TEMP\NDP481-DevPack-ENU.exe")
+	$DotNET4SDK1_URL = (Invoke-WebRequest -UseBasicParsing -Uri 'https://dotnet.microsoft.com/en-us/download/dotnet-framework' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match '.NET Framework') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
+	$DotNET4SDK2_URL = 'https://dotnet.microsoft.com/' + $DotNET4SDK1_URL
+	$DotNET4SDK3_URL = (Invoke-WebRequest -UseBasicParsing -Uri $DotNET4SDK2_URL | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Developer pack') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
+	$DotNET4SDK4_URL = 'https://dotnet.microsoft.com/' + $DotNET4SDK3_URL
+	$DotNET4SDK5_URL = (Invoke-WebRequest -UseBasicParsing -Uri $DotNET4SDK4_URL | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'click here to download manually') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
 
-	Write-Host '.NET: Installing .NET Framework 4.8.1 DevPack' -ForegroundColor green -BackgroundColor black
-	Start-Process -FilePath "$env:TEMP\NDP481-DevPack-ENU.exe" -ArgumentList '/install /quiet /norestart'
+	Write-Host '.NET: Downloading .NET Framework Latest SDK' -ForegroundColor green -BackgroundColor black
+    (New-Object System.Net.WebClient).DownloadFile("$DotNET4SDK5_URL", "$env:TEMP\NET-Framework-Latest-SDK.exe")
+
+	Write-Host '.NET: Installing .NET Framework Latest SDK' -ForegroundColor green -BackgroundColor black
+	Start-Process -FilePath "$env:TEMP\NET-Framework-Latest-SDK.exe" -ArgumentList '/quiet /norestart'
 }
 if (($null -eq $DotNET6_Installed) -or ($DotNET6_Installed -notmatch $DotNET6_Latest) -and ($DotNET6_EOL -ne 'eol') -and ($DotNET6_EOL -eq 'active')) {
 	Write-Host ".NET: Downloading .NET $DotNET6_Latest" -ForegroundColor green -BackgroundColor black
