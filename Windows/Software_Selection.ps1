@@ -86,10 +86,10 @@ $CheckBox_AdobeAcrobat.CheckAlign = 'MiddleLeft'
 $CheckBox_AdobeAcrobat.Checked = $false
 $Panel_SoftwareSelection.Controls.Add($CheckBox_AdobeAcrobat)
 
-# if ($InstalledSoftware -match 'Adobe Acrobat') {
-#     $CheckBox_AdobeAcrobat.Enabled = $false
-#     $CheckBox_AdobeAcrobat.Text += ' (Installed)'
-# }
+if ($InstalledSoftware -match 'Adobe Acrobat') {
+    # $CheckBox_AdobeAcrobat.Enabled = $false
+    $CheckBox_AdobeAcrobat.Text += ' (Installed)'
+}
 
 $CheckBox_AdobeLightroomClassic = New-Object System.Windows.Forms.CheckBox
 $CheckBox_AdobeLightroomClassic.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
@@ -107,10 +107,10 @@ $CheckBox_AdobeLightroomClassic.CheckAlign = 'MiddleLeft'
 $CheckBox_AdobeLightroomClassic.Checked = $false
 $Panel_SoftwareSelection.Controls.Add($CheckBox_AdobeLightroomClassic)
 
-# if ($InstalledSoftware -match 'Adobe Lightroom Classic') {
-#     $CheckBox_AdobeLightroomClassic.Enabled = $false
-#     $CheckBox_AdobeLightroomClassic.Text += ' (Installed)'
-# }
+if ($InstalledSoftware -match 'Adobe Lightroom Classic') {
+    # $CheckBox_AdobeLightroomClassic.Enabled = $false
+    $CheckBox_AdobeLightroomClassic.Text += ' (Installed)'
+}
 
 $CheckBox_AdobePhotoshop = New-Object System.Windows.Forms.CheckBox
 $CheckBox_AdobePhotoshop.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
@@ -127,10 +127,10 @@ $CheckBox_AdobePhotoshop.CheckAlign = 'MiddleLeft'
 $CheckBox_AdobePhotoshop.Checked = $false
 $Panel_SoftwareSelection.Controls.Add($CheckBox_AdobePhotoshop)
 
-# if ($InstalledSoftware -match 'Adobe Photoshop') {
-#     $CheckBox_AdobePhotoshop.Enabled = $false
-#     $CheckBox_AdobePhotoshop.Text += ' (Installed)'
-# }
+if ($InstalledSoftware -match 'Adobe Photoshop') {
+    # $CheckBox_AdobePhotoshop.Enabled = $false
+    $CheckBox_AdobePhotoshop.Text += ' (Installed)'
+}
 
 $CheckBox_AnyDesk = New-Object System.Windows.Forms.CheckBox
 $CheckBox_AnyDesk.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
@@ -722,10 +722,10 @@ $CheckBox_MicrosoftOffice.CheckAlign = 'MiddleLeft'
 $CheckBox_MicrosoftOffice.Checked = $false
 $Panel_SoftwareSelection.Controls.Add($CheckBox_MicrosoftOffice)
 
-# if ($InstalledSoftware -match 'Microsoft Office' -or $InstalledSoftware -match 'Microsoft 365') {
-#     $CheckBox_MicrosoftOffice.Enabled = $false
-#     $CheckBox_MicrosoftOffice.Text += ' (Installed)'
-# }
+if ($InstalledSoftware -match 'Microsoft Office' -or $InstalledSoftware -match 'Microsoft 365') {
+    # $CheckBox_MicrosoftOffice.Enabled = $false
+    $CheckBox_MicrosoftOffice.Text += ' (Installed)'
+}
 
 $CheckBox_Plex = New-Object System.Windows.Forms.CheckBox
 $CheckBox_Plex.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
