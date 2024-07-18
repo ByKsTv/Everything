@@ -149,7 +149,7 @@ Write-Host '.NET: Checking end of life versions' -ForegroundColor green -Backgro
 if (($DotNET6_EOL -eq 'eol') -and ($DotNET6_Installed)) {
 	Write-Host ".NET: Uninstalling .NET SDK $DotNET6_Installed" -ForegroundColor green -BackgroundColor black
 	(New-Object System.Net.WebClient).DownloadFile(((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/dotnet/cli-lab/releases/latest').assets | Where-Object name -Like '*.msi*').browser_download_url, "$env:TEMP\dotnet-core-uninstall.msi")
-	Start-Process "$env:TEMP\dotnet-core-uninstall.msi" -ArgumentList '/quiet' -Wait
+	Start-Process "$env:TEMP\dotnet-core-uninstall.msi" -ArgumentList '/quiet /norestart' -Wait
 	Start-Process cmd.exe "/c dotnet-core-uninstall remove $DotNET6_Installed --sdk --yes" -Wait
 	Start-Process msiexec.exe -ArgumentList "/quiet /uninstall $env:TEMP\dotnet-core-uninstall.msi" -Wait
 }
@@ -157,7 +157,7 @@ if (($DotNET6_EOL -eq 'eol') -and ($DotNET6_Installed)) {
 if (($DotNET7_EOL -eq 'eol') -and ($DotNET7_Installed)) {
 	Write-Host ".NET: Uninstalling .NET SDK $DotNET7_Installed" -ForegroundColor green -BackgroundColor black
 	(New-Object System.Net.WebClient).DownloadFile(((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/dotnet/cli-lab/releases/latest').assets | Where-Object name -Like '*.msi*').browser_download_url, "$env:TEMP\dotnet-core-uninstall.msi")
-	Start-Process "$env:TEMP\dotnet-core-uninstall.msi" -ArgumentList '/quiet' -Wait
+	Start-Process "$env:TEMP\dotnet-core-uninstall.msi" -ArgumentList '/quiet /norestart' -Wait
 	Start-Process cmd.exe "/c dotnet-core-uninstall remove $DotNET7_Installed --sdk --yes" -Wait
 	Start-Process msiexec.exe -ArgumentList "/quiet /uninstall $env:TEMP\dotnet-core-uninstall.msi" -Wait
 }
@@ -165,7 +165,7 @@ if (($DotNET7_EOL -eq 'eol') -and ($DotNET7_Installed)) {
 if (($DotNET8_EOL -eq 'eol') -and ($DotNET8_Installed)) {
 	Write-Host ".NET: Uninstalling .NET SDK $DotNET8_Installed" -ForegroundColor green -BackgroundColor black
 	(New-Object System.Net.WebClient).DownloadFile(((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/dotnet/cli-lab/releases/latest').assets | Where-Object name -Like '*.msi*').browser_download_url, "$env:TEMP\dotnet-core-uninstall.msi")
-	Start-Process "$env:TEMP\dotnet-core-uninstall.msi" -ArgumentList '/quiet' -Wait
+	Start-Process "$env:TEMP\dotnet-core-uninstall.msi" -ArgumentList '/quiet /norestart' -Wait
 	Start-Process cmd.exe "/c dotnet-core-uninstall remove $DotNET8_Installed --sdk --yes" -Wait
 	Start-Process msiexec.exe -ArgumentList "/quiet /uninstall $env:TEMP\dotnet-core-uninstall.msi" -Wait
 }
@@ -173,7 +173,7 @@ if (($DotNET8_EOL -eq 'eol') -and ($DotNET8_Installed)) {
 if (($DotNET9_EOL -eq 'eol') -and ($DotNET9_Installed)) {
 	Write-Host ".NET: Uninstalling .NET SDK $DotNET9_Installed" -ForegroundColor green -BackgroundColor black
 	(New-Object System.Net.WebClient).DownloadFile(((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/dotnet/cli-lab/releases/latest').assets | Where-Object name -Like '*.msi*').browser_download_url, "$env:TEMP\dotnet-core-uninstall.msi")
-	Start-Process "$env:TEMP\dotnet-core-uninstall.msi" -ArgumentList '/quiet' -Wait
+	Start-Process "$env:TEMP\dotnet-core-uninstall.msi" -ArgumentList '/quiet /norestart' -Wait
 	Start-Process cmd.exe "/c dotnet-core-uninstall remove $DotNET9_Installed --sdk --yes" -Wait
 	Start-Process msiexec.exe -ArgumentList "/quiet /uninstall $env:TEMP\dotnet-core-uninstall.msi" -Wait
 }
