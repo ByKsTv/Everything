@@ -31,8 +31,6 @@ Everything about BIOS.
    > Update PC BIOS at night hours to avoid power loss.
    >
    > BIOS Update can take around 8 minutes.
-   >
-   > USB must be formatted as FAT32.
 
 ## BIOS Settings
 
