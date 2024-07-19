@@ -16,9 +16,6 @@ Move-Item -Path "$env:TEMP\policy_templates_chrome\windows\admx\google.admx" -De
 Move-Item -Path "$env:TEMP\policy_templates_chrome\windows\admx\en-US\chrome.adml" -Destination "$env:windir\PolicyDefinitions\en-US" -ErrorAction SilentlyContinue
 Move-Item -Path "$env:TEMP\policy_templates_chrome\windows\admx\en-US\google.adml" -Destination "$env:windir\PolicyDefinitions\en-US" -ErrorAction SilentlyContinue
 
-Write-Host 'Google Chrome: Starting' -ForegroundColor green -BackgroundColor black
-Start-Process "$env:ProgramFiles\Google\Chrome\Application\chrome.exe"
-
 Write-Host 'Google Chrome: Opening default apps on Windows Settings' -ForegroundColor green -BackgroundColor black
 Start-Process 'ms-settings:defaultapps'
 
