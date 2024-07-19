@@ -27,9 +27,9 @@ Everything about Flights.
 
 ## Exchange
 
-- Check local office for no fees on USD($), EURO(€) and GBP(£)
-- Check for change locations
-- Check for Airport pickup change
+- Check local post office for exchange fees on USD($), EURO(€) and GBP(£).
+- Check for change locations.
+- Check for Airport pickup change.
 
 > Bank exchange is only digital currency, not cash.
 
