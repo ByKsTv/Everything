@@ -206,7 +206,7 @@ $Form_Step1.Add_Shown({ $Form_Step1.Activate() })
 [void] $Form_Step1.ShowDialog()
 
 Write-Host 'Step1: Date and Time: Setting time zone' -ForegroundColor green -BackgroundColor black
-Start-Process "ms-settings:dateandtime"
+Start-Process 'ms-settings:dateandtime'
 
 Write-Host 'Step1: Date and Time: Waiting for user to set time zone' -ForegroundColor green -BackgroundColor black
 [System.Windows.Forms.MessageBox]::Show('Set the Time Zone.
@@ -214,7 +214,7 @@ Write-Host 'Step1: Date and Time: Waiting for user to set time zone' -Foreground
 Press OK after Finished.' , 'Date and Time' , 0, 64)
 
 Write-Host 'Step1: Language: Setting language' -ForegroundColor green -BackgroundColor black
-Start-Process "ms-settings:regionlanguage"
+Start-Process 'ms-settings:regionlanguage'
  
 Write-Host 'Step1: Language: Waiting for user to set language' -ForegroundColor green -BackgroundColor black
 [System.Windows.Forms.MessageBox]::Show('Set the Language.
@@ -222,7 +222,7 @@ Write-Host 'Step1: Language: Waiting for user to set language' -ForegroundColor 
 Press OK after Finished.' , 'Language' , 0, 64)
 
 Write-Host 'Step1: Windows Update: Checking for updates' -ForegroundColor green -BackgroundColor black
-Start-Process "ms-settings:windowsupdate"
+Start-Process 'ms-settings:windowsupdate'
 
 Write-Host 'Step1: Windows Update: Waiting for user to install updates and restart' -ForegroundColor green -BackgroundColor black
 [System.Windows.Forms.MessageBox]::Show('Check for updates, install and restart PC.
