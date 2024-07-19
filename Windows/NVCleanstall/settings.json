@@ -9,7 +9,7 @@
   "DisableMPO": false,
   "DisableNvCamera": true,
   "ShowExpertOptions": true,
-  "DisableDriverTelemetry": true,
+  "DisableDriverTelemetry": false,
   "DisableNvContainer": false,
   "DisableHDAudioSleepTimer": true,
   "EnableMSI": true,
