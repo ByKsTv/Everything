@@ -611,7 +611,7 @@ $CheckBox_mpv.CheckAlign = 'MiddleLeft'
 $CheckBox_mpv.Checked = $false
 $Panel_SoftwareSelection.Controls.Add($CheckBox_mpv)
 
-if ((Test-Path -Path "$($env:USERPROFILE)\Desktop\mpv")) {
+if ((Test-Path -Path "$env:HOMEDRIVE\$env:HOMEPATH\mpv")) {
     $CheckBox_mpv.Enabled = $false
     $CheckBox_mpv.Text += ' (Installed)'
 }
