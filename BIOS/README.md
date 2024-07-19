@@ -15,6 +15,7 @@ Everything about BIOS.
 
 1. Use the official manufacter site to download the latest BIOS.
 1. Move BIOS to USB.
+   > USB must be formatted as FAT32.
 1. Plug the USB to the motherboard.
 1. Boot to BIOS.
 
@@ -27,9 +28,11 @@ Everything about BIOS.
 
 1. Update BIOS Firmware.
 
-   > Note: Update PC BIOS at night hours to avoid power loss.
+   > Update PC BIOS at night hours to avoid power loss.
    >
-   > Note: BIOS Update can take around 8 minutes.
+   > BIOS Update can take around 8 minutes.
+   >
+   > USB must be formatted as FAT32.
 
 ## BIOS Settings
 
