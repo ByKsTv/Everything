@@ -51,7 +51,6 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. `Yes` > `Yes` > `Skip` > `I don't have internet` > `Continue with limited setup`.
 1. Connect Ethernet Cable (After Windows Boots Up).
 1. `Do you want to allow your PC to be discoverable by other PCs and devices on this network?` > Yes.
-1. Install Motherboard LAN driver, Chipset drivers and Intel(R) Rapid Storage Technology from USB.
 
 ## Initial Setup - Auto Install
 
@@ -61,6 +60,8 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Step1.ps1')
 
    ```
+
+1. Install Motherboard LAN driver, Chipset drivers and Intel(R) Rapid Storage Technology from USB.
 
 ## Software Selection
 
