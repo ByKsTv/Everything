@@ -1000,7 +1000,7 @@ $Panel_SoftwareSelection.Controls.Add($CheckBox_Zoom)
 
 if ($InstalledSoftware -match 'Zoom') {
     $CheckBox_Zoom.Enabled = $false
-    $CheckBox_Zoom.Text += ' (Uninstalled)'
+    $CheckBox_Zoom.Text += ' (Installed)'
 }
 
 $CheckBox_UninstallEdge = New-Object System.Windows.Forms.CheckBox
