@@ -19,6 +19,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. `START` > Enable all except `Set regional options to the same values as this user's` > `OK` > `OK`.
 1. Download Motherboard LAN driver, Chipset drivers and Intel(R) Rapid Storage Technology to USB.
 
+> Copy the initial setup powershell command to text file on the USB.
 > Find Motherboard Model - PowerShell (Admin):
 >
 > ```powershell
