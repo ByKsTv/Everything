@@ -1503,9 +1503,11 @@ Remove-WindowsCapability -Name 'App.Support.QuickAssist~~~~0.0.1.0' -Online
 Write-Host 'Step2: Windows Capabilities: Removing Math Input Panel' -ForegroundColor green -BackgroundColor black
 Remove-WindowsCapability -Name 'MathRecognizer~~~~0.0.1.0' -Online
 
+Write-Host 'Step2: Windows Capabilities: Removing OpenSSH Client' -ForegroundColor green -BackgroundColor black
+Remove-WindowsCapability -Name 'OpenSSH.Client~~~~0.0.1.0' -Online
+
 # Write-Host 'Step2: Windows Capabilities: Disabling' -ForegroundColor green -BackgroundColor black
 # Remove-WindowsCapability -Name 'OneCoreUAP.OneSync~~~~0.0.1.0' -Online
-# Remove-WindowsCapability -Name 'OpenSSH.Client~~~~0.0.1.0' -Online
 # Remove-WindowsCapability -Name 'DirectX.Configuration.Database~~~~0.0.1.0' -Online
 # Notepad # Add-WindowsCapability -Name 'Microsoft.Windows.Notepad~~~~0.0.1.0' -Online
 # PowerShell ISE # Add-WindowsCapability -Name 'Microsoft.Windows.PowerShell.ISE~~~~0.0.1.0' -Online
