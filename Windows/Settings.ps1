@@ -155,9 +155,9 @@ Write-Host 'Power Plan: Hard disk: Maximum Power Level: 100%' -ForegroundColor g
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 0012ee47-9041-4b5d-9b77-535fba8b1442 51dea550-bb38-4bc4-991b-eacf37be5ec8 100
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT 0012ee47-9041-4b5d-9b77-535fba8b1442 51dea550-bb38-4bc4-991b-eacf37be5ec8 100
 
-Write-Host 'Power Plan: Hard disk: Turn off hard disk after: 0 Seconds (Never)' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT 0012ee47-9041-4b5d-9b77-535fba8b1442 6738e2c4-e8a5-4a42-b16a-e040e769756e 0
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT 0012ee47-9041-4b5d-9b77-535fba8b1442 6738e2c4-e8a5-4a42-b16a-e040e769756e 0
+Write-Host 'Power Plan: Hard disk: Turn off hard disk after: 1200 Seconds' -ForegroundColor green -BackgroundColor black
+powercfg /SETACVALUEINDEX SCHEME_CURRENT 0012ee47-9041-4b5d-9b77-535fba8b1442 6738e2c4-e8a5-4a42-b16a-e040e769756e 1200
+powercfg /SETDCVALUEINDEX SCHEME_CURRENT 0012ee47-9041-4b5d-9b77-535fba8b1442 6738e2c4-e8a5-4a42-b16a-e040e769756e 1200
 
 Write-Host 'Power Plan: Hard disk: Hard disk burst ignore time: 0 Minutes' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 0012ee47-9041-4b5d-9b77-535fba8b1442 80e3c60e-bb94-4ad8-bbe0-0d3195efc663 0
@@ -215,9 +215,9 @@ powercfg /SETDCVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 29
 # powercfg /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 7bc4a2f9-d8fc-4469-b07b-33eb785aaca0 0
 # powercfg /SETDCVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 7bc4a2f9-d8fc-4469-b07b-33eb785aaca0 0
 
-Write-Host 'Power Plan: Sleep: Allow hybrid sleep: Off' -ForegroundColor green -BackgroundColor black
-powercfg /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 29f6c1db-86da-48c5-9fdb-f2b67b1f44da 0
-powercfg /SETDCVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 29f6c1db-86da-48c5-9fdb-f2b67b1f44da 0
+Write-Host 'Power Plan: Sleep: Allow hybrid sleep: On' -ForegroundColor green -BackgroundColor black
+powercfg /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 29f6c1db-86da-48c5-9fdb-f2b67b1f44da 1
+powercfg /SETDCVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 29f6c1db-86da-48c5-9fdb-f2b67b1f44da 1
 
 Write-Host 'Power Plan: Sleep: Hibernate after: 0 Seconds' -ForegroundColor green -BackgroundColor black
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 9d7815a6-7ee4-497e-8888-515a05f02364 0
@@ -1812,9 +1812,6 @@ Write-Host 'Settings: svchost.exe: Group (Decrease Process Number)' -ForegroundC
 $svchostram = (Get-CimInstance -ClassName Win32_PhysicalMemory | Measure-Object -Property Capacity -Sum).Sum / 1kb
 Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control' -Name 'SvcHostSplitThresholdInKB' -Type DWord -Value $svchostram -Force
 
-Write-Host 'Settings: Settings: Date & time: Time zone: Jerusalem' -ForegroundColor green -BackgroundColor black
-Set-TimeZone -Id 'Israel Standard Time'
-
 Write-Host 'Settings: Settings: Time & Language: Region: Regional format data: Change data format: Short date: dd/MM/yyyy' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKCU:\Control Panel\International') -ne $true) {
  New-Item 'HKCU:\Control Panel\International' -Force 
@@ -1844,11 +1841,6 @@ if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Input\Settings') -ne $true
 	New-Item 'HKCU:\SOFTWARE\Microsoft\Input\Settings' -Force
 }
 New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Input\Settings' -Name 'InsightsEnabled' -Value 0 -PropertyType DWord -Force
-
-Write-Host 'Settings: Settings: Time & Language: Language: Hebrew Keyboard' -ForegroundColor green -BackgroundColor black
-$HebrewUserLanguage = Get-WinUserLanguageList
-$HebrewUserLanguage.Add('he-IL')
-Set-WinUserLanguageList -LanguageList $HebrewUserLanguage -Force
 
 Write-Host 'Settings: Lock Screen: Setting to black' -ForegroundColor green -BackgroundColor black
 # https://github.com/fr33thytweaks/Ultimate-Windows-Optimization-Guide/blob/main/6%20Windows/13%20Signout%20Lockscreen.ps1
