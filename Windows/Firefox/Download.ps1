@@ -22,13 +22,13 @@ Write-Host 'Mozilla Firefox: Downloading group policy' -ForegroundColor green -B
 (New-Object System.Net.WebClient).DownloadFile(((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/mozilla/policy-templates/releases/latest').assets | Where-Object name -Like 'policy_templates*' ).browser_download_url, "$env:TEMP\policy_templates_firefox.zip")
 
 Write-Host 'Mozilla Firefox: Extracting group policy' -ForegroundColor green -BackgroundColor black
-Expand-Archive -Path "$env:TEMP\policy_templates_firefox.zip" -DestinationPath "$env:TEMP\policy_templates_firefox"
+Expand-Archive -Path "$env:TEMP\policy_templates_firefox.zip" -DestinationPath "$env:TEMP\policy_templates_firefox" -ErrorAction SilentlyContinue
 
 Write-Host 'Mozilla Firefox: Importing group policy' -ForegroundColor green -BackgroundColor black
-Move-Item -Path "$env:TEMP\policy_templates_firefox\windows\firefox.admx" -Destination "$env:windir\PolicyDefinitions"
-Move-Item -Path "$env:TEMP\policy_templates_firefox\windows\mozilla.admx" -Destination "$env:windir\PolicyDefinitions"
-Move-Item -Path "$env:TEMP\policy_templates_firefox\windows\en-US\firefox.adml" -Destination "$env:windir\PolicyDefinitions\en-US"
-Move-Item -Path "$env:TEMP\policy_templates_firefox\windows\en-US\mozilla.adml" -Destination "$env:windir\PolicyDefinitions\en-US"
+Move-Item -Path "$env:TEMP\policy_templates_firefox\windows\firefox.admx" -Destination "$env:windir\PolicyDefinitions" -ErrorAction SilentlyContinue
+Move-Item -Path "$env:TEMP\policy_templates_firefox\windows\mozilla.admx" -Destination "$env:windir\PolicyDefinitions" -ErrorAction SilentlyContinue
+Move-Item -Path "$env:TEMP\policy_templates_firefox\windows\en-US\firefox.adml" -Destination "$env:windir\PolicyDefinitions\en-US" -ErrorAction SilentlyContinue
+Move-Item -Path "$env:TEMP\policy_templates_firefox\windows\en-US\mozilla.adml" -Destination "$env:windir\PolicyDefinitions\en-US" -ErrorAction SilentlyContinue
 
 Write-Host 'Mozilla Firefox: Deleting Desktop Shortcut' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path "$env:PUBLIC\Desktop\Firefox.lnk") -eq $true) {
