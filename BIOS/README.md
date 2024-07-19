@@ -36,7 +36,6 @@ Everything about BIOS.
 ### Asus Motherboard
 
 1. `Ai Tweaker` > `Intel(R) Adaptive Boost Technology` > `Disabled`.
-1. `Ai Tweaker` > `ASUS MultiCore Enhancement` > `Disabled - Enforce All limits`.
 1. `Advanced` > `Platform Misc Configuration` > `PCI Express Native Power Management` > `Enabled` (Wake-On-Lan). (default)
 1. `Advanced` > `Platform Misc Configuration` > `ASPM` > `Disabled`.
 1. `Advanced` > `CPU Configuration` > `Intel (VMX) Virtualization Technology` > `Disabled`.
