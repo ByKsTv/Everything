@@ -4,7 +4,7 @@ Everything about Flights.
 
 ## Tickets
 
-- [Skyscanner](https://www.skyscanner.co.il/)
+- [Skyscanner](https://www.skyscanner.com)
 
 > Use multiple devices to check the price.
 >
