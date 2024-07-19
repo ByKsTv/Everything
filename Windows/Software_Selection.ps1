@@ -1909,6 +1909,47 @@ $Form_SoftwareSelection_OK.Add_Click{
 
         # https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/index.html
         # https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/FeatureLockDown.html#idkeyname_1_13262
+        Write-Host 'Adobe Acrobat: Downloading group policy' -ForegroundColor green -BackgroundColor black
+        (New-Object System.Net.WebClient).DownloadFile('https://ardownload2.adobe.com/pub/adobe/acrobat/win/AcrobatDC/misc/AcrobatADMTemplate.zip', "$env:TEMP\policy_templates_acrobat.zip")
+        
+        Write-Host 'Adobe Acrobat: Extracting group policy' -ForegroundColor green -BackgroundColor black
+        Expand-Archive -Path "$env:TEMP\policy_templates_acrobat.zip" -DestinationPath "$env:TEMP\policy_templates_acrobat" -ErrorAction SilentlyContinue
+        
+        Write-Host 'Adobe Acrobat: Importing group policy' -ForegroundColor green -BackgroundColor black
+        Move-Item -Path "$env:TEMP\policy_templates_acrobat\AcrobatDC.adm" -Destination "$env:windir\PolicyDefinitions" -ErrorAction SilentlyContinue
+        Move-Item -Path "$env:TEMP\policy_templates_acrobat\AcrobatDC.admx" -Destination "$env:windir\PolicyDefinitions" -ErrorAction SilentlyContinue
+        Move-Item -Path "$env:TEMP\policy_templates_acrobat\en-US\AcrobatDC.adml" -Destination "$env:windir\PolicyDefinitions\en-US" -ErrorAction SilentlyContinue
+        
+        Write-Host 'Adobe Acrobat: User Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: General: Display splash screen at launch: Disabled' -ForegroundColor green -BackgroundColor black
+        if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals') -ne $true) {
+            New-Item 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals' -Force
+        }
+        New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals' -Name 'bDisplayAboutDialog' -Value 0 -PropertyType DWord -Force
+        
+        Write-Host 'Adobe Acrobat: Computer Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: General: Disable automatic updates: Disabled' -ForegroundColor green -BackgroundColor black
+        if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown') -ne $true) {
+            New-Item 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Force
+        }
+        New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name 'bUpdater' -Value 0 -PropertyType DWord -Force
+        
+        Write-Host 'Adobe Acrobat: Computer Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: General: Show messages when I launch Acrobat: Disabled' -ForegroundColor green -BackgroundColor black
+        if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown\cIPM') -ne $true) {
+            New-Item 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown\cIPM' -Force
+        }
+        New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown\cIPM' -Name 'bShowMsgAtLaunch' -Value 0 -PropertyType DWord -Force
+        
+        Write-Host 'Adobe Acrobat: Computer Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: General: Turn off user participation in the feedback program: Disabled' -ForegroundColor green -BackgroundColor black
+        if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown') -ne $true) {
+            New-Item 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Force
+        }
+        New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name 'bUsageMeasurement' -Value 0 -PropertyType DWord -Force
+        
+        Write-Host 'Adobe Acrobat: Computer Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: Startup: Protected View: For all files' -ForegroundColor green -BackgroundColor black
+        if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown') -ne $true) {
+            New-Item 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Force
+        }
+        New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name 'iProtectedView' -Value 2 -PropertyType DWord -Force
+        
         Write-Host 'Adobe Acrobat: Turn off the generative AI features' -ForegroundColor green -BackgroundColor black
         if ((Test-Path -LiteralPath 'HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown') -ne $true) {
             New-Item 'HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Force
