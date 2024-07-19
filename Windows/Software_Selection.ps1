@@ -682,7 +682,7 @@ $Panel_SoftwareSelection.Controls.Add($CheckBox_NVCleanstall)
 
 If ((Get-WmiObject Win32_VideoController).Name -notlike '*NVIDIA*') {
     $CheckBox_NVCleanstall.Text += ' (Incompatible GPU)'
-    $CheckBox_NVCleanstall.Enabled = $false
+    # $CheckBox_NVCleanstall.Enabled = $false
 }
 
 if ($InstalledSoftware -match 'NVCleanstall') {
@@ -1025,6 +1025,16 @@ if (($EdgeUninstaller_Exists)) {
     $CheckBox_UninstallEdge.Enabled = $false
     $CheckBox_UninstallEdge.Text += ' (Uninstalled)'
 }
+
+$CheckBox_NVCleanstall.Add_Click( {
+        if ($CheckBox_NVCleanstall.Checked -eq $true) {
+            $CheckBox_DisplayDriverUninstaller.Checked = $true
+        }
+        elseif ($CheckBox_NVCleanstall.Checked -eq $false) {
+            $CheckBox_DisplayDriverUninstaller.Checked = $false
+        }   
+    }
+)
 
 $Form_SoftwareSelection_OK = New-Object System.Windows.Forms.Button
 $Form_SoftwareSelection_OK.Location = New-Object System.Drawing.Size((($Form_SoftwareSelection.Width) / 3 ), (($Form_SoftwareSelection.height) - 65))
