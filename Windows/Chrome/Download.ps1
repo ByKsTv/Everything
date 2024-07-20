@@ -22,6 +22,18 @@ if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Google\Chrome') -ne $true) 
 }
 New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Google\Chrome' -Name 'PromotionalTabsEnabled' -Value 0 -PropertyType DWord -Force
 
+Write-Host 'Google Chrome: Computer Configuration: Administrative Templates: Google: Google Chrome: Privacy Sanndbox policies: Choose whether the Privacy Sandbox ad measurement setting can be disabled: Disabled' -ForegroundColor green -BackgroundColor black
+New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Google\Chrome' -Name 'PrivacySandboxAdMeasurementEnabled' -Value 0 -PropertyType DWord -Force
+
+Write-Host 'Google Chrome: Computer Configuration: Administrative Templates: Google: Google Chrome: Privacy Sanndbox policies: Choose whether the Privacy Sandbox Ad topics setting can be disabled: Disabled' -ForegroundColor green -BackgroundColor black
+New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Google\Chrome' -Name 'PrivacySandboxAdTopicsEnabled' -Value 0 -PropertyType DWord -Force
+
+Write-Host 'Google Chrome: Computer Configuration: Administrative Templates: Google: Google Chrome: Privacy Sanndbox policies: Choose whether the Privacy Sandbox prompt can be shown to your users: Disabled' -ForegroundColor green -BackgroundColor black
+New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Google\Chrome' -Name 'PrivacySandboxPromptEnabled' -Value 0 -PropertyType DWord -Force
+
+Write-Host 'Google Chrome: Computer Configuration: Administrative Templates: Google: Google Chrome: Privacy Sanndbox policies: Choose whether the Privacy SandboxSite-suggested ads setting can be disabled: Disabled' -ForegroundColor green -BackgroundColor black
+New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Google\Chrome' -Name 'PrivacySandboxSiteEnabledAdsEnabled' -Value 0 -PropertyType DWord -Force
+
 Write-Host 'Google Chrome: Opening default apps on Windows Settings' -ForegroundColor green -BackgroundColor black
 Start-Process 'ms-settings:defaultapps'
 
