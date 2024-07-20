@@ -95,7 +95,6 @@ Write-Host 'mpv: Adding script show-chapter.lua' -ForegroundColor green -Backgro
 Write-Host 'mpv: Adding script toggleconsole.lua' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/toggleconsole.lua', "$env:SystemDrive$env:HOMEPATH\mpv\scripts\toggleconsole.lua")
 
-
 $InstalledSoftware = Get-Package | Select-Object -Property 'Name'
 if ($InstalledSoftware -match 'Mozilla Firefox') {
     Write-Host 'mpv: Adding script [firefox]cookies.lua' -ForegroundColor green -BackgroundColor black
