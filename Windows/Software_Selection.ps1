@@ -235,6 +235,11 @@ $CheckBox_ChromeExtensions.CheckAlign = 'MiddleLeft'
 $CheckBox_ChromeExtensions.Checked = $false
 $Panel_SoftwareSelection.Controls.Add($CheckBox_ChromeExtensions)
 
+if ((Test-Path -Path 'HKLM:\Software\Policies\Google\Chrome\ExtensionInstallForcelist') -eq $true) {
+    $CheckBox_ChromeExtensions.Enabled = $false
+    $CheckBox_ChromeExtensions.Text += ' (Installed)'
+}
+
 $CheckBox_CrystalDiskInfo = New-Object System.Windows.Forms.CheckBox
 $CheckBox_CrystalDiskInfo.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
 $CheckBox_Y_Axis += 22
