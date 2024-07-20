@@ -86,9 +86,6 @@ Write-Host 'mpv: Adding script trackselect.lua' -ForegroundColor green -Backgrou
 Write-Host 'mpv: Using custom settings for trackselect.conf' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/script-opts/trackselect.conf', "$env:SystemDrive$env:HOMEPATH\mpv\script-opts\trackselect.conf")
 
-Write-Host 'mpv: Adding script cookies.firefox-private.lua' -ForegroundColor green -BackgroundColor black
-(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/cookies.firefox-private.lua', "$env:SystemDrive$env:HOMEPATH\mpv\scripts\cookies.firefox-private.lua")
-
 Write-Host 'mpv: Adding script hidecursor.lua' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/hidecursor.lua', "$env:SystemDrive$env:HOMEPATH\mpv\scripts\hidecursor.lua")
 
@@ -98,8 +95,15 @@ Write-Host 'mpv: Adding script show-chapter.lua' -ForegroundColor green -Backgro
 Write-Host 'mpv: Adding script toggleconsole.lua' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/toggleconsole.lua', "$env:SystemDrive$env:HOMEPATH\mpv\scripts\toggleconsole.lua")
 
-Write-Host 'mpv: Adding script alt-tab-1-sec-remaining.lua' -ForegroundColor green -BackgroundColor black
-(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/alt-tab-1-sec-remaining.lua', "$env:SystemDrive$env:HOMEPATH\mpv\scripts\alt-tab-1-sec-remaining.lua")
+
+$InstalledSoftware = Get-Package | Select-Object -Property 'Name'
+if ($InstalledSoftware -match 'Mozilla Firefox') {
+    Write-Host 'mpv: Adding script [firefox]cookies.lua' -ForegroundColor green -BackgroundColor black
+    (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/[firefox]cookies.lua', "$env:SystemDrive$env:HOMEPATH\mpv\scripts\[firefox]cookies.lua")
+
+    Write-Host 'mpv: Adding script [firefox]alt-tab.lua' -ForegroundColor green -BackgroundColor black
+    (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/[firefox]alt-tab.lua', "$env:SystemDrive$env:HOMEPATH\mpv\scripts\[firefox]alt-tab.lua")
+}
 
 Add-Type -AssemblyName System.Windows.Forms
 $sponsorblockanswer = [System.Windows.Forms.MessageBox]::Show('Add sponsorblock?
