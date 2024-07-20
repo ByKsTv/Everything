@@ -16,6 +16,12 @@ Move-Item -Path "$env:TEMP\policy_templates_chrome\windows\admx\google.admx" -De
 Move-Item -Path "$env:TEMP\policy_templates_chrome\windows\admx\en-US\chrome.adml" -Destination "$env:windir\PolicyDefinitions\en-US" -ErrorAction SilentlyContinue
 Move-Item -Path "$env:TEMP\policy_templates_chrome\windows\admx\en-US\google.adml" -Destination "$env:windir\PolicyDefinitions\en-US" -ErrorAction SilentlyContinue
 
+Write-Host 'Google Chrome: Computer Configuration: Administrative Templates: Google: Google Chrome: Enable showing full-tab promotional content: Disabled' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Google\Chrome') -ne $true) {
+    New-Item 'HKLM:\Software\Policies\Google\Chrome' -Force
+}
+New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Google\Chrome' -Name 'PromotionalTabsEnabled' -Value 0 -PropertyType DWord -Force
+
 Write-Host 'Google Chrome: Opening default apps on Windows Settings' -ForegroundColor green -BackgroundColor black
 Start-Process 'ms-settings:defaultapps'
 
