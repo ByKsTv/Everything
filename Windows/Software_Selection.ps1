@@ -1836,10 +1836,83 @@ $Form_SoftwareSelection_OK.Add_Click{
     }
 
     if ($CheckBox_AdobeAcrobat.Checked) {
-        Write-Host 'Adobe Acrobat: Initiating qBittorrent' -ForegroundColor green -BackgroundColor black
+        # https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/index.html
+        # https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/FeatureLockDown.html#idkeyname_1_13262
+        Write-Host 'Adobe Acrobat Pro: Downloading group policy' -ForegroundColor green -BackgroundColor black
+        (New-Object System.Net.WebClient).DownloadFile('https://ardownload2.adobe.com/pub/adobe/acrobat/win/AcrobatDC/misc/AcrobatADMTemplate.zip', "$env:TEMP\policy_templates_acrobat.zip")
+        
+        Write-Host 'Adobe Acrobat Pro: Extracting group policy' -ForegroundColor green -BackgroundColor black
+        Expand-Archive -Path "$env:TEMP\policy_templates_acrobat.zip" -DestinationPath "$env:TEMP\policy_templates_acrobat" -ErrorAction SilentlyContinue
+        
+        Write-Host 'Adobe Acrobat Pro: Importing group policy' -ForegroundColor green -BackgroundColor black
+        Move-Item -Path "$env:TEMP\policy_templates_acrobat\AcrobatDC.adm" -Destination "$env:windir\PolicyDefinitions" -ErrorAction SilentlyContinue
+        Move-Item -Path "$env:TEMP\policy_templates_acrobat\AcrobatDC.admx" -Destination "$env:windir\PolicyDefinitions" -ErrorAction SilentlyContinue
+        Move-Item -Path "$env:TEMP\policy_templates_acrobat\en-US\AcrobatDC.adml" -Destination "$env:windir\PolicyDefinitions\en-US" -ErrorAction SilentlyContinue
+        
+        Write-Host 'Adobe Acrobat Pro: User Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: General: Display splash screen at launch: Disabled' -ForegroundColor green -BackgroundColor black
+        if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals') -ne $true) {
+            New-Item 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals' -Force
+        }
+        New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals' -Name 'bDisplayAboutDialog' -Value 0 -PropertyType DWord -Force
+        
+        Write-Host 'Adobe Acrobat Pro: Computer Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: General: Disable automatic updates: Disabled' -ForegroundColor green -BackgroundColor black
+        if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown') -ne $true) {
+            New-Item 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Force
+        }
+        New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name 'bUpdater' -Value 0 -PropertyType DWord -Force
+        
+        Write-Host 'Adobe Acrobat Pro: Computer Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: General: Show messages when I launch Acrobat: Disabled' -ForegroundColor green -BackgroundColor black
+        if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown\cIPM') -ne $true) {
+            New-Item 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown\cIPM' -Force
+        }
+        New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown\cIPM' -Name 'bShowMsgAtLaunch' -Value 0 -PropertyType DWord -Force
+        
+        Write-Host 'Adobe Acrobat Pro: Computer Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: General: Turn off user participation in the feedback program: Disabled' -ForegroundColor green -BackgroundColor black
+        if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown') -ne $true) {
+            New-Item 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Force
+        }
+        New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name 'bUsageMeasurement' -Value 0 -PropertyType DWord -Force
+        
+        Write-Host 'Adobe Acrobat Pro: Computer Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: Startup: Protected View: For all files' -ForegroundColor green -BackgroundColor black
+        if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown') -ne $true) {
+            New-Item 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Force
+        }
+        New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name 'iProtectedView' -Value 2 -PropertyType DWord -Force
+        
+        Write-Host 'Adobe Acrobat Pro: Turn off the generative AI features' -ForegroundColor green -BackgroundColor black
+        if ((Test-Path -LiteralPath 'HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown') -ne $true) {
+            New-Item 'HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Force
+        }
+        New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name 'bEnableGentech' -Value 0 -PropertyType DWord -Force
+
+        Write-Host 'Adobe Acrobat Pro: Preferences: Catalog: Enable Logging: Off' -ForegroundColor green -BackgroundColor black
+        if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Catalog\cOptions') -ne $true) {
+            New-Item 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Catalog\cOptions' -Force
+        }
+        New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Catalog\cOptions' -Name 'bCreateLog' -Value 0 -PropertyType DWord -Force
+
+        Write-Host 'Adobe Acrobat Pro: Preferences: Page Display: Zoom: Fit Visible' -ForegroundColor green -BackgroundColor black
+        if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals') -ne $true) {
+            New-Item 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals' -Force
+        }
+        New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals' -Name 'iDefaultZoomType' -Value '4' -PropertyType String -Force
+
+        Write-Host 'Adobe Acrobat Pro: General: Show me messages when I launch Adobe Acrobat: Disable' -ForegroundColor green -BackgroundColor black
+        if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\IPM') -ne $true) {
+            New-Item 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\IPM' -Force
+        }
+        New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\IPM' -Name 'bShowMsgAtLaunch' -Value 0 -PropertyType DWord -Force
+
+        Write-Host 'Adobe Acrobat Pro: Edit: Prefrences: Security (Enhanced): Protected View: All Files' -ForegroundColor green -BackgroundColor black
+        if ((Test-Path -Path 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\TrustManager') -ne $true) {
+            New-Item 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\TrustManager' -Force 
+        }
+        New-ItemProperty -Path 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\TrustManager' -Name 'iProtectedView' -Value 2 -PropertyType DWord -Force
+
+        Write-Host 'Adobe Acrobat Pro: Initiating qBittorrent' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
         
-        Write-Host 'Adobe Acrobat: Getting magnet' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Adobe Acrobat Pro: Getting magnet' -ForegroundColor green -BackgroundColor black
         $Adrobat1 = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w14.monkrus.ws/search/label/Acrobat' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'x64') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
         $Adrobat2 = (Invoke-WebRequest -UseBasicParsing -Uri $Adrobat1 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'uniondht.org') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
         if ($null -eq $Adrobat2) {
@@ -1847,143 +1920,70 @@ $Form_SoftwareSelection_OK.Add_Click{
         }
         $Adrobat3 = (Invoke-WebRequest -UseBasicParsing -Uri $Adrobat2 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'magnet') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
         
-        Write-Host 'Adobe Acrobat: Deleting qBittorrent log file' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Adobe Acrobat Pro: Deleting qBittorrent log file' -ForegroundColor green -BackgroundColor black
         if (Test-Path "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log") {
             Remove-Item "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Force -ErrorAction SilentlyContinue
         }
         
-        Write-Host 'Adobe Acrobat: Deleting temp folder' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Adobe Acrobat Pro: Deleting temp folder' -ForegroundColor green -BackgroundColor black
         Remove-Item -Path "$env:TEMP\*Acrobat*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
         
-        Write-Host 'Adobe Acrobat: Opening magnet' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Adobe Acrobat Pro: Opening magnet' -ForegroundColor green -BackgroundColor black
         Start-Process -FilePath "$env:ProgramFiles\qBittorrent\qBittorrent.exe" -ArgumentList "--skip-dialog=true --add-paused=false --save-path=$env:TEMP ""$($Adrobat3)"""
         
-        Write-Host 'Adobe Acrobat: Waiting for folder to be created' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Adobe Acrobat Pro: Waiting for folder to be created' -ForegroundColor green -BackgroundColor black
         while (($null -eq (Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*Acrobat*' -ErrorAction SilentlyContinue))) {
             Start-Sleep -Milliseconds 1000
         }
         $AcrobatTempDir = Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*Acrobat*' | Select-Object FullName -ExpandProperty 'FullName'
         
-        Write-Host 'Adobe Acrobat: Adding Defender Exclusion' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Adobe Acrobat Pro: Adding Defender Exclusion' -ForegroundColor green -BackgroundColor black
         Add-MpPreference -ExclusionPath "$AcrobatTempDir"
         
-        Write-Host 'Adobe Acrobat: Waiting for ISO file to be created' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Adobe Acrobat Pro: Waiting for ISO file to be created' -ForegroundColor green -BackgroundColor black
         While ($null -eq (Get-ChildItem -Path "$AcrobatTempDir" -Filter '*iso*' | Select-Object FullName -ExpandProperty 'FullName' -ErrorAction SilentlyContinue)) {
             Start-Sleep -Milliseconds 1000
         }
         $AcrobatTempISO = Get-ChildItem -Path "$AcrobatTempDir" -Filter '*iso*' | Select-Object FullName -ExpandProperty 'FullName'
         
-        Write-Host 'Adobe Acrobat: Waiting download to complete' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Adobe Acrobat Pro: Waiting download to complete' -ForegroundColor green -BackgroundColor black
         $null = Get-Content "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Wait | Where-Object { $_ -match 'Removed torrent. Torrent: .*Acrobat*' } | Select-Object -First 1
         
-        Write-Host 'Adobe Acrobat: Initiating 7-Zip' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Adobe Acrobat Pro: Initiating 7-Zip' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
         
-        Write-Host 'Adobe Acrobat: Extracting ISO' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Adobe Acrobat Pro: Extracting ISO' -ForegroundColor green -BackgroundColor black
         & "$env:ProgramFiles\7-Zip\7z.exe" x "$AcrobatTempISO" -o"$AcrobatTempDir" -y
             
-        Write-Host 'Adobe Acrobat: Opening Installer' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Adobe Acrobat Pro: Opening Installer' -ForegroundColor green -BackgroundColor black
         $AcrobatTEMPinstaller = Get-ChildItem -Path "$AcrobatTempDir" -Filter '*exe*' | Select-Object FullName -ExpandProperty 'FullName'
         Start-Process $AcrobatTEMPinstaller
             
-        Write-Host 'Adobe Acrobat: Waiting for installer to open' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Adobe Acrobat Pro: Waiting for installer to open' -ForegroundColor green -BackgroundColor black
         while (($null -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Acrobat * Installer' } -ErrorAction SilentlyContinue))) {
             Start-Sleep -Milliseconds 1000
         }
         
-        Write-Host 'Adobe Acrobat: Waiting for installer to close' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Adobe Acrobat Pro: Waiting for installer to close' -ForegroundColor green -BackgroundColor black
         while (($true -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Acrobat * Installer' } -ErrorAction SilentlyContinue))) {
-            Write-Host 'Adobe Acrobat: Installing' -ForegroundColor green -BackgroundColor black
+            Write-Host 'Adobe Acrobat Pro: Installing' -ForegroundColor green -BackgroundColor black
             $wshell = New-Object -ComObject wscript.shell
             $wshell.SendKeys('{ENTER}')
             Start-Sleep -Milliseconds 1000
         }
             
-        Write-Host 'Adobe Acrobat: Waiting for process to open' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Adobe Acrobat Pro: Waiting for process to open' -ForegroundColor green -BackgroundColor black
         while (($null -eq (Get-Process | Where-Object { $_.Name -like 'crack' } -ErrorAction SilentlyContinue))) {
             Start-Sleep -Milliseconds 1000
         }
         
-        Write-Host 'Adobe Acrobat: Waiting for process to close' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Adobe Acrobat Pro: Waiting for process to close' -ForegroundColor green -BackgroundColor black
         while (($true -eq (Get-Process | Where-Object { $_.Name -like 'crack' } -ErrorAction SilentlyContinue))) {
             Start-Sleep -Milliseconds 1000
         }
             
-        Write-Host 'Adobe Acrobat: Removing Defender Exclusion' -ForegroundColor green -BackgroundColor black
+        Write-Host 'Adobe Acrobat Pro: Removing Defender Exclusion' -ForegroundColor green -BackgroundColor black
         Remove-MpPreference -ExclusionPath "$AcrobatTempDir"
-
-        # https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/index.html
-        # https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/FeatureLockDown.html#idkeyname_1_13262
-        Write-Host 'Adobe Acrobat: Downloading group policy' -ForegroundColor green -BackgroundColor black
-        (New-Object System.Net.WebClient).DownloadFile('https://ardownload2.adobe.com/pub/adobe/acrobat/win/AcrobatDC/misc/AcrobatADMTemplate.zip', "$env:TEMP\policy_templates_acrobat.zip")
-        
-        Write-Host 'Adobe Acrobat: Extracting group policy' -ForegroundColor green -BackgroundColor black
-        Expand-Archive -Path "$env:TEMP\policy_templates_acrobat.zip" -DestinationPath "$env:TEMP\policy_templates_acrobat" -ErrorAction SilentlyContinue
-        
-        Write-Host 'Adobe Acrobat: Importing group policy' -ForegroundColor green -BackgroundColor black
-        Move-Item -Path "$env:TEMP\policy_templates_acrobat\AcrobatDC.adm" -Destination "$env:windir\PolicyDefinitions" -ErrorAction SilentlyContinue
-        Move-Item -Path "$env:TEMP\policy_templates_acrobat\AcrobatDC.admx" -Destination "$env:windir\PolicyDefinitions" -ErrorAction SilentlyContinue
-        Move-Item -Path "$env:TEMP\policy_templates_acrobat\en-US\AcrobatDC.adml" -Destination "$env:windir\PolicyDefinitions\en-US" -ErrorAction SilentlyContinue
-        
-        Write-Host 'Adobe Acrobat: User Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: General: Display splash screen at launch: Disabled' -ForegroundColor green -BackgroundColor black
-        if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals') -ne $true) {
-            New-Item 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals' -Force
-        }
-        New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals' -Name 'bDisplayAboutDialog' -Value 0 -PropertyType DWord -Force
-        
-        Write-Host 'Adobe Acrobat: Computer Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: General: Disable automatic updates: Disabled' -ForegroundColor green -BackgroundColor black
-        if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown') -ne $true) {
-            New-Item 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Force
-        }
-        New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name 'bUpdater' -Value 0 -PropertyType DWord -Force
-        
-        Write-Host 'Adobe Acrobat: Computer Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: General: Show messages when I launch Acrobat: Disabled' -ForegroundColor green -BackgroundColor black
-        if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown\cIPM') -ne $true) {
-            New-Item 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown\cIPM' -Force
-        }
-        New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown\cIPM' -Name 'bShowMsgAtLaunch' -Value 0 -PropertyType DWord -Force
-        
-        Write-Host 'Adobe Acrobat: Computer Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: General: Turn off user participation in the feedback program: Disabled' -ForegroundColor green -BackgroundColor black
-        if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown') -ne $true) {
-            New-Item 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Force
-        }
-        New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name 'bUsageMeasurement' -Value 0 -PropertyType DWord -Force
-        
-        Write-Host 'Adobe Acrobat: Computer Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: Startup: Protected View: For all files' -ForegroundColor green -BackgroundColor black
-        if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown') -ne $true) {
-            New-Item 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Force
-        }
-        New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name 'iProtectedView' -Value 2 -PropertyType DWord -Force
-        
-        Write-Host 'Adobe Acrobat: Turn off the generative AI features' -ForegroundColor green -BackgroundColor black
-        if ((Test-Path -LiteralPath 'HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown') -ne $true) {
-            New-Item 'HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Force
-        }
-        New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name 'bEnableGentech' -Value 0 -PropertyType DWord -Force
-
-        Write-Host 'Adobe Acrobat: Preferences: Catalog: Enable Logging: Off' -ForegroundColor green -BackgroundColor black
-        if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Catalog\cOptions') -ne $true) {
-            New-Item 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Catalog\cOptions' -Force
-        }
-        New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Catalog\cOptions' -Name 'bCreateLog' -Value 0 -PropertyType DWord -Force
-
-        Write-Host 'Adobe Acrobat: Preferences: Page Display: Zoom: Fit Visible' -ForegroundColor green -BackgroundColor black
-        if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals') -ne $true) {
-            New-Item 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals' -Force
-        }
-        New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals' -Name 'iDefaultZoomType' -Value '4' -PropertyType String -Force
-
-        Write-Host 'Adobe Acrobat: General: Show me messages when I launch Adobe Acrobat: Disable' -ForegroundColor green -BackgroundColor black
-        if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\IPM') -ne $true) {
-            New-Item 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\IPM' -Force
-        }
-        New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\IPM' -Name 'bShowMsgAtLaunch' -Value 0 -PropertyType DWord -Force
-
-        Write-Host 'Adobe Acrobat: Edit: Prefrences: Security (Enhanced): Protected View: All Files' -ForegroundColor green -BackgroundColor black
-        if ((Test-Path -Path 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\TrustManager') -ne $true) {
-            New-Item 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\TrustManager' -Force 
-        }
-        New-ItemProperty -Path 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\TrustManager' -Name 'iProtectedView' -Value 2 -PropertyType DWord -Force
     }
     
     if ($CheckBox_AdobeLightroomClassic.Checked) {
@@ -2143,6 +2143,38 @@ $Form_SoftwareSelection_OK.Add_Click{
     }
 
     if ($CheckBox_JitBit_Macro_Recorder.Checked) {
+        Write-Host 'Jitbit Macro Recorder: Settings: General: Disable the welcome screen: On' -ForegroundColor green -BackgroundColor black
+        if ((Test-Path -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder') -ne $true) {
+            New-Item 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Force 
+        }
+        
+        Write-Host 'Jitbit Macro Recorder: Disabling Startup Screen' -ForegroundColor green -BackgroundColor black
+        New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'DisableStartupScreen' -Value 'True' -PropertyType String -Force
+        
+        Write-Host 'Jitbit Macro Recorder: Settings: Playback settings: Continuous reply: Infinite playback' -ForegroundColor green -BackgroundColor black
+        New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'NumberOfPlaybacks' -Value 0 -PropertyType DWord -Force
+        
+        Write-Host 'Jitbit Macro Recorder: Settings: Playback settings: Hide the topmost playing... bar: Off' -ForegroundColor green -BackgroundColor black
+        New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'HidePlayWnd' -Value 'False' -PropertyType String -Force
+        
+        Write-Host 'Jitbit Macro Recorder: Settings: General: Move the playback toolbar to the right: On' -ForegroundColor green -BackgroundColor black
+        New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'PlayRecFormsOnTheRight' -Value 'True' -PropertyType String -Force
+        
+        Write-Host 'Jitbit Macro Recorder: Settings: Keyboard shortcuts (hotkeys): Play / Pause / Resume playback: F8' -ForegroundColor green -BackgroundColor black
+        New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'PausePlayKey' -Value 119 -PropertyType DWord -Force
+        
+        Write-Host 'Jitbit Macro Recorder: Settings: Keyboard shortcuts (hotkeys): Abort playback: F9' -ForegroundColor green -BackgroundColor black
+        New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'AbortPlayKey' -Value 120 -PropertyType DWord -Force
+        
+        Write-Host 'Jitbit Macro Recorder: Settings: Keyboard shortcuts (hotkeys): Step-by-step playback: F10' -ForegroundColor green -BackgroundColor black
+        New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'StepByStepPlayKey' -Value 121 -PropertyType DWord -Force
+        
+        Write-Host 'Jitbit Macro Recorder: Settings: Keyboard shortcuts (hotkeys): Start / Pause / Resume recording: F11' -ForegroundColor green -BackgroundColor black
+        New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'RecordKey' -Value 122 -PropertyType DWord -Force
+        
+        Write-Host 'Jitbit Macro Recorder: Settings: Keyboard shortcuts (hotkeys): Abort recording: F12' -ForegroundColor green -BackgroundColor black
+        New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'AbortRecKey' -Value 123 -PropertyType DWord -Force
+        
         Write-Host 'JitBit Macro Recorder: Initiating qBittorrent' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
         
@@ -2183,38 +2215,6 @@ $Form_SoftwareSelection_OK.Add_Click{
         
         Write-Host 'JitBit Macro Recorder: Removing Defender Exclusion' -ForegroundColor green -BackgroundColor black
         Remove-MpPreference -ExclusionPath "$JitBitTempDir"
-        
-        Write-Host 'Jitbit Macro Recorder: Settings: General: Disable the welcome screen: On' -ForegroundColor green -BackgroundColor black
-        if ((Test-Path -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder') -ne $true) {
-            New-Item 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Force 
-        }
-        
-        Write-Host 'Jitbit Macro Recorder: Disabling Startup Screen' -ForegroundColor green -BackgroundColor black
-        New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'DisableStartupScreen' -Value 'True' -PropertyType String -Force
-        
-        Write-Host 'Jitbit Macro Recorder: Settings: Playback settings: Continuous reply: Infinite playback' -ForegroundColor green -BackgroundColor black
-        New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'NumberOfPlaybacks' -Value 0 -PropertyType DWord -Force
-        
-        Write-Host 'Jitbit Macro Recorder: Settings: Playback settings: Hide the topmost playing... bar: Off' -ForegroundColor green -BackgroundColor black
-        New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'HidePlayWnd' -Value 'False' -PropertyType String -Force
-        
-        Write-Host 'Jitbit Macro Recorder: Settings: General: Move the playback toolbar to the right: On' -ForegroundColor green -BackgroundColor black
-        New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'PlayRecFormsOnTheRight' -Value 'True' -PropertyType String -Force
-        
-        Write-Host 'Jitbit Macro Recorder: Settings: Keyboard shortcuts (hotkeys): Play / Pause / Resume playback: F8' -ForegroundColor green -BackgroundColor black
-        New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'PausePlayKey' -Value 119 -PropertyType DWord -Force
-        
-        Write-Host 'Jitbit Macro Recorder: Settings: Keyboard shortcuts (hotkeys): Abort playback: F9' -ForegroundColor green -BackgroundColor black
-        New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'AbortPlayKey' -Value 120 -PropertyType DWord -Force
-        
-        Write-Host 'Jitbit Macro Recorder: Settings: Keyboard shortcuts (hotkeys): Step-by-step playback: F10' -ForegroundColor green -BackgroundColor black
-        New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'StepByStepPlayKey' -Value 121 -PropertyType DWord -Force
-        
-        Write-Host 'Jitbit Macro Recorder: Settings: Keyboard shortcuts (hotkeys): Start / Pause / Resume recording: F11' -ForegroundColor green -BackgroundColor black
-        New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'RecordKey' -Value 122 -PropertyType DWord -Force
-        
-        Write-Host 'Jitbit Macro Recorder: Settings: Keyboard shortcuts (hotkeys): Abort recording: F12' -ForegroundColor green -BackgroundColor black
-        New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'AbortRecKey' -Value 123 -PropertyType DWord -Force
     }
 
 }
