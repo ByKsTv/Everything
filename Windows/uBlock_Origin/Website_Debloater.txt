@@ -5,6 +5,9 @@
 192.*##.col-sm-6.col-xs-12
 192.*##.login-donate
 192.*##.menu-donate
+1fichier.com###footer
+1fichier.com###header > .ct_warn
+1fichier.com##span.spacer-20.spacer
 4pda.ru##.copyright
 4pda.ru##noindex > .borderwrap
 4pda.to###go_1
@@ -462,6 +465,7 @@ ksp.co.il###tiny-message
 ksp.co.il##.benefits-container.no-print.container_style.container
 ksp.co.il##.footer-content-container
 ksp.co.il##.footer-statement-container
+ksp.co.il##.swiper-slide-active.swiper-slide
 ksp.co.il##.testimonial-group
 ktuvit.me##.text-center.popup-container
 leitup.com##.col-12
@@ -634,6 +638,7 @@ nitroflare.com###footerCredits
 nitroflare.com###reCaptcha > div > .purchaseNoWaiting
 nitroflare.com###report
 nitroflare.com##.noticeMessage
+nnmclub.to##td > .copyright
 ouo.io##.about
 ouo.io##.footer-copy
 ouo.io##.join-now
