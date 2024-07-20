@@ -2655,7 +2655,10 @@ if ($NetworkSettingsName -match 'Wake on Pattern Match') {
 # Preferred Band             
 # Throughput Booster         
 # U-APSD support             
-# 802.11a/b/g Wireless Mode
+# 802.11a/b/g Wireless Mode                                                                                           
+# RSS load balancing profile                                             
+# Link Speed Battery Saver                                        
+# Locally Administered Address                                                                                                                                                                                                   
 
 Write-Host 'Network: Auto Tuning Level Local: Normal' -ForegroundColor green -BackgroundColor black
 Set-NetTCPSetting -AutoTuningLevelLocal Normal
