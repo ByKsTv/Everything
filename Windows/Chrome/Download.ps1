@@ -1,9 +1,3 @@
-Write-Host 'Google Chrome: Downloading' -ForegroundColor green -BackgroundColor black
-(New-Object System.Net.WebClient).DownloadFile('https://dl.google.com/dl/chrome/install/googlechromestandaloneenterprise64.msi', "$env:TEMP\googlechromestandaloneenterprise64.msi")
-
-Write-Host 'Google Chrome: Installing' -ForegroundColor green -BackgroundColor black
-Start-Process $env:TEMP\googlechromestandaloneenterprise64.msi -ArgumentList '/quiet' -Wait
-
 Write-Host 'Google Chrome: Downloading group policy' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://dl.google.com/dl/edgedl/chrome/policy/policy_templates.zip', "$env:TEMP\policy_templates_chrome.zip")
 
@@ -33,6 +27,12 @@ New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Google\Chrome' -Name 'Pri
 
 Write-Host 'Google Chrome: Computer Configuration: Administrative Templates: Google: Google Chrome: Privacy Sanndbox policies: Choose whether the Privacy SandboxSite-suggested ads setting can be disabled: Disabled' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Google\Chrome' -Name 'PrivacySandboxSiteEnabledAdsEnabled' -Value 0 -PropertyType DWord -Force
+
+Write-Host 'Google Chrome: Downloading' -ForegroundColor green -BackgroundColor black
+(New-Object System.Net.WebClient).DownloadFile('https://dl.google.com/dl/chrome/install/googlechromestandaloneenterprise64.msi', "$env:TEMP\googlechromestandaloneenterprise64.msi")
+
+Write-Host 'Google Chrome: Installing' -ForegroundColor green -BackgroundColor black
+Start-Process $env:TEMP\googlechromestandaloneenterprise64.msi -ArgumentList '/quiet' -Wait
 
 Write-Host 'Google Chrome: Opening default apps on Windows Settings' -ForegroundColor green -BackgroundColor black
 Start-Process 'ms-settings:defaultapps'
