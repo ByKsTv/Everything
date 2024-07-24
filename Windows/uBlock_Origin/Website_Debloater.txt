@@ -797,6 +797,14 @@ share.dmhy.org##div:nth-of-type(12)
 share.dmhy.org##div:nth-of-type(13)
 share.dmhy.org##div:nth-of-type(9)
 skidrowcodex.co###footer
+skidrowrepacks.com###colophon
+skidrowrepacks.com###footer-widgets > .widget_text.widget
+skidrowrepacks.com##.jp-relatedposts
+skidrowrepacks.com##.nav-single
+skidrowrepacks.com##.recent-posts-extended.rpwe_widget.widget
+skidrowrepacks.com##.widget_categories.widget
+skidrowrepacks.com##.widget_custom_html.widget.widget_text
+skidrowrepacks.com##.widget_recent_entries.widget
 softwarekeep.com##.banner-item
 sourceforge.net###cmpbox
 sourceforge.net###cmpbox2
