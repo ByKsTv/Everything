@@ -207,26 +207,77 @@ $Form_Step1_OK.Add_Click{
 $Form_Step1.Add_Shown({ $Form_Step1.Activate() })
 [void] $Form_Step1.ShowDialog()
 
+# Function to show a top-most message box in the foreground
+function Show-TopMostMessage {
+	param (
+		[string]$message,
+		[string]$title
+	)
+
+	# Create a new form
+	$TopMostForm = New-Object System.Windows.Forms.Form
+	$TopMostForm.Text = $title
+	$TopMostForm.StartPosition = 'CenterScreen'
+	$TopMostForm.TopMost = $true
+	$TopMostForm.Width = 300
+	$TopMostForm.Height = 200
+	$TopMostForm.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
+	$TopMostForm.MaximizeBox = $false
+	$TopMostForm.MinimizeBox = $false
+
+	# Create a label for the message
+	$TopMostLabel = New-Object System.Windows.Forms.Label
+	$TopMostLabel.Text = $message
+	$TopMostLabel.AutoSize = $true
+	$TopMostLabel.MaximumSize = New-Object System.Drawing.Size((($TopMostForm.ClientSize.Width - 20) - [System.Int32]::Parse('0')), 0)
+	$TopMostLabel.Left = 10
+	$TopMostLabel.Top = 10
+
+	# Add the label to the form to calculate its height
+	$TopMostForm.Controls.Add($TopMostLabel)
+	$TopMostForm.PerformLayout() # Force the form to layout controls
+
+	# Create an OK button
+	$TopMostOK = New-Object System.Windows.Forms.Button
+	$TopMostOK.Text = 'OK'
+	$TopMostOK.Width = 80
+	$TopMostOK.Height = 30
+	$TopMostOK.Left = ($TopMostForm.ClientSize.Width - $TopMostOK.Width) / 2
+	$TopMostOK.Top = $TopMostLabel.Top + $TopMostLabel.Height + 10
+	$TopMostOK.Anchor = [System.Windows.Forms.AnchorStyles]::Bottom -bor [System.Windows.Forms.AnchorStyles]::Left -bor [System.Windows.Forms.AnchorStyles]::Right
+	$TopMostOK.DialogResult = [System.Windows.Forms.DialogResult]::OK
+
+	# Adjust form height based on label and button heights
+	$TopMostForm.Height = $TopMostLabel.Height + $TopMostOK.Height + 50
+
+	# Add the OK button after form height adjustment
+	$TopMostForm.Controls.Add($TopMostOK)
+
+	# Show the form
+	$TopMostForm.AcceptButton = $TopMostOK
+	$TopMostForm.ShowDialog()
+}
+
 Write-Host 'Step1: Date and Time: Setting time zone' -ForegroundColor green -BackgroundColor black
 Start-Process 'ms-settings:dateandtime'
 
-Write-Host 'Step1: Date and Time: Waiting for user to set time zone' -ForegroundColor green -BackgroundColor black
-[System.Windows.Forms.MessageBox]::Show('Set the Time Zone.
+# Example usage of the Show-TopMostMessage function
+Show-TopMostMessage -message 'Set the Time Zone.
 
-Press OK after Finished.' , 'Date and Time' , 0, 64)
+Press OK after Finished.' -title 'Date and Time'
 
 Write-Host 'Step1: Language: Setting language' -ForegroundColor green -BackgroundColor black
 Start-Process 'ms-settings:regionlanguage'
  
-Write-Host 'Step1: Language: Waiting for user to set language' -ForegroundColor green -BackgroundColor black
-[System.Windows.Forms.MessageBox]::Show('Set the Language.
+# Example usage of the Show-TopMostMessage function
+Show-TopMostMessage -message 'Set the Language.
 
-Press OK after Finished.' , 'Language' , 0, 64)
+Press OK after Finished.' -title 'Language'
 
 Write-Host 'Step1: Windows Update: Checking for updates' -ForegroundColor green -BackgroundColor black
 Start-Process 'ms-settings:windowsupdate'
 
-Write-Host 'Step1: Windows Update: Waiting for user to install updates and restart' -ForegroundColor green -BackgroundColor black
-[System.Windows.Forms.MessageBox]::Show('Check for updates, install and restart PC.
+# Example usage of the Show-TopMostMessage function
+Show-TopMostMessage -message 'Check for updates, install and restart PC.
 
-Press OK after Finished.' , 'Windows Updates' , 0, 64)
+Press OK after Finished.' -title 'Windows Updates'
