@@ -8,6 +8,8 @@ $Form_SoftwareSelection.height = 600
 $Form_SoftwareSelection.Text = 'Software Selection'
 $Form_SoftwareSelection.StartPosition = 'CenterScreen'
 $Form_SoftwareSelection.Font = New-Object System.Drawing.Font('Tahoma', 11)
+$Form_SoftwareSelection.MaximizeBox = $false
+$Form_SoftwareSelection.MinimizeBox = $false
 
 $InstalledSoftware = Get-Package | Select-Object -Property 'Name'
 $CheckBox_X_Axis = 5
@@ -1345,10 +1347,6 @@ $Form_SoftwareSelection_OK.Add_Click{
     }
     
     if ($CheckBox_MicrosoftOffice.Checked) {
-
-        Add-Type -AssemblyName System.Windows.Forms
-        Add-Type -AssemblyName System.Drawing
-        [System.Windows.Forms.Application]::EnableVisualStyles()
         
         $Form_OfficeSelection = New-Object System.Windows.Forms.Form
         $Form_OfficeSelection.width = 900
@@ -1356,6 +1354,8 @@ $Form_SoftwareSelection_OK.Add_Click{
         $Form_OfficeSelection.Text = 'Office Selection'
         $Form_OfficeSelection.StartPosition = 'CenterScreen'
         $Form_OfficeSelection.Font = New-Object System.Drawing.Font('Tahoma', 11)
+        $Form_OfficeSelection.MaximizeBox = $false
+        $Form_OfficeSelection.MinimizeBox = $false
         
         $CheckBox_X_Axis1 = 5
         $CheckBox_Y_Axis2 = 0
