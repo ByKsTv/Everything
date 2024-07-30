@@ -1395,7 +1395,6 @@ $Form_SoftwareSelection_OK.Add_Click{
     }
     
     if ($CheckBox_MicrosoftOffice.Checked) {
-        
         $Form_OfficeSelection = New-Object System.Windows.Forms.Form
         $Form_OfficeSelection.width = 900
         $Form_OfficeSelection.height = 470
@@ -2268,6 +2267,5 @@ $Form_SoftwareSelection_OK.Add_Click{
     }
 
 }
-
 $Form_SoftwareSelection.Add_Shown({ $Form_SoftwareSelection.Activate() })
 [void] $Form_SoftwareSelection.ShowDialog()
