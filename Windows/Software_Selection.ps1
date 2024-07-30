@@ -11,6 +11,7 @@ $Form_SoftwareSelection.Font = New-Object System.Drawing.Font('Tahoma', 11)
 $Form_SoftwareSelection.Topmost = $true
 $Form_SoftwareSelection.MaximizeBox = $false
 $Form_SoftwareSelection.MinimizeBox = $false
+$Form_SoftwareSelection.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
 
 $InstalledSoftware = Get-Package | Select-Object -Property 'Name'
 $CheckBox_X_Axis = 5
