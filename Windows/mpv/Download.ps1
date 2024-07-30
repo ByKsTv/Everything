@@ -43,6 +43,14 @@ while (!($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'cmd.
 Write-Host 'mpv: Installing' -ForegroundColor green -BackgroundColor black
 Start-Process cmd.exe -ArgumentList "/C start /MIN $env:SystemDrive$env:HOMEPATH\mpv\installer\mpv-install.bat /u ^&exit"
 
+$mpvExtractPath = "$env:USERPROFILE\mpv"
+$path = [System.Environment]::GetEnvironmentVariable('Path', [System.EnvironmentVariableTarget]::User)
+if ($path -notlike "*$mpvExtractPath*") {
+    $newPath = "$path;$mpvExtractPath"
+    [System.Environment]::SetEnvironmentVariable('Path', $newPath, [System.EnvironmentVariableTarget]::User)
+    Write-Host 'mpv: Adding to the PATH environment' -ForegroundColor green -BackgroundColor black
+}
+
 Write-Host 'mpv: Using custom settings for input.conf' -ForegroundColor green -BackgroundColor black
 (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/input.conf', "$env:SystemDrive$env:HOMEPATH\mpv\input.conf")
 
