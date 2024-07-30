@@ -8,6 +8,7 @@ $Form_SoftwareSelection.height = 600
 $Form_SoftwareSelection.Text = 'Software Selection'
 $Form_SoftwareSelection.StartPosition = 'CenterScreen'
 $Form_SoftwareSelection.Font = New-Object System.Drawing.Font('Tahoma', 11)
+$Form_SoftwareSelection.Topmost = $true
 $Form_SoftwareSelection.MaximizeBox = $false
 $Form_SoftwareSelection.MinimizeBox = $false
 
