@@ -948,7 +948,9 @@ $CheckBox_TranslucentTB.CheckAlign = 'MiddleLeft'
 $CheckBox_TranslucentTB.Checked = $false
 $Panel_SoftwareSelection.Controls.Add($CheckBox_TranslucentTB)
 
-if ($InstalledSoftware -match 'TranslucentTB') {
+$TranslucentTB = 'TranslucentTB Updater'
+$TranslucentTB_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $TranslucentTB }
+if (($TranslucentTB_Exists)) {
     $CheckBox_TranslucentTB.Enabled = $false
     $CheckBox_TranslucentTB.Text += ' (Installed)'
 }
