@@ -1402,6 +1402,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         $Form_OfficeSelection.Text = 'Office Selection'
         $Form_OfficeSelection.StartPosition = 'CenterScreen'
         $Form_OfficeSelection.Font = New-Object System.Drawing.Font('Tahoma', 11)
+        $Form_OfficeSelection.Topmost = $true
         $Form_OfficeSelection.MaximizeBox = $false
         $Form_OfficeSelection.MinimizeBox = $false
         
