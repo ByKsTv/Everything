@@ -83,26 +83,26 @@ $Step1_Y_Axis += $Step1_LocationAdd
 $Step1_KeyboardLayoutComboBox.Size = New-Object System.Drawing.Size($Step1_Size_X, $Step1_Size_Y)
 $Step1_KeyboardLayoutComboBox.DropDownStyle = [System.Windows.Forms.ComboBoxStyle]::DropDownList
 $languageTags = @(
-    'af-ZA', 'am-ET', 'ar-SA', 'az-Latn-AZ', 'bg-BG', 'bn-IN', 'bs-Latn-BA', 'ca-ES', 'cs-CZ', 'cy-GB',
-    'da-DK', 'de-DE', 'el-GR', 'en-GB', 'en-US', 'es-ES', 'es-MX', 'et-EE', 'eu-ES', 'fa-IR', 'fi-FI',
-    'fil-PH', 'fr-CA', 'fr-FR', 'ga-IE', 'gl-ES', 'gu-IN', 'he-IL', 'hi-IN', 'hr-HR', 'hu-HU', 'hy-AM',
-    'id-ID', 'is-IS', 'it-IT', 'ja-JP', 'ka-GE', 'kk-KZ', 'km-KH', 'kn-IN', 'ko-KR', 'ky-KG', 'lt-LT',
-    'lv-LV', 'mk-MK', 'ml-IN', 'mn-MN', 'mr-IN', 'ms-MY', 'mt-MT', 'nb-NO', 'nl-NL', 'pl-PL', 'pt-BR',
-    'pt-PT', 'ro-RO', 'ru-RU', 'si-LK', 'sk-SK', 'sl-SI', 'sq-AL', 'sr-Cyrl-RS', 'sv-SE', 'sw-KE', 'ta-IN',
-    'te-IN', 'th-TH', 'tr-TR', 'uk-UA', 'ur-PK', 'uz-Latn-UZ', 'vi-VN', 'zh-CN', 'zh-TW', 'af-NA', 'ak-GH',
-    'ar-AE', 'ar-BH', 'ar-DZ', 'ar-EG', 'ar-IQ', 'ar-JO', 'ar-KW', 'ar-LB', 'ar-LY', 'ar-MA', 'ar-OM',
-    'ar-QA', 'ar-SY', 'ar-TN', 'ar-YE', 'as-IN', 'az-Cyrl-AZ', 'be-BY', 'bn-BD', 'bs-Cyrl-BA', 'cs-SK',
-    'de-AT', 'de-CH', 'de-LU', 'dsb-DE', 'dua-CM', 'dv-MV', 'en-AU', 'en-CA', 'en-IN', 'en-IE', 'en-NZ',
-    'en-ZA', 'eo-001', 'es-AR', 'es-BO', 'es-CL', 'es-CO', 'es-CR', 'es-DO', 'es-EC', 'es-GT', 'es-HN',
-    'es-NI', 'es-PA', 'es-PE', 'es-PR', 'es-PY', 'es-SV', 'es-US', 'es-UY', 'es-VE', 'et-SE', 'ff-Latn-NG',
-    'fi-SE', 'fo-FO', 'fr-BE', 'fr-CH', 'fr-CM', 'fr-LU', 'gsw-FR', 'ha-Latn-NG', 'haw-US', 'hi-Latn-IN',
-    'is-LT', 'it-SM', 'iu-Cans-CA', 'ja-Latn-JP', 'jv-Latn-ID', 'kl-GL', 'km-TH', 'kn-Latn-IN', 'ko-Latn-KR',
-    'ks-Deva-IN', 'ku-Arab-IQ', 'lb-LU', 'lg-UG', 'ln-CG', 'lo-LA', 'mg-MG', 'mi-NZ', 'ml-TH', 'mr-Latn-IN',
-    'ms-Latn-SG', 'nb-SJ', 'ne-NP', 'nl-BE', 'no-NO', 'oc-FR', 'om-ET', 'or-IN', 'pa-Arab-PK', 'pa-IN',
-    'qu-EC', 'qu-PE', 'ro-MD', 'rw-RW', 'sd-Arab-PK', 'sd-Deva-IN', 'se-NO', 'si-IN', 'sm-WS', 'sn-Latn-ZW',
-    'so-SO', 'sq-MK', 'sr-Latn-RS', 'su-Latn-ID', 'sv-AX', 'sw-TZ', 'syr-SY', 'tg-Cyrl-TJ', 'tk-Latn-TM',
-    'tn-BW', 'to-TO', 'tt-Cyrl-RU', 'tzm-Latn-MA', 'ug-Arab-CN', 'ur-IN', 'uz-Cyrl-UZ', 'vi-Latn-VN',
-    'wo-SN', 'xh-ZA', 'yo-NG', 'zu-ZA'
+	'af-ZA', 'am-ET', 'ar-SA', 'az-Latn-AZ', 'bg-BG', 'bn-IN', 'bs-Latn-BA', 'ca-ES', 'cs-CZ', 'cy-GB',
+	'da-DK', 'de-DE', 'el-GR', 'en-GB', 'en-US', 'es-ES', 'es-MX', 'et-EE', 'eu-ES', 'fa-IR', 'fi-FI',
+	'fil-PH', 'fr-CA', 'fr-FR', 'ga-IE', 'gl-ES', 'gu-IN', 'he-IL', 'hi-IN', 'hr-HR', 'hu-HU', 'hy-AM',
+	'id-ID', 'is-IS', 'it-IT', 'ja-JP', 'ka-GE', 'kk-KZ', 'km-KH', 'kn-IN', 'ko-KR', 'ky-KG', 'lt-LT',
+	'lv-LV', 'mk-MK', 'ml-IN', 'mn-MN', 'mr-IN', 'ms-MY', 'mt-MT', 'nb-NO', 'nl-NL', 'pl-PL', 'pt-BR',
+	'pt-PT', 'ro-RO', 'ru-RU', 'si-LK', 'sk-SK', 'sl-SI', 'sq-AL', 'sr-Cyrl-RS', 'sv-SE', 'sw-KE', 'ta-IN',
+	'te-IN', 'th-TH', 'tr-TR', 'uk-UA', 'ur-PK', 'uz-Latn-UZ', 'vi-VN', 'zh-CN', 'zh-TW', 'af-NA', 'ak-GH',
+	'ar-AE', 'ar-BH', 'ar-DZ', 'ar-EG', 'ar-IQ', 'ar-JO', 'ar-KW', 'ar-LB', 'ar-LY', 'ar-MA', 'ar-OM',
+	'ar-QA', 'ar-SY', 'ar-TN', 'ar-YE', 'as-IN', 'az-Cyrl-AZ', 'be-BY', 'bn-BD', 'bs-Cyrl-BA', 'cs-SK',
+	'de-AT', 'de-CH', 'de-LU', 'dsb-DE', 'dua-CM', 'dv-MV', 'en-AU', 'en-CA', 'en-IN', 'en-IE', 'en-NZ',
+	'en-ZA', 'eo-001', 'es-AR', 'es-BO', 'es-CL', 'es-CO', 'es-CR', 'es-DO', 'es-EC', 'es-GT', 'es-HN',
+	'es-NI', 'es-PA', 'es-PE', 'es-PR', 'es-PY', 'es-SV', 'es-US', 'es-UY', 'es-VE', 'et-SE', 'ff-Latn-NG',
+	'fi-SE', 'fo-FO', 'fr-BE', 'fr-CH', 'fr-CM', 'fr-LU', 'gsw-FR', 'ha-Latn-NG', 'haw-US', 'hi-Latn-IN',
+	'is-LT', 'it-SM', 'iu-Cans-CA', 'ja-Latn-JP', 'jv-Latn-ID', 'kl-GL', 'km-TH', 'kn-Latn-IN', 'ko-Latn-KR',
+	'ks-Deva-IN', 'ku-Arab-IQ', 'lb-LU', 'lg-UG', 'ln-CG', 'lo-LA', 'mg-MG', 'mi-NZ', 'ml-TH', 'mr-Latn-IN',
+	'ms-Latn-SG', 'nb-SJ', 'ne-NP', 'nl-BE', 'no-NO', 'oc-FR', 'om-ET', 'or-IN', 'pa-Arab-PK', 'pa-IN',
+	'qu-EC', 'qu-PE', 'ro-MD', 'rw-RW', 'sd-Arab-PK', 'sd-Deva-IN', 'se-NO', 'si-IN', 'sm-WS', 'sn-Latn-ZW',
+	'so-SO', 'sq-MK', 'sr-Latn-RS', 'su-Latn-ID', 'sv-AX', 'sw-TZ', 'syr-SY', 'tg-Cyrl-TJ', 'tk-Latn-TM',
+	'tn-BW', 'to-TO', 'tt-Cyrl-RU', 'tzm-Latn-MA', 'ug-Arab-CN', 'ur-IN', 'uz-Cyrl-UZ', 'vi-Latn-VN',
+	'wo-SN', 'xh-ZA', 'yo-NG', 'zu-ZA'
 )
 function Get-LanguageName {
 	param (

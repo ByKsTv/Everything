@@ -32,9 +32,9 @@ else {
 $latestVersionNormalized = [Version]$SubtitleEditLatestVersionUnV
 
 if ($installedVersionNormalized -lt $latestVersionNormalized) {
-    Write-Host "Subtitle Edit: Downloading" -ForegroundColor green -BackgroundColor black
+    Write-Host 'Subtitle Edit: Downloading' -ForegroundColor green -BackgroundColor black
     (New-Object System.Net.WebClient).DownloadFile(($SubtitleEditLatestVersion.assets | Where-Object name -Like '*exe*').browser_download_url, "$env:TEMP\SubtitleEditSetup.exe")
 
-    Write-Host "Subtitle Edit: Installing" -ForegroundColor green -BackgroundColor black
+    Write-Host 'Subtitle Edit: Installing' -ForegroundColor green -BackgroundColor black
     Start-Process -FilePath "$env:TEMP\SubtitleEditSetup.exe" -ArgumentList '/verysilent'
 }
