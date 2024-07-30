@@ -1408,7 +1408,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         
         $CheckBox_X_Axis1 = 5
         $CheckBox_Y_Axis2 = 0
-        $CheckBox_Size_X1 = (($Form_OfficeSelection.width) - 50)
+        $CheckBox_Size_X1 = (($Form_OfficeSelection.width) - 25)
         $CheckBox_Size_Y2 = 26
         
         $Panel_OfficeSelection = New-Object System.Windows.Forms.Panel
