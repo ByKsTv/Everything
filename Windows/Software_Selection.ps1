@@ -1068,14 +1068,14 @@ $CheckBox_NVCleanstall.Add_Click( {
 )
 
 $Form_SoftwareSelection_OK = New-Object System.Windows.Forms.Button
-$Form_SoftwareSelection_OK.Location = New-Object System.Drawing.Size((($Form_SoftwareSelection.Width) / 3 ), (($Form_SoftwareSelection.height) - 65))
+$Form_SoftwareSelection_OK.Location = New-Object System.Drawing.Size((($Form_SoftwareSelection.Width) / 3 ), (($Form_SoftwareSelection.height) - 60))
 $Form_SoftwareSelection_OK.Size = New-Object System.Drawing.Size(57, 20)
 $Form_SoftwareSelection_OK.Text = 'OK'
 $Form_SoftwareSelection_OK.Add_Click({ $Form_SoftwareSelection.Close() })
 $Form_SoftwareSelection.Controls.Add($Form_SoftwareSelection_OK)
 
 $Form_SoftwareSelection_Cancel = New-Object System.Windows.Forms.Button
-$Form_SoftwareSelection_Cancel.Location = New-Object System.Drawing.Size((($Form_SoftwareSelection.Width) / 2 ), (($Form_SoftwareSelection.height) - 65))
+$Form_SoftwareSelection_Cancel.Location = New-Object System.Drawing.Size((($Form_SoftwareSelection.Width) / 2 ), (($Form_SoftwareSelection.height) - 60))
 $Form_SoftwareSelection_Cancel.Size = New-Object System.Drawing.Size(57, 20)
 $Form_SoftwareSelection_Cancel.Text = 'Cancel'
 $Form_SoftwareSelection_Cancel.Add_Click({ $Form_SoftwareSelection.Close() })
