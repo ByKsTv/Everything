@@ -16,7 +16,7 @@ $Form_SoftwareSelection.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]
 $InstalledSoftware = Get-Package | Select-Object -Property 'Name'
 $CheckBox_X_Axis = 5
 $CheckBox_Y_Axis = 0
-$CheckBox_Size_X = (($Form_SoftwareSelection.width) - 50)
+$CheckBox_Size_X = (($Form_SoftwareSelection.width) - 40)
 $CheckBox_Size_Y = 26
 $CheckBox_LocationAdd = 26
 # Icons size 16x16, format .ico from .exe file use 7zip
