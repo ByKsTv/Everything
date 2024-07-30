@@ -1878,10 +1878,8 @@ $Form_SoftwareSelection_OK.Add_Click{
             }
         
         }
-        
         $Form_OfficeSelection.Add_Shown({ $Form_OfficeSelection.Activate() })
         [void] $Form_OfficeSelection.ShowDialog()
-
     }
 
     if ($CheckBox_AdobeAcrobat.Checked) {
