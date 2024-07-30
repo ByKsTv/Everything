@@ -37,83 +37,175 @@ Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 [System.Windows.Forms.Application]::EnableVisualStyles()
 
-$Form_Step1 = New-Object System.Windows.Forms.Form
-$Form_Step1.width = 500
-$Form_Step1.height = 400
-$Form_Step1.Text = 'Initial Setup'
-$Form_Step1.StartPosition = 'CenterScreen'
-$Form_Step1.Font = New-Object System.Drawing.Font('Tahoma', 11)
+$Step1_Form = New-Object System.Windows.Forms.Form
+$Step1_Form.width = 350
+$Step1_Form.height = 361
+$Step1_Form.Text = 'Initial Setup'
+$Step1_Form.StartPosition = 'CenterScreen'
+$Step1_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
+$Step1_Form.Topmost = $true
+$Step1_Form.MaximizeBox = $false
+$Step1_Form.MinimizeBox = $false
+$Step1_Form.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
+
+$Step1_X_Axis = 5
+$Step1_Y_Axis = 0
+$Step1_Size_X = (($Step1_Form.width) - 15)
+$Step1_Size_Y = 26
+$Step1_LocationAdd = 26
+
+$Step1_KeyboardLayoutTimeZone = New-Object System.Windows.Forms.Label
+$Step1_KeyboardLayoutTimeZone.Text = 'Time Zone:'
+$Step1_KeyboardLayoutTimeZone.Location = New-Object System.Drawing.Point($Step1_X_Axis, $Step1_Y_Axis)
+$Step1_Y_Axis += $Step1_LocationAdd
+$Step1_KeyboardLayoutTimeZone.Size = New-Object System.Drawing.Size($Step1_Size_X, $Step1_Size_Y)
+$Step1_Form.Controls.Add($Step1_KeyboardLayoutTimeZone)
+
+$Step1_KeyboardLayoutComboBoxTimeZone = New-Object System.Windows.Forms.ComboBox
+$Step1_KeyboardLayoutComboBoxTimeZone.Location = New-Object System.Drawing.Point($Step1_X_Axis, $Step1_Y_Axis)
+$Step1_Y_Axis += $Step1_LocationAdd
+$Step1_KeyboardLayoutComboBoxTimeZone.Size = New-Object System.Drawing.Size($Step1_Size_X, $Step1_Size_Y)
+$Step1_KeyboardLayoutComboBoxTimeZone.DropDownStyle = [System.Windows.Forms.ComboBoxStyle]::DropDownList
+$timeZones = [System.TimeZoneInfo]::GetSystemTimeZones() | Sort-Object -Property Id
+$null = $timeZones.ForEach({ $Step1_KeyboardLayoutComboBoxTimeZone.Items.Add($_.Id) })
+$Step1_Form.Controls.Add($Step1_KeyboardLayoutComboBoxTimeZone)
+
+$Step1_KeyboardLayout = New-Object System.Windows.Forms.Label
+$Step1_KeyboardLayout.Text = 'Keyboard Layout:'
+$Step1_KeyboardLayout.Location = New-Object System.Drawing.Point($Step1_X_Axis, $Step1_Y_Axis)
+$Step1_Y_Axis += $Step1_LocationAdd
+$Step1_KeyboardLayout.Size = New-Object System.Drawing.Size($Step1_Size_X, $Step1_Size_Y)
+$Step1_Form.Controls.Add($Step1_KeyboardLayout)
+
+$Step1_KeyboardLayoutComboBox = New-Object System.Windows.Forms.ComboBox
+$Step1_KeyboardLayoutComboBox.Location = New-Object System.Drawing.Point($Step1_X_Axis, $Step1_Y_Axis)
+$Step1_Y_Axis += $Step1_LocationAdd
+$Step1_KeyboardLayoutComboBox.Size = New-Object System.Drawing.Size($Step1_Size_X, $Step1_Size_Y)
+$Step1_KeyboardLayoutComboBox.DropDownStyle = [System.Windows.Forms.ComboBoxStyle]::DropDownList
+$languageTags = @(
+    'af-ZA', 'am-ET', 'ar-SA', 'az-Latn-AZ', 'bg-BG', 'bn-IN', 'bs-Latn-BA', 'ca-ES', 'cs-CZ', 'cy-GB',
+    'da-DK', 'de-DE', 'el-GR', 'en-GB', 'en-US', 'es-ES', 'es-MX', 'et-EE', 'eu-ES', 'fa-IR', 'fi-FI',
+    'fil-PH', 'fr-CA', 'fr-FR', 'ga-IE', 'gl-ES', 'gu-IN', 'he-IL', 'hi-IN', 'hr-HR', 'hu-HU', 'hy-AM',
+    'id-ID', 'is-IS', 'it-IT', 'ja-JP', 'ka-GE', 'kk-KZ', 'km-KH', 'kn-IN', 'ko-KR', 'ky-KG', 'lt-LT',
+    'lv-LV', 'mk-MK', 'ml-IN', 'mn-MN', 'mr-IN', 'ms-MY', 'mt-MT', 'nb-NO', 'nl-NL', 'pl-PL', 'pt-BR',
+    'pt-PT', 'ro-RO', 'ru-RU', 'si-LK', 'sk-SK', 'sl-SI', 'sq-AL', 'sr-Cyrl-RS', 'sv-SE', 'sw-KE', 'ta-IN',
+    'te-IN', 'th-TH', 'tr-TR', 'uk-UA', 'ur-PK', 'uz-Latn-UZ', 'vi-VN', 'zh-CN', 'zh-TW', 'af-NA', 'ak-GH',
+    'ar-AE', 'ar-BH', 'ar-DZ', 'ar-EG', 'ar-IQ', 'ar-JO', 'ar-KW', 'ar-LB', 'ar-LY', 'ar-MA', 'ar-OM',
+    'ar-QA', 'ar-SY', 'ar-TN', 'ar-YE', 'as-IN', 'az-Cyrl-AZ', 'be-BY', 'bn-BD', 'bs-Cyrl-BA', 'cs-SK',
+    'de-AT', 'de-CH', 'de-LU', 'dsb-DE', 'dua-CM', 'dv-MV', 'en-AU', 'en-CA', 'en-IN', 'en-IE', 'en-NZ',
+    'en-ZA', 'eo-001', 'es-AR', 'es-BO', 'es-CL', 'es-CO', 'es-CR', 'es-DO', 'es-EC', 'es-GT', 'es-HN',
+    'es-NI', 'es-PA', 'es-PE', 'es-PR', 'es-PY', 'es-SV', 'es-US', 'es-UY', 'es-VE', 'et-SE', 'ff-Latn-NG',
+    'fi-SE', 'fo-FO', 'fr-BE', 'fr-CH', 'fr-CM', 'fr-LU', 'gsw-FR', 'ha-Latn-NG', 'haw-US', 'hi-Latn-IN',
+    'is-LT', 'it-SM', 'iu-Cans-CA', 'ja-Latn-JP', 'jv-Latn-ID', 'kl-GL', 'km-TH', 'kn-Latn-IN', 'ko-Latn-KR',
+    'ks-Deva-IN', 'ku-Arab-IQ', 'lb-LU', 'lg-UG', 'ln-CG', 'lo-LA', 'mg-MG', 'mi-NZ', 'ml-TH', 'mr-Latn-IN',
+    'ms-Latn-SG', 'nb-SJ', 'ne-NP', 'nl-BE', 'no-NO', 'oc-FR', 'om-ET', 'or-IN', 'pa-Arab-PK', 'pa-IN',
+    'qu-EC', 'qu-PE', 'ro-MD', 'rw-RW', 'sd-Arab-PK', 'sd-Deva-IN', 'se-NO', 'si-IN', 'sm-WS', 'sn-Latn-ZW',
+    'so-SO', 'sq-MK', 'sr-Latn-RS', 'su-Latn-ID', 'sv-AX', 'sw-TZ', 'syr-SY', 'tg-Cyrl-TJ', 'tk-Latn-TM',
+    'tn-BW', 'to-TO', 'tt-Cyrl-RU', 'tzm-Latn-MA', 'ug-Arab-CN', 'ur-IN', 'uz-Cyrl-UZ', 'vi-Latn-VN',
+    'wo-SN', 'xh-ZA', 'yo-NG', 'zu-ZA'
+)
+function Get-LanguageName {
+	param (
+		[string]$languageTag
+	)
+
+	try {
+		$culture = [System.Globalization.CultureInfo]::GetCultureInfo($languageTag)
+		return $culture.DisplayName
+	}
+	catch {
+		return $languageTag
+	}
+}
+$languageMap = @{}
+foreach ($tag in $languageTags) {
+	$name = Get-LanguageName -languageTag $tag
+	$languageMap[$name] = $tag
+}
+$sortedLanguageNames = $languageMap.Keys | Sort-Object
+foreach ($name in $sortedLanguageNames) {
+	$Step1_KeyboardLayoutComboBox.Items.Add($name) | Out-Null
+}
+$Step1_Form.Controls.Add($Step1_KeyboardLayoutComboBox)
 
 $CheckBox_PCPassword = New-Object System.Windows.Forms.CheckBox
-$CheckBox_PCPassword.Location = New-Object System.Drawing.Size(30, 30)
-$CheckBox_PCPassword.Size = New-Object System.Drawing.Size(400, 20)
+$CheckBox_PCPassword.Location = New-Object System.Drawing.Size($Step1_X_Axis, $Step1_Y_Axis)
+$Step1_Y_Axis += $Step1_LocationAdd
+$CheckBox_PCPassword.Size = New-Object System.Drawing.Size($Step1_Size_X, $Step1_Size_Y)
 $CheckBox_PCPassword.Text = 'PC Password'
 $CheckBox_PCPassword.Checked = $false
-$Form_Step1.Controls.Add($CheckBox_PCPassword)
+$Step1_Form.Controls.Add($CheckBox_PCPassword)
 
 $TextBox_PCPassword = New-Object System.Windows.Forms.TextBox
-$TextBox_PCPassword.Location = New-Object System.Drawing.Size(30, 60)
-$TextBox_PCPassword.Size = New-Object System.Drawing.Size(400, 20)
+$TextBox_PCPassword.Location = New-Object System.Drawing.Size($Step1_X_Axis, $Step1_Y_Axis)
+$Step1_Y_Axis += $Step1_LocationAdd
+$TextBox_PCPassword.Size = New-Object System.Drawing.Size($Step1_Size_X, $Step1_Size_Y)
 $TextBox_PCPassword.Text = 'Password'
 $TextBox_PCPassword.Enabled = $false
-$Form_Step1.Controls.Add($TextBox_PCPassword)
+$Step1_Form.Controls.Add($TextBox_PCPassword)
 
 $CheckBox_PCAutoLogin = New-Object System.Windows.Forms.CheckBox
-$CheckBox_PCAutoLogin.Location = New-Object System.Drawing.Size(30, 90)
-$CheckBox_PCAutoLogin.Size = New-Object System.Drawing.Size(400, 20)
+$CheckBox_PCAutoLogin.Location = New-Object System.Drawing.Size($Step1_X_Axis, $Step1_Y_Axis)
+$Step1_Y_Axis += $Step1_LocationAdd
+$CheckBox_PCAutoLogin.Size = New-Object System.Drawing.Size($Step1_Size_X, $Step1_Size_Y)
 $CheckBox_PCAutoLogin.Text = 'PC Auto Login'
 $CheckBox_PCAutoLogin.Checked = $false
 $CheckBox_PCAutoLogin.Enabled = $false
-$Form_Step1.Controls.Add($CheckBox_PCAutoLogin)
+$Step1_Form.Controls.Add($CheckBox_PCAutoLogin)
 
 $CheckBox_RemoteDesktop = New-Object System.Windows.Forms.CheckBox
-$CheckBox_RemoteDesktop.Location = New-Object System.Drawing.Size(30, 120)
-$CheckBox_RemoteDesktop.Size = New-Object System.Drawing.Size(400, 20)
+$CheckBox_RemoteDesktop.Location = New-Object System.Drawing.Size($Step1_X_Axis, $Step1_Y_Axis)
+$Step1_Y_Axis += $Step1_LocationAdd
+$CheckBox_RemoteDesktop.Size = New-Object System.Drawing.Size($Step1_Size_X, $Step1_Size_Y)
 $CheckBox_RemoteDesktop.Text = 'Remote Desktop'
 $CheckBox_RemoteDesktop.Checked = $false
-$Form_Step1.Controls.Add($CheckBox_RemoteDesktop)
+$Step1_Form.Controls.Add($CheckBox_RemoteDesktop)
 
 $CheckBox_RemotePowerShell = New-Object System.Windows.Forms.CheckBox
-$CheckBox_RemotePowerShell.Location = New-Object System.Drawing.Size(30, 150)
-$CheckBox_RemotePowerShell.Size = New-Object System.Drawing.Size(400, 20)
+$CheckBox_RemotePowerShell.Location = New-Object System.Drawing.Size($Step1_X_Axis, $Step1_Y_Axis)
+$Step1_Y_Axis += $Step1_LocationAdd
+$CheckBox_RemotePowerShell.Size = New-Object System.Drawing.Size($Step1_Size_X, $Step1_Size_Y)
 $CheckBox_RemotePowerShell.Text = 'Remote PowerShell'
 $CheckBox_RemotePowerShell.Checked = $false
-$Form_Step1.Controls.Add($CheckBox_RemotePowerShell)
+$Step1_Form.Controls.Add($CheckBox_RemotePowerShell)
 
 $TextBox_RemotePowerShellIP = New-Object System.Windows.Forms.TextBox
-$TextBox_RemotePowerShellIP.Location = New-Object System.Drawing.Size(30, 180)
-$TextBox_RemotePowerShellIP.Size = New-Object System.Drawing.Size(400, 20)
+$TextBox_RemotePowerShellIP.Location = New-Object System.Drawing.Size($Step1_X_Axis, $Step1_Y_Axis)
+$Step1_Y_Axis += $Step1_LocationAdd
+$TextBox_RemotePowerShellIP.Size = New-Object System.Drawing.Size($Step1_Size_X, $Step1_Size_Y)
 $TextBox_RemotePowerShellIP.Text = 'IP'
 $TextBox_RemotePowerShellIP.Enabled = $false
-$Form_Step1.Controls.Add($TextBox_RemotePowerShellIP)
+$Step1_Form.Controls.Add($TextBox_RemotePowerShellIP)
 
 $CheckBox_MozillaFirefox = New-Object System.Windows.Forms.CheckBox
-$CheckBox_MozillaFirefox.Location = New-Object System.Drawing.Size(30, 210)
-$CheckBox_MozillaFirefox.Size = New-Object System.Drawing.Size(400, 20)
+$CheckBox_MozillaFirefox.Location = New-Object System.Drawing.Size($Step1_X_Axis, $Step1_Y_Axis)
+$Step1_Y_Axis += $Step1_LocationAdd
+$CheckBox_MozillaFirefox.Size = New-Object System.Drawing.Size($Step1_Size_X, $Step1_Size_Y)
 $CheckBox_MozillaFirefox.Text = 'Mozilla Firefox'
 $CheckBox_MozillaFirefox.Checked = $false
-$Form_Step1.Controls.Add($CheckBox_MozillaFirefox)
+$Step1_Form.Controls.Add($CheckBox_MozillaFirefox)
 
 $CheckBox_GoogleChrome = New-Object System.Windows.Forms.CheckBox
-$CheckBox_GoogleChrome.Location = New-Object System.Drawing.Size(30, 240)
-$CheckBox_GoogleChrome.Size = New-Object System.Drawing.Size(400, 20)
+$CheckBox_GoogleChrome.Location = New-Object System.Drawing.Size($Step1_X_Axis, $Step1_Y_Axis)
+$Step1_Y_Axis += $Step1_LocationAdd
+$CheckBox_GoogleChrome.Size = New-Object System.Drawing.Size($Step1_Size_X, $Step1_Size_Y)
 $CheckBox_GoogleChrome.Text = 'Google Chrome'
 $CheckBox_GoogleChrome.Checked = $false
-$Form_Step1.Controls.Add($CheckBox_GoogleChrome)
+$Step1_Form.Controls.Add($CheckBox_GoogleChrome)
 
-$Form_Step1_OK = New-Object System.Windows.Forms.Button
-$Form_Step1_OK.Location = New-Object System.Drawing.Size((($Form_Step1.Width) / 3 ), (($Form_Step1.height) - 65))
-$Form_Step1_OK.Size = New-Object System.Drawing.Size(57, 20)
-$Form_Step1_OK.Text = 'OK'
-$Form_Step1_OK.Add_Click({ $Form_Step1.Close() })
-$Form_Step1.Controls.Add($Form_Step1_OK)
+$Step1_Form_OK = New-Object System.Windows.Forms.Button
+$Step1_Form_OK.Location = New-Object System.Drawing.Size((($Step1_Form.Width) / 3 ), (($Step1_Form.height) - 50))
+$Step1_Form_OK.Size = New-Object System.Drawing.Size(57, 20)
+$Step1_Form_OK.Text = 'OK'
+$Step1_Form_OK.Add_Click({ $Step1_Form.Close() })
+$Step1_Form.Controls.Add($Step1_Form_OK)
 
-$Form_Step1_Cancel = New-Object System.Windows.Forms.Button
-$Form_Step1_Cancel.Location = New-Object System.Drawing.Size((($Form_Step1.Width) / 2 ), (($Form_Step1.height) - 65))
-$Form_Step1_Cancel.Size = New-Object System.Drawing.Size(57, 20)
-$Form_Step1_Cancel.Text = 'Cancel'
-$Form_Step1_Cancel.Add_Click({ $Form_Step1.Close() })
-$Form_Step1.Controls.Add($Form_Step1_Cancel)
+$Step1_Form_Cancel = New-Object System.Windows.Forms.Button
+$Step1_Form_Cancel.Location = New-Object System.Drawing.Size((($Step1_Form.Width) / 2 ), (($Step1_Form.height) - 50))
+$Step1_Form_Cancel.Size = New-Object System.Drawing.Size(57, 20)
+$Step1_Form_Cancel.Text = 'Cancel'
+$Step1_Form_Cancel.Add_Click({ $Step1_Form.Close() })
+$Step1_Form.Controls.Add($Step1_Form_Cancel)
 
 $CheckBox_PCPassword.Add_Click( {
 		if ($CheckBox_PCPassword.Checked -eq $true) {
@@ -141,7 +233,22 @@ $CheckBox_RemotePowerShell.Add_Click( {
 	}
 )
 
-$Form_Step1_OK.Add_Click{
+$Step1_Form_OK.Add_Click{
+	$selectedTimeZone = $Step1_KeyboardLayoutComboBoxTimeZone.SelectedItem
+	if ($selectedTimeZone) {
+		Write-Host "Step1: Time Zone: Setting $selectedTimeZone" -ForegroundColor green -BackgroundColor black
+		tzutil /s $selectedTimeZone
+	}
+	
+	$selectedName = $Step1_KeyboardLayoutComboBox.SelectedItem
+	if ($selectedName) {
+		Write-Host "Step1: Keyboard: Adding $selectedName" -ForegroundColor green -BackgroundColor black
+		$selectedTag = $languageMap[$selectedName]
+		$currentLanguageList = Get-WinUserLanguageList
+		$currentLanguageList.Add($selectedTag)
+		Set-WinUserLanguageList -LanguageList $currentLanguageList -Force
+	}
+
 	if ($CheckBox_PCPassword.Checked -eq $true) {
 		Write-Host 'Step1: PC Password: Adding' -ForegroundColor green -BackgroundColor black
 		Set-LocalUser -Name $env:username -Password (ConvertTo-SecureString -AsPlainText $TextBox_PCPassword.Text -Force)
@@ -201,81 +308,68 @@ $Form_Step1_OK.Add_Click{
 		Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Chrome/Download.ps1')
 	}
 }
+$Step1_Form.Add_Shown({ $Step1_Form.Activate() })
+[void] $Step1_Form.ShowDialog()
 
-$Form_Step1.Add_Shown({ $Form_Step1.Activate() })
-[void] $Form_Step1.ShowDialog()
+Write-Host 'Step1: Windows Updates: Searching' -ForegroundColor green -BackgroundColor black
+$updateSession = New-Object -ComObject Microsoft.Update.Session
+$updateSearcher = $updateSession.CreateUpdateSearcher()
+$updateDownloader = $updateSession.CreateUpdateDownloader()
+$updateInstaller = $updateSession.CreateUpdateInstaller()
+$searchResult = $updateSearcher.Search('IsInstalled=0')
 
-# Function to show a top-most message box in the foreground
-function Show-TopMostMessage {
-	param (
-		[string]$message,
-		[string]$title
-	)
-
-	# Create a new form
-	$TopMostForm = New-Object System.Windows.Forms.Form
-	$TopMostForm.Text = $title
-	$TopMostForm.StartPosition = 'CenterScreen'
-	$TopMostForm.TopMost = $true
-	$TopMostForm.Width = 300
-	$TopMostForm.Height = 200
-	$TopMostForm.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
-	$TopMostForm.MaximizeBox = $false
-	$TopMostForm.MinimizeBox = $false
-
-	# Create a label for the message
-	$TopMostLabel = New-Object System.Windows.Forms.Label
-	$TopMostLabel.Text = $message
-	$TopMostLabel.AutoSize = $true
-	$TopMostLabel.MaximumSize = New-Object System.Drawing.Size((($TopMostForm.ClientSize.Width - 20) - [System.Int32]::Parse('0')), 0)
-	$TopMostLabel.Left = 10
-	$TopMostLabel.Top = 10
-
-	# Add the label to the form to calculate its height
-	$TopMostForm.Controls.Add($TopMostLabel)
-	$TopMostForm.PerformLayout() # Force the form to layout controls
-
-	# Create an OK button
-	$TopMostOK = New-Object System.Windows.Forms.Button
-	$TopMostOK.Text = 'OK'
-	$TopMostOK.Width = 80
-	$TopMostOK.Height = 30
-	$TopMostOK.Left = ($TopMostForm.ClientSize.Width - $TopMostOK.Width) / 2
-	$TopMostOK.Top = $TopMostLabel.Top + $TopMostLabel.Height + 10
-	$TopMostOK.Anchor = [System.Windows.Forms.AnchorStyles]::Bottom -bor [System.Windows.Forms.AnchorStyles]::Left -bor [System.Windows.Forms.AnchorStyles]::Right
-	$TopMostOK.DialogResult = [System.Windows.Forms.DialogResult]::OK
-
-	# Adjust form height based on label and button heights
-	$TopMostForm.Height = $TopMostLabel.Height + $TopMostOK.Height + 50
-
-	# Add the OK button after form height adjustment
-	$TopMostForm.Controls.Add($TopMostOK)
-
-	# Show the form
-	$TopMostForm.AcceptButton = $TopMostOK
-	$TopMostForm.ShowDialog()
+if ($searchResult.Updates.Count -eq 0) {
+	Write-Host 'Step1: Windows Updates: No updates available' -ForegroundColor green -BackgroundColor black
+	return
 }
 
-Write-Host 'Step1: Date and Time: Setting time zone' -ForegroundColor green -BackgroundColor black
-Start-Process 'ms-settings:dateandtime'
+Write-Host 'Step1: Windows Updates: Available Updates:' -ForegroundColor green -BackgroundColor black
+for ($i = 0; $i -lt $searchResult.Updates.Count; $i++) {
+	$update = $searchResult.Updates.Item($i)
+	Write-Host "$($i+1). $($update.Title)" -ForegroundColor green -BackgroundColor black
+}
 
-# Example usage of the Show-TopMostMessage function
-Show-TopMostMessage -message 'Set the Time Zone.
+Write-Host 'Step1: Windows Updates: Downloading' -ForegroundColor green -BackgroundColor black
+$updatesToDownload = New-Object -ComObject Microsoft.Update.UpdateColl
+for ($i = 0; $i -lt $searchResult.Updates.Count; $i++) {
+	$update = $searchResult.Updates.Item($i)
+	$updatesToDownload.Add($update) | Out-Null
+}
+$updateDownloader.Updates = $updatesToDownload
+$downloadResult = $updateDownloader.Download()
 
-Press OK after Finished.' -title 'Date and Time'
+if ($downloadResult.ResultCode -ne 2) {
+	Write-Host "Step1: Windows Updates: Download failed. Result code: $($downloadResult.ResultCode)" -ForegroundColor green -BackgroundColor black
+	return
+}
 
-Write-Host 'Step1: Language: Setting language' -ForegroundColor green -BackgroundColor black
-Start-Process 'ms-settings:regionlanguage'
- 
-# Example usage of the Show-TopMostMessage function
-Show-TopMostMessage -message 'Set the Language.
+Write-Host 'Step1: Windows Updates: Installing' -ForegroundColor green -BackgroundColor black
+$updatesToInstall = New-Object -ComObject Microsoft.Update.UpdateColl
+for ($i = 0; $i -lt $searchResult.Updates.Count; $i++) {
+	$update = $searchResult.Updates.Item($i)
+	if ($update.IsDownloaded) {
+		$updatesToInstall.Add($update) | Out-Null
+	}
+}
+$updateInstaller.Updates = $updatesToInstall
+$installationResult = $updateInstaller.Install()
 
-Press OK after Finished.' -title 'Language'
+if ($installationResult.ResultCode -ne 2) {
+	Write-Host "Step1: Windows Updates: Installation failed. Result code: $($installationResult.ResultCode)" -ForegroundColor green -BackgroundColor black
+	return
+}
 
-Write-Host 'Step1: Windows Update: Checking for updates' -ForegroundColor green -BackgroundColor black
-Start-Process 'ms-settings:windowsupdate'
+$needsReboot = $false
+for ($i = 0; $i -lt $updatesToInstall.Count; $i++) {
+	if ($updatesToInstall.Item($i).RebootRequired) {
+		$needsReboot = $true
+		break
+	}
+}
 
-# Example usage of the Show-TopMostMessage function
-Show-TopMostMessage -message 'Check for updates, install and restart PC.
+if ($needsReboot) {
+	Write-Host 'Step1: Windows Updates: Restarting' -ForegroundColor green -BackgroundColor black
+	Restart-Computer -Force
+}
 
-Press OK after Finished.' -title 'Windows Updates'
+Write-Host 'Step1: Manually Update Windows and Restart PC' -ForegroundColor green -BackgroundColor black
