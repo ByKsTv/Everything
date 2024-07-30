@@ -906,7 +906,9 @@ $CheckBox_SubtitleEdit.CheckAlign = 'MiddleLeft'
 $CheckBox_SubtitleEdit.Checked = $false
 $Panel_SoftwareSelection.Controls.Add($CheckBox_SubtitleEdit)
 
-if ($InstalledSoftware -match 'Subtitle Edit') {
+$SubtitleEdit = 'Subtitle Edit Updater'
+$SubtitleEdit_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $SubtitleEdit }
+if (($SubtitleEdit_Exists)) {
     $CheckBox_SubtitleEdit.Enabled = $false
     $CheckBox_SubtitleEdit.Text += ' (Installed)'
 }
