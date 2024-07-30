@@ -75,6 +75,27 @@ if (($7Zip_Exists)) {
     $CheckBox_7Zip.Text += ' (Installed)'
 }
 
+$CheckBox_ADB = New-Object System.Windows.Forms.CheckBox
+$CheckBox_ADB.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
+$CheckBox_Y_Axis += $CheckBox_LocationAdd
+$CheckBox_ADB.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
+# Random ICO
+$CheckBox_ADB_Icon64 = 'AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABx2AAAcdgAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAABGAAAATQAAAEsAAABLAAAASQAAAEsAAABKAAAASwAAAE0AAABGAAAAEAAAAAAAAAAAAAAAAAAAAAAAAABVAAAAXgAAAEYAAABbAAAAXwAAAHIAAABgAAAAbAAAAF8AAABCAAAAXgAAAFUAAAAAAAAAAAAAAAAAAAAAAAAAYQAAACIAAAAFAAAAfwAAAJIAAACAAAAAfQAAAJ0AAAB4AAAAAwAAACIAAABhAAAAAAAAAAAAAAAAAAAAAAAAAGEAAAAiAAAAAAAAAGUAAAB4AAAAdgAAAHgAAACdAAAAcwAAAAAAAAAiAAAAYQAAAAAAAAAAAAAAAAAAAAAAAABhAAAAIgAAAAAAAAAMAAAAGQAAAFwAAABaAAAAYwAAAFgAAABCAAAAXgAAAGkAAAAAAAAAAAAAAAAAAAAAAAAAbAAAAHgAAABgAAAAXgAAAI4AAADxAAAA9wAAAPUAAAD2AAAA9wAAAPwAAAB/AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAD/AAAA/wAAAP8AAADxAAAA2wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAfwAAAAAAAAAAAAAAAAAAAAAAAACAAAAA/wAAAP8AAADhAAAAtQAAAI4AAADzAAAAxwAAAOAAAAD/AAAA/wAAAH8AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAP8AAADBAAAAeQAAANYAAAClAAAAyQAAANcAAAB5AAAAwQAAAP8AAACAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAD/AAAA1wAAAIoAAADBAAAA2gAAAJcAAAC9AAAAigAAANcAAAD/AAAAgAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA/wAAAP8AAADzAAAA3gAAAPoAAACaAAAAxQAAAPcAAAD/AAAA/wAAAH8AAAAAAAAAAAAAAAAAAAAAAAAAgAAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA7wAAAO4AAAC1AAAApgAAANYAAABjAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAD+AAAA6wAAAOsAAADrAAAA6wAAAPYAAADYAAAAGQAAAEUAAABoAAAACwAAAAAAAAAAAAAAAAAAAAAAAACBAAAA7gAAALYAAAC1AAAArwAAALwAAADfAAAA1wAAAFoAAABnAAAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZgAAAPQAAADxAAAA8QAAAPAAAADxAAAA9QAAAOcAAABxAAAACwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAABLAAAAVAAAAFQAAABUAAAAVAAAAFQAAABJAAAADQAAAAAAAAAAAAAAAAAAAAAAAAAAwAMAAMADAADAAwAAyBMAAMgDAADAAwAAwAMAAMADAADAAwAAwAMAAMADAADAAwAAwAMAAMAHAADADwAAwB8AAA=='
+$CheckBox_ADB_IconBytes = [Convert]::FromBase64String($CheckBox_ADB_Icon64)
+$CheckBox_ADB_IconStream = [System.IO.MemoryStream]::new($CheckBox_ADB_IconBytes, 0, $CheckBox_ADB_IconBytes.Length)
+$CheckBox_ADB.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_ADB_IconStream).GetHIcon()))
+$CheckBox_ADB.ImageAlign = 'MiddleLeft'
+$CheckBox_ADB.Text = '    ADB'
+$CheckBox_ADB.TextAlign = 'MiddleLeft'
+$CheckBox_ADB.CheckAlign = 'MiddleLeft'
+$CheckBox_ADB.Checked = $false
+$Panel_SoftwareSelection.Controls.Add($CheckBox_ADB)
+
+if (Test-Path -Path "$env:USERPROFILE\adb") {
+    $CheckBox_ADB.Enabled = $false
+    $CheckBox_ADB.Text += ' (Installed)'
+}
+
 $CheckBox_AdobeAcrobat = New-Object System.Windows.Forms.CheckBox
 $CheckBox_AdobeAcrobat.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
 $CheckBox_Y_Axis += $CheckBox_LocationAdd
@@ -1101,6 +1122,30 @@ $Form_SoftwareSelection_OK.Add_Click{
     if ($CheckBox_7Zip.Checked) {
         Write-Host 'Software Selection: 7-Zip: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
+    }
+
+    if ($CheckBox_ADB.Checked) {
+        $adbExtractPath = "$env:USERPROFILE\adb"
+        if (-not (Test-Path $adbExtractPath)) {
+            Write-Host 'Software Selection: ADB: Downloading' -ForegroundColor green -BackgroundColor black
+            Invoke-WebRequest -Uri 'https://dl.google.com/android/repository/platform-tools-latest-windows.zip' -OutFile "$env:TEMP\platform-tools-latest-windows.zip"
+        
+            Write-Host 'Software Selection: ADB: Extracting' -ForegroundColor green -BackgroundColor black
+            if (Test-Path $adbExtractPath) {
+                Remove-Item -Recurse -Force $adbExtractPath
+            }
+            Expand-Archive -Path "$env:TEMP\platform-tools-latest-windows.zip" -DestinationPath $env:TEMP
+        
+            Write-Host "Software Selection: ADB: Installing to $adbExtractPath" -ForegroundColor green -BackgroundColor black
+            Move-Item -Path "$env:TEMP/platform-tools" -Destination $adbExtractPath
+        }
+        
+        $ADBpath = [System.Environment]::GetEnvironmentVariable('Path', [System.EnvironmentVariableTarget]::User)
+        if ($ADBpath -notlike "*$adbExtractPath*") {
+            Write-Host 'Software Selection: ADB: Adding to the PATH environment' -ForegroundColor green -BackgroundColor black
+            $newPath = "$ADBpath;$adbExtractPath"
+            [System.Environment]::SetEnvironmentVariable('Path', $newPath, [System.EnvironmentVariableTarget]::User)
+        }
     }
 
     if ($CheckBox_AnyDesk.Checked) {
