@@ -1,5 +1,3 @@
-Start-Process -FilePath "$env:SystemRoot\System32\UsoClient.exe" -ArgumentList StartInteractiveScan
-
 Write-Host 'Step1: Initiating next step' -ForegroundColor green -BackgroundColor black
 $NextStep = 'Step2'
 (New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/$NextStep.ps1", "$env:TEMP\$NextStep.ps1")
