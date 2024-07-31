@@ -34,27 +34,27 @@ Start-Sleep -Milliseconds 1000
 Write-Host 'NVCleanstall: Starting browser console' -ForegroundColor green -BackgroundColor black
 Add-Type -AssemblyName System.Windows.Forms
 if ($InstalledSoftware -match 'Chrome') {
-    [System.Windows.Forms.SendKeys]::SendWait('^+j')
+    (New-Object -ComObject wscript.shell).SendKeys('^+j')
 }
 if ($InstalledSoftware -match 'Firefox') {
-    [System.Windows.Forms.SendKeys]::SendWait('^+k')
+    (New-Object -ComObject wscript.shell).SendKeys('^+k')
 }
 Start-Sleep -Milliseconds 2000
 
 Write-Host 'NVCleanstall: Sending download click using browser console' -ForegroundColor green -BackgroundColor black
-[System.Windows.Forms.SendKeys]::SendWait("document.getElementsByClassName{(}'button startbutton'{)}{[}0{]}.click{(}{)}")
-[System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
+(New-Object -ComObject wscript.shell).SendKeys("document.getElementsByClassName{(}'button startbutton'{)}{[}0{]}.click{(}{)}")
+(New-Object -ComObject wscript.shell).SendKeys('{ENTER}')
 Start-Sleep -Milliseconds 1000
-[System.Windows.Forms.SendKeys]::SendWait("document.getElementsByClassName{(}'closest'{)}{[}0{]}.click{(}{)}")
-[System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
+(New-Object -ComObject wscript.shell).SendKeys("document.getElementsByClassName{(}'closest'{)}{[}0{]}.click{(}{)}")
+(New-Object -ComObject wscript.shell).SendKeys('{ENTER}')
 Start-Sleep -Milliseconds 1000
 
 Write-Host 'NVCleanstall: Closing browser console' -ForegroundColor green -BackgroundColor black
 if ($InstalledSoftware -match 'Chrome') {
-    [System.Windows.Forms.SendKeys]::SendWait('^+j')
+    (New-Object -ComObject wscript.shell).SendKeys('^+j')
 }
 if ($InstalledSoftware -match 'Firefox') {
-    [System.Windows.Forms.SendKeys]::SendWait('^+i')
+    (New-Object -ComObject wscript.shell).SendKeys('^+i')
 }
 
 Write-Host 'NVCleanstall: Waiting for download to complete' -ForegroundColor green -BackgroundColor black

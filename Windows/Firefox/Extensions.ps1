@@ -97,7 +97,7 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
     
     Write-Host 'Mozilla Firefox Extensions: Installing AdsBypasser' -ForegroundColor green -BackgroundColor black
     Add-Type -AssemblyName System.Windows.Forms
-    [System.Windows.Forms.SendKeys]::SendWait('^{ENTER}')
+    (New-Object -ComObject wscript.shell).SendKeys('^{ENTER}')
 
     Write-Host 'Mozilla Firefox Extensions: Cleaning up' -ForegroundColor green -BackgroundColor black
     if ((Test-Path -Path HKLM:\SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install) -eq $true) {

@@ -63,15 +63,15 @@ Start-Sleep -Milliseconds 1000
 
 Write-Host "Mozilla Firefox: Unchecking 'Import from browser'" -ForegroundColor green -BackgroundColor black
 Add-Type -AssemblyName System.Windows.Forms
-[System.Windows.Forms.SendKeys]::SendWait('{TAB}')
-[System.Windows.Forms.SendKeys]::SendWait('{TAB}')
-[System.Windows.Forms.SendKeys]::SendWait('{TAB}')
-[System.Windows.Forms.SendKeys]::SendWait(' ')
+(New-Object -ComObject wscript.shell).SendKeys('{TAB}')
+(New-Object -ComObject wscript.shell).SendKeys('{TAB}')
+(New-Object -ComObject wscript.shell).SendKeys('{TAB}')
+(New-Object -ComObject wscript.shell).SendKeys(' ')
 Start-Sleep -Milliseconds 100
 
 Write-Host 'Mozilla Firefox: Setting as default browser' -ForegroundColor green -BackgroundColor black
-[System.Windows.Forms.SendKeys]::SendWait('{TAB}')
-[System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
+(New-Object -ComObject wscript.shell).SendKeys('{TAB}')
+(New-Object -ComObject wscript.shell).SendKeys('{ENTER}')
 Start-Sleep -Milliseconds 1000
 
 Write-Host 'Mozilla Firefox: Waiting for user to sign in' -ForegroundColor green -BackgroundColor black

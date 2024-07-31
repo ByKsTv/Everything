@@ -33,20 +33,20 @@ Start-Sleep -Milliseconds 1000
 
 Write-Host 'Rufus: Selecting .ISO' -ForegroundColor green -BackgroundColor black
 Add-Type -AssemblyName System.Windows.Forms
-[System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
+(New-Object -ComObject wscript.shell).SendKeys('{ENTER}')
 Start-Sleep -Milliseconds 2000
 
 Write-Host 'Rufus: Selecting .ISO folder' -ForegroundColor green -BackgroundColor black
-[System.Windows.Forms.SendKeys]::SendWait('{F4}')
+(New-Object -ComObject wscript.shell).SendKeys('{F4}')
 Start-Sleep -Milliseconds 1000
-[System.Windows.Forms.SendKeys]::SendWait('^a')
+(New-Object -ComObject wscript.shell).SendKeys('^a')
 Start-Sleep -Milliseconds 1000
-[System.Windows.Forms.SendKeys]::SendWait("$env:LOCALAPPDATA\Temp")
-[System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
+(New-Object -ComObject wscript.shell).SendKeys("$env:LOCALAPPDATA\Temp")
+(New-Object -ComObject wscript.shell).SendKeys('{ENTER}')
 Start-Sleep -Milliseconds 1000
-[System.Windows.Forms.SendKeys]::SendWait('%n')
+(New-Object -ComObject wscript.shell).SendKeys('%n')
 Start-Sleep -Milliseconds 1000
 
 Write-Host 'Rufus: Selecting .ISO file' -ForegroundColor green -BackgroundColor black
-[System.Windows.Forms.SendKeys]::SendWait('Windows 10 IoT Enterprise LTSC 2021.iso')
-[System.Windows.Forms.SendKeys]::SendWait('{ENTER}')
+(New-Object -ComObject wscript.shell).SendKeys('Windows 10 IoT Enterprise LTSC 2021.iso')
+(New-Object -ComObject wscript.shell).SendKeys('{ENTER}')
