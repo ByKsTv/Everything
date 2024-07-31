@@ -96,7 +96,6 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
     Start-Sleep -Milliseconds 1000
     
     Write-Host 'Mozilla Firefox Extensions: Installing AdsBypasser' -ForegroundColor green -BackgroundColor black
-    Add-Type -AssemblyName System.Windows.Forms
     (New-Object -ComObject wscript.shell).SendKeys('^{ENTER}')
 
     Write-Host 'Mozilla Firefox Extensions: Cleaning up' -ForegroundColor green -BackgroundColor black

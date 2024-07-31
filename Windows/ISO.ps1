@@ -32,7 +32,6 @@ Write-Host 'Rufus: Setting foreground' -ForegroundColor green -BackgroundColor b
 Start-Sleep -Milliseconds 1000
 
 Write-Host 'Rufus: Selecting .ISO' -ForegroundColor green -BackgroundColor black
-Add-Type -AssemblyName System.Windows.Forms
 (New-Object -ComObject wscript.shell).SendKeys('{ENTER}')
 Start-Sleep -Milliseconds 2000
 

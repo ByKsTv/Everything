@@ -32,7 +32,6 @@ Write-Host 'NVCleanstall: Setting foreground' -ForegroundColor green -Background
 Start-Sleep -Milliseconds 1000
 
 Write-Host 'NVCleanstall: Starting browser console' -ForegroundColor green -BackgroundColor black
-Add-Type -AssemblyName System.Windows.Forms
 if ($InstalledSoftware -match 'Chrome') {
     (New-Object -ComObject wscript.shell).SendKeys('^+j')
 }

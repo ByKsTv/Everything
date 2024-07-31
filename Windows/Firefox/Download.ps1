@@ -62,7 +62,6 @@ Write-Host 'Mozilla Firefox: Setting foreground' -ForegroundColor green -Backgro
 Start-Sleep -Milliseconds 1000
 
 Write-Host "Mozilla Firefox: Unchecking 'Import from browser'" -ForegroundColor green -BackgroundColor black
-Add-Type -AssemblyName System.Windows.Forms
 (New-Object -ComObject wscript.shell).SendKeys('{TAB}')
 (New-Object -ComObject wscript.shell).SendKeys('{TAB}')
 (New-Object -ComObject wscript.shell).SendKeys('{TAB}')
