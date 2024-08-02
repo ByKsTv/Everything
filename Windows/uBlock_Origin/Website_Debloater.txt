@@ -1,3 +1,86 @@
 ! Expires: 1 hours
 ! Homepage: https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Website_Debloater.txt
 ! Title: Website Debloater
+1337x.to##.bitcoin
+1337x.to##footer
+4pda.to###gfooter
+4pda.to###logostrip
+4pda.to##.copyright
+4pda.to##.social-icons
+anidex.info##.footer
+fitgirl-repacks.site###block-7
+fitgirl-repacks.site###custom_html-4
+fitgirl-repacks.site###custom_html-5
+fitgirl-repacks.site###lbjoin2
+fitgirl-repacks.site###menu-main-menu
+fitgirl-repacks.site##.donatebutton
+fitgirl-repacks.site##.jetpack_top_posts_widget
+fitgirl-repacks.site##.masonry.widget-area.footer-sidebar
+fitgirl-repacks.site##.nav-links
+fitgirl-repacks.site##.post-navigation.navigation
+fitgirl-repacks.site##.secondary-navigation.site-navigation.navigation
+fitgirl-repacks.site##.site-description
+fitgirl-repacks.site##.site-info
+fitgirl-repacks.site##.widget_archive.widget
+fitgirl-repacks.site##[href="https://fitgirl-repacks.site/donations/"]
+forum.mobilism.me###footerContent
+forum.mobilism.me###footerContent > .row-fluid
+forum.mobilism.me##.bottomLinks.row-fluid
+forum.mobilism.me##.icon-chevron-up
+forum.mobilism.me##.icon-light.icon-twitter
+forum.mobilism.me##.icon-stack
+forum.mobilism.me##.twitter-color.icon-stack-base.icon-circle
+forum.mobilism.me##footer
+github.com##.Link.Link--secondary
+github.com##.mx-2.flex-shrink-0.flex-items-center.d-flex
+lrepacks.net###pageuserscroll
+lrepacks.net##.page-bottom
+lrepacks.net##.page-down
+lrepacks.net##.page-top
+lrepacks.net##.page-up
+myanimelist.net##.mal-tooltip-layer
+myanimelist.net##mal-tooltip
+pornolab.net###logo
+pornolab.net###page_footer
+pornolab.net##.bypass-alert
+pornolab.net##.dCenter
+pornolab.net##.hide-for-print.ta-inf2.top-alert
+pornolab.net##.jumpbox
+pornolab.net##.med.tRight
+pornolab.net##.pad_4.tCenter.bold.med
+pornolab.net##.site-logo
+rutor.info###down
+rutor.info##[href="/advertise.php"]
+rutor.info##[src="//cdnbunny.org/t/top.gif"]
+rutracker.org###footer-info-links
+rutracker.org###logo
+rutracker.org###logo-td
+rutracker.org###page_footer
+rutracker.org##.site-logo
+rutracker.org##.spacer_4
+torrentgalaxy.to###intblockslide > .txdark.hotlist > tbody > .txdark.hotlist
+torrentgalaxy.to###intblockslide > center > .txdark.panel-primary.panel
+torrentgalaxy.to###inthpslide > .txdark.hotlist
+torrentgalaxy.to##footer
+w14.monkrus.ws###Attribution1 > .widget-content
+w14.monkrus.ws###HTML1
+w14.monkrus.ws###HTML4
+w14.monkrus.ws###HTML5
+w14.monkrus.ws###HTML6
+w14.monkrus.ws###HTML7
+w14.monkrus.ws###HTML8 > .widget-content
+w14.monkrus.ws##.BlogArchive.widget
+w14.monkrus.ws##.PopularPosts.widget
+w14.monkrus.ws##.Stats.widget
+w14.monkrus.ws##.footer-inner.region-inner
+w14.monkrus.ws##.footer-outer
+w14.monkrus.ws##.post-footer
+w14.monkrus.ws##[href="http://www.monkrus.ws/p/donate.html"]
+xxxclub.to##.fa-arrow-up.fa
+xxxclub.to##.footer-bottom
+xxxclub.to##.footer-top
+xxxclub.to##.myBtn
+xxxclub.to##.page-footer
+xxxclub.to##.similardiv
+xxxclub.to##[href="/c/donate/"]
+||bringthemhomenow.net^
