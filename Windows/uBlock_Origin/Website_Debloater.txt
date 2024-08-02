@@ -113,6 +113,7 @@ rutracker.org###logo
 rutracker.org###logo-td
 rutracker.org###page_footer
 rutracker.org##.nav-hidden-arrow.hide-for-print
+rutracker.org##.nav-hidden-overlay
 rutracker.org##.site-logo
 rutracker.org##.spacer_4
 torrentgalaxy.to###intblockslide > .txdark.hotlist > tbody > .txdark.hotlist
