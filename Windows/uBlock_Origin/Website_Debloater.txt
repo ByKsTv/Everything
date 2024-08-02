@@ -24,7 +24,6 @@ fitgirl-repacks.site##.site-info
 fitgirl-repacks.site##.widget_archive.widget
 fitgirl-repacks.site##[href="https://fitgirl-repacks.site/donations/"]
 forum.mobilism.me###footerContent
-forum.mobilism.me###footerContent > .row-fluid
 forum.mobilism.me##.bottomLinks.row-fluid
 forum.mobilism.me##.icon-chevron-up
 forum.mobilism.me##.icon-light.icon-twitter
@@ -61,6 +60,10 @@ rutracker.org##.spacer_4
 torrentgalaxy.to###intblockslide > .txdark.hotlist > tbody > .txdark.hotlist
 torrentgalaxy.to###intblockslide > center > .txdark.panel-primary.panel
 torrentgalaxy.to###inthpslide > .txdark.hotlist
+torrentgalaxy.to##[href="http://forums.mvgroup.org/"]
+torrentgalaxy.to##[href="https://freecourseweb.com/"]
+torrentgalaxy.to##[href="https://getcomics.info/"]
+torrentgalaxy.to##[href="https://igg-games.com/"]
 torrentgalaxy.to##footer
 w14.monkrus.ws###Attribution1 > .widget-content
 w14.monkrus.ws###HTML1
