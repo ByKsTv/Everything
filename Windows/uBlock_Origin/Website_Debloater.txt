@@ -70,7 +70,10 @@ forum.mobilism.me##.icon-stack
 forum.mobilism.me##.twitter-color.icon-stack-base.icon-circle
 forum.mobilism.me##footer
 github.com##.Link.Link--secondary
+github.com##.mb-2.mt-md-2.mt-3.color-fg-muted.text-small
 github.com##.mx-2.flex-shrink-0.flex-items-center.d-flex
+github.com##.p-responsive.color-fg-muted.f6.pb-6.pt-8.footer
+github.com##.protip
 ksp.co.il###footer-wrapper
 ksp.co.il##.extraMenu-0-3-95.menu-0-3-94
 ksp.co.il##.muirtl-14jzs74.button-0-3-129.MuiButton-colorPrimary.MuiButton-containedSizeLarge.MuiButton-sizeLarge.MuiButton-containedPrimary.MuiButton-contained.MuiButton-root.MuiButtonBase-root
@@ -79,7 +82,9 @@ ksp.co.il##.muirtl-1qsxih2.banner-0-3-454.MuiContainer-maxWidthLg.MuiContainer-r
 ksp.co.il##.muirtl-6flbmm.MuiSvgIcon-fontSizeLarge.MuiSvgIcon-root
 ksp.co.il##.muirtl-q0gjsm.title-0-3-118.MuiTypography-body1.MuiTypography-root
 ksp.co.il##.muirtl-vubbuv.arrow-0-3-121.MuiSvgIcon-fontSizeMedium.MuiSvgIcon-root
+ksp.co.il##.swiper-slide-active.swiper-slide
 ksp.co.il##.swiper-slide-next.swiper-slide-active.swiper-slide
+ksp.co.il##[class*="banner-0-3-"][class*="MuiContainer-maxWidthLg"][class*="MuiContainer-root"]
 ksp.co.il##[class^="DynamicFooter-menu-0-3-"]
 ksp.co.il##[class^="banner-0-3-"]
 ksp.co.il##[class^="extraMenu-0-3-"][class*="menu-0-3-"]
@@ -107,6 +112,7 @@ rutracker.org###footer-info-links
 rutracker.org###logo
 rutracker.org###logo-td
 rutracker.org###page_footer
+rutracker.org##.nav-hidden-arrow.hide-for-print
 rutracker.org##.site-logo
 rutracker.org##.spacer_4
 torrentgalaxy.to###intblockslide > .txdark.hotlist > tbody > .txdark.hotlist
@@ -131,6 +137,7 @@ w14.monkrus.ws##.footer-inner.region-inner
 w14.monkrus.ws##.footer-outer
 w14.monkrus.ws##.post-footer
 w14.monkrus.ws##[href="http://www.monkrus.ws/p/donate.html"]
+www.iec.co.il##app-sticky-banner
 xxxclub.to##.fa-arrow-up.fa
 xxxclub.to##.footer-bottom
 xxxclub.to##.footer-top
