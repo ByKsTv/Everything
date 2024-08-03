@@ -140,6 +140,7 @@ torrentgalaxy.to##[href="http://forums.mvgroup.org/"]
 torrentgalaxy.to##[href="https://freecourseweb.com/"]
 torrentgalaxy.to##[href="https://getcomics.info/"]
 torrentgalaxy.to##[href="https://igg-games.com/"]
+torrentgalaxy.to##div[id].outer.panel-primary.txdark.panel:nth-of-type(4)
 torrentgalaxy.to##footer
 w14.monkrus.ws###Attribution1 > .widget-content
 w14.monkrus.ws###HTML1
