@@ -96,6 +96,9 @@ lrepacks.net##.page-top
 lrepacks.net##.page-up
 myanimelist.net##.mal-tooltip-layer
 myanimelist.net##mal-tooltip
+pi.hole##.col-sm-6.col-xs-12
+pi.hole##.login-donate
+pi.hole##[href="https://pi-hole.net/donate/"]
 pornolab.net###logo
 pornolab.net###page_footer
 pornolab.net##.bypass-alert
