@@ -30,22 +30,22 @@ aliexpress.com##.y2023.site-footer
 aliexpress.com##a.comet-v2-anchor-link:nth-of-type(5)
 aliexpress.com##div:nth-of-type(5) > .title--wrap--NWOaiSp > .title--text--Otu0bLr > .title--title--O6xcB1q
 aliexpress.com##span.pc-header--line--2wkkKjf
-amazon.com###ask-btf-container
-amazon.com###cart-about-cart-warning
-amazon.com###desktop-yo-orderdetails_ALL_desktop-yo-orderdetails_0_container
-amazon.com###nav-flyout-ewc
-amazon.com###nav-progressive-subnav
-amazon.com###product-comparison_feature_div
-amazon.com###rhf
-amazon.com###sc-about > p
-amazon.com###tellAmazon_feature_div
-amazon.com##.gridgetContainer.leftCol
-amazon.com##.js-yo-right-rail.right-rail
-amazon.com##.nav-sprite-v1.navLeftFooter
-amazon.com##.navAccessibility.navFooterVerticalRow
-amazon.com##.navFooterDescLine.navFooterLinkLine.navFooterLine
-amazon.com##div#similarities_feature_div.celwidget
-amazon.com##div.navFooterPadItemLine.navFooterLinkLine.navFooterLine
+amazon.*###ask-btf-container
+amazon.*###cart-about-cart-warning
+amazon.*###desktop-yo-orderdetails_ALL_desktop-yo-orderdetails_0_container
+amazon.*###nav-flyout-ewc
+amazon.*###nav-progressive-subnav
+amazon.*###product-comparison_feature_div
+amazon.*###rhf
+amazon.*###sc-about > p
+amazon.*###tellAmazon_feature_div
+amazon.*##.gridgetContainer.leftCol
+amazon.*##.js-yo-right-rail.right-rail
+amazon.*##.nav-sprite-v1.navLeftFooter
+amazon.*##.navAccessibility.navFooterVerticalRow
+amazon.*##.navFooterDescLine.navFooterLinkLine.navFooterLine
+amazon.*##div#similarities_feature_div.celwidget
+amazon.*##div.navFooterPadItemLine.navFooterLinkLine.navFooterLine
 anidex.info##.footer
 danbooru.donmai.us##.gap-1.justify-center.items-center.flex-wrap.flex.border-t.w-full.py-3.mt-4.flex-initial.text-center.text-sm
 danbooru.donmai.us##.hidden-posts-notice.fineprint
