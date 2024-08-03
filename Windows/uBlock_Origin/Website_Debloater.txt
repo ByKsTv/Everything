@@ -44,6 +44,7 @@ amazon.*##.js-yo-right-rail.right-rail
 amazon.*##.nav-sprite-v1.navLeftFooter
 amazon.*##.navAccessibility.navFooterVerticalRow
 amazon.*##.navFooterDescLine.navFooterLinkLine.navFooterLine
+amazon.*##.zg-more-list-types-container
 amazon.*##div#similarities_feature_div.celwidget
 amazon.*##div.navFooterPadItemLine.navFooterLinkLine.navFooterLine
 anidex.info##.footer
