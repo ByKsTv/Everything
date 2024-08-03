@@ -134,6 +134,8 @@ rutracker.org##.spacer_4
 torrentgalaxy.to###intblockslide > .txdark.hotlist > tbody > .txdark.hotlist
 torrentgalaxy.to###intblockslide > center > .txdark.panel-primary.panel
 torrentgalaxy.to###inthpslide > .txdark.hotlist
+torrentgalaxy.to##.txdark.lightlift.btn-xs.btn-default.btn
+torrentgalaxy.to##[class*="col-lg-2"]
 torrentgalaxy.to##[href="http://forums.mvgroup.org/"]
 torrentgalaxy.to##[href="https://freecourseweb.com/"]
 torrentgalaxy.to##[href="https://getcomics.info/"]
