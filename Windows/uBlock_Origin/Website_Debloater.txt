@@ -39,6 +39,9 @@ amazon.*###product-comparison_feature_div
 amazon.*###rhf
 amazon.*###sc-about > p
 amazon.*###tellAmazon_feature_div
+amazon.*##.a-divider-inner
+amazon.*##.a-divider-normal.a-spacing-base
+amazon.*##.a-divider-section.a-divider
 amazon.*##.gridgetContainer.leftCol
 amazon.*##.js-yo-right-rail.right-rail
 amazon.*##.nav-flyout.nav-coreFlyout.glow-toaster-slot-default.glow-toaster-theme-default.glow-toaster.a-section
@@ -49,6 +52,7 @@ amazon.*##.navFooterDescLine.navFooterLinkLine.navFooterLine
 amazon.*##.zg-more-list-types-container
 amazon.*##div#similarities_feature_div.celwidget
 amazon.*##div.navFooterPadItemLine.navFooterLinkLine.navFooterLine
+amazon.*##hr
 anidex.info##.footer
 danbooru.donmai.us##.gap-1.justify-center.items-center.flex-wrap.flex.border-t.w-full.py-3.mt-4.flex-initial.text-center.text-sm
 danbooru.donmai.us##.hidden-posts-notice.fineprint
