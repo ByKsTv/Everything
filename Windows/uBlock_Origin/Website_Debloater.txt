@@ -47,6 +47,8 @@ amazon.com##.navFooterDescLine.navFooterLinkLine.navFooterLine
 amazon.com##div#similarities_feature_div.celwidget
 amazon.com##div.navFooterPadItemLine.navFooterLinkLine.navFooterLine
 anidex.info##.footer
+danbooru.donmai.us##.gap-1.justify-center.items-center.flex-wrap.flex.border-t.w-full.py-3.mt-4.flex-initial.text-center.text-sm
+danbooru.donmai.us##.hidden-posts-notice.fineprint
 fitgirl-repacks.site###block-7
 fitgirl-repacks.site###custom_html-4
 fitgirl-repacks.site###custom_html-5
@@ -74,6 +76,9 @@ github.com##.mb-2.mt-md-2.mt-3.color-fg-muted.text-small
 github.com##.mx-2.flex-shrink-0.flex-items-center.d-flex
 github.com##.p-responsive.color-fg-muted.f6.pb-6.pt-8.footer
 github.com##.protip
+hanime.tv##.footer
+hanime.tv##.primary.theme--dark.btn--right.btn--fixed.btn--floating.btn--bottom.btn.elevation-3.search-fab
+hanime.tv##.site-description
 ksp.co.il###footer-wrapper
 ksp.co.il##.extraMenu-0-3-95.menu-0-3-94
 ksp.co.il##.muirtl-14jzs74.button-0-3-129.MuiButton-colorPrimary.MuiButton-containedSizeLarge.MuiButton-sizeLarge.MuiButton-containedPrimary.MuiButton-contained.MuiButton-root.MuiButtonBase-root
