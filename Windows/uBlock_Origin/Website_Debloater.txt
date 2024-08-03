@@ -41,6 +41,7 @@ amazon.*###sc-about > p
 amazon.*###tellAmazon_feature_div
 amazon.*##.gridgetContainer.leftCol
 amazon.*##.js-yo-right-rail.right-rail
+amazon.*##.nav-flyout.nav-coreFlyout.glow-toaster-slot-default.glow-toaster-theme-default.glow-toaster.a-section
 amazon.*##.nav-sprite-v1.navLeftFooter
 amazon.*##.navAccessibility.navFooterVerticalRow
 amazon.*##.navFooterDescLine.navFooterLinkLine.navFooterLine
