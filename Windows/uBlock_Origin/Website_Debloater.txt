@@ -87,7 +87,6 @@ hanime.tv##.footer
 hanime.tv##.primary.theme--dark.btn--right.btn--fixed.btn--floating.btn--bottom.btn.elevation-3.search-fab
 hanime.tv##.site-description
 ksp.co.il###footer-wrapper
-ksp.co.il##.extraMenu-0-3-95.menu-0-3-94
 ksp.co.il##.muirtl-14jzs74.button-0-3-129.MuiButton-colorPrimary.MuiButton-containedSizeLarge.MuiButton-sizeLarge.MuiButton-containedPrimary.MuiButton-contained.MuiButton-root.MuiButtonBase-root
 ksp.co.il##.muirtl-14vdm3q.MuiFab-secondary.MuiFab-sizeLarge.MuiFab-circular.MuiFab-root.MuiButtonBase-root
 ksp.co.il##.muirtl-1qsxih2.banner-0-3-454.MuiContainer-maxWidthLg.MuiContainer-root
