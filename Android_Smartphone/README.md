@@ -28,7 +28,9 @@ Everything about Android apps.
 - [MacroDroid](https://4pda.to/forum/index.php?act=findpost&pid=15401143&anchor=Spoil-15401143-14) - Pro by Alex.Strannik
 - [Symbolab: AI Math Photo Solver](https://4pda.to/forum/index.php?showtopic=702296&view=findpost&p=44337245)
 - [Autel MaxiAP200](https://4pda.to/forum/index.php?showtopic=961129&st=2400#entry93164749) + [AliExpress](https://www.aliexpress.com/item/32991837323.html)
-- [HeliBoard](https://github.com/Helium314/HeliBoard/releases/latest) + [Hebrew Dictionary](https://codeberg.org/Helium314/aosp-dictionaries/src/branch/main/dictionaries_experimental/main_he.dict) - Keyboard App
+- [HeliBoard](https://github.com/Helium314/HeliBoard/releases/latest) + [Dictionary](https://codeberg.org/Helium314/aosp-dictionaries) - Keyboard App
+
+> [Registration guide for 4pda](https://www.celsoazevedo.com/files/android/how-to-bypass-4pda-captchas/)
 
 ## Mull Settings
 
