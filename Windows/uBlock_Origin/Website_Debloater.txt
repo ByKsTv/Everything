@@ -79,6 +79,10 @@ forum.mobilism.me##.icon-stack
 forum.mobilism.me##.twitter-color.icon-stack-base.icon-circle
 forum.mobilism.me##footer
 github.com##.Link.Link--secondary
+github.com##.blankslate-container > .blankslate-spacious.blankslate
+github.com##.blankslate-spacious.blankslate-large.blankslate
+github.com##.color-border-muted.Box > .blankslate-spacious.blankslate
+github.com##.color-fg-muted.text-center.mt-3
 github.com##.mb-2.mt-md-2.mt-3.color-fg-muted.text-small
 github.com##.mx-2.flex-shrink-0.flex-items-center.d-flex
 github.com##.p-responsive.color-fg-muted.f6.pb-6.pt-8.footer
@@ -100,6 +104,7 @@ ksp.co.il##[class^="DynamicFooter-menu-0-3-"]
 ksp.co.il##[class^="banner-0-3-"]
 ksp.co.il##[class^="extraMenu-0-3-"][class*="menu-0-3-"]
 ksp.co.il##[class^="root-0-3-"] > div > .muirtl-q0gjsm.MuiTypography-body1.MuiTypography-root
+ktuvit.me##.text-center.popup-container
 lrepacks.net###pageuserscroll
 lrepacks.net##.page-bottom
 lrepacks.net##.page-down
