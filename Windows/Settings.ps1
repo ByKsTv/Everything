@@ -1438,39 +1438,6 @@ if ($windowsbackupapp.PackageState -match 'Installed') {
 	Remove-WindowsPackage -PackageName 'Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35~amd64~~10.0.19041.4355' -Online -NoRestart
 }
 
-# Write-Host 'Step2: NuGet: Uninstalling' -ForegroundColor green -BackgroundColor black
-# if ((Test-Path -Path "$env:ProgramFiles\PackageManagement")) {
-# 	Write-Host "Step2: NuGet: Deleting $env:ProgramFiles\PackageManagement" -ForegroundColor green -BackgroundColor black
-# 	icacls "$env:ProgramFiles\PackageManagement" /grant Users:F
-# 	Remove-Item -Path ("$env:ProgramFiles\PackageManagement") -Force -Recurse
-# }
-# if ((Test-Path -Path "$env:LOCALAPPDATA\PackageManagement")) {
-# 	Write-Host "Step2: NuGet: Deleting $env:LOCALAPPDATA\PackageManagement" -ForegroundColor green -BackgroundColor black
-# 	Remove-Item -Path ("$env:LOCALAPPDATA\PackageManagement") -Force -Recurse
-# }
-# if ((Test-Path -Path "$env:APPDATA\PackageManagement")) {
-# 	Write-Host "Step2: NuGet: Deleting $env:APPDATA\PackageManagement" -ForegroundColor green -BackgroundColor black
-# 	Remove-Item -Path ("$env:APPDATA\PackageManagement") -Force -Recurse
-# }
-
-# Write-Host 'Step2: PSWindowsUpdate: Uninstalling' -ForegroundColor green -BackgroundColor black
-# if (Get-Module -ListAvailable -Name PSWindowsUpdate) {
-# 	Uninstall-Module PSWindowsUpdate -Force
-# }
-# if ((Test-Path -Path "$env:ProgramFiles\PackageManagement")) {
-# 	Write-Host "Step2: NuGet: Deleting $env:ProgramFiles\PackageManagement" -ForegroundColor green -BackgroundColor black
-# 	icacls "$env:ProgramFiles\PackageManagement" /grant Users:F
-# 	Remove-Item -Path ("$env:ProgramFiles\PackageManagement") -Force -Recurse
-# }
-# if ((Test-Path -Path "$env:LOCALAPPDATA\PackageManagement")) {
-# 	Write-Host "Step2: NuGet: Deleting $env:LOCALAPPDATA\PackageManagement" -ForegroundColor green -BackgroundColor black
-# 	Remove-Item -Path ("$env:LOCALAPPDATA\PackageManagement") -Force -Recurse
-# }
-# if ((Test-Path -Path "$env:APPDATA\PackageManagement")) {
-# 	Write-Host "Step2: NuGet: Deleting $env:APPDATA\PackageManagement" -ForegroundColor green -BackgroundColor black
-# 	Remove-Item -Path ("$env:APPDATA\PackageManagement") -Force -Recurse
-# }
-
 Write-Host 'Settings: System Properties: Remote: Allow Remote Assistance connections to this computer: Off' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\System\ControlSet001\Control\Remote Assistance') -ne $true) {
  New-Item 'HKLM:\System\ControlSet001\Control\Remote Assistance' -Force 
