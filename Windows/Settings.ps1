@@ -2001,15 +2001,17 @@ if ((Test-Path -Path 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters') -ne
 }
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -Name 'DefaultTTL' -Value 64 -PropertyType DWord -Force
 
-Write-Host 'Network: TcpAckFrequency: Disabled' -ForegroundColor green -BackgroundColor black
-$NetworkGUID = (Get-NetAdapter).InterfaceGUID
-New-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\$NetworkGUID -Name 'TcpAckFrequency' -Value 1 -PropertyType DWord -Force
+$NetworkGUIDs = (Get-NetAdapter).InterfaceGUID
+foreach ($GUID in $NetworkGUIDs) {
+	Write-Host 'Network: TcpAckFrequency: Disabled' -ForegroundColor green -BackgroundColor black
+    New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\$GUID" -Name 'TcpAckFrequency' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Network: TcpDelAckTicks: Disabled' -ForegroundColor green -BackgroundColor black
-New-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\$NetworkGUID -Name 'TcpDelAckTicks' -Value 0 -PropertyType DWord -Force
+	Write-Host 'Network: TcpDelAckTicks: Disabled' -ForegroundColor green -BackgroundColor black
+    New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\$GUID" -Name 'TcpDelAckTicks' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Network: TCPNoDelay: Enabled' -ForegroundColor green -BackgroundColor black
-New-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\$NetworkGUID -Name 'TCPNoDelay' -Value 1 -PropertyType DWord -Force
+	Write-Host 'Network: TCPNoDelay: Enabled' -ForegroundColor green -BackgroundColor black
+    New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\$GUID" -Name 'TCPNoDelay' -Value 1 -PropertyType DWord -Force
+}
 
 Write-Host 'Hosts: Adding mobile.events.data.microsoft.com' -ForegroundColor green -BackgroundColor black
 $mobileeventsdatamicrosoft = Select-String -Path $env:windir\System32\drivers\etc\hosts -Pattern 'mobile.events.data.microsoft.com'
