@@ -39,7 +39,7 @@ Add-Type -AssemblyName System.Drawing
 
 $Step1_Form = New-Object System.Windows.Forms.Form
 $Step1_Form.width = 350
-$Step1_Form.height = 361
+$Step1_Form.height = 375
 $Step1_Form.Text = 'Initial Setup'
 $Step1_Form.StartPosition = 'CenterScreen'
 $Step1_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
@@ -50,7 +50,7 @@ $Step1_Form.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialo
 
 $Step1_X_Axis = 5
 $Step1_Y_Axis = 0
-$Step1_Size_X = (($Step1_Form.width) - 15)
+$Step1_Size_X = (($Step1_Form.width) - 25)
 $Step1_Size_Y = 26
 $Step1_LocationAdd = 26
 
@@ -194,14 +194,14 @@ $CheckBox_GoogleChrome.Checked = $false
 $Step1_Form.Controls.Add($CheckBox_GoogleChrome)
 
 $Step1_Form_OK = New-Object System.Windows.Forms.Button
-$Step1_Form_OK.Location = New-Object System.Drawing.Size((($Step1_Form.Width) / 3 ), (($Step1_Form.height) - 50))
+$Step1_Form_OK.Location = New-Object System.Drawing.Size((($Step1_Form.Width) / 3 ), (($Step1_Form.height) - 60))
 $Step1_Form_OK.Size = New-Object System.Drawing.Size(57, 20)
 $Step1_Form_OK.Text = 'OK'
 $Step1_Form_OK.Add_Click({ $Step1_Form.Close() })
 $Step1_Form.Controls.Add($Step1_Form_OK)
 
 $Step1_Form_Cancel = New-Object System.Windows.Forms.Button
-$Step1_Form_Cancel.Location = New-Object System.Drawing.Size((($Step1_Form.Width) / 2 ), (($Step1_Form.height) - 50))
+$Step1_Form_Cancel.Location = New-Object System.Drawing.Size((($Step1_Form.Width) / 2 ), (($Step1_Form.height) - 60))
 $Step1_Form_Cancel.Size = New-Object System.Drawing.Size(57, 20)
 $Step1_Form_Cancel.Text = 'Cancel'
 $Step1_Form_Cancel.Add_Click({ $Step1_Form.Close() })
