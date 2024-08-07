@@ -10,42 +10,42 @@
 # Write-Host 'Settings: Services: Enabling Bluetooth (Test)' -ForegroundColor green -BackgroundColor black
 # Set-Service bthserv -StartupType Automatic
 
-Write-Host 'Settings: Services: Disabling Windows Search Indexer' -ForegroundColor green -BackgroundColor black
-Set-Service WSearch -StartupType Disabled
+# Write-Host 'Settings: Services: Disabling Windows Search Indexer' -ForegroundColor green -BackgroundColor black
+# Set-Service WSearch -StartupType Disabled
 
-Write-Host 'Settings: Services: Disabling GameDVR' -ForegroundColor green -BackgroundColor black
-Set-Service BcastDVRUserService -StartupType Disabled
-$BcastDVRUserService_ = (Get-Service BcastDVRUserService_*).Name
-New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$BcastDVRUserService_" -Name 'Start' -Value 4 -PropertyType DWord -Force
+# Write-Host 'Settings: Services: Disabling GameDVR' -ForegroundColor green -BackgroundColor black
+# Set-Service BcastDVRUserService -StartupType Disabled
+# $BcastDVRUserService_ = (Get-Service BcastDVRUserService_*).Name
+# New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$BcastDVRUserService_" -Name 'Start' -Value 4 -PropertyType DWord -Force
 
-Write-Host 'Settings: Services: Disabling Clipboard' -ForegroundColor green -BackgroundColor black
-Set-Service cbdhsvc -StartupType Disabled
-$cbdhsvc_ = (Get-Service cbdhsvc_*).Name
-New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$cbdhsvc_" -Name 'Start' -Value 4 -PropertyType DWord -Force
+# Write-Host 'Settings: Services: Disabling Clipboard' -ForegroundColor green -BackgroundColor black
+# Set-Service cbdhsvc -StartupType Disabled
+# $cbdhsvc_ = (Get-Service cbdhsvc_*).Name
+# New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$cbdhsvc_" -Name 'Start' -Value 4 -PropertyType DWord -Force
 
-Write-Host 'Settings: Services: Disabling Contact Data' -ForegroundColor green -BackgroundColor black
-Set-Service PimIndexMaintenanceSvc -StartupType Disabled
-$PimIndexMaintenanceSvc_ = (Get-Service PimIndexMaintenanceSvc_*).Name
-New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$PimIndexMaintenanceSvc_" -Name 'Start' -Value 4 -PropertyType DWord -Force
+# Write-Host 'Settings: Services: Disabling Contact Data' -ForegroundColor green -BackgroundColor black
+# Set-Service PimIndexMaintenanceSvc -StartupType Disabled
+# $PimIndexMaintenanceSvc_ = (Get-Service PimIndexMaintenanceSvc_*).Name
+# New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$PimIndexMaintenanceSvc_" -Name 'Start' -Value 4 -PropertyType DWord -Force
 
-Write-Host 'Settings: Services: Disabling MessagingService' -ForegroundColor green -BackgroundColor black
-Set-Service MessagingService -StartupType Disabled
-$MessagingService_ = (Get-Service MessagingService_*).Name
-New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$MessagingService_" -Name 'Start' -Value 4 -PropertyType DWord -Force
+# Write-Host 'Settings: Services: Disabling MessagingService' -ForegroundColor green -BackgroundColor black
+# Set-Service MessagingService -StartupType Disabled
+# $MessagingService_ = (Get-Service MessagingService_*).Name
+# New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$MessagingService_" -Name 'Start' -Value 4 -PropertyType DWord -Force
 
 # Write-Host 'Settings: Services: Disabling CDPUserSvc' -ForegroundColor green -BackgroundColor black
 # Set-Service CDPUserSvc -StartupType Disabled
 # $CDPUserSvc_ = (Get-Service CDPUserSvc_*).Name
 # New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$CDPUserSvc_" -Name 'Start' -Value 4 -PropertyType DWord -Force
 
-Write-Host 'Settings: Services: Disabling Network Data Usage' -ForegroundColor green -BackgroundColor black
-Set-Service DusmSvc -StartupType Disabled
+# Write-Host 'Settings: Services: Disabling Network Data Usage' -ForegroundColor green -BackgroundColor black
+# Set-Service DusmSvc -StartupType Disabled
 
 # Write-Host 'Settings: Services: Disabling Diagnostic Policy Service' -ForegroundColor green -BackgroundColor black
 # Set-Service DPS -StartupType Disabled
 
-Write-Host 'Settings: Services: Disabling IP Helper (IPv6 to IPv4)' -ForegroundColor green -BackgroundColor black
-Set-Service iphlpsvc -StartupType Disabled
+# Write-Host 'Settings: Services: Disabling IP Helper (IPv6 to IPv4)' -ForegroundColor green -BackgroundColor black
+# Set-Service iphlpsvc -StartupType Disabled
 
 # Write-Host 'Settings: Services: Disabling Shell Hardware Detection' -ForegroundColor green -BackgroundColor black
 # Set-Service ShellHWDetection -StartupType Disabled
@@ -53,23 +53,23 @@ Set-Service iphlpsvc -StartupType Disabled
 # Write-Host 'Settings: Services: Disabling Themes' -ForegroundColor green -BackgroundColor black
 # Set-Service Themes -StartupType Disabled
 
-Write-Host 'Settings: Services: Disabling Downloaded Maps Manager' -ForegroundColor green -BackgroundColor black
-Set-Service MapsBroker -StartupType Disabled
+# Write-Host 'Settings: Services: Disabling Downloaded Maps Manager' -ForegroundColor green -BackgroundColor black
+# Set-Service MapsBroker -StartupType Disabled
 
-Write-Host 'Settings: Services: Disabling Geolocation Service' -ForegroundColor green -BackgroundColor black
-Set-Service lfsvc -StartupType Disabled
+# Write-Host 'Settings: Services: Disabling Geolocation Service' -ForegroundColor green -BackgroundColor black
+# Set-Service lfsvc -StartupType Disabled
 
-Write-Host 'Settings: Services: Disabling Phone Service' -ForegroundColor green -BackgroundColor black
-Set-Service PhoneSvc -StartupType Disabled
+# Write-Host 'Settings: Services: Disabling Phone Service' -ForegroundColor green -BackgroundColor black
+# Set-Service PhoneSvc -StartupType Disabled
 
-Write-Host 'Settings: Services: Disabling Xbox Live Auth Manager' -ForegroundColor green -BackgroundColor black
-Set-Service XblAuthManager -StartupType Disabled
+# Write-Host 'Settings: Services: Disabling Xbox Live Auth Manager' -ForegroundColor green -BackgroundColor black
+# Set-Service XblAuthManager -StartupType Disabled
 
-Write-Host 'Settings: Services: Disabling Xbox Live Game Save' -ForegroundColor green -BackgroundColor black
-Set-Service XblGameSave -StartupType Disabled
+# Write-Host 'Settings: Services: Disabling Xbox Live Game Save' -ForegroundColor green -BackgroundColor black
+# Set-Service XblGameSave -StartupType Disabled
 
-Write-Host 'Settings: Services: Disabling Payments and NFC/SE Manager' -ForegroundColor green -BackgroundColor black
-Set-Service SEMgrSvc -StartupType Disabled
+# Write-Host 'Settings: Services: Disabling Payments and NFC/SE Manager' -ForegroundColor green -BackgroundColor black
+# Set-Service SEMgrSvc -StartupType Disabled
 
 # Set-Service AxInstSV -StartupType Disabled
 # Set-Service tzautoupdate -StartupType Disabled
