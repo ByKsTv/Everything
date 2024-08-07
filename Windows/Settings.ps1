@@ -4,12 +4,6 @@ powercfg /restoredefaultschemes
 Write-Host 'Power Plan: Activating Ultimate Performance' -ForegroundColor green -BackgroundColor black
 powercfg /SETACTIVE e9a42b02-d5df-448d-aa00-03f14749eb61
 
-Write-Host 'Power Plan: Deleting all power plans' -ForegroundColor green -BackgroundColor black
-$powerPlans = powercfg /LIST | Select-String -Pattern 'GUID: ([\w-]+)' | ForEach-Object { $_.Matches.Groups[1].Value }
-foreach ($plan in $powerPlans) {
-	powercfg /DELETE $plan
-}
-
 Write-Host 'Power Plan: Showing all hidden options' -ForegroundColor green -BackgroundColor black
 # https://gist.github.com/Velocet/7ded4cd2f7e8c5fa475b8043b76561b5 - Unlock-PowerCfg - v22.05.11
 Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' -Name 'CSEnabled' -Value 0 -Force
