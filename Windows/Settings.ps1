@@ -1683,9 +1683,6 @@ if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client') -ne $tru
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client' -Name 'ShowShutdownDialog' -Value 0 -PropertyType DWord -Force
 
-# Write-Host 'Settings: Boot Options: Standard' -ForegroundColor green -BackgroundColor black
-# bcdedit /set `{current`} bootmenupolicy standard
-
 # https://docs.google.com/document/d/1c2-lUJq74wuYK1WrA_bIvgb89dUN0sj8-hO3vqmrau4/edit
 # This command forces the kernel timer to constantly poll for interrupts instead of wait for them; dynamic tick was implemented as a power saving feature for laptops but hurts desktop performance
 bcdedit /set disabledynamictick yes
