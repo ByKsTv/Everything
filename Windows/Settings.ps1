@@ -2673,12 +2673,6 @@ if ($null -eq $mobileeventsdatamicrosoft) {
 	Add-Content -Path $env:windir\System32\drivers\etc\hosts -Value "`n127.0.0.1`tmobile.events.data.microsoft.com" -Force
 }
 
-# Write-Host 'Network: Enabling file sharing on Private networks' -ForegroundColor green -BackgroundColor black
-# Set-NetConnectionProfile -NetworkCategory Private
-# Set-NetFirewallRule -Group '@FirewallAPI.dll,-28502' -Profile Private -Enabled True
-# Set-NetFirewallRule -Group '@FirewallAPI.dll,-32752' -Profile Private -Enabled True
-# Set-NetFirewallRule -Profile Public, Private -Name FPS-SMB-In-TCP -Enabled True
-
 Add-Type -AssemblyName System.Windows.Forms
 $WakeOnLanAnswer = [System.Windows.Forms.MessageBox]::Show('Enable Wake-On-Lan?
 
