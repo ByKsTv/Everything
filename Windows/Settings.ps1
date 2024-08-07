@@ -1621,22 +1621,6 @@ Remove-Item -Path Registry::HKEY_CLASSES_ROOT\.zip\CompressedFolder\ShellNew -Fo
 # MultipleInvokeContext -Disable
 # Remove-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer -Name MultipleInvokePromptMinimum -Force
 
-Write-Host 'Network: IPv4: MTU: 1500' -ForegroundColor green -BackgroundColor black
-$AdapterName = $(Get-NetAdapter | Where-Object { $_.Status -eq 'Up' }).Name
-netsh interface ipv4 set subinterface "$AdapterName" mtu=1500 store=persistent
-
-Write-Host 'Network: IPv6: MTU: 1500' -ForegroundColor green -BackgroundColor black
-netsh interface ipv6 set subinterface "$AdapterName" mtu=1500 store=persistent
-
-Write-Host 'Network: Congestion Provider: None' -ForegroundColor green -BackgroundColor black
-netsh int tcp set supplemental internet congestionprovider=None
-
-Write-Host 'Network: DCA: Disabled' -ForegroundColor green -BackgroundColor black
-netsh int tcp set global dca=Disabled
-
-Write-Host 'Network: Teredo: Disabled' -ForegroundColor green -BackgroundColor black
-netsh interface teredo set state disabled
-
 $NetworkSettingsName = Get-NetAdapterAdvancedProperty | Select-Object -Property 'DisplayName'
 if ($NetworkSettingsName -match 'ARP Offload') {
 	Write-Host 'Network: ARP Offload: Disabled' -ForegroundColor green -BackgroundColor black
@@ -1867,6 +1851,22 @@ if ($NetworkSettingsName -match 'Wake on Pattern Match') {
 	Write-Host 'Network: Wake on Pattern Match: Disabled' -ForegroundColor green -BackgroundColor black
 	Set-NetAdapterAdvancedProperty -DisplayName 'Wake on Pattern Match' -DisplayValue 'Disabled'
 }
+
+Write-Host 'Network: IPv4: MTU: 1500' -ForegroundColor green -BackgroundColor black
+$AdapterName = $(Get-NetAdapter | Where-Object { $_.Status -eq 'Up' }).Name
+netsh interface ipv4 set subinterface "$AdapterName" mtu=1500 store=persistent
+
+Write-Host 'Network: IPv6: MTU: 1500' -ForegroundColor green -BackgroundColor black
+netsh interface ipv6 set subinterface "$AdapterName" mtu=1500 store=persistent
+
+Write-Host 'Network: Congestion Provider: None' -ForegroundColor green -BackgroundColor black
+netsh int tcp set supplemental internet congestionprovider=None
+
+Write-Host 'Network: DCA: Disabled' -ForegroundColor green -BackgroundColor black
+netsh int tcp set global dca=Disabled
+
+Write-Host 'Network: Teredo: Disabled' -ForegroundColor green -BackgroundColor black
+netsh interface teredo set state disabled
 
 Write-Host 'Network: Auto Tuning Level Local: Normal' -ForegroundColor green -BackgroundColor black
 Set-NetTCPSetting -AutoTuningLevelLocal Normal
