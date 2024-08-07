@@ -29,4 +29,4 @@ Write-Host 'Step2: Windows Settings: Initiating' -ForegroundColor green -Backgro
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Settings.ps1')
 
 Write-Host 'Step2: Restarting' -ForegroundColor green -BackgroundColor black
-shutdown /r /t 00
+Restart-Computer -Force
