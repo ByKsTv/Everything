@@ -10,18 +10,22 @@
 # Write-Host 'Settings: Services: Enabling Bluetooth (Test)' -ForegroundColor green -BackgroundColor black
 # Set-Service bthserv -StartupType Automatic
 
-# Write-Host 'Settings: Services: Disabling Windows Search Indexer' -ForegroundColor green -BackgroundColor black
-# Set-Service WSearch -StartupType Disabled
+# This is needed for Settings page not to crash and to enable 'night light'
+# Write-Host 'Settings: Services: Disabling Network Connection Broker' -ForegroundColor green -BackgroundColor black
+# Set-Service NcbService -StartupType Manual
+
+Write-Host 'Settings: Services: Disabling Windows Search Indexer' -ForegroundColor green -BackgroundColor black
+Set-Service WSearch -StartupType Disabled
 
 # Write-Host 'Settings: Services: Disabling GameDVR' -ForegroundColor green -BackgroundColor black
 # Set-Service BcastDVRUserService -StartupType Disabled
 # $BcastDVRUserService_ = (Get-Service BcastDVRUserService_*).Name
 # New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$BcastDVRUserService_" -Name 'Start' -Value 4 -PropertyType DWord -Force
 
-# Write-Host 'Settings: Services: Disabling Clipboard' -ForegroundColor green -BackgroundColor black
-# Set-Service cbdhsvc -StartupType Disabled
-# $cbdhsvc_ = (Get-Service cbdhsvc_*).Name
-# New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$cbdhsvc_" -Name 'Start' -Value 4 -PropertyType DWord -Force
+Write-Host 'Settings: Services: Disabling Clipboard' -ForegroundColor green -BackgroundColor black
+Set-Service cbdhsvc -StartupType Disabled
+$cbdhsvc_ = (Get-Service cbdhsvc_*).Name
+New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$cbdhsvc_" -Name 'Start' -Value 4 -PropertyType DWord -Force
 
 # Write-Host 'Settings: Services: Disabling Contact Data' -ForegroundColor green -BackgroundColor black
 # Set-Service PimIndexMaintenanceSvc -StartupType Disabled
@@ -38,20 +42,26 @@
 # $CDPUserSvc_ = (Get-Service CDPUserSvc_*).Name
 # New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$CDPUserSvc_" -Name 'Start' -Value 4 -PropertyType DWord -Force
 
-# Write-Host 'Settings: Services: Disabling Network Data Usage' -ForegroundColor green -BackgroundColor black
-# Set-Service DusmSvc -StartupType Disabled
+Write-Host 'Settings: Services: Disabling Diagnostic Service Host' -ForegroundColor green -BackgroundColor black
+Set-Service WdiServiceHost -StartupType Disabled
 
-# Write-Host 'Settings: Services: Disabling Diagnostic Policy Service' -ForegroundColor green -BackgroundColor black
-# Set-Service DPS -StartupType Disabled
+Write-Host 'Settings: Services: Disabling Diagnostic System Host' -ForegroundColor green -BackgroundColor black
+Set-Service WdiSystemHost -StartupType Disabled
 
-# Write-Host 'Settings: Services: Disabling IP Helper (IPv6 to IPv4)' -ForegroundColor green -BackgroundColor black
-# Set-Service iphlpsvc -StartupType Disabled
+Write-Host 'Settings: Services: Disabling Network Data Usage' -ForegroundColor green -BackgroundColor black
+Set-Service DusmSvc -StartupType Disabled
 
-# Write-Host 'Settings: Services: Disabling Shell Hardware Detection' -ForegroundColor green -BackgroundColor black
-# Set-Service ShellHWDetection -StartupType Disabled
+Write-Host 'Settings: Services: Disabling Diagnostic Policy Service' -ForegroundColor green -BackgroundColor black
+Set-Service DPS -StartupType Disabled
 
-# Write-Host 'Settings: Services: Disabling Themes' -ForegroundColor green -BackgroundColor black
-# Set-Service Themes -StartupType Disabled
+Write-Host 'Settings: Services: Disabling IP Helper (IPv6 to IPv4)' -ForegroundColor green -BackgroundColor black
+Set-Service iphlpsvc -StartupType Disabled
+
+Write-Host 'Settings: Services: Disabling Shell Hardware Detection' -ForegroundColor green -BackgroundColor black
+Set-Service ShellHWDetection -StartupType Disabled
+
+Write-Host 'Settings: Services: Disabling Themes' -ForegroundColor green -BackgroundColor black
+Set-Service Themes -StartupType Disabled
 
 # Write-Host 'Settings: Services: Disabling Downloaded Maps Manager' -ForegroundColor green -BackgroundColor black
 # Set-Service MapsBroker -StartupType Disabled
@@ -88,7 +98,10 @@
 # Set-Service ScDeviceEnum -StartupType Disabled
 # Set-Service SSDPSRV -StartupType Disabled
 # Set-Service WiaRpc -StartupType Disabled
-# Set-Service TabletInputService -StartupType Disabled
+
+Write-Host 'Settings: Services: Disabling Touch Keyboard and Handwriting Panel Service' -ForegroundColor green -BackgroundColor black
+Set-Service TabletInputService -StartupType Disabled
+
 # Set-Service upnphost -StartupType Disabled
 # Set-Service UevAgentService -StartupType Disabled
 # Set-Service WalletService -StartupType Disabled
@@ -2212,17 +2225,6 @@ New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings -Name 
 New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings -Name IsExpedited -PropertyType DWord -Value 1 -Force
 # ActiveHours -Manually
 New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings -Name SmartActiveHoursState -PropertyType DWord -Value 0 -Force
-# InstallVCRedist
-(New-Object System.Net.WebClient).DownloadFile('https://aka.ms/vs/17/release/VC_redist.x86.exe', "$env:TEMP\VC_redist.x86.exe")
-Start-Process -FilePath "$env:TEMP\VC_redist.x86.exe" -ArgumentList '/install /quiet /norestart'
-(New-Object System.Net.WebClient).DownloadFile('https://aka.ms/vs/17/release/VC_redist.x64.exe', "$env:TEMP\VC_redist.x64.exe")
-Start-Process -FilePath "$env:TEMP\VC_redist.x64.exe" -ArgumentList '/install /quiet /norestart'
-
-Write-Host 'DirectX: Downloading' -ForegroundColor green -BackgroundColor black
-(New-Object System.Net.WebClient).DownloadFile((Invoke-WebRequest -UseBasicParsing -Uri 'https://www.microsoft.com/en-us/download/details.aspx?id=35' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'dxwebsetup.exe') } | Select-Object -First 1 | Select-Object -ExpandProperty href), "$env:TEMP\dxwebsetup.exe")
-
-Write-Host 'DirectX: Installing' -ForegroundColor green -BackgroundColor black
-Start-Process -FilePath $env:TEMP\dxwebsetup.exe -ArgumentList '/Q' -Wait
 # RKNBypass -Disable
 # Remove-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' -Name AutoConfigURL -Force # Error
 # PreventEdgeShortcutCreation -Channels Stable, Beta, Dev, Canary
@@ -2819,8 +2821,8 @@ New-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\
 # Write-Host 'Network: LMHOSTS: Disabling' -ForegroundColor green -BackgroundColor black
 # New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\NetBT\Parameters' -Name 'EnableLMHOSTS' -Value 0 -PropertyType DWord -Force 
 
-Write-Host 'Network: WPAD: Disabling' -ForegroundColor green -BackgroundColor black
-New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\WinHttp' -Name 'DisableWpad' -Value 1 -PropertyType DWord -Force
+Write-Host 'Network: WPAD: Enabling' -ForegroundColor green -BackgroundColor black
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\WinHttp' -Name 'DisableWpad' -Value 0 -PropertyType DWord -Force
 # User Configuration\Administrative Templates\Windows Components\Internet Explorer > Disable caching of Auto-Proxy scripts
 # if ((Test-Path -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings') -ne $true) {
 # 	New-Item 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings' -Force
