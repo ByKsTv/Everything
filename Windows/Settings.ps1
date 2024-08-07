@@ -2641,32 +2641,6 @@ New-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\
 Write-Host 'Network: TCPNoDelay: Enabled' -ForegroundColor green -BackgroundColor black
 New-ItemProperty -Path HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\$NetworkGUID -Name 'TCPNoDelay' -Value 1 -PropertyType DWord -Force
 
-# https://www.thewindowsclub.com/disable-netbios-and-llmnr-protocols-via-gpo
-# Needed for RDP for some reason
-# Write-Host 'Network: NetBIOS: Enabling' -ForegroundColor green -BackgroundColor black
-# $NetBiosRegistry = 'HKLM:SYSTEM\CurrentControlSet\services\NetBT\Parameters\Interfaces'
-# Get-ChildItem $NetBiosRegistry | ForEach-Object { Set-ItemProperty -Path "$NetBiosRegistry\$($_.pschildname)" -Name NetbiosOptions -Value 1 }
-
-# Write-Host 'Network: LLMNR: Disabling' -ForegroundColor green -BackgroundColor black
-# # Computer Configuration -> Administrative Templates -> Network -> DNS ClientEnable Turn Off Multicast Name Resolution 
-# if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows NT\DNSClient') -ne $true) {
-# 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows NT\DNSClient' -Force 
-# }
-# New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows NT\DNSClient' -Name 'EnableMulticast' -Value 0 -PropertyType DWord -Force 
-
-# Write-Host 'Network: LMHOSTS: Disabling' -ForegroundColor green -BackgroundColor black
-# New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\NetBT\Parameters' -Name 'EnableLMHOSTS' -Value 0 -PropertyType DWord -Force 
-
-Write-Host 'Network: WPAD: Enabling' -ForegroundColor green -BackgroundColor black
-New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Internet Settings\WinHttp' -Name 'DisableWpad' -Value 0 -PropertyType DWord -Force
-# User Configuration\Administrative Templates\Windows Components\Internet Explorer > Disable caching of Auto-Proxy scripts
-# if ((Test-Path -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings') -ne $true) {
-# 	New-Item 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings' -Force
-# }
-# User Configuration >Policies >Windows Settings > Connection/Automatic Browser Configuration > Automatically detect configuration settings → DISABLE
-# New-ItemProperty -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\Internet Settings' -Name 'EnableAutoProxyResultCache' -Value 0 -PropertyType DWord -Force
-# New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\WinHttpAutoProxySvc' -Name 'Start' -Value 4 -PropertyType DWord -Force # stopping service
-
 Write-Host 'Hosts: Adding mobile.events.data.microsoft.com' -ForegroundColor green -BackgroundColor black
 $mobileeventsdatamicrosoft = Select-String -Path $env:windir\System32\drivers\etc\hosts -Pattern 'mobile.events.data.microsoft.com'
 if ($null -eq $mobileeventsdatamicrosoft) {
