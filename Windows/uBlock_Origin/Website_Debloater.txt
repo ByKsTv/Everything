@@ -116,7 +116,6 @@ pi.hole##.col-sm-6.col-xs-12
 pi.hole##.login-donate
 pi.hole##[href="https://pi-hole.net/donate/"]
 pornolab.net###logo
-pornolab.net###main_content_wrap > table.w100 > tbody
 pornolab.net###page_footer
 pornolab.net##.bypass-alert
 pornolab.net##.clickable.sp-fold
