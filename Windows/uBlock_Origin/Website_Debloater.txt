@@ -131,10 +131,20 @@ rutracker.org###footer-info-links
 rutracker.org###logo
 rutracker.org###logo-td
 rutracker.org###page_footer
+rutracker.org###thx-block
+rutracker.org###thx-btn-div > .bold
+rutracker.org##.clickable.sp-fold
+rutracker.org##.hide-for-print.bottom_info
+rutracker.org##.hide-for-print.t-post-buttons.inlined
+rutracker.org##.hide-for-print.w100
 rutracker.org##.nav-hidden-arrow.hide-for-print
 rutracker.org##.nav-hidden-overlay
+rutracker.org##.pad_4.row3
+rutracker.org##.postLink > .post-b
 rutracker.org##.site-logo
 rutracker.org##.spacer_4
+rutracker.org##span.post-align > .postImg
+rutracker.org##tr.tCenter.row3
 torrentgalaxy.to###intblockslide > .txdark.hotlist > tbody > .txdark.hotlist
 torrentgalaxy.to###intblockslide > center > .txdark.panel-primary.panel
 torrentgalaxy.to###inthpslide > .txdark.hotlist
