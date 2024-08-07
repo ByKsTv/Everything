@@ -1807,27 +1807,6 @@ if ((Test-Path -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System') -ne $tr
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System' -Name 'DisableLogonBackgroundImage' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'RotatingLockScreenEnabled' -Value 0 -PropertyType DWord -Force
 
-# Write-Host 'Settings: Compiling Timer Resolution Service' -ForegroundColor green -BackgroundColor black
-# https://github.com/fr33thytweaks/Ultimate-Windows-Optimization-Guide/blob/main/6%20Windows/10%20Timer%20Resolution.ps1
-# https://forums.guru3d.com/threads/windows-timer-resolution-tool-in-form-of-system-service.376458/
-# $SetTimerResService = @'
-# '@
-# Set-Content -Path "$env:C:\Windows\SetTimerResolutionService.cs" -Value $SetTimerResService -Force
-# Start-Process -Wait 'C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe' -ArgumentList '-out:C:\Windows\SetTimerResolutionService.exe C:\Windows\SetTimerResolutionService.cs' -WindowStyle Hidden
-# Remove-Item "$env:C:\Windows\SetTimerResolutionService.cs"
-# Write-Host 'Settings: Starting Timer Resolution Service' -ForegroundColor green -BackgroundColor black
-# New-Service -Name 'Set Timer Resolution Service' -BinaryPathName "$env:C:\Windows\SetTimerResolutionService.exe"
-# Set-Service -Name 'Set Timer Resolution Service' -StartupType Auto
-# Set-Service -Name 'Set Timer Resolution Service' -Status Running
-# if ((Test-Path -LiteralPath 'HKLM:\System\ControlSet001\Control\Session Manager\kernel') -ne $true) {
-# 	New-Item 'HKLM:\System\ControlSet001\Control\Session Manager\kernel' -Force
-# }
-# New-ItemProperty -LiteralPath 'HKLM:\System\ControlSet001\Control\Session Manager\kernel' -Name 'GlobalTimerResolutionRequests' -Value 1 -PropertyType DWord -Force
-
-# Sohpia Script
-# Last updated 23/05/2024
-# https://github.com/farag2/Sophia-Script-for-Windows/blob/master/src/Sophia_Script_for_Windows_10_LTSC_2021/Sophia.ps1
-# https://github.com/farag2/Sophia-Script-for-Windows/blob/master/src/Sophia_Script_for_Windows_10_LTSC_2021/Module/Sophia.psm1
 # DiagTrackService -Disable
 # Connected User Experiences and Telemetry
 Get-Service -Name DiagTrack | Stop-Service -Force
