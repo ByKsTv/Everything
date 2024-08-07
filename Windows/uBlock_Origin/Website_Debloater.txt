@@ -116,14 +116,21 @@ pi.hole##.col-sm-6.col-xs-12
 pi.hole##.login-donate
 pi.hole##[href="https://pi-hole.net/donate/"]
 pornolab.net###logo
+pornolab.net###main_content_wrap > table.w100 > tbody
 pornolab.net###page_footer
 pornolab.net##.bypass-alert
+pornolab.net##.clickable.sp-fold
 pornolab.net##.dCenter
 pornolab.net##.hide-for-print.ta-inf2.top-alert
 pornolab.net##.jumpbox
+pornolab.net##.leech > .gen
 pornolab.net##.med.tRight
+pornolab.net##.pad_4.row3
 pornolab.net##.pad_4.tCenter.bold.med
 pornolab.net##.site-logo
+pornolab.net##.thx-container
+pornolab.net##.thx-form > .bold
+pornolab.net##tr.tCenter.row3 > .med
 rutor.info###down
 rutor.info##[href="/advertise.php"]
 rutor.info##[src="//cdnbunny.org/t/top.gif"]
