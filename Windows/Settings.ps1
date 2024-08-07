@@ -1373,7 +1373,6 @@ Disable-ScheduledTask -TaskName 'StartupAppTask' -TaskPath '\Microsoft\Windows\A
 Disable-ScheduledTask -TaskName 'UsbCeip' -TaskPath '\Microsoft\Windows\Customer Experience Improvement Program\'
 Disable-ScheduledTask -TaskName 'XblGameSaveTask' -TaskPath '\Microsoft\XblGameSave\'
 Disable-ScheduledTask -TaskName 'PcaPatchDbTask' -TaskPath '\Microsoft\Windows\Application Experience'
-# Disable-ScheduledTask -TaskName 'WinSAT' -TaskPath '\Microsoft\Windows\Maintenance'
 
 Write-Host 'Step2: Windows Capabilities: Removing Internet Explorer' -ForegroundColor green -BackgroundColor black
 Remove-WindowsCapability -Name 'Browser.InternetExplorer~~~~0.0.11.0' -Online
