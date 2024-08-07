@@ -2498,28 +2498,6 @@ if ($NetworkSettingsName -match 'Wake on Pattern Match') {
 	Set-NetAdapterAdvancedProperty -DisplayName 'Wake on Pattern Match' -DisplayValue 'Disabled'
 }
 
-# Sleep on WoWLAN Disconnect 
-# Packet Coalescing          
-# ARP offload for WoWLAN     
-# NS offload for WoWLAN      
-# GTK rekeying for WoWLAN          
-# Global BG Scan blocking    
-# Channel Width for 2.4GHz   
-# Channel Width for 5GHz     
-# Mixed Mode Protection      
-# Fat Channel Intolerant     
-# Transmit Power             
-# 802.11n/ac/ax Wireless Mode
-# MIMO Power Save Mode       
-# Roaming Aggressiveness     
-# Preferred Band             
-# Throughput Booster         
-# U-APSD support             
-# 802.11a/b/g Wireless Mode                                                                                           
-# RSS load balancing profile                                             
-# Link Speed Battery Saver                                        
-# Locally Administered Address                                                                                                                                                                                                   
-
 Write-Host 'Network: Auto Tuning Level Local: Normal' -ForegroundColor green -BackgroundColor black
 Set-NetTCPSetting -AutoTuningLevelLocal Normal
 
