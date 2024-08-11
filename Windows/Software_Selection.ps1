@@ -1747,6 +1747,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         $Form_OfficeSelection.Controls.Add($Form_OfficeSelection_Cancel)
         
         $Form_OfficeSelection_OK.Add_Click{
+            $Form_OfficeSelection.Topmost = $false
             if ($CheckBox_Microsoft365ProPlus.Checked) {
                 Write-Host 'Office Selection: Microsoft 365 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Skype for Business, Word): Downloading' -ForegroundColor green -BackgroundColor black
                 (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'O365ProPlus') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\O365ProPlus.exe")
