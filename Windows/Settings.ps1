@@ -1056,22 +1056,22 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client' -Name '
 
 # https://docs.google.com/document/d/1c2-lUJq74wuYK1WrA_bIvgb89dUN0sj8-hO3vqmrau4/edit
 # This command forces the kernel timer to constantly poll for interrupts instead of wait for them; dynamic tick was implemented as a power saving feature for laptops but hurts desktop performance
-bcdedit /set disabledynamictick yes
+# bcdedit /set disabledynamictick yes
 
 # # Disables the hypervisor which is unneeded on a gaming PC
-bcdedit /set hypervisorlaunchtype off
+# bcdedit /set hypervisorlaunchtype off
 
 # # Disable VBS / HVCI
 # # https://www.tomshardware.com/how-to/disable-vbs-windows-11
-New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\DeviceGuard' -Name 'EnableVirtualizationBasedSecurity' -Value 0 -PropertyType DWord -Force
+# New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\DeviceGuard' -Name 'EnableVirtualizationBasedSecurity' -Value 0 -PropertyType DWord -Force
 
 # Process scheduling - 22 = Long, variable, 3x foreground boost (36:12)
-New-ItemProperty -Path 'HKLM:\SYSTEM\ControlSet001\Control\PriorityControl' -Name 'Win32PrioritySeparation' -Value 22 -PropertyType DWord -Force
+# New-ItemProperty -Path 'HKLM:\SYSTEM\ControlSet001\Control\PriorityControl' -Name 'Win32PrioritySeparation' -Value 22 -PropertyType DWord -Force
 
 # https://github.com/djdallmann/GamingPCSetup/blob/master/CONTENT/DOCS/POSTINSTALL/README.md
-fsutil behavior set DisableDeleteNotify 0
-fsutil behavior set disableLastAccess 1
-fsutil behavior set disable8dot3 1
+# fsutil behavior set DisableDeleteNotify 0
+# fsutil behavior set disableLastAccess 1
+# fsutil behavior set disable8dot3 1
 
 Write-Host 'Settings: svchost.exe: Group (Decrease Process Number)' -ForegroundColor green -BackgroundColor black
 $svchostram = (Get-CimInstance -ClassName Win32_PhysicalMemory | Measure-Object -Property Capacity -Sum).Sum / 1kb
