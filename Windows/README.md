@@ -50,7 +50,8 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
    > If drives not found - Extract `Intel Rapid Storage Technology (IRST)` driver matching to the motherboard.
 1. `Yes` > `Yes` > `Skip` > `I don't have internet` > `Continue with limited setup`.
 1. Connect Ethernet Cable (After Windows Boots Up).
-1. `Do you want to allow your PC to be discoverable by other PCs and devices on this network?` > Yes.
+   > If there's no internet connection - install LAN driver.
+1. `Do you want to allow your PC to be discoverable by other PCs and devices on this network?` > `Yes`.
 
 ## Initial Setup - Auto Install
 
