@@ -183,6 +183,7 @@ $CheckBox_DeleteFile.Add_Click( {
 )
 
 $mpv_Form_OK.Add_Click{
+    $mpv_Form.Topmost = $false
     if ($CheckBox_SponsorBlock.Checked -eq $true) {
         if (!(Test-Path -Path "$env:SystemDrive$env:HOMEPATH\mpv\scripts\sponsorblock_shared")) {
             Write-Host 'mpv: Creating sponsorblock_shared folder' -ForegroundColor green -BackgroundColor black
