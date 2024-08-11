@@ -173,50 +173,50 @@ $mpv_Form_Cancel.Add_Click({ $mpv_Form.Close() })
 $mpv_Form.Controls.Add($mpv_Form_Cancel)
 
 $CheckBox_DeleteFile.Add_Click( {
-		if ($CheckBox_DeleteFile.Checked -eq $true) {
-			$CheckBox_AutoDeleteFile.Enabled = $true
-		}
-		elseif ($CheckBox_DeleteFile.Checked -eq $false) {
-			$CheckBox_AutoDeleteFile.Enabled = $false
-		}   
-	}
+        if ($CheckBox_DeleteFile.Checked -eq $true) {
+            $CheckBox_AutoDeleteFile.Enabled = $true
+        }
+        elseif ($CheckBox_DeleteFile.Checked -eq $false) {
+            $CheckBox_AutoDeleteFile.Enabled = $false
+        }   
+    }
 )
 
 $mpv_Form_OK.Add_Click{
-	if ($CheckBox_SponsorBlock.Checked -eq $true) {
-		if (!(Test-Path -Path "$env:SystemDrive$env:HOMEPATH\mpv\scripts\sponsorblock_shared")) {
-			Write-Host 'mpv: Creating sponsorblock_shared folder' -ForegroundColor green -BackgroundColor black
-			New-Item -Path "$env:SystemDrive$env:HOMEPATH\mpv\scripts\sponsorblock_shared" -Value sponsorblock_shared -ItemType Directory
-		}
+    if ($CheckBox_SponsorBlock.Checked -eq $true) {
+        if (!(Test-Path -Path "$env:SystemDrive$env:HOMEPATH\mpv\scripts\sponsorblock_shared")) {
+            Write-Host 'mpv: Creating sponsorblock_shared folder' -ForegroundColor green -BackgroundColor black
+            New-Item -Path "$env:SystemDrive$env:HOMEPATH\mpv\scripts\sponsorblock_shared" -Value sponsorblock_shared -ItemType Directory
+        }
 	
-		Write-Host 'mpv: Adding script sponsorblock.lua' -ForegroundColor green -BackgroundColor black
+        Write-Host 'mpv: Adding script sponsorblock.lua' -ForegroundColor green -BackgroundColor black
 		(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblock.lua', "$env:SystemDrive$env:HOMEPATH\mpv\scripts\sponsorblock.lua")
 		
-		Write-Host 'mpv: Using custom settings for sponsorblock.conf' -ForegroundColor green -BackgroundColor black
+        Write-Host 'mpv: Using custom settings for sponsorblock.conf' -ForegroundColor green -BackgroundColor black
 		(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/script-opts/sponsorblock.conf', "$env:SystemDrive$env:HOMEPATH\mpv\script-opts\sponsorblock.conf")
 	
-		Write-Host 'mpv: Adding script sponsorblock.py' -ForegroundColor green -BackgroundColor black
+        Write-Host 'mpv: Adding script sponsorblock.py' -ForegroundColor green -BackgroundColor black
 		(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblock_shared/sponsorblock.py', "$env:SystemDrive$env:HOMEPATH\mpv\scripts\sponsorblock_shared/sponsorblock.py")
 		
-		Write-Host 'mpv: Adding script main.py' -ForegroundColor green -BackgroundColor black
+        Write-Host 'mpv: Adding script main.py' -ForegroundColor green -BackgroundColor black
 		(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblock_shared/main.lua', "$env:SystemDrive$env:HOMEPATH\mpv\scripts\sponsorblock_shared/main.lua")
 		
-		$InstalledSoftware = Get-Package | Select-Object -Property 'Name'
-		if (!($InstalledSoftware -match 'Python')) {
-			Write-Host 'Python: Initiating' -ForegroundColor green -BackgroundColor black
-			Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Python/Download.ps1')
-		}
-	}
+        $InstalledSoftware = Get-Package | Select-Object -Property 'Name'
+        if (!($InstalledSoftware -match 'Python')) {
+            Write-Host 'Python: Initiating' -ForegroundColor green -BackgroundColor black
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Python/Download.ps1')
+        }
+    }
 
-	if ($CheckBox_DeleteFile.Checked -eq $true) {
-		Write-Host 'mpv: Adding script delete_file.lua' -ForegroundColor green -BackgroundColor black
+    if ($CheckBox_DeleteFile.Checked -eq $true) {
+        Write-Host 'mpv: Adding script delete_file.lua' -ForegroundColor green -BackgroundColor black
     	(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/zenyd/mpv-scripts/master/delete_file.lua', "$env:SystemDrive$env:HOMEPATH\mpv\scripts\delete_file.lua")
-	}
+    }
 
-	if ($CheckBox_AutoDeleteFile.Checked -eq $true) {
-		Write-Host 'mpv: Adding script delete_file_auto.lua' -ForegroundColor green -BackgroundColor black
+    if ($CheckBox_AutoDeleteFile.Checked -eq $true) {
+        Write-Host 'mpv: Adding script delete_file_auto.lua' -ForegroundColor green -BackgroundColor black
         (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/delete_file_auto.lua', "$env:SystemDrive$env:HOMEPATH\mpv\scripts\delete_file_auto.lua")
-	}
+    }
 
 }
 $mpv_Form.Add_Shown({ $mpv_Form.Activate() })
