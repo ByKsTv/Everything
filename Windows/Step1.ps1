@@ -316,65 +316,71 @@ $Step1_Form_OK.Add_Click{
 $Step1_Form.Add_Shown({ $Step1_Form.Activate() })
 [void] $Step1_Form.ShowDialog()
 
-Write-Host 'Step1: Windows Updates: Searching' -ForegroundColor green -BackgroundColor black
-$updateSession = New-Object -ComObject Microsoft.Update.Session
-$updateSearcher = $updateSession.CreateUpdateSearcher()
-$updateDownloader = $updateSession.CreateUpdateDownloader()
-$updateInstaller = $updateSession.CreateUpdateInstaller()
-$searchResult = $updateSearcher.Search('IsInstalled=0')
+$maxRetries = 3
+$retryCount = 0
+$success = $false
+while (-not $success -and $retryCount -lt $maxRetries) {
+	$retryCount++
 
-if ($searchResult.Updates.Count -eq 0) {
-	Write-Host 'Step1: Windows Updates: No updates available' -ForegroundColor green -BackgroundColor black
-	return
-}
+	Write-Host 'Windows Updates: Searching' -ForegroundColor green -BackgroundColor black
+	$updateSession = New-Object -ComObject Microsoft.Update.Session
+	$updateSearcher = $updateSession.CreateUpdateSearcher()
+	$updateDownloader = $updateSession.CreateUpdateDownloader()
+	$updateInstaller = $updateSession.CreateUpdateInstaller()
+	$searchResult = $updateSearcher.Search('IsInstalled=0')
 
-Write-Host 'Step1: Windows Updates: Available Updates:' -ForegroundColor green -BackgroundColor black
-for ($i = 0; $i -lt $searchResult.Updates.Count; $i++) {
-	$update = $searchResult.Updates.Item($i)
-	Write-Host "$($i+1). $($update.Title)" -ForegroundColor green -BackgroundColor black
-}
+	if ($searchResult.Updates.Count -eq 0) {
+		Write-Host 'Windows Updates: No updates available' -ForegroundColor green -BackgroundColor black
+	}
 
-Write-Host 'Step1: Windows Updates: Downloading' -ForegroundColor green -BackgroundColor black
-$updatesToDownload = New-Object -ComObject Microsoft.Update.UpdateColl
-for ($i = 0; $i -lt $searchResult.Updates.Count; $i++) {
-	$update = $searchResult.Updates.Item($i)
-	$updatesToDownload.Add($update) | Out-Null
-}
-$updateDownloader.Updates = $updatesToDownload
-$downloadResult = $updateDownloader.Download()
+	Write-Host 'Windows Updates: Available Updates:' -ForegroundColor green -BackgroundColor black
+	for ($i = 0; $i -lt $searchResult.Updates.Count; $i++) {
+		$update = $searchResult.Updates.Item($i)
+		Write-Host "$($i+1). $($update.Title)" -ForegroundColor green -BackgroundColor black
+	}
 
-if ($downloadResult.ResultCode -ne 2) {
-	Write-Host "Step1: Windows Updates: Download failed. Result code: $($downloadResult.ResultCode)" -ForegroundColor green -BackgroundColor black
-	return
-}
+	Write-Host 'Windows Updates: Downloading' -ForegroundColor green -BackgroundColor black
+	$updatesToDownload = New-Object -ComObject Microsoft.Update.UpdateColl
+	for ($i = 0; $i -lt $searchResult.Updates.Count; $i++) {
+		$update = $searchResult.Updates.Item($i)
+		$updatesToDownload.Add($update) | Out-Null
+	}
+	$updateDownloader.Updates = $updatesToDownload
+	$downloadResult = $updateDownloader.Download()
 
-Write-Host 'Step1: Windows Updates: Installing' -ForegroundColor green -BackgroundColor black
-$updatesToInstall = New-Object -ComObject Microsoft.Update.UpdateColl
-for ($i = 0; $i -lt $searchResult.Updates.Count; $i++) {
-	$update = $searchResult.Updates.Item($i)
-	if ($update.IsDownloaded) {
-		$updatesToInstall.Add($update) | Out-Null
+	if ($downloadResult.ResultCode -ne 2) {
+		Write-Host "Windows Updates: Download failed. Result code: $($downloadResult.ResultCode)" -ForegroundColor red -BackgroundColor black
+		Write-Host 'Windows Updates: Retrying download...' -ForegroundColor yellow -BackgroundColor black
+		continue
+	}
+
+	Write-Host 'Windows Updates: Installing' -ForegroundColor green -BackgroundColor black
+	$updatesToInstall = New-Object -ComObject Microsoft.Update.UpdateColl
+	for ($i = 0; $i -lt $searchResult.Updates.Count; $i++) {
+		$update = $searchResult.Updates.Item($i)
+		if ($update.IsDownloaded) {
+			$updatesToInstall.Add($update) | Out-Null
+		}
+	}
+	$updateInstaller.Updates = $updatesToInstall
+	$installationResult = $updateInstaller.Install()
+
+	if ($installationResult.ResultCode -ne 2) {
+		Write-Host "Windows Updates: Installation failed. Result code: $($installationResult.ResultCode)" -ForegroundColor red -BackgroundColor black
+		Write-Host 'Windows Updates: Retrying installation...' -ForegroundColor yellow -BackgroundColor black
+		continue
+	}
+
+	$needsReboot = $false
+	for ($i = 0; $i -lt $updatesToInstall.Count; $i++) {
+		if ($updatesToInstall.Item($i).RebootRequired) {
+			$needsReboot = $true
+		}
+	}
+
+	if ($needsReboot) {
+		Write-Host 'Windows Updates: Restarting' -ForegroundColor green -BackgroundColor black
+		Restart-Computer -Force
+		$success = $true
 	}
 }
-$updateInstaller.Updates = $updatesToInstall
-$installationResult = $updateInstaller.Install()
-
-if ($installationResult.ResultCode -ne 2) {
-	Write-Host "Step1: Windows Updates: Installation failed. Result code: $($installationResult.ResultCode)" -ForegroundColor green -BackgroundColor black
-	return
-}
-
-$needsReboot = $false
-for ($i = 0; $i -lt $updatesToInstall.Count; $i++) {
-	if ($updatesToInstall.Item($i).RebootRequired) {
-		$needsReboot = $true
-		break
-	}
-}
-
-if ($needsReboot) {
-	Write-Host 'Step1: Windows Updates: Restarting' -ForegroundColor green -BackgroundColor black
-	Restart-Computer -Force
-}
-
-Write-Host 'Step1: Manually Update Windows and Restart PC' -ForegroundColor green -BackgroundColor black
