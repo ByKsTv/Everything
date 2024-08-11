@@ -238,6 +238,7 @@ $CheckBox_RemotePowerShell.Add_Click( {
 )
 
 $Step1_Form_OK.Add_Click{
+	$Step1_Form.Topmost = $false
 	$selectedTimeZone = $Step1_KeyboardLayoutComboBoxTimeZone.SelectedItem
 	if ($selectedTimeZone) {
 		Write-Host "Step1: Time Zone: Setting $selectedTimeZone" -ForegroundColor green -BackgroundColor black
