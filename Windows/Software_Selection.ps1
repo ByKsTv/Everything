@@ -1086,6 +1086,7 @@ $Form_SoftwareSelection_Cancel.Add_Click({ $Form_SoftwareSelection.Close() })
 $Form_SoftwareSelection.Controls.Add($Form_SoftwareSelection_Cancel)
 
 $Form_SoftwareSelection_OK.Add_Click{
+    $Form_SoftwareSelection.Topmost = $false
     # Priority: Browser required, manual input
     if ($CheckBox_NVCleanstall.Checked) {
         Write-Host 'Software Selection: NVCleanstall: Initiating' -ForegroundColor green -BackgroundColor black
