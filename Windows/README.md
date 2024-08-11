@@ -62,8 +62,6 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
    ```
 
-1. Install Motherboard LAN driver, Chipset drivers and Intel(R) Rapid Storage Technology from USB.
-
 ## Software Selection
 
 1. PowerShell (Admin):
@@ -100,3 +98,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. Set up print quality and print size.
 
 > Note: HP Printer: Only Original Ink Cartridges.
+
+### Drivers
+
+1. Install Motherboard LAN driver, Chipset drivers and Intel(R) Rapid Storage Technology from USB.
