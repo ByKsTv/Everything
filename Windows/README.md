@@ -102,3 +102,35 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 ### Drivers
 
 1. Install Motherboard LAN driver, Chipset drivers and Intel(R) Rapid Storage Technology from USB.
+
+### Forgot Password?
+
+1. Connect USB with Windows Installation to the PC.
+1. Boot to UEFI USB (F12/DEL/F11).
+1. `Next` > `Repair your computer` > `Troubleshoot` > `Command Prompt`
+
+```cmd
+C:
+cd C:\Windows\System32
+rename osk.exe osk.old
+copy cmd.exe osk.exe
+shutdown /r /t 00
+```
+
+1. `Ease of Access` > `On-Screen Keyboard`
+
+```cmd
+net user
+net user (manually-type-your-username-here) ""
+```
+
+1. Boot to UEFI USB (F12/DEL/F11).
+1. `Next` > `Repair your computer` > `Troubleshoot` > `Command Prompt`
+
+```cmd
+C:
+cd C:\Windows\System32
+del osk.exe
+rename osk.old osk.exe
+shutdown /r /t 00
+```
