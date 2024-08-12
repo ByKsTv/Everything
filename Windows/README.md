@@ -109,28 +109,29 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. Boot to UEFI USB (F12/DEL/F11).
 1. `Next` > `Repair your computer` > `Troubleshoot` > `Command Prompt`
 
-    ```cmd
-    C:
-    cd C:\Windows\System32
-    rename osk.exe osk.old
-    copy cmd.exe osk.exe
-    shutdown /r /t 00
-    ```
+   ```cmd
+   C:
+   cd C:\Windows\System32
+   rename osk.exe osk.old
+   copy cmd.exe osk.exe
+   shutdown /r /t 00
+   ```
 
 1. `Ease of Access` > `On-Screen Keyboard`
 
-    ```cmd
-    net user
-    net user (manually-type-your-username-here) ""
-    ```
+   ```cmd
+   net user
+   net user (manually-type-your-username-here) ""
+   shutdown /r /t 00
+   ```
 
 1. Boot to UEFI USB (F12/DEL/F11).
 1. `Next` > `Repair your computer` > `Troubleshoot` > `Command Prompt`
 
-    ```cmd
-    C:
-    cd C:\Windows\System32
-    del osk.exe
-    rename osk.old osk.exe
-    shutdown /r /t 00
-    ```
+   ```cmd
+   C:
+   cd C:\Windows\System32
+   del osk.exe
+   rename osk.old osk.exe
+   shutdown /r /t 00
+   ```
