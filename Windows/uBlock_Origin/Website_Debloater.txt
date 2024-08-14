@@ -54,6 +54,7 @@ amazon.*##div#similarities_feature_div.celwidget
 amazon.*##div.navFooterPadItemLine.navFooterLinkLine.navFooterLine
 amazon.*##hr
 anidex.info##.footer
+cracked.io##.wrapper.lower
 danbooru.donmai.us##.gap-1.justify-center.items-center.flex-wrap.flex.border-t.w-full.py-3.mt-4.flex-initial.text-center.text-sm
 danbooru.donmai.us##.hidden-posts-notice.fineprint
 fitgirl-repacks.site###block-7
@@ -113,6 +114,10 @@ lrepacks.net##.page-bottom
 lrepacks.net##.page-down
 lrepacks.net##.page-top
 lrepacks.net##.page-up
+missav.com##.hover\:text-primary.text-nord6.mx-auto.h-8.w-8
+missav.com##.pt-8.border-gray-700.border-t.my-12
+missav.com##.xl\:col-span-2.xl\:mt-0.gap-8.grid-cols-2.grid.mt-12
+missav.com##footer.px-4.mx-auto.sm\:container
 myanimelist.net##.mal-tooltip-layer
 myanimelist.net##mal-tooltip
 pi.hole##.col-sm-6.col-xs-12
