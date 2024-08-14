@@ -103,7 +103,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 1. Install Motherboard LAN driver, Chipset drivers and Intel(R) Rapid Storage Technology from USB.
 
-### Forgot Password?
+### Reset Password to Windows 10 Local Account
 
 1. Connect USB with Windows Installation to the PC.
 1. Boot to UEFI USB (F12/DEL/F11).
@@ -111,7 +111,8 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
    ```cmd
    C:
-   cd C:\Windows\System32
+   cd Windows
+   cd System32
    rename osk.exe osk.old
    copy cmd.exe osk.exe
    shutdown /r /t 00
@@ -120,17 +121,18 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. `Ease of Access` > `On-Screen Keyboard`
 
    ```cmd
-   net user
-   net user (manually-type-your-username-here) ""
-   shutdown /r /t 00
+   control userpasswords2
    ```
+
+1. `Reset Password...` > `OK`
 
 1. Boot to UEFI USB (F12/DEL/F11).
 1. `Next` > `Repair your computer` > `Troubleshoot` > `Command Prompt`
 
    ```cmd
    C:
-   cd C:\Windows\System32
+   cd Windows
+   cd System32
    del osk.exe
    rename osk.old osk.exe
    shutdown /r /t 00
