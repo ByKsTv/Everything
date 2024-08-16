@@ -50,23 +50,23 @@ if ((Test-Path -Path $env:LOCALAPPDATA\Discord)) {
             Write-Host 'BetterDiscord: Checking for folders' -ForegroundColor green -BackgroundColor black
             if (!(Test-Path -Path $env:APPDATA\BetterDiscord)) {
                 Write-Host 'BetterDiscord: Creating BetterDiscord folder' -ForegroundColor green -BackgroundColor black
-                New-Item -Path $env:APPDATA\BetterDiscord -Value BetterDiscord -ItemType Directory
+                New-Item -Path $env:APPDATA\BetterDiscord -ItemType Directory -Force
             }
             if (!(Test-Path -Path $env:APPDATA\BetterDiscord\plugins)) {
                 Write-Host 'BetterDiscord: Creating plugins folder' -ForegroundColor green -BackgroundColor black
-                New-Item -Path $env:APPDATA\BetterDiscord\plugins -Value plugins -ItemType Directory
+                New-Item -Path $env:APPDATA\BetterDiscord\plugins -ItemType Directory -Force
             }
             if (!(Test-Path -Path $env:APPDATA\BetterDiscord\themes)) {
                 Write-Host 'BetterDiscord: Creating themes folder' -ForegroundColor green -BackgroundColor black
-                New-Item -Path $env:APPDATA\BetterDiscord\themes -Value themes -ItemType Directory
+                New-Item -Path $env:APPDATA\BetterDiscord\themes -ItemType Directory -Force
             }
             if (!(Test-Path -Path "$env:APPDATA\BetterDiscord\data")) {
                 Write-Host 'BetterDiscord: Creating data folder' -ForegroundColor green -BackgroundColor black
-                New-Item -Path "$env:APPDATA\BetterDiscord\data" -Value 'data' -ItemType Directory
+                New-Item -Path "$env:APPDATA\BetterDiscord\data" -ItemType Directory -Force
             }
             if (!(Test-Path -Path "$env:APPDATA\BetterDiscord\data\stable")) {
                 Write-Host 'BetterDiscord: Creating stable folder' -ForegroundColor green -BackgroundColor black
-                New-Item -Path "$env:APPDATA\BetterDiscord\data\stable" -Value 'stable' -ItemType Directory
+                New-Item -Path "$env:APPDATA\BetterDiscord\data\stable" -ItemType Directory -Force
             }
 
             Write-Host 'BetterDiscord: Adding Theme: AMOLED-Cord' -ForegroundColor green -BackgroundColor black

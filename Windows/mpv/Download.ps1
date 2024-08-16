@@ -59,12 +59,12 @@ Write-Host 'mpv: Using custom settings for mpv.conf' -ForegroundColor green -Bac
 
 if (!(Test-Path -Path "$env:USERPROFILE\mpv\scripts")) {
     Write-Host 'mpv: Creating scripts folder' -ForegroundColor green -BackgroundColor black
-    New-Item -Path "$env:USERPROFILE\mpv\scripts" -Value scripts -ItemType Directory
+    New-Item -Path "$env:USERPROFILE\mpv\scripts" -ItemType Directory -Force
 }
 
 if (!(Test-Path -Path "$env:USERPROFILE\mpv\script-opts")) {
     Write-Host 'mpv: Creating script-opts folder' -ForegroundColor green -BackgroundColor black
-    New-Item -Path "$env:USERPROFILE\mpv\script-opts" -Value script-opts -ItemType Directory
+    New-Item -Path "$env:USERPROFILE\mpv\script-opts" -ItemType Directory -Force
 }
 
 Write-Host 'mpv: Using custom settings for osc.conf' -ForegroundColor green -BackgroundColor black
@@ -187,7 +187,7 @@ $mpv_Form_OK.Add_Click{
     if ($CheckBox_SponsorBlock.Checked -eq $true) {
         if (!(Test-Path -Path "$env:USERPROFILE\mpv\scripts\sponsorblock_shared")) {
             Write-Host 'mpv: Creating sponsorblock_shared folder' -ForegroundColor green -BackgroundColor black
-            New-Item -Path "$env:USERPROFILE\mpv\scripts\sponsorblock_shared" -Value sponsorblock_shared -ItemType Directory
+            New-Item -Path "$env:USERPROFILE\mpv\scripts\sponsorblock_shared" -ItemType Directory -Force
         }
 	
         Write-Host 'mpv: Adding script sponsorblock.lua' -ForegroundColor green -BackgroundColor black

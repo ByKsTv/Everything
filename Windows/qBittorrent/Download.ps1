@@ -33,7 +33,7 @@ if (($null -eq $qBittorrent_Installed) -or ($qBittorrent_Installed -notmatch $qB
     
     if (!(Test-Path -Path "$env:APPDATA\qBittorrent\qBittorrent.ini")) {
         Write-Host 'qBittorrent: Creating qBittorrent folder' -ForegroundColor green -BackgroundColor black
-        New-Item -Path "$env:APPDATA\qBittorrent" -Value qBittorrent -ItemType Directory
+        New-Item -Path "$env:APPDATA\qBittorrent" -ItemType Directory -Force
         Write-Host 'qBittorrent: Using custom settings' -ForegroundColor green -BackgroundColor black
         (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/qBittorrent.ini', "$env:APPDATA\qBittorrent\qBittorrent.ini")
     }

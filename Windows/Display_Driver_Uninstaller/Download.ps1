@@ -12,7 +12,7 @@ Start-Process -FilePath $env:TEMP\DDU.exe -ArgumentList '/S'
 Write-Host 'Display Driver Uninstaller: Using custom settings' -ForegroundColor green -BackgroundColor black
 if (!(Test-Path -Path "${env:ProgramFiles(x86)}\Display Driver Uninstaller\Settings\Settings.xml")) {
     Write-Host 'Display Driver Uninstaller: Creating Display Driver Uninstaller folder' -ForegroundColor green -BackgroundColor black
-    New-Item -Path "${env:ProgramFiles(x86)}\Display Driver Uninstaller" -Value 'Display Driver Uninstaller' -ItemType Directory
-    New-Item -Path "${env:ProgramFiles(x86)}\Display Driver Uninstaller\Settings" -Value 'Settings' -ItemType Directory
+    New-Item -Path "${env:ProgramFiles(x86)}\Display Driver Uninstaller" -ItemType Directory -Force
+    New-Item -Path "${env:ProgramFiles(x86)}\Display Driver Uninstaller\Settings" -ItemType Directory -Force
     (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Display_Driver_Uninstaller/Settings.xml', "${env:ProgramFiles(x86)}\Display Driver Uninstaller\Settings\Settings.xml")
 }

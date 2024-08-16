@@ -28,10 +28,10 @@ $MediaInfoLatestVer = $MediaInfoGit.name
 if ($null -eq $MediainfoInstalledVer) {
 	Write-Host 'Mediainfo: Checking folders' -ForegroundColor green -BackgroundColor black
 	if (!(Test-Path -Path $env:APPDATA\MediaInfo)) {
-		New-Item -Path $env:APPDATA\MediaInfo -Value MediaInfo -ItemType Directory
+		New-Item -Path $env:APPDATA\MediaInfo -ItemType Directory -Force
 	}
 	if (!(Test-Path -Path $env:APPDATA\MediaInfo\Plugin)) {
-		New-Item -Path $env:APPDATA\MediaInfo\Plugin -Value Plugin -ItemType Directory
+		New-Item -Path $env:APPDATA\MediaInfo\Plugin -ItemType Directory -Force
 	}
 	
 	Write-Host 'Mediainfo: Using custom settings' -ForegroundColor green -BackgroundColor black
