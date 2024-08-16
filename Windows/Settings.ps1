@@ -844,6 +844,12 @@ Remove-WindowsCapability -Name 'OpenSSH.Client~~~~0.0.1.0' -Online
 # 	Remove-WindowsPackage -PackageName 'Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35~amd64~~10.0.19041.4355' -Online -NoRestart
 # }
 
+Write-Host 'Step2: Hiding Keyboard Switching Notification' -ForegroundColor green -BackgroundColor black
+if ((Test-Path -Path 'HKCU:\Keyboard Layout\ShowToast') -ne $true) {
+	New-Item 'HKCU:\Keyboard Layout\ShowToast' -Force
+}
+New-ItemProperty -Path 'HKCU:\Keyboard Layout\ShowToast' -Name 'Show' -Value 1 -PropertyType DWord -Force
+
 Write-Host 'Settings: System Properties: Remote: Allow Remote Assistance connections to this computer: Off' -ForegroundColor green -BackgroundColor black
 if ((Test-Path -Path 'HKLM:\System\ControlSet001\Control\Remote Assistance') -ne $true) {
  New-Item 'HKLM:\System\ControlSet001\Control\Remote Assistance' -Force 
