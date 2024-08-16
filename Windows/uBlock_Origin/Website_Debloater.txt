@@ -159,6 +159,23 @@ rutracker.org##.site-logo
 rutracker.org##.spacer_4
 rutracker.org##span.post-align > .postImg
 rutracker.org##tr.tCenter.row3
+share.dmhy.org###ddplay
+share.dmhy.org##.add_advert
+share.dmhy.org##.declaration
+share.dmhy.org##.fl.table
+share.dmhy.org##.footer
+share.dmhy.org##.headerleft
+share.dmhy.org##.nocontent.ui-corner-all.box.topics_cult
+share.dmhy.org##.right.resource-info.info > ul > li:nth-of-type(3)
+share.dmhy.org##.right.resource-info.info > ul > li:nth-of-type(4)
+share.dmhy.org##.right.resource-info.info > ul > li:nth-of-type(6)
+share.dmhy.org##.share
+share.dmhy.org##[href="/report/add/referer/1"]
+share.dmhy.org##[href^="http://www.dandanplay.com/"]
+share.dmhy.org##[href^="https://mypikpak.com/drive/url-checker"]
+share.dmhy.org##p:nth-of-type(4)
+share.dmhy.org##p:nth-of-type(5)
+share.dmhy.org##p:nth-of-type(6)
 torrentgalaxy.to###intblockslide > .txdark.hotlist > tbody > .txdark.hotlist
 torrentgalaxy.to###intblockslide > center > .txdark.panel-primary.panel
 torrentgalaxy.to###inthpslide > .txdark.hotlist
