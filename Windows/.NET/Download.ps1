@@ -22,48 +22,7 @@ if ((Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\.NET') -ne $true) {
 }
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NET' -Name 'AllowAUOnServerOS' -Value 1 -PropertyType DWord -Force
 
-Write-Host '.NET: Getting current versions' -ForegroundColor green -BackgroundColor black
-# https://learn.microsoft.com/en-us/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed
-# $DotNETReleaseID = Get-ItemPropertyValue -LiteralPath 'HKLM:SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full' -Name Release
-# switch ($DotNETReleaseID) {
-# 	{ $_ -ge 533325 } {
-# 		$DotNETVersionNumber = '4.8.1 or later'; break 
-# 	}
-# 	{ $_ -ge 528040 } {
-# 		$DotNETVersionNumber = '4.8'; break 
-# 	}
-# 	{ $_ -ge 461808 } {
-# 		$DotNETVersionNumber = '4.7.2'; break 
-# 	}
-# 	{ $_ -ge 461308 } {
-# 		$DotNETVersionNumber = '4.7.1'; break 
-# 	}
-# 	{ $_ -ge 460798 } {
-# 		$DotNETVersionNumber = '4.7'; break 
-# 	}
-# 	{ $_ -ge 394802 } {
-# 		$DotNETVersionNumber = '4.6.2'; break 
-# 	}
-# 	{ $_ -ge 394254 } {
-# 		$DotNETVersionNumber = '4.6.1'; break 
-# 	}
-# 	{ $_ -ge 393295 } {
-# 		$DotNETVersionNumber = '4.6'; break 
-# 	}
-# 	{ $_ -ge 379893 } {
-# 		$DotNETVersionNumber = '4.5.2'; break 
-# 	}
-# 	{ $_ -ge 378675 } {
-# 		$DotNETVersionNumber = '4.5.1'; break 
-# 	}
-# 	{ $_ -ge 378389 } {
-# 		$DotNETVersionNumber = '4.5'; break 
-# 	}
-# 	default {
-# 		$DotNETVersionNumber = $null; break 
-# 	}
-# }
-
+Write-Host '.NET: Getting current installed versions' -ForegroundColor green -BackgroundColor black
 $DotNET6_Installed = Get-Package -Name 'Microsoft .NET Runtime - 6*' -ErrorAction SilentlyContinue
 if ($DotNet6_Installed) {
 	$DotNet6_Installed = (($DotNET6_Installed | Select-Object -ExpandProperty 'Name').Replace('Microsoft .NET Runtime - ', '')).Replace(' (x64)', '')
@@ -96,22 +55,7 @@ $DotNET7_EOL = (Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet
 $DotNET8_EOL = (Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/8.0/releases.json).'support-phase'
 $DotNET9_EOL = (Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/9.0/releases.json).'support-phase'
 
-Write-Host '.NET: Comparing current versions against latest versions' -ForegroundColor green -BackgroundColor black
-# https://dotnet.microsoft.com/en-us/download/dotnet-framework
-# if ('4.8.1 or later' -ne $DotNETVersionNumber) {
-# 	$DotNET4SDK1_URL = (Invoke-WebRequest -UseBasicParsing -Uri 'https://dotnet.microsoft.com/en-us/download/dotnet-framework' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match '.NET Framework') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
-# 	$DotNET4SDK2_URL = 'https://dotnet.microsoft.com/' + $DotNET4SDK1_URL
-# 	$DotNET4SDK3_URL = (Invoke-WebRequest -UseBasicParsing -Uri $DotNET4SDK2_URL | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Developer pack') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
-# 	$DotNET4SDK4_URL = 'https://dotnet.microsoft.com/' + $DotNET4SDK3_URL
-# 	$DotNET4SDK5_URL = (Invoke-WebRequest -UseBasicParsing -Uri $DotNET4SDK4_URL | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'click here to download manually') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
-
-# 	Write-Host '.NET: Downloading .NET Framework Latest SDK' -ForegroundColor green -BackgroundColor black
-#     (New-Object System.Net.WebClient).DownloadFile("$DotNET4SDK5_URL", "$env:TEMP\NET-Framework-Latest-SDK.exe")
-
-# 	Write-Host '.NET: Installing .NET Framework Latest SDK' -ForegroundColor green -BackgroundColor black
-# 	Start-Process -FilePath "$env:TEMP\NET-Framework-Latest-SDK.exe" -ArgumentList '/install /quiet /norestart'
-# }
-
+Write-Host '.NET: Updating versions' -ForegroundColor green -BackgroundColor black
 if (($null -eq $DotNET6_Installed) -or ($DotNET6_Installed -notmatch $DotNET6_Latest) -and ($DotNET6_EOL -ne 'eol') -and ($DotNET6_EOL -eq 'maintenance')) {
 	Write-Host ".NET: Downloading .NET Runtime $DotNET6_Latest" -ForegroundColor green -BackgroundColor black
 	(New-Object System.Net.WebClient).DownloadFile(((((Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/6.0/releases.json).Releases | Select-Object -First 1).runtime).files | Where-Object -Property 'name' -Match 'win-x64.exe').url, "$env:TEMP\dotnet-runtime-$DotNET6_Latest-win-x64.exe")
