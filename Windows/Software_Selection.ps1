@@ -75,6 +75,28 @@ if (($7Zip_Exists)) {
     $CheckBox_7Zip.Text += ' (Installed)'
 }
 
+$CheckBox_ActivateWin = New-Object System.Windows.Forms.CheckBox
+$CheckBox_ActivateWin.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
+$CheckBox_Y_Axis += $CheckBox_LocationAdd
+$CheckBox_ActivateWin.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
+# Random ICO
+$CheckBox_ActivateWin_Icon64 = 'AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANR4CgDUeAoF1HgKEtR4CiLUeAo71HgKWNR4CnrUeApRAAAAANR4CgDUeAoG1HgKEtR4CiDUeAo51HgKI9R4CjzUeAqP1HgKq9R4CsXUeArd1HgK69R4CvfUeAr/1HgKkNR4CknUeAqT1HgKsdR4CsvUeArh1HgK8dR4CnnUeAp+1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4CpDUeAqR1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAp91HgKfdR4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAqQ1HgKkNR4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgKfdR4Cn3UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgKkNR4CpDUeAr/1HgK/9R4Cv/UeAr/1HgK/9R4Cn3UeAp91HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4CpDUeAqR1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAp+1HgKftR4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAqR1HgKR9R4Cn7UeAp91HgKfdR4Cn3UeAp+1HgKPtR4Cj7UeAp+1HgKfdR4Cn3UeAp91HgKfdR4Cn3UeAp+1HgKR9R4CkfUeAp+1HgKfdR4Cn3UeAp91HgKftR4Cj7UeAo+1HgKftR4Cn3UeAp91HgKfdR4Cn3UeAp91HgKftR4CkfUeAqR1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAp+1HgKftR4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAqR1HgKkNR4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgKfdR4Cn3UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgKkNR4CpDUeAr/1HgK/9R4Cv/UeAr/1HgK/9R4Cn3UeAp91HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4CpDUeAqR1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAp91HgKfdR4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAqQ1HgKSdR4CpPUeAqx1HgKy9R4CuHUeArx1HgKedR4Cn7UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgKkAAAAADUeAoA1HgKBtR4ChLUeAog1HgKOdR4CiPUeAo81HgKj9R4CqvUeArF1HgK3dR4CuvUeAr31HgK/9R4CpAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANR4CgDUeAoF1HgKEtR4CiLUeAo71HgKWNR4CnrUeApR/4AAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAA/4AAAA=='
+$CheckBox_ActivateWin_IconBytes = [Convert]::FromBase64String($CheckBox_ActivateWin_Icon64)
+$CheckBox_ActivateWin_IconStream = [System.IO.MemoryStream]::new($CheckBox_ActivateWin_IconBytes, 0, $CheckBox_ActivateWin_IconBytes.Length)
+$CheckBox_ActivateWin.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_ActivateWin_IconStream).GetHIcon()))
+$CheckBox_ActivateWin.ImageAlign = 'MiddleLeft'
+$CheckBox_ActivateWin.Text = '    Activate Windows'
+$CheckBox_ActivateWin.TextAlign = 'MiddleLeft'
+$CheckBox_ActivateWin.CheckAlign = 'MiddleLeft'
+$CheckBox_ActivateWin.Checked = $false
+$Panel_SoftwareSelection.Controls.Add($CheckBox_ActivateWin)
+
+$Windows_Activation_Status = (Get-WmiObject -Query "SELECT LicenseStatus FROM SoftwareLicensingProduct WHERE PartialProductKey <> null and LicenseIsAddon = False").LicenseStatus
+if ($Windows_Activation_Status -eq 1) {
+    $CheckBox_ActivateWin.Enabled = $false
+    $CheckBox_ActivateWin.Text += ' (Activated)'
+}
+
 $CheckBox_ADB = New-Object System.Windows.Forms.CheckBox
 $CheckBox_ADB.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
 $CheckBox_Y_Axis += $CheckBox_LocationAdd
@@ -1127,6 +1149,11 @@ $Form_SoftwareSelection_OK.Add_Click{
     if ($CheckBox_7Zip.Checked) {
         Write-Host 'Software Selection: 7-Zip: Initiating' -ForegroundColor green -BackgroundColor black
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
+    }
+
+    if ($CheckBox_ActivateWin.Checked) {
+        Write-Host 'Software Selection: Activating Windows' -ForegroundColor green -BackgroundColor black
+        & ([ScriptBlock]::Create(((New-Object System.Net.WebClient).DownloadString('https://get.activated.win/')))) /HWID
     }
 
     if ($CheckBox_ADB.Checked) {
