@@ -6,7 +6,7 @@ Write-Host 'Step3: DirectX: Downloading' -ForegroundColor green -BackgroundColor
 Write-Host 'Step3: DirectX: Extracting' -ForegroundColor green -BackgroundColor black
 Start-Process -FilePath $env:TEMP\directx_Jun2010_redist.exe -ArgumentList "/Q /T:$env:TEMP\directx_Jun2010_redist" -Wait
 Write-Host 'Step3: DirectX: Installing' -ForegroundColor green -BackgroundColor black
-Start-Process -FilePath "$env:TEMP\directx_Jun2010_redist\DXSETUP.exe" -ArgumentList "/silent"
+Start-Process -FilePath "$env:TEMP\directx_Jun2010_redist\DXSETUP.exe" -ArgumentList '/silent'
 
 Write-Host 'Step3: .NET: Initiating' -ForegroundColor green -BackgroundColor black
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/.NET/Download.ps1')
