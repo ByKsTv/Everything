@@ -1646,6 +1646,7 @@ $SettingsToChange = @(
 	@{ DisplayName = 'Log Link State Event'; DisplayValue = 'Disabled' }
 	@{ DisplayName = 'Max IRQ per Second'; DisplayValue = '30000' }
 	@{ DisplayName = 'Maximum Number of RSS Queues'; DisplayValue = '1 RSS Queues' }
+	@{ DisplayName = 'Maximum Number of RSS Queues'; DisplayValue = '1 Queue' }
 	@{ DisplayName = 'NS Offload'; DisplayValue = 'Disabled' }
 	@{ DisplayName = 'PTP Hardware Timestamp'; DisplayValue = 'Disabled' }
 	@{ DisplayName = 'Packet Priority & VLAN'; DisplayValue = 'Packet Priority & VLAN Disabled' }
