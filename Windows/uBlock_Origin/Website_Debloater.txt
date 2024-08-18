@@ -53,6 +53,7 @@ amazon.*##.zg-more-list-types-container
 amazon.*##div#similarities_feature_div.celwidget
 amazon.*##div.navFooterPadItemLine.navFooterLinkLine.navFooterLine
 amazon.*##hr
+amazon.*##.widgetId\=feedback.template\=FEEDBACK.slot\=MAIN.celwidget.s-widget-container-height-medium.s-spacing-medium.s-widget-container
 anidex.info##.footer
 cracked.io##.wrapper.lower
 danbooru.donmai.us##.gap-1.justify-center.items-center.flex-wrap.flex.border-t.w-full.py-3.mt-4.flex-initial.text-center.text-sm
