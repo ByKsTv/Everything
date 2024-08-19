@@ -49,11 +49,11 @@ amazon.*##.nav-flyout.nav-signin-tt
 amazon.*##.nav-sprite-v1.navLeftFooter
 amazon.*##.navAccessibility.navFooterVerticalRow
 amazon.*##.navFooterDescLine.navFooterLinkLine.navFooterLine
+amazon.*##.widgetId\=feedback.template\=FEEDBACK.slot\=MAIN.celwidget.s-widget-container-height-medium.s-spacing-medium.s-widget-container
 amazon.*##.zg-more-list-types-container
 amazon.*##div#similarities_feature_div.celwidget
 amazon.*##div.navFooterPadItemLine.navFooterLinkLine.navFooterLine
 amazon.*##hr
-amazon.*##.widgetId\=feedback.template\=FEEDBACK.slot\=MAIN.celwidget.s-widget-container-height-medium.s-spacing-medium.s-widget-container
 anidex.info##.footer
 cracked.io##.wrapper.lower
 danbooru.donmai.us##.gap-1.justify-center.items-center.flex-wrap.flex.border-t.w-full.py-3.mt-4.flex-initial.text-center.text-sm
@@ -89,6 +89,7 @@ github.com##.js-discussion-sidebar-item.discussion-sidebar-item
 github.com##.mb-2.mt-md-2.mt-3.color-fg-muted.text-small
 github.com##.mt-2.f6
 github.com##.mx-2.flex-shrink-0.flex-items-center.d-flex
+github.com##.my-2.color-fg-muted.text-small
 github.com##.p-responsive.color-fg-muted.f6.pb-6.pt-8.footer
 github.com##.protip
 github.com##.text-small.text-normal.color-fg-default
