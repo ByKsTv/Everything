@@ -74,34 +74,34 @@ $DotNET9_EOL = (Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet
 Write-Host '.NET: Updating versions' -ForegroundColor green -BackgroundColor black
 if (($null -eq $DotNET6_Installed) -or ($DotNET6_Installed -notmatch $DotNET6_Latest) -and ($DotNET6_EOL -ne 'eol') -and ($DotNET6_EOL -eq 'maintenance')) {
 	Write-Host ".NET: Downloading .NET Runtime $DotNET6_Latest" -ForegroundColor green -BackgroundColor black
-	(New-Object System.Net.WebClient).DownloadFile(((((Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/6.0/releases.json).Releases | Select-Object -First 1).runtime).files | Where-Object -Property 'name' -Match 'win-x64.exe').url, "$env:TEMP\dotnet-runtime-$DotNET6_Latest-win-x64.exe")
+	(New-Object System.Net.WebClient).DownloadFile(((((Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/6.0/releases.json).Releases | Select-Object -First 1).windowsdesktop).files | Where-Object -Property 'name' -Match 'win-x64.exe').url, "$env:TEMP\windowsdesktop-runtime-$DotNET6_Latest-win-x64.exe")
 
 	Write-Host ".NET: Installing .NET Runtime $DotNET6_Latest" -ForegroundColor green -BackgroundColor black
-	Start-Process -FilePath "$env:TEMP\dotnet-runtime-$DotNET6_Latest-win-x64.exe" -ArgumentList '/install /quiet /norestart'
+	Start-Process -FilePath "$env:TEMP\windowsdesktop-runtime-$DotNET6_Latest-win-x64.exe" -ArgumentList '/install /quiet /norestart'
 }
 
 if (($null -eq $DotNET7_Installed) -or ($DotNET7_Installed -notmatch $DotNET7_Latest) -and ($DotNET7_EOL -ne 'eol') -and ($DotNET7_EOL -eq 'active')) {
 	Write-Host ".NET: Downloading .NET Runtime $DotNET7_Latest" -ForegroundColor green -BackgroundColor black
-	(New-Object System.Net.WebClient).DownloadFile(((((Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/7.0/releases.json).Releases | Select-Object -First 1).runtime).files | Where-Object -Property 'name' -Match 'win-x64.exe').url, "$env:TEMP\dotnet-runtime-$DotNET7_Latest-win-x64.exe")
+	(New-Object System.Net.WebClient).DownloadFile(((((Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/7.0/releases.json).Releases | Select-Object -First 1).windowsdesktop).files | Where-Object -Property 'name' -Match 'win-x64.exe').url, "$env:TEMP\windowsdesktop-runtime-$DotNET7_Latest-win-x64.exe")
 
 	Write-Host ".NET: Installing .NET Runtime $DotNET7_Latest" -ForegroundColor green -BackgroundColor black
-	Start-Process -FilePath "$env:TEMP\dotnet-runtime-$DotNET7_Latest-win-x64.exe" -ArgumentList '/install /quiet /norestart'
+	Start-Process -FilePath "$env:TEMP\windowsdesktop-runtime-$DotNET7_Latest-win-x64.exe" -ArgumentList '/install /quiet /norestart'
 }
 
 if (($null -eq $DotNET8_Installed) -or ($DotNET8_Installed -notmatch $DotNET8_Latest) -and ($DotNET8_EOL -ne 'eol') -and ($DotNET8_EOL -eq 'active')) {
 	Write-Host ".NET: Downloading .NET Runtime $DotNET8_Latest" -ForegroundColor green -BackgroundColor black
-	(New-Object System.Net.WebClient).DownloadFile(((((Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/8.0/releases.json).Releases | Select-Object -First 1).runtime).files | Where-Object -Property 'name' -Match 'win-x64.exe').url, "$env:TEMP\dotnet-runtime-$DotNET8_Latest-win-x64.exe")
+	(New-Object System.Net.WebClient).DownloadFile(((((Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/8.0/releases.json).Releases | Select-Object -First 1).windowsdesktop).files | Where-Object -Property 'name' -Match 'win-x64.exe').url, "$env:TEMP\windowsdesktop-runtime-$DotNET8_Latest-win-x64.exe")
 
 	Write-Host ".NET: Installing .NET Runtime $DotNET8_Latest" -ForegroundColor green -BackgroundColor black
-	Start-Process -FilePath "$env:TEMP\dotnet-runtime-$DotNET8_Latest-win-x64.exe" -ArgumentList '/install /quiet /norestart'
+	Start-Process -FilePath "$env:TEMP\windowsdesktop-runtime-$DotNET8_Latest-win-x64.exe" -ArgumentList '/install /quiet /norestart'
 }
 
 if (($null -eq $DotNET9_Installed) -or ($DotNET9_Installed -notmatch $DotNET9_Latest) -and ($DotNET9_EOL -ne 'eol') -and ($DotNET9_EOL -eq 'active')) {
 	Write-Host ".NET: Downloading .NET Runtime $DotNET9_Latest" -ForegroundColor green -BackgroundColor black
-	(New-Object System.Net.WebClient).DownloadFile(((((Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/9.0/releases.json).Releases | Select-Object -First 1).runtime).files | Where-Object -Property 'name' -Match 'win-x64.exe').url, "$env:TEMP\dotnet-runtime-$DotNET9_Latest-win-x64.exe")
+	(New-Object System.Net.WebClient).DownloadFile(((((Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/9.0/releases.json).Releases | Select-Object -First 1).windowsdesktop).files | Where-Object -Property 'name' -Match 'win-x64.exe').url, "$env:TEMP\windowsdesktop-runtime-$DotNET9_Latest-win-x64.exe")
 
 	Write-Host ".NET: Installing .NET Runtime $DotNET9_Latest" -ForegroundColor green -BackgroundColor black
-	Start-Process -FilePath "$env:TEMP\dotnet-runtime-$DotNET9_Latest-win-x64.exe" -ArgumentList '/install /quiet /norestart'
+	Start-Process -FilePath "$env:TEMP\windowsdesktop-runtime-$DotNET9_Latest-win-x64.exe" -ArgumentList '/install /quiet /norestart'
 }
 
 Write-Host '.NET: Removing EOL versions' -ForegroundColor green -BackgroundColor black
