@@ -87,9 +87,6 @@ if ((Test-Path -Path $env:LOCALAPPDATA\Discord)) {
             Write-Host 'BetterDiscord: Adding Plugin: CallTimeCounter' -ForegroundColor green -BackgroundColor black
             (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/QWERTxD/BetterDiscordPlugins/main/CallTimeCounter/CallTimeCounter.plugin.js', "$env:APPDATA\BetterDiscord\plugins\CallTimeCounter.plugin.js")
 
-            Write-Host 'BetterDiscord: Adding Plugin: BetterRoleColors' -ForegroundColor green -BackgroundColor black
-            (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/rauenzi/BetterDiscordAddons/master/Plugins/BetterRoleColors/BetterRoleColors.plugin.js', "$env:APPDATA\BetterDiscord\plugins\BetterRoleColors.plugin.js")
-
             Write-Host 'BetterDiscord: Adding Plugin: ThemeRepo' -ForegroundColor green -BackgroundColor black
             (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/mwittrien/BetterDiscordAddons/master/Plugins/ThemeRepo/ThemeRepo.plugin.js', "$env:APPDATA\BetterDiscord\plugins\ThemeRepo.plugin.js")
 
@@ -151,10 +148,6 @@ if ((Test-Path -Path "$env:APPDATA\BetterDiscord\plugins\0BDFDB.plugin.js")) {
 if ((Test-Path -Path "$env:APPDATA\BetterDiscord\plugins\CallTimeCounter.plugin.js")) {
     Write-Host 'BetterDiscord: Updating Plugin: CallTimeCounter' -ForegroundColor green -BackgroundColor black
     (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/QWERTxD/BetterDiscordPlugins/main/CallTimeCounter/CallTimeCounter.plugin.js', "$env:APPDATA\BetterDiscord\plugins\CallTimeCounter.plugin.js")
-}
-if ((Test-Path -Path "$env:APPDATA\BetterDiscord\plugins\BetterRoleColors.plugin.js")) {
-    Write-Host 'BetterDiscord: Updating Plugin: BetterRoleColors' -ForegroundColor green -BackgroundColor black
-    (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/rauenzi/BetterDiscordAddons/master/Plugins/BetterRoleColors/BetterRoleColors.plugin.js', "$env:APPDATA\BetterDiscord\plugins\BetterRoleColors.plugin.js")
 }
 if ((Test-Path -Path "$env:APPDATA\BetterDiscord\plugins\ThemeRepo.plugin.js")) {
     Write-Host 'BetterDiscord: Updating Plugin: ThemeRepo' -ForegroundColor green -BackgroundColor black
