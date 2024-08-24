@@ -85,6 +85,7 @@ github.com##.blankslate-container > .blankslate-spacious.blankslate
 github.com##.blankslate-spacious.blankslate-large.blankslate
 github.com##.color-border-muted.Box > .blankslate-spacious.blankslate
 github.com##.color-fg-muted.text-center.mt-3
+github.com##.flex-items-center.flex-justify-between.d-flex.my-3.p-3.Box
 github.com##.js-discussion-sidebar-item.discussion-sidebar-item
 github.com##.mb-2.mt-md-2.mt-3.color-fg-muted.text-small
 github.com##.mt-2.f6
@@ -96,6 +97,7 @@ github.com##.text-small.text-normal.color-fg-default
 hanime.tv##.footer
 hanime.tv##.primary.theme--dark.btn--right.btn--fixed.btn--floating.btn--bottom.btn.elevation-3.search-fab
 hanime.tv##.site-description
+kin8-av.com###protection
 ksp.co.il###footer-wrapper
 ksp.co.il##.muirtl-14jzs74.button-0-3-129.MuiButton-colorPrimary.MuiButton-containedSizeLarge.MuiButton-sizeLarge.MuiButton-containedPrimary.MuiButton-contained.MuiButton-root.MuiButtonBase-root
 ksp.co.il##.muirtl-14vdm3q.MuiFab-secondary.MuiFab-sizeLarge.MuiFab-circular.MuiFab-root.MuiButtonBase-root
