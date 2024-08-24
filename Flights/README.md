@@ -44,3 +44,11 @@ Everything about Flights.
 - Buy SIM in the destination country.
 
 > Do not buy plans from the local carrier.
+
+## Check in
+
+- 24 hours before the flight.
+
+## Health Insurance
+
+- 24 hours before the flight.
