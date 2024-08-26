@@ -2,6 +2,11 @@
 
 Everything about Android apps.
 
+## APKs
+
+- [4pda](https://4pda.to/forum/index.php?showforum=212)
+- [mobilism](https://forum.mobilism.me/viewforum.php?f=398)
+
 ## Android Apps
 
 - [UAD-ng](https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/releases/latest) - Android Debloater
