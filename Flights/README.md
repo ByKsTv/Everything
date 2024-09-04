@@ -4,17 +4,19 @@ Everything about Flights.
 
 ## Tickets
 
-- [Skyscanner](https://www.skyscanner.com)
+- [Skyscanner](https://www.skyscanner.com) - [Android App](https://play.google.com/store/apps/details?id=net.skyscanner.android.main)
 
 > Use multiple devices to check the price.
 >
 > Use same name on passport to order tickets.
 >
 > Use Fly Card.
+>
+> Download the app of the 3rd party site you bought tickets from.
 
 ## Hotels
 
-- [Booking](https://www.booking.com/)
+- [Booking](https://www.booking.com/) - [Android App](https://play.google.com/store/apps/details?id=com.booking)
 - [Airbnb](https://www.airbnb.com/)
 
 > Use multiple devices to check the price.
@@ -51,4 +53,19 @@ Everything about Flights.
 
 ## Health Insurance
 
+- Login to the official health provider website and pay for health insurance.
 - 24 hours before the flight.
+
+## Luggage
+
+- Check which luggage is allowed on the flight and adjust accordingly.
+
+List of contents:
+Backpack:
+Suitcase 1:
+Suitcase 2:
+Trolly:
+
+## Terminal
+
+- Arrive to the airport 4 hours before the flight
