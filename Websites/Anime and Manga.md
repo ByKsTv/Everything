@@ -12,16 +12,14 @@
 
 ## Subtitles
 
-- [AnimeTosho](https://animetosho.org/) 
+- [AnimeTosho](https://animetosho.org/)
 - [OpenSubtitles](https://www.opensubtitles.org/en/search/subs)
 - [Subscene](https://subscene.com/)
 - [Ktuvit](https://www.ktuvit.me/) - Hebrew
 
-
 ## Watch Guides
 
 > [Watch Order](https://www.reddit.com/r/anime/wiki/watch_order/)
-
 
 ## Dedicated sources
 
@@ -35,8 +33,7 @@
 - [nHentai](https://nhentai.net) - nfsw doujinshi
 - [Manganato](https://manganato.com/)
 
-
-
 ## How To Properly Read Manga on The Phone
+
 --todo later--
 Aniyomi etc
