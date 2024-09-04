@@ -33,6 +33,7 @@
 - [Manganelo](https://m.manganelo.com/wwww)
 - [bato.to](https://bato.to/)
 - [nHentai](https://nhentai.net) - nfsw doujinshi
+- [Manganato](https://manganato.com/)
 
 
 
