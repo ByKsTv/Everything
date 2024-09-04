@@ -2,31 +2,15 @@
 
 Everything about Websites.
 
-## Anime
+## Anime & Manga
+Available [here](./Anime%20and%20Manga)
 
-- [Nyaa BDMV](https://nyaa.si/?f=0&c=0_0&q=BDMV)
-- [Nyaa REMUX](https://nyaa.si/?f=0&c=0_0&q=REMUX)
-- [Nyaa BDREMUX](https://nyaa.si/?f=0&c=0_0&q=BDRemux)
-- [RuTracker.org BDREMUX](https://rutracker.org/forum/tracker.php?f=1105&nm=BDRemux)
-- [DMHY BDMV](https://share.dmhy.org/topics/list?keyword=BDMV)
-- [AniDex - BDMV](https://anidex.info/?q=BDMV)
-- [ACG.RIP - BDMV](https://acg.rip/?term=BDMV)
-
-> [Watch Order](https://www.reddit.com/r/anime/wiki/watch_order/)
-
-## Non-Anime
-
+## TV Shows
 - [RuTracker.org BDRemux](https://rutracker.org/forum/tracker.php?nm=BDRemux)
 - [TorrentGalaxy REMUX 2160p](https://torrentgalaxy.to/torrents.php?search=REMUX+2160p&sort=id&sort=id&order=desc)
 - [1337x REMUX 2160p](https://1337x.to/sort-search/REMUX%202160p/time/desc/1/)
 - [RUTOR BDREMUX 2160p](https://rutor.info/search/0/0/000/0/BDRemux%202160p)
 
-## Subtitles
-
-- [AnimeTosho](https://animetosho.org/) - Anime
-- [OpenSubtitles](https://www.opensubtitles.org/en/search/subs)
-- [Subscene](https://subscene.com/)
-- [Ktuvit](https://www.ktuvit.me/) - Hebrew
 
 ## Games
 
