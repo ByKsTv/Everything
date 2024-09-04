@@ -1,6 +1,6 @@
 # Anime & Manga
 
-### Torrents
+## Torrents
 
 - [Nyaa BDMV](https://nyaa.si/?f=0&c=0_0&q=BDMV)
 - [Nyaa REMUX](https://nyaa.si/?f=0&c=0_0&q=REMUX)
