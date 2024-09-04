@@ -22,6 +22,11 @@
 
 > [Watch Order](https://www.reddit.com/r/anime/wiki/watch_order/)
 
+
+## Dedicated sources
+
+- [Berserk](https://t.me/+V_AxSlMdlNs5Mzdk)
+
 ## Manga & Manwa Sources
 
 - [MangaDex](https://mangadex.org/) - Multilingual
@@ -30,6 +35,7 @@
 - [nHentai](https://nhentai.net) - nfsw doujinshi
 
 
-## Dedicated sources
 
-- [Berserk](https://t.me/+V_AxSlMdlNs5Mzdk)
+## How To Properly Read Manga on The Phone
+--todo later--
+Aniyomi etc
