@@ -14,6 +14,9 @@ Everything about Flights.
 >
 > Download the app of the 3rd party site you bought tickets from.
 
+If you buy tickets for more than 1 passanger you dont need to reserve seats
+If you want to change seats - use the first party airline website
+
 ## Hotels
 
 - [Booking](https://www.booking.com/) - [Android App](https://play.google.com/store/apps/details?id=com.booking)
@@ -55,14 +58,16 @@ Everything about Flights.
 
 - Login to the official health provider website and pay for health insurance.
 - 24 hours before the flight.
+- Download their app
+- Add their pay card to Google wallet
 
 ## Luggage
 
 - Check which luggage is allowed on the flight and adjust accordingly.
 
 List of contents:
-Backpack:
-Suitcase 1:
+Backpack: Sunglasses, passport, toothbrush, phone charger,
+Suitcase 1: Clothes, deodorant,
 Suitcase 2:
 Trolly:
 
