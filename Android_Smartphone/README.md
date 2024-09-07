@@ -30,7 +30,7 @@ Everything about Android apps.
 - [Lockwatch](https://4pda.to/forum/index.php?showtopic=677900#entry41610679)
 - [Deliveries Package Tracker](https://4pda.to/forum/index.php?showtopic=805869#entry58797224)
 - [Vocalizer](https://4pda.to/forum/index.php?showtopic=987292#apk) - Latest [3.7.2](https://4pda.to/forum/index.php?showtopic=987292&view=findpost&p=110538703)
-- [MacroDroid](https://4pda.to/forum/index.php?act=findpost&pid=15401143&anchor=Spoil-15401143-10) - Pro by Balatan
+- [MacroDroid](https://4pda.to/forum/index.php?act=findpost&pid=15401143) - Pro by Balatan
 - Moovit: Bus & Train Schedules - [4pda](https://4pda.to/forum/index.php?act=findpost&pid=46361566&anchor=Spoil-46361566-4) / [mobilism](https://forum.mobilism.me/search.php?keywords=Moovit&sr=topics&sf=titleonly)
 - [Symbolab: AI Math Photo Solver](https://4pda.to/forum/index.php?showtopic=702296&view=findpost&p=44337245)
 - [Autel MaxiAP200](https://4pda.to/forum/index.php?showtopic=961129&st=2400#entry93164749) + [AliExpress](https://www.aliexpress.com/item/32991837323.html)
