@@ -7,6 +7,11 @@
 4pda.to###logostrip
 4pda.to##.copyright
 4pda.to##.social-icons
+9gag.com##.btn-color-primary.ui-btn
+9gag.com##.comment-community__guideline
+9gag.com##.post-action-btn
+9gag.com##.post-award-btn
+9gag.com##.post-award-users
 aliexpress.com###J_xiaomi_dialog
 aliexpress.com###nav-moretolove
 aliexpress.com##.card--out-wrapper.SeJ8l
@@ -58,6 +63,7 @@ anidex.info##.footer
 cracked.io##.wrapper.lower
 danbooru.donmai.us##.gap-1.justify-center.items-center.flex-wrap.flex.border-t.w-full.py-3.mt-4.flex-initial.text-center.text-sm
 danbooru.donmai.us##.hidden-posts-notice.fineprint
+e-services.clalit.co.il#@##divDisclaimer
 fitgirl-repacks.site###block-7
 fitgirl-repacks.site###custom_html-4
 fitgirl-repacks.site###custom_html-5
@@ -141,6 +147,9 @@ pornolab.net##.pad_4.tCenter.bold.med
 pornolab.net##.site-logo
 pornolab.net##.thx-container
 pornolab.net##.thx-form > .bold
+pornolab.net##.w100.nav
+pornolab.net##table.w100 > tbody > tr > td > [href^="posting.php"]
+pornolab.net##table.w100 > tbody > tr > td > [href^="posting.php"] > .btn-reply
 pornolab.net##tr.tCenter.row3 > .med
 rutor.info###down
 rutor.info##[href="/advertise.php"]
