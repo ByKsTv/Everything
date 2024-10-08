@@ -24,7 +24,7 @@ Everything about Android apps.
 - [aRDP](https://4pda.to/forum/index.php?showtopic=658880#entry39545784)
 - [Adobe Acrobat Reader](https://4pda.to/forum/index.php?showtopic=171588#Spoil-4535663-3) - Pro by Derrin
 - [FolderSync](https://4pda.to/forum/index.php?showtopic=258965#Spoil-8586413-7) - Mod Lite by Number one
-- [Network Analyzer](https://4pda.to/forum/index.php?showtopic=969002#Spoil-89769375-3)
+- [Network Analyzer](https://4pda.to/forum/index.php?showtopic=969002&view=findpost&p=89769375)
 - [Shazam](https://4pda.to/forum/index.php?showtopic=128657#Spoil-2955496-4) - Mod by Balatan
 - [Google Camera](https://www.celsoazevedo.com/files/android/google-camera/links/) - Use official telegram groups instead.
 - [Lockwatch](https://4pda.to/forum/index.php?showtopic=677900#entry41610679)
