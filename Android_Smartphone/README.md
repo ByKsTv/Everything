@@ -13,7 +13,7 @@ Everything about Android apps.
 - [Mull](https://f-droid.org/packages/us.spotco.fennec_dos/) - Firefox mobile browser
 - [Nova Launcher](https://4pda.to/forum/index.php?act=findpost&pid=10706661&anchor=Spoil-10706661-8) - Prime by Balatan
 - [Sesame Shortcuts](https://4pda.to/forum/index.php?showtopic=921566#entry77882334) - Search add-ons for Nova Launcher
-- ~~[WhatsApp](https://4pda.to/forum/index.php?showtopic=186375#Spoil-5125511-12) - FouadWhatsApp~~
+- ~~[WhatsApp](https://4pda.to/forum/index.php?showtopic=186375#Spoil-5125511-12) - FouadWhatsApp~~ + [Contacts Sync (requires ROOT)](https://play.google.com/store/apps/details?id=com.lb.contacts_sync)
 - [Friendly for Facebook](https://4pda.to/forum/index.php?showtopic=819152&view=findpost&p=60515623) - Premium by Balatan
 - [YouTube ReVanced](https://4pda.to/forum/index.php?act=findpost&pid=115638129&anchor=Spoil-115638129-4)
 - [Spotify](https://4pda.to/forum/index.php?act=findpost&pid=8030514&anchor=Spoil-8030514-11) - Mod Lite by Balatan.
