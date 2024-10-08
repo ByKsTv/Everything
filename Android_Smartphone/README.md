@@ -35,6 +35,7 @@ Everything about Android apps.
 - [Symbolab: AI Math Photo Solver](https://4pda.to/forum/index.php?showtopic=702296&view=findpost&p=44337245)
 - [Autel MaxiAP200](https://4pda.to/forum/index.php?showtopic=961129&st=2400#entry93164749) + [AliExpress](https://www.aliexpress.com/item/32991837323.html)
 - [HeliBoard](https://github.com/Helium314/HeliBoard/releases/latest) + [Dictionary](https://codeberg.org/Helium314/aosp-dictionaries) - Keyboard App
+- [TikTok](https://4pda.to/forum/index.php?showtopic=1057582&view=findpost&p=88888432) - TikTokModCloud
 
 > [Registration guide for 4pda](https://www.youtube.com/watch?v=3XOut-lgHRc)
 
