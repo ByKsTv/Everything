@@ -1,6 +1,6 @@
 import os
-from PIL import Image # type: ignore
-import pillow_heif # type: ignore
+from PIL import Image  # type: ignore
+import pillow_heif  # type: ignore
 
 
 def batch_convert_heic_to_png(directory):

@@ -91,7 +91,7 @@ $CheckBox_ActivateWin.CheckAlign = 'MiddleLeft'
 $CheckBox_ActivateWin.Checked = $false
 $Panel_SoftwareSelection.Controls.Add($CheckBox_ActivateWin)
 
-$Windows_Activation_Status = (Get-WmiObject -Query "SELECT LicenseStatus FROM SoftwareLicensingProduct WHERE PartialProductKey <> null and LicenseIsAddon = False").LicenseStatus
+$Windows_Activation_Status = (Get-WmiObject -Query 'SELECT LicenseStatus FROM SoftwareLicensingProduct WHERE PartialProductKey <> null and LicenseIsAddon = False').LicenseStatus
 if ($Windows_Activation_Status -eq 1) {
     $CheckBox_ActivateWin.Enabled = $false
     $CheckBox_ActivateWin.Text += ' (Activated)'
