@@ -36,6 +36,8 @@ Everything about Android apps.
 - [Autel MaxiAP200](https://4pda.to/forum/index.php?showtopic=961129&st=2400#entry93164749) + [AliExpress](https://www.aliexpress.com/item/32991837323.html)
 - [HeliBoard](https://github.com/Helium314/HeliBoard/releases/latest) + [Dictionary](https://codeberg.org/Helium314/aosp-dictionaries) - Keyboard App
 - [TikTok](https://4pda.to/forum/index.php?showtopic=1057582&view=findpost&p=88888432) - TikTokModCloud
+- [AccuBattery](https://4pda.to/forum/index.php?act=findpost&pid=52860795&anchor=Spoil-52860795-5) - Mod by Balatan
+- [StudyGe - World Geography Quiz](https://4pda.to/forum/index.php?act=findpost&pid=119912812&anchor=Spoil-119912812-4) - Premium
 
 > [Registration guide for 4pda](https://www.youtube.com/watch?v=3XOut-lgHRc)
 
