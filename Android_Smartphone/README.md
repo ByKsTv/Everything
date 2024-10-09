@@ -29,7 +29,7 @@ Everything about Android apps.
 - [Google Camera](https://www.celsoazevedo.com/files/android/google-camera/links/) - Use official telegram groups instead.
 - [Lockwatch](https://4pda.to/forum/index.php?showtopic=677900#entry41610679)
 - [Deliveries Package Tracker](https://4pda.to/forum/index.php?showtopic=805869#entry58797224)
-- [Vocalizer](https://4pda.to/forum/index.php?showtopic=987292#apk) - Latest [3.7.2](https://4pda.to/forum/index.php?showtopic=987292&view=findpost&p=110538703)
+- [Vocalizer](https://4pda.to/forum/index.php?showtopic=987292#apk) - Latest [3.8.2](https://4pda.to/forum/index.php?showtopic=987292&view=findpost&p=132720887)
 - [MacroDroid](https://4pda.to/forum/index.php?act=findpost&pid=15401143) - Pro by Balatan
 - Moovit: Bus & Train Schedules - [4pda](https://4pda.to/forum/index.php?act=findpost&pid=46361566&anchor=Spoil-46361566-4) / [mobilism](https://forum.mobilism.me/search.php?keywords=Moovit&sr=topics&sf=titleonly)
 - [Symbolab: AI Math Photo Solver](https://4pda.to/forum/index.php?showtopic=702296&view=findpost&p=44337245)
