@@ -1,0 +1,7 @@
+#alltabs-button {
+	display: none !important;
+}
+
+.titlebar-spacer[type='post-tabs'] {
+	display: none !important;
+}

@@ -5,6 +5,10 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
         Write-Host 'Mozilla Firefox Arkenfox: Closing browser' -ForegroundColor green -BackgroundColor black
         Stop-Process -Name firefox -Force -ErrorAction SilentlyContinue
 
+        Write-Host 'Mozilla Firefox Arkenfox: Disable List all tabs button' -ForegroundColor green -BackgroundColor black
+        New-Item -Path "$CurrentFireFoxProfilePath\chrome\userChrome.css" -ItemType File -Force
+        (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/userChrome.css', "$CurrentFireFoxProfilePath\chrome\userChrome.css")
+
         Write-Host "Mozilla Firefox Arkenfox: Downloading 'user-overrides.js'" -ForegroundColor green -BackgroundColor black
         (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/user-overrides.js', "$CurrentFireFoxProfilePath\user-overrides.js")
         
