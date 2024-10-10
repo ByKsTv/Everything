@@ -15,7 +15,7 @@ Everything about Android apps.
 - [Sesame Shortcuts](https://4pda.to/forum/index.php?showtopic=921566#entry77882334) - Search add-ons for Nova Launcher
 - ~~[WhatsApp](https://4pda.to/forum/index.php?showtopic=186375#Spoil-5125511-12) - FouadWhatsApp~~ + [Contacts Sync (requires ROOT)](https://play.google.com/store/apps/details?id=com.lb.contacts_sync)
 - [Friendly for Facebook](https://4pda.to/forum/index.php?showtopic=819152&view=findpost&p=60515623) - Premium by Balatan
-- [YouTube ReVanced](https://4pda.to/forum/index.php?act=findpost&pid=115638129&anchor=Spoil-115638129-4)
+- [YouTube ReVanced](https://4pda.to/forum/index.php?showtopic=1050118&view=findpost&p=115638129) + [GmsCore](https://github.com/microg/GmsCore/releases/latest)
 - [Spotify](https://4pda.to/forum/index.php?act=findpost&pid=8030514&anchor=Spoil-8030514-11) - Mod Lite by Balatan.
 - [Truecaller](https://4pda.to/forum/index.php?showtopic=417409#Spoil-18455027-5) - Mod by Balatan
 - [Wheres My Droid](https://forum.mobilism.me/search.php?keywords=Wheres+My+Droid&sr=topics&sf=titleonly)
