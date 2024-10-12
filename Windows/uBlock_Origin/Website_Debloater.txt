@@ -43,6 +43,7 @@ amazon.*###nav-progressive-subnav
 amazon.*###product-comparison_feature_div
 amazon.*###rhf
 amazon.*###sc-about > p
+amazon.*###smart-wagon-recommendations-btf
 amazon.*###tellAmazon_feature_div
 amazon.*##.a-divider-inner
 amazon.*##.a-divider-normal.a-spacing-base
@@ -54,6 +55,8 @@ amazon.*##.nav-flyout.nav-signin-tt
 amazon.*##.nav-sprite-v1.navLeftFooter
 amazon.*##.navAccessibility.navFooterVerticalRow
 amazon.*##.navFooterDescLine.navFooterLinkLine.navFooterLine
+amazon.*##.s-widget-spacing-large.sg-col-12-of-16.sg-col.s-widget.sg-col-16-of-20.sg-col-0-of-12.s-result-item.sg-col-20-of-24
+amazon.*##.sw-atf-recommendations-container
 amazon.*##.widgetId\=feedback.template\=FEEDBACK.slot\=MAIN.celwidget.s-widget-container-height-medium.s-spacing-medium.s-widget-container
 amazon.*##.zg-more-list-types-container
 amazon.*##div#similarities_feature_div.celwidget
@@ -215,8 +218,10 @@ w14.monkrus.ws##.footer-inner.region-inner
 w14.monkrus.ws##.footer-outer
 w14.monkrus.ws##.post-footer
 w14.monkrus.ws##[href="http://www.monkrus.ws/p/donate.html"]
+www.aliexpress.com##.bottom--container--1EMPdiV
 www.aliexpress.com##.cart-summary-suggestion
-www.amazon.com##.s-widget-spacing-large.sg-col-12-of-16.sg-col.s-widget.sg-col-16-of-20.sg-col-0-of-12.s-result-item.sg-col-20-of-24
+www.aliexpress.com##.es--product-fix-sns--3dZQv4l
+www.aliexpress.com##.relatedSearch--bottomWrapper--2lxD0Q4
 www.iec.co.il##app-sticky-banner
 xxxclub.to##.fa-arrow-up.fa
 xxxclub.to##.footer-bottom
