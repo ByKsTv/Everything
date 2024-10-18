@@ -15,6 +15,7 @@ Everything about qBittorrent.
    >
    > ```ini
    > [Preferences]Downloads\ScanDirsLastPath
+   > [BitTorrent]Session\TempPathEnabled
    > [BitTorrent]Session\TempPath
    > [BitTorrent]Session\DefaultSavePath
    > [BitTorrent]Session\InterfaceName
