@@ -18,6 +18,7 @@ Everything about qBittorrent.
    > [BitTorrent]Session\TempPath
    > [BitTorrent]Session\DefaultSavePath
    > [BitTorrent]Session\InterfaceName
+   > [BitTorrent]Session\InterfaceAddress
    > [BitTorrent]Session\Interface
    > [Application]FileLogger\Path
    > [Network]Cookies
