@@ -8,13 +8,6 @@ if (-not (Get-ScheduledTask -TaskName $Mediainfo_TaskName -ErrorAction SilentlyC
 	Register-ScheduledTask -TaskName $Mediainfo_TaskName -Action $Mediainfo_TaskAction -Trigger $Mediainfo_TaskTrigger -Principal $Mediainfo_TaskPrincipal -Settings $Mediainfo_TaskSettings -Force
 }
 
-$Mediainfo_GUI_DDL = 'https:' + ((Invoke-WebRequest -UseBasicParsing -Uri 'https://mediaarea.net/en/MediaInfo/Download/Windows').Links | Where-Object { $_.outerHTML -match 'GUI' } | Select-Object -First 1).href
-$MediaInfo_GUI_Filename = [System.IO.Path]::GetFileName(([System.Uri]$Mediainfo_GUI_DDL).AbsolutePath)
-$MediaInfo_GUI_SavePath = [System.IO.Path]::Combine($env:TEMP, $MediaInfo_GUI_Filename)
-$Mediainfo_CLI_DDL = 'https:' + ((Invoke-WebRequest -UseBasicParsing -Uri 'https://mediaarea.net/en/MediaInfo/Download/Windows').Links | Where-Object { $_.outerHTML -match 'CLI' } | Select-Object -First 1).href
-$MediaInfo_CLI_Filename = [System.IO.Path]::GetFileName(([System.Uri]$Mediainfo_CLI_DDL).AbsolutePath)
-$MediaInfo_CLI_SavePath = [System.IO.Path]::Combine($env:TEMP, $MediaInfo_CLI_Filename)
-
 $Mediainfo_InstalledVersion = (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Mediainfo' -ErrorAction SilentlyContinue).DisplayVersion
 $Mediainfo_LatestVersion = (Invoke-RestMethod 'https://api.github.com/repos/MediaArea/MediaInfo/releases/latest').Name
 
@@ -26,7 +19,14 @@ if ($null -eq $Mediainfo_InstalledVersion -or $Mediainfo_InstalledVersion -notma
 		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write("Downloading 'Mediainfo' custom settings from "); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Mediainfo_RemoteCFG'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Mediainfo_LocalCFG'"); [Console]::ResetColor(); [Console]::WriteLine()
         (New-Object System.Net.WebClient).DownloadFile($Mediainfo_RemoteCFG, $Mediainfo_LocalCFG)
 	}
-
+	
+	$Mediainfo_GUI_DDL = 'https:' + ((Invoke-WebRequest -UseBasicParsing -Uri 'https://mediaarea.net/en/MediaInfo/Download/Windows').Links | Where-Object { $_.outerHTML -match 'GUI' } | Select-Object -First 1).href
+	$MediaInfo_GUI_Filename = [System.IO.Path]::GetFileName(([System.Uri]$Mediainfo_GUI_DDL).AbsolutePath)
+	$MediaInfo_GUI_SavePath = [System.IO.Path]::Combine($env:TEMP, $MediaInfo_GUI_Filename)
+	$Mediainfo_CLI_DDL = 'https:' + ((Invoke-WebRequest -UseBasicParsing -Uri 'https://mediaarea.net/en/MediaInfo/Download/Windows').Links | Where-Object { $_.outerHTML -match 'CLI' } | Select-Object -First 1).href
+	$MediaInfo_CLI_Filename = [System.IO.Path]::GetFileName(([System.Uri]$Mediainfo_CLI_DDL).AbsolutePath)
+	$MediaInfo_CLI_SavePath = [System.IO.Path]::Combine($env:TEMP, $MediaInfo_CLI_Filename)
+	
 	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write("Downloading 'Mediainfo' GUI from "); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Mediainfo_GUI_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MediaInfo_GUI_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
 	(New-Object System.Net.WebClient).DownloadFile($Mediainfo_GUI_DDL, $MediaInfo_GUI_SavePath)
 	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write("Downloading 'Mediainfo' CLI from "); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Mediainfo_CLI_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MediaInfo_CLI_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
