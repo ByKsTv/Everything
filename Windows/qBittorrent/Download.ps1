@@ -20,7 +20,7 @@ if ($null -eq $qBittorrent_InstalledVersion -or $qBittorrent_InstalledVersion -n
         (New-Object System.Net.WebClient).DownloadFile($qBittorrent_RemoteINI, $qBittorrent_LocalINI)
     }
     
-    $qBittorrent_SourceForge = ((Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/qbittorrent/qBittorrent-website/refs/heads/master/_site/download.html').Links | Where-Object { ($_.outerHTML -match 'sourceforge' -and $_.outerHTML -match '.exe' -and $_.outerHTML -match 'lt20' ) } | Select-Object -First 1).href
+    $qBittorrent_SourceForge = ((Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/qbittorrent/qBittorrent-website/refs/heads/master/_site/download.html').Links | Where-Object { ($_.outerHTML -match 'sourceforge' -and $_.outerHTML -match '.exe' -and $_.outerHTML -notmatch '.asc' -and $_.outerHTML -match 'lt20' ) }).href
     $qBittorrent_DDL = ((Invoke-WebRequest -Uri $qBittorrent_SourceForge -UseBasicParsing).links | Where-Object { $_.'data-release-url' -ne $null }).'data-release-url'
     $qBittorrent_Filename = [System.IO.Path]::GetFileName(([System.Uri]$qBittorrent_DDL).AbsolutePath)
     $qBittorrent_SavePath = [System.IO.Path]::Combine($env:TEMP, $qBittorrent_Filename)
