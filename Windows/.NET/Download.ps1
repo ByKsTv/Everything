@@ -8,6 +8,14 @@ if (-not (Get-ScheduledTask -TaskName $DotNET_TaskName -ErrorAction SilentlyCont
 	Register-ScheduledTask -TaskName $DotNET_TaskName -Action $DotNET_TaskAction -Trigger $DotNET_TaskTrigger -Principal $DotNET_TaskPrincipal -Settings $DotNET_TaskSettings -Force
 }
 
+if (-not (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NET' -Name 'AllowAUOnServerOS' -ErrorAction SilentlyContinue)) {
+	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('.NET: Auto-Updates: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
+	if ((Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\.NET') -ne $true) {
+		New-Item 'HKLM:\SOFTWARE\Microsoft\.NET' -Force 
+	}
+	New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NET' -Name 'AllowAUOnServerOS' -Value 1 -PropertyType DWord -Force
+}
+
 $DotNET_DesktopRuntime6_Installed = (Get-Package 'Microsoft Windows Desktop Runtime - 6*' -ErrorAction SilentlyContinue | Where-Object ProviderName -EQ 'Programs').Name -replace '.*?(\d+\.\d+\.\d+).*', '$1'
 $DotNET_DesktopRuntime8_Installed = (Get-Package 'Microsoft Windows Desktop Runtime - 8*' -ErrorAction SilentlyContinue | Where-Object ProviderName -EQ 'Programs').Name -replace '.*?(\d+\.\d+\.\d+).*', '$1'
 $DotNET_DesktopRuntime9_Installed = (Get-Package 'Microsoft Windows Desktop Runtime - 9*' -ErrorAction SilentlyContinue | Where-Object ProviderName -EQ 'Programs').Name -replace '.*?(\d+\.\d+\.\d+).*', '$1'
@@ -22,14 +30,6 @@ $DotNET_EOL8 = (Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet
 $DotNET_EOL9 = (Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/9.0/releases.json).'support-phase'
 
 if ($null -eq $DotNET_DesktopRuntime6_Installed -or $DotNET_DesktopRuntime6_Installed -notmatch $DotNET_Latest6 -and $DotNET_EOL6 -ne 'eol' -and $DotNET_EOL6 -eq 'maintenance') {
-	if (-not (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NET' -Name 'AllowAUOnServerOS' -ErrorAction SilentlyContinue)) {
-		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('.NET: Auto-Updates: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
-		if ((Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\.NET') -ne $true) {
-			New-Item 'HKLM:\SOFTWARE\Microsoft\.NET' -Force 
-		}
-		New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NET' -Name 'AllowAUOnServerOS' -Value 1 -PropertyType DWord -Force
-	}
-
 	$DotNET_Latest6_DDL = ((((Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/6.0/releases.json).Releases | Select-Object -First 1).windowsdesktop).files | Where-Object -Property 'name' -Match 'win-x64.exe').url
 	$DotNET_Latest6_Filename = [System.IO.Path]::GetFileName(([System.Uri]$DotNET_Latest6_DDL).AbsolutePath)
 	$DotNET_Latest6_SavePath = [System.IO.Path]::Combine($env:TEMP, $DotNET_Latest6_Filename)
@@ -90,7 +90,6 @@ if ($DotNET_EOL9 -eq 'eol' -and $DotNET_DesktopRuntime9_Installed) {
 	Start-Process msiexec.exe -ArgumentList "/quiet /uninstall $env:TEMP\dotnet-core-uninstall.msi" -Wait
 }
 
-Write-Host '.NET: Remvoing SDK' -ForegroundColor green -BackgroundColor black
 if ($DotNET_SDK6_Installed) {
 	Write-Host ".NET: Uninstalling .NET SDK $DotNET_SDK6_Installed" -ForegroundColor green -BackgroundColor black
 	(New-Object System.Net.WebClient).DownloadFile(((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/dotnet/cli-lab/releases/latest').assets | Where-Object name -Like '*.msi*').browser_download_url, "$env:TEMP\dotnet-core-uninstall.msi")
