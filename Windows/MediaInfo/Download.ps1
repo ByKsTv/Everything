@@ -26,7 +26,7 @@ if ($null -eq $Mediainfo_InstalledVersion -or $Mediainfo_InstalledVersion -notma
 		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write("Downloading 'Mediainfo' custom settings from "); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Mediainfo_RemoteCFG'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Mediainfo_LocalCFG'"); [Console]::ResetColor(); [Console]::WriteLine()
         (New-Object System.Net.WebClient).DownloadFile($Mediainfo_RemoteCFG, $Mediainfo_LocalCFG)
 	}
-	
+
 	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write("Downloading 'Mediainfo' GUI from "); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Mediainfo_GUI_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MediaInfo_GUI_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
 	(New-Object System.Net.WebClient).DownloadFile($Mediainfo_GUI_DDL, $MediaInfo_GUI_SavePath)
 	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write("Downloading 'Mediainfo' CLI from "); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Mediainfo_CLI_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MediaInfo_CLI_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
@@ -39,12 +39,12 @@ if ($null -eq $Mediainfo_InstalledVersion -or $Mediainfo_InstalledVersion -notma
 	$MediaInfo_CLI_Destination = "$env:ProgramFiles\MediaInfo\CLI"
 	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write("Installing 'Mediainfo' CLI from "); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MediaInfo_CLI_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MediaInfo_CLI_Destination'"); [Console]::ResetColor(); [Console]::WriteLine()
 	Expand-Archive -Path $MediaInfo_CLI_SavePath -DestinationPath $MediaInfo_CLI_Destination -Force
-}
-
-$MediaInfo_OLD_PATH = [System.Environment]::GetEnvironmentVariable('Path', [System.EnvironmentVariableTarget]::User)
-if ($MediaInfo_OLD_PATH -notlike "*$MediaInfo_CLI_Destination*") {
-	$MediaInfo_NEW_PATH = "$MediaInfo_OLD_PATH;$MediaInfo_CLI_Destination"
-	[System.Environment]::SetEnvironmentVariable('Path', $MediaInfo_NEW_PATH, [System.EnvironmentVariableTarget]::User)
-	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write("Adding 'Mediainfo' CLI from "); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MediaInfo_CLI_Destination'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'PATH'"); [Console]::ResetColor(); [Console]::WriteLine()
-	$env:Path = [System.Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path', 'User')
+	
+	$MediaInfo_OLD_PATH = [System.Environment]::GetEnvironmentVariable('Path', [System.EnvironmentVariableTarget]::User)
+	if ($MediaInfo_OLD_PATH -notlike "*$MediaInfo_CLI_Destination*") {
+		$MediaInfo_NEW_PATH = "$MediaInfo_OLD_PATH;$MediaInfo_CLI_Destination"
+		[System.Environment]::SetEnvironmentVariable('Path', $MediaInfo_NEW_PATH, [System.EnvironmentVariableTarget]::User)
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write("Adding 'Mediainfo' CLI from "); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MediaInfo_CLI_Destination'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'PATH'"); [Console]::ResetColor(); [Console]::WriteLine()
+		$env:Path = [System.Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path', 'User')
+	}
 }
