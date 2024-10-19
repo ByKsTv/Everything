@@ -11,7 +11,7 @@ if (-not (Get-ScheduledTask -TaskName $qBittorrent_TaskName -ErrorAction Silentl
 $qBittorrent_InstalledVersion = (Get-Package -Name 'qBittorrent' -ErrorAction SilentlyContinue).Version
 $qBittorrent_LatestVersion = ((Invoke-RestMethod https://api.github.com/repos/qbittorrent/qbittorrent/tags).Name | Where-Object { $_ -NotMatch 'beta' -And $_ -NotMatch 'rc' } | Select-Object -First 1).Replace('release-', '')
 
-if (($null -eq $qBittorrent_InstalledVersion) -or ($qBittorrent_InstalledVersion -notmatch $qBittorrent_LatestVersion)) {
+if ($null -eq $qBittorrent_InstalledVersion -or $qBittorrent_InstalledVersion -notmatch $qBittorrent_LatestVersion) {
     $qBittorrent_RemoteINI = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/qBittorrent.ini'
     $qBittorrent_LocalINI = "$env:APPDATA\qBittorrent\qBittorrent.ini"
     if (-not (Test-Path -Path $qBittorrent_LocalINI)) {
