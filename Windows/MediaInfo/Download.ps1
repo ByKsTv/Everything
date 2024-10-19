@@ -43,8 +43,8 @@ if ($null -eq $Mediainfo_InstalledVersion -or $Mediainfo_InstalledVersion -notma
 	$MediaInfo_OLD_PATH = [System.Environment]::GetEnvironmentVariable('Path', [System.EnvironmentVariableTarget]::User)
 	if ($MediaInfo_OLD_PATH -notlike "*$MediaInfo_CLI_Destination*") {
 		$MediaInfo_NEW_PATH = "$MediaInfo_OLD_PATH;$MediaInfo_CLI_Destination"
-		[System.Environment]::SetEnvironmentVariable('Path', $MediaInfo_NEW_PATH, [System.EnvironmentVariableTarget]::User)
 		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write("Adding 'Mediainfo' CLI from "); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MediaInfo_CLI_Destination'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'PATH'"); [Console]::ResetColor(); [Console]::WriteLine()
+		[System.Environment]::SetEnvironmentVariable('Path', $MediaInfo_NEW_PATH, [System.EnvironmentVariableTarget]::User)
 		$env:Path = [System.Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path', 'User')
 	}
 }
