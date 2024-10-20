@@ -1157,26 +1157,31 @@ $Form_SoftwareSelection_OK.Add_Click{
     }
 
     if ($CheckBox_ADB.Checked) {
-        $adbExtractPath = "$env:USERPROFILE\adb"
-        if (-not (Test-Path $adbExtractPath)) {
-            Write-Host 'Software Selection: ADB: Downloading' -ForegroundColor green -BackgroundColor black
-            Invoke-WebRequest -Uri 'https://dl.google.com/android/repository/platform-tools-latest-windows.zip' -OutFile "$env:TEMP\platform-tools-latest-windows.zip"
+        $ADB_Destination = [System.IO.Path]::Combine($env:USERPROFILE, 'adb')
+        if (-not (Test-Path $ADB_Destination)) {
+            $ADB_DDL = 'https://dl.google.com/android/repository/platform-tools-latest-windows.zip'
+            $ADB_Filename = [System.IO.Path]::GetFileName(([System.Uri]$ADB_DDL).AbsolutePath)
+            $ADB_SavePath = [System.IO.Path]::Combine($env:TEMP, $ADB_Filename)
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'ADB'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ADB_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ADB_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+            (New-Object System.Net.WebClient).DownloadFile($ADB_DDL, $ADB_SavePath)
         
-            Write-Host 'Software Selection: ADB: Extracting' -ForegroundColor green -BackgroundColor black
-            if (Test-Path $adbExtractPath) {
-                Remove-Item -Recurse -Force $adbExtractPath
+            if (Test-Path $ADB_Destination) {
+                Remove-Item -Path $ADB_Destination -Recurse -Force
             }
-            Expand-Archive -Path "$env:TEMP\platform-tools-latest-windows.zip" -DestinationPath $env:TEMP
-        
-            Write-Host "Software Selection: ADB: Installing to $adbExtractPath" -ForegroundColor green -BackgroundColor black
-            Move-Item -Path "$env:TEMP/platform-tools" -Destination $adbExtractPath
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'ADB'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ADB_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ADB_ExtractPath'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Expand-Archive -Path $ADB_SavePath -DestinationPath $env:TEMP -Force
+            
+            $ADB_ExtractPath = [System.IO.Path]::Combine($env:TEMP, 'platform-tools')
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Moving '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'ADB'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ADB_ExtractPath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ADB_Destination'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Move-Item -Path $ADB_ExtractPath -Destination $ADB_Destination
         }
         
-        $ADBpath = [System.Environment]::GetEnvironmentVariable('Path', [System.EnvironmentVariableTarget]::User)
-        if ($ADBpath -notlike "*$adbExtractPath*") {
-            Write-Host 'Software Selection: ADB: Adding to the PATH environment' -ForegroundColor green -BackgroundColor black
-            $newPath = "$ADBpath;$adbExtractPath"
-            [System.Environment]::SetEnvironmentVariable('Path', $newPath, [System.EnvironmentVariableTarget]::User)
+        $ADB_OLD_PATH = [System.Environment]::GetEnvironmentVariable('Path', [System.EnvironmentVariableTarget]::User)
+        if ($ADB_OLD_PATH -notlike "*$ADB_Destination*") {
+            $ADB_NEW_PATH = "$ADB_OLD_PATH;$ADB_Destination"
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'ADB'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ADB_Destination'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'PATH'"); [Console]::ResetColor(); [Console]::WriteLine()
+            [System.Environment]::SetEnvironmentVariable('Path', $ADB_NEW_PATH, [System.EnvironmentVariableTarget]::User)
+            $env:Path = [System.Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path', 'User')
         }
     }
 
