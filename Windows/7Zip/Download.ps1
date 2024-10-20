@@ -26,7 +26,7 @@ if ($null -eq $7Zip_InstalledVersion -or $7Zip_InstalledVersion -notmatch $7Zip_
     $7Zip_OLD_PATH = [System.Environment]::GetEnvironmentVariable('Path', [System.EnvironmentVariableTarget]::User)
     if ($7Zip_OLD_PATH -notlike "*$7Zip_Destination*") {
         $7Zip_NEW_PATH = "$7Zip_OLD_PATH;$7Zip_Destination"
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write("Adding '7-Zip' from "); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$7Zip_Destination'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'PATH'"); [Console]::ResetColor(); [Console]::WriteLine()
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'7-Zip'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$7Zip_Destination'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'PATH'"); [Console]::ResetColor(); [Console]::WriteLine()
         [System.Environment]::SetEnvironmentVariable('Path', $7Zip_NEW_PATH, [System.EnvironmentVariableTarget]::User)
         $env:Path = [System.Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path', 'User')
     }
