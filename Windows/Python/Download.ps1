@@ -1,39 +1,31 @@
-$Python = 'Python Updater'
-$Python_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $Python }
-if (!($Python_Exists)) {
-    Write-Host "Python: Task Scheduler: Adding $Python" -ForegroundColor green -BackgroundColor black
-    $Python_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-    $Python_Action = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Python/Download.ps1')"
-    $Python_Trigger = New-ScheduledTaskTrigger -AtLogOn
-    $Python_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
-    $Python_Parameters = @{
-        TaskName  = $Python
-        Principal = $Python_Principal
-        Action    = $Python_Action
-        Trigger   = $Python_Trigger
-        Settings  = $Python_Settings
-    }
-    Register-ScheduledTask @Python_Parameters -Force
+$Python_TaskName = 'Python Updater'
+if (-not (Get-ScheduledTask -TaskName $Python_TaskName -ErrorAction SilentlyContinue)) {
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Python_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
+    $Python_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Python/Download.ps1')"
+    $Python_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
+    $Python_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
+    $Python_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
+    Register-ScheduledTask -TaskName $Python_TaskName -Action $Python_TaskAction -Trigger $Python_TaskTrigger -Principal $Python_TaskPrincipal -Settings $Python_TaskSettings -Force
 }
 
-Write-Host 'Python: Getting latest release' -ForegroundColor green -BackgroundColor black
-$PyReleases = Invoke-RestMethod 'https://github.com/python/cpython/releases.atom'
-$PyLatestVersion = ($PyReleases.title) -replace '^v' -notmatch '[a-z]' | Sort-Object { [version] $_ } -Descending | Select-Object -First 1
-$PyLatestBaseUrl = "https://www.python.org/ftp/python/${PyLatestVersion}/"
-$PyUrl = "${PyLatestBaseUrl}/python-${PyLatestVersion}-amd64.exe"
-$PyPkg = $PyUrl | Split-Path -Leaf
-$PyVerDir = ($PyPkg -replace '\.exe' -replace '-amd64' -replace '-').Split('.')
-$PyVerDir = $PyVerDir[0] + $PyVerDir[-2]
-$PyVerDir = $PyVerDir.Substring(0, 1).ToUpper() + $PyVerDir.Substring(1).ToLower()
+$Python_InstalledVersion = Get-Command python -ErrorAction SilentlyContinue
+if ($Python_InstalledVersion) {
+    $Python_InstalledVersion = (python --version) -replace 'Python ', '' 
+}
+else {
+    $Python_InstalledVersion = $null 
+}
+$Python_LatestVersion = (Invoke-RestMethod 'https://github.com/python/cpython/releases.atom').title -replace '^v' -notmatch '[a-z]' | Sort-Object { [version] $_ } -Descending | Select-Object -First 1
 
-Write-Host 'Python: Checking if updated' -ForegroundColor green -BackgroundColor black
-$PythonInstalledVer = py -V
-$PythonInstalledVer = $PythonInstalledVer.Replace('Python ', '')
-
-if (($null -eq $PythonInstalledVer) -or ($PythonInstalledVer -notmatch $PyLatestVersion)) {
-    Write-Host 'Python: Downloading' -ForegroundColor green -BackgroundColor black
-    (New-Object System.Net.WebClient).DownloadFile($PyUrl, "$env:TEMP\${PyPkg}")
+if ($null -eq $Python_InstalledVersion -or $Python_InstalledVersion -notmatch $Python_LatestVersion) {
+    $Python_DDL = "https://www.python.org/ftp/python/${Python_LatestVersion}/python-${Python_LatestVersion}-amd64.exe"
+    $Python_Filename = [System.IO.Path]::GetFileName(([System.Uri]$Python_DDL).AbsolutePath)
+    $Python_SavePath = [System.IO.Path]::Combine($env:TEMP, $Python_Filename)
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Python'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Python_LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Python_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Python_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+    (New-Object System.Net.WebClient).DownloadFile($Python_DDL, $Python_SavePath)
     
-    Write-Host 'Python: Installing' -ForegroundColor green -BackgroundColor black
-    Start-Process "$env:TEMP\${PyPkg}" -ArgumentList '/silent', 'InstallAllUsers=1', 'PrependPath=1', 'Include_test=0' -NoNewWindow
+    $Python_Argument = '/silent InstallAllUsers=1 PrependPath=1 Include_test=0'
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Python'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Python_LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Python_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Python_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+    Start-Process $Python_SavePath -ArgumentList $Python_Argument -Wait
+    $env:Path = [System.Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path', 'User')
 }
