@@ -16,7 +16,7 @@ if ($null -eq $qBittorrent_InstalledVersion -or $qBittorrent_InstalledVersion -n
     $qBittorrent_LocalINI = "$env:APPDATA\qBittorrent\qBittorrent.ini"
     if (-not (Test-Path -Path $qBittorrent_LocalINI)) {
         New-Item -Path $qBittorrent_LocalINI -ItemType File -Force
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write("Downloading 'qBittorrent' custom settings from "); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$qBittorrent_RemoteINI'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$qBittorrent_LocalINI'"); [Console]::ResetColor(); [Console]::WriteLine()
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' custom settings from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$qBittorrent_RemoteINI'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$qBittorrent_LocalINI'"); [Console]::ResetColor(); [Console]::WriteLine()
         (New-Object System.Net.WebClient).DownloadFile($qBittorrent_RemoteINI, $qBittorrent_LocalINI)
     }
     
