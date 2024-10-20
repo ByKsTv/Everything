@@ -1168,10 +1168,11 @@ $Form_SoftwareSelection_OK.Add_Click{
             if (Test-Path $ADB_Destination) {
                 Remove-Item -Path $ADB_Destination -Recurse -Force
             }
+            
+            $ADB_ExtractPath = [System.IO.Path]::Combine($env:TEMP, 'platform-tools')
             [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'ADB'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ADB_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ADB_ExtractPath'"); [Console]::ResetColor(); [Console]::WriteLine()
             Expand-Archive -Path $ADB_SavePath -DestinationPath $env:TEMP -Force
             
-            $ADB_ExtractPath = [System.IO.Path]::Combine($env:TEMP, 'platform-tools')
             [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Moving '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'ADB'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ADB_ExtractPath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ADB_Destination'"); [Console]::ResetColor(); [Console]::WriteLine()
             Move-Item -Path $ADB_ExtractPath -Destination $ADB_Destination
         }
