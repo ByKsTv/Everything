@@ -34,9 +34,10 @@ if ($null -eq $Mediainfo_InstalledVersion -or $Mediainfo_InstalledVersion -notma
 
 	$MediaInfo_GUI_Argument = '/S'
 	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write("Installing 'Mediainfo' GUI from "); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MediaInfo_GUI_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MediaInfo_GUI_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-	Start-Process $MediaInfo_GUI_SavePath -ArgumentList $MediaInfo_GUI_Argument
+	Start-Process $MediaInfo_GUI_SavePath -ArgumentList $MediaInfo_GUI_Argument -Wait
 
-	$MediaInfo_CLI_Destination = "$env:ProgramFiles\MediaInfo\CLI"
+	$MediaInfo_CLI_Destination = Split-Path (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*', 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*' -ErrorAction SilentlyContinue | Where-Object { $_.DisplayName -like 'MediaInfo*' }).UninstallString -Parent
+	$MediaInfo_CLI_Destination = [System.IO.Path]::Combine($MediaInfo_CLI_Destination, 'CLI')
 	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write("Installing 'Mediainfo' CLI from "); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MediaInfo_CLI_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MediaInfo_CLI_Destination'"); [Console]::ResetColor(); [Console]::WriteLine()
 	Expand-Archive -Path $MediaInfo_CLI_SavePath -DestinationPath $MediaInfo_CLI_Destination -Force
 	
