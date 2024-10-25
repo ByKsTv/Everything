@@ -124,15 +124,23 @@ ksp.co.il##[class^="root-0-3-"] > div > .muirtl-q0gjsm.MuiTypography-body1.MuiTy
 ktuvit.me##.text-center.popup-container
 login.aliexpress.com##.footer-copywrite
 lrepacks.net###pageuserscroll
+lrepacks.net##.donate.large.button
 lrepacks.net##.page-bottom
 lrepacks.net##.page-down
 lrepacks.net##.page-top
 lrepacks.net##.page-up
+lrepacks.net##div.skiptranslate
 missav.com##.hover\:text-primary.text-nord6.mx-auto.h-8.w-8
 missav.com##.pt-8.border-gray-700.border-t.my-12
 missav.com##.xl\:col-span-2.xl\:mt-0.gap-8.grid-cols-2.grid.mt-12
 missav.com##footer.px-4.mx-auto.sm\:container
+myanimelist.net###copyright
+myanimelist.net###footer-block
+myanimelist.net###recaptcha-terms
+myanimelist.net##.footer-link-block
+myanimelist.net##.footer-ranking
 myanimelist.net##.mal-tooltip-layer
+myanimelist.net##.mt4.info
 myanimelist.net##mal-tooltip
 pi.hole##.col-sm-6.col-xs-12
 pi.hole##.login-donate
@@ -204,6 +212,9 @@ torrentgalaxy.to##[href="https://getcomics.info/"]
 torrentgalaxy.to##[href="https://igg-games.com/"]
 torrentgalaxy.to##div[id].outer.panel-primary.txdark.panel:nth-of-type(4)
 torrentgalaxy.to##footer
+uniondht.org###heading
+uniondht.org##.row3
+uniondht.org##.spacer_10
 w14.monkrus.ws###Attribution1 > .widget-content
 w14.monkrus.ws###HTML1
 w14.monkrus.ws###HTML4
@@ -221,8 +232,21 @@ w14.monkrus.ws##[href="http://www.monkrus.ws/p/donate.html"]
 www.aliexpress.com##.bottom--container--1EMPdiV
 www.aliexpress.com##.cart-summary-suggestion
 www.aliexpress.com##.es--product-fix-sns--3dZQv4l
+www.aliexpress.com##.footer-copywrite
+www.aliexpress.com##.product-recommend-pc.product-recommend
 www.aliexpress.com##.relatedSearch--bottomWrapper--2lxD0Q4
+www.aliexpress.com##.site-footer
+www.aliexpress.com##.survey-link
 www.iec.co.il##app-sticky-banner
+www.pornhub.com###footer
+www.pornhub.com##.footer
+www.pornhub.com##.footer-title
+www.pornhub.com##.footerContent
+www.pornhub.com##.homePageFooter.logoFooterWrapper
+www.pornhub.com##.js_dropdownBound.languageWrapper
+www.pornhub.com##.original.video-wrapper.hd-videos_wrapper.hd-smallerWidth.sectionWrapper
+www.pornhub.com##.relatedSearchTermsBottom.sectionWrapper
+www.pornhub.com##.tagsForWomen
 xxxclub.to##.fa-arrow-up.fa
 xxxclub.to##.footer-bottom
 xxxclub.to##.footer-top
@@ -230,4 +254,5 @@ xxxclub.to##.myBtn
 xxxclub.to##.page-footer
 xxxclub.to##.similardiv
 xxxclub.to##[href="/c/donate/"]
+youtube.com##[page-subtype="home"] ytd-thumbnail-overlay-resume-playback-renderer:upward(ytd-rich-item-renderer)
 ||bringthemhomenow.net^
