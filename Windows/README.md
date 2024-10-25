@@ -17,18 +17,16 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 1. Connect USB with at least 8GB.
 1. `START` > Enable all except `Set regional options to the same values as this user's` > `OK` > `OK`.
-1. Download Motherboard LAN driver, Chipset drivers and Intel(R) Rapid Storage Technology to USB.
-
-> Copy the initial setup powershell command to text file on the USB.
->
-> Find Motherboard Model - PowerShell (Admin):
->
-> ```powershell
-> (wmic baseboard get product)
->
-> ```
->
-> [Update BIOS](https://github.com/ByKsTv/Everything/tree/main/BIOS).
+1. Download and extract motherboard drivers (LAN drivers, Chipset drivers, Serial IO drivers, Intel(R) Rapid Storage Technology) to the USB.
+1. Copy the initial setup powershell command to text file on the USB.
+   > Find Motherboard Model - PowerShell (Admin):
+   >
+   > ```powershell
+   > (wmic baseboard get product)
+   >
+   > ```
+   >
+   > [Update BIOS](https://github.com/ByKsTv/Everything/tree/main/BIOS).
 
 ## Pre Installation
 
@@ -46,7 +44,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 ## Installation
 
-1. `Next` > `Install now` > `I don't have a product key` > `Windows 10 IoT Enterprise LTSC` > `Next` > `I accept the license terms` > `Next` > `Custom: Install Windows only (advanced)` > Delete all > `Next`.
+1. `Next` > `Install now` > `I don't have a product key` > `Windows 10 IoT Enterprise LTSC` > `Next` > `I accept the license terms` > `Next` > `Custom: Install Windows only (advanced)` > `Load driver` > (Select the drivers from the USB and install them one by one, test if lan driver was installed afterwards) > `Delete all` > `Next`.
    > If drives not found - Extract `Intel Rapid Storage Technology (IRST)` driver matching to the motherboard.
 1. `Yes` > `Yes` > `Skip` > `I don't have internet` > `Continue with limited setup`.
 1. Connect Ethernet Cable (After Windows Boots Up).
@@ -98,10 +96,6 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. Set up print quality and print size.
 
 > Note: HP Printer: Only Original Ink Cartridges.
-
-### Drivers
-
-1. Install Motherboard LAN driver, Chipset drivers and Intel(R) Rapid Storage Technology from USB.
 
 ### Reset Password to Windows 10 Local Account
 

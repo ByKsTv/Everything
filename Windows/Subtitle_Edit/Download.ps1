@@ -32,9 +32,9 @@ else {
 $latestVersionNormalized = [Version]$SubtitleEditLatestVersionUnV
 
 if ($installedVersionNormalized -lt $latestVersionNormalized) {
-    Write-Host 'Subtitle Edit: Downloading' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Subtitle Edit: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
     (New-Object System.Net.WebClient).DownloadFile(($SubtitleEditLatestVersion.assets | Where-Object name -Like '*exe*').browser_download_url, "$env:TEMP\SubtitleEditSetup.exe")
 
-    Write-Host 'Subtitle Edit: Installing' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Subtitle Edit: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
     Start-Process -FilePath "$env:TEMP\SubtitleEditSetup.exe" -ArgumentList '/verysilent'
 }

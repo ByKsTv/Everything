@@ -16,12 +16,12 @@ if (!($PlexMediaServer_Exists)) {
     Register-ScheduledTask @PlexMediaServer_Parameters -Force
 }
 
-Write-Host 'Plex: Getting current version' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Plex: Getting current version'); [Console]::ResetColor(); [Console]::WriteLine()
 $Plex_Installed1 = Get-Package -Name 'Plex Media Server*' -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'Version'
 $Plex_Installed2 = (Get-ChildItem -Directory -Path "$env:ProgramFiles\Plex\Plex Media Server\Resources\Plug-ins-*" -ErrorAction SilentlyContinue | Sort-Object -Descending -Property Name | Select-Object -First 1 -ExpandProperty 'Name').Replace('Plug-ins-', '')
 $Plex_Installed = $Plex_Installed1 + '-' + $Plex_Installed2
 
-Write-Host 'Plex: Getting latest release' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Plex: Getting latest release'); [Console]::ResetColor(); [Console]::WriteLine()
 # https://github.com/mkevenaar/chocolatey-packages/blob/master/automatic/plexmediaserver/update.ps1
 $PlexTimeStamp = [DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds()
 $PlexFeedURL = 'https://plex.tv/pms/downloads/5.json?_=' + $PlexTimeStamp

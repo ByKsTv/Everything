@@ -16,10 +16,10 @@ if (!($VSCode_Exists)) {
     Register-ScheduledTask @VSCode_Parameters -Force
 }
 
-Write-Host 'Visual Studio Code: Getting current version' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Visual Studio Code: Getting current version'); [Console]::ResetColor(); [Console]::WriteLine()
 $VSCode_Installed = Get-Package -Name 'Microsoft Visual Studio Code' -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'Version'
 
-Write-Host 'Visual Studio Code: Getting latest version' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Visual Studio Code: Getting latest version'); [Console]::ResetColor(); [Console]::WriteLine()
 $VSCode_Latest = (Invoke-RestMethod https://api.github.com/repos/microsoft/vscode/releases).tag_name | Select-Object -First 1
 
 if (($null -eq $VSCode_Installed) -or ($VSCode_Installed -notmatch $VSCode_Latest)) {

@@ -41,6 +41,36 @@ Everything about Android apps.
 
 > [Registration guide for 4pda](https://www.youtube.com/watch?v=3XOut-lgHRc)
 
+## ADB Commands
+
+> Connect USB to PC
+
+```bash
+adb tcpip 5555
+```
+
+adb connect {DeviceIP}
+
+adb -s {DeviceIP} push test.txt /storage/emulated/0/download
+
+adb -s {DeviceIP} install us.spotco.fennec_dos_21210020.apk
+
+adb -s {DeviceIP} shell pm list packages
+
+adb -s {DeviceIP} shell pm path com.miui.tv.analytics
+
+adb -s {DeviceIP} pull /data/app/com.example.someapp-2.apk
+
+adb -s {DeviceIP} shell pm uninstall -k --user 0 com.miui.tv.analytics
+
+adb -s {DeviceIP} shell cmd package install-existing tv.alphonso.alphonso_eula
+
+adb shell pm reset-permissions
+
+adb shell pm uninstall org.skvalex.cr
+adb shell pm uninstall org.skvalex.cr.root
+adb install a.apk
+
 ## Mull Settings
 
 1. `Set as default browser` > `Sign in` > `Not Now`.
@@ -55,3 +85,109 @@ Everything about Android apps.
 10. `Settings` > `Add-ons` > Add `ClearURLs`.
 11. `about:config` > `browser.cache.disk.enable` > `false`.
 12. `about:config` > `webgl.disabled` > `false`.
+
+## Install LineageOS + Magisk (ROOT) + Lucky Patcher + Call Recorder + Play Intergrity + Google Apps
+
+> This process will wipe the data of your device so make sure to back up.
+
+1. Charge phone.
+1. Enable OEM Unlock in Developer Options.
+1. Enable USB Debugging in Developer Options.
+1. Connect USB Cable to PC.
+1. Download latest `.zip` and `.img` files for [Lineageos](https://download.lineageos.org/devices) (Select your device and follow their wiki of installation).
+1. Download [Google Apps](https://wiki.lineageos.org/gapps/#mobile) (Select `ARM64`).
+1. Download [Magisk](https://github.com/topjohnwu/Magisk/releases/latest).
+1. Download [PlayIntegrityFix](https://github.com/chiteroman/PlayIntegrityFix/releases).
+1. Download [Basic Call Recorder](https://github.com/chenxiaolong/BCR/releases).
+1. Download [Lucky Patcher](https://www.luckypatchers.com/apps/LP_Installer.apk).
+1. Connect using ADB to the phone:
+
+   ```bash
+   adb devices
+   ```
+
+1. One the phone click "Allow".
+
+1. Install Magisk App using ADB to the phone:
+
+   ```bash
+   adb install [Magisk apk]
+   ```
+
+1. Push `boot.img` from PC to phone using ADB:
+
+   ```bash
+   adb push boot.img /storage/emulated/0/Download
+   ```
+
+1. Open `Magisk` App, On `Magisk` Click `Install`, Click `Select and Patch a File`, Select the latest `boot.img`, Click `Let's Go`.
+1. Pull the patched `boot.img` file from phone to PC (Change the file name):
+
+   ```bash
+   adb pull /storage/emulated/0/Download/[Patched file]
+   ```
+
+1. Reboot to `bootloader` using ADB:
+
+   ```bash
+   adb -d reboot bootloader
+   ```
+
+1. Connect to device using fastboot:
+
+   ```bash
+   fastboot devices
+   ```
+
+> if not found anything, download [usb drviers](https://developer.android.com/studio/run/win-usb) and install using "have disk"
+
+1. Unlock OEM Bootloader using fastboot:
+
+   ```bash
+   fastboot oem unlock
+   ```
+
+1. Select `UNLOCK THE BOOTLOADER` (This will wipe the device)
+1. Enable USB Debugging in Developer Options.
+1. Install the latest android updates if available.
+1. Reboot to `bootloader` using ADB:
+
+   ```bash
+   adb -d reboot bootloader
+   ```
+
+1. Use fastboot to install new ROM:
+
+   ```bash
+   fastboot flash dtbo dtbo.img
+   fastboot flash vbmeta vbmeta.img
+   fastboot flash boot boot.img
+   fastboot flash boot magisk_patched-27000_ChangeThis.img
+   ```
+
+1. `Reboot into recovery`.
+1. `Factory Reset` > `Format data / factory reset` > `Format data`
+1. `Main menu` > `Apply Update` > `Apply from ADB`
+
+   ```bash
+   adb -d sideload lineage-ChangeThis.zip
+   ```
+
+1. `Reboot to recovery` > `Yes`
+1. `Apply Update` > `Apply from ADB`
+
+   ```bash
+   adb -d sideload GoogleApps.zip
+   ```
+
+1. `Signature verification failed, install anyway?` > `Yes`
+1. `Reboot system now`
+
+### Update LineageOS + Reinstall Magisk (ROOT)
+
+> Everytime LineageOS updates we need to reinstall Magisk (ROOT).
+
+1. `System` > `System updates` > `Preferences` > `Delete updates when installed` > Disabled
+1. Once there's an update click `Download`.
+
+everytime there's a lineageos update you should update (using magisk) the installed .zip and use fastboot to flash it

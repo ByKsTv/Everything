@@ -16,22 +16,22 @@ if (!($Notepad_Exists)) {
     Register-ScheduledTask @Notepad_Parameters -Force
 }
 
-Write-Host 'Notepad++: Getting latest release' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Notepad++: Getting latest release'); [Console]::ResetColor(); [Console]::WriteLine()
 $npp = Invoke-RestMethod 'https://api.github.com/repos/notepad-plus-plus/notepad-plus-plus/releases/latest'
 $nppPackage = 'x64.exe'
 $dlUrl = $npp.assets | Where-Object { $_.name.Contains($nppPackage) -and !$_.name.Contains('.sig') } | Select-Object -ExpandProperty browser_download_url
 $outfile = $npp.assets | Where-Object { $_.name.Contains($nppPackage) -and !$_.name.Contains('.sig') } | Select-Object -ExpandProperty name
 $installerPath = Join-Path $env:temp $outfile
 
-Write-Host 'Notepad++: Checking if updated' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Notepad++: Checking if updated'); [Console]::ResetColor(); [Console]::WriteLine()
 $NotepadInstalledVer = (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Notepad++' -ErrorAction SilentlyContinue).DisplayVersion
 $NotepadLatestVer = $npp.tag_name 
 $NotepadLatestVer = $NotepadLatestVer.Replace('v', '')
 
 if (($null -eq $NotepadInstalledVer) -or ($NotepadInstalledVer -notmatch $NotepadLatestVer)) {
-    Write-Host 'Notepad++: Downloading' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Notepad++: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
     (New-Object System.Net.WebClient).DownloadFile($dlUrl, $installerPath)
 
-    Write-Host 'Notepad++: Installing' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Notepad++: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
     Start-Process -FilePath $installerPath -ArgumentList '/S'
 }

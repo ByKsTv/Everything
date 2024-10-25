@@ -19,36 +19,36 @@ if (!($EdgeUninstaller_Exists)) {
 $InstalledSoftware = Get-Package | Select-Object -Property 'Name'
 if (($InstalledSoftware -match 'Microsoft Edge')) {
     # https://github.com/fr33thytweaks/Ultimate-Windows-Optimization-Guide/blob/main/6%20Windows/14%20Edge.ps1
-    Write-Host 'Edge Uninstaller: Stopping Related Processes' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Edge Uninstaller: Stopping Related Processes'); [Console]::ResetColor(); [Console]::WriteLine()
     $stopedgerunning = 'MicrosoftEdgeUpdate', 'OneDrive', 'WidgetService', 'Widgets', 'msedge', 'msedgewebview2'
     $stopedgerunning | ForEach-Object { Stop-Process -Name $_ -Force -ErrorAction SilentlyContinue }
 
-    Write-Host 'Edge Uninstaller: Uninstalling Copilot' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Edge Uninstaller: Uninstalling Copilot'); [Console]::ResetColor(); [Console]::WriteLine()
     Get-AppxPackage -AllUsers *Microsoft.Windows.Ai.Copilot.Provider* | Remove-AppxPackage
 
-    Write-Host 'Edge Uninstaller: Disabling Updates' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Edge Uninstaller: Disabling Updates'); [Console]::ResetColor(); [Console]::WriteLine()
     if ((Test-Path -Path HKLM:\SOFTWARE\Microsoft\EdgeUpdate) -ne $true) {
         New-Item -Path HKLM:\SOFTWARE\Microsoft\EdgeUpdate -Force
     }
     New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\EdgeUpdate -Name DoNotUpdateToEdgeWithChromium -PropertyType DWord -Value 1 -Force
 
-    Write-Host 'Edge Uninstaller: Allowing Uninstall' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Edge Uninstaller: Allowing Uninstall'); [Console]::ResetColor(); [Console]::WriteLine()
     if ((Test-Path -Path HKLM:\Software\WOW6432Node\Microsoft\EdgeUpdateDev) -ne $true) {
         New-Item HKLM:\Software\WOW6432Node\Microsoft\EdgeUpdateDev -Force
     }
     New-ItemProperty -Path HKLM:\Software\WOW6432Node\Microsoft\EdgeUpdateDev -Name 'AllowUninstall' -Value '' -PropertyType String -Force
 
-    Write-Host 'Edge Uninstaller: Creating Temporary Folder' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Edge Uninstaller: Creating Temporary Folder'); [Console]::ResetColor(); [Console]::WriteLine()
     if ((Test-Path -Path "$env:SystemRoot\SystemApps\Microsoft.MicrosoftEdge_8wekyb3d8bbwe") -ne $true) {
         New-Item -Path "$env:SystemRoot\SystemApps\Microsoft.MicrosoftEdge_8wekyb3d8bbwe" -ItemType Directory
     }
 
-    Write-Host 'Edge Uninstaller: Creating Temporary File' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Edge Uninstaller: Creating Temporary File'); [Console]::ResetColor(); [Console]::WriteLine()
     if ((Test-Path -Path "$env:SystemRoot\SystemApps\Microsoft.MicrosoftEdge_8wekyb3d8bbwe\MicrosoftEdge.exe") -ne $true) {
         New-Item -Path "$env:SystemRoot\SystemApps\Microsoft.MicrosoftEdge_8wekyb3d8bbwe" -ItemType File -Name 'MicrosoftEdge.exe'
     }
 
-    Write-Host 'Edge Uninstaller: Getting UninstallString' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Edge Uninstaller: Getting UninstallString'); [Console]::ResetColor(); [Console]::WriteLine()
     $regview = [Microsoft.Win32.RegistryView]::Registry32
     $microsoft = [Microsoft.Win32.RegistryKey]::OpenBaseKey([Microsoft.Win32.RegistryHive]::LocalMachine, $regview).
     OpenSubKey('SOFTWARE\Microsoft', $true)
@@ -59,27 +59,27 @@ if (($InstalledSoftware -match 'Microsoft Edge')) {
     catch {
     }
 
-    Write-Host 'Edge Uninstaller: Uninstalling' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Edge Uninstaller: Uninstalling'); [Console]::ResetColor(); [Console]::WriteLine()
     Start-Process cmd.exe "/c $uninstallstring" -WindowStyle Hidden -Wait
 
-    Write-Host 'Edge Uninstaller: Deleting Temporary Folder' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Edge Uninstaller: Deleting Temporary Folder'); [Console]::ResetColor(); [Console]::WriteLine()
     if ((Test-Path -Path "$env:SystemRoot\SystemApps\Microsoft.MicrosoftEdge_8wekyb3d8bbwe") -eq $true) {
         Remove-Item -Recurse -Force "$env:SystemRoot\SystemApps\Microsoft.MicrosoftEdge_8wekyb3d8bbwe"
     }
 
-    Write-Host 'Edge Uninstaller: Searching EdgeUpdate' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Edge Uninstaller: Searching EdgeUpdate'); [Console]::ResetColor(); [Console]::WriteLine()
     $edgeupdate = @(); 'LocalApplicationData', 'ProgramFilesX86', 'ProgramFiles' | ForEach-Object {
         $folder = [Environment]::GetFolderPath($_)
         $edgeupdate += Get-ChildItem "$folder\Microsoft\EdgeUpdate\*.*.*.*\MicrosoftEdgeUpdate.exe" -rec -ea 0
     }
 
-    Write-Host 'Edge Uninstaller: Deleting EdgeUpdate' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Edge Uninstaller: Deleting EdgeUpdate'); [Console]::ResetColor(); [Console]::WriteLine()
     $global:REG = 'HKCU:\SOFTWARE', 'HKLM:\SOFTWARE', 'HKCU:\SOFTWARE\Policies', 'HKLM:\SOFTWARE\Policies', 'HKCU:\SOFTWARE\WOW6432Node', 'HKLM:\SOFTWARE\WOW6432Node', 'HKCU:\SOFTWARE\WOW6432Node\Policies', 'HKLM:\SOFTWARE\WOW6432Node\Policies'
     foreach ($location in $REG) {
         Remove-Item "$location\Microsoft\EdgeUpdate" -Recurse -Force -ErrorAction SilentlyContinue 
     }
 
-    Write-Host 'Edge Uninstaller: Uninstalling EdgeUpdate' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Edge Uninstaller: Uninstalling EdgeUpdate'); [Console]::ResetColor(); [Console]::WriteLine()
     foreach ($path in $edgeupdate) {
         if (Test-Path $path) {
             Start-Process -Wait $path -Args '/unregsvc' | Out-Null 
@@ -95,7 +95,7 @@ if (($InstalledSoftware -match 'Microsoft Edge')) {
         } while ((Get-Process -Name 'setup', 'MicrosoftEdge*' -ErrorAction SilentlyContinue).Path -like '*\Microsoft\Edge*')
     }
 
-    Write-Host 'Edge Uninstaller: Deleting EdgeWebView' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Edge Uninstaller: Deleting EdgeWebView'); [Console]::ResetColor(); [Console]::WriteLine()
     if ((Test-Path -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Microsoft EdgeWebView') -eq $true) {
         Remove-Item -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Microsoft EdgeWebView' -Force
     }
@@ -103,12 +103,12 @@ if (($InstalledSoftware -match 'Microsoft Edge')) {
         Remove-Item -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\Microsoft EdgeWebView' -Force
     }
 
-    Write-Host 'Edge Uninstaller: Deleting Folders' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Edge Uninstaller: Deleting Folders'); [Console]::ResetColor(); [Console]::WriteLine()
     if ((Test-Path -Path "$env:C:\Program Files (x86)\Microsoft") -eq $true) {
         Remove-Item -Recurse -Force "$env:C:\Program Files (x86)\Microsoft"
     }
 
-    Write-Host 'Edge Uninstaller: Deleting Shortcuts' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Edge Uninstaller: Deleting Shortcuts'); [Console]::ResetColor(); [Console]::WriteLine()
     if ((Test-Path -Path "$env:C:\Windows\System32\config\systemprofile\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\Microsoft Edge.lnk") -eq $true) {
         Remove-Item -Force "$env:C:\Windows\System32\config\systemprofile\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\Microsoft Edge.lnk"
     }

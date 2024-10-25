@@ -2,10 +2,10 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
     $CurrentFireFoxProfilePath0 = Get-ChildItem -Directory -Path "$env:APPDATA\Mozilla\Firefox\Profiles" -Filter '*.default-release'
     $CurrentFireFoxProfilePath = "$env:APPDATA\Mozilla\Firefox\Profiles\$CurrentFireFoxProfilePath0"
     if ((Test-Path -Path $CurrentFireFoxProfilePath) -eq $true) {
-        Write-Host 'Mozilla Firefox Arkenfox: Closing browser' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Arkenfox: Closing browser'); [Console]::ResetColor(); [Console]::WriteLine()
         Stop-Process -Name firefox -Force -ErrorAction SilentlyContinue
 
-        Write-Host 'Mozilla Firefox Arkenfox: Disable List all tabs button' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Arkenfox: Disable List all tabs button'); [Console]::ResetColor(); [Console]::WriteLine()
         New-Item -Path "$CurrentFireFoxProfilePath\chrome\userChrome.css" -ItemType File -Force
         (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/userChrome.css', "$CurrentFireFoxProfilePath\chrome\userChrome.css")
 
@@ -78,10 +78,10 @@ if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
             Register-ScheduledTask @Arkenfox_Overrides_Parameters -Force
         }
 
-        Write-Host 'Mozilla Firefox Arkenfox: Starting' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Arkenfox: Starting'); [Console]::ResetColor(); [Console]::WriteLine()
         Start-ScheduledTask -TaskName $Arkenfox_Update
 
-        Write-Host 'Mozilla Firefox Arkenfox: Cleaning up' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Arkenfox: Cleaning up'); [Console]::ResetColor(); [Console]::WriteLine()
         if ((Test-Path -Path "$CurrentFireFoxProfilePath\datareporting") -eq $true) {
             Remove-Item -Path "$CurrentFireFoxProfilePath\datareporting" -Force -Recurse
         }

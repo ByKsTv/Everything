@@ -1,37 +1,29 @@
-Write-Host 'Step1: Initiating next step' -ForegroundColor green -BackgroundColor black
-$NextStep = 'Step2'
-(New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/$NextStep.ps1", "$env:TEMP\$NextStep.ps1")
+$NextStep_TaskName = 'Step2'
+$NextStep_SavePath = [System.IO.Path]::Combine($env:TEMP, $NextStep_TaskName.ps1)
+(New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/$NextStep_TaskName.ps1", "$NextStep_SavePath")
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$NextStep_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
+$NextStep_TaskAction = New-ScheduledTaskAction -Execute powershell.exe -Argument "-WindowStyle Maximized -ExecutionPolicy Bypass -File $NextStep_SavePath"
+$NextStep_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
+$NextStep_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
+$NextStep_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
+Register-ScheduledTask -TaskName $NextStep_TaskName -Action $NextStep_TaskAction -Trigger $NextStep_TaskTrigger -Principal $NextStep_TaskPrincipal -Settings $NextStep_TaskSettings -Force
 
-Write-Host "Step1: Task Scheduler: Adding $NextStep" -ForegroundColor green -BackgroundColor black
-$NextStep_Principal = New-ScheduledTaskPrincipal -UserId $env:computername\$env:USERNAME -RunLevel Highest
-$NextStep_Action = New-ScheduledTaskAction -Execute powershell.exe -Argument "-WindowStyle Maximized -ExecutionPolicy Bypass -File $env:TEMP\$NextStep.ps1"
-$NextStep_Trigger = New-ScheduledTaskTrigger -AtLogOn
-$NextStep_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
-$NextStep_Parameters = @{
-	TaskName  = $NextStep
-	Principal = $NextStep_Principal
-	Action    = $NextStep_Action
-	Trigger   = $NextStep_Trigger
-	Settings  = $NextStep_Settings
-}
-Register-ScheduledTask @NextStep_Parameters -Force
-
-Write-Host 'Power Plan: Display: Turn off display after: 0 Seconds (Never)' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Power Plan: Display: Turn off display after: 0 Seconds (Never)'); [Console]::ResetColor(); [Console]::WriteLine()
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e 0
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e 0
 
-Write-Host 'Step1: Disabling Restart Apps' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Disabling Restart Apps'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name RestartApps -PropertyType DWord -Value 0 -Force
 
-Write-Host "Step1: PC Name: Renaming to $env:username" -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('PC Name: Renaming to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$env:username'"); [Console]::ResetColor(); [Console]::WriteLine()
 if ($env:computername -ne $env:username) {
 	Rename-Computer -NewName $env:username
 }
 
-Write-Host 'Step1: PC Password: Changing to never expires' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('PC Password: Changing to never expires'); [Console]::ResetColor(); [Console]::WriteLine()
 Set-LocalUser -Name $env:username -PasswordNeverExpires 1
 
-Write-Host 'Step1: AutoAdminLogon: Adding username' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('AutoAdminLogon: Adding username'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon') -ne $true) {
  New-Item 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Force 
 }
@@ -241,13 +233,13 @@ $Step1_Form_OK.Add_Click{
 	$Step1_Form.Topmost = $false
 	$selectedTimeZone = $Step1_KeyboardLayoutComboBoxTimeZone.SelectedItem
 	if ($selectedTimeZone) {
-		Write-Host "Step1: Time Zone: Setting $selectedTimeZone" -ForegroundColor green -BackgroundColor black
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Time Zone: Setting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$selectedTimeZone'"); [Console]::ResetColor(); [Console]::WriteLine()
 		tzutil /s $selectedTimeZone
 	}
 	
 	$selectedName = $Step1_KeyboardLayoutComboBox.SelectedItem
 	if ($selectedName) {
-		Write-Host "Step1: Keyboard: Adding $selectedName" -ForegroundColor green -BackgroundColor black
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Keyboard: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$selectedName'"); [Console]::ResetColor(); [Console]::WriteLine()
 		$selectedTag = $languageMap[$selectedName]
 		$currentLanguageList = Get-WinUserLanguageList
 		$currentLanguageList.Add($selectedTag)
@@ -255,45 +247,45 @@ $Step1_Form_OK.Add_Click{
 	}
 
 	if ($CheckBox_PCPassword.Checked -eq $true) {
-		Write-Host 'Step1: PC Password: Adding' -ForegroundColor green -BackgroundColor black
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('PC Password: Adding'); [Console]::ResetColor(); [Console]::WriteLine()
 		Set-LocalUser -Name $env:username -Password (ConvertTo-SecureString -AsPlainText $TextBox_PCPassword.Text -Force)
 		New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'DefaultPassword' -Value $TextBox_PCPassword.Text -PropertyType String -Force
 	}
 	elseif ($CheckBox_PCPassword.Checked -eq $false) {
-		Write-Host 'Step1: PC Password: Removing' -ForegroundColor green -BackgroundColor black
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('PC Password: Removing'); [Console]::ResetColor(); [Console]::WriteLine()
 		Set-LocalUser -Name $env:username -Password ([securestring]::new())
 		New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'AutoAdminLogon' -Value '0' -PropertyType String -Force
 	}
 
 	if ($CheckBox_PCAutoLogin.Checked -eq $true) {
-		Write-Host 'Step1: PC Auto Login: Enabling' -ForegroundColor green -BackgroundColor black
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('PC Auto Login: Enabling'); [Console]::ResetColor(); [Console]::WriteLine()
 		New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'AutoAdminLogon' -Value '1' -PropertyType String -Force
 	}
 	elseif ($CheckBox_PCAutoLogin.Checked -eq $false) {
-		Write-Host 'Step1: PC Auto Login: Disabling' -ForegroundColor green -BackgroundColor black
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('PC Auto Login: Disabling'); [Console]::ResetColor(); [Console]::WriteLine()
 		New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'AutoAdminLogon' -Value '0' -PropertyType String -Force
 	}
 
 	if ($CheckBox_RemoteDesktop.Checked -eq $true) {
-		Write-Host 'Step1: Remote Desktop: Enabling' -ForegroundColor green -BackgroundColor black
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Remote Desktop: Enabling'); [Console]::ResetColor(); [Console]::WriteLine()
 		Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name 'fDenyTSConnections' -Value 0
 		Enable-NetFirewallRule -DisplayGroup 'Remote Desktop'
 	}
 	elseif ($CheckBox_RemoteDesktop.Checked -eq $false) {
-		Write-Host 'Step1: Remote Desktop: Disabling' -ForegroundColor green -BackgroundColor black
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Remote Desktop: Disabling'); [Console]::ResetColor(); [Console]::WriteLine()
 		Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name 'fDenyTSConnections' -Value 1
 		Disable-NetFirewallRule -DisplayGroup 'Remote Desktop'
 	}
 
 	if ($CheckBox_RemotePowerShell.Checked -eq $true) {
-		Write-Host 'Step1: Remote PowerShell: Enabling' -ForegroundColor green -BackgroundColor black
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Remote PowerShell: Enabling'); [Console]::ResetColor(); [Console]::WriteLine()
 		Set-NetConnectionProfile -NetworkCategory Private
 		Enable-PSRemoting -Force
-		Write-Host 'Step1: Remote PowerShell: Adding IP' -ForegroundColor green -BackgroundColor black
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Remote PowerShell: Adding IP'); [Console]::ResetColor(); [Console]::WriteLine()
 		Set-Item wsman:\localhost\Client\TrustedHosts -Value $TextBox_RemotePowerShellIP.Text -Force
 	}
 	elseif ($CheckBox_RemotePowerShell.Checked -eq $false) {
-		Write-Host 'Step1: Remote PowerShell: Disabling' -ForegroundColor green -BackgroundColor black
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Remote PowerShell: Disabling'); [Console]::ResetColor(); [Console]::WriteLine()
 		Disable-PSRemoting -Force
 		Remove-Item -Path WSMan:\Localhost\listener\listener* -Recurse
 		Clear-Item wsman:\localhost\client\trustedhosts -Force
@@ -304,12 +296,12 @@ $Step1_Form_OK.Add_Click{
 	}
 
 	if ($CheckBox_MozillaFirefox.Checked -eq $true) {
-		Write-Host 'Step1: Mozilla Firefox: Initiating' -ForegroundColor green -BackgroundColor black
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
 		Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Download.ps1')
 	}
 
 	if ($CheckBox_GoogleChrome.Checked -eq $true) {
-		Write-Host 'Step1: Google Chrome: Initiating' -ForegroundColor green -BackgroundColor black
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
 		Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Chrome/Download.ps1')
 	}
 }
@@ -322,7 +314,7 @@ $success = $false
 while (-not $success -and $retryCount -lt $maxRetries) {
 	$retryCount++
 
-	Write-Host 'Windows Updates: Searching' -ForegroundColor green -BackgroundColor black
+	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Updates: Searching'); [Console]::ResetColor(); [Console]::WriteLine()
 	$updateSession = New-Object -ComObject Microsoft.Update.Session
 	$updateSearcher = $updateSession.CreateUpdateSearcher()
 	$updateDownloader = $updateSession.CreateUpdateDownloader()
@@ -330,16 +322,16 @@ while (-not $success -and $retryCount -lt $maxRetries) {
 	$searchResult = $updateSearcher.Search('IsInstalled=0')
 
 	if ($searchResult.Updates.Count -eq 0) {
-		Write-Host 'Windows Updates: No updates available' -ForegroundColor green -BackgroundColor black
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Updates: No updates available'); [Console]::ResetColor(); [Console]::WriteLine()
 	}
 
-	Write-Host 'Windows Updates: Available Updates:' -ForegroundColor green -BackgroundColor black
+	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Updates: Available Updates:'); [Console]::ResetColor(); [Console]::WriteLine()
 	for ($i = 0; $i -lt $searchResult.Updates.Count; $i++) {
 		$update = $searchResult.Updates.Item($i)
 		Write-Host "$($i+1). $($update.Title)" -ForegroundColor green -BackgroundColor black
 	}
 
-	Write-Host 'Windows Updates: Downloading' -ForegroundColor green -BackgroundColor black
+	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Updates: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
 	$updatesToDownload = New-Object -ComObject Microsoft.Update.UpdateColl
 	for ($i = 0; $i -lt $searchResult.Updates.Count; $i++) {
 		$update = $searchResult.Updates.Item($i)
@@ -350,11 +342,11 @@ while (-not $success -and $retryCount -lt $maxRetries) {
 
 	if ($downloadResult.ResultCode -ne 2) {
 		Write-Host "Windows Updates: Download failed. Result code: $($downloadResult.ResultCode)" -ForegroundColor red -BackgroundColor black
-		Write-Host 'Windows Updates: Retrying download...' -ForegroundColor yellow -BackgroundColor black
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'yellow'; [Console]::Write('Windows Updates: Retrying download...'); [Console]::ResetColor(); [Console]::WriteLine()
 		continue
 	}
 
-	Write-Host 'Windows Updates: Installing' -ForegroundColor green -BackgroundColor black
+	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Updates: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
 	$updatesToInstall = New-Object -ComObject Microsoft.Update.UpdateColl
 	for ($i = 0; $i -lt $searchResult.Updates.Count; $i++) {
 		$update = $searchResult.Updates.Item($i)
@@ -367,7 +359,7 @@ while (-not $success -and $retryCount -lt $maxRetries) {
 
 	if ($installationResult.ResultCode -ne 2) {
 		Write-Host "Windows Updates: Installation failed. Result code: $($installationResult.ResultCode)" -ForegroundColor red -BackgroundColor black
-		Write-Host 'Windows Updates: Retrying installation...' -ForegroundColor yellow -BackgroundColor black
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'yellow'; [Console]::Write('Windows Updates: Retrying installation...'); [Console]::ResetColor(); [Console]::WriteLine()
 		continue
 	}
 
@@ -379,7 +371,7 @@ while (-not $success -and $retryCount -lt $maxRetries) {
 	}
 
 	if ($needsReboot) {
-		Write-Host 'Windows Updates: Restarting' -ForegroundColor green -BackgroundColor black
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Updates: Restarting'); [Console]::ResetColor(); [Console]::WriteLine()
 		Restart-Computer -Force
 		$success = $true
 	}

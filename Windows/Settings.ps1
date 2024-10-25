@@ -1,233 +1,233 @@
-Write-Host 'Power Plan: Restoring Defaults' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Power Plan: Restoring Defaults'); [Console]::ResetColor(); [Console]::WriteLine()
 powercfg /restoredefaultschemes
 
-Write-Host 'Power Plan: Activating Ultimate Performance' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Power Plan: Activating Ultimate Performance'); [Console]::ResetColor(); [Console]::WriteLine()
 powercfg /SETACTIVE e9a42b02-d5df-448d-aa00-03f14749eb61
 
-Write-Host 'Power Plan: Showing all hidden options' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Power Plan: Showing all hidden options'); [Console]::ResetColor(); [Console]::WriteLine()
 Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' -Name 'CSEnabled' -Value 0 -Force
 $PowerCfg = (Get-ChildItem 'HKLM:\SYSTEM\CurrentControlSet\Control\Power\PowerSettings' -Recurse).Name -notmatch '\bDefaultPowerSchemeValues|(\\[0-9]|\b255)$'
 foreach ($item in $PowerCfg) {
  Set-ItemProperty -Path $item.Replace('HKEY_LOCAL_MACHINE', 'HKLM:') -Name 'Attributes' -Value 2 -Force 
 }
 
-Write-Host 'Power Plan: Disabling power throttling' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Power Plan: Disabling power throttling'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\System\ControlSet001\Control\Power\PowerThrottling') -ne $true) {
 	New-Item 'HKLM:\System\ControlSet001\Control\Power\PowerThrottling' -Force 
 }
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Control\Power\PowerThrottling' -Name 'PowerThrottlingOff' -PropertyType DWord -Value 1 -Force
 
-Write-Host 'Power Plan: Shutdown settings: Disabling Fast Startup' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Power Plan: Shutdown settings: Disabling Fast Startup'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power' -Name 'HiberbootEnabled' -PropertyType DWord -Value 0 -Force
 
-Write-Host 'Power Plan: Display: Turn off display after: 0 Seconds (Never)' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Power Plan: Display: Turn off display after: 0 Seconds (Never)'); [Console]::ResetColor(); [Console]::WriteLine()
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e 0
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e 0
 
-Write-Host 'O&O ShutUp10++: Current User: Disabling transmission of typing information' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Current User: Disabling transmission of typing information'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Input\TIPC' -Name 'Enabled' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Current User: Disabling suggestions in the timeline' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Current User: Disabling suggestions in the timeline'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SubscribedContent-353698Enabled' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Current User: Disabling tips, tricks and suggestions when using Windows' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Current User: Disabling tips, tricks and suggestions when using Windows'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SubscribedContent-338389Enabled' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Current User: Disabling showing suggested content in the Settings app' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Current User: Disabling showing suggested content in the Settings app'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SubscribedContent-353696Enabled' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SubscribedContent-338393Enabled' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SubscribedContent-353694Enabled' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Current User: Disabling storage of clipboard history for current user' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Current User: Disabling storage of clipboard history for current user'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Clipboard' -Name 'EnableClipboardHistory' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Current User: Disabling app access to user account information for current user' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Current User: Disabling app access to user account information for current user'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\userAccountInformation' -Name 'Value' -Value Deny -PropertyType String -Force
 
-Write-Host 'O&O ShutUp10++: Current User: Disabling app access to diagnostics information for current user' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Current User: Disabling app access to diagnostics information for current user'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\appDiagnostics') -ne $true) {
 	New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\appDiagnostics' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\appDiagnostics' -Name 'Value' -Value Deny -PropertyType String -Force
 
-Write-Host 'O&O ShutUp10++: Current User: Microsoft Edge: Disabling tracking in the web' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Current User: Microsoft Edge: Disabling tracking in the web'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Main') -ne $true) {
 	New-Item 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Main' -Force 
 }
 New-ItemProperty -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Main' -Name 'DoNotTrack' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Current User: Microsoft Edge: Disabling page prediction' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Current User: Microsoft Edge: Disabling page prediction'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\FlipAhead') -ne $true) {
 	New-Item 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\FlipAhead' -Force 
 }
 New-ItemProperty -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\FlipAhead' -Name 'FPEnabled' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Current User: Microsoft Edge: Disabling search and website suggestions' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Current User: Microsoft Edge: Disabling search and website suggestions'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Main' -Name 'ShowSearchSuggestionsGlobal' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Current User: Microsoft Edge: Disabling Cortana in Microsoft Edge' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Current User: Microsoft Edge: Disabling Cortana in Microsoft Edge'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\ServiceUI') -ne $true) {
 	New-Item 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\ServiceUI' -Force 
 }
 New-ItemProperty -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\ServiceUI' -Name 'EnableCortana' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Current User: Microsoft Edge: Disabling showing search history' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Current User: Microsoft Edge: Disabling showing search history'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\ServiceUI\ShowSearchHistory') -ne $true) {
 	New-Item 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\ServiceUI\ShowSearchHistory' -Force 
 }
 New-ItemProperty -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\ServiceUI\ShowSearchHistory' -Name '(default)' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Current User: Disabling synchronization of all settings' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Current User: Disabling synchronization of all settings'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync' -Name 'SyncPolicy' -Value 5 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Current User: Disabling synchronization of design settings' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Current User: Disabling synchronization of design settings'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Personalization' -Name 'Enabled' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Current User: Disabling synchronization of browser settings' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Current User: Disabling synchronization of browser settings'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\BrowserSettings') -ne $true) {
 	New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\BrowserSettings' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\BrowserSettings' -Name 'Enabled' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Current User: Disabling synchronization of credentials (passwords)' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Current User: Disabling synchronization of credentials (passwords)'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Credentials' -Name 'Enabled' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Current User: Disabling synchronization of language settings' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Current User: Disabling synchronization of language settings'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Language' -Name 'Enabled' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Current User: Disabling synchronization of accessibility settings' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Current User: Disabling synchronization of accessibility settings'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Accessibility' -Name 'Enabled' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Current User: Disabling synchronization of Windows settings' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Current User: Disabling synchronization of Windows settings'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Windows' -Name 'Enabled' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Current User: Disabling and Resetting Cortana' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Current User: Disabling and Resetting Cortana'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Windows Search') -ne $true) {
 	New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Windows Search' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Windows Search' -Name 'CortanaConsent' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Current User: Disabling Input Personalization' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Current User: Disabling Input Personalization'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\InputPersonalization' -Name 'RestrictImplicitInkCollection' -Value 1 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\InputPersonalization' -Name 'RestrictImplicitTextCollection' -Value 1 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\InputPersonalization\TrainedDataStore' -Name 'HarvestContacts' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Personalization\Settings' -Name 'AcceptedPrivacyPolicy' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Current User: Disabling fun facts, tips, tricks, and more on your lock screen' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Current User: Disabling fun facts, tips, tricks, and more on your lock screen'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SubscribedContent-338387Enabled' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Current User: Disabling notifications on the lock screen' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Current User: Disabling notifications on the lock screen'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Notifications\Settings' -Name 'NOC_GLOBAL_SETTING_ALLOW_TOASTS_ABOVE_LOCK' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Current User: Disabling news and interests in the task bar for current user' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Current User: Disabling news and interests in the task bar for current user'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds' -Name 'ShellFeedsTaskbarViewMode' -Value 2 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Current User: Disabling Windows Media Player Diagnostics' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Current User: Disabling Windows Media Player Diagnostics'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\MediaPlayer\Preferences' -Name 'UsageTracking' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling camera in logon screen' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling camera in logon screen'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Personalization') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Personalization' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Personalization' -Name 'NoLockScreenCamera' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling and Resetting Advertising ID and info for the machine' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling and Resetting Advertising ID and info for the machine'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo') -ne $true) {
 	New-Item 'HKLM:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo' -Name 'Enabled' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling advertisments via Bluetooth' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling advertisments via Bluetooth'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Microsoft\PolicyManager\current\device\Bluetooth') -ne $true) {
 	New-Item 'HKLM:\Software\Microsoft\PolicyManager\current\device\Bluetooth' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\PolicyManager\current\device\Bluetooth' -Name 'AllowAdvertising' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling backup of text messages into the cloud' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling backup of text messages into the cloud'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Messaging') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Messaging' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Messaging' -Name 'AllowMessageSync' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling Windows Error Reporting' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling Windows Error Reporting'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\Windows Error Reporting' -Name 'Disabled' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling biometrical features' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling biometrical features'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Biometrics') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Biometrics' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Biometrics' -Name 'Enabled' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling app access to user account information on this device' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling app access to user account information on this device'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\userAccountInformation' -Name 'Value' -Value Deny -PropertyType String -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling app access to diagnostics information on this device' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling app access to diagnostics information on this device'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\appDiagnostics' -Name 'Value' -Value Deny -PropertyType String -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling password reveal button' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling password reveal button'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\CredUI') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\CredUI' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\CredUI' -Name 'DisablePasswordReveal' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling Internet access of Windows Media Digital Rights Managment (DRM)' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling Internet access of Windows Media Digital Rights Managment (DRM)'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\WMDRM') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\WMDRM' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\WMDRM' -Name 'DisableOnline' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling automatic completion of web addresses in address bar' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling automatic completion of web addresses in address bar'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Microsoft\PolicyManager\current\device\Browser') -ne $true) {
 	New-Item 'HKLM:\Software\Microsoft\PolicyManager\current\device\Browser' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\PolicyManager\current\device\Browser' -Name 'AllowAddressBarDropdown' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling user feedback in toolbar' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling user feedback in toolbar'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Edge') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Edge' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Edge' -Name 'UserFeedbackAllowed' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling storing and autocompleting of credit card data on websites' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling storing and autocompleting of credit card data on websites'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Edge' -Name 'AutofillCreditCardEnabled' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling Microsoft Edge launch in the background' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling Microsoft Edge launch in the background'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\Main') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\Main' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\Main' -Name 'AllowPrelaunch' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling loading the start and new tab pages in the background' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling loading the start and new tab pages in the background'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\TabPreloader') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\TabPreloader' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\MicrosoftEdge\TabPreloader' -Name 'AllowTabPreloading' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling online speech recognition' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling online speech recognition'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\InputPersonalization') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\InputPersonalization' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\InputPersonalization' -Name 'AllowInputPersonalization' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling downlaod and updates of speech recognition and speech synthesis models' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling downlaod and updates of speech recognition and speech synthesis models'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Speech_OneCore\Preferences' -Name 'ModelDownloadAllowed' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling functionallity to locate the system' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling functionallity to locate the system'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\LocationAndSensors') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\LocationAndSensors' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\LocationAndSensors' -Name 'DisableWindowsLocationProvider' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling scripting functionallity to locate the system' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling scripting functionallity to locate the system'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\LocationAndSensors' -Name 'DisableLocationScripting' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling application telemetry' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling application telemetry'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\DataCollection' -Name 'AllowTelemetry' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling diagnostic log collection' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling diagnostic log collection'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\DataCollection' -Name 'LimitDiagnosticLogCollection' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling Windows Update via peer-to-peer' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling Windows Update via peer-to-peer'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization') -ne $true) {
 	New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization' -Force 
 }
@@ -241,164 +241,164 @@ if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\DeliveryOptimiza
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\DeliveryOptimization' -Name 'DODownloadMode' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling updates to the speech recognition and speech syhesis modules' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling updates to the speech recognition and speech syhesis modules'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Speech') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Speech' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Speech' -Name 'AllowSpeechModelUpdate' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling OneDrive access to network before login' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling OneDrive access to network before login'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Microsoft\OneDrive') -ne $true) {
 	New-Item 'HKLM:\Software\Microsoft\OneDrive' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\OneDrive' -Name 'PreventNetworkTrafficPreUserSignIn' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling Microsoft SpyNet memembership' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling Microsoft SpyNet memembership'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows Defender\Spynet') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows Defender\Spynet' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows Defender\Spynet' -Name 'SpyNetReporting' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling reporting of malware infection information' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling reporting of malware infection information'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\MRT') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\MRT' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\MRT' -Name 'DontReportInfectionInformation' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling Meet now in the task bar on this device' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling Meet now in the task bar on this device'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'HideSCAMeetNow' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling news and interests in the taskbar on this device' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling news and interests in the taskbar on this device'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Feeds') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Windows Feeds' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Feeds' -Name 'EnableFeeds' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling remote assistance connections to this computer' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling remote assistance connections to this computer'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows NT\Terminal Services' -Name 'fAllowToGetHelp' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'O&O ShutUp10++: Local Machine: Disabling installation of PC Health Check' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('O&O ShutUp10++: Local Machine: Disabling installation of PC Health Check'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Microsoft\PCHC') -ne $true) {
 	New-Item 'HKLM:\Software\Microsoft\PCHC' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\PCHC' -Name 'PreviousUninstall' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Network: WLAN Service: WLAN Settings: Allow Windows to automatically connect to suggested open hotspots, to networks shared by contacts, and to hotspots offering paid services: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Network: WLAN Service: WLAN Settings: Allow Windows to automatically connect to suggested open hotspots, to networks shared by contacts, and to hotspots offering paid services: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Microsoft\WcmSvc\wifinetworkmanager\config') -ne $true) {
 	New-Item 'HKLM:\Software\Microsoft\WcmSvc\wifinetworkmanager\config' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\WcmSvc\wifinetworkmanager\config' -Name 'AutoConnectAllowedOEM' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Location and Sensors: Turn off location: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Location and Sensors: Turn off location: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\LocationAndSensors') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\LocationAndSensors' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\LocationAndSensors' -Name 'DisableLocation' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Cloud Content: Turn off cloud optimized content: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Cloud Content: Turn off cloud optimized content: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\CloudContent') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\CloudContent' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\CloudContent' -Name 'DisableCloudOptimizedContent' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Cloud Content: Turn off cloud consumer account state content: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Cloud Content: Turn off cloud consumer account state content: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\CloudContent') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\CloudContent' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\CloudContent' -Name 'DisableConsumerAccountStateContent' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Cloud Content: Do not show Windows tips: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Cloud Content: Do not show Windows tips: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\CloudContent') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\CloudContent' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\CloudContent' -Name 'DisableSoftLanding' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Cloud Content: Turn off Microsoft consumer experiences: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Cloud Content: Turn off Microsoft consumer experiences: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\CloudContent') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\CloudContent' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\CloudContent' -Name 'DisableWindowsConsumerFeatures' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: User Configuration: Administrative Templates: Windows Components: Cloud Content: Configure Windows spotlight on lock screen: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: User Configuration: Administrative Templates: Windows Components: Cloud Content: Configure Windows spotlight on lock screen: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent') -ne $true) {
 	New-Item 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Name 'ConfigureWindowsSpotlight' -Value 2 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: User Configuration: Administrative Templates: Windows Components: Cloud Content: Turn off Spotlight collection on Desktop: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: User Configuration: Administrative Templates: Windows Components: Cloud Content: Turn off Spotlight collection on Desktop: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent') -ne $true) {
 	New-Item 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Name 'DisableSpotlightCollectionOnDesktop' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: User Configuration: Administrative Templates: Windows Components: Cloud Content: Do not use diagnostic data for tailored experiences: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: User Configuration: Administrative Templates: Windows Components: Cloud Content: Do not use diagnostic data for tailored experiences: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent') -ne $true) {
 	New-Item 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Name 'DisableTailoredExperiencesWithDiagnosticData' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: User Configuration: Administrative Templates: Windows Components: Cloud Content: Do not suggest third-party content in Windows spotlight: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: User Configuration: Administrative Templates: Windows Components: Cloud Content: Do not suggest third-party content in Windows spotlight: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent') -ne $true) {
 	New-Item 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Name 'DisableThirdPartySuggestions' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: User Configuration: Administrative Templates: Windows Components: Cloud Content: Turn off all Windows spotlight features: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: User Configuration: Administrative Templates: Windows Components: Cloud Content: Turn off all Windows spotlight features: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent') -ne $true) {
 	New-Item 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Name 'DisableWindowsSpotlightFeatures' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: User Configuration: Administrative Templates: Windows Components: Cloud Content: Turn off Windows Spotlight on Action Center: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: User Configuration: Administrative Templates: Windows Components: Cloud Content: Turn off Windows Spotlight on Action Center: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent') -ne $true) {
 	New-Item 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Name 'DisableWindowsSpotlightOnActionCenter' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: User Configuration: Administrative Templates: Windows Components: Cloud Content: Turn off Windows Spotlight on Settings: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: User Configuration: Administrative Templates: Windows Components: Cloud Content: Turn off Windows Spotlight on Settings: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent') -ne $true) {
 	New-Item 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Name 'DisableWindowsSpotlightOnSettings' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: User Configuration: Administrative Templates: Windows Components: Cloud Content: Turn off the Windows Welcome Experience: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: User Configuration: Administrative Templates: Windows Components: Cloud Content: Turn off the Windows Welcome Experience: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent') -ne $true) {
 	New-Item 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Name 'DisableWindowsSpotlightWindowsWelcomeExperience' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Control Panel: Allow Online Tips: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Control Panel: Allow Online Tips: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer') -ne $true) {
 	New-Item 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'AllowOnlineTips' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Control Panel: Regional and Language Options: Handwriting personalization: Turn off automatic learning: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Control Panel: Regional and Language Options: Handwriting personalization: Turn off automatic learning: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\InputPersonalization') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\InputPersonalization' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\InputPersonalization' -Name 'RestrictImplicitInkCollection' -Value 1 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\InputPersonalization' -Name 'RestrictImplicitTextCollection' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Start Menu and Taskbar: Do not keep history of recently opened documents: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Start Menu and Taskbar: Do not keep history of recently opened documents: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer') -ne $true) {
 	New-Item 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'NoRecentDocsHistory' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Start Menu and Taskbar: Notifications: Turn off notifications network usage: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Start Menu and Taskbar: Notifications: Turn off notifications network usage: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\CurrentVersion\PushNotifications') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\CurrentVersion\PushNotifications' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\CurrentVersion\PushNotifications' -Name 'NoCloudApplicationNotification' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: System: App-V: CEIP: Microsoft Customer Experience Improvement Program (CEIP): Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: System: App-V: CEIP: Microsoft Customer Experience Improvement Program (CEIP): Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\AppV\CEIP') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\AppV\CEIP' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\AppV\CEIP' -Name 'CEIPEnable' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: System: Device Installation: Do not send a Windows error report when a generic driver is installed on a device: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: System: Device Installation: Do not send a Windows error report when a generic driver is installed on a device: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\DeviceInstall\Settings') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\DeviceInstall\Settings' -Force 
 }
@@ -408,7 +408,7 @@ if ((Test-Path -Path 'HKLM:\System\DriverDatabase\Policies\Settings') -ne $true)
 }
 New-ItemProperty -Path 'HKLM:\System\DriverDatabase\Policies\Settings' -Name 'DisableSendGenericDriverNotFoundToWER' -Value 1 -PropertyType DWord -Force # Error 
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: System: Device Installation: Prevent Windows from sending an error report when a device driver requests additional woftware during installation: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: System: Device Installation: Prevent Windows from sending an error report when a device driver requests additional woftware during installation: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\DeviceInstall\Settings') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\DeviceInstall\Settings' -Force 
 }
@@ -418,13 +418,13 @@ if ((Test-Path -Path 'HKLM:\System\DriverDatabase\Policies\Settings') -ne $true)
 }
 New-ItemProperty -Path 'HKLM:\System\DriverDatabase\Policies\Settings' -Name 'DisableSendRequestAdditionalSoftwareToWER' -Value 1 -PropertyType DWord -Force # Error 
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off handwriting recognition error reporting: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off handwriting recognition error reporting: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\HandwritingErrorReports') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\HandwritingErrorReports' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\HandwritingErrorReports' -Name 'PreventHandwritingErrorReports' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off Windows Customer Experience Improvement Program: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off Windows Customer Experience Improvement Program: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\SQMClient\Windows') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\SQMClient\Windows' -Force 
 }
@@ -436,13 +436,13 @@ if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\PCHealth\HelpSvc') -ne $
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\PCHealth\HelpSvc' -Name 'Headlines' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off Help and Support Center Microsoft Knowledge Base search: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off Help and Support Center Microsoft Knowledge Base search: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\PCHealth\HelpSvc') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\PCHealth\HelpSvc' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\PCHealth\HelpSvc' -Name 'MicrosoftKBSearch' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off Windows Error Reporting: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off Windows Error Reporting: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\PCHealth\ErrorReporting') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\PCHealth\ErrorReporting' -Force 
 }
@@ -452,25 +452,25 @@ if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Error Re
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\PCHealth\ErrorReporting' -Name 'DoReport' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Error Reporting' -Name 'Disabled' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off Search Companion content file updates: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off Search Companion content file updates: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\SearchCompanion') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\SearchCompanion' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\SearchCompanion' -Name 'DisableContentFileUpdates' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off Internet File Association service: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off Internet File Association service: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer') -ne $true) {
 	New-Item 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'NoInternetOpenWith' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off access to the Store: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off access to the Store: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Explorer') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Explorer' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Explorer' -Name 'NoUseStoreOpenWith' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off Internet download for Web publishing and online ordering wizards: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off Internet download for Web publishing and online ordering wizards: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer') -ne $true) {
 	New-Item 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Force 
 }
@@ -488,115 +488,115 @@ if ((Test-Path -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\E
 }
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'NoPublishingWizard' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off the Windows Messenger Customer Experience Improvement Program: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off the Windows Messenger Customer Experience Improvement Program: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Messenger\Client') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Messenger\Client' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Messenger\Client' -Name 'CEIP' -Value 2 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off handwriting personalization data sharing: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off handwriting personalization data sharing: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\TabletPC') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\TabletPC' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\TabletPC' -Name 'PreventHandwritingDataSharing' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: System: OS Policies: Allow Clipboard History: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: System: OS Policies: Allow Clipboard History: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\System') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\System' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\System' -Name 'AllowClipboardHistory' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: System: OS Policies: Allow Clipboard synchronization across devices: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: System: OS Policies: Allow Clipboard synchronization across devices: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\System') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\System' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\System' -Name 'AllowCrossDeviceClipboard' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: System: OS Policies: Allow publishing of User Activites: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: System: OS Policies: Allow publishing of User Activites: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\System') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\System' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\System' -Name 'PublishUserActivities' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: System: OS Policies: Allow upload of User Activites: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: System: OS Policies: Allow upload of User Activites: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\System') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\System' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\System' -Name 'UploadUserActivities' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: System: OS Policies: Enabled Activity Feed: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: System: OS Policies: Enabled Activity Feed: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\System') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\System' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\System' -Name 'EnableActivityFeed' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: System: User Profiles: Turn off the advertising ID: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: System: User Profiles: Turn off the advertising ID: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\AdvertisingInfo') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\AdvertisingInfo' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\AdvertisingInfo' -Name 'DisabledByGroupPolicy' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Application Compatibility: Remove Program Compatibility Property Page: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Application Compatibility: Remove Program Compatibility Property Page: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\AppCompat') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\AppCompat' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\AppCompat' -Name 'DisablePropPage' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Application Compatibility: Turn off Application Compatibility Engine: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Application Compatibility: Turn off Application Compatibility Engine: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\AppCompat') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\AppCompat' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\AppCompat' -Name 'DisableEngine' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Application Compatibility: Turn off Application Telemetry: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Application Compatibility: Turn off Application Telemetry: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\AppCompat') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\AppCompat' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\AppCompat' -Name 'AITEnable' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Application Compatibility: Turn off Inventory Collector: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Application Compatibility: Turn off Inventory Collector: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\AppCompat') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\AppCompat' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\AppCompat' -Name 'DisableInventory' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Application Compatibility: Turn off Program Compatibility Assistant: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Application Compatibility: Turn off Program Compatibility Assistant: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\AppCompat') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\AppCompat' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\AppCompat' -Name 'DisablePCA' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Application Compatibility: Turn off Steps Recorder: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Application Compatibility: Turn off Steps Recorder: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\AppCompat') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\AppCompat' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\AppCompat' -Name 'DisableUAR' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Application Compatibility: Turn off SwitchBack Compatibility Engine: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Application Compatibility: Turn off SwitchBack Compatibility Engine: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\AppCompat') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\AppCompat' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\AppCompat' -Name 'SbEnable' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Data Collection and Preview Builds: Allow device name to be sent in Windows diagnostic data: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Data Collection and Preview Builds: Allow device name to be sent in Windows diagnostic data: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\DataCollection') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\DataCollection' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\DataCollection' -Name 'AllowDeviceNameInTelemetry' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Data Collection and Preview Builds: Configure collection of browsing data for Desktop Analytics: Do not allow sending intranet or internet history' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Data Collection and Preview Builds: Configure collection of browsing data for Desktop Analytics: Do not allow sending intranet or internet history'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\DataCollection') -ne $true) {
 	New-Item 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\DataCollection' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\DataCollection' -Name 'MicrosoftEdgeDataOptIn' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Data Collection and Preview Builds: Disable OneSettings Downloads: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Data Collection and Preview Builds: Disable OneSettings Downloads: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\DataCollection') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\DataCollection' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\DataCollection' -Name 'DisableOneSettingsDownloads' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Data Collection and Preview Builds: Do not show feedback notifications: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Data Collection and Preview Builds: Do not show feedback notifications: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\DataCollection') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\DataCollection' -Force 
 }
@@ -607,67 +607,67 @@ if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Siuf\Rules') -ne $true) {
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Siuf\Rules' -Name 'NumberOfSIUFInPeriod' -PropertyType DWord -Value 0 -Force
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Siuf\Rules' -Name 'PeriodInNanoSeconds' -PropertyType DWord -Value 0 -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Edge UI: Disable help tips: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Edge UI: Disable help tips: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\EdgeUI') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\EdgeUI' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\EdgeUI' -Name 'DisableHelpSticker' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Maps: Turn off Automatic Download nad Update of Map Data: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Maps: Turn off Automatic Download nad Update of Map Data: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Maps') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Maps' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Maps' -Name 'AutoDownloadAndUpdateMapData' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Maps: Turn off unsolicited network  traffic on the Offline Maps settings page: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Maps: Turn off unsolicited network  traffic on the Offline Maps settings page: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Maps') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Maps' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Maps' -Name 'AllowUntriggeredNetworkTrafficOnSettingsPage' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Online Assistance: Turn off Active Help: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Online Assistance: Turn off Active Help: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Assistance\Client\1.0') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Assistance\Client\1.0' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Assistance\Client\1.0' -Name 'NoActiveHelp' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow Cloud Search: Disable Cloud Search' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow Cloud Search: Disable Cloud Search'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Name 'AllowCloudSearch' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow Cortana: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow Cortana: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Name 'AllowCortana' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow Cortana above lock screen: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow Cortana above lock screen: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Name 'AllowCortanaAboveLock' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow Cortana Page in OOBE on an AAD account: Disable Cortana Page in AAD' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow Cortana Page in OOBE on an AAD account: Disable Cortana Page in AAD'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Name 'AllowCortanaInAADPathOOBE' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow search highlights: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow search highlights: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Name 'EnableDynamicContentInWSB' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow search and Cortana to use location: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow search and Cortana to use location: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Name 'AllowSearchToUseLocation' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Do not allow web search: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Do not allow web search: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Force 
 }
@@ -685,116 +685,116 @@ if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search')
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Name 'ConnectedSearchUseWebOverMeteredConnections' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Set the SafeSearch setting for Search: Off' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Set the SafeSearch setting for Search: Off'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Name 'ConnectedSearchSafeSearch' -Value 3 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Set what information is shared in Search: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Set what information is shared in Search: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Force -ErrorAction SilentlyContinue # Error
 }
 Remove-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Search' -Name 'ConnectedSearchPrivacy' -Force -ErrorAction SilentlyContinue # Error 
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Text Input: Improve inking and typing recognition: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Text Input: Improve inking and typing recognition: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\TextInput') -ne $true) {
 	New-Item 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\TextInput' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\TextInput' -Name 'AllowLinguisticDataCollection' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Calendar: Turn off Windows Calendar: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Calendar: Turn off Windows Calendar: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Windows') -ne $true) {
 	New-Item 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Windows' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\Windows' -Name 'TurnOffWinCal' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Configure Error Reporting: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Configure Error Reporting: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\PCHealth\ErrorReporting\DW') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\PCHealth\ErrorReporting\DW' -Force 
 }
 Remove-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\PCHealth\ErrorReporting\DW' -Name 'DWReporteeName' -Force -ErrorAction SilentlyContinue # Error
 Remove-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\PCHealth\ErrorReporting\DW' -Name 'DWFileTreeRoot' -Force -ErrorAction SilentlyContinue # Error
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Automatically send memory dumps for OS-generated error reports: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Automatically send memory dumps for OS-generated error reports: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Error Reporting') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Windows Error Reporting' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Error Reporting' -Name 'AutoApproveOSDumps' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Send data when on connected to a restricted/costed network: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Send data when on connected to a restricted/costed network: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Error Reporting') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Windows Error Reporting' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Error Reporting' -Name 'BypassNetworkCostThrottling' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Send additional data when on battery power: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Send additional data when on battery power: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Error Reporting') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Windows Error Reporting' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Error Reporting' -Name 'BypassPowerThrottling' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Do not send additional data: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Do not send additional data: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Error Reporting') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Windows Error Reporting' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Windows Error Reporting' -Name 'DontSendAdditionalData' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Mobility Center: Turn off Windows Mobility Center: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Mobility Center: Turn off Windows Mobility Center: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\MobilityCenter') -ne $true) {
 	New-Item 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\MobilityCenter' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\MobilityCenter' -Name 'NoMobilityCenter' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Messenger: Do not automatically start Windows Messenger initially: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Messenger: Do not automatically start Windows Messenger initially: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Messenger\Client') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Messenger\Client' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Messenger\Client' -Name 'PreventAutoRun' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Messenger: Do not allow Windows Messenger to be run: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Messenger: Do not allow Windows Messenger to be run: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Messenger\Client') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Messenger\Client' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Messenger\Client' -Name 'PreventRun' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Microsoft Defender Antivirus: MAPS: Send file samples when further analysis is required: Never send' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Microsoft Defender Antivirus: MAPS: Send file samples when further analysis is required: Never send'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows Defender\Spynet') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows Defender\Spynet' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows Defender\Spynet' -Name 'SubmitSamplesConsent' -Value 2 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Game Recording and Broadcasing: Disable' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Game Recording and Broadcasing: Disable'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\GameDVR') -ne $true) {
 	New-Item 'HKLM:\Software\Policies\Microsoft\Windows\GameDVR' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\GameDVR' -Name 'AllowGameDVR' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: User Configuration: Administrative Templates: Windows Components: Windows Copilot: Turn off Windows Copilot: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: User Configuration: Administrative Templates: Windows Components: Windows Copilot: Turn off Windows Copilot: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot') -ne $true) {
 	New-Item 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot' -Name 'TurnOffWindowsCopilot' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: User Configuration: Administrative Templates: Start Menu and Taskbar: Remove the Meet Now icon: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: User Configuration: Administrative Templates: Start Menu and Taskbar: Remove the Meet Now icon: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer') -ne $true) {
 	New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'HideSCAMeetNow' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: User Configuration: Administrative Templates: Windows Components: File Explorer: Turn off Windows Libraries features that rely on indexed file data: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: User Configuration: Administrative Templates: Windows Components: File Explorer: Turn off Windows Libraries features that rely on indexed file data: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if (-not (Test-Path -Path HKCU:\Software\Policies\Microsoft\Windows\Explorer)) {
 	New-Item -Path HKCU:\Software\Policies\Microsoft\Windows\Explorer -Force
 }
 New-ItemProperty -Path HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer -Name 'DisableIndexedLibraryExperience' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Group Policy: User Configuration: Administrative Templates: Windows Components: Remote Desktop Services: Remote Desktop Connection Client: Allow .rdp files from unkown publishers: Enabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Group Policy: User Configuration: Administrative Templates: Windows Components: Remote Desktop Services: Remote Desktop Connection Client: Allow .rdp files from unkown publishers: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services') -ne $true) {
 	New-Item 'HKCU:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services' -Force 
 }
 New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services' -Name 'AllowUnsignedFiles' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Step2: Scheduled tasks: Disabling' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Scheduled tasks: Disabling'); [Console]::ResetColor(); [Console]::WriteLine()
 Disable-ScheduledTask -TaskName 'Consolidator' -TaskPath '\Microsoft\Windows\Customer Experience Improvement Program\'
 Disable-ScheduledTask -TaskName 'DmClient' -TaskPath '\Microsoft\Windows\Feedback\Siuf\'
 Disable-ScheduledTask -TaskName 'DmClientOnScenarioDownload' -TaskPath '\Microsoft\Windows\Feedback\Siuf\'
@@ -814,55 +814,58 @@ Disable-ScheduledTask -TaskName 'UsbCeip' -TaskPath '\Microsoft\Windows\Customer
 Disable-ScheduledTask -TaskName 'XblGameSaveTask' -TaskPath '\Microsoft\XblGameSave\'
 Disable-ScheduledTask -TaskName 'PcaPatchDbTask' -TaskPath '\Microsoft\Windows\Application Experience'
 
-Write-Host 'Step2: Windows Capabilities: Removing Internet Explorer' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Capabilities: Removing Internet Explorer'); [Console]::ResetColor(); [Console]::WriteLine()
 Remove-WindowsCapability -Name 'Browser.InternetExplorer~~~~0.0.11.0' -Online
 
-Write-Host 'Step2: Windows Capabilities: Removing Windows Media Player' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Capabilities: Removing Windows Media Player'); [Console]::ResetColor(); [Console]::WriteLine()
 Remove-WindowsCapability -Name 'Media.WindowsMediaPlayer~~~~0.0.12.0' -Online
 
-Write-Host 'Step2: Windows Capabilities: Removing WordPad' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Capabilities: Removing WordPad'); [Console]::ResetColor(); [Console]::WriteLine()
 Remove-WindowsCapability -Name 'Microsoft.Windows.WordPad~~~~0.0.1.0' -Online
 
-Write-Host 'Step2: Windows Capabilities: Removing Steps Recorder' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Capabilities: Removing Steps Recorder'); [Console]::ResetColor(); [Console]::WriteLine()
 Remove-WindowsCapability -Name 'App.StepsRecorder~~~~0.0.1.0' -Online
 
-Write-Host 'Step2: Windows Capabilities: Removing Windows Hello Face' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Capabilities: Removing Windows Hello Face'); [Console]::ResetColor(); [Console]::WriteLine()
 Remove-WindowsCapability -Name 'Hello.Face.18967~~~~0.0.1.0' -Online
 
-Write-Host 'Step2: Windows Capabilities: Removing Quick Assist' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Capabilities: Removing Quick Assist'); [Console]::ResetColor(); [Console]::WriteLine()
 Remove-WindowsCapability -Name 'App.Support.QuickAssist~~~~0.0.1.0' -Online
 
-Write-Host 'Step2: Windows Capabilities: Removing Math Input Panel' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Capabilities: Removing Math Input Panel'); [Console]::ResetColor(); [Console]::WriteLine()
 Remove-WindowsCapability -Name 'MathRecognizer~~~~0.0.1.0' -Online
 
-Write-Host 'Step2: Windows Capabilities: Removing OpenSSH Client' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Capabilities: Removing OpenSSH Client'); [Console]::ResetColor(); [Console]::WriteLine()
 Remove-WindowsCapability -Name 'OpenSSH.Client~~~~0.0.1.0' -Online
 
-# Write-Host 'Step2: Windows Packages: Removing Windows Backup app' -ForegroundColor green -BackgroundColor black
+# [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write("Step2: Windows Packages: Removing Windows Backup app"); [Console]::ResetColor(); [Console]::WriteLine()
 # $windowsbackupapp = Get-WindowsPackage -Online | Where-Object { $_.PackageName -eq 'Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35~amd64~~10.0.19041.4355' }
 # if ($windowsbackupapp.PackageState -match 'Installed') {
 # 	Remove-WindowsPackage -PackageName 'Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35~amd64~~10.0.19041.4355' -Online -NoRestart
 # }
 
-Write-Host 'Step2: Hiding Keyboard Switching Notification' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing Dev Home'); [Console]::ResetColor(); [Console]::WriteLine()
+Get-AppxPackage -AllUsers -PackageTypeFilter Bundle -Name '*Windows.DevHome*' | Remove-AppxPackage -AllUsers
+
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Hiding Keyboard Switching Notification'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\Keyboard Layout\ShowToast') -ne $true) {
 	New-Item 'HKCU:\Keyboard Layout\ShowToast' -Force
 }
 New-ItemProperty -Path 'HKCU:\Keyboard Layout\ShowToast' -Name 'Show' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Settings: System Properties: Remote: Allow Remote Assistance connections to this computer: Off' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: System Properties: Remote: Allow Remote Assistance connections to this computer: Off'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\System\ControlSet001\Control\Remote Assistance') -ne $true) {
  New-Item 'HKLM:\System\ControlSet001\Control\Remote Assistance' -Force 
 }
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Control\Remote Assistance' -Name 'fAllowToGetHelp' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Settings: Bing Search: Disabling' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Bing Search: Disabling'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search') -ne $true) {
  New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Search' -Name 'BingSearchEnabled' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Settings: Folder Properties: Customize: Optimize all folders: General items' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Folder Properties: Customize: Optimize all folders: General items'); [Console]::ResetColor(); [Console]::WriteLine()
 $BasePath = 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell'
 if (Test-Path -Path $BasePath\Bags) {
 	Remove-Item -Path $BasePath\Bags -Recurse -Force
@@ -875,7 +878,7 @@ $AllFolders = New-Item -Path $Bags.PSPath -Name 'AllFolders' -Force
 $Shell = New-Item -Path $AllFolders.PSPath -Name 'Shell' -Force
 New-ItemProperty -Path $Shell.PSPath -Name 'FolderType' -Value 'NotSpecified' -PropertyType String -Force
 
-Write-Host 'Settings: Settings: Personalization: Start: Choose which folders appears on Start: Settings + Explorer' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Settings: Personalization: Start: Choose which folders appears on Start: Settings + Explorer'); [Console]::ResetColor(); [Console]::WriteLine()
 $itemsToDisplay = @('explorer', 'settings')
 $key = Get-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\CloudStore\Store\Cache\DefaultAccount\*windows.data.unifiedtile.startglobalproperties\Current'
 $data = $key.Data[0..19] -Join ','
@@ -912,7 +915,7 @@ If ($itemsToDisplay.Length -gt 0) {
 $data += ',194,60,1,194,70,1,197,90,1,0'
 Set-ItemProperty -Path $key.PSPath -Name 'Data' -Type Binary -Value $data.Split(',')
 
-Write-Host 'Settings: ContentDeliveryManager: Disabling' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: ContentDeliveryManager: Disabling'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'FeatureManagementEnabled' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'OemPreInstalledAppsEnabled' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'PreInstalledAppsEnabled' -Value 0 -PropertyType DWord -Force
@@ -923,43 +926,43 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentD
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SoftLandingEnabled' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'SystemPaneSuggestionsEnabled' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Settings: Settings: System: Tablet: When I sign in: Never use tablet mode' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Settings: System: Tablet: When I sign in: Never use tablet mode'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell') -ne $true) {
  New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell' -Name 'SignInMode' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Settings: Settings: Personalization: Colors: Transparency effects: Off' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Settings: Personalization: Colors: Transparency effects: Off'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize') -ne $true) {
  New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize' -Name 'EnableTransparency' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Settings: Settings: Personalization: Start: Show recently opened items in Jump Lists on Start or the taskbar and in File Explorer Quick Access: Off' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Settings: Personalization: Start: Show recently opened items in Jump Lists on Start or the taskbar and in File Explorer Quick Access: Off'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced') -ne $true) {
  New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'Start_TrackDocs' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Settings: Settings: Personalization: Start: Show account-related notifications. When off, required notifications are still shown.: Off' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Settings: Personalization: Start: Show account-related notifications. When off, required notifications are still shown.: Off'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced') -ne $true) {
  New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'Start_AccountNotifications' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Settings: Control Panel: Ease of Access Center: Make the computer easier to see: Remove background images (when available): On' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Control Panel: Ease of Access Center: Make the computer easier to see: Remove background images (when available): On'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\Control Panel\Desktop') -ne $true) {
  New-Item 'HKCU:\Control Panel\Desktop' -Force 
 }
 New-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'UserPreferencesMask' -Value ([byte[]](0x90, 0x12, 0x03, 0x80, 0x91, 0x00, 0x00, 0x00)) -PropertyType Binary -Force
 
-Write-Host 'Settings: Control Panel: Ease of Access Center: Make the computer easier to see: Turn off all unnecessary animations (when possible): On' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Control Panel: Ease of Access Center: Make the computer easier to see: Turn off all unnecessary animations (when possible): On'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\Control Panel\Desktop\WindowMetrics') -ne $true) {
  New-Item 'HKCU:\Control Panel\Desktop\WindowMetrics' -Force 
 }
 New-ItemProperty -Path 'HKCU:\Control Panel\Desktop\WindowMetrics' -Name 'MinAnimate' -Value '0' -PropertyType String -Force
 
-Write-Host 'Settings: Settings: Devices: Mouse: Additional Mouse Options: Pointer Options: Enhance pointer precision: Off' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Settings: Devices: Mouse: Additional Mouse Options: Pointer Options: Enhance pointer precision: Off'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\Control Panel\Mouse') -ne $true) {
  New-Item 'HKCU:\Control Panel\Mouse' -Force 
 }
@@ -967,94 +970,94 @@ New-ItemProperty -Path 'HKCU:\Control Panel\Mouse' -Name 'MouseSpeed' -Value '0'
 New-ItemProperty -Path 'HKCU:\Control Panel\Mouse' -Name 'MouseThreshold1' -Value '0' -PropertyType String -Force
 New-ItemProperty -Path 'HKCU:\Control Panel\Mouse' -Name 'MouseThreshold2' -Value '0' -PropertyType String -Force
 
-Write-Host 'Settings: Settings: Privacy: Let Windows track app launches to improve Start and search results: Off' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Settings: Privacy: Let Windows track app launches to improve Start and search results: Off'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced') -ne $true) {
  New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'Start_TrackProgs' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Settings: File Explorer: Ribbon: Details View and Size all columms to fit' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: File Explorer: Ribbon: Details View and Size all columms to fit'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Ribbon') -ne $true) {
  New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Ribbon' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Ribbon' -Name 'MinimizedStateTabletModeOff' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Ribbon' -Name 'QatItems' -Value ([byte[]](0x3c, 0x73, 0x69, 0x71, 0x3a, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x55, 0x49, 0x20, 0x78, 0x6d, 0x6c, 0x6e, 0x73, 0x3a, 0x73, 0x69, 0x71, 0x3d, 0x22, 0x68, 0x74, 0x74, 0x70, 0x3a, 0x2f, 0x2f, 0x73, 0x63, 0x68, 0x65, 0x6d, 0x61, 0x73, 0x2e, 0x6d, 0x69, 0x63, 0x72, 0x6f, 0x73, 0x6f, 0x66, 0x74, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x77, 0x69, 0x6e, 0x64, 0x6f, 0x77, 0x73, 0x2f, 0x32, 0x30, 0x30, 0x39, 0x2f, 0x72, 0x69, 0x62, 0x62, 0x6f, 0x6e, 0x2f, 0x71, 0x61, 0x74, 0x22, 0x3e, 0x3c, 0x73, 0x69, 0x71, 0x3a, 0x72, 0x69, 0x62, 0x62, 0x6f, 0x6e, 0x20, 0x6d, 0x69, 0x6e, 0x69, 0x6d, 0x69, 0x7a, 0x65, 0x64, 0x3d, 0x22, 0x74, 0x72, 0x75, 0x65, 0x22, 0x3e, 0x3c, 0x73, 0x69, 0x71, 0x3a, 0x71, 0x61, 0x74, 0x20, 0x70, 0x6f, 0x73, 0x69, 0x74, 0x69, 0x6f, 0x6e, 0x3d, 0x22, 0x30, 0x22, 0x3e, 0x3c, 0x73, 0x69, 0x71, 0x3a, 0x73, 0x68, 0x61, 0x72, 0x65, 0x64, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x73, 0x3e, 0x3c, 0x73, 0x69, 0x71, 0x3a, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x20, 0x69, 0x64, 0x51, 0x3d, 0x22, 0x73, 0x69, 0x71, 0x3a, 0x31, 0x36, 0x31, 0x32, 0x38, 0x22, 0x20, 0x76, 0x69, 0x73, 0x69, 0x62, 0x6c, 0x65, 0x3d, 0x22, 0x66, 0x61, 0x6c, 0x73, 0x65, 0x22, 0x20, 0x61, 0x72, 0x67, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x3d, 0x22, 0x30, 0x22, 0x20, 0x2f, 0x3e, 0x3c, 0x73, 0x69, 0x71, 0x3a, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x20, 0x69, 0x64, 0x51, 0x3d, 0x22, 0x73, 0x69, 0x71, 0x3a, 0x31, 0x36, 0x31, 0x32, 0x39, 0x22, 0x20, 0x76, 0x69, 0x73, 0x69, 0x62, 0x6c, 0x65, 0x3d, 0x22, 0x66, 0x61, 0x6c, 0x73, 0x65, 0x22, 0x20, 0x61, 0x72, 0x67, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x3d, 0x22, 0x30, 0x22, 0x20, 0x2f, 0x3e, 0x3c, 0x73, 0x69, 0x71, 0x3a, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x20, 0x69, 0x64, 0x51, 0x3d, 0x22, 0x73, 0x69, 0x71, 0x3a, 0x31, 0x32, 0x33, 0x35, 0x32, 0x22, 0x20, 0x76, 0x69, 0x73, 0x69, 0x62, 0x6c, 0x65, 0x3d, 0x22, 0x66, 0x61, 0x6c, 0x73, 0x65, 0x22, 0x20, 0x61, 0x72, 0x67, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x3d, 0x22, 0x30, 0x22, 0x20, 0x2f, 0x3e, 0x3c, 0x73, 0x69, 0x71, 0x3a, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x20, 0x69, 0x64, 0x51, 0x3d, 0x22, 0x73, 0x69, 0x71, 0x3a, 0x31, 0x32, 0x33, 0x38, 0x34, 0x22, 0x20, 0x76, 0x69, 0x73, 0x69, 0x62, 0x6c, 0x65, 0x3d, 0x22, 0x66, 0x61, 0x6c, 0x73, 0x65, 0x22, 0x20, 0x61, 0x72, 0x67, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x3d, 0x22, 0x30, 0x22, 0x20, 0x2f, 0x3e, 0x3c, 0x73, 0x69, 0x71, 0x3a, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x20, 0x69, 0x64, 0x51, 0x3d, 0x22, 0x73, 0x69, 0x71, 0x3a, 0x31, 0x32, 0x33, 0x33, 0x36, 0x22, 0x20, 0x76, 0x69, 0x73, 0x69, 0x62, 0x6c, 0x65, 0x3d, 0x22, 0x66, 0x61, 0x6c, 0x73, 0x65, 0x22, 0x20, 0x61, 0x72, 0x67, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x3d, 0x22, 0x30, 0x22, 0x20, 0x2f, 0x3e, 0x3c, 0x73, 0x69, 0x71, 0x3a, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x20, 0x69, 0x64, 0x51, 0x3d, 0x22, 0x73, 0x69, 0x71, 0x3a, 0x31, 0x32, 0x33, 0x35, 0x37, 0x22, 0x20, 0x76, 0x69, 0x73, 0x69, 0x62, 0x6c, 0x65, 0x3d, 0x22, 0x66, 0x61, 0x6c, 0x73, 0x65, 0x22, 0x20, 0x61, 0x72, 0x67, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x3d, 0x22, 0x30, 0x22, 0x20, 0x2f, 0x3e, 0x3c, 0x73, 0x69, 0x71, 0x3a, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x20, 0x69, 0x64, 0x51, 0x3d, 0x22, 0x73, 0x69, 0x71, 0x3a, 0x31, 0x36, 0x35, 0x37, 0x36, 0x22, 0x20, 0x76, 0x69, 0x73, 0x69, 0x62, 0x6c, 0x65, 0x3d, 0x22, 0x74, 0x72, 0x75, 0x65, 0x22, 0x20, 0x61, 0x72, 0x67, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x3d, 0x22, 0x30, 0x22, 0x20, 0x2f, 0x3e, 0x3c, 0x73, 0x69, 0x71, 0x3a, 0x63, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x20, 0x69, 0x64, 0x51, 0x3d, 0x22, 0x73, 0x69, 0x71, 0x3a, 0x31, 0x32, 0x34, 0x38, 0x35, 0x22, 0x20, 0x76, 0x69, 0x73, 0x69, 0x62, 0x6c, 0x65, 0x3d, 0x22, 0x74, 0x72, 0x75, 0x65, 0x22, 0x20, 0x61, 0x72, 0x67, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x3d, 0x22, 0x30, 0x22, 0x20, 0x2f, 0x3e, 0x3c, 0x2f, 0x73, 0x69, 0x71, 0x3a, 0x73, 0x68, 0x61, 0x72, 0x65, 0x64, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x73, 0x3e, 0x3c, 0x2f, 0x73, 0x69, 0x71, 0x3a, 0x71, 0x61, 0x74, 0x3e, 0x3c, 0x2f, 0x73, 0x69, 0x71, 0x3a, 0x72, 0x69, 0x62, 0x62, 0x6f, 0x6e, 0x3e, 0x3c, 0x2f, 0x73, 0x69, 0x71, 0x3a, 0x63, 0x75, 0x73, 0x74, 0x6f, 0x6d, 0x55, 0x49, 0x3e)) -PropertyType Binary -Force
 
-Write-Host 'Settings: Settings: Search: SafeSearch: Off' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Settings: Search: SafeSearch: Off'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SearchSettings') -ne $true) {
  New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SearchSettings' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SearchSettings' -Name 'SafeSearchMode' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Settings: Settings: Search: Search history on this device: Off' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Settings: Search: Search history on this device: Off'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SearchSettings') -ne $true) {
  New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SearchSettings' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SearchSettings' -Name 'IsDeviceSearchHistoryEnabled' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Settings: Settings: Ease of Access: Automatically hide scroll bars in Windows: Off' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Settings: Ease of Access: Automatically hide scroll bars in Windows: Off'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\Control Panel\Accessibility') -ne $true) {
  New-Item 'HKCU:\Control Panel\Accessibility' -Force 
 }
 New-ItemProperty -Path 'HKCU:\Control Panel\Accessibility' -Name 'DynamicScrollbars' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Settings: Settings: System: Shared experiences: Share across devices: Off' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Settings: System: Shared experiences: Share across devices: Off'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CDP') -ne $true) {
  New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CDP' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CDP' -Name 'RomeSdkChannelUserAuthzPolicy' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CDP' -Name 'CdpSessionUserAuthzPolicy' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Settings: Settings: Devices: Typing: Add a space after I choose a text suggestion: Off' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Settings: Devices: Typing: Add a space after I choose a text suggestion: Off'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\TabletTip\1.7') -ne $true) {
  New-Item 'HKCU:\SOFTWARE\Microsoft\TabletTip\1.7' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\TabletTip\1.7' -Name 'EnablePredictionSpaceInsertion' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Settings: Settings: Devices: Typing: Show text suggestions as I type on the software keyboard: Off' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Settings: Devices: Typing: Show text suggestions as I type on the software keyboard: Off'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\TabletTip\1.7' -Name 'EnableTextPrediction' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Settings: Settings: Devices: Typing: Highlight misspelled words: Off' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Settings: Devices: Typing: Highlight misspelled words: Off'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\TabletTip\1.7' -Name 'EnableSpellchecking' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Settings: Settings: Devices: Typing: Autocorrect misspelled words: Off' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Settings: Devices: Typing: Autocorrect misspelled words: Off'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\TabletTip\1.7' -Name 'EnableAutocorrection' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Settings: Settings: Devices: Typing: Add a period after I double-tap the Spacebar: Off' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Settings: Devices: Typing: Add a period after I double-tap the Spacebar: Off'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\TabletTip\1.7' -Name 'EnableDoubleTapSpace' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Settings: Sounds: Communications: When Windows detects communications activity: Do nothing' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Sounds: Communications: When Windows detects communications activity: Do nothing'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Multimedia\Audio') -ne $true) {
  New-Item 'HKCU:\SOFTWARE\Microsoft\Multimedia\Audio' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Multimedia\Audio' -Name 'UserDuckingPreference' -Value 3 -PropertyType DWord -Force
 
-Write-Host 'Settings: Taskbar: Task View: Disable' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Taskbar: Task View: Disable'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'ShowTaskViewButton' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Settings: Settings: Personalization: Taskbar: People: Show contacts on the taskbar: Off' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Settings: Personalization: Taskbar: People: Show contacts on the taskbar: Off'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People') -ne $true) {
  New-Item 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\People' -Name 'PeopleBand' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Settings: Windows Security: Virus & threat protection: Manage settings: Change notification settings: Recent activity and scan results: Off' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Windows Security: Virus & threat protection: Manage settings: Change notification settings: Recent activity and scan results: Off'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Microsoft\Windows Defender Security Center\Virus and threat protection') -ne $true) {
  New-Item 'HKLM:\Software\Microsoft\Windows Defender Security Center\Virus and threat protection' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows Defender Security Center\Virus and threat protection' -Name 'SummaryNotificationDisabled' -Value 1 -PropertyType DWord -Force
 
-Write-Host 'Settings: Windows Security Notification Icon: Off' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Windows Security Notification Icon: Off'); [Console]::ResetColor(); [Console]::WriteLine()
 if ($null -ne (Get-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run').GetValue('SecurityHealth')) {
 	Remove-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'SecurityHealth'
 }
 
-Write-Host 'Microsoft Edge: Deleting Desktop Shortcut' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Microsoft Edge: Deleting Desktop Shortcut'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path "$env:PUBLIC\Desktop\Microsoft Edge.lnk") -eq $true) {
 	Remove-Item -Path "$env:PUBLIC\Desktop\Microsoft Edge.lnk"
 }
 
-Write-Host 'Remote Desktop Connection: Never show pop-up upon ending session' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Remote Desktop Connection: Never show pop-up upon ending session'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client') -ne $true) {
 	New-Item 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client' -Force 
 }
@@ -1079,44 +1082,44 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client' -Name '
 # fsutil behavior set disableLastAccess 1
 # fsutil behavior set disable8dot3 1
 
-Write-Host 'Settings: Administrative Shares: Disable' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Administrative Shares: Disable'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters' -Name 'AutoShareWks' -Value '0' -PropertyType DWord -Force
 
-Write-Host 'Settings: svchost.exe: Group (Decrease Process Number)' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: svchost.exe: Group (Decrease Process Number)'); [Console]::ResetColor(); [Console]::WriteLine()
 $svchostram = (Get-CimInstance -ClassName Win32_PhysicalMemory | Measure-Object -Property Capacity -Sum).Sum / 1kb
 Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control' -Name 'SvcHostSplitThresholdInKB' -Type DWord -Value $svchostram -Force
 
-Write-Host 'Settings: Settings: Time & Language: Region: Regional format data: Change data format: Short date: dd/MM/yyyy' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Settings: Time & Language: Region: Regional format data: Change data format: Short date: dd/MM/yyyy'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\Control Panel\International') -ne $true) {
  New-Item 'HKCU:\Control Panel\International' -Force 
 }
 New-ItemProperty -Path 'HKCU:\Control Panel\International' -Name 'sShortDate' -Value 'dd/MM/yyyy' -PropertyType String -Force
 
-Write-Host 'Settings: Settings: Time & Language: Region: Regional format data: Change data format: Long date: dddd, d MMMM, yyyy' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Settings: Time & Language: Region: Regional format data: Change data format: Long date: dddd, d MMMM, yyyy'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\Control Panel\International') -ne $true) {
  New-Item 'HKCU:\Control Panel\International' -Force 
 }
 New-ItemProperty -Path 'HKCU:\Control Panel\International' -Name 'sLongDate' -Value 'dddd, d MMMM, yyyy' -PropertyType String -Force
 
-Write-Host 'Settings: Settings: Time & language: Region: Regional format data: Change data format: Short time: HH:mm' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Settings: Time & language: Region: Regional format data: Change data format: Short time: HH:mm'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\Control Panel\International') -ne $true) {
  New-Item 'HKCU:\Control Panel\International' -Force 
 }
 New-ItemProperty -Path 'HKCU:\Control Panel\International' -Name 'sShortTime' -Value 'HH:mm' -PropertyType String -Force
 
-Write-Host 'Settings: Settings: Time & language: Region: Regional format data: Change data format: Long time: HH:mm:ss' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Settings: Time & language: Region: Regional format data: Change data format: Long time: HH:mm:ss'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKCU:\Control Panel\International') -ne $true) {
  New-Item 'HKCU:\Control Panel\International' -Force 
 }
 New-ItemProperty -Path 'HKCU:\Control Panel\International' -Name 'sTimeFormat' -Value 'HH:mm:ss' -PropertyType String -Force
 
-Write-Host 'Settings: Settings: Devices: Typing: Typing Insights: Disabling' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Settings: Devices: Typing: Typing Insights: Disabling'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Input\Settings') -ne $true) {
 	New-Item 'HKCU:\SOFTWARE\Microsoft\Input\Settings' -Force
 }
 New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Input\Settings' -Name 'InsightsEnabled' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Settings: Lock Screen: Setting to black' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Lock Screen: Setting to black'); [Console]::ResetColor(); [Console]::WriteLine()
 takeown /f 'C:\Windows\Web\Screen' /r /d y
 icacls 'C:\Windows\Web\Screen' /GRANT Everyone:F, Users:F /t
 Add-Type -AssemblyName System.Drawing
@@ -1179,7 +1182,7 @@ $edit.Save($file)
 takeown /f 'C:\ProgramData\Microsoft\Windows\SystemData' /r /d y
 icacls 'C:\ProgramData\Microsoft\Windows\SystemData' /GRANT Everyone:F, Users:F /t
 Remove-Item 'C:\ProgramData\Microsoft\Windows\SystemData' -Force -Recurse
-Write-Host 'Settings: Settings: Personalization: Lock screen: Show lock screen background pictures on the sign-in screen: Off' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Settings: Personalization: Lock screen: Show lock screen background pictures on the sign-in screen: Off'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System') -ne $true) {
 	New-Item 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\System' -Force
 }
@@ -1699,143 +1702,143 @@ foreach ($Adapter in $NetworkAdapters) {
 	}
 }
 
-Write-Host 'Network: Congestion Provider: None' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Congestion Provider: None'); [Console]::ResetColor(); [Console]::WriteLine()
 netsh int tcp set supplemental internet congestionprovider=None
 
-Write-Host 'Network: DCA: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: DCA: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 netsh int tcp set global dca=Disabled
 
-Write-Host 'Network: Teredo: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Teredo: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 netsh interface teredo set state disabled
 
-Write-Host 'Network: Auto Tuning Level Local: Normal' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Auto Tuning Level Local: Normal'); [Console]::ResetColor(); [Console]::WriteLine()
 Set-NetTCPSetting -AutoTuningLevelLocal Normal
 
-Write-Host 'Network: Scaling Heuristics: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Scaling Heuristics: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 Set-NetTCPSetting -ScalingHeuristics Disabled
 
-Write-Host 'Network: Receive Segment Coalescing: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Receive Segment Coalescing: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 Set-NetOffloadGlobalSetting -ReceiveSegmentCoalescing Disabled
 
-Write-Host 'Network: PacketCoalescingFilter: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: PacketCoalescingFilter: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 Set-NetOffloadGlobalSetting -PacketCoalescingFilter Disabled
 
-Write-Host 'Network: Receive Side Scaling: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Receive Side Scaling: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 Set-NetOffloadGlobalSetting -ReceiveSideScaling Disabled
 netsh int tcp set global rss=disabled
 
-Write-Host 'Network: Large Send Offload: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Large Send Offload: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 Disable-NetAdapterLso -Name *
 
-Write-Host 'Network: Checksum Offload: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Checksum Offload: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 Disable-NetAdapterChecksumOffload -Name *
 
-Write-Host 'Network: EcnCapability: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: EcnCapability: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 Set-NetTCPSetting -EcnCapability Disabled
 
-Write-Host 'Network: Chimney: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Chimney: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 Set-NetOffloadGlobalSetting -Chimney Disabled
 
-Write-Host 'Network: Timestamps: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Timestamps: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 Set-NetTCPSetting -Timestamps Disabled
 
-Write-Host 'Network: MaxSynRetransmissions: 2' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: MaxSynRetransmissions: 2'); [Console]::ResetColor(); [Console]::WriteLine()
 Set-NetTCPSetting -MaxSynRetransmissions 2
 
-Write-Host 'Network: NonSackRttResiliency: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: NonSackRttResiliency: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 Set-NetTCPSetting -NonSackRttResiliency Disabled
 
-Write-Host 'Network: InitialRtoMs: 2000' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: InitialRtoMs: 2000'); [Console]::ResetColor(); [Console]::WriteLine()
 Set-NetTCPSetting -InitialRtoMs 2000
 
-Write-Host 'Network: Internet Explorer Optimization: MaxConnectionsPer1_0Server: 10' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Internet Explorer Optimization: MaxConnectionsPer1_0Server: 10'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPER1_0SERVER') -ne $true) {
  New-Item 'HKLM:\Software\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPER1_0SERVER' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPER1_0SERVER' -Name 'iexplore.exe' -Value 10 -PropertyType DWord -Force
 
-Write-Host 'Network: Internet Explorer Optimization: MaxConnectionsPerServer: 10' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Internet Explorer Optimization: MaxConnectionsPerServer: 10'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPERSERVER') -ne $true) {
  New-Item 'HKLM:\Software\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPERSERVER' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPERSERVER' -Name 'iexplore.exe' -Value 10 -PropertyType DWord -Force
 
-Write-Host 'Network: Host Resolution Priority: LocalPriority: 4' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Host Resolution Priority: LocalPriority: 4'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider') -ne $true) {
  New-Item 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Force 
 }
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Name 'LocalPriority' -Value 4 -PropertyType DWord -Force
 
-Write-Host 'Network: Host Resolution Priority: HostsPriority: 5' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Host Resolution Priority: HostsPriority: 5'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider') -ne $true) {
  New-Item 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Force 
 }
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Name 'HostsPriority' -Value 5 -PropertyType DWord -Force
 
-Write-Host 'Network: Host Resolution Priority: DnsPriority: 6' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Host Resolution Priority: DnsPriority: 6'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider') -ne $true) {
  New-Item 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Force 
 }
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Name 'DnsPriority' -Value 6 -PropertyType DWord -Force
 
-Write-Host 'Network: Host Resolution Priority: NetbtPriority: 7' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Host Resolution Priority: NetbtPriority: 7'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider') -ne $true) {
  New-Item 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Force 
 }
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Name 'NetbtPriority' -Value 7 -PropertyType DWord -Force
 
-Write-Host 'Network: QoS: NonBestEffortLimit: 0' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: QoS: NonBestEffortLimit: 0'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Psched') -ne $true) {
  New-Item 'HKLM:\Software\Policies\Microsoft\Windows\Psched' -Force 
 }
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Psched' -Name 'NonBestEffortLimit' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Network: QoS: Do not use NLA: Optimal' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: QoS: Do not use NLA: Optimal'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\System\ControlSet001\Services\Tcpip\QoS') -ne $true) {
  New-Item 'HKLM:\System\ControlSet001\Services\Tcpip\QoS' -Force 
 }
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\QoS' -Name 'Do not use NLA' -Value '1' -PropertyType String -Force
 
-Write-Host 'Network: NetworkThrottlingIndex: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: NetworkThrottlingIndex: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile') -ne $true) {
  New-Item 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile' -Force 
 }
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile' -Name 'NetworkThrottlingIndex' -Value -1 -PropertyType DWord -Force
 
-Write-Host 'Network: SystemResponsiveness: Gaming' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: SystemResponsiveness: Gaming'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile' -Name 'SystemResponsiveness' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Network: Network Memory Allocation: Size: Gaming' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Network Memory Allocation: Size: Gaming'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\System\ControlSet001\Services\LanmanServer\Parameters') -ne $true) {
  New-Item 'HKLM:\System\ControlSet001\Services\LanmanServer\Parameters' -Force 
 }
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\LanmanServer\Parameters' -Name 'Size' -Value 3 -PropertyType DWord -Force
 
-Write-Host 'Network: IRPStackSize: 32' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: IRPStackSize: 32'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\System\ControlSet001\Services\LanmanServer\Parameters') -ne $true) {
  New-Item 'HKLM:\System\ControlSet001\Services\LanmanServer\Parameters' -Force 
 }
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\LanmanServer\Parameters' -Name 'IRPStackSize' -Value 32 -PropertyType DWord -Force
 
-Write-Host 'Network: Network Memory Allocation: LargeSystemCache: Disabled' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Network Memory Allocation: LargeSystemCache: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\System\ControlSet001\Control\Session Manager\Memory Management') -ne $true) {
  New-Item 'HKLM:\System\ControlSet001\Control\Session Manager\Memory Management' -Force 
 }
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Control\Session Manager\Memory Management' -Name 'LargeSystemCache' -Value 0 -PropertyType DWord -Force
 
-Write-Host 'Network: Dynamic Port Allocation: MaxUserPort: 65534' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Dynamic Port Allocation: MaxUserPort: 65534'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters') -ne $true) {
  New-Item 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -Force 
 }
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -Name 'MaxUserPort' -Value 65534 -PropertyType DWord -Force
 
-Write-Host 'Network: Dynamic Port Allocation: TcpTimedWaitDelay: 30' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Dynamic Port Allocation: TcpTimedWaitDelay: 30'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters') -ne $true) {
  New-Item 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -Force 
 }
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -Name 'TcpTimedWaitDelay' -Value 30 -PropertyType DWord -Force
 
-Write-Host 'Network: Time to Live: 64' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Time to Live: 64'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters') -ne $true) {
  New-Item 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -Force 
 }
@@ -1843,17 +1846,17 @@ New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -N
 
 $NetworkGUIDs = (Get-NetAdapter).InterfaceGUID
 foreach ($GUID in $NetworkGUIDs) {
-	Write-Host 'Network: TcpAckFrequency: Disabled' -ForegroundColor green -BackgroundColor black
+	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: TcpAckFrequency: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 	New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\$GUID" -Name 'TcpAckFrequency' -Value 1 -PropertyType DWord -Force
 
-	Write-Host 'Network: TcpDelAckTicks: Disabled' -ForegroundColor green -BackgroundColor black
+	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: TcpDelAckTicks: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 	New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\$GUID" -Name 'TcpDelAckTicks' -Value 0 -PropertyType DWord -Force
 
-	Write-Host 'Network: TCPNoDelay: Enabled' -ForegroundColor green -BackgroundColor black
+	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: TCPNoDelay: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 	New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\$GUID" -Name 'TCPNoDelay' -Value 1 -PropertyType DWord -Force
 }
 
-Write-Host 'Hosts: Adding mobile.events.data.microsoft.com' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Hosts: Adding mobile.events.data.microsoft.com'); [Console]::ResetColor(); [Console]::WriteLine()
 $mobileeventsdatamicrosoft = Select-String -Path $env:windir\System32\drivers\etc\hosts -Pattern 'mobile.events.data.microsoft.com'
 if ($null -eq $mobileeventsdatamicrosoft) {
 	Add-Content -Path $env:windir\System32\drivers\etc\hosts -Value "`n127.0.0.1`tmobile.events.data.microsoft.com" -Force
@@ -1866,7 +1869,7 @@ Wake-on-LAN is an Ethernet computer networking standard that allows this PC to b
 ' , 'Wake-On-Lan' , 4, 32)
 
 if ($WakeOnLanAnswer -eq 'Yes') {
-	Write-Host 'Network: Wake-On-Lan: On' -ForegroundColor green -BackgroundColor black
+	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Wake-On-Lan: On'); [Console]::ResetColor(); [Console]::WriteLine()
 	$PnPValue = 256
 	$Adapter = Get-NetAdapter | Where-Object { ($_.Status -eq 'Up') }
 	$KeyPath = 'HKLM:\SYSTEM\CurrentControlSet\Control\Class\{4D36E972-E325-11CE-BFC1-08002bE10318}\'
@@ -1883,9 +1886,9 @@ if ($WakeOnLanAnswer -eq 'Yes') {
 			}
 
 			if ($Value -eq $PnPValue) {
-				Write-Host 'Network: Allow the computer to turn off this device to save power: On' -ForegroundColor green -BackgroundColor black
-				Write-Host 'Network: Allow this device to wake the computer: On' -ForegroundColor green -BackgroundColor black
-				Write-Host 'Network: Only allow a magic packet to wake the computer: On' -ForegroundColor green -BackgroundColor black
+				[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Allow the computer to turn off this device to save power: On'); [Console]::ResetColor(); [Console]::WriteLine()
+				[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Allow this device to wake the computer: On'); [Console]::ResetColor(); [Console]::WriteLine()
+				[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Only allow a magic packet to wake the computer: On'); [Console]::ResetColor(); [Console]::WriteLine()
 			}
 			
 			else {
@@ -1895,24 +1898,24 @@ if ($WakeOnLanAnswer -eq 'Yes') {
 	}
 	
 	if ($NetworkSettingsName -match 'Wake on magic packet') {
-		Write-Host 'Network: Wake on magic packet: On' -ForegroundColor green -BackgroundColor black
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Wake on magic packet: On'); [Console]::ResetColor(); [Console]::WriteLine()
 		Set-NetAdapterAdvancedProperty -DisplayName 'Wake on magic packet' -DisplayValue 'Enabled'
 	}
 
 	if ($NetworkSettingsName -match 'Enable PME') {
-		Write-Host 'Network: Enable PME: On' -ForegroundColor green -BackgroundColor black
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Enable PME: On'); [Console]::ResetColor(); [Console]::WriteLine()
 		Set-NetAdapterAdvancedProperty -DisplayName 'Enable PME' -DisplayValue 'Enabled'
 	}
 
 	if ($NetworkSettingsName -match 'Shutdown Wake Up') {
-		Write-Host 'Network: Shutdown Wake Up: Enabled' -ForegroundColor green -BackgroundColor black
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Shutdown Wake Up: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 		Set-NetAdapterAdvancedProperty -DisplayName 'Shutdown Wake Up' -DisplayValue 'Enabled'
 	}
 
 }
 
 if ($WakeOnLanAnswer -eq 'No') {
-	Write-Host 'Network: Wake-On-Lan: Off' -ForegroundColor green -BackgroundColor black
+	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Wake-On-Lan: Off'); [Console]::ResetColor(); [Console]::WriteLine()
 	$PnPValue = 24
 	$Adapter = Get-NetAdapter | Where-Object { ($_.Status -eq 'Up') }
 	$KeyPath = 'HKLM:\SYSTEM\CurrentControlSet\Control\Class\{4D36E972-E325-11CE-BFC1-08002bE10318}\'
@@ -1929,9 +1932,9 @@ if ($WakeOnLanAnswer -eq 'No') {
 			}
 			
 			if ($Value -eq $PnPValue) {
-				Write-Host 'Network: Allow the computer to turn off this device to save power: Off' -ForegroundColor green -BackgroundColor black
-				Write-Host 'Network: Allow this device to wake the computer: Off' -ForegroundColor green -BackgroundColor black
-				Write-Host 'Network: Only allow a magic packet to wake the computer: Off' -ForegroundColor green -BackgroundColor black
+				[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Allow the computer to turn off this device to save power: Off'); [Console]::ResetColor(); [Console]::WriteLine()
+				[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Allow this device to wake the computer: Off'); [Console]::ResetColor(); [Console]::WriteLine()
+				[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Only allow a magic packet to wake the computer: Off'); [Console]::ResetColor(); [Console]::WriteLine()
 			}
 			
 			else {
@@ -1941,17 +1944,17 @@ if ($WakeOnLanAnswer -eq 'No') {
 	}
 
 	if ($NetworkSettingsName -match 'Wake on magic packet') {
-		Write-Host 'Network: Wake on magic packet: Off' -ForegroundColor green -BackgroundColor black
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Wake on magic packet: Off'); [Console]::ResetColor(); [Console]::WriteLine()
 		Set-NetAdapterAdvancedProperty -DisplayName 'Wake on magic packet' -DisplayValue 'Disabled'
 	}
 	
 	if ($NetworkSettingsName -match 'Enable PME') {
-		Write-Host 'Network: Enable PME: Off' -ForegroundColor green -BackgroundColor black
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Enable PME: Off'); [Console]::ResetColor(); [Console]::WriteLine()
 		Set-NetAdapterAdvancedProperty -DisplayName 'Enable PME' -DisplayValue 'Disabled'
 	}
 	
 	if ($NetworkSettingsName -match 'Shutdown Wake Up') {
-		Write-Host 'Network: Shutdown Wake Up: Disabled' -ForegroundColor green -BackgroundColor black
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Shutdown Wake Up: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 		Set-NetAdapterAdvancedProperty -DisplayName 'Shutdown Wake Up' -DisplayValue 'Disabled'
 	}
 }

@@ -1111,48 +1111,48 @@ $Form_SoftwareSelection_OK.Add_Click{
     $Form_SoftwareSelection.Topmost = $false
     # Priority: Browser required, manual input
     if ($CheckBox_NVCleanstall.Checked) {
-        Write-Host 'Software Selection: NVCleanstall: Initiating' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: NVCleanstall: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/NVCleanstall/Download.ps1')
     }
 
     # Priority: Manual input
     if ($CheckBox_mpv.Checked) {
-        Write-Host 'Software Selection: mpv: Initiating' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: mpv: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/Download.ps1')
     }
 
     # Priority: Manual input
     if ($CheckBox_RazerSynapse.Checked) {
-        Write-Host 'Software Selection: Razer Synapse: Downloading' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Razer Synapse: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
         (New-Object System.Net.WebClient).DownloadFile('https://rzr.to/synapse-3-pc-download', "$env:TEMP\Synapse.exe")
         
-        Write-Host 'Software Selection: Razer Synapse: Installing' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Razer Synapse: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process -FilePath $env:TEMP\Synapse.exe
     }
 
     # Priority: Manual input
     if ($CheckBox_HyperXNGENUITY.Checked) {
-        Write-Host 'Software Selection: HyperX NGENUITY: Downloading' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: HyperX NGENUITY: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
         $Hyperx = New-Object System.Net.WebClient
         $Hyperx.Headers.Add('user-agent', 'Wget')
         $Hyperx.DownloadFile((Invoke-WebRequest -UseBasicParsing -Uri 'https://hyperx.com/pages/ngenuity' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match '.exe') } | Select-Object -First 1 | Select-Object -ExpandProperty href), "$ENV:temp\HyperX_NGENUITY.exe")
         
-        Write-Host 'Software Selection: HyperX NGENUITY: Installing' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: HyperX NGENUITY: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process -FilePath $env:TEMP\HyperX_NGENUITY.exe
     }
 
     if ($CheckBox_DotNET.Checked) {
-        Write-Host 'Software Selection: .NET: Initiating' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: .NET: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/.NET/Download.ps1')
     }
 
     if ($CheckBox_7Zip.Checked) {
-        Write-Host 'Software Selection: 7-Zip: Initiating' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: 7-Zip: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
     }
 
     if ($CheckBox_ActivateWin.Checked) {
-        Write-Host 'Software Selection: Activating Windows' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Activating Windows'); [Console]::ResetColor(); [Console]::WriteLine()
         & ([ScriptBlock]::Create(((New-Object System.Net.WebClient).DownloadString('https://get.activated.win/')))) /HWID
     }
 
@@ -1187,13 +1187,13 @@ $Form_SoftwareSelection_OK.Add_Click{
     }
 
     if ($CheckBox_AnyDesk.Checked) {
-        Write-Host 'Software Selection: AnyDesk: Downloading' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: AnyDesk: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
         (New-Object System.Net.WebClient).DownloadFile('https://download.anydesk.com/AnyDesk.exe', "$env:TEMP\AnyDesk.exe")
         
-        Write-Host 'Software Selection: AnyDesk: Installing' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: AnyDesk: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process -FilePath $env:TEMP\AnyDesk.exe -ArgumentList '--install "C:\Program Files (x86)\AnyDesk" --create-shortcuts --create-desktop-icon --silent'
         
-        Write-Host 'Software Selection: AnyDesk: Optional Offer - Recommended by AnyDesk: Decline' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: AnyDesk: Optional Offer - Recommended by AnyDesk: Decline'); [Console]::ResetColor(); [Console]::WriteLine()
         if ((Test-Path -Path 'HKCU:\SOFTWARE\Google\No Chrome Offer Until') -ne $true) {
             New-Item 'HKCU:\SOFTWARE\Google\No Chrome Offer Until' -Force 
         }
@@ -1201,234 +1201,234 @@ $Form_SoftwareSelection_OK.Add_Click{
     }
 
     if ($CheckBox_BattleNet.Checked) {
-        Write-Host 'Software Selection: Battle.net: Downloading' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Battle.net: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
         (New-Object System.Net.WebClient).DownloadFile('https://downloader.battle.net/download/getInstaller?os=win&installer=Battle.net-Setup.exe', "$env:TEMP\Battle.net-Setup.exe")
         
-        Write-Host 'Software Selection: Battle.net: Installing' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Battle.net: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process -FilePath $env:TEMP\Battle.net-Setup.exe -ArgumentList '--lang=enUS --installpath="C:\Program Files (x86)\Battle.net"'
     }
 
     if ($CheckBox_CrystalDiskInfo.Checked) {
-        Write-Host 'Software Selection: CrystalDiskInfo: Downloading' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: CrystalDiskInfo: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
         $CrystalDiskInfo = New-Object System.Net.WebClient
         $CrystalDiskInfo.Headers.Add('user-agent', 'Wget')
         $CrystalDiskInfo.DownloadFile('https://crystalmark.info/redirect.php?product=CrystalDiskInfoInstaller', "$ENV:temp\CrystalDiskInfo.exe")
         
-        Write-Host 'Software Selection: CrystalDiskInfo: Installing' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: CrystalDiskInfo: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process $ENV:temp\CrystalDiskInfo.exe -ArgumentList '/VERYSILENT'
     }
 
     if ($CheckBox_CrystalDiskMark.Checked) {
-        Write-Host 'Software Selection: CrystalDiskMark: Downloading' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: CrystalDiskMark: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
         $CrystalDiskMark = New-Object System.Net.WebClient
         $CrystalDiskMark.Headers.Add('user-agent', 'Wget')
         $CrystalDiskMark.DownloadFile('https://crystalmark.info/redirect.php?product=CrystalDiskMarkInstaller', "$ENV:temp\CrystalDiskMark.exe")
         
-        Write-Host 'Software Selection: CrystalDiskMark: Installing' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: CrystalDiskMark: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process $ENV:temp\CrystalDiskMark.exe -ArgumentList '/VERYSILENT'
     }
     
     if ($CheckBox_Discord.Checked) {
-        Write-Host 'Software Selection: Discord: Initiating' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Discord: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Discord/Download.ps1')
     }
 
     if ($CheckBox_BetterDiscord.Checked) {
-        Write-Host 'Software Selection: BetterDiscord: Initiating' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: BetterDiscord: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/BetterDiscord/Download.ps1')
     }
 
     if ($CheckBox_Chrome.Checked) {
-        Write-Host 'Software Selection: Google Chrome: Initiating' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Google Chrome: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Chrome/Download.ps1')
     }
 
     if ($CheckBox_ChromeExtensions.Checked) {
-        Write-Host 'Software Selection: Google Chrome - Extensions: Initiating' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Google Chrome - Extensions: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Chrome/Extensions.ps1')
     }
 
     if ($CheckBox_DisplayDriverUninstaller.Checked) {
-        Write-Host 'Software Selection: Display Driver Uninstaller: Initiating' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Display Driver Uninstaller: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Display_Driver_Uninstaller/Download.ps1')
     }
 
     if ($CheckBox_EdgeWebView2.Checked) {
-        Write-Host 'Software Selection: Edge WebView2: Downloading' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Edge WebView2: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
         (New-Object System.Net.WebClient).DownloadFile('https://go.microsoft.com/fwlink/p/?LinkId=2124703', "$env:TEMP\MicrosoftEdgeWebview2Setup.exe")
         
-        Write-Host 'Software Selection: Edge WebView2: Installing' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Edge WebView2: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process $env:TEMP\MicrosoftEdgeWebview2Setup.exe
     }
 
     if ($CheckBox_Jellyfin.Checked) {
-        Write-Host 'Software Selection: Jellyfin: Get latest release' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Jellyfin: Get latest release'); [Console]::ResetColor(); [Console]::WriteLine()
         $JellyfinLatest = (Invoke-WebRequest -UseBasicParsing -Uri 'https://repo.jellyfin.org/?path=/server/windows/latest-stable/amd64' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'x64.exe') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
         $JellyfinURL = 'https://repo.jellyfin.org' + $JellyfinLatest
         
-        Write-Host 'Software Selection: Jellyfin: Downloading' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Jellyfin: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
         (New-Object System.Net.WebClient).DownloadFile($JellyfinURL, "$env:TEMP\Jelly.exe")
         
-        Write-Host 'Software Selection: Jellyfin: Installing' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Jellyfin: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process -FilePath $env:TEMP\Jelly.exe -ArgumentList '/S'
     }
 
     if ($CheckBox_LogitechGHUB.Checked) {
-        Write-Host 'Software Selection: Logitech G HUB: Downloading' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Logitech G HUB: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
         (New-Object System.Net.WebClient).DownloadFile('https://download01.logi.com/web/ftp/pub/techsupport/gaming/lghub_installer.exe', "$env:TEMP\lghub_installer.exe")
         
-        Write-Host 'Software Selection: Logitech G HUB: Installing' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Logitech G HUB: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process -FilePath $env:TEMP\lghub_installer.exe -ArgumentList '--silent'
     }
 
     if ($CheckBox_EpicGames.Checked) {
-        Write-Host 'Software Selection: Epic Games Launcher: Downloading' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Epic Games Launcher: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
         (New-Object System.Net.WebClient).DownloadFile('https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncherInstaller.msi', "$env:TEMP\EpicInstaller.msi")
                 
-        Write-Host 'Software Selection: Epic Games Launcher: Installing' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Epic Games Launcher: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process $env:TEMP\EpicInstaller.msi -ArgumentList '/quiet /norestart'
     }
 
     if ($CheckBox_eMClientLicenseFix.Checked) {
-        Write-Host 'Software Selection: eM Client - License Fix: Initiating' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: eM Client - License Fix: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/eM_Client/License.ps1')
     }
 
     if ($CheckBox_Firefox.Checked) {
-        Write-Host 'Software Selection: Mozilla Firefox: Initiating' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Mozilla Firefox: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Download.ps1')
     }
 
     if ($CheckBox_FirefoxArkenfox.Checked) {
-        Write-Host 'Software Selection: Mozilla Firefox - Arkenfox: Initiating' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Mozilla Firefox - Arkenfox: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Arkenfox.ps1')
     }
 
     if ($CheckBox_FirefoxExtensions.Checked) {
-        Write-Host 'Software Selection: Mozilla Firefox - Extensions: Initiating' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Mozilla Firefox - Extensions: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Extensions.ps1')
     }
 
     if ($CheckBox_Git.Checked) {
-        Write-Host 'Software Selection: Git: Initiating' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Git: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Git/Download.ps1')
     }
 
     if ($CheckBox_MediaInfo.Checked) {
-        Write-Host 'Software Selection: MediaInfo: Initiating' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: MediaInfo: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/MediaInfo/Download.ps1')
     }
 
     if ($CheckBox_MicrosoftStore.Checked) {
-        Write-Host 'Software Selection: Microsoft Store: Downloading' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Microsoft Store: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
         (New-Object System.Net.WebClient).DownloadFile('https://github.com/kkkgo/LTSC-Add-MicrosoftStore/archive/refs/heads/master.zip', "$env:TEMP\LTSC-Add-MicrosoftStore.zip")
         
-        Write-Host 'Software Selection: Microsoft Store: Extracting' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Microsoft Store: Extracting'); [Console]::ResetColor(); [Console]::WriteLine()
         Expand-Archive -Path "$env:TEMP\LTSC-Add-MicrosoftStore.zip" -DestinationPath "$env:TEMP\LTSC-Add-MicrosoftStore" -Force
         
-        Write-Host 'Software Selection: Microsoft Store: Setting Unattended' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Microsoft Store: Setting Unattended'); [Console]::ResetColor(); [Console]::WriteLine()
         (Get-Content "$env:TEMP\LTSC-Add-MicrosoftStore\LTSC-Add-MicrosoftStore-master\Add-Store.cmd").Replace('pause >nul', '') | Set-Content "$env:TEMP\LTSC-Add-MicrosoftStore\LTSC-Add-MicrosoftStore-master\Add-Store.cmd"
         
-        Write-Host 'Software Selection: Microsoft Store: Installing' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Microsoft Store: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process -FilePath "$env:TEMP\LTSC-Add-MicrosoftStore\LTSC-Add-MicrosoftStore-master\Add-Store.cmd"
     }
 
     if ($CheckBox_NordVPN.Checked) {
-        Write-Host 'Software Selection: NordVPN: Downloading' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: NordVPN: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
         (New-Object System.Net.WebClient).DownloadFile('https://downloads.nordcdn.com/apps/windows/NordVPN/latest/NordVPNInstall.exe', "$env:TEMP\NordVPNInstall.exe")
         
-        Write-Host 'Software Selection: NordVPN: Installing' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: NordVPN: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process -FilePath $env:TEMP\NordVPNInstall.exe -ArgumentList '/verysilent'
     }
 
     if ($CheckBox_NotepadPlusPlus.Checked) {
-        Write-Host 'Software Selection: Notepad++: Initiating' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Notepad++: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Notepad++/Download.ps1')
     }
 
     if ($CheckBox_nvidiaProfileInspector.Checked) {
-        Write-Host 'Software Selection: nvidiaProfileInspector: Initiating' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: nvidiaProfileInspector: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/nvidiaProfileInspector/Download.ps1')
     }
 
     if ($CheckBox_PuTTY.Checked) {
-        Write-Host 'Software Selection: PuTTY: Downloading' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: PuTTY: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
         (New-Object System.Net.WebClient).DownloadFile((Invoke-WebRequest -UseBasicParsing -Uri 'https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'putty-64bit') } | Select-Object -First 1 | Select-Object -ExpandProperty href), "$env:TEMP\PuTTY.msi")
         
-        Write-Host 'Software Selection: PuTTY: Installing' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: PuTTY: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process $env:TEMP\PuTTY.msi -ArgumentList '/quiet'
         
     }
 
     if ($CheckBox_Plex.Checked) {
-        Write-Host 'Software Selection: Plex: Initiating' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Plex: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Plex/Download.ps1')
     }
 
     if ($CheckBox_Python.Checked) {
-        Write-Host 'Software Selection: Python: Initiating' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Python: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Python/Download.ps1')
     }
 
     if ($CheckBox_qBittorrent.Checked) {
-        Write-Host 'Software Selection: qBittorrent: Initiating' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: qBittorrent: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
     }
 
     if ($CheckBox_Steam.Checked) {
-        Write-Host 'Software Selection: Steam: Downloading' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Steam: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
         (New-Object System.Net.WebClient).DownloadFile('https://cdn.cloudflare.steamstatic.com/client/installer/SteamSetup.exe', "$env:TEMP\SteamSetup.exe")
         
-        Write-Host 'Software Selection: Steam: Installing' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Steam: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process -FilePath $env:TEMP\SteamSetup.exe -ArgumentList '/S'
     }
 
     if ($CheckBox_SubtitleEdit.Checked) {
-        Write-Host 'Software Selection: Subtitle Edit: Initiating' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Subtitle Edit: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Subtitle_Edit/Download.ps1')
     }
 
     if ($CheckBox_Telegram.Checked) {
-        Write-Host 'Software Selection: Telegram: Downloading' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Telegram: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
         (New-Object System.Net.WebClient).DownloadFile('https://telegram.org/dl/desktop/win64', "$env:TEMP\Telegram.exe")
         
-        Write-Host 'Software Selection: Telegram: Installing' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Telegram: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process -FilePath $env:TEMP\Telegram.exe -ArgumentList '/VERYSILENT'
     }
 
     if ($CheckBox_TranslucentTB.Checked) {
-        Write-Host 'Software Selection: TranslucentTB: Initiating' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: TranslucentTB: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/TranslucentTB/Download.ps1')
     }
     
     if ($CheckBox_Valorant.Checked) {
-        Write-Host 'Software Selection: Valorant: Downloading' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Valorant: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
         (New-Object System.Net.WebClient).DownloadFile('https://valorant.secure.dyn.riotcdn.net/channels/public/x/installer/current/live.live.ap.exe', "$env:TEMP\VALORANT.exe")
                 
-        Write-Host 'Software Selection: Valorant: Installing' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Valorant: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process $env:TEMP\VALORANT.exe -ArgumentList '--skip-to-install'
     }
 
     if ($CheckBox_VisualStudioCode.Checked) {
-        Write-Host 'Software Selection: Visual Studio Code: Initiating' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Visual Studio Code: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Visual_Studio_Code/Download.ps1')
     }
 
     if ($CheckBox_Windows10IoTEnterprise2021.Checked) {
-        Write-Host 'Software Selection: Windows 10 IoT Enterprise LTSC 2021: Initiating' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Windows 10 IoT Enterprise LTSC 2021: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/ISO.ps1')
     }
 
     if ($CheckBox_Zoom.Checked) {
-        Write-Host 'Software Selection: Zoom: Downloading' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Zoom: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
         (New-Object System.Net.WebClient).DownloadFile('https://zoom.us/client/latest/ZoomInstaller.exe?archType=x64', "$env:TEMP\ZoomInstallerFull-x64.exe")
         
-        Write-Host 'Software Selection: Zoom: Installing' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Zoom: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process -FilePath $env:TEMP\ZoomInstallerFull-x64.exe
     }
 
     if ($CheckBox_UninstallEdge.Checked) {
-        Write-Host 'Software Selection: Microsoft Edge: Initiating' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Microsoft Edge: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Edge/Uninstall.ps1')
     }
     
@@ -1782,7 +1782,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         $Form_OfficeSelection_OK.Add_Click{
             $Form_OfficeSelection.Topmost = $false
             if ($CheckBox_Microsoft365ProPlus.Checked) {
-                Write-Host 'Office Selection: Microsoft 365 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Skype for Business, Word): Downloading' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Microsoft 365 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Skype for Business, Word): Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
                 (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'O365ProPlus') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\O365ProPlus.exe")
                 
                 Write-Host 'Office Selection: Microsoft 365 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Skype for Business, Word): Installing' -ForegroundColor green 
@@ -1790,129 +1790,129 @@ $Form_SoftwareSelection_OK.Add_Click{
             }
         
             if ($CheckBox_Office2024ProPlus.Checked) {
-                Write-Host 'Office Selection: Office 2024 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Word): Downloading' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2024 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Word): Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
                 (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'ProPlus2024') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\ProPlus2024.exe")
         
-                Write-Host 'Office Selection: Office 2024 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Word): Installing' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2024 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Word): Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\ProPlus2024.exe -Wait
             }
         
             if ($CheckBox_Office2024Access.Checked) {
-                Write-Host 'Office Selection: Office 2024 - (Access): Downloading' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2024 - (Access): Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
                 (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Access2024') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Access2024.exe")
         
-                Write-Host 'Office Selection: Office 2024 - (Access): Installing' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2024 - (Access): Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\Access2024.exe -Wait
             }
         
             if ($CheckBox_Office2024Excel.Checked) {
-                Write-Host 'Office Selection: Office 2024 - Excel: Downloading' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2024 - Excel: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
                 (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Excel2024') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Excel2024.exe")
         
-                Write-Host 'Office Selection: Office 2024 - Excel: Installing' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2024 - Excel: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\Excel2024.exe -Wait
             }
         
             if ($CheckBox_Office2024Outlook.Checked) {
-                Write-Host 'Office Selection: Office 2024 - Outlook: Downloading' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2024 - Outlook: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
                 (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Outlook2024') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Outlook2024.exe")
         
-                Write-Host 'Office Selection: Office 2024 - Outlook: Installing' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2024 - Outlook: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\Outlook2024.exe -Wait
             }
         
             if ($CheckBox_Office2024PowerPoint.Checked) {
-                Write-Host 'Office Selection: Office 2024 - PowerPoint: Downloading' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2024 - PowerPoint: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
                 (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'PowerPoint2024') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\PowerPoint2024.exe")
         
-                Write-Host 'Office Selection: Office 2024 - PowerPoint: Installing' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2024 - PowerPoint: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\PowerPoint2024.exe -Wait
             }
         
             if ($CheckBox_Office2024Word.Checked) {
-                Write-Host 'Office Selection: Office 2024 - Word: Downloading' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2024 - Word: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
                 (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Word2024') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Word2024.exe")
         
-                Write-Host 'Office Selection: Office 2024 - Word: Installing' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2024 - Word: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\Word2024.exe -Wait
             }
         
             if ($CheckBox_Office2021ProPlus.Checked) {
-                Write-Host 'Office Selection: Office 2021 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Word): Downloading' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Word): Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
                 (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'ProPlus2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\ProPlus2021.exe")
         
-                Write-Host 'Office Selection: Office 2021 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Word): Installing' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Word): Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\ProPlus2021.exe -Wait
             }
         
             if ($CheckBox_Office2021Access.Checked) {
-                Write-Host 'Office Selection: Office 2021 - (Access): Downloading' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - (Access): Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
                 (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Access2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Access2021.exe")
         
-                Write-Host 'Office Selection: Office 2021 - (Access): Installing' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - (Access): Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\Access2021.exe -Wait
             }
         
             if ($CheckBox_Office2021Excel.Checked) {
-                Write-Host 'Office Selection: Office 2021 - Excel: Downloading' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - Excel: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
                 (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Excel2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Excel2021.exe")
         
-                Write-Host 'Office Selection: Office 2021 - Excel: Installing' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - Excel: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\Excel2021.exe -Wait
             }
         
             if ($CheckBox_Office2021OneNote.Checked) {
-                Write-Host 'Office Selection: Office 2021 - OneNote: Downloading' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - OneNote: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
                 (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'OneNote2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\OneNote2021.exe")
         
-                Write-Host 'Office Selection: Office 2021 - OneNote: Installing' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - OneNote: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\OneNote2021.exe -Wait
             }
         
             if ($CheckBox_Office2021Outlook.Checked) {
-                Write-Host 'Office Selection: Office 2021 - Outlook: Downloading' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - Outlook: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
                 (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Outlook2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Outlook2021.exe")
         
-                Write-Host 'Office Selection: Office 2021 - Outlook: Installing' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - Outlook: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\Outlook2021.exe -Wait
             }
         
             if ($CheckBox_Office2021PowerPoint.Checked) {
-                Write-Host 'Office Selection: Office 2021 - PowerPoint: Downloading' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - PowerPoint: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
                 (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'PowerPoint2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\PowerPoint2021.exe")
         
-                Write-Host 'Office Selection: Office 2021 - PowerPoint: Installing' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - PowerPoint: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\PowerPoint2021.exe -Wait
             }
         
             if ($CheckBox_Office2021Publisher.Checked) {
-                Write-Host 'Office Selection: Office 2021 - Publisher: Downloading' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - Publisher: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
                 (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Publisher2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Publisher2021.exe")
         
-                Write-Host 'Office Selection: Office 2021 - Publisher: Installing' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - Publisher: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\Publisher2021.exe -Wait
             }
         
             if ($CheckBox_Office2021Word.Checked) {
-                Write-Host 'Office Selection: Office 2021 - Word: Downloading' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - Word: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
                 (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Word2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Word2021.exe")
         
-                Write-Host 'Office Selection: Office 2021 - Word: Installing' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - Word: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\Word2021.exe -Wait
             }
         
             if ($CheckBox_ActivateOffice.Checked) {
-                Write-Host 'Office Selection: Activating' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Activating'); [Console]::ResetColor(); [Console]::WriteLine()
                 & ([ScriptBlock]::Create(((New-Object Net.WebClient).DownloadString('https://get.activated.win/')))) /Ohook
             }
         
             if ($CheckBox_DisableTelemetry.Checked) {
-                Write-Host 'Office Selection: Disabling Telemetry' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Disabling Telemetry'); [Console]::ResetColor(); [Console]::WriteLine()
                 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/abbodi1406/WHD/master/scripts/OC2R_DisableTelemetry.ps1')
             }
         
             if ($CheckBox_EnableTelemetry.Checked) {
-                Write-Host 'Office Selection: Enabling Telemetry' -ForegroundColor green -BackgroundColor black
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Enabling Telemetry'); [Console]::ResetColor(); [Console]::WriteLine()
                 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/abbodi1406/WHD/master/scripts/OC2R_RevertTelemetry.ps1')
             }
         
@@ -1924,81 +1924,81 @@ $Form_SoftwareSelection_OK.Add_Click{
     if ($CheckBox_AdobeAcrobat.Checked) {
         # https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/index.html
         # https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/FeatureLockDown.html#idkeyname_1_13262
-        Write-Host 'Adobe Acrobat Pro: Downloading group policy' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Downloading group policy'); [Console]::ResetColor(); [Console]::WriteLine()
         (New-Object System.Net.WebClient).DownloadFile('https://ardownload2.adobe.com/pub/adobe/acrobat/win/AcrobatDC/misc/AcrobatADMTemplate.zip', "$env:TEMP\policy_templates_acrobat.zip")
         
-        Write-Host 'Adobe Acrobat Pro: Extracting group policy' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Extracting group policy'); [Console]::ResetColor(); [Console]::WriteLine()
         Expand-Archive -Path "$env:TEMP\policy_templates_acrobat.zip" -DestinationPath "$env:TEMP\policy_templates_acrobat" -ErrorAction SilentlyContinue
         
-        Write-Host 'Adobe Acrobat Pro: Importing group policy' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Importing group policy'); [Console]::ResetColor(); [Console]::WriteLine()
         Move-Item -Path "$env:TEMP\policy_templates_acrobat\AcrobatDC.adm" -Destination "$env:windir\PolicyDefinitions" -ErrorAction SilentlyContinue
         Move-Item -Path "$env:TEMP\policy_templates_acrobat\AcrobatDC.admx" -Destination "$env:windir\PolicyDefinitions" -ErrorAction SilentlyContinue
         Move-Item -Path "$env:TEMP\policy_templates_acrobat\en-US\AcrobatDC.adml" -Destination "$env:windir\PolicyDefinitions\en-US" -ErrorAction SilentlyContinue
         
-        Write-Host 'Adobe Acrobat Pro: User Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: General: Display splash screen at launch: Disabled' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: User Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: General: Display splash screen at launch: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
         if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals') -ne $true) {
             New-Item 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals' -Force
         }
         New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals' -Name 'bDisplayAboutDialog' -Value 0 -PropertyType DWord -Force
         
-        Write-Host 'Adobe Acrobat Pro: Computer Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: General: Disable automatic updates: Disabled' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Computer Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: General: Disable automatic updates: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
         if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown') -ne $true) {
             New-Item 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Force
         }
         New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name 'bUpdater' -Value 0 -PropertyType DWord -Force
         
-        Write-Host 'Adobe Acrobat Pro: Computer Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: General: Show messages when I launch Acrobat: Disabled' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Computer Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: General: Show messages when I launch Acrobat: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
         if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown\cIPM') -ne $true) {
             New-Item 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown\cIPM' -Force
         }
         New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown\cIPM' -Name 'bShowMsgAtLaunch' -Value 0 -PropertyType DWord -Force
         
-        Write-Host 'Adobe Acrobat Pro: Computer Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: General: Turn off user participation in the feedback program: Disabled' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Computer Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: General: Turn off user participation in the feedback program: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
         if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown') -ne $true) {
             New-Item 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Force
         }
         New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name 'bUsageMeasurement' -Value 0 -PropertyType DWord -Force
         
-        Write-Host 'Adobe Acrobat Pro: Computer Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: Startup: Protected View: For all files' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Computer Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: Startup: Protected View: For all files'); [Console]::ResetColor(); [Console]::WriteLine()
         if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown') -ne $true) {
             New-Item 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Force
         }
         New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name 'iProtectedView' -Value 2 -PropertyType DWord -Force
         
-        Write-Host 'Adobe Acrobat Pro: Turn off the generative AI features' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Turn off the generative AI features'); [Console]::ResetColor(); [Console]::WriteLine()
         if ((Test-Path -LiteralPath 'HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown') -ne $true) {
             New-Item 'HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Force
         }
         New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name 'bEnableGentech' -Value 0 -PropertyType DWord -Force
 
-        Write-Host 'Adobe Acrobat Pro: Preferences: Catalog: Enable Logging: Off' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Preferences: Catalog: Enable Logging: Off'); [Console]::ResetColor(); [Console]::WriteLine()
         if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Catalog\cOptions') -ne $true) {
             New-Item 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Catalog\cOptions' -Force
         }
         New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Catalog\cOptions' -Name 'bCreateLog' -Value 0 -PropertyType DWord -Force
 
-        Write-Host 'Adobe Acrobat Pro: Preferences: Page Display: Zoom: Fit Visible' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Preferences: Page Display: Zoom: Fit Visible'); [Console]::ResetColor(); [Console]::WriteLine()
         if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals') -ne $true) {
             New-Item 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals' -Force
         }
         New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals' -Name 'iDefaultZoomType' -Value '4' -PropertyType String -Force
 
-        Write-Host 'Adobe Acrobat Pro: General: Show me messages when I launch Adobe Acrobat: Disable' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: General: Show me messages when I launch Adobe Acrobat: Disable'); [Console]::ResetColor(); [Console]::WriteLine()
         if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\IPM') -ne $true) {
             New-Item 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\IPM' -Force
         }
         New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\IPM' -Name 'bShowMsgAtLaunch' -Value 0 -PropertyType DWord -Force
 
-        Write-Host 'Adobe Acrobat Pro: Edit: Prefrences: Security (Enhanced): Protected View: All Files' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Edit: Prefrences: Security (Enhanced): Protected View: All Files'); [Console]::ResetColor(); [Console]::WriteLine()
         if ((Test-Path -Path 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\TrustManager') -ne $true) {
             New-Item 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\TrustManager' -Force 
         }
         New-ItemProperty -Path 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\TrustManager' -Name 'iProtectedView' -Value 2 -PropertyType DWord -Force
 
-        Write-Host 'Adobe Acrobat Pro: Initiating qBittorrent' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Initiating qBittorrent'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
         
-        Write-Host 'Adobe Acrobat Pro: Getting magnet' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Getting magnet'); [Console]::ResetColor(); [Console]::WriteLine()
         $Adrobat1 = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w14.monkrus.ws/search/label/Acrobat' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'x64') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
         $Adrobat2 = (Invoke-WebRequest -UseBasicParsing -Uri $Adrobat1 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'uniondht.org') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
         if ($null -eq $Adrobat2) {
@@ -2006,77 +2006,77 @@ $Form_SoftwareSelection_OK.Add_Click{
         }
         $Adrobat3 = (Invoke-WebRequest -UseBasicParsing -Uri $Adrobat2 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'magnet') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
         
-        Write-Host 'Adobe Acrobat Pro: Deleting qBittorrent log file' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Deleting qBittorrent log file'); [Console]::ResetColor(); [Console]::WriteLine()
         if (Test-Path "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log") {
             Remove-Item "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Force -ErrorAction SilentlyContinue
         }
         
-        Write-Host 'Adobe Acrobat Pro: Deleting temp folder' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Deleting temp folder'); [Console]::ResetColor(); [Console]::WriteLine()
         Remove-Item -Path "$env:TEMP\*Acrobat*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
         
-        Write-Host 'Adobe Acrobat Pro: Opening magnet' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Opening magnet'); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process -FilePath "$env:ProgramFiles\qBittorrent\qBittorrent.exe" -ArgumentList "--skip-dialog=true --add-paused=false --save-path=$env:TEMP ""$($Adrobat3)"""
         
-        Write-Host 'Adobe Acrobat Pro: Waiting for folder to be created' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Waiting for folder to be created'); [Console]::ResetColor(); [Console]::WriteLine()
         while (($null -eq (Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*Acrobat*' -ErrorAction SilentlyContinue))) {
             Start-Sleep -Milliseconds 1000
         }
         $AcrobatTempDir = Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*Acrobat*' | Select-Object FullName -ExpandProperty 'FullName'
         
-        Write-Host 'Adobe Acrobat Pro: Adding Defender Exclusion' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Adding Defender Exclusion'); [Console]::ResetColor(); [Console]::WriteLine()
         Add-MpPreference -ExclusionPath "$AcrobatTempDir"
         
-        Write-Host 'Adobe Acrobat Pro: Waiting for ISO file to be created' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Waiting for ISO file to be created'); [Console]::ResetColor(); [Console]::WriteLine()
         While ($null -eq (Get-ChildItem -Path "$AcrobatTempDir" -Filter '*iso*' | Select-Object FullName -ExpandProperty 'FullName' -ErrorAction SilentlyContinue)) {
             Start-Sleep -Milliseconds 1000
         }
         $AcrobatTempISO = Get-ChildItem -Path "$AcrobatTempDir" -Filter '*iso*' | Select-Object FullName -ExpandProperty 'FullName'
         
-        Write-Host 'Adobe Acrobat Pro: Waiting download to complete' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Waiting download to complete'); [Console]::ResetColor(); [Console]::WriteLine()
         $null = Get-Content "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Wait | Where-Object { $_ -match 'Removed torrent. Torrent: .*Acrobat*' } | Select-Object -First 1
         
-        Write-Host 'Adobe Acrobat Pro: Initiating 7-Zip' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Initiating 7-Zip'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
         
-        Write-Host 'Adobe Acrobat Pro: Extracting ISO' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Extracting ISO'); [Console]::ResetColor(); [Console]::WriteLine()
         & "$env:ProgramFiles\7-Zip\7z.exe" x "$AcrobatTempISO" -o"$AcrobatTempDir" -y
             
-        Write-Host 'Adobe Acrobat Pro: Opening Installer' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Opening Installer'); [Console]::ResetColor(); [Console]::WriteLine()
         $AcrobatTEMPinstaller = Get-ChildItem -Path "$AcrobatTempDir" -Filter '*exe*' | Select-Object FullName -ExpandProperty 'FullName'
         Start-Process $AcrobatTEMPinstaller
             
-        Write-Host 'Adobe Acrobat Pro: Waiting for installer to open' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Waiting for installer to open'); [Console]::ResetColor(); [Console]::WriteLine()
         while (($null -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Acrobat * Installer' } -ErrorAction SilentlyContinue))) {
             Start-Sleep -Milliseconds 1000
         }
         
-        Write-Host 'Adobe Acrobat Pro: Waiting for installer to close' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Waiting for installer to close'); [Console]::ResetColor(); [Console]::WriteLine()
         while (($true -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Acrobat * Installer' } -ErrorAction SilentlyContinue))) {
-            Write-Host 'Adobe Acrobat Pro: Installing' -ForegroundColor green -BackgroundColor black
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
             $wshell = New-Object -ComObject wscript.shell
             $wshell.SendKeys('{ENTER}')
             Start-Sleep -Milliseconds 1000
         }
             
-        Write-Host 'Adobe Acrobat Pro: Waiting for process to open' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Waiting for process to open'); [Console]::ResetColor(); [Console]::WriteLine()
         while (($null -eq (Get-Process | Where-Object { $_.Name -like 'crack' } -ErrorAction SilentlyContinue))) {
             Start-Sleep -Milliseconds 1000
         }
         
-        Write-Host 'Adobe Acrobat Pro: Waiting for process to close' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Waiting for process to close'); [Console]::ResetColor(); [Console]::WriteLine()
         while (($true -eq (Get-Process | Where-Object { $_.Name -like 'crack' } -ErrorAction SilentlyContinue))) {
             Start-Sleep -Milliseconds 1000
         }
             
-        Write-Host 'Adobe Acrobat Pro: Removing Defender Exclusion' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Removing Defender Exclusion'); [Console]::ResetColor(); [Console]::WriteLine()
         Remove-MpPreference -ExclusionPath "$AcrobatTempDir"
     }
     
     if ($CheckBox_AdobeLightroomClassic.Checked) {
-        Write-Host 'Adobe Lightroom Classic: Initiating qBittorrent' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Initiating qBittorrent'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
         
-        Write-Host 'Adobe Lightroom Classic: Getting magnet' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Getting magnet'); [Console]::ResetColor(); [Console]::WriteLine()
         $Lightroom_Classic1 = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w14.monkrus.ws/search/label/Lightroom' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Classic') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
         $Lightroom_Classic2 = (Invoke-WebRequest -UseBasicParsing -Uri $Lightroom_Classic1 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'uniondht.org') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
         if ($null -eq $Lightroom_Classic2) {
@@ -2084,77 +2084,77 @@ $Form_SoftwareSelection_OK.Add_Click{
         }
         $Lightroom_Classic3 = (Invoke-WebRequest -UseBasicParsing -Uri $Lightroom_Classic2 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'magnet') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
         
-        Write-Host 'Adobe Lightroom Classic: Deleting qBittorrent log file' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Deleting qBittorrent log file'); [Console]::ResetColor(); [Console]::WriteLine()
         if (Test-Path "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log") {
             Remove-Item "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Force -ErrorAction SilentlyContinue
         }
         
-        Write-Host 'Adobe Lightroom Classic: Deleting temp folder' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Deleting temp folder'); [Console]::ResetColor(); [Console]::WriteLine()
         Remove-Item -Path "$env:TEMP\*Classic*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
         
-        Write-Host 'Adobe Lightroom Classic: Opening magnet' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Opening magnet'); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process -FilePath "$env:ProgramFiles\qBittorrent\qBittorrent.exe" -ArgumentList "--skip-dialog=true --add-paused=false --save-path=$env:TEMP ""$($Lightroom_Classic3)"""
         
-        Write-Host 'Adobe Lightroom Classic: Waiting for folder to be created' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Waiting for folder to be created'); [Console]::ResetColor(); [Console]::WriteLine()
         while (($null -eq (Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*Classic*' -ErrorAction SilentlyContinue))) {
             Start-Sleep -Milliseconds 1000
         }
         $Lightroom_ClassicTempDir = Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*Classic*' | Select-Object FullName -ExpandProperty 'FullName'
         
-        Write-Host 'Adobe Lightroom Classic: Adding Defender Exclusion' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Adding Defender Exclusion'); [Console]::ResetColor(); [Console]::WriteLine()
         Add-MpPreference -ExclusionPath "$Lightroom_ClassicTempDir"
         
-        Write-Host 'Adobe Lightroom Classic: Waiting for ISO file to be created' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Waiting for ISO file to be created'); [Console]::ResetColor(); [Console]::WriteLine()
         While ($null -eq (Get-ChildItem -Path "$Lightroom_ClassicTempDir" -Filter '*iso*' | Select-Object FullName -ExpandProperty 'FullName' -ErrorAction SilentlyContinue)) {
             Start-Sleep -Milliseconds 1000
         }
         $Lightroom_ClassicTempISO = Get-ChildItem -Path "$Lightroom_ClassicTempDir" -Filter '*iso*' | Select-Object FullName -ExpandProperty 'FullName'
         
-        Write-Host 'Adobe Lightroom Classic: Waiting download to complete' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Waiting download to complete'); [Console]::ResetColor(); [Console]::WriteLine()
         $null = Get-Content "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Wait | Where-Object { $_ -match 'Removed torrent. Torrent: .*Classic*' } | Select-Object -First 1
         
-        Write-Host 'Adobe Lightroom Classic: Initiating 7-Zip' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Initiating 7-Zip'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
         
-        Write-Host 'Adobe Lightroom Classic: Extracting ISO' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Extracting ISO'); [Console]::ResetColor(); [Console]::WriteLine()
         & "$env:ProgramFiles\7-Zip\7z.exe" x "$Lightroom_ClassicTempISO" -o"$Lightroom_ClassicTempDir" -y
             
-        Write-Host 'Adobe Lightroom Classic: Opening Installer' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Opening Installer'); [Console]::ResetColor(); [Console]::WriteLine()
         $Lightroom_ClassicTempInstaller = Get-ChildItem -Path "$Lightroom_ClassicTempDir" -Filter '*exe*' | Select-Object FullName -ExpandProperty 'FullName'
         Start-Process $Lightroom_ClassicTempInstaller
             
-        Write-Host 'Adobe Lightroom Classic: Waiting for installer to open' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Waiting for installer to open'); [Console]::ResetColor(); [Console]::WriteLine()
         while (($null -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Lightroom * Installer' } -ErrorAction SilentlyContinue))) {
             Start-Sleep -Milliseconds 1000
         }
         
-        Write-Host 'Adobe Lightroom Classic: Waiting for installer to close' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Waiting for installer to close'); [Console]::ResetColor(); [Console]::WriteLine()
         while (($true -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Lightroom * Installer' } -ErrorAction SilentlyContinue))) {
-            Write-Host 'Adobe Lightroom Classic: Installing' -ForegroundColor green -BackgroundColor black
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
             $wshell = New-Object -ComObject wscript.shell
             $wshell.SendKeys('{ENTER}')
             Start-Sleep -Milliseconds 1000
         }
         
-        Write-Host 'Adobe Lightroom Classic: Waiting for installer to open' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Waiting for installer to open'); [Console]::ResetColor(); [Console]::WriteLine()
         while (($null -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Lightroom * Installer' } -ErrorAction SilentlyContinue))) {
             Start-Sleep -Milliseconds 1000
         }
         
-        Write-Host 'Adobe Lightroom Classic: Waiting for installer to close' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Waiting for installer to close'); [Console]::ResetColor(); [Console]::WriteLine()
         while (($true -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Lightroom * Installer' } -ErrorAction SilentlyContinue))) {
             Start-Sleep -Milliseconds 1000
         }
             
-        Write-Host 'Adobe Lightroom Classic: Removing Defender Exclusion' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Removing Defender Exclusion'); [Console]::ResetColor(); [Console]::WriteLine()
         Remove-MpPreference -ExclusionPath "$Lightroom_ClassicTempDir"
     }
 
     if ($CheckBox_AdobePhotoshop.Checked) {
-        Write-Host 'Adobe Photoshop: Initiating qBittorrent' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Initiating qBittorrent'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
         
-        Write-Host 'Adobe Photoshop: Getting magnet' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Getting magnet'); [Console]::ResetColor(); [Console]::WriteLine()
         $Photoshop1 = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w14.monkrus.ws/search/label/Photoshop' | Select-Object -ExpandProperty Links | Where-Object { (($_.outerHTML -notmatch 'Elements') -and ($_.outerHTML -notmatch 'Collection') -and ($_.outerHTML -match 'Multilingual')) } | Select-Object -First 1 | Select-Object -ExpandProperty href)
         $Photoshop2 = (Invoke-WebRequest -UseBasicParsing -Uri $Photoshop1 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'uniondht.org') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
         if ($null -eq $Photoshop2) {
@@ -2162,144 +2162,144 @@ $Form_SoftwareSelection_OK.Add_Click{
         }
         $Photoshop3 = (Invoke-WebRequest -UseBasicParsing -Uri $Photoshop2 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'magnet') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
         
-        Write-Host 'Adobe Photoshop: Deleting qBittorrent log file' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Deleting qBittorrent log file'); [Console]::ResetColor(); [Console]::WriteLine()
         if (Test-Path "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log") {
             Remove-Item "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Force -ErrorAction SilentlyContinue
         }
         
-        Write-Host 'Adobe Photoshop: Deleting temp folder' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Deleting temp folder'); [Console]::ResetColor(); [Console]::WriteLine()
         Remove-Item -Path "$env:TEMP\*Photoshop*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
         
-        Write-Host 'Adobe Photoshop: Opening magnet' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Opening magnet'); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process -FilePath "$env:ProgramFiles\qBittorrent\qBittorrent.exe" -ArgumentList "--skip-dialog=true --add-paused=false --save-path=$env:TEMP ""$($Photoshop3)"""
         
-        Write-Host 'Adobe Photoshop: Waiting for folder to be created' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Waiting for folder to be created'); [Console]::ResetColor(); [Console]::WriteLine()
         while (($null -eq (Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*Photoshop*' -ErrorAction SilentlyContinue))) {
             Start-Sleep -Milliseconds 1000
         }
         $PhotoshopTempDir = Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*Photoshop*' | Select-Object FullName -ExpandProperty 'FullName'
         
-        Write-Host 'Adobe Photoshop: Adding Defender Exclusion' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Adding Defender Exclusion'); [Console]::ResetColor(); [Console]::WriteLine()
         Add-MpPreference -ExclusionPath "$PhotoshopTempDir"
         
-        Write-Host 'Adobe Photoshop: Waiting for ISO file to be created' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Waiting for ISO file to be created'); [Console]::ResetColor(); [Console]::WriteLine()
         While ($null -eq (Get-ChildItem -Path "$PhotoshopTempDir" -Filter '*iso*' | Select-Object FullName -ExpandProperty 'FullName' -ErrorAction SilentlyContinue)) {
             Start-Sleep -Milliseconds 1000
         }
         $PhotoshopTempISO = Get-ChildItem -Path "$PhotoshopTempDir" -Filter '*iso*' | Select-Object FullName -ExpandProperty 'FullName'
         
-        Write-Host 'Adobe Photoshop: Waiting download to complete' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Waiting download to complete'); [Console]::ResetColor(); [Console]::WriteLine()
         $null = Get-Content "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Wait | Where-Object { $_ -match 'Removed torrent. Torrent: .*Photoshop*' } | Select-Object -First 1
         
-        Write-Host 'Adobe Photoshop: Initiating 7-Zip' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Initiating 7-Zip'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
         
-        Write-Host 'Adobe Photoshop: Extracting ISO' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Extracting ISO'); [Console]::ResetColor(); [Console]::WriteLine()
         & "$env:ProgramFiles\7-Zip\7z.exe" x "$PhotoshopTempISO" -o"$PhotoshopTempDir" -y
             
-        Write-Host 'Adobe Photoshop: Opening Installer' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Opening Installer'); [Console]::ResetColor(); [Console]::WriteLine()
         $PhotoshopTempInstaller = Get-ChildItem -Path "$PhotoshopTempDir" -Filter '*exe*' | Select-Object FullName -ExpandProperty 'FullName'
         Start-Process $PhotoshopTempInstaller
             
-        Write-Host 'Adobe Photoshop: Waiting for installer to open' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Waiting for installer to open'); [Console]::ResetColor(); [Console]::WriteLine()
         while (($null -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Photoshop * Installer' } -ErrorAction SilentlyContinue))) {
             Start-Sleep -Milliseconds 1000
         }
         
-        Write-Host 'Adobe Photoshop: Waiting for installer to close' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Waiting for installer to close'); [Console]::ResetColor(); [Console]::WriteLine()
         while (($true -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Photoshop * Installer' } -ErrorAction SilentlyContinue))) {
-            Write-Host 'Adobe Photoshop: Installing' -ForegroundColor green -BackgroundColor black
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
             $wshell = New-Object -ComObject wscript.shell
             $wshell.SendKeys('{ENTER}')
             Start-Sleep -Milliseconds 1000
         }
         
-        Write-Host 'Adobe Photoshop: Waiting for installer to open' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Waiting for installer to open'); [Console]::ResetColor(); [Console]::WriteLine()
         while (($null -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Photoshop * Installer' } -ErrorAction SilentlyContinue))) {
             Start-Sleep -Milliseconds 1000
         }
         
-        Write-Host 'Adobe Photoshop: Waiting for installer to close' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Waiting for installer to close'); [Console]::ResetColor(); [Console]::WriteLine()
         while (($true -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Photoshop * Installer' } -ErrorAction SilentlyContinue))) {
             Start-Sleep -Milliseconds 1000
         }
             
-        Write-Host 'Adobe Photoshop: Removing Defender Exclusion' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Removing Defender Exclusion'); [Console]::ResetColor(); [Console]::WriteLine()
         Remove-MpPreference -ExclusionPath "$PhotoshopTempDir"
     }
 
     if ($CheckBox_JitBit_Macro_Recorder.Checked) {
-        Write-Host 'Jitbit Macro Recorder: Settings: General: Disable the welcome screen: On' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Jitbit Macro Recorder: Settings: General: Disable the welcome screen: On'); [Console]::ResetColor(); [Console]::WriteLine()
         if ((Test-Path -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder') -ne $true) {
             New-Item 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Force 
         }
         
-        Write-Host 'Jitbit Macro Recorder: Disabling Startup Screen' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Jitbit Macro Recorder: Disabling Startup Screen'); [Console]::ResetColor(); [Console]::WriteLine()
         New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'DisableStartupScreen' -Value 'True' -PropertyType String -Force
         
-        Write-Host 'Jitbit Macro Recorder: Settings: Playback settings: Continuous reply: Infinite playback' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Jitbit Macro Recorder: Settings: Playback settings: Continuous reply: Infinite playback'); [Console]::ResetColor(); [Console]::WriteLine()
         New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'NumberOfPlaybacks' -Value 0 -PropertyType DWord -Force
         
-        Write-Host 'Jitbit Macro Recorder: Settings: Playback settings: Hide the topmost playing... bar: Off' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Jitbit Macro Recorder: Settings: Playback settings: Hide the topmost playing... bar: Off'); [Console]::ResetColor(); [Console]::WriteLine()
         New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'HidePlayWnd' -Value 'False' -PropertyType String -Force
         
-        Write-Host 'Jitbit Macro Recorder: Settings: General: Move the playback toolbar to the right: On' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Jitbit Macro Recorder: Settings: General: Move the playback toolbar to the right: On'); [Console]::ResetColor(); [Console]::WriteLine()
         New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'PlayRecFormsOnTheRight' -Value 'True' -PropertyType String -Force
         
-        Write-Host 'Jitbit Macro Recorder: Settings: Keyboard shortcuts (hotkeys): Play / Pause / Resume playback: F8' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Jitbit Macro Recorder: Settings: Keyboard shortcuts (hotkeys): Play / Pause / Resume playback: F8'); [Console]::ResetColor(); [Console]::WriteLine()
         New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'PausePlayKey' -Value 119 -PropertyType DWord -Force
         
-        Write-Host 'Jitbit Macro Recorder: Settings: Keyboard shortcuts (hotkeys): Abort playback: F9' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Jitbit Macro Recorder: Settings: Keyboard shortcuts (hotkeys): Abort playback: F9'); [Console]::ResetColor(); [Console]::WriteLine()
         New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'AbortPlayKey' -Value 120 -PropertyType DWord -Force
         
-        Write-Host 'Jitbit Macro Recorder: Settings: Keyboard shortcuts (hotkeys): Step-by-step playback: F10' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Jitbit Macro Recorder: Settings: Keyboard shortcuts (hotkeys): Step-by-step playback: F10'); [Console]::ResetColor(); [Console]::WriteLine()
         New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'StepByStepPlayKey' -Value 121 -PropertyType DWord -Force
         
-        Write-Host 'Jitbit Macro Recorder: Settings: Keyboard shortcuts (hotkeys): Start / Pause / Resume recording: F11' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Jitbit Macro Recorder: Settings: Keyboard shortcuts (hotkeys): Start / Pause / Resume recording: F11'); [Console]::ResetColor(); [Console]::WriteLine()
         New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'RecordKey' -Value 122 -PropertyType DWord -Force
         
-        Write-Host 'Jitbit Macro Recorder: Settings: Keyboard shortcuts (hotkeys): Abort recording: F12' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Jitbit Macro Recorder: Settings: Keyboard shortcuts (hotkeys): Abort recording: F12'); [Console]::ResetColor(); [Console]::WriteLine()
         New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'AbortRecKey' -Value 123 -PropertyType DWord -Force
         
-        Write-Host 'JitBit Macro Recorder: Initiating qBittorrent' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('JitBit Macro Recorder: Initiating qBittorrent'); [Console]::ResetColor(); [Console]::WriteLine()
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
         
-        Write-Host 'JitBit Macro Recorder: Getting magnet' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('JitBit Macro Recorder: Getting magnet'); [Console]::ResetColor(); [Console]::WriteLine()
         $JitBit1 = (Invoke-WebRequest -UseBasicParsing -Uri 'https://rutracker.org/forum/viewtopic.php?t=6357418' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'magnet') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
         
-        Write-Host 'JitBit Macro Recorder: Deleting qBittorrent log file' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('JitBit Macro Recorder: Deleting qBittorrent log file'); [Console]::ResetColor(); [Console]::WriteLine()
         if (Test-Path "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log") {
             Remove-Item "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Force -ErrorAction SilentlyContinue
         }
         
-        Write-Host 'JitBit Macro Recorder: Deleting temp folder' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('JitBit Macro Recorder: Deleting temp folder'); [Console]::ResetColor(); [Console]::WriteLine()
         Remove-Item -Path "$env:TEMP\*JitBit*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
         
-        Write-Host 'JitBit Macro Recorder: Opening magnet' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('JitBit Macro Recorder: Opening magnet'); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process -FilePath "$env:ProgramFiles\qBittorrent\qBittorrent.exe" -ArgumentList "--skip-dialog=true --add-paused=false --save-path=$env:TEMP ""$($JitBit1)"""
         
-        Write-Host 'JitBit Macro Recorder: Waiting for folder to be created' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('JitBit Macro Recorder: Waiting for folder to be created'); [Console]::ResetColor(); [Console]::WriteLine()
         while (($null -eq (Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*JitBit*' -ErrorAction SilentlyContinue))) {
             Start-Sleep -Milliseconds 1000
         }
         $JitBitTempDir = Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*JitBit*' | Select-Object FullName -ExpandProperty 'FullName'
         
-        Write-Host 'JitBit Macro Recorder: Adding Defender Exclusion' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('JitBit Macro Recorder: Adding Defender Exclusion'); [Console]::ResetColor(); [Console]::WriteLine()
         Add-MpPreference -ExclusionPath "$JitBitTempDir"
         
-        Write-Host 'JitBit Macro Recorder: Waiting for installer file to be created' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('JitBit Macro Recorder: Waiting for installer file to be created'); [Console]::ResetColor(); [Console]::WriteLine()
         While ($null -eq (Get-ChildItem -Path "$JitBitTempDir" -Filter '*exe*' | Select-Object FullName -ExpandProperty 'FullName' -ErrorAction SilentlyContinue)) {
             Start-Sleep -Milliseconds 1000
         }
         $JitBitTempInstaller = Get-ChildItem -Path "$JitBitTempDir" -Filter '*exe*' | Select-Object FullName -ExpandProperty 'FullName'
         
-        Write-Host 'JitBit Macro Recorder: Waiting download to complete' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('JitBit Macro Recorder: Waiting download to complete'); [Console]::ResetColor(); [Console]::WriteLine()
         $null = Get-Content "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Wait | Where-Object { $_ -match 'Removed torrent. Torrent: .*JitBit*' } | Select-Object -First 1
         
-        Write-Host 'JitBit Macro Recorder: Installing' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('JitBit Macro Recorder: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process $JitBitTempInstaller -ArgumentList '/verysilent /Tasks=create_start_menu_entry' -Wait
         
-        Write-Host 'JitBit Macro Recorder: Removing Defender Exclusion' -ForegroundColor green -BackgroundColor black
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('JitBit Macro Recorder: Removing Defender Exclusion'); [Console]::ResetColor(); [Console]::WriteLine()
         Remove-MpPreference -ExclusionPath "$JitBitTempDir"
     }
 

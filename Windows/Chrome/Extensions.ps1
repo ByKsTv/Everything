@@ -1,15 +1,15 @@
 $InstalledSoftware = Get-Package | Select-Object -Property 'Name'
 
 if ($InstalledSoftware -match 'Google Chrome') {
-    Write-Host 'Google Chrome Extensions: Closing browser' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Closing browser'); [Console]::ResetColor(); [Console]::WriteLine()
     Stop-Process -Name Chrome -Force -ErrorAction SilentlyContinue
 
-    Write-Host 'Google Chrome Extensions: Adding uBlock Origin' -ForegroundColor green -BackgroundColor black
-    Write-Host 'Google Chrome Extensions: Adding Violentmonkey' -ForegroundColor green -BackgroundColor black
-    Write-Host 'Google Chrome Extensions: Adding ClearURLs' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Adding uBlock Origin'); [Console]::ResetColor(); [Console]::WriteLine()
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Adding Violentmonkey'); [Console]::ResetColor(); [Console]::WriteLine()
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Adding ClearURLs'); [Console]::ResetColor(); [Console]::WriteLine()
     Write-Host "Google Chrome Extensions: Adding I'm not robot captcha clicker" -ForegroundColor green -BackgroundColor black
-    Write-Host 'Google Chrome Extensions: Adding Buster: Captcha Solver for Humans' -ForegroundColor green -BackgroundColor black
-    Write-Host 'Google Chrome Extensions: Adding The Camelizer - Price Tracker' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Adding Buster: Captcha Solver for Humans'); [Console]::ResetColor(); [Console]::WriteLine()
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Adding The Camelizer - Price Tracker'); [Console]::ResetColor(); [Console]::WriteLine()
 
     # https://github.com/letsdoautomation/powershell/tree/main/Install%20Google%20Chrome%20Extensions
     $extensions = 'cjpalhdlnbpafiamejdnhcphjbkeiagm', 'jinjaccalgkegednnccohejagnlnfdag', 'lckanjgmijmafbedllaakclkaicjfmnk', 'mpbjkejclgfgadiemmefgebjfooflfhl', 'ghnomdcacenbmilgjigehppbamfndblo'
@@ -31,7 +31,7 @@ if ($InstalledSoftware -match 'Google Chrome') {
     }
     $registry.Dispose()
 
-    Write-Host 'Google Chrome Extensions: uBlock Origin: Using custom settings' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: uBlock Origin: Using custom settings'); [Console]::ResetColor(); [Console]::WriteLine()
     # https://www.reddit.com/r/sysadmin/comments/u9fg8c/comment/i5tudv7/
     New-Item -Path 'HKLM:\Software\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy' -Force
     $uBlockDownloadLocation = "$env:TEMP\uBlock_Origin_Backup.json"
@@ -39,17 +39,17 @@ if ($InstalledSoftware -match 'Google Chrome') {
     $uBlockLatestContent = Get-Content $uBlockDownloadLocation
     New-ItemProperty -Path 'HKLM:\Software\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy' -Name 'adminSettings' -Value "$uBlockLatestContent" -PropertyType String -Force
 
-    Write-Host 'Google Chrome Extensions: Starting browser' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Starting browser'); [Console]::ResetColor(); [Console]::WriteLine()
     [System.Diagnostics.Process]::Start('Chrome.exe')
     Start-Sleep -Milliseconds 1000
 
-    Write-Host 'Google Chrome Extensions: Waiting for browser' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Waiting for browser'); [Console]::ResetColor(); [Console]::WriteLine()
     while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'Chrome' } -ErrorAction SilentlyContinue))) {
         Start-Sleep -Milliseconds 1000
     }
     Start-Sleep -Milliseconds 20000
 
-    Write-Host 'Google Chrome Extensions: Adding option to set foreground' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Adding option to set foreground'); [Console]::ResetColor(); [Console]::WriteLine()
     if (-not ([System.Management.Automation.PSTypeName]'SFW').Type) {
         Add-Type @'
     using System;
@@ -62,21 +62,21 @@ if ($InstalledSoftware -match 'Google Chrome') {
 '@
     }
 
-    Write-Host 'Google Chrome Extensions: Setting foreground' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Setting foreground'); [Console]::ResetColor(); [Console]::WriteLine()
     [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'Chrome' }).MainWindowHandle)
 
-    Write-Host 'Google Chrome Extensions: Opening AdsBypasser' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Opening AdsBypasser'); [Console]::ResetColor(); [Console]::WriteLine()
     [System.Diagnostics.Process]::Start('Chrome.exe', 'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js')
     Start-Sleep -Milliseconds 5000
 
-    Write-Host 'Google Chrome Extensions: Setting foreground' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Setting foreground'); [Console]::ResetColor(); [Console]::WriteLine()
     [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'Chrome' }).MainWindowHandle)
     Start-Sleep -Milliseconds 1000
 
-    Write-Host 'Google Chrome Extensions: Installing AdsBypasser' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Installing AdsBypasser'); [Console]::ResetColor(); [Console]::WriteLine()
     (New-Object -ComObject wscript.shell).SendKeys('^{ENTER}')
     
-    Write-Host 'Google Chrome Extensions: Cleaning up' -ForegroundColor green -BackgroundColor black
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Cleaning up'); [Console]::ResetColor(); [Console]::WriteLine()
     if ((Test-Path -Path HKLM:\Software\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy) -eq $true) {
         Remove-Item HKLM:\Software\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy -Force
     }

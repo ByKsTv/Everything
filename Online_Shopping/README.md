@@ -5,7 +5,7 @@ Everything about Online Shopping.
 ## Amazon
 
 1. Only buy products that ship from Amazon.
-1. Use [Copuons](https://github.com/ByKsTv/Everything/tree/main/Online_Shopping#coupons).
+1. Use [Copuons](#coupons).
 1. Use [Camelizer](https://camelcamelcamel.com/camelizer).
 1. Use [Today's Deals](https://www.amazon.com/gp/goldbox).
 1. In case of issues contact [Amazon Support](https://www.amazon.com/message-us?paradigm=foresight) after 17:00 (say `Chat with an associate now`).
@@ -16,7 +16,7 @@ Everything about Online Shopping.
 ## AliExpress
 
 1. Use [PayPal](https://www.paypal.com/).
-1. Use [Copuons](https://github.com/ByKsTv/Everything/tree/main/Online_Shopping#coupons).
+1. Use [Copuons](#coupons).
 1. In case of issues click on `Returns/refunds`.
 
 ## Coupons

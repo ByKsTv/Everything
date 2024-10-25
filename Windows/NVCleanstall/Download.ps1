@@ -1,4 +1,4 @@
-Write-Host 'NVCleanstall: Adding option to set foreground' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('NVCleanstall: Adding option to set foreground'); [Console]::ResetColor(); [Console]::WriteLine()
 if (-not ([System.Management.Automation.PSTypeName]'SFW').Type) {
     Add-Type @'
 using System;
@@ -11,27 +11,27 @@ public class SFW {
 '@
 }
 
-Write-Host 'NVCleanstall: Checking which browser is installed' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('NVCleanstall: Checking which browser is installed'); [Console]::ResetColor(); [Console]::WriteLine()
 $InstalledSoftware = Get-Package | Select-Object -Property 'Name'
 
-Write-Host 'NVCleanstall: Downloading' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('NVCleanstall: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
 if ($InstalledSoftware -match 'Chrome') {
     [System.Diagnostics.Process]::Start('chrome.exe', 'https://www.techpowerup.com/download/techpowerup-nvcleanstall/')
 }
 if ($InstalledSoftware -match 'Firefox') {
     [System.Diagnostics.Process]::Start('firefox.exe', 'https://www.techpowerup.com/download/techpowerup-nvcleanstall/')
 }
-Write-Host 'NVCleanstall: Waiting for browser' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('NVCleanstall: Waiting for browser'); [Console]::ResetColor(); [Console]::WriteLine()
 while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'chrome' -or $_.mainWindowTitle -match 'firefox' } -ErrorAction SilentlyContinue))) {
     Start-Sleep -Milliseconds 1000
 }
 Start-Sleep -Milliseconds 1000
 
-Write-Host 'NVCleanstall: Setting foreground' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('NVCleanstall: Setting foreground'); [Console]::ResetColor(); [Console]::WriteLine()
 [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'chrome' -or $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
 Start-Sleep -Milliseconds 1000
 
-Write-Host 'NVCleanstall: Starting browser console' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('NVCleanstall: Starting browser console'); [Console]::ResetColor(); [Console]::WriteLine()
 if ($InstalledSoftware -match 'Chrome') {
     (New-Object -ComObject wscript.shell).SendKeys('^+j')
 }
@@ -40,7 +40,7 @@ if ($InstalledSoftware -match 'Firefox') {
 }
 Start-Sleep -Milliseconds 2000
 
-Write-Host 'NVCleanstall: Sending download click using browser console' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('NVCleanstall: Sending download click using browser console'); [Console]::ResetColor(); [Console]::WriteLine()
 (New-Object -ComObject wscript.shell).SendKeys("document.getElementsByClassName{(}'button startbutton'{)}{[}0{]}.click{(}{)}")
 (New-Object -ComObject wscript.shell).SendKeys('{ENTER}')
 Start-Sleep -Milliseconds 1000
@@ -48,7 +48,7 @@ Start-Sleep -Milliseconds 1000
 (New-Object -ComObject wscript.shell).SendKeys('{ENTER}')
 Start-Sleep -Milliseconds 1000
 
-Write-Host 'NVCleanstall: Closing browser console' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('NVCleanstall: Closing browser console'); [Console]::ResetColor(); [Console]::WriteLine()
 if ($InstalledSoftware -match 'Chrome') {
     (New-Object -ComObject wscript.shell).SendKeys('^+j')
 }
@@ -56,7 +56,7 @@ if ($InstalledSoftware -match 'Firefox') {
     (New-Object -ComObject wscript.shell).SendKeys('^+i')
 }
 
-Write-Host 'NVCleanstall: Waiting for download to complete' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('NVCleanstall: Waiting for download to complete'); [Console]::ResetColor(); [Console]::WriteLine()
 $Downloads = (New-Object -ComObject Shell.Application).NameSpace('shell:Downloads').Self.Path
 While (!(Test-Path "$Downloads\NVCleanstall*.exe" -ErrorAction SilentlyContinue)) {
     Start-Sleep -Milliseconds 1000
@@ -66,15 +66,15 @@ do {
 } 
 until( ($dirStats.Sum -ne 0) )
 
-Write-Host 'NVCleanstall: Installing' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('NVCleanstall: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
 Start-Process -FilePath "$Downloads\NVCleanstall*.exe" -ArgumentList '/install /tasks="DriverUpdateCheck,DesktopIcon" /verysilent' -Wait
 
-Write-Host 'NVCleanstall: Deleting from Downloads folder' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('NVCleanstall: Deleting from Downloads folder'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path "$Downloads\NVCleanstall*.exe") -eq $true) {
     Remove-Item -Path ("$Downloads\NVCleanstall*.exe")
 }
 
-Write-Host 'NVCleanstall: Using custom settings' -ForegroundColor green -BackgroundColor black
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('NVCleanstall: Using custom settings'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\techPowerUp\NVCleanstall') -ne $true) {
     New-Item 'HKCU:\SOFTWARE\techPowerUp\NVCleanstall' -Force
 }

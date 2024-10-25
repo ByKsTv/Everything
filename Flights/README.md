@@ -13,9 +13,11 @@ Everything about Flights.
 > Use Fly Card.
 >
 > Download the app of the 3rd party site you bought tickets from.
+> Download the app of the airline you fly with.
 
-If you buy tickets for more than 1 passanger you dont need to reserve seats
+If you buy tickets for more than 1 passanger you dont need to reserve seats (?)
 If you want to change seats - use the first party airline website
+Don't buy tickets that are near the aile or bathroom
 
 ## Hotels
 
@@ -23,12 +25,18 @@ If you want to change seats - use the first party airline website
 - [Airbnb](https://www.airbnb.com/)
 
 > Use multiple devices to check the price.
+>
+> Always lock the room.
 
 ## Travel
 
 - [Google Lens](https://play.google.com/store/apps/details?id=com.google.ar.lens) - Translate foreign text
 - [Google Maps](https://play.google.com/store/apps/details?id=com.google.android.apps.maps) - Download offline map
 - [Google My Maps](https://www.google.com/mymaps) - Locations
+
+> If you plan to visit a distant place in the destination country - always visit at early morning.
+>
+> Always take a picture of the recepeits.
 
 ## Exchange
 
@@ -46,9 +54,13 @@ If you want to change seats - use the first party airline website
 
 ## SIM
 
-- Buy SIM in the destination country.
+- Buy SIM in the destination country in you do't plan to get SMS.
+- Buy local SIM if you plan to use SMS to transfer money.
+- If you buy SIM in the destination country - buy longer than needed.
 
-> Do not buy plans from the local carrier.
+## Portable charger
+
+- Always carry a portable charger.
 
 ## Check in
 
@@ -61,16 +73,21 @@ If you want to change seats - use the first party airline website
 - Download their app
 - Add their pay card to Google wallet
 
+> If airline cancled the flight back, some health insuranced will cover you for free for additional 48 to 72 hours.
+
 ## Luggage
 
 - Check which luggage is allowed on the flight and adjust accordingly.
 
 List of contents:
-Backpack: Sunglasses, passport, toothbrush, phone charger,
-Suitcase 1: Clothes, deodorant,
+Backpack: Sunglasses, passport, phone charger, jacket, sim eject
+Suitcase 1: Clothes, deodorant, toothbrush
 Suitcase 2:
 Trolly:
 
 ## Terminal
 
 - Arrive to the airport 4 hours before the flight
+
+1. Check in, this is where you get asked some questions, some of them are regarding to whats your final destination, and some are about the suitcase and where you came from and if you left it somewhere, this is also where you leave the suitcases.
+1.
