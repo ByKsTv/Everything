@@ -1,25 +1,14 @@
-$TranslucentTB = 'TranslucentTB Updater'
-$TranslucentTB_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $TranslucentTB }
-if (!($TranslucentTB_Exists)) {
-    Write-Host "TranslucentTB: Task Scheduler: Adding $TranslucentTB" -ForegroundColor green -BackgroundColor black
-    $TranslucentTB_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-    $TranslucentTB_Action = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/TranslucentTB/Download.ps1')"
-    $TranslucentTB_Trigger = New-ScheduledTaskTrigger -AtLogOn
-    $TranslucentTB_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
-    $TranslucentTB_Parameters = @{
-        TaskName  = $TranslucentTB
-        Principal = $TranslucentTB_Principal
-        Action    = $TranslucentTB_Action
-        Trigger   = $TranslucentTB_Trigger
-        Settings  = $TranslucentTB_Settings
-    }
-    Register-ScheduledTask @TranslucentTB_Parameters -Force
+$TranslucentTB_TaskName = 'TranslucentTB Updater'
+if (-not (Get-ScheduledTask -TaskName $TranslucentTB_TaskName -ErrorAction SilentlyContinue)) {
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$TranslucentTB_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
+    $TranslucentTB_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/TranslucentTB/Download.ps1')"
+    $TranslucentTB_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
+    $TranslucentTB_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
+    $TranslucentTB_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
+    Register-ScheduledTask -TaskName $TranslucentTB_TaskName -Action $TranslucentTB_TaskAction -Trigger $TranslucentTB_TaskTrigger -Principal $TranslucentTB_TaskPrincipal -Settings $TranslucentTB_TaskSettings -Force
 }
 
-$TranslucentTBPackage = Get-AppxPackage | Where-Object { $_.Name -like '*TranslucentTB*' }
-if ($TranslucentTBPackage) {
-    $TranslucentTBInstalledVersion = $TranslucentTBPackage.Version
-}
+$TranslucentTBPackage = (Get-AppxPackage | Where-Object { $_.Name -like '*TranslucentTB*' } -ErrorAction SilentlyContinue).Version
 $TranslucentTBLatestVersion = (Invoke-RestMethod -Uri https://api.github.com/repos/TranslucentTB/TranslucentTB/releases/latest -UseBasicParsing).tag_name
 $TranslucentTBInstalledVersionParts = ($TranslucentTBInstalledVersion -split '\.' | Select-Object -First 2) -join '.'
 $TranslucentTBLatestVersionParts = ($TranslucentTBLatestVersion -split '\.' | Select-Object -First 2) -join '.'

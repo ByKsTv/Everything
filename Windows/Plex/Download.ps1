@@ -1,23 +1,15 @@
-$PlexMediaServer = 'PlexMediaServer Updater'
-$PlexMediaServer_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $PlexMediaServer }
-if (!($PlexMediaServer_Exists)) {
-    Write-Host "Plex: Task Scheduler: Adding $PlexMediaServer" -ForegroundColor green -BackgroundColor black
-    $PlexMediaServer_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-    $PlexMediaServer_Action = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Plex/Download.ps1')"
-    $PlexMediaServer_Trigger = New-ScheduledTaskTrigger -AtLogOn
-    $PlexMediaServer_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
-    $PlexMediaServer_Parameters = @{
-        TaskName  = $PlexMediaServer
-        Principal = $PlexMediaServer_Principal
-        Action    = $PlexMediaServer_Action
-        Trigger   = $PlexMediaServer_Trigger
-        Settings  = $PlexMediaServer_Settings
-    }
-    Register-ScheduledTask @PlexMediaServer_Parameters -Force
+$PlexMediaServer_TaskName = 'PlexMediaServer Updater'
+if (-not (Get-ScheduledTask -TaskName $PlexMediaServer_TaskName -ErrorAction SilentlyContinue)) {
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$PlexMediaServer_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
+    $PlexMediaServer_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Plex/Download.ps1')"
+    $PlexMediaServer_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
+    $PlexMediaServer_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
+    $PlexMediaServer_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
+    Register-ScheduledTask -TaskName $PlexMediaServer_TaskName -Action $PlexMediaServer_TaskAction -Trigger $PlexMediaServer_TaskTrigger -Principal $PlexMediaServer_TaskPrincipal -Settings $PlexMediaServer_TaskSettings -Force
 }
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Plex: Getting current version'); [Console]::ResetColor(); [Console]::WriteLine()
-$Plex_Installed1 = Get-Package -Name 'Plex Media Server*' -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'Version'
+$Plex_Installed1 = (Get-Package -Name 'Plex Media Server*' -ErrorAction SilentlyContinue).Version
 $Plex_Installed2 = (Get-ChildItem -Directory -Path "$env:ProgramFiles\Plex\Plex Media Server\Resources\Plug-ins-*" -ErrorAction SilentlyContinue | Sort-Object -Descending -Property Name | Select-Object -First 1 -ExpandProperty 'Name').Replace('Plug-ins-', '')
 $Plex_Installed = $Plex_Installed1 + '-' + $Plex_Installed2
 

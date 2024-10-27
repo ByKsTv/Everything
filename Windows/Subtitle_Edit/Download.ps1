@@ -1,19 +1,11 @@
-$SubtitleEdit = 'Subtitle Edit Updater'
-$SubtitleEdit_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $SubtitleEdit }
-if (!($SubtitleEdit_Exists)) {
-    Write-Host "Subtitle Edit: Task Scheduler: Adding $SubtitleEdit" -ForegroundColor green -BackgroundColor black
-    $SubtitleEdit_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-    $SubtitleEdit_Action = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/SubtitleEdit/Download.ps1')"
-    $SubtitleEdit_Trigger = New-ScheduledTaskTrigger -AtLogOn
-    $SubtitleEdit_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
-    $SubtitleEdit_Parameters = @{
-        TaskName  = $SubtitleEdit
-        Principal = $SubtitleEdit_Principal
-        Action    = $SubtitleEdit_Action
-        Trigger   = $SubtitleEdit_Trigger
-        Settings  = $SubtitleEdit_Settings
-    }
-    Register-ScheduledTask @SubtitleEdit_Parameters -Force
+$SubtitleEdit_TaskName = 'Subtitle Edit Updater'
+if (-not (Get-ScheduledTask -TaskName $SubtitleEdit_TaskName -ErrorAction SilentlyContinue)) {
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SubtitleEdit_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
+    $SubtitleEdit_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/SubtitleEdit/Download.ps1')"
+    $SubtitleEdit_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
+    $SubtitleEdit_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
+    $SubtitleEdit_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
+    Register-ScheduledTask -TaskName $SubtitleEdit_TaskName -Action $SubtitleEdit_TaskAction -Trigger $SubtitleEdit_TaskTrigger -Principal $SubtitleEdit_TaskPrincipal -Settings $SubtitleEdit_TaskSettings -Force
 }
 
 $SubtitleEditInstalledVersion = (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\SubtitleEdit_is1' -ErrorAction SilentlyContinue).DisplayVersion

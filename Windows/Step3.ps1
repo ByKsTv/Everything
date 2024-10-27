@@ -2,7 +2,7 @@
 Unregister-ScheduledTask -TaskName Step3 -Confirm:$false
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('DirectX: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-(New-Object System.Net.WebClient).DownloadFile((Invoke-WebRequest -UseBasicParsing -Uri 'https://www.microsoft.com/en-us/download/details.aspx?id=8109' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'directx_Jun2010_redist.exe') } | Select-Object -First 1 | Select-Object -ExpandProperty href), "$env:TEMP\directx_Jun2010_redist.exe")
+(New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://www.microsoft.com/en-us/download/details.aspx?id=8109' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'directx_Jun2010_redist.exe') } | Select-Object -First 1).href), "$env:TEMP\directx_Jun2010_redist.exe")
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('DirectX: Extracting'); [Console]::ResetColor(); [Console]::WriteLine()
 Start-Process -FilePath $env:TEMP\directx_Jun2010_redist.exe -ArgumentList "/Q /T:$env:TEMP\directx_Jun2010_redist" -Wait
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('DirectX: Installing'); [Console]::ResetColor(); [Console]::WriteLine()

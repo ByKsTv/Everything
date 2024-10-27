@@ -37,6 +37,7 @@ Start-Process $env:TEMP\googlechromestandaloneenterprise64.msi -ArgumentList '/q
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome: Opening default apps on Windows Settings'); [Console]::ResetColor(); [Console]::WriteLine()
 Start-Process 'ms-settings:defaultapps'
 
+# fix this it's not topmost
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome: Waiting for user to set up default browser'); [Console]::ResetColor(); [Console]::WriteLine()
 Add-Type -AssemblyName System.Windows.Forms
 [System.Windows.Forms.MessageBox]::Show('Set up Google Chrome as Default Browser.

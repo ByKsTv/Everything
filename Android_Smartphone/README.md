@@ -41,36 +41,6 @@ Everything about Android apps.
 
 > [Registration guide for 4pda](https://www.youtube.com/watch?v=3XOut-lgHRc)
 
-## ADB Commands
-
-> Connect USB to PC
-
-```bash
-adb tcpip 5555
-```
-
-adb connect {DeviceIP}
-
-adb -s {DeviceIP} push test.txt /storage/emulated/0/download
-
-adb -s {DeviceIP} install us.spotco.fennec_dos_21210020.apk
-
-adb -s {DeviceIP} shell pm list packages
-
-adb -s {DeviceIP} shell pm path com.miui.tv.analytics
-
-adb -s {DeviceIP} pull /data/app/com.example.someapp-2.apk
-
-adb -s {DeviceIP} shell pm uninstall -k --user 0 com.miui.tv.analytics
-
-adb -s {DeviceIP} shell cmd package install-existing tv.alphonso.alphonso_eula
-
-adb shell pm reset-permissions
-
-adb shell pm uninstall org.skvalex.cr
-adb shell pm uninstall org.skvalex.cr.root
-adb install a.apk
-
 ## Mull Settings
 
 1. `Set as default browser` > `Sign in` > `Not Now`.
@@ -85,6 +55,25 @@ adb install a.apk
 10. `Settings` > `Add-ons` > Add `ClearURLs`.
 11. `about:config` > `browser.cache.disk.enable` > `false`.
 12. `about:config` > `webgl.disabled` > `false`.
+
+## ADB Commands
+
+Connect USB to PC
+
+```bash
+adb tcpip 5555
+```
+
+adb connect {DeviceIP}
+adb install us.spotco.fennec_dos_21210020.apk
+adb pull /data/app/com.example.someapp-2.apk
+adb push test.txt /storage/emulated/0/download
+adb shell cmd package install-existing tv.alphonso.alphonso_eula
+adb shell pm list packages
+adb shell pm path com.miui.tv.analytics
+adb shell pm reset-permissions
+adb shell pm uninstall -k --user 0 com.miui.tv.analytics
+adb shell pm uninstall org.skvalex.cr
 
 ## Install LineageOS + Magisk (ROOT) + Lucky Patcher + Call Recorder + Play Intergrity + Google Apps
 
@@ -189,5 +178,3 @@ adb install a.apk
 
 1. `System` > `System updates` > `Preferences` > `Delete updates when installed` > Disabled
 1. Once there's an update click `Download`.
-
-everytime there's a lineageos update you should update (using magisk) the installed .zip and use fastboot to flash it
