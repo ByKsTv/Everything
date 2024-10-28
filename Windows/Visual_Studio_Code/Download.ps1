@@ -11,7 +11,7 @@ if (-not (Get-ScheduledTask -TaskName $VSCode_TaskName -ErrorAction SilentlyCont
 $VSCode_InstalledVersion = (Get-Package -Name 'Microsoft Visual Studio Code' -ErrorAction SilentlyContinue).Version
 $VSCode_LatestVersion = (Invoke-RestMethod https://api.github.com/repos/microsoft/vscode/releases).tag_name | Select-Object -First 1
 
-if (($null -eq $VSCode_InstalledVersion) -or ($VSCode_InstalledVersion -notmatch $VSCode_LatestVersion)) {
+if ($null -eq $VSCode_InstalledVersion -or $VSCode_InstalledVersion -notmatch $VSCode_LatestVersion) {
     $VSCode_DDL = 'https://code.visualstudio.com/sha/download?build=stable&os=win32-x64'
     $VSCode_Filename = 'VSCodeSetup-x64-' + "$VSCode_LatestVersion" + '.exe'
     $VSCode_SavePath = [System.IO.Path]::Combine($env:TEMP, $VSCode_Filename)

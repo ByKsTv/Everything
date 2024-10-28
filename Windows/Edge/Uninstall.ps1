@@ -1,19 +1,11 @@
-$EdgeUninstaller = 'Edge Uninstaller'
-$EdgeUninstaller_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $EdgeUninstaller }
-if (!($EdgeUninstaller_Exists)) {
-    Write-Host "Edge Uninstaller: Task Scheduler: Adding $EdgeUninstaller" -ForegroundColor green -BackgroundColor black
-    $EdgeUninstaller_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-    $EdgeUninstaller_Action = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Edge/Uninstall.ps1')"
-    $EdgeUninstaller_Trigger = New-ScheduledTaskTrigger -AtLogOn
-    $EdgeUninstaller_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
-    $EdgeUninstaller_Parameters = @{
-        TaskName  = $EdgeUninstaller
-        Principal = $EdgeUninstaller_Principal
-        Action    = $EdgeUninstaller_Action
-        Trigger   = $EdgeUninstaller_Trigger
-        Settings  = $EdgeUninstaller_Settings
-    }
-    Register-ScheduledTask @EdgeUninstaller_Parameters -Force
+$EdgeUninstaller_TaskName = 'Edge Uninstaller'
+if (-not (Get-ScheduledTask -TaskName $EdgeUninstaller_TaskName -ErrorAction SilentlyContinue)) {
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$EdgeUninstaller_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
+    $EdgeUninstaller_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Edge/Uninstall.ps1')"
+    $EdgeUninstaller_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
+    $EdgeUninstaller_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
+    $EdgeUninstaller_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
+    Register-ScheduledTask -TaskName $EdgeUninstaller_TaskName -Action $EdgeUninstaller_TaskAction -Trigger $EdgeUninstaller_TaskTrigger -Principal $EdgeUninstaller_TaskPrincipal -Settings $EdgeUninstaller_TaskSettings -Force
 }
 
 $InstalledSoftware = Get-Package | Select-Object -Property 'Name'

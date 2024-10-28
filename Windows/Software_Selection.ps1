@@ -2039,7 +2039,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
         
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Extracting ISO'); [Console]::ResetColor(); [Console]::WriteLine()
-        & "$env:ProgramFiles\7-Zip\7z.exe" x "$AcrobatTempISO" -o"$AcrobatTempDir" -y
+        7z.exe x $AcrobatTempISO -o"$AcrobatTempDir" -y
             
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Opening Installer'); [Console]::ResetColor(); [Console]::WriteLine()
         $AcrobatTEMPinstaller = Get-ChildItem -Path "$AcrobatTempDir" -Filter '*exe*' | Select-Object FullName -ExpandProperty 'FullName'
@@ -2117,7 +2117,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
         
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Extracting ISO'); [Console]::ResetColor(); [Console]::WriteLine()
-        & "$env:ProgramFiles\7-Zip\7z.exe" x "$Lightroom_ClassicTempISO" -o"$Lightroom_ClassicTempDir" -y
+        7z.exe x $Lightroom_ClassicTempISO -o"$Lightroom_ClassicTempDir" -y
             
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Opening Installer'); [Console]::ResetColor(); [Console]::WriteLine()
         $Lightroom_ClassicTempInstaller = Get-ChildItem -Path "$Lightroom_ClassicTempDir" -Filter '*exe*' | Select-Object FullName -ExpandProperty 'FullName'
@@ -2195,7 +2195,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
         
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Extracting ISO'); [Console]::ResetColor(); [Console]::WriteLine()
-        & "$env:ProgramFiles\7-Zip\7z.exe" x "$PhotoshopTempISO" -o"$PhotoshopTempDir" -y
+        7z.exe x $PhotoshopTempISO -o"$PhotoshopTempDir" -y
             
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Opening Installer'); [Console]::ResetColor(); [Console]::WriteLine()
         $PhotoshopTempInstaller = Get-ChildItem -Path "$PhotoshopTempDir" -Filter '*exe*' | Select-Object FullName -ExpandProperty 'FullName'

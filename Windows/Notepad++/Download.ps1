@@ -11,7 +11,7 @@ if (-not (Get-ScheduledTask -TaskName $NotepadPlusPlus_TaskName -ErrorAction Sil
 $NotepadPlusPlus_InstalledVersion = (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Notepad++' -ErrorAction SilentlyContinue).DisplayVersion
 $NotepadPlusPlus_LatestVersion = ((Invoke-RestMethod 'https://api.github.com/repos/notepad-plus-plus/notepad-plus-plus/releases/latest').tag_name).Replace('v', '')
 
-if (($null -eq $NotepadPlusPlus_InstalledVersion) -or ($NotepadPlusPlus_InstalledVersion -notmatch $NotepadPlusPlus_LatestVersion)) {
+if ($null -eq $NotepadPlusPlus_InstalledVersion -or $NotepadPlusPlus_InstalledVersion -notmatch $NotepadPlusPlus_LatestVersion) {
     $NotepadPlusPlus_DDL = ((Invoke-RestMethod 'https://api.github.com/repos/notepad-plus-plus/notepad-plus-plus/releases/latest').assets | Where-Object name -Like '*x64.exe').browser_download_url
     $NotepadPlusPlus_Filename = [System.IO.Path]::GetFileName(([System.Uri]$NotepadPlusPlus_DDL).AbsolutePath)
     $NotepadPlusPlus_SavePath = [System.IO.Path]::Combine($env:TEMP, $NotepadPlusPlus_Filename)

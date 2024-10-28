@@ -1,19 +1,11 @@
-$BetterDiscord = 'BetterDiscord Updater'
-$BetterDiscord_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $BetterDiscord }
-if (!($BetterDiscord_Exists)) {
-    Write-Host "BetterDiscord: Task Scheduler: Adding $BetterDiscord" -ForegroundColor green -BackgroundColor black
-    $BetterDiscord_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-    $BetterDiscord_Action = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/BetterDiscord/Download.ps1')"
-    $BetterDiscord_Trigger = New-ScheduledTaskTrigger -AtLogOn
-    $BetterDiscord_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
-    $BetterDiscord_Parameters = @{
-        TaskName  = $BetterDiscord
-        Principal = $BetterDiscord_Principal
-        Action    = $BetterDiscord_Action
-        Trigger   = $BetterDiscord_Trigger
-        Settings  = $BetterDiscord_Settings
-    }
-    Register-ScheduledTask @BetterDiscord_Parameters -Force
+$BetterDiscord_TaskName = 'BetterDiscord Updater'
+if (-not (Get-ScheduledTask -TaskName $BetterDiscord_TaskName -ErrorAction SilentlyContinue)) {
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
+    $BetterDiscord_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/BetterDiscord/Download.ps1')"
+    $BetterDiscord_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
+    $BetterDiscord_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
+    $BetterDiscord_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
+    Register-ScheduledTask -TaskName $BetterDiscord_TaskName -Action $BetterDiscord_TaskAction -Trigger $BetterDiscord_TaskTrigger -Principal $BetterDiscord_TaskPrincipal -Settings $BetterDiscord_TaskSettings -Force
 }
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('BetterDiscord: Checking if Discord is Installed'); [Console]::ResetColor(); [Console]::WriteLine()

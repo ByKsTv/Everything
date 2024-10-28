@@ -9,7 +9,7 @@ if (-not (Get-ScheduledTask -TaskName $TranslucentTB_TaskName -ErrorAction Silen
 }
 
 $TranslucentTBPackage = (Get-AppxPackage | Where-Object { $_.Name -like '*TranslucentTB*' } -ErrorAction SilentlyContinue).Version
-$TranslucentTBLatestVersion = (Invoke-RestMethod -Uri https://api.github.com/repos/TranslucentTB/TranslucentTB/releases/latest -UseBasicParsing).tag_name
+$TranslucentTBLatestVersion = (Invoke-RestMethod -UseBasicParsing -Uri https://api.github.com/repos/TranslucentTB/TranslucentTB/releases/latest).tag_name
 $TranslucentTBInstalledVersionParts = ($TranslucentTBInstalledVersion -split '\.' | Select-Object -First 2) -join '.'
 $TranslucentTBLatestVersionParts = ($TranslucentTBLatestVersion -split '\.' | Select-Object -First 2) -join '.'
 

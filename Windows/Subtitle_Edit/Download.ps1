@@ -9,7 +9,7 @@ if (-not (Get-ScheduledTask -TaskName $SubtitleEdit_TaskName -ErrorAction Silent
 }
 
 $SubtitleEditInstalledVersion = (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\SubtitleEdit_is1' -ErrorAction SilentlyContinue).DisplayVersion
-$SubtitleEditLatestVersion = Invoke-RestMethod -Uri 'https://api.github.com/repos/SubtitleEdit/subtitleedit/releases/latest' -UseBasicParsing
+$SubtitleEditLatestVersion = Invoke-RestMethod -UseBasicParsing -Uri 'https://api.github.com/repos/SubtitleEdit/subtitleedit/releases/latest'
 $SubtitleEditLatestVersionUnV = $SubtitleEditLatestVersion.tag_name.TrimStart('v')
 
 if ($SubtitleEditInstalledVersion) {

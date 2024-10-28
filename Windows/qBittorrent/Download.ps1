@@ -21,7 +21,7 @@ if ($null -eq $qBittorrent_InstalledVersion -or $qBittorrent_InstalledVersion -n
     }
     
     $qBittorrent_SourceForge = ((Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/qbittorrent/qBittorrent-website/refs/heads/master/_site/download.html').Links | Where-Object { ($_.outerHTML -match 'sourceforge' -and $_.outerHTML -match '.exe' -and $_.outerHTML -notmatch '.asc' ) } | Select-Object -First 1).href
-    $qBittorrent_DDL = ((Invoke-WebRequest -Uri $qBittorrent_SourceForge -UseBasicParsing).links | Where-Object { $_.'data-release-url' -ne $null }).'data-release-url'
+    $qBittorrent_DDL = ((Invoke-WebRequest -UseBasicParsing -Uri $qBittorrent_SourceForge).links | Where-Object { $_.'data-release-url' -ne $null }).'data-release-url'
     $qBittorrent_Filename = [System.IO.Path]::GetFileName(([System.Uri]$qBittorrent_DDL).AbsolutePath)
     $qBittorrent_SavePath = [System.IO.Path]::Combine($env:TEMP, $qBittorrent_Filename)
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$qBittorrent_LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$qBittorrent_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$qBittorrent_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
