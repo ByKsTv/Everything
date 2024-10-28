@@ -4,12 +4,17 @@ $MPV_SavePath = [System.IO.Path]::Combine($env:TEMP, $MPV_Filename)
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
 (New-Object System.Net.WebClient).DownloadFile($MPV_DDL, $MPV_SavePath)
 
-$MPV_Destination = "$env:USERPROFILE\mpv"
+$MPV_Destination = [System.IO.Path]::Combine($env:USERPROFILE, 'mpv')
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Destination'"); [Console]::ResetColor(); [Console]::WriteLine()
 7z.exe x $MPV_SavePath -o"$MPV_Destination" -y
 
-(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/settings.xml', "$MPV_Destination\settings.xml")
+$MPV_SettingsXML_DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/settings.xml'
+$MPV_SettingsXML_Filename = [System.IO.Path]::GetFileName(([System.Uri]$MPV_SettingsXML_DDL).AbsolutePath)
+$MPV_SettingsXML_SavePath = [System.IO.Path]::Combine($MPV_Destination, $MPV_SettingsXML_Filename)
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' custom settings for updater from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_SettingsXML_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_SettingsXML_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+(New-Object System.Net.WebClient).DownloadFile($MPV_SettingsXML_DDL, $MPV_SettingsXML_SavePath)
+
 $MPV_TaskName = 'MPV Updater'
 if (-not (Get-ScheduledTask -TaskName $MPV_TaskName -ErrorAction SilentlyContinue)) {
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
@@ -42,31 +47,91 @@ if ($mpv_OLD_PATH -notlike "*$MPV_Destination*") {
     $env:Path = [System.Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path', 'User')
 }
 
-(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/input.conf', "$MPV_Destination\input.conf")
-(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/mpv.conf', "$MPV_Destination\mpv.conf")
+$MPV_InputCONF_DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/input.conf'
+$MPV_InputCONF_Filename = [System.IO.Path]::GetFileName(([System.Uri]$MPV_InputCONF_DDL).AbsolutePath)
+$MPV_InputCONF_SavePath = [System.IO.Path]::Combine($MPV_Destination, $MPV_InputCONF_Filename)
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' custom settings from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_InputCONF_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_InputCONF_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+(New-Object System.Net.WebClient).DownloadFile($MPV_InputCONF_DDL, $MPV_InputCONF_SavePath)
 
-if (!(Test-Path -Path "$MPV_Destination\scripts")) {
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('mpv: Creating scripts folder'); [Console]::ResetColor(); [Console]::WriteLine()
-    New-Item -Path "$MPV_Destination\scripts" -ItemType Directory -Force
+$MPV_CONF_DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/mpv.conf'
+$MPV_CONF_Filename = [System.IO.Path]::GetFileName(([System.Uri]$MPV_CONF_DDL).AbsolutePath)
+$MPV_CONF_SavePath = [System.IO.Path]::Combine($MPV_Destination, $MPV_CONF_Filename)
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' custom settings from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_CONF_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_CONF_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+(New-Object System.Net.WebClient).DownloadFile($MPV_CONF_DDL, $MPV_CONF_SavePath)
+
+$MPV_ScriptsPath = [System.IO.Path]::Combine($MPV_Destination, 'scripts')
+if (!(Test-Path -Path $MPV_ScriptsPath)) {
+    New-Item $MPV_ScriptsPath -ItemType Directory -Force
 }
+$MPV_Scripts_autoload_DDL = 'https://raw.githubusercontent.com/mpv-player/mpv/master/TOOLS/lua/autoload.lua'
+$MPV_Scripts_autoload_Filename = [System.IO.Path]::GetFileName(([System.Uri]$MPV_Scripts_autoload_DDL).AbsolutePath)
+$MPV_Scripts_autoload_SavePath = [System.IO.Path]::Combine($MPV_ScriptsPath, $MPV_Scripts_autoload_Filename)
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' custom settings from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Scripts_autoload_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Scripts_autoload_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+(New-Object System.Net.WebClient).DownloadFile($MPV_Scripts_autoload_DDL, $MPV_Scripts_autoload_SavePath)
 
-if (!(Test-Path -Path "$MPV_Destination\script-opts")) {
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('mpv: Creating script-opts folder'); [Console]::ResetColor(); [Console]::WriteLine()
-    New-Item -Path "$MPV_Destination\script-opts" -ItemType Directory -Force
+$MPV_Scripts_celebi_DDL = 'https://raw.githubusercontent.com/po5/celebi/master/celebi.lua'
+$MPV_Scripts_celebi_Filename = [System.IO.Path]::GetFileName(([System.Uri]$MPV_Scripts_celebi_DDL).AbsolutePath)
+$MPV_Scripts_celebi_SavePath = [System.IO.Path]::Combine($MPV_ScriptsPath, $MPV_Scripts_celebi_Filename)
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' custom settings from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Scripts_celebi_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Scripts_celebi_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+(New-Object System.Net.WebClient).DownloadFile($MPV_Scripts_celebi_DDL, $MPV_Scripts_celebi_SavePath)
+
+$MPV_Scripts_hidecursor_DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/hidecursor.lua'
+$MPV_Scripts_hidecursor_Filename = [System.IO.Path]::GetFileName(([System.Uri]$MPV_Scripts_hidecursor_DDL).AbsolutePath)
+$MPV_Scripts_hidecursor_SavePath = [System.IO.Path]::Combine($MPV_ScriptsPath, $MPV_Scripts_hidecursor_Filename)
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' custom settings from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Scripts_hidecursor_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Scripts_hidecursor_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+(New-Object System.Net.WebClient).DownloadFile($MPV_Scripts_hidecursor_DDL, $MPV_Scripts_hidecursor_SavePath)
+
+$MPV_Scripts_oledscreensaver_DDL = 'https://raw.githubusercontent.com/Akemi/mpv-oled-screensaver/master/oled-screensaver.lua'
+$MPV_Scripts_oledscreensaver_Filename = [System.IO.Path]::GetFileName(([System.Uri]$MPV_Scripts_oledscreensaver_DDL).AbsolutePath)
+$MPV_Scripts_oledscreensaver_SavePath = [System.IO.Path]::Combine($MPV_ScriptsPath, $MPV_Scripts_oledscreensaver_Filename)
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' custom settings from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Scripts_oledscreensaver_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Scripts_oledscreensaver_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+(New-Object System.Net.WebClient).DownloadFile($MPV_Scripts_oledscreensaver_DDL, $MPV_Scripts_oledscreensaver_SavePath)
+
+$MPV_Scripts_toggleconsole_DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/toggleconsole.lua'
+$MPV_Scripts_toggleconsole_Filename = [System.IO.Path]::GetFileName(([System.Uri]$MPV_Scripts_toggleconsole_DDL).AbsolutePath)
+$MPV_Scripts_toggleconsole_SavePath = [System.IO.Path]::Combine($MPV_ScriptsPath, $MPV_Scripts_toggleconsole_Filename)
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' custom settings from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Scripts_toggleconsole_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Scripts_toggleconsole_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+(New-Object System.Net.WebClient).DownloadFile($MPV_Scripts_toggleconsole_DDL, $MPV_Scripts_toggleconsole_SavePath)
+
+$MPV_Scripts_trackselect_DDL = 'https://raw.githubusercontent.com/po5/trackselect/master/trackselect.lua'
+$MPV_Scripts_trackselect_Filename = [System.IO.Path]::GetFileName(([System.Uri]$MPV_Scripts_trackselect_DDL).AbsolutePath)
+$MPV_Scripts_trackselect_SavePath = [System.IO.Path]::Combine($MPV_ScriptsPath, $MPV_Scripts_trackselect_Filename)
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' custom settings from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Scripts_trackselect_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Scripts_trackselect_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+(New-Object System.Net.WebClient).DownloadFile($MPV_Scripts_trackselect_DDL, $MPV_Scripts_trackselect_SavePath)
+
+$MPV_ScriptOptsPath = [System.IO.Path]::Combine($MPV_Destination, 'script-opts')
+if (!(Test-Path -Path $MPV_ScriptOptsPath)) {
+    New-Item $MPV_ScriptOptsPath -ItemType Directory -Force
 }
+$MPV_ScriptOpts_autoload_DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/script-opts/autoload.conf'
+$MPV_ScriptOpts_autoload_Filename = [System.IO.Path]::GetFileName(([System.Uri]$MPV_ScriptOpts_autoload_DDL).AbsolutePath)
+$MPV_ScriptOpts_autoload_SavePath = [System.IO.Path]::Combine($MPV_ScriptOptsPath, $MPV_ScriptOpts_autoload_Filename)
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' custom settings from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_ScriptOpts_autoload_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_ScriptOpts_autoload_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+(New-Object System.Net.WebClient).DownloadFile($MPV_ScriptOpts_autoload_DDL, $MPV_ScriptOpts_autoload_SavePath)
 
-(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/script-opts/osc.conf', "$MPV_Destination\script-opts\osc.conf")
-(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/mpv-player/mpv/master/TOOLS/lua/autoload.lua', "$MPV_Destination\scripts\autoload.lua")
-(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/script-opts/autoload.conf', "$MPV_Destination\script-opts\autoload.conf")
-(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/Akemi/mpv-oled-screensaver/master/oled-screensaver.lua', "$MPV_Destination\scripts\oled-screensaver.lua")
-(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/script-opts/oled_screensaver.conf', "$MPV_Destination\script-opts\oled_screensaver.conf")
-(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/po5/celebi/master/celebi.lua', "$MPV_Destination\scripts\celebi.lua")
-(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/script-opts/celebi.conf', "$MPV_Destination\script-opts\celebi.conf")
-(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/po5/trackselect/master/trackselect.lua', "$MPV_Destination\scripts\trackselect.lua")
-(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/script-opts/trackselect.conf', "$MPV_Destination\script-opts\trackselect.conf")
-(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/hidecursor.lua', "$MPV_Destination\scripts\hidecursor.lua")
-(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/show-chapter.lua', "$MPV_Destination\scripts\show-chapter.lua")
-(New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/toggleconsole.lua', "$MPV_Destination\scripts\toggleconsole.lua")
+$MPV_ScriptOpts_celebi_DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/script-opts/celebi.conf'
+$MPV_ScriptOpts_celebi_Filename = [System.IO.Path]::GetFileName(([System.Uri]$MPV_ScriptOpts_celebi_DDL).AbsolutePath)
+$MPV_ScriptOpts_celebi_SavePath = [System.IO.Path]::Combine($MPV_ScriptOptsPath, $MPV_ScriptOpts_celebi_Filename)
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' custom settings from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_ScriptOpts_celebi_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_ScriptOpts_celebi_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+(New-Object System.Net.WebClient).DownloadFile($MPV_ScriptOpts_celebi_DDL, $MPV_ScriptOpts_celebi_SavePath)
+
+$MPV_ScriptOpts_oledscreensaver_DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/script-opts/oled_screensaver.conf'
+$MPV_ScriptOpts_oledscreensaver_Filename = [System.IO.Path]::GetFileName(([System.Uri]$MPV_ScriptOpts_oledscreensaver_DDL).AbsolutePath)
+$MPV_ScriptOpts_oledscreensaver_SavePath = [System.IO.Path]::Combine($MPV_ScriptOptsPath, $MPV_ScriptOpts_oledscreensaver_Filename)
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' custom settings from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_ScriptOpts_oledscreensaver_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_ScriptOpts_oledscreensaver_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+(New-Object System.Net.WebClient).DownloadFile($MPV_ScriptOpts_oledscreensaver_DDL, $MPV_ScriptOpts_oledscreensaver_SavePath)
+
+$MPV_ScriptOpts_osc_DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/script-opts/osc.conf'
+$MPV_ScriptOpts_osc_Filename = [System.IO.Path]::GetFileName(([System.Uri]$MPV_ScriptOpts_osc_DDL).AbsolutePath)
+$MPV_ScriptOpts_osc_SavePath = [System.IO.Path]::Combine($MPV_ScriptOptsPath, $MPV_ScriptOpts_osc_Filename)
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' custom settings from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_ScriptOpts_osc_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_ScriptOpts_osc_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+(New-Object System.Net.WebClient).DownloadFile($MPV_ScriptOpts_osc_DDL, $MPV_ScriptOpts_osc_SavePath)
+
+$MPV_ScriptOpts_trackselect_DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/script-opts/trackselect.conf'
+$MPV_ScriptOpts_trackselect_Filename = [System.IO.Path]::GetFileName(([System.Uri]$MPV_ScriptOpts_trackselect_DDL).AbsolutePath)
+$MPV_ScriptOpts_trackselect_SavePath = [System.IO.Path]::Combine($MPV_ScriptOptsPath, $MPV_ScriptOpts_trackselect_Filename)
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' custom settings from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_ScriptOpts_trackselect_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_ScriptOpts_trackselect_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+(New-Object System.Net.WebClient).DownloadFile($MPV_ScriptOpts_trackselect_DDL, $MPV_ScriptOpts_trackselect_SavePath)
 
 $InstalledSoftware = Get-Package | Select-Object -Property 'Name'
 if ($InstalledSoftware -match 'Mozilla Firefox') {
