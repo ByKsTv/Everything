@@ -2030,98 +2030,50 @@ $Form_SoftwareSelection_OK.Add_Click{
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_TempISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_TempDir'"); [Console]::ResetColor(); [Console]::WriteLine()
         7z.exe x $AcrobatPro_TempISO -o"$AcrobatPro_TempDir" -y
 
-        $AcrobatPro_TempInstaller = (Get-ChildItem -Path $AcrobatPro_TempDir -Recurse -Filter 'setup.exe').FullName
-        $AcrobatPro_TempInstallerArgument = '/sALL'
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_TempInstaller'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_TempInstallerArgument'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process $AcrobatPro_TempInstaller -ArgumentList $AcrobatPro_TempInstallerArgument -Wait
-
-        $AcrobatPro_TempCrack = (Get-ChildItem -Path $AcrobatPro_TempDir -Recurse -Filter 'crack.exe').FullName
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Cracking '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_TempCrack'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process $AcrobatPro_TempCrack
-        while (!(Get-Process | Where-Object MainWindowTitle -Like '*crack*')) {
-            Start-Sleep -Seconds 1 
-        }
-        (Get-Process | Where-Object MainWindowTitle -Like '*crack*').CloseMainWindow() | Out-Null
-
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Remove-MpPreference -ExclusionPath $AcrobatPro_TempDir
+        $AcrobatPro_TempInstaller = (Get-ChildItem -Path $AcrobatPro_TempDir -Recurse -Filter 'autoplay.exe').FullName
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_TempInstaller'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process $AcrobatPro_TempInstaller
     }
     
     if ($CheckBox_AdobeLightroomClassic.Checked) {
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Initiating qBittorrent'); [Console]::ResetColor(); [Console]::WriteLine()
+        $AdobeLightroomClassic_Label = 'https://w14.monkrus.ws/search/label/Lightroom'
+        $AdobeLightroomClassic_Title = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobeLightroomClassic_Label).Links | Where-Object { $_.outerHTML -match 'Classic' } | Select-Object -First 1).outerHTML -replace '.*?>(.*?)</a>', '$1'
+        $AdobeLightroomClassic_Post = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobeLightroomClassic_Label).Links | Where-Object { ($_.outerHTML -match 'Classic') } | Select-Object -First 1).href
+        $AdobeLightroomClassic_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobeLightroomClassic_Post).Links | Where-Object { ($_.outerHTML -match 'uniondht.org') } | Select-Object -First 1).href
+        if ($null -eq $AdobeLightroomClassic_Forum) {
+            $AdobeLightroomClassic_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobeLightroomClassic_Post).Links | Where-Object { ($_.outerHTML -match 'pb.wtf') } | Select-Object -First 1).href
+        }
+        $AdobeLightroomClassic_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobeLightroomClassic_Forum).Links | Where-Object { ($_.outerHTML -match 'magnet') } | Select-Object -First 1).href
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Getting magnet'); [Console]::ResetColor(); [Console]::WriteLine()
-        $Lightroom_Classic1 = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w14.monkrus.ws/search/label/Lightroom' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Classic') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
-        $Lightroom_Classic2 = (Invoke-WebRequest -UseBasicParsing -Uri $Lightroom_Classic1 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'uniondht.org') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
-        if ($null -eq $Lightroom_Classic2) {
-            $Lightroom_Classic2 = (Invoke-WebRequest -UseBasicParsing -Uri $Lightroom_Classic2 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'pb.wtf') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
+        $AdobeLightroomClassic_qBittorrent_LOG = [System.IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
+        if (Test-Path $AdobeLightroomClassic_qBittorrent_LOG) {
+            Remove-Item $AdobeLightroomClassic_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
         }
-        $Lightroom_Classic3 = (Invoke-WebRequest -UseBasicParsing -Uri $Lightroom_Classic2 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'magnet') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Deleting qBittorrent log file'); [Console]::ResetColor(); [Console]::WriteLine()
-        if (Test-Path "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log") {
-            Remove-Item "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Force -ErrorAction SilentlyContinue
-        }
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Deleting temp folder'); [Console]::ResetColor(); [Console]::WriteLine()
         Remove-Item -Path "$env:TEMP\*Classic*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Opening magnet'); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process -FilePath "$env:ProgramFiles\qBittorrent\qBittorrent.exe" -ArgumentList "--skip-dialog=true --add-paused=false --save-path=$env:TEMP ""$($Lightroom_Classic3)"""
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Waiting for folder to be created'); [Console]::ResetColor(); [Console]::WriteLine()
-        while (($null -eq (Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*Classic*' -ErrorAction SilentlyContinue))) {
+        $AdobeLightroomClassic_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($AdobeLightroomClassic_Magnet)"""
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeLightroomClassic_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeLightroomClassic_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process qBittorrent.exe -ArgumentList $AdobeLightroomClassic_qBittorrent_Argument
+        while (-not ($AdobeLightroomClassic_TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*Classic*' | Select-Object -First 1).FullName)) {
             Start-Sleep -Milliseconds 1000
         }
-        $Lightroom_ClassicTempDir = Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*Classic*' | Select-Object FullName -ExpandProperty 'FullName'
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Adding Defender Exclusion'); [Console]::ResetColor(); [Console]::WriteLine()
-        Add-MpPreference -ExclusionPath "$Lightroom_ClassicTempDir"
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Waiting for ISO file to be created'); [Console]::ResetColor(); [Console]::WriteLine()
-        While ($null -eq (Get-ChildItem -Path "$Lightroom_ClassicTempDir" -Filter '*iso*' | Select-Object FullName -ExpandProperty 'FullName' -ErrorAction SilentlyContinue)) {
+
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeLightroomClassic_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Add-MpPreference -ExclusionPath $AdobeLightroomClassic_TempDir
+
+        while (-not ($AdobeLightroomClassic_TempISO = (Get-ChildItem $AdobeLightroomClassic_TempDir -Filter '*.iso' | Select-Object -First 1).FullName)) {
             Start-Sleep -Milliseconds 1000
         }
-        $Lightroom_ClassicTempISO = Get-ChildItem -Path "$Lightroom_ClassicTempDir" -Filter '*iso*' | Select-Object FullName -ExpandProperty 'FullName'
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Waiting download to complete'); [Console]::ResetColor(); [Console]::WriteLine()
-        $null = Get-Content "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Wait | Where-Object { $_ -match 'Removed torrent. Torrent: .*Classic*' } | Select-Object -First 1
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Initiating 7-Zip'); [Console]::ResetColor(); [Console]::WriteLine()
+        do {
+            Start-Sleep -Milliseconds 1000
+        } until ((Get-Content $AdobeLightroomClassic_qBittorrent_LOG -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*Classic*')
+
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Extracting ISO'); [Console]::ResetColor(); [Console]::WriteLine()
-        7z.exe x $Lightroom_ClassicTempISO -o"$Lightroom_ClassicTempDir" -y
-            
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Opening Installer'); [Console]::ResetColor(); [Console]::WriteLine()
-        $Lightroom_ClassicTempInstaller = Get-ChildItem -Path "$Lightroom_ClassicTempDir" -Filter '*exe*' | Select-Object FullName -ExpandProperty 'FullName'
-        Start-Process $Lightroom_ClassicTempInstaller
-            
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Waiting for installer to open'); [Console]::ResetColor(); [Console]::WriteLine()
-        while (($null -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Lightroom * Installer' } -ErrorAction SilentlyContinue))) {
-            Start-Sleep -Milliseconds 1000
-        }
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Waiting for installer to close'); [Console]::ResetColor(); [Console]::WriteLine()
-        while (($true -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Lightroom * Installer' } -ErrorAction SilentlyContinue))) {
-            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
-            (New-Object -ComObject wscript.shell).SendKeys('{ENTER}')
-            Start-Sleep -Milliseconds 1000
-        }
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Waiting for installer to open'); [Console]::ResetColor(); [Console]::WriteLine()
-        while (($null -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Lightroom * Installer' } -ErrorAction SilentlyContinue))) {
-            Start-Sleep -Milliseconds 1000
-        }
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Waiting for installer to close'); [Console]::ResetColor(); [Console]::WriteLine()
-        while (($true -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Lightroom * Installer' } -ErrorAction SilentlyContinue))) {
-            Start-Sleep -Milliseconds 1000
-        }
-            
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Removing Defender Exclusion'); [Console]::ResetColor(); [Console]::WriteLine()
-        Remove-MpPreference -ExclusionPath "$Lightroom_ClassicTempDir"
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeLightroomClassic_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeLightroomClassic_TempISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeLightroomClassic_TempDir'"); [Console]::ResetColor(); [Console]::WriteLine()
+        7z.exe x $AdobeLightroomClassic_TempISO -o"$AdobeLightroomClassic_TempDir" -y
+
+        $AdobeLightroomClassic_TempInstaller = (Get-ChildItem -Path $AdobeLightroomClassic_TempDir -Recurse -Filter 'autoplay.exe').FullName
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeLightroomClassic_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeLightroomClassic_TempInstaller'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process $AdobeLightroomClassic_TempInstaller
     }
 
     if ($CheckBox_AdobePhotoshop.Checked) {
