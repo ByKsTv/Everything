@@ -1526,8 +1526,7 @@ Start-Sleep -Seconds 3
 Stop-Process -Name StartMenuExperienceHost -Force -ErrorAction SilentlyContinue
 Start-Sleep -Seconds 3
 # Open the Start menu to load the new layout
-$wshell = New-Object -ComObject WScript.Shell
-$wshell.SendKeys('^{ESC}')
+(New-Object -ComObject wscript.shell).SendKeys('^{ESC}')
 Start-Sleep -Seconds 3
 # Enable changing the Start menu layout
 Remove-ItemProperty -Path HKCU:\Software\Policies\Microsoft\Windows\Explorer -Name LockedStartLayout -Force
@@ -1536,8 +1535,7 @@ Remove-Item -Path $Script:StartLayout -Force
 Stop-Process -Name StartMenuExperienceHost -Force -ErrorAction SilentlyContinue
 Start-Sleep -Seconds 3
 # Open the Start menu to load the new layout
-$wshell = New-Object -ComObject WScript.Shell
-$wshell.SendKeys('^{ESC}')
+(New-Object -ComObject wscript.shell).SendKeys('^{ESC}')
 # GPUScheduling -Enable
 if (Get-CimInstance -ClassName CIM_VideoController | Where-Object -FilterScript { ($_.AdapterDACType -ne 'Internal') -and ($null -ne $_.AdapterDACType) }) {
 	# Determining whether an OS is not installed on a virtual machine

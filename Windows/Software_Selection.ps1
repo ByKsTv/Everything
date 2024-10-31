@@ -1995,81 +1995,56 @@ $Form_SoftwareSelection_OK.Add_Click{
         }
         New-ItemProperty -Path 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\TrustManager' -Name 'iProtectedView' -Value 2 -PropertyType DWord -Force
 
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Initiating qBittorrent'); [Console]::ResetColor(); [Console]::WriteLine()
+        $AcrobatPro_Label = 'https://w14.monkrus.ws/search/label/Acrobat'
+        $AcrobatPro_Title = ((Invoke-WebRequest -UseBasicParsing -Uri $AcrobatPro_Label).Links | Where-Object { $_.outerHTML -match 'x64' } | Select-Object -First 1).outerHTML -replace '.*?>(.*?)</a>', '$1'
+        $AcrobatPro_Post = ((Invoke-WebRequest -UseBasicParsing -Uri $AcrobatPro_Label).Links | Where-Object { ($_.outerHTML -match 'x64') } | Select-Object -First 1).href
+        $AcrobatPro_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AcrobatPro_Post).Links | Where-Object { ($_.outerHTML -match 'uniondht.org') } | Select-Object -First 1).href
+        if ($null -eq $AcrobatPro_Forum) {
+            $AcrobatPro_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AcrobatPro_Post).Links | Where-Object { ($_.outerHTML -match 'pb.wtf') } | Select-Object -First 1).href
+        }
+        $AcrobatPro_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AcrobatPro_Forum).Links | Where-Object { ($_.outerHTML -match 'magnet') } | Select-Object -First 1).href
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Getting magnet'); [Console]::ResetColor(); [Console]::WriteLine()
-        $Adrobat1 = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w14.monkrus.ws/search/label/Acrobat' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'x64') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
-        $Adrobat2 = (Invoke-WebRequest -UseBasicParsing -Uri $Adrobat1 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'uniondht.org') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
-        if ($null -eq $Adrobat2) {
-            $Adrobat2 = (Invoke-WebRequest -UseBasicParsing -Uri $Adrobat1 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'pb.wtf') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
+        $AcrobatPro_qBittorrent_LOG = [System.IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
+        if (Test-Path $AcrobatPro_qBittorrent_LOG) {
+            Remove-Item $AcrobatPro_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
         }
-        $Adrobat3 = (Invoke-WebRequest -UseBasicParsing -Uri $Adrobat2 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'magnet') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Deleting qBittorrent log file'); [Console]::ResetColor(); [Console]::WriteLine()
-        if (Test-Path "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log") {
-            Remove-Item "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Force -ErrorAction SilentlyContinue
-        }
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Deleting temp folder'); [Console]::ResetColor(); [Console]::WriteLine()
         Remove-Item -Path "$env:TEMP\*Acrobat*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Opening magnet'); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process -FilePath "$env:ProgramFiles\qBittorrent\qBittorrent.exe" -ArgumentList "--skip-dialog=true --add-paused=false --save-path=$env:TEMP ""$($Adrobat3)"""
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Waiting for folder to be created'); [Console]::ResetColor(); [Console]::WriteLine()
-        while (($null -eq (Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*Acrobat*' -ErrorAction SilentlyContinue))) {
+        $AcrobatPro_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($AcrobatPro_Magnet)"""
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process qBittorrent.exe -ArgumentList $AcrobatPro_qBittorrent_Argument
+        while (-not ($AcrobatPro_TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*Acrobat*' | Select-Object -First 1).FullName)) {
             Start-Sleep -Milliseconds 1000
         }
-        $AcrobatTempDir = Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*Acrobat*' | Select-Object FullName -ExpandProperty 'FullName'
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Adding Defender Exclusion'); [Console]::ResetColor(); [Console]::WriteLine()
-        Add-MpPreference -ExclusionPath "$AcrobatTempDir"
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Waiting for ISO file to be created'); [Console]::ResetColor(); [Console]::WriteLine()
-        While ($null -eq (Get-ChildItem -Path "$AcrobatTempDir" -Filter '*iso*' | Select-Object FullName -ExpandProperty 'FullName' -ErrorAction SilentlyContinue)) {
+
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Add-MpPreference -ExclusionPath $AcrobatPro_TempDir
+
+        while (-not ($AcrobatPro_TempISO = (Get-ChildItem $AcrobatPro_TempDir -Filter '*.iso' | Select-Object -First 1).FullName)) {
             Start-Sleep -Milliseconds 1000
         }
-        $AcrobatTempISO = Get-ChildItem -Path "$AcrobatTempDir" -Filter '*iso*' | Select-Object FullName -ExpandProperty 'FullName'
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Waiting download to complete'); [Console]::ResetColor(); [Console]::WriteLine()
-        $null = Get-Content "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Wait | Where-Object { $_ -match 'Removed torrent. Torrent: .*Acrobat*' } | Select-Object -First 1
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Initiating 7-Zip'); [Console]::ResetColor(); [Console]::WriteLine()
+        do {
+            Start-Sleep -Milliseconds 1000
+        } until ((Get-Content $AcrobatPro_qBittorrent_LOG -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*Acrobat*')
+
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Extracting ISO'); [Console]::ResetColor(); [Console]::WriteLine()
-        7z.exe x $AcrobatTempISO -o"$AcrobatTempDir" -y
-            
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Opening Installer'); [Console]::ResetColor(); [Console]::WriteLine()
-        $AcrobatTEMPinstaller = Get-ChildItem -Path "$AcrobatTempDir" -Filter '*exe*' | Select-Object FullName -ExpandProperty 'FullName'
-        Start-Process $AcrobatTEMPinstaller
-            
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Waiting for installer to open'); [Console]::ResetColor(); [Console]::WriteLine()
-        while (($null -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Acrobat * Installer' } -ErrorAction SilentlyContinue))) {
-            Start-Sleep -Milliseconds 1000
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_TempISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_TempDir'"); [Console]::ResetColor(); [Console]::WriteLine()
+        7z.exe x $AcrobatPro_TempISO -o"$AcrobatPro_TempDir" -y
+
+        $AcrobatPro_TempInstaller = (Get-ChildItem -Path $AcrobatPro_TempDir -Recurse -Filter 'setup.exe').FullName
+        $AcrobatPro_TempInstallerArgument = '/sALL'
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_TempInstaller'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_TempInstallerArgument'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process $AcrobatPro_TempInstaller -ArgumentList $AcrobatPro_TempInstallerArgument -Wait
+
+        $AcrobatPro_TempCrack = (Get-ChildItem -Path $AcrobatPro_TempDir -Recurse -Filter 'crack.exe').FullName
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Cracking '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_TempCrack'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process $AcrobatPro_TempCrack
+        while (!(Get-Process | Where-Object MainWindowTitle -Like '*crack*')) {
+            Start-Sleep -Seconds 1 
         }
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Waiting for installer to close'); [Console]::ResetColor(); [Console]::WriteLine()
-        while (($true -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Acrobat * Installer' } -ErrorAction SilentlyContinue))) {
-            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
-            $wshell = New-Object -ComObject wscript.shell
-            $wshell.SendKeys('{ENTER}')
-            Start-Sleep -Milliseconds 1000
-        }
-            
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Waiting for process to open'); [Console]::ResetColor(); [Console]::WriteLine()
-        while (($null -eq (Get-Process | Where-Object { $_.Name -like 'crack' } -ErrorAction SilentlyContinue))) {
-            Start-Sleep -Milliseconds 1000
-        }
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Waiting for process to close'); [Console]::ResetColor(); [Console]::WriteLine()
-        while (($true -eq (Get-Process | Where-Object { $_.Name -like 'crack' } -ErrorAction SilentlyContinue))) {
-            Start-Sleep -Milliseconds 1000
-        }
-            
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Removing Defender Exclusion'); [Console]::ResetColor(); [Console]::WriteLine()
-        Remove-MpPreference -ExclusionPath "$AcrobatTempDir"
+        (Get-Process | Where-Object MainWindowTitle -Like '*crack*').CloseMainWindow() | Out-Null
+
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Remove-MpPreference -ExclusionPath $AcrobatPro_TempDir
     }
     
     if ($CheckBox_AdobeLightroomClassic.Checked) {
@@ -2131,8 +2106,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Waiting for installer to close'); [Console]::ResetColor(); [Console]::WriteLine()
         while (($true -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Lightroom * Installer' } -ErrorAction SilentlyContinue))) {
             [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Lightroom Classic: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
-            $wshell = New-Object -ComObject wscript.shell
-            $wshell.SendKeys('{ENTER}')
+            (New-Object -ComObject wscript.shell).SendKeys('{ENTER}')
             Start-Sleep -Milliseconds 1000
         }
         
@@ -2209,8 +2183,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Waiting for installer to close'); [Console]::ResetColor(); [Console]::WriteLine()
         while (($true -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Photoshop * Installer' } -ErrorAction SilentlyContinue))) {
             [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
-            $wshell = New-Object -ComObject wscript.shell
-            $wshell.SendKeys('{ENTER}')
+            (New-Object -ComObject wscript.shell).SendKeys('{ENTER}')
             Start-Sleep -Milliseconds 1000
         }
         
