@@ -29,7 +29,7 @@ if ($null -eq $qBittorrent_InstalledVersion -or $qBittorrent_InstalledVersion -n
     
     $qBittorrent_Argument = '/S'
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$qBittorrent_LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$qBittorrent_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-    Start-Process $qBittorrent_SavePath -ArgumentList $qBittorrent_Argument
+    Start-Process $qBittorrent_SavePath -ArgumentList $qBittorrent_Argument -Wait
 }
 
 $qBittorrent_ShortCut = [System.IO.Path]::Combine($env:ProgramData, 'Microsoft', 'Windows', 'Start Menu', 'Programs', 'qBittorrent', 'qBittorrent.lnk')
