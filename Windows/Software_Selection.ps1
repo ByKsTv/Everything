@@ -2385,8 +2385,8 @@ $Form_SoftwareSelection_OK.Add_Click{
             Start-Sleep -Milliseconds 1000
         }
 
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SketchUp_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Add-MpPreference -ExclusionPath $SketchUp_TempDir
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$env:TEMP'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Add-MpPreference -ExclusionPath $env:TEMP
 
         while (-not ($SketchUp_TempEXE = (Get-ChildItem $SketchUp_TempDir -Filter '*.exe' | Select-Object -First 1).FullName)) {
             Start-Sleep -Milliseconds 1000
@@ -2400,8 +2400,8 @@ $Form_SoftwareSelection_OK.Add_Click{
         Unblock-File $SketchUp_TempEXE
         Start-Process $SketchUp_TempEXE -ArgumentList $SketchUp_Argument -Wait
 
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SketchUp_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Remove-MpPreference -ExclusionPath $SketchUp_TempDir
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$env:TEMP'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Remove-MpPreference -ExclusionPath $env:TEMP
     }
 }
 
