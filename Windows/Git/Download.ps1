@@ -83,11 +83,11 @@ if ($null -eq $Git_InstalledVersion -or $Git_InstalledVersion -notmatch $Git_Lat
 
             git.exe config --global user.name $Git_TextBox_CustomUsername.Text
             $Git_CurrentUsername = git.exe config user.name
-            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Setting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Git'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' username '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Git_CurrentUsername'");[Console]::ResetColor(); [Console]::WriteLine()
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Setting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Git'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' username '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Git_CurrentUsername'"); [Console]::ResetColor(); [Console]::WriteLine()
             
             git.exe config --global user.email $Git_TextBox_CustomEmail.Text
             $Git_CurrentEmail = git.exe config user.email
-            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Setting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Git'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' email '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Git_CurrentEmail'");[Console]::ResetColor(); [Console]::WriteLine()
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Setting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Git'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' email '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Git_CurrentEmail'"); [Console]::ResetColor(); [Console]::WriteLine()
         }
 
         $Git_Form.Add_Shown({ $Git_Form.Activate() })

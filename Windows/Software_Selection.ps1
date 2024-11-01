@@ -180,6 +180,27 @@ if ($InstalledSoftware -match 'Adobe Photoshop') {
     $CheckBox_AdobePhotoshop.Text += ' (Installed)'
 }
 
+$CheckBox_AutodeskRevit = New-Object System.Windows.Forms.CheckBox
+$CheckBox_AutodeskRevit.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
+$CheckBox_Y_Axis += $CheckBox_LocationAdd
+$CheckBox_AutodeskRevit.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
+# Official ICO from EXE
+$CheckBox_AutodeskRevitt_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI4+D2aTPg39kT0M/5A8Cv+POgj/jzoI/485B/+QPAr/jzoJ/5A8C/+RPQz/kj0M/5E8C/SROg4jAAAAAP8AAAGRPQzMlD4M/5A8C/+YSRv/o141/6FaMP+oZT7/mEkb/6BXLf+WRhf/kTwL/5I9DP+RPAv0kToOIwAAAAAAAAAAkTwMypQ+DP+POgj/pWE5/+TQxP/AkHT/28Cw/7F2U//Aj3P/oFgv/5A7Cf+SPQz/kTwL9JE6DiPakW0O45dnJY04B8iSPQv/jjoI/6BaMf/WuKf/yKCJ/7qIa/+9jHD/zaqU/690Uv+OOQf/kTwM/5E8C/SROg4j6ZlmI+ibaOC9bDvxnkQQ/51CDf+eQw//o0wa/6BGEv+eRA//oUkW/6VOHf+iSxj/nUIN/55CDf+SPQv0kToOI+eXZyDmmWf0655r//R0Kv/5ZxX/+WgX//hnFv/4aBf/+GgX//hoF//4Zxb/+GgW//loF//zZhb/nEEN9IM6ByPnl2cg5pln8uibaP/6div//2oW//9rGP//ahX//2gT//9rGP//aBT//2sX//9rGP//axj/+mgX/51BDfSDOgcj55dnIOaZZ/Lom2j/+XYr//9qFv//ZxL//5xl///NsP//bx///5hf///ey///gDn//2kU//loF/+dQQ30gzoHI+eXZyDmmWfy6Jto//l2K///ahb//2UP//+0i///+/n//300///t4///zrL//24d//9qF//5aBf/nUEN9IM6ByPnl2cg5pln8uibaP/5div//2oW//9lD///sYb///v4///dyv///v7//4hF//9nEf//axj/+WgX/51BDfSDOgcj55dnIOaZZ/Lom2j/+XYr//9qFv//ZQ///7KG///7+P//rH7//+TU///Rt///ahb//2sY//loF/+dQQ30gzoHI+eXZyDmmWfy6Jto//l2K///ahb//2UP//+yh///+PT//3Ei///Lrf//7+X//24c//9rF//5aBf/nUEN9YM6ByPnl2cg5pln8uibaP/5div//2oW//9lD///sIT///v5///l1///8en//6+D//9oE///axj/+WgX/55BDfKDOgcj55dnIOaZZ/nqnWn/+XYr//9qFv//ahb//3gs//+GQv//iEb//3wz//9pFf//axj//2wY//1qGPK9UBJGbUgAB9qRbQflmmZ36Zxo7Px5Lf//ahb//2sY//9qFv//aBP//2gT//9pFf//axj//2sY//9sGP/+ahjy/2ofGAAAAAAAAAAAAAAAAOWZZij8cSLc/2wY//9rGP//axj//2sY//9rGP//axj//2sY//9rGP//bhn/+WsZlv9/AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
+$CheckBox_AutodeskRevit_IconBytes = [Convert]::FromBase64String($CheckBox_AutodeskRevitt_Icon64)
+$CheckBox_AutodeskRevit_IconStream = [System.IO.MemoryStream]::new($CheckBox_AutodeskRevit_IconBytes, 0, $CheckBox_AutodeskRevit_IconBytes.Length)
+$CheckBox_AutodeskRevit.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_AutodeskRevit_IconStream).GetHIcon()))
+$CheckBox_AutodeskRevit.ImageAlign = 'MiddleLeft'
+$CheckBox_AutodeskRevit.Text = '    Autodesk Revit'
+$CheckBox_AutodeskRevit.TextAlign = 'MiddleLeft'
+$CheckBox_AutodeskRevit.CheckAlign = 'MiddleLeft'
+$CheckBox_AutodeskRevit.Checked = $false
+$Panel_SoftwareSelection.Controls.Add($CheckBox_AutodeskRevit)
+
+if ($InstalledSoftware -match 'Autodesk Revit') {
+    # $CheckBox_AutodeskRevit.Enabled = $false
+    $CheckBox_AutodeskRevit.Text += ' (Installed)'
+}
+
 $CheckBox_AnyDesk = New-Object System.Windows.Forms.CheckBox
 $CheckBox_AnyDesk.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
 $CheckBox_Y_Axis += $CheckBox_LocationAdd
@@ -2077,82 +2098,103 @@ $Form_SoftwareSelection_OK.Add_Click{
     }
 
     if ($CheckBox_AdobePhotoshop.Checked) {
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Initiating qBittorrent'); [Console]::ResetColor(); [Console]::WriteLine()
+        $AdobePhotoshop_Label = 'https://w14.monkrus.ws/search/label/Photoshop'
+        $AdobePhotoshop_Title = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobePhotoshop_Label).Links | Where-Object { (($_.outerHTML -notmatch 'Elements') -and ($_.outerHTML -notmatch 'Collection') -and ($_.outerHTML -match 'Multilingual')) } | Select-Object -First 1).outerHTML -replace '.*?>(.*?)</a>', '$1'
+        $AdobePhotoshop_Post = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobePhotoshop_Label).Links | Where-Object { (($_.outerHTML -notmatch 'Elements') -and ($_.outerHTML -notmatch 'Collection') -and ($_.outerHTML -match 'Multilingual')) } | Select-Object -First 1).href
+        $AdobePhotoshop_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobePhotoshop_Post).Links | Where-Object { ($_.outerHTML -match 'uniondht.org') } | Select-Object -First 1).href
+        if ($null -eq $AdobePhotoshop_Forum) {
+            $AdobePhotoshop_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobePhotoshop_Post).Links | Where-Object { ($_.outerHTML -match 'pb.wtf') } | Select-Object -First 1).href
+        }
+        $AdobePhotoshop_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobePhotoshop_Forum).Links | Where-Object { ($_.outerHTML -match 'magnet') } | Select-Object -First 1).href
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Getting magnet'); [Console]::ResetColor(); [Console]::WriteLine()
-        $Photoshop1 = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w14.monkrus.ws/search/label/Photoshop' | Select-Object -ExpandProperty Links | Where-Object { (($_.outerHTML -notmatch 'Elements') -and ($_.outerHTML -notmatch 'Collection') -and ($_.outerHTML -match 'Multilingual')) } | Select-Object -First 1 | Select-Object -ExpandProperty href)
-        $Photoshop2 = (Invoke-WebRequest -UseBasicParsing -Uri $Photoshop1 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'uniondht.org') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
-        if ($null -eq $Photoshop2) {
-            $Photoshop2 = (Invoke-WebRequest -UseBasicParsing -Uri $Photoshop2 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'pb.wtf') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
+        $AdobePhotoshop_qBittorrent_LOG = [System.IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
+        if (Test-Path $AdobePhotoshop_qBittorrent_LOG) {
+            Remove-Item $AdobePhotoshop_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
         }
-        $Photoshop3 = (Invoke-WebRequest -UseBasicParsing -Uri $Photoshop2 | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'magnet') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Deleting qBittorrent log file'); [Console]::ResetColor(); [Console]::WriteLine()
-        if (Test-Path "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log") {
-            Remove-Item "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Force -ErrorAction SilentlyContinue
-        }
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Deleting temp folder'); [Console]::ResetColor(); [Console]::WriteLine()
         Remove-Item -Path "$env:TEMP\*Photoshop*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Opening magnet'); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process -FilePath "$env:ProgramFiles\qBittorrent\qBittorrent.exe" -ArgumentList "--skip-dialog=true --add-paused=false --save-path=$env:TEMP ""$($Photoshop3)"""
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Waiting for folder to be created'); [Console]::ResetColor(); [Console]::WriteLine()
-        while (($null -eq (Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*Photoshop*' -ErrorAction SilentlyContinue))) {
+        $AdobePhotoshop_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($AdobePhotoshop_Magnet)"""
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobePhotoshop_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobePhotoshop_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process qBittorrent.exe -ArgumentList $AdobePhotoshop_qBittorrent_Argument
+        while (-not ($AdobePhotoshop_TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*Photoshop*' | Select-Object -First 1).FullName)) {
             Start-Sleep -Milliseconds 1000
         }
-        $PhotoshopTempDir = Get-ChildItem -Directory -Path "$env:TEMP" -Filter '*Photoshop*' | Select-Object FullName -ExpandProperty 'FullName'
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Adding Defender Exclusion'); [Console]::ResetColor(); [Console]::WriteLine()
-        Add-MpPreference -ExclusionPath "$PhotoshopTempDir"
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Waiting for ISO file to be created'); [Console]::ResetColor(); [Console]::WriteLine()
-        While ($null -eq (Get-ChildItem -Path "$PhotoshopTempDir" -Filter '*iso*' | Select-Object FullName -ExpandProperty 'FullName' -ErrorAction SilentlyContinue)) {
+
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobePhotoshop_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Add-MpPreference -ExclusionPath $AdobePhotoshop_TempDir
+
+        while (-not ($AdobePhotoshop_TempISO = (Get-ChildItem $AdobePhotoshop_TempDir -Filter '*.iso' | Select-Object -First 1).FullName)) {
             Start-Sleep -Milliseconds 1000
         }
-        $PhotoshopTempISO = Get-ChildItem -Path "$PhotoshopTempDir" -Filter '*iso*' | Select-Object FullName -ExpandProperty 'FullName'
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Waiting download to complete'); [Console]::ResetColor(); [Console]::WriteLine()
-        $null = Get-Content "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log" -Wait | Where-Object { $_ -match 'Removed torrent. Torrent: .*Photoshop*' } | Select-Object -First 1
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Initiating 7-Zip'); [Console]::ResetColor(); [Console]::WriteLine()
+        do {
+            Start-Sleep -Milliseconds 1000
+        } until ((Get-Content $AdobePhotoshop_qBittorrent_LOG -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*Photoshop*')
+
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Extracting ISO'); [Console]::ResetColor(); [Console]::WriteLine()
-        7z.exe x $PhotoshopTempISO -o"$PhotoshopTempDir" -y
-            
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Opening Installer'); [Console]::ResetColor(); [Console]::WriteLine()
-        $PhotoshopTempInstaller = Get-ChildItem -Path "$PhotoshopTempDir" -Filter '*exe*' | Select-Object FullName -ExpandProperty 'FullName'
-        Start-Process $PhotoshopTempInstaller
-            
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Waiting for installer to open'); [Console]::ResetColor(); [Console]::WriteLine()
-        while (($null -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Photoshop * Installer' } -ErrorAction SilentlyContinue))) {
-            Start-Sleep -Milliseconds 1000
-        }
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Waiting for installer to close'); [Console]::ResetColor(); [Console]::WriteLine()
-        while (($true -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Photoshop * Installer' } -ErrorAction SilentlyContinue))) {
-            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
-            (New-Object -ComObject wscript.shell).SendKeys('{ENTER}')
-            Start-Sleep -Milliseconds 1000
-        }
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Waiting for installer to open'); [Console]::ResetColor(); [Console]::WriteLine()
-        while (($null -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Photoshop * Installer' } -ErrorAction SilentlyContinue))) {
-            Start-Sleep -Milliseconds 1000
-        }
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Waiting for installer to close'); [Console]::ResetColor(); [Console]::WriteLine()
-        while (($true -eq (Get-Process | Where-Object { $_.MainWindowTitle -like 'Adobe Photoshop * Installer' } -ErrorAction SilentlyContinue))) {
-            Start-Sleep -Milliseconds 1000
-        }
-            
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Photoshop: Removing Defender Exclusion'); [Console]::ResetColor(); [Console]::WriteLine()
-        Remove-MpPreference -ExclusionPath "$PhotoshopTempDir"
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobePhotoshop_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobePhotoshop_TempISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobePhotoshop_TempDir'"); [Console]::ResetColor(); [Console]::WriteLine()
+        7z.exe x $AdobePhotoshop_TempISO -o"$AdobePhotoshop_TempDir" -y
+
+        $AdobePhotoshop_TempInstaller = (Get-ChildItem -Path $AdobePhotoshop_TempDir -Recurse -Filter 'autoplay.exe').FullName
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobePhotoshop_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobePhotoshop_TempInstaller'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process $AdobePhotoshop_TempInstaller
     }
 
+    if ($CheckBox_AutodeskRevit.Checked) {
+        $AutodeskRevit_Label = 'https://w14.monkrus.ws/search/label/Revit'
+        $AutodeskRevit_Title = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskRevit_Label).Links | Where-Object { $_.outerHTML -match 'Multilingual' } | Select-Object -First 1).outerHTML -replace '.*?>(.*?)</a>', '$1'
+        $AutodeskRevit_Post = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskRevit_Label).Links | Where-Object { $_.outerHTML -match 'Multilingual' } | Select-Object -First 1).href
+        $AutodeskRevit_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskRevit_Post).Links | Where-Object { ($_.outerHTML -match 'uniondht.org') } | Select-Object -First 1).href
+        if ($null -eq $AutodeskRevit_Forum) {
+            $AutodeskRevit_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskRevit_Post).Links | Where-Object { ($_.outerHTML -match 'pb.wtf') } | Select-Object -First 1).href
+        }
+        $AutodeskRevit_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskRevit_Forum).Links | Where-Object { ($_.outerHTML -match 'magnet') } | Select-Object -First 1).href
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
+        $AutodeskRevit_qBittorrent_LOG = [System.IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
+        if (Test-Path $AutodeskRevit_qBittorrent_LOG) {
+            Remove-Item $AutodeskRevit_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
+        }
+        Remove-Item -Path "$env:TEMP\*Revit*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
+        $AutodeskRevit_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($AutodeskRevit_Magnet)"""
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process qBittorrent.exe -ArgumentList $AutodeskRevit_qBittorrent_Argument
+        while (-not ($AutodeskRevit_TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*Revit*' | Select-Object -First 1).FullName)) {
+            Start-Sleep -Milliseconds 1000
+        }
+
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Add-MpPreference -ExclusionPath $AutodeskRevit_TempDir
+
+        while (-not ($AutodeskRevit_TempISO = (Get-ChildItem $AutodeskRevit_TempDir -Filter '*.iso' | Select-Object -First 1).FullName)) {
+            Start-Sleep -Milliseconds 1000
+        }
+        do {
+            Start-Sleep -Milliseconds 1000
+        } until ((Get-Content $AutodeskRevit_qBittorrent_LOG -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*Revit*')
+
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempDir'"); [Console]::ResetColor(); [Console]::WriteLine()
+        7z.exe x $AutodeskRevit_TempISO -o"$AutodeskRevit_TempDir" -y
+
+        $AutodeskRevit_TempInstaller = (Get-ChildItem -Path $AutodeskRevit_TempDir -Recurse -Filter 'setup.exe').FullName
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempInstaller'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process $AutodeskRevit_TempInstaller
+        while (!(Get-Process | Where-Object MainWindowTitle -Like '*Revit*Installer')) {
+            Start-Sleep -Milliseconds 1000
+        }
+        while ((Get-Process | Where-Object MainWindowTitle -Like '*Revit*Installer')) {
+            Start-Sleep -Milliseconds 1000
+        }
+
+        $AutodeskRevit_TempCrack = (Get-ChildItem -Path $AutodeskRevit_TempDir -Recurse -Filter 'AdskNLM.exe').FullName
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Cracking '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempCrack'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process $AutodeskRevit_TempCrack
+        while (!(Get-Process | Where-Object MainWindowTitle -Like '*crack*')) {
+            Start-Sleep -Seconds 1 
+        }
+        (Get-Process | Where-Object MainWindowTitle -Like '*crack*').CloseMainWindow() | Out-Null
+
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Please open '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' and select '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Use a network license'"); [Console]::ResetColor(); [Console]::WriteLine()
+    }
+    
     if ($CheckBox_JitBit_Macro_Recorder.Checked) {
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Jitbit Macro Recorder: Settings: General: Disable the welcome screen: On'); [Console]::ResetColor(); [Console]::WriteLine()
         if ((Test-Path -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder') -ne $true) {
