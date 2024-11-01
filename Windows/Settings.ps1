@@ -1875,7 +1875,7 @@ Wake-on-LAN is an Ethernet computer networking standard that allows this PC to b
 if ($WakeOnLanAnswer -eq 'Yes') {
 	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Wake-On-Lan: On'); [Console]::ResetColor(); [Console]::WriteLine()
 	$PnPValue = 256
-	$Adapter = Get-NetAdapter | Where-Object { ($_.Status -eq 'Up') }
+	$Adapter = Get-NetAdapter | Where-Object { $_.Status -eq 'Up' }
 	$KeyPath = 'HKLM:\SYSTEM\CurrentControlSet\Control\Class\{4D36E972-E325-11CE-BFC1-08002bE10318}\'
 	foreach ($Entry in (Get-ChildItem $KeyPath -ErrorAction SilentlyContinue).Name) {
 		
@@ -1921,7 +1921,7 @@ if ($WakeOnLanAnswer -eq 'Yes') {
 if ($WakeOnLanAnswer -eq 'No') {
 	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Network: Wake-On-Lan: Off'); [Console]::ResetColor(); [Console]::WriteLine()
 	$PnPValue = 24
-	$Adapter = Get-NetAdapter | Where-Object { ($_.Status -eq 'Up') }
+	$Adapter = Get-NetAdapter | Where-Object { $_.Status -eq 'Up' }
 	$KeyPath = 'HKLM:\SYSTEM\CurrentControlSet\Control\Class\{4D36E972-E325-11CE-BFC1-08002bE10318}\'
 	foreach ($Entry in (Get-ChildItem $KeyPath -ErrorAction SilentlyContinue).Name) {
 		

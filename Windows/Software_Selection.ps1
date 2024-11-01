@@ -164,8 +164,8 @@ $CheckBox_AdobePhotoshop = New-Object System.Windows.Forms.CheckBox
 $CheckBox_AdobePhotoshop.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
 $CheckBox_Y_Axis += $CheckBox_LocationAdd
 $CheckBox_AdobePhotoshop.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
-$CheckBox_AdobePhotoshopt_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAAAAAAAAAAAAAGAAAATQAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAE0AAAAGCgUAWDAbANk2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP8wGwDZCgUAWDAbANk2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zAbANk2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP//qDH/Nh4A/zYeAP82HgD/Nh4A//OgLv//qDH/55cr/1w4Cf82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD//6gx/zYeAP82HgD/Nh4A/zYeAP+CUhL/dUkP//OgLv/NhiX/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A//+oMf/NhiX/tHUf/1w4Cf82HgD/QycD/8F9Iv//qDH/wX0i/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP//qDH/zYYl/+eXK//zoC7/Nh4A/9qPKP/zoC7/jlsW/1w4Cf82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD//6gx/zYeAP9PLwb//6gx/zYeAP/nlyv/86Au//OgLv//qDH/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A//+oMf+bYxn/wX0i//+oMf82HgD/QycD/45bFv+bYxn/glIS/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP//qDH//6gx//+oMf+obBz/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAME2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAME2HgAQNh4AwDYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAMA2HgAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
-$CheckBox_AdobePhotoshop_IconBytes = [Convert]::FromBase64String($CheckBox_AdobePhotoshopt_Icon64)
+$CheckBox_AdobePhotoshop_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAAAAAAAAAAAAAGAAAATQAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAE0AAAAGCgUAWDAbANk2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP8wGwDZCgUAWDAbANk2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zAbANk2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP//qDH/Nh4A/zYeAP82HgD/Nh4A//OgLv//qDH/55cr/1w4Cf82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD//6gx/zYeAP82HgD/Nh4A/zYeAP+CUhL/dUkP//OgLv/NhiX/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A//+oMf/NhiX/tHUf/1w4Cf82HgD/QycD/8F9Iv//qDH/wX0i/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP//qDH/zYYl/+eXK//zoC7/Nh4A/9qPKP/zoC7/jlsW/1w4Cf82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD//6gx/zYeAP9PLwb//6gx/zYeAP/nlyv/86Au//OgLv//qDH/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A//+oMf+bYxn/wX0i//+oMf82HgD/QycD/45bFv+bYxn/glIS/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP//qDH//6gx//+oMf+obBz/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAME2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAME2HgAQNh4AwDYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAMA2HgAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
+$CheckBox_AdobePhotoshop_IconBytes = [Convert]::FromBase64String($CheckBox_AdobePhotoshop_Icon64)
 $CheckBox_AdobePhotoshop_IconStream = [System.IO.MemoryStream]::new($CheckBox_AdobePhotoshop_IconBytes, 0, $CheckBox_AdobePhotoshop_IconBytes.Length)
 $CheckBox_AdobePhotoshop.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_AdobePhotoshop_IconStream).GetHIcon()))
 $CheckBox_AdobePhotoshop.ImageAlign = 'MiddleLeft'
@@ -180,13 +180,34 @@ if ($InstalledSoftware -match 'Adobe Photoshop') {
     $CheckBox_AdobePhotoshop.Text += ' (Installed)'
 }
 
+$CheckBox_AutodeskAutoCAD = New-Object System.Windows.Forms.CheckBox
+$CheckBox_AutodeskAutoCAD.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
+$CheckBox_Y_Axis += $CheckBox_LocationAdd
+$CheckBox_AutodeskAutoCAD.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
+# Official ICO from EXE
+$CheckBox_AutodeskAutoCAD_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACoKeGYrCXn9Kgh4/ykHd/8kAXT/JgN1/ycFdv8mA3X/JAF0/ygGd/8qCHj/Kgh5/ykIePQrB3QjAAAAAAAA/wEpB3jMKwh7/ykHd/80E37/Z0+f/1g9lf9DJYj/VTqT/2ZOnv88HYT/KAZ3/yoIef8pCHj0Kwd0IwAAAAAAAAAAKQd3yisIe/8jAHP/cFql/4Rwsf97Zqv/yL/c/6CRw/+ll8b/ine0/yQBdP8qCHn/KQh49CsHdCN/W9oOglnqJSYDcsgqB3n/JQJ0/1pAlf+Xh7z/WD6U/6ueyf9lTZz/qJvH/3Jcpf8kAnP/Kgh4/ykIePQrB3Qjg1fpI4VZ6eBYMbHxMQuG/y4JhP8tB4T/PBmN/zELhv80D4j/LwqF/zoWjP8uCYT/LgmF/y4Jhf8pCHn0Kwd0I4dX5yCEWej0iFzt/1sh4f9NDt//Tg/f/00O3v9OD9//TQ/e/04P3/9NDt7/Tg/f/04Q4P9MENn/LQmD9CQHbSOHV+cghFnn8oVa6f9dIuf/Tw7m/1AQ5v9NC+X/Tgzl/1EQ5v9ODuX/TArl/1AQ5v9QEOf/ThDg/y0JhPQkB20jh1fnIIRZ5/KFWun/XSLm/04N5f9YG+b/wqv2/4pf7v9AAOP/cTzq/8q39/9sNun/TQzl/04Q3/8tCYT0JAdtI4dX5yCEWefyhVrp/10i5v9PDuX/Tg3l/9XG+f/f1Pr/mnXw/8y59//08P3/XSHn/08O5v9OEN//LQmE9CQHbSOHV+cghFnn8oVa6f9dIub/Tw7l/0kG5P+devH//////8+++P/6+P7/wav2/0sJ5P9QEOb/ThDf/y0JhPQkB20jh1fnIIRZ5/KFWun/XSLm/08O5f9MC+T/cj7q//j2/v+AUuz/8u39/5Bn7/9KB+T/UBDm/04Q3/8tCYT0JAdtI4dX5yCEWefyhVrp/10i5v9PDuX/Tw/l/1QW5v/i2Pv/0L/4//Hs/f9kLOj/Tg3l/1AQ5v9OEN//LQmE9SQHbSOHV+cghFnn8oVa6f9dIub/Tw7l/1AQ5f9KB+T/s5f0//38///Nu/j/Tg3l/1AQ5f9QEOb/ThDf/y4JhPIkB20jh1fnIIVZ5/mGW+v/XSLm/08O5f9QEOX/Tw7l/10i5/9wPOr/Yijo/04O5f9QEOX/URDn/1AP5PI6CqNGJABtB5FI2geEWud3hVrq7F8j6v9PDuX/UBDl/1AQ5f9ODuX/TQvk/04N5f9QEOX/UBDl/1EQ5/9QD+XxXBf/FgAAAAAAAAAAAAAAAIVZ5ShWGebcUQ/p/1AQ5f9QEOX/UBDl/1AQ5f9QEOX/UBDl/1AQ5f9SEev/TxHglj8A/wQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
+$CheckBox_AutodeskAutoCAD_IconBytes = [Convert]::FromBase64String($CheckBox_AutodeskAutoCAD_Icon64)
+$CheckBox_AutodeskAutoCAD_IconStream = [System.IO.MemoryStream]::new($CheckBox_AutodeskAutoCAD_IconBytes, 0, $CheckBox_AutodeskAutoCAD_IconBytes.Length)
+$CheckBox_AutodeskAutoCAD.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_AutodeskAutoCAD_IconStream).GetHIcon()))
+$CheckBox_AutodeskAutoCAD.ImageAlign = 'MiddleLeft'
+$CheckBox_AutodeskAutoCAD.Text = '    Autodesk AutoCAD'
+$CheckBox_AutodeskAutoCAD.TextAlign = 'MiddleLeft'
+$CheckBox_AutodeskAutoCAD.CheckAlign = 'MiddleLeft'
+$CheckBox_AutodeskAutoCAD.Checked = $false
+$Panel_SoftwareSelection.Controls.Add($CheckBox_AutodeskAutoCAD)
+
+if ($InstalledSoftware -match 'Autodesk AutoCAD') {
+    # $CheckBox_AutodeskAutoCAD.Enabled = $false
+    $CheckBox_AutodeskAutoCAD.Text += ' (Installed)'
+}
+
 $CheckBox_AutodeskRevit = New-Object System.Windows.Forms.CheckBox
 $CheckBox_AutodeskRevit.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
 $CheckBox_Y_Axis += $CheckBox_LocationAdd
 $CheckBox_AutodeskRevit.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
 # Official ICO from EXE
-$CheckBox_AutodeskRevitt_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI4+D2aTPg39kT0M/5A8Cv+POgj/jzoI/485B/+QPAr/jzoJ/5A8C/+RPQz/kj0M/5E8C/SROg4jAAAAAP8AAAGRPQzMlD4M/5A8C/+YSRv/o141/6FaMP+oZT7/mEkb/6BXLf+WRhf/kTwL/5I9DP+RPAv0kToOIwAAAAAAAAAAkTwMypQ+DP+POgj/pWE5/+TQxP/AkHT/28Cw/7F2U//Aj3P/oFgv/5A7Cf+SPQz/kTwL9JE6DiPakW0O45dnJY04B8iSPQv/jjoI/6BaMf/WuKf/yKCJ/7qIa/+9jHD/zaqU/690Uv+OOQf/kTwM/5E8C/SROg4j6ZlmI+ibaOC9bDvxnkQQ/51CDf+eQw//o0wa/6BGEv+eRA//oUkW/6VOHf+iSxj/nUIN/55CDf+SPQv0kToOI+eXZyDmmWf0655r//R0Kv/5ZxX/+WgX//hnFv/4aBf/+GgX//hoF//4Zxb/+GgW//loF//zZhb/nEEN9IM6ByPnl2cg5pln8uibaP/6div//2oW//9rGP//ahX//2gT//9rGP//aBT//2sX//9rGP//axj/+mgX/51BDfSDOgcj55dnIOaZZ/Lom2j/+XYr//9qFv//ZxL//5xl///NsP//bx///5hf///ey///gDn//2kU//loF/+dQQ30gzoHI+eXZyDmmWfy6Jto//l2K///ahb//2UP//+0i///+/n//300///t4///zrL//24d//9qF//5aBf/nUEN9IM6ByPnl2cg5pln8uibaP/5div//2oW//9lD///sYb///v4///dyv///v7//4hF//9nEf//axj/+WgX/51BDfSDOgcj55dnIOaZZ/Lom2j/+XYr//9qFv//ZQ///7KG///7+P//rH7//+TU///Rt///ahb//2sY//loF/+dQQ30gzoHI+eXZyDmmWfy6Jto//l2K///ahb//2UP//+yh///+PT//3Ei///Lrf//7+X//24c//9rF//5aBf/nUEN9YM6ByPnl2cg5pln8uibaP/5div//2oW//9lD///sIT///v5///l1///8en//6+D//9oE///axj/+WgX/55BDfKDOgcj55dnIOaZZ/nqnWn/+XYr//9qFv//ahb//3gs//+GQv//iEb//3wz//9pFf//axj//2wY//1qGPK9UBJGbUgAB9qRbQflmmZ36Zxo7Px5Lf//ahb//2sY//9qFv//aBP//2gT//9pFf//axj//2sY//9sGP/+ahjy/2ofGAAAAAAAAAAAAAAAAOWZZij8cSLc/2wY//9rGP//axj//2sY//9rGP//axj//2sY//9rGP//bhn/+WsZlv9/AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
-$CheckBox_AutodeskRevit_IconBytes = [Convert]::FromBase64String($CheckBox_AutodeskRevitt_Icon64)
+$CheckBox_AutodeskRevit_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI4+D2aTPg39kT0M/5A8Cv+POgj/jzoI/485B/+QPAr/jzoJ/5A8C/+RPQz/kj0M/5E8C/SROg4jAAAAAP8AAAGRPQzMlD4M/5A8C/+YSRv/o141/6FaMP+oZT7/mEkb/6BXLf+WRhf/kTwL/5I9DP+RPAv0kToOIwAAAAAAAAAAkTwMypQ+DP+POgj/pWE5/+TQxP/AkHT/28Cw/7F2U//Aj3P/oFgv/5A7Cf+SPQz/kTwL9JE6DiPakW0O45dnJY04B8iSPQv/jjoI/6BaMf/WuKf/yKCJ/7qIa/+9jHD/zaqU/690Uv+OOQf/kTwM/5E8C/SROg4j6ZlmI+ibaOC9bDvxnkQQ/51CDf+eQw//o0wa/6BGEv+eRA//oUkW/6VOHf+iSxj/nUIN/55CDf+SPQv0kToOI+eXZyDmmWf0655r//R0Kv/5ZxX/+WgX//hnFv/4aBf/+GgX//hoF//4Zxb/+GgW//loF//zZhb/nEEN9IM6ByPnl2cg5pln8uibaP/6div//2oW//9rGP//ahX//2gT//9rGP//aBT//2sX//9rGP//axj/+mgX/51BDfSDOgcj55dnIOaZZ/Lom2j/+XYr//9qFv//ZxL//5xl///NsP//bx///5hf///ey///gDn//2kU//loF/+dQQ30gzoHI+eXZyDmmWfy6Jto//l2K///ahb//2UP//+0i///+/n//300///t4///zrL//24d//9qF//5aBf/nUEN9IM6ByPnl2cg5pln8uibaP/5div//2oW//9lD///sYb///v4///dyv///v7//4hF//9nEf//axj/+WgX/51BDfSDOgcj55dnIOaZZ/Lom2j/+XYr//9qFv//ZQ///7KG///7+P//rH7//+TU///Rt///ahb//2sY//loF/+dQQ30gzoHI+eXZyDmmWfy6Jto//l2K///ahb//2UP//+yh///+PT//3Ei///Lrf//7+X//24c//9rF//5aBf/nUEN9YM6ByPnl2cg5pln8uibaP/5div//2oW//9lD///sIT///v5///l1///8en//6+D//9oE///axj/+WgX/55BDfKDOgcj55dnIOaZZ/nqnWn/+XYr//9qFv//ahb//3gs//+GQv//iEb//3wz//9pFf//axj//2wY//1qGPK9UBJGbUgAB9qRbQflmmZ36Zxo7Px5Lf//ahb//2sY//9qFv//aBP//2gT//9pFf//axj//2sY//9sGP/+ahjy/2ofGAAAAAAAAAAAAAAAAOWZZij8cSLc/2wY//9rGP//axj//2sY//9rGP//axj//2sY//9rGP//bhn/+WsZlv9/AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
+$CheckBox_AutodeskRevit_IconBytes = [Convert]::FromBase64String($CheckBox_AutodeskRevit_Icon64)
 $CheckBox_AutodeskRevit_IconStream = [System.IO.MemoryStream]::new($CheckBox_AutodeskRevit_IconBytes, 0, $CheckBox_AutodeskRevit_IconBytes.Length)
 $CheckBox_AutodeskRevit.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_AutodeskRevit_IconStream).GetHIcon()))
 $CheckBox_AutodeskRevit.ImageAlign = 'MiddleLeft'
@@ -1156,7 +1177,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: HyperX NGENUITY: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
         $Hyperx = New-Object System.Net.WebClient
         $Hyperx.Headers.Add('user-agent', 'Wget')
-        $Hyperx.DownloadFile((Invoke-WebRequest -UseBasicParsing -Uri 'https://hyperx.com/pages/ngenuity' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match '.exe') } | Select-Object -First 1 | Select-Object -ExpandProperty href), "$ENV:temp\HyperX_NGENUITY.exe")
+        $Hyperx.DownloadFile((((Invoke-WebRequest -UseBasicParsing -Uri 'https://hyperx.com/pages/ngenuity').Links | Where-Object { $_.outerHTML -match '.exe' } | Select-Object -First 1).href), "$ENV:temp\HyperX_NGENUITY.exe")
         
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: HyperX NGENUITY: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process -FilePath $env:TEMP\HyperX_NGENUITY.exe
@@ -1284,7 +1305,7 @@ $Form_SoftwareSelection_OK.Add_Click{
 
     if ($CheckBox_Jellyfin.Checked) {
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Jellyfin: Get latest release'); [Console]::ResetColor(); [Console]::WriteLine()
-        $JellyfinLatest = (Invoke-WebRequest -UseBasicParsing -Uri 'https://repo.jellyfin.org/?path=/server/windows/latest-stable/amd64' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'x64.exe') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
+        $JellyfinLatest = ((Invoke-WebRequest -UseBasicParsing -Uri 'https://repo.jellyfin.org/?path=/server/windows/latest-stable/amd64').Links | Where-Object { $_.outerHTML -match 'x64.exe' } | Select-Object -First 1).href
         $JellyfinURL = 'https://repo.jellyfin.org' + $JellyfinLatest
         
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Jellyfin: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
@@ -1374,7 +1395,7 @@ $Form_SoftwareSelection_OK.Add_Click{
 
     if ($CheckBox_PuTTY.Checked) {
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: PuTTY: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-        (New-Object System.Net.WebClient).DownloadFile((Invoke-WebRequest -UseBasicParsing -Uri 'https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'putty-64bit') } | Select-Object -First 1 | Select-Object -ExpandProperty href), "$env:TEMP\PuTTY.msi")
+        (New-Object System.Net.WebClient).DownloadFile((((Invoke-WebRequest -UseBasicParsing -Uri 'https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html').Links | Where-Object { $_.outerHTML -match 'putty-64bit' } | Select-Object -First 1).href), "$env:TEMP\PuTTY.msi")
         
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: PuTTY: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process $env:TEMP\PuTTY.msi -ArgumentList '/quiet'
@@ -1804,7 +1825,7 @@ $Form_SoftwareSelection_OK.Add_Click{
             $Form_OfficeSelection.Topmost = $false
             if ($CheckBox_Microsoft365ProPlus.Checked) {
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Microsoft 365 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Skype for Business, Word): Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'O365ProPlus') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\O365ProPlus.exe")
+                (New-Object System.Net.WebClient).DownloadFile(((((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links').Links | Where-Object { $_.outerHTML -match 'O365ProPlus' } | Select-Object -First 1).href)).Replace('amp;', ''), "$env:TEMP\O365ProPlus.exe")
                 
                 Write-Host 'Office Selection: Microsoft 365 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Skype for Business, Word): Installing' -ForegroundColor green 
                 Start-Process $env:TEMP\O365ProPlus.exe -Wait
@@ -1812,7 +1833,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         
             if ($CheckBox_Office2024ProPlus.Checked) {
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2024 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Word): Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'ProPlus2024') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\ProPlus2024.exe")
+                (New-Object System.Net.WebClient).DownloadFile(((((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links').Links | Where-Object { $_.outerHTML -match 'ProPlus2024' } | Select-Object -First 1).href)).Replace('amp;', ''), "$env:TEMP\ProPlus2024.exe")
         
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2024 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Word): Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\ProPlus2024.exe -Wait
@@ -1820,7 +1841,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         
             if ($CheckBox_Office2024Access.Checked) {
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2024 - (Access): Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Access2024') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Access2024.exe")
+                (New-Object System.Net.WebClient).DownloadFile(((((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links').Links | Where-Object { $_.outerHTML -match 'Access2024' } | Select-Object -First 1).href)).Replace('amp;', ''), "$env:TEMP\Access2024.exe")
         
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2024 - (Access): Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\Access2024.exe -Wait
@@ -1828,7 +1849,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         
             if ($CheckBox_Office2024Excel.Checked) {
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2024 - Excel: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Excel2024') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Excel2024.exe")
+                (New-Object System.Net.WebClient).DownloadFile(((((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links').Links | Where-Object { $_.outerHTML -match 'Excel2024' } | Select-Object -First 1).href)).Replace('amp;', ''), "$env:TEMP\Excel2024.exe")
         
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2024 - Excel: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\Excel2024.exe -Wait
@@ -1836,7 +1857,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         
             if ($CheckBox_Office2024Outlook.Checked) {
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2024 - Outlook: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Outlook2024') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Outlook2024.exe")
+                (New-Object System.Net.WebClient).DownloadFile(((((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links').Links | Where-Object { $_.outerHTML -match 'Outlook2024' } | Select-Object -First 1).href)).Replace('amp;', ''), "$env:TEMP\Outlook2024.exe")
         
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2024 - Outlook: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\Outlook2024.exe -Wait
@@ -1844,7 +1865,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         
             if ($CheckBox_Office2024PowerPoint.Checked) {
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2024 - PowerPoint: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'PowerPoint2024') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\PowerPoint2024.exe")
+                (New-Object System.Net.WebClient).DownloadFile(((((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links').Links | Where-Object { $_.outerHTML -match 'PowerPoint2024' } | Select-Object -First 1).href)).Replace('amp;', ''), "$env:TEMP\PowerPoint2024.exe")
         
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2024 - PowerPoint: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\PowerPoint2024.exe -Wait
@@ -1852,7 +1873,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         
             if ($CheckBox_Office2024Word.Checked) {
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2024 - Word: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Word2024') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Word2024.exe")
+                (New-Object System.Net.WebClient).DownloadFile(((((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links').Links | Where-Object { $_.outerHTML -match 'Word2024' } | Select-Object -First 1).href)).Replace('amp;', ''), "$env:TEMP\Word2024.exe")
         
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2024 - Word: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\Word2024.exe -Wait
@@ -1860,7 +1881,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         
             if ($CheckBox_Office2021ProPlus.Checked) {
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Word): Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'ProPlus2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\ProPlus2021.exe")
+                (New-Object System.Net.WebClient).DownloadFile(((((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links').Links | Where-Object { $_.outerHTML -match 'ProPlus2021' } | Select-Object -First 1).href)).Replace('amp;', ''), "$env:TEMP\ProPlus2021.exe")
         
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - Pro Plus (Access, Excel, OneDrive, OneNote, Outlook, Powerpoint, Publisher, Word): Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\ProPlus2021.exe -Wait
@@ -1868,7 +1889,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         
             if ($CheckBox_Office2021Access.Checked) {
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - (Access): Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Access2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Access2021.exe")
+                (New-Object System.Net.WebClient).DownloadFile(((((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links').Links | Where-Object { $_.outerHTML -match 'Access2021' } | Select-Object -First 1).href)).Replace('amp;', ''), "$env:TEMP\Access2021.exe")
         
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - (Access): Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\Access2021.exe -Wait
@@ -1876,7 +1897,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         
             if ($CheckBox_Office2021Excel.Checked) {
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - Excel: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Excel2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Excel2021.exe")
+                (New-Object System.Net.WebClient).DownloadFile(((((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links').Links | Where-Object { $_.outerHTML -match 'Excel2021' } | Select-Object -First 1).href)).Replace('amp;', ''), "$env:TEMP\Excel2021.exe")
         
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - Excel: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\Excel2021.exe -Wait
@@ -1884,7 +1905,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         
             if ($CheckBox_Office2021OneNote.Checked) {
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - OneNote: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'OneNote2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\OneNote2021.exe")
+                (New-Object System.Net.WebClient).DownloadFile(((((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links').Links | Where-Object { $_.outerHTML -match 'OneNote2021' } | Select-Object -First 1).href)).Replace('amp;', ''), "$env:TEMP\OneNote2021.exe")
         
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - OneNote: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\OneNote2021.exe -Wait
@@ -1892,7 +1913,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         
             if ($CheckBox_Office2021Outlook.Checked) {
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - Outlook: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Outlook2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Outlook2021.exe")
+                (New-Object System.Net.WebClient).DownloadFile(((((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links').Links | Where-Object { $_.outerHTML -match 'Outlook2021' } | Select-Object -First 1).href)).Replace('amp;', ''), "$env:TEMP\Outlook2021.exe")
         
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - Outlook: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\Outlook2021.exe -Wait
@@ -1900,7 +1921,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         
             if ($CheckBox_Office2021PowerPoint.Checked) {
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - PowerPoint: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'PowerPoint2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\PowerPoint2021.exe")
+                (New-Object System.Net.WebClient).DownloadFile(((((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links').Links | Where-Object { $_.outerHTML -match 'PowerPoint2021' } | Select-Object -First 1).href)).Replace('amp;', ''), "$env:TEMP\PowerPoint2021.exe")
         
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - PowerPoint: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\PowerPoint2021.exe -Wait
@@ -1908,7 +1929,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         
             if ($CheckBox_Office2021Publisher.Checked) {
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - Publisher: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Publisher2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Publisher2021.exe")
+                (New-Object System.Net.WebClient).DownloadFile(((((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links').Links | Where-Object { $_.outerHTML -match 'Publisher2021' } | Select-Object -First 1).href)).Replace('amp;', ''), "$env:TEMP\Publisher2021.exe")
         
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - Publisher: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\Publisher2021.exe -Wait
@@ -1916,7 +1937,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         
             if ($CheckBox_Office2021Word.Checked) {
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - Word: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-                (New-Object System.Net.WebClient).DownloadFile(((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'Word2021') } | Select-Object -First 1 | Select-Object -ExpandProperty href)).Replace('amp;', ''), "$env:TEMP\Word2021.exe")
+                (New-Object System.Net.WebClient).DownloadFile(((((Invoke-WebRequest -UseBasicParsing -Uri 'https://gravesoft.dev/office_c2r_links').Links | Where-Object { $_.outerHTML -match 'Word2021' } | Select-Object -First 1).href)).Replace('amp;', ''), "$env:TEMP\Word2021.exe")
         
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office Selection: Office 2021 - Word: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
                 Start-Process $env:TEMP\Word2021.exe -Wait
@@ -2018,12 +2039,12 @@ $Form_SoftwareSelection_OK.Add_Click{
 
         $AcrobatPro_Label = 'https://w14.monkrus.ws/search/label/Acrobat'
         $AcrobatPro_Title = ((Invoke-WebRequest -UseBasicParsing -Uri $AcrobatPro_Label).Links | Where-Object { $_.outerHTML -match 'x64' } | Select-Object -First 1).outerHTML -replace '.*?>(.*?)</a>', '$1'
-        $AcrobatPro_Post = ((Invoke-WebRequest -UseBasicParsing -Uri $AcrobatPro_Label).Links | Where-Object { ($_.outerHTML -match 'x64') } | Select-Object -First 1).href
-        $AcrobatPro_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AcrobatPro_Post).Links | Where-Object { ($_.outerHTML -match 'uniondht.org') } | Select-Object -First 1).href
+        $AcrobatPro_Post = ((Invoke-WebRequest -UseBasicParsing -Uri $AcrobatPro_Label).Links | Where-Object { $_.outerHTML -match 'x64' } | Select-Object -First 1).href
+        $AcrobatPro_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AcrobatPro_Post).Links | Where-Object { $_.outerHTML -match 'uniondht.org' } | Select-Object -First 1).href
         if ($null -eq $AcrobatPro_Forum) {
-            $AcrobatPro_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AcrobatPro_Post).Links | Where-Object { ($_.outerHTML -match 'pb.wtf') } | Select-Object -First 1).href
+            $AcrobatPro_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AcrobatPro_Post).Links | Where-Object { $_.outerHTML -match 'pb.wtf' } | Select-Object -First 1).href
         }
-        $AcrobatPro_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AcrobatPro_Forum).Links | Where-Object { ($_.outerHTML -match 'magnet') } | Select-Object -First 1).href
+        $AcrobatPro_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AcrobatPro_Forum).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
         $AcrobatPro_qBittorrent_LOG = [System.IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
         if (Test-Path $AcrobatPro_qBittorrent_LOG) {
@@ -2059,12 +2080,12 @@ $Form_SoftwareSelection_OK.Add_Click{
     if ($CheckBox_AdobeLightroomClassic.Checked) {
         $AdobeLightroomClassic_Label = 'https://w14.monkrus.ws/search/label/Lightroom'
         $AdobeLightroomClassic_Title = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobeLightroomClassic_Label).Links | Where-Object { $_.outerHTML -match 'Classic' } | Select-Object -First 1).outerHTML -replace '.*?>(.*?)</a>', '$1'
-        $AdobeLightroomClassic_Post = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobeLightroomClassic_Label).Links | Where-Object { ($_.outerHTML -match 'Classic') } | Select-Object -First 1).href
-        $AdobeLightroomClassic_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobeLightroomClassic_Post).Links | Where-Object { ($_.outerHTML -match 'uniondht.org') } | Select-Object -First 1).href
+        $AdobeLightroomClassic_Post = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobeLightroomClassic_Label).Links | Where-Object { $_.outerHTML -match 'Classic' } | Select-Object -First 1).href
+        $AdobeLightroomClassic_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobeLightroomClassic_Post).Links | Where-Object { $_.outerHTML -match 'uniondht.org' } | Select-Object -First 1).href
         if ($null -eq $AdobeLightroomClassic_Forum) {
-            $AdobeLightroomClassic_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobeLightroomClassic_Post).Links | Where-Object { ($_.outerHTML -match 'pb.wtf') } | Select-Object -First 1).href
+            $AdobeLightroomClassic_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobeLightroomClassic_Post).Links | Where-Object { $_.outerHTML -match 'pb.wtf' } | Select-Object -First 1).href
         }
-        $AdobeLightroomClassic_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobeLightroomClassic_Forum).Links | Where-Object { ($_.outerHTML -match 'magnet') } | Select-Object -First 1).href
+        $AdobeLightroomClassic_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobeLightroomClassic_Forum).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
         $AdobeLightroomClassic_qBittorrent_LOG = [System.IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
         if (Test-Path $AdobeLightroomClassic_qBittorrent_LOG) {
@@ -2099,13 +2120,13 @@ $Form_SoftwareSelection_OK.Add_Click{
 
     if ($CheckBox_AdobePhotoshop.Checked) {
         $AdobePhotoshop_Label = 'https://w14.monkrus.ws/search/label/Photoshop'
-        $AdobePhotoshop_Title = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobePhotoshop_Label).Links | Where-Object { (($_.outerHTML -notmatch 'Elements') -and ($_.outerHTML -notmatch 'Collection') -and ($_.outerHTML -match 'Multilingual')) } | Select-Object -First 1).outerHTML -replace '.*?>(.*?)</a>', '$1'
-        $AdobePhotoshop_Post = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobePhotoshop_Label).Links | Where-Object { (($_.outerHTML -notmatch 'Elements') -and ($_.outerHTML -notmatch 'Collection') -and ($_.outerHTML -match 'Multilingual')) } | Select-Object -First 1).href
-        $AdobePhotoshop_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobePhotoshop_Post).Links | Where-Object { ($_.outerHTML -match 'uniondht.org') } | Select-Object -First 1).href
+        $AdobePhotoshop_Title = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobePhotoshop_Label).Links | Where-Object { $_.outerHTML -notmatch 'Elements' -and $_.outerHTML -notmatch 'Collection' -and $_.outerHTML -match 'Multilingual' } | Select-Object -First 1).outerHTML -replace '.*?>(.*?)</a>', '$1'
+        $AdobePhotoshop_Post = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobePhotoshop_Label).Links | Where-Object { $_.outerHTML -notmatch 'Elements' -and $_.outerHTML -notmatch 'Collection' -and $_.outerHTML -match 'Multilingual' } | Select-Object -First 1).href
+        $AdobePhotoshop_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobePhotoshop_Post).Links | Where-Object { $_.outerHTML -match 'uniondht.org' } | Select-Object -First 1).href
         if ($null -eq $AdobePhotoshop_Forum) {
-            $AdobePhotoshop_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobePhotoshop_Post).Links | Where-Object { ($_.outerHTML -match 'pb.wtf') } | Select-Object -First 1).href
+            $AdobePhotoshop_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobePhotoshop_Post).Links | Where-Object { $_.outerHTML -match 'pb.wtf' } | Select-Object -First 1).href
         }
-        $AdobePhotoshop_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobePhotoshop_Forum).Links | Where-Object { ($_.outerHTML -match 'magnet') } | Select-Object -First 1).href
+        $AdobePhotoshop_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobePhotoshop_Forum).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
         $AdobePhotoshop_qBittorrent_LOG = [System.IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
         if (Test-Path $AdobePhotoshop_qBittorrent_LOG) {
@@ -2142,11 +2163,11 @@ $Form_SoftwareSelection_OK.Add_Click{
         $AutodeskRevit_Label = 'https://w14.monkrus.ws/search/label/Revit'
         $AutodeskRevit_Title = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskRevit_Label).Links | Where-Object { $_.outerHTML -match 'Multilingual' } | Select-Object -First 1).outerHTML -replace '.*?>(.*?)</a>', '$1'
         $AutodeskRevit_Post = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskRevit_Label).Links | Where-Object { $_.outerHTML -match 'Multilingual' } | Select-Object -First 1).href
-        $AutodeskRevit_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskRevit_Post).Links | Where-Object { ($_.outerHTML -match 'uniondht.org') } | Select-Object -First 1).href
+        $AutodeskRevit_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskRevit_Post).Links | Where-Object { $_.outerHTML -match 'uniondht.org' } | Select-Object -First 1).href
         if ($null -eq $AutodeskRevit_Forum) {
-            $AutodeskRevit_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskRevit_Post).Links | Where-Object { ($_.outerHTML -match 'pb.wtf') } | Select-Object -First 1).href
+            $AutodeskRevit_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskRevit_Post).Links | Where-Object { $_.outerHTML -match 'pb.wtf' } | Select-Object -First 1).href
         }
-        $AutodeskRevit_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskRevit_Forum).Links | Where-Object { ($_.outerHTML -match 'magnet') } | Select-Object -First 1).href
+        $AutodeskRevit_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskRevit_Forum).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
         $AutodeskRevit_qBittorrent_LOG = [System.IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
         if (Test-Path $AutodeskRevit_qBittorrent_LOG) {
@@ -2195,6 +2216,63 @@ $Form_SoftwareSelection_OK.Add_Click{
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Please open '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' and select '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Use a network license'"); [Console]::ResetColor(); [Console]::WriteLine()
     }
     
+    if ($CheckBox_AutodeskAutoCAD.Checked) {
+        $AutodeskAutoCAD_Label = 'https://w14.monkrus.ws/search/label/AutoCAD'
+        $AutodeskAutoCAD_Title = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskAutoCAD_Label).Links | Where-Object { $_.outerHTML -match 'AutoCAD' -and $_.outerHTML -notmatch 'LT' -and $_.outerHTML -notmatch 'Addon' } | Select-Object -First 1).outerHTML -replace '.*?>(.*?)</a>', '$1'
+        $AutodeskAutoCAD_Post = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskAutoCAD_Label).Links | Where-Object { $_.outerHTML -match 'AutoCAD' -and $_.outerHTML -notmatch 'LT' -and $_.outerHTML -notmatch 'Addon' } | Select-Object -First 1).href
+        $AutodeskAutoCAD_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskAutoCAD_Post).Links | Where-Object { $_.outerHTML -match 'uniondht.org' } | Select-Object -First 1).href
+        if ($null -eq $AutodeskAutoCAD_Forum) {
+            $AutodeskAutoCAD_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskAutoCAD_Post).Links | Where-Object { $_.outerHTML -match 'pb.wtf' } | Select-Object -First 1).href
+        }
+        $AutodeskAutoCAD_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskAutoCAD_Forum).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
+        $AutodeskAutoCAD_qBittorrent_LOG = [System.IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
+        if (Test-Path $AutodeskAutoCAD_qBittorrent_LOG) {
+            Remove-Item $AutodeskAutoCAD_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
+        }
+        Remove-Item -Path "$env:TEMP\*AutoCAD*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
+        $AutodeskAutoCAD_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($AutodeskAutoCAD_Magnet)"""
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process qBittorrent.exe -ArgumentList $AutodeskAutoCAD_qBittorrent_Argument
+        while (-not ($AutodeskAutoCAD_TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*AutoCAD*' | Select-Object -First 1).FullName)) {
+            Start-Sleep -Milliseconds 1000
+        }
+
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Add-MpPreference -ExclusionPath $AutodeskAutoCAD_TempDir
+
+        while (-not ($AutodeskAutoCAD_TempISO = (Get-ChildItem $AutodeskAutoCAD_TempDir -Filter '*.iso' | Select-Object -First 1).FullName)) {
+            Start-Sleep -Milliseconds 1000
+        }
+        do {
+            Start-Sleep -Milliseconds 1000
+        } until ((Get-Content $AutodeskAutoCAD_qBittorrent_LOG -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*AutoCAD*')
+
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_TempISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_TempDir'"); [Console]::ResetColor(); [Console]::WriteLine()
+        7z.exe x $AutodeskAutoCAD_TempISO -o"$AutodeskAutoCAD_TempDir" -y
+
+        $AutodeskAutoCAD_TempInstaller = (Get-ChildItem -Path $AutodeskAutoCAD_TempDir -Recurse -Filter 'setup.exe').FullName
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_TempInstaller'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process $AutodeskAutoCAD_TempInstaller -ArgumentList '/silent'
+        while (!(Get-Process | Where-Object MainWindowTitle -Like '*AutoCAD*Installer')) {
+            Start-Sleep -Milliseconds 1000
+        }
+        while ((Get-Process | Where-Object MainWindowTitle -Like '*AutoCAD*Installer')) {
+            Start-Sleep -Milliseconds 1000
+        }
+
+        $AutodeskAutoCAD_TempCrack = (Get-ChildItem -Path $AutodeskAutoCAD_TempDir -Recurse -Filter 'AdskNLM.exe').FullName
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Cracking '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_TempCrack'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process $AutodeskAutoCAD_TempCrack
+        while (!(Get-Process | Where-Object MainWindowTitle -Like '*crack*')) {
+            Start-Sleep -Seconds 1 
+        }
+        (Get-Process | Where-Object MainWindowTitle -Like '*crack*').CloseMainWindow() | Out-Null
+
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Please open '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' and select '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Use a network license'"); [Console]::ResetColor(); [Console]::WriteLine()
+    }
+
     if ($CheckBox_JitBit_Macro_Recorder.Checked) {
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Jitbit Macro Recorder: Settings: General: Disable the welcome screen: On'); [Console]::ResetColor(); [Console]::WriteLine()
         if ((Test-Path -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder') -ne $true) {
@@ -2232,7 +2310,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
         
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('JitBit Macro Recorder: Getting magnet'); [Console]::ResetColor(); [Console]::WriteLine()
-        $JitBit1 = (Invoke-WebRequest -UseBasicParsing -Uri 'https://rutracker.org/forum/viewtopic.php?t=6357418' | Select-Object -ExpandProperty Links | Where-Object { ($_.outerHTML -match 'magnet') } | Select-Object -First 1 | Select-Object -ExpandProperty href)
+        $JitBit1 = ((Invoke-WebRequest -UseBasicParsing -Uri 'https://rutracker.org/forum/viewtopic.php?t=6357418').Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
         
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('JitBit Macro Recorder: Deleting qBittorrent log file'); [Console]::ResetColor(); [Console]::WriteLine()
         if (Test-Path "$env:LOCALAPPDATA\qBittorrent\logs\qbittorrent.log") {
@@ -2269,7 +2347,7 @@ $Form_SoftwareSelection_OK.Add_Click{
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('JitBit Macro Recorder: Removing Defender Exclusion'); [Console]::ResetColor(); [Console]::WriteLine()
         Remove-MpPreference -ExclusionPath "$JitBitTempDir"
     }
-
 }
+
 $Form_SoftwareSelection.Add_Shown({ $Form_SoftwareSelection.Activate() })
 [void] $Form_SoftwareSelection.ShowDialog()

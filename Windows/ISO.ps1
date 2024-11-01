@@ -4,7 +4,7 @@ if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Akeo Consulting\Rufus') -ne $true) {
 }
 New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Akeo Consulting\Rufus' -Name 'UpdateCheckInterval' -Value -1 -PropertyType DWord -Force
 
-$Rufus_DDL = ((Invoke-WebRequest -UseBasicParsing -Uri 'https://rufus.ie/en/').Links | Where-Object { ($_.outerHTML -match '.exe') } | Select-Object -First 1).href
+$Rufus_DDL = ((Invoke-WebRequest -UseBasicParsing -Uri 'https://rufus.ie/en/').Links | Where-Object { $_.outerHTML -match '.exe' } | Select-Object -First 1).href
 $Rufus_Filename = [System.IO.Path]::GetFileName(([System.Uri]$Rufus_DDL).AbsolutePath)
 $Rufus_SavePath = [System.IO.Path]::Combine($env:TEMP, $Rufus_Filename)
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Rufus'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Rufus_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Rufus_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
