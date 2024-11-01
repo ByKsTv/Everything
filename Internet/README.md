@@ -4,6 +4,8 @@ Everything about Internet.
 
 ## ISP Issues
 
+- If customer paying to dig underground via ISP - don't pay for 'FDT' which will lower the numbers of total connection on my main fiber box.
+
 > Take a picture of the damaged ISP cable.
 >
 > Say `I don't have internet and I work from home`.

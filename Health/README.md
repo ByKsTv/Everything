@@ -2,6 +2,10 @@
 
 Everything about Health.
 
+## Arriving
+
+- Arrive 40 minutes before appoinment, once you swipe your card you'll receive a number.
+
 ## Cleaning Dentist
 
 - Visit once per year for cheap cost.

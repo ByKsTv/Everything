@@ -933,6 +933,27 @@ if ($InstalledSoftware -match 'Razer Synapse') {
     $CheckBox_RazerSynapse.Text += ' (Installed)'
 }
 
+$CheckBox_SketchUp = New-Object System.Windows.Forms.CheckBox
+$CheckBox_SketchUp.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
+$CheckBox_Y_Axis += $CheckBox_LocationAdd
+$CheckBox_SketchUp.Size = New-Object System.Drawing.Size($CheckBox_Size_X, $CheckBox_Size_Y)
+# Resized from Official ICO from Website
+$CheckBox_SketchUp_Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAADdyK3/6dzN/+nczf/p3M3/6dzN/+nczf/p3M3/6dzN/+nczf/p3M3/6dzN/+nczf/p3M3/6dzN/+nczf/dyK3/6dzN//fz8//38/P/9/Pz//fz8//38/P/9/Pz//fz8//38/P/9/Pz//fz8//38/P/9/Pz//fz8//38/P/6dzN/+nczf/38/P/9/Pz//fz8//38/P/9/Pz/9vEp/+/llv/xaBr/9nBof/38/L/9/Pz//fz8//38/P/9/Pz/+nczf/p3M3/9/Pz//fz8//38/P/6NnJ/7aGQP+eXwD/s4I6/7qOTv+eXwD/s4M7/+bWxP/38/P/9/Pz//fz8//p3M3/6dzN//fz8//38/P/1LmU/6BiBP+wfDD/w51l/7OCOv+6jk7/tIQ8/7KANv+fYAL/zq+D//fz8//38/P/6dzN/+nczf/38/P/7ODU/6hvG//Or4T/w5xk/59hBP+zgjr/uo5O/59hA//Cm2L/x6Nw/59gAv/p3M3/9/Pz/+nczf/p3M3/9/Pz/+3j2f/Wu5j/pGoR/6VrFP++lFf/s4I6/7qOTv+sdyf/n2EE/9K1jv+fYQP/172b//fz8//p3M3/6dzN//fz8//38/P/9fDu/9jAoP/Or4P/pWsU/7WFP/+6jk7/wJdd/6x2Jv/Mq3z/oWQJ/9a8mP/38/P/6dzN/+nczf/38/P/9/Pz/+LRu/+wfDD/n2ED/8KcZP/Or4P/pGoS/8CYXf+sdyf/y6t8/6FkCf/WvJj/9/Pz/+nczf/p3M3/9/Pz/93Irf+eYAH/tYU//9O3kf+wfTH/oGIE/8OdZv/Or4P/omYL/8uqe/+hZQn/1ryY//fz8//p3M3/6dzN//fz8//hz7j/0bSL/76UV/+fYAL/oGIE/6dvGv+sdyf/n2EE/8OcZf/PsIX/n2ED/9W7mP/38/P/6dzN/+nczf/38/P/9/Pz/8ilc/+fYQT/qXEd/9O3kf++lFf/vZJU/9O4kv+wfTL/n2ED/8OcZP/x6OL/9/Pz/+nczf/p3M3/9/Pz//fz8//38/P/6NrK/7aHQv+eXwD/soA3/7KBOP+eYAH/tYU+/+fYx//38/P/9/Pz//fz8//p3M3/6dzN//fz8//38/P/9/Pz//fz8//38/P/3cit/8CYXf+/llv/28Wo//fz8//38/P/9/Pz//fz8//38/P/6dzN/+nczf/38/P/9/Pz//fz8//38/P/9/Pz//fz8//38/P/9/Pz//fz8//38/P/9/Pz//fz8//38/P/9/Pz/+nczf/dyK3/6dzN/+nczf/p3M3/6dzN/+nczf/p3M3/6dzN/+nczf/p3M3/6dzN/+nczf/p3M3/6dzN/+nczf/dyK3/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
+$CheckBox_SketchUp_IconBytes = [Convert]::FromBase64String($CheckBox_SketchUp_Icon64)
+$CheckBox_SketchUp_IconStream = [System.IO.MemoryStream]::new($CheckBox_SketchUp_IconBytes, 0, $CheckBox_SketchUp_IconBytes.Length)
+$CheckBox_SketchUp.Image = [System.Drawing.Icon]::FromHandle(([System.Drawing.Bitmap]::new($CheckBox_SketchUp_IconStream).GetHIcon()))
+$CheckBox_SketchUp.ImageAlign = 'MiddleLeft'
+$CheckBox_SketchUp.Text = '    SketchUp'
+$CheckBox_SketchUp.TextAlign = 'MiddleLeft'
+$CheckBox_SketchUp.CheckAlign = 'MiddleLeft'
+$CheckBox_SketchUp.Checked = $false
+$Panel_SoftwareSelection.Controls.Add($CheckBox_SketchUp)
+
+if ($InstalledSoftware -match 'SketchUp') {
+    # $CheckBox_SketchUp.Enabled = $false
+    $CheckBox_SketchUp.Text += ' (Installed)'
+}
+
 $CheckBox_Steam = New-Object System.Windows.Forms.CheckBox
 $CheckBox_Steam.Location = New-Object System.Drawing.Size($CheckBox_X_Axis, $CheckBox_Y_Axis)
 $CheckBox_Y_Axis += $CheckBox_LocationAdd
@@ -2344,6 +2365,43 @@ $Form_SoftwareSelection_OK.Add_Click{
         
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$JitbitMacro_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
         Remove-MpPreference -ExclusionPath $JitbitMacro_TempDir
+    }
+
+    if ($CheckBox_SketchUp.Checked) {
+        $SketchUp_Label = 'https://nnmclub.to/forum/tracker.php?nm=SketchUp%20KpoJIuK'
+        $SketchUp_Title = ((Invoke-WebRequest -UseBasicParsing -Uri $SketchUp_Label).Links | Where-Object { $_.outerHTML -match 'SketchUp' -and $_.class -match 'genmed topictitle' } | Select-Object -First 1).outerHTML -replace '.*?<b>(.*?)</b></a>', '$1'
+        $SketchUp_Post = 'https://nnmclub.to/forum/' + ((Invoke-WebRequest -UseBasicParsing -Uri $SketchUp_Label).Links | Where-Object { $_.outerHTML -match 'SketchUp' -and $_.class -match 'genmed topictitle' } | Select-Object -First 1).href
+        $SketchUp_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $SketchUp_Post).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
+        $SketchUp_qBittorrent_LOG = [System.IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
+        if (Test-Path $SketchUp_qBittorrent_LOG) {
+            Remove-Item $SketchUp_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
+        }
+        Remove-Item -Path "$env:TEMP\*SketchUp*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
+        $SketchUp_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($SketchUp_Magnet)"""
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SketchUp_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SketchUp_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process qBittorrent.exe -ArgumentList $SketchUp_qBittorrent_Argument
+        while (-not ($SketchUp_TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*SketchUp*' | Select-Object -First 1).FullName)) {
+            Start-Sleep -Milliseconds 1000
+        }
+
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SketchUp_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Add-MpPreference -ExclusionPath $SketchUp_TempDir
+
+        while (-not ($SketchUp_TempEXE = (Get-ChildItem $SketchUp_TempDir -Filter '*.exe' | Select-Object -First 1).FullName)) {
+            Start-Sleep -Milliseconds 1000
+        }
+        do {
+            Start-Sleep -Milliseconds 1000
+        } until ((Get-Content $SketchUp_qBittorrent_LOG -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*SketchUp*')
+
+        $SketchUp_Argument = '/S /EN'
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SketchUp_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SketchUp_TempEXE'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SketchUp_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Unblock-File $SketchUp_TempEXE
+        Start-Process $SketchUp_TempEXE -ArgumentList $SketchUp_Argument -Wait
+
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SketchUp_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Remove-MpPreference -ExclusionPath $SketchUp_TempDir
     }
 }
 
