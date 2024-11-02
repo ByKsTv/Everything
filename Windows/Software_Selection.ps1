@@ -370,7 +370,8 @@ $CheckBox_Discord.CheckAlign = 'MiddleLeft'
 $CheckBox_Discord.Checked = $false
 $SoftwareSelection_Panel.Controls.Add($CheckBox_Discord)
 
-if ($InstalledSoftware -match 'Discord') {
+$Discord_TaskName = 'Discord Updater'
+if (Get-ScheduledTask -TaskName $Discord_TaskName -ErrorAction SilentlyContinue) {
     $CheckBox_Discord.Enabled = $false
     $CheckBox_Discord.Text += ' (Installed)'
 }
@@ -2163,20 +2164,20 @@ $SoftwareSelection_Form_OK.Add_Click{
         $AutodeskRevit_TempInstaller = (Get-ChildItem -Path $AutodeskRevit_TempDir -Recurse -Filter 'setup.exe').FullName
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempInstaller'"); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process $AutodeskRevit_TempInstaller
-        while (!(Get-Process | Where-Object MainWindowTitle -Like '*Revit*Installer')) {
+        while (!(Get-Process | Where-Object { $_.MainWindowTitle -Like '*Revit*Installer' })) {
             Start-Sleep -Milliseconds 1000
         }
-        while ((Get-Process | Where-Object MainWindowTitle -Like '*Revit*Installer')) {
+        while ((Get-Process | Where-Object { $_.MainWindowTitle -Like '*Revit*Installer' })) {
             Start-Sleep -Milliseconds 1000
         }
 
         $AutodeskRevit_TempCrack = (Get-ChildItem -Path $AutodeskRevit_TempDir -Recurse -Filter 'AdskNLM.exe').FullName
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Cracking '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempCrack'"); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process $AutodeskRevit_TempCrack
-        while (!(Get-Process | Where-Object MainWindowTitle -Like '*crack*')) {
+        while (!(Get-Process | Where-Object { $_.MainWindowTitle -Like '*crack*' })) {
             Start-Sleep -Seconds 1 
         }
-        (Get-Process | Where-Object MainWindowTitle -Like '*crack*').CloseMainWindow() | Out-Null
+        (Get-Process | Where-Object { $_.MainWindowTitle -Like '*crack*' }).CloseMainWindow() | Out-Null
 
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
         Remove-MpPreference -ExclusionPath $AutodeskRevit_TempDir
@@ -2223,20 +2224,20 @@ $SoftwareSelection_Form_OK.Add_Click{
         $AutodeskAutoCAD_TempInstaller = (Get-ChildItem -Path $AutodeskAutoCAD_TempDir -Recurse -Filter 'setup.exe').FullName
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_TempInstaller'"); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process $AutodeskAutoCAD_TempInstaller -ArgumentList '/silent'
-        while (!(Get-Process | Where-Object MainWindowTitle -Like '*AutoCAD*Installer')) {
+        while (!(Get-Process | Where-Object { $_.MainWindowTitle -Like '*AutoCAD*Installer' })) {
             Start-Sleep -Milliseconds 1000
         }
-        while ((Get-Process | Where-Object MainWindowTitle -Like '*AutoCAD*Installer')) {
+        while ((Get-Process | Where-Object { $_.MainWindowTitle -Like '*AutoCAD*Installer' })) {
             Start-Sleep -Milliseconds 1000
         }
 
         $AutodeskAutoCAD_TempCrack = (Get-ChildItem -Path $AutodeskAutoCAD_TempDir -Recurse -Filter 'AdskNLM.exe').FullName
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Cracking '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_TempCrack'"); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process $AutodeskAutoCAD_TempCrack
-        while (!(Get-Process | Where-Object MainWindowTitle -Like '*crack*')) {
+        while (!(Get-Process | Where-Object { $_.MainWindowTitle -Like '*crack*' })) {
             Start-Sleep -Seconds 1 
         }
-        (Get-Process | Where-Object MainWindowTitle -Like '*crack*').CloseMainWindow() | Out-Null
+        (Get-Process | Where-Object { $_.MainWindowTitle -Like '*crack*' }).CloseMainWindow() | Out-Null
 
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
         Remove-MpPreference -ExclusionPath $AutodeskAutoCAD_TempDir
