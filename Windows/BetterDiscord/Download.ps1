@@ -8,6 +8,11 @@ if (-not (Get-ScheduledTask -TaskName $BetterDiscord_TaskName -ErrorAction Silen
     Register-ScheduledTask -TaskName $BetterDiscord_TaskName -Action $BetterDiscord_TaskAction -Trigger $BetterDiscord_TaskTrigger -Principal $BetterDiscord_TaskPrincipal -Settings $BetterDiscord_TaskSettings -Force
 }
 
+$Discord_TaskName = 'Discord Updater'
+while ((Get-ScheduledTask -TaskName $Discord_TaskName).State -eq 'Running') {
+    Start-Sleep -Milliseconds 1000
+}
+
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('BetterDiscord: Checking if Discord is Installed'); [Console]::ResetColor(); [Console]::WriteLine()
 if (!(Test-Path -Path $env:LOCALAPPDATA\Discord)) {
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('BetterDiscord: Discord is not Installed'); [Console]::ResetColor(); [Console]::WriteLine()
