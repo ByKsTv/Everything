@@ -370,7 +370,7 @@ $CheckBox_Discord.CheckAlign = 'MiddleLeft'
 $CheckBox_Discord.Checked = $false
 $SoftwareSelection_Panel.Controls.Add($CheckBox_Discord)
 
-$Discord_TaskName = 'Discord Updater'
+$Discord_TaskName = 'Discord Client Updater'
 if (Get-ScheduledTask -TaskName $Discord_TaskName -ErrorAction SilentlyContinue) {
     $CheckBox_Discord.Enabled = $false
     $CheckBox_Discord.Text += ' (Installed)'
