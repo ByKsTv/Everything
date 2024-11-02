@@ -9,11 +9,14 @@ if (-not (Get-ScheduledTask -TaskName $BetterDiscord_TaskName -ErrorAction Silen
 }
 
 $Discord_TaskName = 'Discord Client Updater'
-while ((Get-ScheduledTask -TaskName $Discord_TaskName).State -eq 'Running') {
+if (Get-ScheduledTask -TaskName $Discord_TaskName -ErrorAction SilentlyContinue) {
     Start-Sleep -Milliseconds 1000
-}
-while ((Get-Process | Where-Object { $_.MainWindowTitle -eq $Discord_TaskName} )) {
-    Start-Sleep -Milliseconds 1000
+    while ((Get-ScheduledTask -TaskName $Discord_TaskName).State -eq 'Running') {
+        Start-Sleep -Milliseconds 1000
+    }
+    while ((Get-Process | Where-Object { $_.MainWindowTitle -eq $Discord_TaskName } )) {
+        Start-Sleep -Milliseconds 1000
+    }
 }
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('BetterDiscord: Checking if Discord is Installed'); [Console]::ResetColor(); [Console]::WriteLine()
