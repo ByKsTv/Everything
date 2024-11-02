@@ -1,7 +1,7 @@
 $Telegram_TaskName = 'Telegram Updater'
 if (-not (Get-ScheduledTask -TaskName $Telegram_TaskName -ErrorAction SilentlyContinue)) {
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Telegram_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
-    $Telegram_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.Telegramhubusercontent.com/ByKsTv/Everything/main/Windows/Telegram/Download.ps1')"
+    $Telegram_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Telegram/Download.ps1')"
     $Telegram_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
     $Telegram_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
     $Telegram_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
