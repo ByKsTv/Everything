@@ -1452,11 +1452,7 @@ $Form_SoftwareSelection_OK.Add_Click{
     }
 
     if ($CheckBox_Telegram.Checked) {
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Telegram: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-        (New-Object System.Net.WebClient).DownloadFile('https://telegram.org/dl/desktop/win64', "$env:TEMP\Telegram.exe")
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Telegram: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process -FilePath $env:TEMP\Telegram.exe -ArgumentList '/VERYSILENT'
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Telegram/Download.ps1')
     }
 
     if ($CheckBox_TranslucentTB.Checked) {
