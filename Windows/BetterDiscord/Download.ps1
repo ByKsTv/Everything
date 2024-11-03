@@ -127,3 +127,5 @@ if (-not (Select-String -Quiet -Path $Discord_IndexJS -Pattern 'betterdiscord'))
         Set-Content $Discord_IndexJS -Value "require('$($env:APPDATA -replace '\\','/')/BetterDiscord/data/betterdiscord.asar');`nmodule.exports = require('./core.asar');" -Force
     }
 }
+Write-Host "test1"
+Start-Sleep -Milliseconds 10000
