@@ -13,8 +13,8 @@ $Telegram_LatestVersion = ((Invoke-RestMethod 'https://api.github.com/repos/tele
 
 if ($null -eq $Telegram_InstalledVersion -or $Telegram_InstalledVersion -notmatch $Telegram_LatestVersion) {
     $Telegram_DDL = ((Invoke-RestMethod 'https://api.github.com/repos/telegramdesktop/tdesktop/releases/latest').assets | Where-Object { $_.label -match '64' -and $_.label -match 'Installer' } ).browser_download_url
-    $Telegram_Filename = [System.IO.Path]::GetFileName(([System.Uri]$Telegram_DDL).AbsolutePath)
-    $Telegram_SavePath = [System.IO.Path]::Combine($env:TEMP, $Telegram_Filename)
+    $Telegram_Filename = [IO.Path]::GetFileName(([URI]$Telegram_DDL).AbsolutePath)
+    $Telegram_SavePath = [IO.Path]::Combine($env:TEMP, $Telegram_Filename)
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Telegram'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Telegram_LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Telegram_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Telegram_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
     (New-Object System.Net.WebClient).DownloadFile($Telegram_DDL, $Telegram_SavePath)
     

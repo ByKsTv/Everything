@@ -14,7 +14,7 @@ $VSCode_LatestVersion = (Invoke-RestMethod https://api.github.com/repos/microsof
 if ($null -eq $VSCode_InstalledVersion -or $VSCode_InstalledVersion -notmatch $VSCode_LatestVersion) {
     $VSCode_DDL = 'https://code.visualstudio.com/sha/download?build=stable&os=win32-x64'
     $VSCode_Filename = 'VSCodeSetup-x64-' + "$VSCode_LatestVersion" + '.exe'
-    $VSCode_SavePath = [System.IO.Path]::Combine($env:TEMP, $VSCode_Filename)
+    $VSCode_SavePath = [IO.Path]::Combine($env:TEMP, $VSCode_Filename)
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Visual Studio Code'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VSCode_LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VSCode_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VSCode_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
     (New-Object System.Net.WebClient).DownloadFile($VSCode_DDL, $VSCode_SavePath)
     

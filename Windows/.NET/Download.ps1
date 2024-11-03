@@ -31,8 +31,8 @@ $DotNET_EOL9 = (Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet
 
 if ($null -eq $DotNET_DesktopRuntime6_Installed -or $DotNET_DesktopRuntime6_Installed -notmatch $DotNET_Latest6 -and $DotNET_EOL6 -ne 'eol' -and $DotNET_EOL6 -eq 'maintenance') {
 	$DotNET_Latest6_DDL = ((((Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/6.0/releases.json).Releases | Select-Object -First 1).windowsdesktop).files | Where-Object -Property 'name' -Match 'win-x64.exe').url
-	$DotNET_Latest6_Filename = [System.IO.Path]::GetFileName(([System.Uri]$DotNET_Latest6_DDL).AbsolutePath)
-	$DotNET_Latest6_SavePath = [System.IO.Path]::Combine($env:TEMP, $DotNET_Latest6_Filename)
+	$DotNET_Latest6_Filename = [IO.Path]::GetFileName(([URI]$DotNET_Latest6_DDL).AbsolutePath)
+	$DotNET_Latest6_SavePath = [IO.Path]::Combine($env:TEMP, $DotNET_Latest6_Filename)
 	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'.NET Desktop Runtime'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Latest6'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Latest6_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Latest6_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
     (New-Object System.Net.WebClient).DownloadFile($DotNET_Latest6_DDL, $DotNET_Latest6_SavePath)
 
@@ -43,8 +43,8 @@ if ($null -eq $DotNET_DesktopRuntime6_Installed -or $DotNET_DesktopRuntime6_Inst
 
 if ($null -eq $DotNET_DesktopRuntime8_Installed -or $DotNET_DesktopRuntime8_Installed -notmatch $DotNET_Latest8 -and $DotNET_EOL8 -ne 'eol' -and $DotNET_EOL8 -eq 'active') {
 	$DotNET_Latest8_DDL = ((((Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/8.0/releases.json).Releases | Select-Object -First 1).windowsdesktop).files | Where-Object -Property 'name' -Match 'win-x64.exe').url
-	$DotNET_Latest8_Filename = [System.IO.Path]::GetFileName(([System.Uri]$DotNET_Latest8_DDL).AbsolutePath)
-	$DotNET_Latest8_SavePath = [System.IO.Path]::Combine($env:TEMP, $DotNET_Latest8_Filename)
+	$DotNET_Latest8_Filename = [IO.Path]::GetFileName(([URI]$DotNET_Latest8_DDL).AbsolutePath)
+	$DotNET_Latest8_SavePath = [IO.Path]::Combine($env:TEMP, $DotNET_Latest8_Filename)
 	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'.NET Desktop Runtime'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Latest8'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Latest8_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Latest8_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
     (New-Object System.Net.WebClient).DownloadFile($DotNET_Latest8_DDL, $DotNET_Latest8_SavePath)
 
@@ -55,8 +55,8 @@ if ($null -eq $DotNET_DesktopRuntime8_Installed -or $DotNET_DesktopRuntime8_Inst
 
 if ($null -eq $DotNET_DesktopRuntime9_Installed -or $DotNET_DesktopRuntime9_Installed -notmatch $DotNET_Latest9 -and $DotNET_EOL9 -ne 'eol' -and $DotNET_EOL9 -eq 'active') {
 	$DotNET_Latest9_DDL = ((((Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/9.0/releases.json).Releases | Select-Object -First 1).windowsdesktop).files | Where-Object -Property 'name' -Match 'win-x64.exe').url
-	$DotNET_Latest9_Filename = [System.IO.Path]::GetFileName(([System.Uri]$DotNET_Latest9_DDL).AbsolutePath)
-	$DotNET_Latest9_SavePath = [System.IO.Path]::Combine($env:TEMP, $DotNET_Latest9_Filename)
+	$DotNET_Latest9_Filename = [IO.Path]::GetFileName(([URI]$DotNET_Latest9_DDL).AbsolutePath)
+	$DotNET_Latest9_SavePath = [IO.Path]::Combine($env:TEMP, $DotNET_Latest9_Filename)
 	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'.NET Desktop Runtime'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Latest9'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Latest9_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Latest9_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
     (New-Object System.Net.WebClient).DownloadFile($DotNET_Latest9_DDL, $DotNET_Latest9_SavePath)
 

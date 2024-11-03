@@ -21,11 +21,11 @@ if ($null -eq $Mediainfo_InstalledVersion -or $Mediainfo_InstalledVersion -notma
 	}
 	
 	$Mediainfo_GUI_DDL = 'https:' + ((Invoke-WebRequest -UseBasicParsing -Uri 'https://mediaarea.net/en/MediaInfo/Download/Windows').Links | Where-Object { $_.outerHTML -match 'GUI' } | Select-Object -First 1).href
-	$MediaInfo_GUI_Filename = [System.IO.Path]::GetFileName(([System.Uri]$Mediainfo_GUI_DDL).AbsolutePath)
-	$MediaInfo_GUI_SavePath = [System.IO.Path]::Combine($env:TEMP, $MediaInfo_GUI_Filename)
+	$MediaInfo_GUI_Filename = [IO.Path]::GetFileName(([URI]$Mediainfo_GUI_DDL).AbsolutePath)
+	$MediaInfo_GUI_SavePath = [IO.Path]::Combine($env:TEMP, $MediaInfo_GUI_Filename)
 	$Mediainfo_CLI_DDL = 'https:' + ((Invoke-WebRequest -UseBasicParsing -Uri 'https://mediaarea.net/en/MediaInfo/Download/Windows').Links | Where-Object { $_.outerHTML -match 'CLI' } | Select-Object -First 1).href
-	$MediaInfo_CLI_Filename = [System.IO.Path]::GetFileName(([System.Uri]$Mediainfo_CLI_DDL).AbsolutePath)
-	$MediaInfo_CLI_SavePath = [System.IO.Path]::Combine($env:TEMP, $MediaInfo_CLI_Filename)
+	$MediaInfo_CLI_Filename = [IO.Path]::GetFileName(([URI]$Mediainfo_CLI_DDL).AbsolutePath)
+	$MediaInfo_CLI_SavePath = [IO.Path]::Combine($env:TEMP, $MediaInfo_CLI_Filename)
 	
 	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Mediainfo GUI'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Mediainfo_LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Mediainfo_GUI_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MediaInfo_GUI_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
 	(New-Object System.Net.WebClient).DownloadFile($Mediainfo_GUI_DDL, $MediaInfo_GUI_SavePath)
@@ -37,7 +37,7 @@ if ($null -eq $Mediainfo_InstalledVersion -or $Mediainfo_InstalledVersion -notma
 	Start-Process $MediaInfo_GUI_SavePath -ArgumentList $MediaInfo_GUI_Argument -Wait
 
 	$MediaInfo_CLI_Destination = Split-Path (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*', 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*' -ErrorAction SilentlyContinue | Where-Object { $_.DisplayName -like 'MediaInfo*' }).UninstallString -Parent
-	$MediaInfo_CLI_Destination = [System.IO.Path]::Combine($MediaInfo_CLI_Destination, 'CLI')
+	$MediaInfo_CLI_Destination = [IO.Path]::Combine($MediaInfo_CLI_Destination, 'CLI')
 	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Mediainfo CLI'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Mediainfo_LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MediaInfo_CLI_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MediaInfo_CLI_Destination'"); [Console]::ResetColor(); [Console]::WriteLine()
 	Expand-Archive -Path $MediaInfo_CLI_SavePath -DestinationPath $MediaInfo_CLI_Destination -Force
 	

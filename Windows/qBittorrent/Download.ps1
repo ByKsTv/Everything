@@ -13,7 +13,7 @@ $qBittorrent_LatestVersion = ((Invoke-RestMethod https://api.github.com/repos/qb
 
 if ($null -eq $qBittorrent_InstalledVersion -or $qBittorrent_InstalledVersion -notmatch $qBittorrent_LatestVersion) {
     $qBittorrent_RemoteINI = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/qBittorrent.ini'
-    $qBittorrent_LocalINI = [System.IO.Path]::Combine($env:APPDATA, 'qBittorrent', 'qBittorrent.ini')
+    $qBittorrent_LocalINI = [IO.Path]::Combine($env:APPDATA, 'qBittorrent', 'qBittorrent.ini')
     if (-not (Test-Path -Path $qBittorrent_LocalINI)) {
         New-Item -Path $qBittorrent_LocalINI -ItemType File -Force
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' custom settings from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$qBittorrent_RemoteINI'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$qBittorrent_LocalINI'"); [Console]::ResetColor(); [Console]::WriteLine()
@@ -22,8 +22,8 @@ if ($null -eq $qBittorrent_InstalledVersion -or $qBittorrent_InstalledVersion -n
     
     $qBittorrent_SourceForge = ((Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/qbittorrent/qBittorrent-website/refs/heads/master/_site/download.html').Links | Where-Object { $_.outerHTML -match 'sourceforge' -and $_.outerHTML -match '.exe' -and $_.outerHTML -notmatch '.asc' } | Select-Object -First 1).href
     $qBittorrent_DDL = ((Invoke-WebRequest -UseBasicParsing -Uri $qBittorrent_SourceForge).links | Where-Object { $_.'data-release-url' -ne $null }).'data-release-url'
-    $qBittorrent_Filename = [System.IO.Path]::GetFileName(([System.Uri]$qBittorrent_DDL).AbsolutePath)
-    $qBittorrent_SavePath = [System.IO.Path]::Combine($env:TEMP, $qBittorrent_Filename)
+    $qBittorrent_Filename = [IO.Path]::GetFileName(([URI]$qBittorrent_DDL).AbsolutePath)
+    $qBittorrent_SavePath = [IO.Path]::Combine($env:TEMP, $qBittorrent_Filename)
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$qBittorrent_LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$qBittorrent_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$qBittorrent_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
     (New-Object System.Net.WebClient).DownloadFile($qBittorrent_DDL, $qBittorrent_SavePath)
     
@@ -32,7 +32,7 @@ if ($null -eq $qBittorrent_InstalledVersion -or $qBittorrent_InstalledVersion -n
     Start-Process $qBittorrent_SavePath -ArgumentList $qBittorrent_Argument -Wait
 }
 
-$qBittorrent_ShortCut = [System.IO.Path]::Combine($env:ProgramData, 'Microsoft', 'Windows', 'Start Menu', 'Programs', 'qBittorrent', 'qBittorrent.lnk')
+$qBittorrent_ShortCut = [IO.Path]::Combine($env:ProgramData, 'Microsoft', 'Windows', 'Start Menu', 'Programs', 'qBittorrent', 'qBittorrent.lnk')
 if (Test-Path $qBittorrent_ShortCut) {
     $qBittorrent_Destination = Split-Path (New-Object -ComObject WScript.Shell).CreateShortcut($qBittorrent_ShortCut).TargetPath
     $qBittorrent_OLD_PATH = [System.Environment]::GetEnvironmentVariable('Path', [System.EnvironmentVariableTarget]::User)

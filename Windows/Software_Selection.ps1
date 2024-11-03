@@ -1169,11 +1169,11 @@ $SoftwareSelection_Form_OK.Add_Click{
     }
 
     if ($CheckBox_ADB.Checked) {
-        $ADB_Destination = [System.IO.Path]::Combine($env:USERPROFILE, 'adb')
+        $ADB_Destination = [IO.Path]::Combine($env:USERPROFILE, 'adb')
         if (-not (Test-Path $ADB_Destination)) {
             $ADB_DDL = 'https://dl.google.com/android/repository/platform-tools-latest-windows.zip'
-            $ADB_Filename = [System.IO.Path]::GetFileName(([System.Uri]$ADB_DDL).AbsolutePath)
-            $ADB_SavePath = [System.IO.Path]::Combine($env:TEMP, $ADB_Filename)
+            $ADB_Filename = [IO.Path]::GetFileName(([URI]$ADB_DDL).AbsolutePath)
+            $ADB_SavePath = [IO.Path]::Combine($env:TEMP, $ADB_Filename)
             [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'ADB'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ADB_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ADB_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
             (New-Object System.Net.WebClient).DownloadFile($ADB_DDL, $ADB_SavePath)
         
@@ -1181,7 +1181,7 @@ $SoftwareSelection_Form_OK.Add_Click{
                 Remove-Item -Path $ADB_Destination -Recurse -Force
             }
             
-            $ADB_ExtractPath = [System.IO.Path]::Combine($env:TEMP, 'platform-tools')
+            $ADB_ExtractPath = [IO.Path]::Combine($env:TEMP, 'platform-tools')
             [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'ADB'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ADB_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ADB_ExtractPath'"); [Console]::ResetColor(); [Console]::WriteLine()
             Expand-Archive -Path $ADB_SavePath -DestinationPath $env:TEMP -Force
             
@@ -2012,7 +2012,7 @@ $SoftwareSelection_Form_OK.Add_Click{
         }
         $AcrobatPro_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AcrobatPro_Forum).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
-        $AcrobatPro_qBittorrent_LOG = [System.IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
+        $AcrobatPro_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
         if (Test-Path $AcrobatPro_qBittorrent_LOG) {
             Remove-Item $AcrobatPro_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
         }
@@ -2053,7 +2053,7 @@ $SoftwareSelection_Form_OK.Add_Click{
         }
         $AdobeLightroomClassic_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobeLightroomClassic_Forum).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
-        $AdobeLightroomClassic_qBittorrent_LOG = [System.IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
+        $AdobeLightroomClassic_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
         if (Test-Path $AdobeLightroomClassic_qBittorrent_LOG) {
             Remove-Item $AdobeLightroomClassic_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
         }
@@ -2094,7 +2094,7 @@ $SoftwareSelection_Form_OK.Add_Click{
         }
         $AdobePhotoshop_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobePhotoshop_Forum).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
-        $AdobePhotoshop_qBittorrent_LOG = [System.IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
+        $AdobePhotoshop_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
         if (Test-Path $AdobePhotoshop_qBittorrent_LOG) {
             Remove-Item $AdobePhotoshop_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
         }
@@ -2135,7 +2135,7 @@ $SoftwareSelection_Form_OK.Add_Click{
         }
         $AutodeskRevit_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskRevit_Forum).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
-        $AutodeskRevit_qBittorrent_LOG = [System.IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
+        $AutodeskRevit_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
         if (Test-Path $AutodeskRevit_qBittorrent_LOG) {
             Remove-Item $AutodeskRevit_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
         }
@@ -2164,7 +2164,7 @@ $SoftwareSelection_Form_OK.Add_Click{
         $AutodeskRevit_TempInstaller = (Get-ChildItem -Path $AutodeskRevit_TempDir -Recurse -Filter 'setup.exe').FullName
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempInstaller'"); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process $AutodeskRevit_TempInstaller
-        while (!(Get-Process | Where-Object { $_.MainWindowTitle -Like '*Revit*Installer' })) {
+        while (-not (Get-Process | Where-Object { $_.MainWindowTitle -Like '*Revit*Installer' })) {
             Start-Sleep -Milliseconds 1000
         }
         while ((Get-Process | Where-Object { $_.MainWindowTitle -Like '*Revit*Installer' })) {
@@ -2174,7 +2174,7 @@ $SoftwareSelection_Form_OK.Add_Click{
         $AutodeskRevit_TempCrack = (Get-ChildItem -Path $AutodeskRevit_TempDir -Recurse -Filter 'AdskNLM.exe').FullName
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Cracking '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempCrack'"); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process $AutodeskRevit_TempCrack
-        while (!(Get-Process | Where-Object { $_.MainWindowTitle -Like '*crack*' })) {
+        while (-not (Get-Process | Where-Object { $_.MainWindowTitle -Like '*crack*' })) {
             Start-Sleep -Seconds 1 
         }
         (Get-Process | Where-Object { $_.MainWindowTitle -Like '*crack*' }).CloseMainWindow() | Out-Null
@@ -2195,7 +2195,7 @@ $SoftwareSelection_Form_OK.Add_Click{
         }
         $AutodeskAutoCAD_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskAutoCAD_Forum).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
-        $AutodeskAutoCAD_qBittorrent_LOG = [System.IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
+        $AutodeskAutoCAD_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
         if (Test-Path $AutodeskAutoCAD_qBittorrent_LOG) {
             Remove-Item $AutodeskAutoCAD_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
         }
@@ -2224,7 +2224,7 @@ $SoftwareSelection_Form_OK.Add_Click{
         $AutodeskAutoCAD_TempInstaller = (Get-ChildItem -Path $AutodeskAutoCAD_TempDir -Recurse -Filter 'setup.exe').FullName
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_TempInstaller'"); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process $AutodeskAutoCAD_TempInstaller -ArgumentList '/silent'
-        while (!(Get-Process | Where-Object { $_.MainWindowTitle -Like '*AutoCAD*Installer' })) {
+        while (-not (Get-Process | Where-Object { $_.MainWindowTitle -Like '*AutoCAD*Installer' })) {
             Start-Sleep -Milliseconds 1000
         }
         while ((Get-Process | Where-Object { $_.MainWindowTitle -Like '*AutoCAD*Installer' })) {
@@ -2234,7 +2234,7 @@ $SoftwareSelection_Form_OK.Add_Click{
         $AutodeskAutoCAD_TempCrack = (Get-ChildItem -Path $AutodeskAutoCAD_TempDir -Recurse -Filter 'AdskNLM.exe').FullName
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Cracking '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_TempCrack'"); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process $AutodeskAutoCAD_TempCrack
-        while (!(Get-Process | Where-Object { $_.MainWindowTitle -Like '*crack*' })) {
+        while (-not (Get-Process | Where-Object { $_.MainWindowTitle -Like '*crack*' })) {
             Start-Sleep -Seconds 1 
         }
         (Get-Process | Where-Object { $_.MainWindowTitle -Like '*crack*' }).CloseMainWindow() | Out-Null
@@ -2282,7 +2282,7 @@ $SoftwareSelection_Form_OK.Add_Click{
         $JitbitMacro_Title = ((Invoke-WebRequest -UseBasicParsing -Uri $JitbitMacro_Label).Links | Where-Object { $_.outerHTML -match 'Jitbit' } | Select-Object -First 1).outerHTML -replace '.*?>(.*?)</a>', '$1'
         $JitBitMacro_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $JitbitMacro_Label).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
-        $JitbitMacro_qBittorrent_LOG = [System.IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
+        $JitbitMacro_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
         if (Test-Path $JitbitMacro_qBittorrent_LOG) {
             Remove-Item $JitbitMacro_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
         }
@@ -2318,7 +2318,7 @@ $SoftwareSelection_Form_OK.Add_Click{
         $SketchUp_Post = 'https://nnmclub.to/forum/' + ((Invoke-WebRequest -UseBasicParsing -Uri $SketchUp_Label).Links | Where-Object { $_.outerHTML -match 'SketchUp' -and $_.class -match 'genmed topictitle' } | Select-Object -First 1).href
         $SketchUp_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $SketchUp_Post).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
-        $SketchUp_qBittorrent_LOG = [System.IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
+        $SketchUp_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
         if (Test-Path $SketchUp_qBittorrent_LOG) {
             Remove-Item $SketchUp_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
         }

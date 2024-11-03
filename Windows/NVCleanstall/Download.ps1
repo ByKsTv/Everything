@@ -58,7 +58,7 @@ if ($InstalledSoftware -match 'Firefox') {
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('NVCleanstall: Waiting for download to complete'); [Console]::ResetColor(); [Console]::WriteLine()
 $Downloads = (New-Object -ComObject Shell.Application).NameSpace('shell:Downloads').Self.Path
-While (!(Test-Path "$Downloads\NVCleanstall*.exe" -ErrorAction SilentlyContinue)) {
+while (-not (Test-Path "$Downloads\NVCleanstall*.exe" -ErrorAction SilentlyContinue)) {
     Start-Sleep -Milliseconds 1000
 }
 do {

@@ -13,8 +13,8 @@ $Git_LatestVersion = ((((Invoke-RestMethod 'https://api.github.com/repos/git-for
 
 if ($null -eq $Git_InstalledVersion -or $Git_InstalledVersion -notmatch $Git_LatestVersion) {
     $Git_DDL = ((Invoke-RestMethod 'https://api.github.com/repos/git-for-windows/git/releases/latest').assets | Where-Object name -Like '*64-bit.exe').browser_download_url
-    $Git_Filename = [System.IO.Path]::GetFileName(([System.Uri]$Git_DDL).AbsolutePath)
-    $Git_SavePath = [System.IO.Path]::Combine($env:TEMP, $Git_Filename)
+    $Git_Filename = [IO.Path]::GetFileName(([URI]$Git_DDL).AbsolutePath)
+    $Git_SavePath = [IO.Path]::Combine($env:TEMP, $Git_Filename)
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Git'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Git_LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Git_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Git_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
     (New-Object System.Net.WebClient).DownloadFile($Git_DDL, $Git_SavePath)
     

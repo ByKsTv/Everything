@@ -10,7 +10,7 @@ $DDU3 = ((Invoke-WebRequest -UseBasicParsing -Uri $DDU2).Links | Where-Object { 
 Start-Process -FilePath $env:TEMP\DDU.exe -ArgumentList '/S'
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Display Driver Uninstaller: Using custom settings'); [Console]::ResetColor(); [Console]::WriteLine()
-if (!(Test-Path -Path "${env:ProgramFiles(x86)}\Display Driver Uninstaller\Settings\Settings.xml")) {
+if (-not (Test-Path -Path "${env:ProgramFiles(x86)}\Display Driver Uninstaller\Settings\Settings.xml")) {
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Display Driver Uninstaller: Creating Display Driver Uninstaller folder'); [Console]::ResetColor(); [Console]::WriteLine()
     New-Item -Path "${env:ProgramFiles(x86)}\Display Driver Uninstaller" -ItemType Directory -Force
     New-Item -Path "${env:ProgramFiles(x86)}\Display Driver Uninstaller\Settings" -ItemType Directory -Force

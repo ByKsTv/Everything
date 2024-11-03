@@ -13,8 +13,8 @@ $7Zip_LatestVersion = (Invoke-RestMethod -Method GET -Uri 'https://api.github.co
 
 if ($null -eq $7Zip_InstalledVersion -or $7Zip_InstalledVersion -notmatch $7Zip_LatestVersion) {
     $7Zip_DDL = ((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/ip7z/7zip/releases/latest').assets | Where-Object name -Like '*-x64.exe*').browser_download_url
-    $7Zip_Filename = [System.IO.Path]::GetFileName(([System.Uri]$7Zip_DDL).AbsolutePath)
-    $7Zip_SavePath = [System.IO.Path]::Combine($env:TEMP, $7Zip_Filename)
+    $7Zip_Filename = [IO.Path]::GetFileName(([URI]$7Zip_DDL).AbsolutePath)
+    $7Zip_SavePath = [IO.Path]::Combine($env:TEMP, $7Zip_Filename)
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'7-Zip'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$7Zip_LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$7Zip_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$7Zip_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
 	(New-Object System.Net.WebClient).DownloadFile($7Zip_DDL, $7Zip_SavePath)
 

@@ -19,8 +19,8 @@ $Python_LatestVersion = (Invoke-RestMethod 'https://github.com/python/cpython/re
 
 if ($null -eq $Python_InstalledVersion -or $Python_InstalledVersion -notmatch $Python_LatestVersion) {
     $Python_DDL = "https://www.python.org/ftp/python/${Python_LatestVersion}/python-${Python_LatestVersion}-amd64.exe"
-    $Python_Filename = [System.IO.Path]::GetFileName(([System.Uri]$Python_DDL).AbsolutePath)
-    $Python_SavePath = [System.IO.Path]::Combine($env:TEMP, $Python_Filename)
+    $Python_Filename = [IO.Path]::GetFileName(([URI]$Python_DDL).AbsolutePath)
+    $Python_SavePath = [IO.Path]::Combine($env:TEMP, $Python_Filename)
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Python'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Python_LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Python_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Python_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
     (New-Object System.Net.WebClient).DownloadFile($Python_DDL, $Python_SavePath)
     

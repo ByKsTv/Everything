@@ -13,8 +13,8 @@ $NotepadPlusPlus_LatestVersion = ((Invoke-RestMethod 'https://api.github.com/rep
 
 if ($null -eq $NotepadPlusPlus_InstalledVersion -or $NotepadPlusPlus_InstalledVersion -notmatch $NotepadPlusPlus_LatestVersion) {
     $NotepadPlusPlus_DDL = ((Invoke-RestMethod 'https://api.github.com/repos/notepad-plus-plus/notepad-plus-plus/releases/latest').assets | Where-Object name -Like '*x64.exe').browser_download_url
-    $NotepadPlusPlus_Filename = [System.IO.Path]::GetFileName(([System.Uri]$NotepadPlusPlus_DDL).AbsolutePath)
-    $NotepadPlusPlus_SavePath = [System.IO.Path]::Combine($env:TEMP, $NotepadPlusPlus_Filename)
+    $NotepadPlusPlus_Filename = [IO.Path]::GetFileName(([URI]$NotepadPlusPlus_DDL).AbsolutePath)
+    $NotepadPlusPlus_SavePath = [IO.Path]::Combine($env:TEMP, $NotepadPlusPlus_Filename)
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Notepad++'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$NotepadPlusPlus_LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$NotepadPlusPlus_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$NotepadPlusPlus_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
     (New-Object System.Net.WebClient).DownloadFile($NotepadPlusPlus_DDL, $NotepadPlusPlus_SavePath)
     
