@@ -9,6 +9,9 @@ if (-not (Get-ScheduledTask -TaskName $BetterDiscord_TaskName -ErrorAction Silen
 }
 
 $Discord_TaskName = 'Discord Client Updater'
+if (!(Get-ScheduledTask -TaskName $Discord_TaskName -ErrorAction SilentlyContinue)) {
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Discord/Download.ps1')
+}
 if (Get-ScheduledTask -TaskName $Discord_TaskName -ErrorAction SilentlyContinue) {
     Start-Sleep -Milliseconds 1000
     while ((Get-ScheduledTask -TaskName $Discord_TaskName).State -eq 'Running') {
