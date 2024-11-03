@@ -80,7 +80,6 @@ if (-not (Select-String -Quiet -Path $Discord_IndexJS -Pattern 'betterdiscord'))
         foreach ($BetterDiscord_Folder in $BetterDiscord_Folders) {
             if (-not (Test-Path $BetterDiscord_Folder)) {
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Creating folder '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_Folder'"); [Console]::ResetColor(); [Console]::WriteLine()
-
                 New-Item -ItemType Directory -Path $BetterDiscord_Folder -Force
             }
         }
@@ -93,7 +92,7 @@ if (-not (Select-String -Quiet -Path $Discord_IndexJS -Pattern 'betterdiscord'))
             $BetterDiscord_ThemeFilename = [IO.Path]::GetFileName(([URI]$BetterDiscord_ThemeURL).AbsolutePath)
             $BetterDiscord_ThemeSavePath = [IO.Path]::Combine($BetterDiscord_ThemesDir, $BetterDiscord_ThemeFilename)
             [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_ThemeFilename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_ThemeURL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_ThemeSavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-                (New-Object Net.WebClient).DownloadFile($BetterDiscord_ThemeURL, $BetterDiscord_ThemeSavePath)
+            (New-Object Net.WebClient).DownloadFile($BetterDiscord_ThemeURL, $BetterDiscord_ThemeSavePath)
         }
         
         $BetterDiscord_PluginsDir = [IO.Path]::Combine($env:APPDATA, 'BetterDiscord', 'plugins')
