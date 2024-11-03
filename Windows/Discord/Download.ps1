@@ -21,20 +21,26 @@ if ($null -eq $Discord_InstalledVersion -or $Discord_InstalledVersion -notmatch 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Discord'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
     Start-Process $Discord_SavePath -Wait
 
-    while (!(Get-Process | Where-Object { $_.MainWindowTitle -eq 'Discord Updater' } )) {
+    $Discord_InstallerPopup = 'Discord Updater'
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Waiting for window '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_InstallerPopup'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to open '); [Console]::ResetColor(); [Console]::WriteLine()
+    while (!(Get-Process | Where-Object { $_.MainWindowTitle -eq $Discord_InstallerPopup } )) {
         Start-Sleep -Milliseconds 1000
     }
-    while ((Get-Process | Where-Object { $_.MainWindowTitle -eq 'Discord Updater' } )) {
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Waiting for window '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_InstallerPopup'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to close '); [Console]::ResetColor(); [Console]::WriteLine()
+
+    while ((Get-Process | Where-Object { $_.MainWindowTitle -eq $Discord_InstallerPopup } )) {
         Start-Sleep -Milliseconds 1000
     }
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Closing Discord process'); [Console]::ResetColor(); [Console]::WriteLine()
     (Get-Process | Where-Object { $_.ProcessName -eq 'Discord' }).Kill() | Out-Null
 
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Discord: Deleting Desktop Shortcut'); [Console]::ResetColor(); [Console]::WriteLine()
-    if ((Test-Path -Path "$($env:USERPROFILE)\Desktop\Discord.lnk") -eq $true) {
-        Remove-Item -Path "$($env:USERPROFILE)\Desktop\Discord.lnk"
+    $Discord_DesktopShortCut = "$($env:USERPROFILE)\Desktop\Discord.lnk"
+    if (Test-Path -Path $Discord_DesktopShortCut) {
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Deleting Discord desktop shortcut from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_DesktopShortCut'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Remove-Item -Path $Discord_DesktopShortCut
     }
     
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Discord: Disabling Startup'); [Console]::ResetColor(); [Console]::WriteLine()
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Disabling Discord startup'); [Console]::ResetColor(); [Console]::WriteLine()
     Remove-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Run' -Name Discord -Force
     Remove-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name Discord -Force
     Remove-Item -Path "$env:ProgramData\SquirrelMachineInstalls\Discord.exe" -Force
