@@ -13,8 +13,8 @@ $Discord_DDL = (Invoke-WebRequest -UseBasicParsing -Uri 'https://discord.com/api
 $Discord_LatestVersion = [regex]::Match($Discord_DDL, '\d+(\.\d+)+').Value
 
 if ($null -eq $Discord_InstalledVersion -or $Discord_InstalledVersion -notmatch $Discord_LatestVersion) {
-    $Discord_Filename = [System.IO.Path]::GetFileName(([System.Uri]$Discord_DDL).AbsolutePath)
-    $Discord_SavePath = [System.IO.Path]::Combine($env:TEMP, $Discord_Filename)
+    $Discord_Filename = [IO.Path]::GetFileName(([URI]$Discord_DDL).AbsolutePath)
+    $Discord_SavePath = [IO.Path]::Combine($env:TEMP, $Discord_Filename)
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Discord'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
     (New-Object System.Net.WebClient).DownloadFile($Discord_DDL, $Discord_SavePath)
 
@@ -32,7 +32,7 @@ if ($null -eq $Discord_InstalledVersion -or $Discord_InstalledVersion -notmatch 
         Start-Sleep -Milliseconds 1000
     }
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Closing Discord process'); [Console]::ResetColor(); [Console]::WriteLine()
-    (Get-Process | Where-Object { $_.ProcessName -eq 'Discord' }).Kill() | Out-Null
+    Get-Process -Name 'Discord' -ErrorAction SilentlyContinue | ForEach-Object { $_.Kill() } | Out-Null
 
     $Discord_DesktopShortCut = "$($env:USERPROFILE)\Desktop\Discord.lnk"
     if (Test-Path -Path $Discord_DesktopShortCut) {
