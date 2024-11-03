@@ -21,6 +21,7 @@ if (Get-ScheduledTask -TaskName $Discord_TaskName -ErrorAction SilentlyContinue)
     while ((Get-Process | Where-Object { $_.MainWindowTitle -eq $Discord_TaskName } )) {
         Start-Sleep -Milliseconds 1000
     }
+    Start-Sleep -Milliseconds 1000
 }
 
 $Discord_IndexJS = (Get-ChildItem "$env:LOCALAPPDATA\Discord\app*\modules\discord_desktop*\discord_desktop*" -Directory | Sort-Object -Descending | Select-Object -First 1).FullName + '\index.js'
