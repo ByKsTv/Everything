@@ -21,10 +21,10 @@ if ($null -eq $Discord_InstalledVersion -or $Discord_InstalledVersion -notmatch 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Discord'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
     Start-Process $Discord_SavePath -Wait
 
-    while (!(Get-Process | Where-Object { $_.MainWindowTitle -Like 'Discord Updater' } )) {
+    while (!(Get-Process | Where-Object { $_.MainWindowTitle -eq 'Discord Updater' } )) {
         Start-Sleep -Milliseconds 1000
     }
-    while ((Get-Process | Where-Object { $_.MainWindowTitle -Like 'Discord Updater' } )) {
+    while ((Get-Process | Where-Object { $_.MainWindowTitle -eq 'Discord Updater' } )) {
         Start-Sleep -Milliseconds 1000
     }
     (Get-Process | Where-Object { $_.MainWindowTitle -Like '*Discord*' }).Kill() | Out-Null
