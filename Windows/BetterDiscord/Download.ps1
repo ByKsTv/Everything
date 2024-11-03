@@ -17,6 +17,7 @@ if (Get-ScheduledTask -TaskName $Discord_TaskName -ErrorAction SilentlyContinue)
     while ((Get-ScheduledTask -TaskName $Discord_TaskName).State -eq 'Running') {
         Start-Sleep -Milliseconds 1000
     }
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Waiting for window '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_TaskName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to close '); [Console]::ResetColor(); [Console]::WriteLine()
     while ((Get-Process | Where-Object { $_.MainWindowTitle -eq $Discord_TaskName } )) {
         Start-Sleep -Milliseconds 1000
     }

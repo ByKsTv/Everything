@@ -26,8 +26,8 @@ if ($null -eq $Discord_InstalledVersion -or $Discord_InstalledVersion -notmatch 
     while (-not (Get-Process | Where-Object { $_.MainWindowTitle -eq $Discord_InstallerPopup } )) {
         Start-Sleep -Milliseconds 1000
     }
+    
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Waiting for window '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_InstallerPopup'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to close '); [Console]::ResetColor(); [Console]::WriteLine()
-
     while ((Get-Process | Where-Object { $_.MainWindowTitle -eq $Discord_InstallerPopup } )) {
         Start-Sleep -Milliseconds 1000
     }
