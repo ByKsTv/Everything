@@ -27,7 +27,7 @@ if ($null -eq $Discord_InstalledVersion -or $Discord_InstalledVersion -notmatch 
     while ((Get-Process | Where-Object { $_.MainWindowTitle -eq 'Discord Updater' } )) {
         Start-Sleep -Milliseconds 1000
     }
-    (Get-Process | Where-Object { $_.MainWindowTitle -Like '*Discord*' }).Kill() | Out-Null
+    (Get-Process | Where-Object { $_.ProcessName -eq 'Discord' }).Kill() | Out-Null
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Discord: Deleting Desktop Shortcut'); [Console]::ResetColor(); [Console]::WriteLine()
     if ((Test-Path -Path "$($env:USERPROFILE)\Desktop\Discord.lnk") -eq $true) {
