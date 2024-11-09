@@ -64,6 +64,7 @@ if (-not (Test-Path -Path $MPV_ScriptsPath)) {
 }
 $MPV_ScriptsURLs = @(
     'https://raw.githubusercontent.com/mpv-player/mpv/master/TOOLS/lua/autoload.lua',
+    'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/browser-switch.lua',
     'https://raw.githubusercontent.com/po5/celebi/master/celebi.lua',
     'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/hidecursor.lua',
     'https://raw.githubusercontent.com/Akemi/mpv-oled-screensaver/master/oled-screensaver.lua',
@@ -83,12 +84,6 @@ if ((Get-Package).Name -match 'Mozilla Firefox') {
     $MPV_Scripts_cookies_SavePath = [IO.Path]::Combine($MPV_ScriptsPath, $MPV_Scripts_cookies_Filename)
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' userscript '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Scripts_cookies_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Scripts_cookies_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Scripts_cookies_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
     (New-Object System.Net.WebClient).DownloadFile($MPV_Scripts_cookies_DDL, $MPV_Scripts_cookies_SavePath)
-    
-    $MPV_Scripts_alttab_DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/firefox-alt-tab.lua'
-    $MPV_Scripts_alttab_Filename = [IO.Path]::GetFileName(([URI]$MPV_Scripts_alttab_DDL).AbsolutePath)
-    $MPV_Scripts_alttab_SavePath = [IO.Path]::Combine($MPV_ScriptsPath, $MPV_Scripts_alttab_Filename)
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' userscript '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Scripts_alttab_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Scripts_alttab_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Scripts_alttab_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-    (New-Object System.Net.WebClient).DownloadFile($MPV_Scripts_alttab_DDL, $MPV_Scripts_alttab_SavePath)
 }
 
 $MPV_ScriptOptsPath = [IO.Path]::Combine($MPV_Destination, 'script-opts')
