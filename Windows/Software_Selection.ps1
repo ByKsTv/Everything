@@ -516,71 +516,97 @@ $SoftwareSelection_Form_OK.Add_Click{
     }
 
     if ($SoftwareSelection_CheckBoxes['NordVPN'].Checked) {
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: NordVPN: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-        (New-Object System.Net.WebClient).DownloadFile('https://downloads.nordcdn.com/apps/windows/NordVPN/latest/NordVPNInstall.exe', "$env:TEMP\NordVPNInstall.exe")
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: NordVPN: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process -FilePath $env:TEMP\NordVPNInstall.exe -ArgumentList '/verysilent'
+        $NordVPN_DDL = 'https://downloads.nordcdn.com/apps/windows/NordVPN/latest/NordVPNInstall.exe'
+        $NordVPN_Filename = [IO.Path]::GetFileName(([URI]$NordVPN_DDL).AbsolutePath)
+        $NordVPN_SavePath = [IO.Path]::Combine($env:TEMP, $NordVPN_Filename)
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'NordVPN'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$NordVPN_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$NordVPN_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+        (New-Object System.Net.WebClient).DownloadFile($NordVPN_DDL, $NordVPN_SavePath)
+
+        $NordVPN_Argument = '/verysilent'
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'NordVPN'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$NordVPN_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$NordVPN_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process $NordVPN_SavePath -ArgumentList $NordVPN_Argument
     }
 
     if ($SoftwareSelection_CheckBoxes['Zoom'].Checked) {
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Zoom: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-        (New-Object System.Net.WebClient).DownloadFile('https://zoom.us/client/latest/ZoomInstaller.exe?archType=x64', "$env:TEMP\ZoomInstallerFull-x64.exe")
+        $Zoom_DDL = 'https://zoom.us/client/latest/ZoomInstaller.exe?archType=x64'
+        $Zoom_Filename = [IO.Path]::GetFileName(([URI]$Zoom_DDL).AbsolutePath)
+        $Zoom_SavePath = [IO.Path]::Combine($env:TEMP, $Zoom_Filename)
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Zoom'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Zoom_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Zoom_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+        (New-Object System.Net.WebClient).DownloadFile($Zoom_DDL, $Zoom_SavePath)
         
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Zoom: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process -FilePath $env:TEMP\ZoomInstallerFull-x64.exe
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Zoom'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Zoom_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Zoom_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process $Zoom_SavePath
     }
 
     if ($SoftwareSelection_CheckBoxes['Steam'].Checked) {
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Steam: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-        (New-Object System.Net.WebClient).DownloadFile('https://cdn.cloudflare.steamstatic.com/client/installer/SteamSetup.exe', "$env:TEMP\SteamSetup.exe")
+        $Steam_DDL = 'https://cdn.cloudflare.steamstatic.com/client/installer/SteamSetup.exe'
+        $Steam_Filename = [IO.Path]::GetFileName(([URI]$Steam_DDL).AbsolutePath)
+        $Steam_SavePath = [IO.Path]::Combine($env:TEMP, $Steam_Filename)
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Steam'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Steam_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Steam_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+        (New-Object System.Net.WebClient).DownloadFile($Steam_DDL, $Steam_SavePath)
         
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Steam: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process -FilePath $env:TEMP\SteamSetup.exe -ArgumentList '/S'
+        $Steam_Argument = '/S'
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Steam'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Steam_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Steam_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process $Steam_SavePath -ArgumentList $Steam_Argument
     }
 
     if ($SoftwareSelection_CheckBoxes['Jellyfin'].Checked) {
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Jellyfin: Get latest release'); [Console]::ResetColor(); [Console]::WriteLine()
-        $JellyfinLatest = ((Invoke-WebRequest -UseBasicParsing -Uri 'https://repo.jellyfin.org/?path=/server/windows/latest-stable/amd64').Links | Where-Object { $_.outerHTML -match 'x64.exe' } | Select-Object -First 1).href
-        $JellyfinURL = 'https://repo.jellyfin.org' + $JellyfinLatest
+        $Jellyfin_DDL = 'https://repo.jellyfin.org' + ((Invoke-WebRequest -UseBasicParsing -Uri 'https://repo.jellyfin.org/?path=/server/windows/latest-stable/amd64').Links | Where-Object { $_.outerHTML -match 'x64.exe' } | Select-Object -First 1).href
+        $Jellyfin_Filename = [IO.Path]::GetFileName(([URI]$Jellyfin_DDL).AbsolutePath)
+        $Jellyfin_SavePath = [IO.Path]::Combine($env:TEMP, $Jellyfin_Filename)
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Jellyfin'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Jellyfin_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Jellyfin_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+        (New-Object System.Net.WebClient).DownloadFile($Jellyfin_DDL, $Jellyfin_SavePath)
         
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Jellyfin: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-        (New-Object System.Net.WebClient).DownloadFile($JellyfinURL, "$env:TEMP\Jelly.exe")
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Jellyfin: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process -FilePath $env:TEMP\Jelly.exe -ArgumentList '/S'
+        $Jellyfin_Argument = '/S'
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Jellyfin'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Jellyfin_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Jellyfin_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process $Jellyfin_SavePath -ArgumentList $Jellyfin_Argument
     }
 
     if ($SoftwareSelection_CheckBoxes['Logitech G HUB'].Checked) {
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Logitech G HUB: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-        (New-Object System.Net.WebClient).DownloadFile('https://download01.logi.com/web/ftp/pub/techsupport/gaming/lghub_installer.exe', "$env:TEMP\lghub_installer.exe")
+        $LogitechGHUB_DDL = 'https://download01.logi.com/web/ftp/pub/techsupport/gaming/lghub_installer.exe'
+        $LogitechGHUB_Filename = [IO.Path]::GetFileName(([URI]$LogitechGHUB_DDL).AbsolutePath)
+        $LogitechGHUB_SavePath = [IO.Path]::Combine($env:TEMP, $LogitechGHUB_Filename)
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Logitech G HUB'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$LogitechGHUB_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$LogitechGHUB_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+        (New-Object System.Net.WebClient).DownloadFile($LogitechGHUB_DDL, $LogitechGHUB_SavePath)
         
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Logitech G HUB: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process -FilePath $env:TEMP\lghub_installer.exe -ArgumentList '--silent'
+        $LogitechGHUB_Argument = '--silent'
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Logitech G HUB'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$LogitechGHUB_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$LogitechGHUB_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process $LogitechGHUB_SavePath -ArgumentList $LogitechGHUB_Argument
     }
 
     if ($SoftwareSelection_CheckBoxes['Epic Games Launcher'].Checked) {
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Epic Games Launcher: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-        (New-Object System.Net.WebClient).DownloadFile('https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncherInstaller.msi', "$env:TEMP\EpicInstaller.msi")
-                
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Epic Games Launcher: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process $env:TEMP\EpicInstaller.msi -ArgumentList '/quiet /norestart'
+        $EpicGamesLauncher_DDL = 'https://launcher-public-service-prod06.ol.epicgames.com/launcher/api/installer/download/EpicGamesLauncherInstaller.msi'
+        $EpicGamesLauncher_Filename = [IO.Path]::GetFileName(([URI]$EpicGamesLauncher_DDL).AbsolutePath)
+        $EpicGamesLauncher_SavePath = [IO.Path]::Combine($env:TEMP, $EpicGamesLauncher_Filename)
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Epic Games Launcher'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$EpicGamesLauncher_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$EpicGamesLauncher_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+        (New-Object System.Net.WebClient).DownloadFile($EpicGamesLauncher_DDL, $EpicGamesLauncher_SavePath)
+        
+        $EpicGamesLauncher_Argument = '/quiet'
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Epic Games Launcher'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$EpicGamesLauncher_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$EpicGamesLauncher_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process $EpicGamesLauncher_SavePath -ArgumentList $EpicGamesLauncher_Argument
     }
 
     if ($SoftwareSelection_CheckBoxes['PuTTY'].Checked) {
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: PuTTY: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-        (New-Object System.Net.WebClient).DownloadFile((((Invoke-WebRequest -UseBasicParsing -Uri 'https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html').Links | Where-Object { $_.outerHTML -match 'putty-64bit' } | Select-Object -First 1).href), "$env:TEMP\PuTTY.msi")
+        $PuTTY_DDL = ((Invoke-WebRequest -UseBasicParsing -Uri 'https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html').Links | Where-Object { $_.outerHTML -match 'putty-64bit' } | Select-Object -First 1).href
+        $PuTTY_Filename = [IO.Path]::GetFileName(([URI]$PuTTY_DDL).AbsolutePath)
+        $PuTTY_SavePath = [IO.Path]::Combine($env:TEMP, $PuTTY_Filename)
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'PuTTY'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$PuTTY_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$PuTTY_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+        (New-Object System.Net.WebClient).DownloadFile($PuTTY_DDL, $PuTTY_SavePath)
         
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: PuTTY: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process $env:TEMP\PuTTY.msi -ArgumentList '/quiet'
+        $PuTTY_Argument = '/quiet'
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'PuTTY'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$PuTTY_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$PuTTY_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process $PuTTY_SavePath -ArgumentList $PuTTY_Argument
     }
 
     if ($SoftwareSelection_CheckBoxes['Edge WebView2'].Checked) {
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Edge WebView2: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-        (New-Object System.Net.WebClient).DownloadFile('https://go.microsoft.com/fwlink/p/?LinkId=2124703', "$env:TEMP\MicrosoftEdgeWebview2Setup.exe")
+        $MicrosoftEdgeWebview2_DDL = (Invoke-WebRequest -UseBasicParsing -Uri 'https://go.microsoft.com/fwlink/p/?LinkId=2124703' -MaximumRedirection 0 -ErrorAction SilentlyContinue).Headers.Location
+        $MicrosoftEdgeWebview2_Filename = [IO.Path]::GetFileName(([URI]$MicrosoftEdgeWebview2_DDL).AbsolutePath)
+        $MicrosoftEdgeWebview2_SavePath = [IO.Path]::Combine($env:TEMP, $MicrosoftEdgeWebview2_Filename)
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Edge WebView2 Runtime'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MicrosoftEdgeWebview2_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MicrosoftEdgeWebview2_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+        (New-Object System.Net.WebClient).DownloadFile($MicrosoftEdgeWebview2_DDL, $MicrosoftEdgeWebview2_SavePath)
         
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Edge WebView2: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process $env:TEMP\MicrosoftEdgeWebview2Setup.exe
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Edge WebView2 Runtime'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MicrosoftEdgeWebview2_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process $MicrosoftEdgeWebview2_SavePath
     }
 
     if ($SoftwareSelection_CheckBoxes['CrystalDiskInfo'].Checked) {
