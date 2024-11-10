@@ -232,6 +232,10 @@ $SoftwareSelection_List = @(
         Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAzX0DYeSSFPPsmRz74pAUnQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAzn4Eks5+AP/OfgD/8J8g//CfIP/tmx374pEViAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAzn8Eo86AAP/OgAD/zoAA//GhIP/xoSD/8aEg//GhIP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADPgg4Rz4IGpM+CAP/PggD/z4IA/8+CAP/xoiH/8aIh//GiIf/xoiH/sG4HpbBtAP+vbQTTsHETIwAAAADPgg4R0IME09CDAP/QgwD/0IMA/9CDAP/QhAHx8aQh//GkIf/xpCH/8aQh/7FuAP+xbgD/sW4A/7FuAfG2dA5g0YUE1NGFAP/RhQD/0YUA/9GFAP/RhQbE3qhTF/GlIv/xpSL/8aUi//GlIv+ycxFnsnAA/7JwAP+5dAD/zoQA/9KHAP/ShwD/0ocA/9KHAP/Rhw2HAAAAAP///wfypyL/8qci//KnIv/ypyL/AAAAALN1GDW6dgH00YgA/9KJAP/SiQD/0okA/9KJAvPSiRZGAAAAAAAAAAD///8I8qgj//KoI//yqCP/8qgj/wAAAADTixs204sC9dOLAP/TiwD/04sA/8uGAP+3dQLztHcYRwAAAAAAAAAA////CfKqI//yqiP/8qoj//KqI//TjBZp1I0A/9SNAP/UjQD/1I0A/8aCAP+2dQD/tnUA/7Z1AP+1dxKKAAAAAP///wryrCT/8qwk//KsJP/yrCT/1Y8A/9WPAP/VjwD/1Y8D8tCJF2S4eAjXuHYA/7h2AP+4dgD/uHYA/7d4CsjSrXId860k//OtJP/zrST/860k/9WQEavWkQD/1ZAI19SPJCUAAAAAtn0lE7l5CNe5eAD/uXgA/7l4AP+5eAD/uXgD8/OvJf/zryX/868l//OvJf8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC2fSUTunwSrLt6AP+7egD/u3oA/7t6AP/zsCX/87Al//OwJf/zsCX/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC7fROtvHsA/7x7AP+8ewD/87Im//OyJv/zsib/87Im/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL2CGqG9fQD/vX0A//SzJv/0syb/7awj/NmWIpAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAvIIib+KoHPbtrSP825gipQAAAAAAAAAA/8MAAP+AAAD/AAAA/AAAAAgAAAAAAAAAACAAAIBgAACAYAAAACAAAAAAAAAIAAAA/AAAAP8AAAD/gAAA/8MAAA=='
     },
     @{
+        Name   = 'VMware Workstation'
+        Icon64 = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAACUWAAAlFgAAAAAAAAAAAAAAi/NlAIvz8gCL8/8Ai/P/AIvz/wCL8/8Ai/P/AIvz/wCL8/8Ai/P/AIvz+ACL84cAAAAAAAAAAAAAAAAAAAAAAIvz8gCL8/8Ai/P/AIvz/wCL8/8Ai/P/AIvz/wCL8/8Ai/P/AIvz/wCL8/8Ai/P/AIvzHAAAAAAAAAAAAAAAAACL8/8Ai/P/AIvz4QCL83IAi/NsAIvzbACL82wAi/NsAIvzbgCL884Ai/P/AIry/wCG6ikAAAAAAAAAAAAAAAAAi/P/AIvz/wCL83IAAAAA05UAANOVACLTlQAp05UAKdOVAClTjpFnIoO8/yJ4qP9zhFlL05UAKdOVABwAAAAAAIvz/wCL8/8Ai/Ns05UAANOVAK/TlQD/05UA/9OVAP/TlQD/05UA/9OVAP/TlQD/05UA/9OVAP/TlQD/05UAhwCL8/8Ai/P/AIvzbNOVACLTlQD/05UA/9OVAP/TlQD/05UA/9OVAP/TlQD/05UA/9OVAP/TlQD/05UA/9OVAPgAi/P/AIvz/wCL82zTlQAp05UA/9OVAP/TlQC005UARdOVAEN5kWd0N46z/zeOs/+Wkkdn05UAztOVAP/TlQD/AIvz/wCL8/8Ai/Ns05UAKdOVAP/TlQD/05UARQAAAAAAAAAAAIvzQwCL8/8Ai/P/AIvzKdOVAG7TlQD/05UA/wCL8/8Ai/P/AIvzbseMACnQkwD/05UA/9OVAEMAAAAAAAAAAACL80UAi/P/AIvz/wCL8ynTlQBs05UA/9OVAP8Ai/P/AIvz/wCL884xhaxnfn1A/42IQP9Yjox0AIvzQwCL80UAi/O0AIvz/wCL8/8Ai/Mp05UAbNOVAP/TlQD/AIvz+ACL8/8Ai/P/AIvz/wCL8/8Ai/P/AIvz/wCL8/8Ai/P/AIvz/wCL8/8Ai/P/AIvzItOVAGzTlQD/05UA/wCL84cAi/P/AIvz/wCL8/8Ai/P/AIvz/wCL8/8Ai/P/AIvz/wCL8/8Ai/P/AIvzrwCL8wDTlQBs05UA/9OVAP8AAAAAAIvzHACL8ylgkIRLsZMn/7GTJ/+AkWBnAIvzKQCL8ykAi/MpAIvzIgCL8wAAAAAA05UActOVAP/TlQD/AAAAAAAAAAAAAAAA05UAKdOVAP/TlQD/05UAztOVAG7TlQBs05UAbNOVAGzTlQBs05UActOVAOHTlQD/05UA/wAAAAAAAAAAAAAAANOVABzTlQD/05UA/9OVAP/TlQD/05UA/9OVAP/TlQD/05UA/9OVAP/TlQD/05UA/9OVAPIAAAAAAAAAAAAAAAAAAAAA05UAh9OVAPjTlQD/05UA/9OVAP/TlQD/05UA/9OVAP/TlQD/05UA/9OVAPLTlQBlAA8AAAAHAAAABwAAEAEAAAAAAAAAAAAAAAAAAAGAAAABgAAAAAAAAAAAAAAAAAAAgAgAAOAAAADgAAAA8AAAAA=='
+    },
+    @{
         Name   = 'Windows 10 IoT Enterprise LTSC 2021'
         Icon64 = 'AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANR4CgDUeAoF1HgKEtR4CiLUeAo71HgKWNR4CnrUeApRAAAAANR4CgDUeAoG1HgKEtR4CiDUeAo51HgKI9R4CjzUeAqP1HgKq9R4CsXUeArd1HgK69R4CvfUeAr/1HgKkNR4CknUeAqT1HgKsdR4CsvUeArh1HgK8dR4CnnUeAp+1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4CpDUeAqR1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAp91HgKfdR4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAqQ1HgKkNR4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgKfdR4Cn3UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgKkNR4CpDUeAr/1HgK/9R4Cv/UeAr/1HgK/9R4Cn3UeAp91HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4CpDUeAqR1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAp+1HgKftR4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAqR1HgKR9R4Cn7UeAp91HgKfdR4Cn3UeAp+1HgKPtR4Cj7UeAp+1HgKfdR4Cn3UeAp91HgKfdR4Cn3UeAp+1HgKR9R4CkfUeAp+1HgKfdR4Cn3UeAp91HgKftR4Cj7UeAo+1HgKftR4Cn3UeAp91HgKfdR4Cn3UeAp91HgKftR4CkfUeAqR1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAp+1HgKftR4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAqR1HgKkNR4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgKfdR4Cn3UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgKkNR4CpDUeAr/1HgK/9R4Cv/UeAr/1HgK/9R4Cn3UeAp91HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4CpDUeAqR1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAp91HgKfdR4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAqQ1HgKSdR4CpPUeAqx1HgKy9R4CuHUeArx1HgKedR4Cn7UeAr/1HgK/9R4Cv/UeAr/1HgK/9R4Cv/UeAr/1HgKkAAAAADUeAoA1HgKBtR4ChLUeAog1HgKOdR4CiPUeAo81HgKj9R4CqvUeArF1HgK3dR4CuvUeAr31HgK/9R4CpAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANR4CgDUeAoF1HgKEtR4CiLUeAo71HgKWNR4CnrUeApR/4AAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAA/4AAAA=='
     },
@@ -409,6 +413,7 @@ if ($InstalledSoftware -match 'NVCleanstall') {
     $SoftwareSelection_CheckBoxes['NVCleanstall'].Enabled = $false
     $SoftwareSelection_CheckBoxes['NVCleanstall'].Text += ' (Installed)'
 }
+# nvidiaProfileInspector
 $PlexMediaServer_TaskName = 'PlexMediaServer Updater'
 if (Get-ScheduledTask -TaskName $PlexMediaServer_TaskName -ErrorAction SilentlyContinue) {
     $SoftwareSelection_CheckBoxes['Plex'].Enabled = $false
@@ -467,6 +472,9 @@ $VSCode_TaskName = 'Visual Studio Code Updater'
 if (Get-ScheduledTask -TaskName $VSCode_TaskName -ErrorAction SilentlyContinue) {
     $SoftwareSelection_CheckBoxes['Visual Studio Code'].Enabled = $false
     $SoftwareSelection_CheckBoxes['Visual Studio Code'].Text += ' (Installed)'
+}
+if ($InstalledSoftware -match 'VMware Workstation') {
+    $SoftwareSelection_CheckBoxes['VMware Workstation'].Text += ' (Installed)'
 }
 if ($InstalledSoftware -match 'Zoom') {
     $SoftwareSelection_CheckBoxes['Zoom'].Enabled = $false
@@ -1720,6 +1728,43 @@ $SoftwareSelection_Form_OK.Add_Click{
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SketchUp_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SketchUp_TempEXE'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SketchUp_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
         Unblock-File $SketchUp_TempEXE
         Start-Process $SketchUp_TempEXE -ArgumentList $SketchUp_Argument -Wait
+
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$env:TEMP'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Remove-MpPreference -ExclusionPath $env:TEMP
+    }
+
+    if ($SoftwareSelection_CheckBoxes['VMware Workstation'].Checked) {
+        $VMware_Label = 'https://nnmclub.to/forum/tracker.php?nm=VMware%20KpoJIuK'
+        $VMware_Title = ((Invoke-WebRequest -UseBasicParsing -Uri $VMware_Label).Links | Where-Object { $_.outerHTML -match 'VMware' -and $_.class -match 'genmed topictitle' } | Select-Object -First 1).outerHTML -replace '.*?<b>(.*?)</b></a>', '$1'
+        $VMware_Post = 'https://nnmclub.to/forum/' + ((Invoke-WebRequest -UseBasicParsing -Uri $VMware_Label).Links | Where-Object { $_.outerHTML -match 'VMware' -and $_.class -match 'genmed topictitle' } | Select-Object -First 1).href
+        $VMware_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $VMware_Post).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
+        $VMware_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
+        if (Test-Path $VMware_qBittorrent_LOG) {
+            Remove-Item $VMware_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
+        }
+        Remove-Item -Path "$env:TEMP\*VMware*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
+        $VMware_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($VMware_Magnet)"""
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VMware_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VMware_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process qBittorrent.exe -ArgumentList $VMware_qBittorrent_Argument
+        while (-not ($VMware_TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*VMware*' | Select-Object -First 1).FullName)) {
+            Start-Sleep -Milliseconds 1000
+        }
+
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$env:TEMP'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Add-MpPreference -ExclusionPath $env:TEMP
+
+        while (-not ($VMware_TempEXE = (Get-ChildItem $VMware_TempDir -Filter '*.exe' | Select-Object -First 1).FullName)) {
+            Start-Sleep -Milliseconds 1000
+        }
+        do {
+            Start-Sleep -Milliseconds 1000
+        } until ((Get-Content $VMware_qBittorrent_LOG -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*VMware*')
+
+        $VMware_Argument = '/S /QE'
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VMware_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VMware_TempEXE'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VMware_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Unblock-File $VMware_TempEXE
+        Start-Process $VMware_TempEXE -ArgumentList $VMware_Argument -Wait
 
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$env:TEMP'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
         Remove-MpPreference -ExclusionPath $env:TEMP
