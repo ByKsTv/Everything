@@ -40,8 +40,13 @@
             <FirstLogonCommands>
                 <SynchronousCommand wcm:action="add">
                     <Order>1</Order>
-                    <CommandLine>powershell.exe -NoProfile -Command "Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Step1.ps1')"
-                    </CommandLine>
+                    <CommandLine>powershell.exe -NoProfile -Command "Write-Output 'Waiting for network connection'; while (!(Test-Connection -ComputerName 8.8.8.8 -Count 1 -Quiet)) { Start-Sleep -Seconds 1 }"</CommandLine>
+                    <Description>Wait for network connection</Description>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <Order>2</Order>
+                    <CommandLine>powershell.exe -NoProfile -Command "Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Step1.ps1')"</CommandLine>
+                    <Description>Start Step1.ps1</Description>
                 </SynchronousCommand>
             </FirstLogonCommands>
         </component>
