@@ -44,12 +44,19 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 ## Installation
 
-1. `Next` > `Install now` > `I don't have a product key` > `Windows 10 IoT Enterprise LTSC` > `Next` > `I accept the license terms` > `Next` > `Custom: Install Windows only (advanced)` > `Load driver` > (Select the drivers from the USB and install them one by one, test if lan driver was installed afterwards) > `Delete all` > `Next`.
-   > If drives not found - Extract `Intel Rapid Storage Technology (IRST)` driver matching to the motherboard.
+1. `Next` > `Install now` > `I don't have a product key` > `Windows 10 IoT Enterprise LTSC` > `Next` > `I accept the license terms` > `Next` > `Custom: Install Windows only (advanced)` > `Delete all` > `Next`.
+   > If drives not found - Use `Load Driver` and extract `Intel Rapid Storage Technology (IRST)` driver matching to the motherboard.
 1. `Yes` > `Yes` > `Skip` > `I don't have internet` > `Continue with limited setup`.
 1. Connect Ethernet Cable (After Windows Boots Up).
    > If there's no internet connection - install LAN driver.
 1. `Do you want to allow your PC to be discoverable by other PCs and devices on this network?` > `Yes`.
+
+## Drivers
+
+1. Install LAN drivers.
+1. Install Chipset drivers.
+1. Install Serial IO drivers.
+1. Install Intel(R) Rapid Storage Technology.
 
 ## Initial Setup - Auto Install
 
