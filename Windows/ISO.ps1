@@ -24,7 +24,7 @@ $USB_Unattend_Drive = (Get-WmiObject -Class Win32_LogicalDisk | Where-Object { $
 if ($USB_Unattend_Drive) {
     $USB_Unattend_DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/autounattend.xml'
     $USB_Unattend_Filename = [IO.Path]::GetFileName(([URI]$USB_Unattend_DDL).AbsolutePath)
-    $USB_Unattend_SavePath = [IO.Path]::Combine($USB_Unattend_Drive, '\', $USB_Unattend_Filename)
+    $USB_Unattend_SavePath = [IO.Path]::Combine($USB_Unattend_Drive, $USB_Unattend_Filename)
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$USB_Unattend_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$USB_Unattend_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$USB_Unattend_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
     (New-Object System.Net.WebClient).DownloadFile($USB_Unattend_DDL, $USB_Unattend_SavePath)
 }

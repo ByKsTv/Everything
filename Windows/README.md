@@ -17,7 +17,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
    ```
 
-1. Click on `START` and when finished close the program.
+1. `START` > Uncheck every box > `OK` > `OK` > When finished close the program.
 1. Download LAN drivers matching the motherboard to the USB.
 1. Download Chipset drivers matching the motherboard to the USB.
 1. Download Serial IO drivers matching the motherboard to the USB.
