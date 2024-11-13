@@ -18,4 +18,13 @@ $Windows_SavePath = [IO.Path]::Combine($env:TEMP, $Windows_Filename)
 
 $Rufus_Argument = "--gui --iso=$Windows_SavePath"
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Starting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Rufus'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Rufus_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Rufus_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-Start-Process $Rufus_SavePath -ArgumentList $Rufus_Argument
+Start-Process $Rufus_SavePath -ArgumentList $Rufus_Argument -Wait
+
+$USB_Unattend_Drive = (Get-WmiObject -Class Win32_LogicalDisk | Where-Object { $_.DriveType -eq 2 }).DeviceID
+if ($USB_Unattend_Drive) {
+    $USB_Unattend_DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/refs/heads/main/Windows/autounattend.xml'
+    $USB_Unattend_Filename = [IO.Path]::GetFileName(([URI]$USB_Unattend_DDL).AbsolutePath)
+    $USB_Unattend_SavePath = [IO.Path]::Combine($USB_Unattend_Drive, '\', $USB_Unattend_Filename)
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$USB_Unattend_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$USB_Unattend_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$USB_Unattend_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+    (New-Object System.Net.WebClient).DownloadFile($USB_Unattend_DDL, $USB_Unattend_SavePath)
+}

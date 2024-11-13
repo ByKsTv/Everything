@@ -21,6 +21,7 @@ if ($env:computername -ne $env:username) {
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('PC Password: Changing to never expires'); [Console]::ResetColor(); [Console]::WriteLine()
 Set-LocalUser -Name $env:username -PasswordNeverExpires 1
+net accounts /maxpwage:unlimited
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('AutoAdminLogon: Adding username'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon') -ne $true) {

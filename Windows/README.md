@@ -6,8 +6,10 @@ Everything about Windows.
 
 Usernames, passwords, videos, photos, files, software, desktop layout, macros, mpv settings, firefox profile folder, app data.
 
-## Download
+## Download ISO
 
+1. Connect USB with at least 8GB.
+   > Make sure there's only 1 USB connected.
 1. PowerShell (Admin):
 
    ```powershell
@@ -15,11 +17,12 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
    ```
 
-1. Connect USB with at least 8GB.
-1. `START` > Enable all except `Set regional options to the same values as this user's` > `OK` > `OK`.
-1. Download and extract motherboard drivers (LAN drivers, Chipset drivers, Serial IO drivers, Intel(R) Rapid Storage Technology) to the USB.
-1. Copy the initial setup powershell command to text file on the USB.
-   > Find Motherboard Model - PowerShell (Admin):
+1. Click on `START` and when finished close the program.
+1. Download LAN drivers matching the motherboard to the USB.
+1. Download Chipset drivers matching the motherboard to the USB.
+1. Download Serial IO drivers matching the motherboard to the USB.
+1. Download Intel(R) Rapid Storage Technology matching the motherboard to the USB.
+   > Find Motherboard - PowerShell (Admin):
    >
    > ```powershell
    > (wmic baseboard get product)
@@ -34,29 +37,29 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. Disconnect Ethernet Cable.
 1. Disconnect Every Hard Drive Except Windows Drive.
 1. Boot to UEFI USB (F12/DEL/F11).
-
-> Restart to BIOS - CMD (Admin):
->
-> ```cmd
-> shutdown /r /fw /t 00
->
-> ```
+   > Restart to BIOS - CMD (Admin):
+   >
+   > ```cmd
+   > shutdown /r /fw /t 00
+   >
+   > ```
 
 ## Installation
 
-1. `Next` > `Install now` > `I don't have a product key` > `Windows 10 IoT Enterprise LTSC` > `Next` > `I accept the license terms` > `Next` > `Custom: Install Windows only (advanced)` > `Delete all` > `Next`.
+1. `Delete all` > `Next`.
    > If drives not found - Use `Load Driver` and extract `Intel Rapid Storage Technology (IRST)` driver matching to the motherboard.
-1. `Yes` > `Yes` > `Skip` > `I don't have internet` > `Continue with limited setup`.
+1. Add a name.
+1. Don't use password.
 1. Connect Ethernet Cable (After Windows Boots Up).
    > If there's no internet connection - install LAN driver.
 1. `Do you want to allow your PC to be discoverable by other PCs and devices on this network?` > `Yes`.
 
 ## Drivers
 
-1. Install LAN drivers.
-1. Install Chipset drivers.
-1. Install Serial IO drivers.
-1. Install Intel(R) Rapid Storage Technology.
+1. Install LAN drivers matching the motherboard from the USB.
+1. Install Chipset drivers matching the motherboard from the USB.
+1. Install Serial IO drivers matching the motherboard from the USB.
+1. Install Intel(R) Rapid Storage Technology matching the motherboard from the USB.
 
 ## Initial Setup - Auto Install
 
@@ -102,7 +105,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. Set up scan profile.
 1. Set up print quality and print size.
 
-> Note: HP Printer: Only Original Ink Cartridges.
+   > Note: HP Printer: Only Original Ink Cartridges.
 
 ### Reset Password to Windows 10 Local Account
 
