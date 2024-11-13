@@ -134,6 +134,7 @@ missav.com##.hover\:text-primary.text-nord6.mx-auto.h-8.w-8
 missav.com##.pt-8.border-gray-700.border-t.my-12
 missav.com##.xl\:col-span-2.xl\:mt-0.gap-8.grid-cols-2.grid.mt-12
 missav.com##footer.px-4.mx-auto.sm\:container
+msg.aliexpress.com##.footer-copywrite
 myanimelist.net###copyright
 myanimelist.net###footer-block
 myanimelist.net###recaptcha-terms
@@ -242,6 +243,8 @@ www.aliexpress.com##.es--product-fix-sns--3dZQv4l
 www.aliexpress.com##.footer-copywrite
 www.aliexpress.com##.product-recommend-pc.product-recommend
 www.aliexpress.com##.relatedSearch--bottomWrapper--2lxD0Q4
+www.aliexpress.com##.result-download-app--container--1_KNRHr
+www.aliexpress.com##.result-messenger--messenger-container--cbQSBVf
 www.aliexpress.com##.site-footer
 www.aliexpress.com##.survey-link
 www.geektime.co.il##.d-lg-block.d-none.ms-md-auto.col-md-280.col-12
