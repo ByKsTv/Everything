@@ -16,100 +16,48 @@ if (-not (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NET' -Name 'AllowAUO
 	New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NET' -Name 'AllowAUOnServerOS' -Value 1 -PropertyType DWord -Force
 }
 
-$DotNET_DesktopRuntime6_Installed = (Get-Package 'Microsoft Windows Desktop Runtime - 6*' -ErrorAction SilentlyContinue | Where-Object ProviderName -EQ 'Programs').Name -replace '.*?(\d+\.\d+\.\d+).*', '$1'
-$DotNET_DesktopRuntime8_Installed = (Get-Package 'Microsoft Windows Desktop Runtime - 8*' -ErrorAction SilentlyContinue | Where-Object ProviderName -EQ 'Programs').Name -replace '.*?(\d+\.\d+\.\d+).*', '$1'
-$DotNET_DesktopRuntime9_Installed = (Get-Package 'Microsoft Windows Desktop Runtime - 9*' -ErrorAction SilentlyContinue | Where-Object ProviderName -EQ 'Programs').Name -replace '.*?(\d+\.\d+\.\d+).*', '$1'
-$DotNET_SDK6_Installed = (Get-Package 'Microsoft .NET SDK 6*' -ErrorAction SilentlyContinue | Where-Object ProviderName -EQ 'Programs').Name -replace '.*?(\d+\.\d+\.\d+).*', '$1'
-$DotNET_SDK8_Installed = (Get-Package 'Microsoft .NET SDK 8*' -ErrorAction SilentlyContinue | Where-Object ProviderName -EQ 'Programs').Name -replace '.*?(\d+\.\d+\.\d+).*', '$1'
-$DotNET_SDK9_Installed = (Get-Package 'Microsoft .NET SDK 9*' -ErrorAction SilentlyContinue | Where-Object ProviderName -EQ 'Programs').Name -replace '.*?(\d+\.\d+\.\d+).*', '$1'
-$DotNET_Latest6 = (Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/6.0/releases.json).'latest-runtime'
-$DotNET_Latest8 = (Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/8.0/releases.json).'latest-runtime'
-$DotNET_Latest9 = (Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/9.0/releases.json).'latest-runtime'
-$DotNET_EOL6 = (Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/6.0/releases.json).'support-phase'
-$DotNET_EOL8 = (Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/8.0/releases.json).'support-phase'
-$DotNET_EOL9 = (Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/9.0/releases.json).'support-phase'
+$DotNET_Versions = @('6', '8', '9')
+foreach ($DotNET_Version in $DotNET_Versions) {
+	$DotNET_VersionPattern = "$DotNET_Version*"
+	$DotNET_SDK = "Microsoft .NET SDK $DotNET_VersionPattern"
+	$DotNET_SDKInstalled = (Get-Package $DotNET_SDK -ErrorAction SilentlyContinue | Where-Object ProviderName -EQ 'Programs').Name -replace '.*?(\d+\.\d+\.\d+).*', '$1'
+	$DotNET_FullVersion = "$DotNET_Version.0"
+	$DotNET_ReleasesJsonURL = "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/$DotNET_FullVersion/releases.json"
+	$DotNET_ReleasesJson = Invoke-RestMethod $DotNET_ReleasesJsonURL
+	$DotNET_SDKLatest = $DotNET_ReleasesJson.'latest-sdk'
+	$DotNET_SupportPhase = $DotNET_ReleasesJson.'eol-date'
+	$DotNET_SupportPhaseDate = [DateTime]${DotNET_SupportPhase}
+	$DotNET_Today = Get-Date
 
-if ($null -eq $DotNET_DesktopRuntime6_Installed -or $DotNET_DesktopRuntime6_Installed -notmatch $DotNET_Latest6 -and $DotNET_EOL6 -ne 'eol' -and $DotNET_EOL6 -eq 'maintenance') {
-	$DotNET_Latest6_DDL = ((((Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/6.0/releases.json).Releases | Select-Object -First 1).windowsdesktop).files | Where-Object -Property 'name' -Match 'win-x64.exe').url
-	$DotNET_Latest6_Filename = [IO.Path]::GetFileName(([URI]$DotNET_Latest6_DDL).AbsolutePath)
-	$DotNET_Latest6_SavePath = [IO.Path]::Combine($env:TEMP, $DotNET_Latest6_Filename)
-	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'.NET Desktop Runtime'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Latest6'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Latest6_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Latest6_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-    (New-Object System.Net.WebClient).DownloadFile($DotNET_Latest6_DDL, $DotNET_Latest6_SavePath)
+	if (($null -eq $DotNET_SDKInstalled -or $DotNET_SDKInstalled -ne $DotNET_SDKLatest) -and $DotNET_SupportPhaseDate -gt $DotNET_Today) {
+		$DotNET_DDL = (((($DotNET_ReleasesJson).Releases | Select-Object -First 1).sdk).files | Where-Object -Property 'name' -Match 'win-x64.exe').url
+		$DotNET_Filename = [IO.Path]::GetFileName(([URI]$DotNET_DDL).AbsolutePath)
+		$DotNET_SavePath = [IO.Path]::Combine($env:TEMP, $DotNET_Filename)
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft .NET SDK'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_SDKLatest'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+		(New-Object System.Net.WebClient).DownloadFile($DotNET_DDL, $DotNET_SavePath)
 
-	$DotNET_Latest6_Argument = '/install /quiet /norestart'
-	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'.NET Desktop Runtime'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Latest6'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Latest6_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Latest6_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-	Start-Process $DotNET_Latest6_SavePath -ArgumentList $DotNET_Latest6_Argument
-}
+		$DotNET_Argument = '/install /quiet /norestart'
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft .NET SDK'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_SDKLatest'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+		Start-Process $DotNET_SavePath -ArgumentList $DotNET_Argument
+	}
 
-if ($null -eq $DotNET_DesktopRuntime8_Installed -or $DotNET_DesktopRuntime8_Installed -notmatch $DotNET_Latest8 -and $DotNET_EOL8 -ne 'eol' -and $DotNET_EOL8 -eq 'active') {
-	$DotNET_Latest8_DDL = ((((Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/8.0/releases.json).Releases | Select-Object -First 1).windowsdesktop).files | Where-Object -Property 'name' -Match 'win-x64.exe').url
-	$DotNET_Latest8_Filename = [IO.Path]::GetFileName(([URI]$DotNET_Latest8_DDL).AbsolutePath)
-	$DotNET_Latest8_SavePath = [IO.Path]::Combine($env:TEMP, $DotNET_Latest8_Filename)
-	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'.NET Desktop Runtime'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Latest8'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Latest8_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Latest8_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-    (New-Object System.Net.WebClient).DownloadFile($DotNET_Latest8_DDL, $DotNET_Latest8_SavePath)
+	if ($DotNET_SupportPhaseDate -lt $DotNET_Today -and $DotNET_SDKInstalled) {
+		$DotNET_UninstallDDL = ((Invoke-RestMethod 'https://api.github.com/repos/dotnet/cli-lab/releases/latest').assets | Where-Object name -Like '*.msi*' | Select-Object -First 1).browser_download_url
+		$DotNET_UninstallFilename = [IO.Path]::GetFileName(([URI]$DotNET_UninstallDDL).AbsolutePath)
+		$DotNET_UninstallSavePath = [IO.Path]::Combine($env:TEMP, $DotNET_UninstallFilename)
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'dotnet-core-uninstall'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_UninstallDDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_UninstallSavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+        (New-Object System.Net.WebClient).DownloadFile($DotNET_UninstallDDL, $DotNET_UninstallSavePath)
 
-	$DotNET_Latest8_Argument = '/install /quiet /norestart'
-	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'.NET Desktop Runtime'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Latest8'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Latest8_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Latest8_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-	Start-Process $DotNET_Latest8_SavePath -ArgumentList $DotNET_Latest8_Argument
-}
+		$DotNET_UninstallArgument = '/quiet /norestart'
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'dotnet-core-uninstall'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_UninstallSavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_UninstallArgument'"); [Console]::ResetColor(); [Console]::WriteLine()
+		Start-Process $DotNET_UninstallSavePath -ArgumentList $DotNET_UninstallArgument -Wait
 
-if ($null -eq $DotNET_DesktopRuntime9_Installed -or $DotNET_DesktopRuntime9_Installed -notmatch $DotNET_Latest9 -and $DotNET_EOL9 -ne 'eol' -and $DotNET_EOL9 -eq 'active') {
-	$DotNET_Latest9_DDL = ((((Invoke-RestMethod https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/9.0/releases.json).Releases | Select-Object -First 1).windowsdesktop).files | Where-Object -Property 'name' -Match 'win-x64.exe').url
-	$DotNET_Latest9_Filename = [IO.Path]::GetFileName(([URI]$DotNET_Latest9_DDL).AbsolutePath)
-	$DotNET_Latest9_SavePath = [IO.Path]::Combine($env:TEMP, $DotNET_Latest9_Filename)
-	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'.NET Desktop Runtime'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Latest9'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Latest9_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Latest9_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-    (New-Object System.Net.WebClient).DownloadFile($DotNET_Latest9_DDL, $DotNET_Latest9_SavePath)
-
-	$DotNET_Latest9_Argument = '/install /quiet /norestart'
-	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'.NET Desktop Runtime'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Latest9'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Latest9_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Latest9_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-	Start-Process $DotNET_Latest9_SavePath -ArgumentList $DotNET_Latest9_Argument
-}
-
-# https://learn.microsoft.com/en-us/dotnet/core/additional-tools/uninstall-tool?tabs=windows
-if ($DotNET_EOL6 -eq 'eol' -and $DotNET_DesktopRuntime6_Installed) {
-	Write-Host ".NET: Uninstalling .NET Runtime $DotNET_DesktopRuntime6_Installed" -ForegroundColor green -BackgroundColor black
-	(New-Object System.Net.WebClient).DownloadFile(((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/dotnet/cli-lab/releases/latest').assets | Where-Object name -Like '*.msi*').browser_download_url, "$env:TEMP\dotnet-core-uninstall.msi")
-	Start-Process "$env:TEMP\dotnet-core-uninstall.msi" -ArgumentList '/quiet /norestart' -Wait
-	Start-Process "${env:ProgramFiles(x86)}\dotnet-core-uninstall\dotnet-core-uninstall.exe" -ArgumentList "dotnet-core-uninstall remove $DotNET_DesktopRuntime6_Installed --runtime --yes" -Wait
-	Start-Process msiexec.exe -ArgumentList "/quiet /uninstall $env:TEMP\dotnet-core-uninstall.msi" -Wait
-}
-
-if ($DotNET_EOL8 -eq 'eol' -and $DotNET_DesktopRuntime8_Installed) {
-	Write-Host ".NET: Uninstalling .NET Runtime $DotNET_DesktopRuntime8_Installed" -ForegroundColor green -BackgroundColor black
-	(New-Object System.Net.WebClient).DownloadFile(((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/dotnet/cli-lab/releases/latest').assets | Where-Object name -Like '*.msi*').browser_download_url, "$env:TEMP\dotnet-core-uninstall.msi")
-	Start-Process "$env:TEMP\dotnet-core-uninstall.msi" -ArgumentList '/quiet /norestart' -Wait
-	Start-Process "${env:ProgramFiles(x86)}\dotnet-core-uninstall\dotnet-core-uninstall.exe" -ArgumentList "dotnet-core-uninstall remove $DotNET_DesktopRuntime8_Installed --runtime --yes" -Wait
-	Start-Process msiexec.exe -ArgumentList "/quiet /uninstall $env:TEMP\dotnet-core-uninstall.msi" -Wait
-}
-
-if ($DotNET_EOL9 -eq 'eol' -and $DotNET_DesktopRuntime9_Installed) {
-	Write-Host ".NET: Uninstalling .NET Runtime $DotNET_DesktopRuntime9_Installed" -ForegroundColor green -BackgroundColor black
-	(New-Object System.Net.WebClient).DownloadFile(((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/dotnet/cli-lab/releases/latest').assets | Where-Object name -Like '*.msi*').browser_download_url, "$env:TEMP\dotnet-core-uninstall.msi")
-	Start-Process "$env:TEMP\dotnet-core-uninstall.msi" -ArgumentList '/quiet /norestart' -Wait
-	Start-Process "${env:ProgramFiles(x86)}\dotnet-core-uninstall\dotnet-core-uninstall.exe" -ArgumentList "dotnet-core-uninstall remove $DotNET_DesktopRuntime9_Installed --runtime --yes" -Wait
-	Start-Process msiexec.exe -ArgumentList "/quiet /uninstall $env:TEMP\dotnet-core-uninstall.msi" -Wait
-}
-
-if ($DotNET_SDK6_Installed) {
-	Write-Host ".NET: Uninstalling .NET SDK $DotNET_SDK6_Installed" -ForegroundColor green -BackgroundColor black
-	(New-Object System.Net.WebClient).DownloadFile(((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/dotnet/cli-lab/releases/latest').assets | Where-Object name -Like '*.msi*').browser_download_url, "$env:TEMP\dotnet-core-uninstall.msi")
-	Start-Process "$env:TEMP\dotnet-core-uninstall.msi" -ArgumentList '/quiet /norestart' -Wait
-	Start-Process "${env:ProgramFiles(x86)}\dotnet-core-uninstall\dotnet-core-uninstall.exe" -ArgumentList "dotnet-core-uninstall remove $DotNET_SDK6_Installed --sdk --yes" -Wait
-	Start-Process msiexec.exe -ArgumentList "/quiet /uninstall $env:TEMP\dotnet-core-uninstall.msi" -Wait
-}
-
-if ($DotNET_SDK8_Installed) {
-	Write-Host ".NET: Uninstalling .NET SDK $DotNET_SDK8_Installed" -ForegroundColor green -BackgroundColor black
-	(New-Object System.Net.WebClient).DownloadFile(((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/dotnet/cli-lab/releases/latest').assets | Where-Object name -Like '*.msi*').browser_download_url, "$env:TEMP\dotnet-core-uninstall.msi")
-	Start-Process "$env:TEMP\dotnet-core-uninstall.msi" -ArgumentList '/quiet /norestart' -Wait
-	Start-Process "${env:ProgramFiles(x86)}\dotnet-core-uninstall\dotnet-core-uninstall.exe" -ArgumentList "dotnet-core-uninstall remove $DotNET_SDK8_Installed --sdk --yes" -Wait
-	Start-Process msiexec.exe -ArgumentList "/quiet /uninstall $env:TEMP\dotnet-core-uninstall.msi" -Wait
-}
-
-if ($DotNET_SDK9_Installed) {
-	Write-Host ".NET: Uninstalling .NET SDK $DotNET_SDK9_Installed" -ForegroundColor green -BackgroundColor black
-	(New-Object System.Net.WebClient).DownloadFile(((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/dotnet/cli-lab/releases/latest').assets | Where-Object name -Like '*.msi*').browser_download_url, "$env:TEMP\dotnet-core-uninstall.msi")
-	Start-Process "$env:TEMP\dotnet-core-uninstall.msi" -ArgumentList '/quiet /norestart' -Wait
-	Start-Process "${env:ProgramFiles(x86)}\dotnet-core-uninstall\dotnet-core-uninstall.exe" -ArgumentList "dotnet-core-uninstall remove $DotNET_SDK9_Installed --sdk --yes" -Wait
-	Start-Process msiexec.exe -ArgumentList "/quiet /uninstall $env:TEMP\dotnet-core-uninstall.msi" -Wait
+		$DotNET_UninstallToolArgument = "/quiet /uninstall $DotNET_UninstallSavePath"
+		$DotNET_UninstallToolLocation = "${env:ProgramFiles(x86)}\dotnet-core-uninstall\dotnet-core-uninstall.exe"
+		$DotNET_UninstallNETToolArgument = "dotnet-core-uninstall remove $DotNET_SDKInstalled --sdk --yes"
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Uninstalling '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft .NET SDK'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_SDKInstalled'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_UninstallToolLocation'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_UninstallNETToolArgument'"); [Console]::ResetColor(); [Console]::WriteLine()
+		Start-Process $DotNET_UninstallToolLocation -ArgumentList $DotNET_UninstallNETToolArgument -Wait
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Uninstalling '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'dotnet-core-uninstall'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'msiexec.exe'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_UninstallToolArgument'"); [Console]::ResetColor(); [Console]::WriteLine()
+		Start-Process msiexec.exe -ArgumentList $DotNET_UninstallToolArgument -Wait
+	}
 }
