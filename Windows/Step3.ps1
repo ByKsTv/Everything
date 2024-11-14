@@ -17,9 +17,6 @@ $DirectX_exe_Argument = '/silent'
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'DirectX End-User Runtimes (June 2010)'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DirectX_exe_Destination'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DirectX_exe_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
 Start-Process $DirectX_exe_Destination -ArgumentList $DirectX_exe_Argument
 
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('.NET: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/.NET/Download.ps1')
-
 $VC_redist_DDL = 'https://aka.ms/vs/17/release/VC_redist.x64.exe'
 $VC_redist_Filename = [IO.Path]::GetFileName(([URI]$VC_redist_DDL).AbsolutePath)
 $VC_redist_SavePath = [IO.Path]::Combine($env:TEMP, $VC_redist_Filename)
@@ -30,6 +27,9 @@ $VC_redist_Description = ([System.Diagnostics.FileVersionInfo]::GetVersionInfo($
 $VC_redist_exe_Argument = '/install /quiet /norestart'
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VC_redist_Description'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VC_redist_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VC_redist_exe_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
 Start-Process $VC_redist_SavePath -ArgumentList $VC_redist_exe_Argument
+
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('.NET: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
+Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/.NET/Download.ps1')
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Extensions.ps1')
