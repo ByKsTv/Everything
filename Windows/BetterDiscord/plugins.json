@@ -1,13 +1,12 @@
 {
-	"DoNotTrack": true,
-	"ZeresPluginLibrary": true,
-	"PluginRepo": true,
 	"BDFDB": true,
+	"ZeresPluginLibrary": true,
 	"CallTimeCounter": true,
-	"BetterRoleColors": true,
-	"ThemeRepo": true,
-	"YABDP4Nitro": true,
+	"DoNotTrack": true,
+	"PluginRepo": true,
 	"RemoveChatButtons": true,
 	"removeTrackingURL": true,
-	"Uncompressed Images": true
+	"ThemeRepo": true,
+	"Uncompressed Images": true,
+	"YABDP4Nitro": true
 }

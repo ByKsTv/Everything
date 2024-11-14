@@ -18,6 +18,7 @@ Everything about Flights.
 If you buy tickets for more than 1 passanger you dont need to reserve seats (?)
 If you want to change seats - use the first party airline website
 Don't buy tickets that are near the aile or bathroom
+Application for compensation and reimbursement of expenses if your flight was cancelled or delayed
 
 ## Hotels
 

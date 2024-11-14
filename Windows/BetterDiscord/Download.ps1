@@ -114,6 +114,18 @@ if (-not (Select-String -Quiet -Path $Discord_IndexJS -Pattern 'betterdiscord'))
             [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_PluginFilename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_PluginURL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_PluginSavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
             (New-Object Net.WebClient).DownloadFile($BetterDiscord_PluginURL, $BetterDiscord_PluginSavePath)
         }
+
+        $BetterDiscord_SettingsDir = [IO.Path]::Combine($env:APPDATA, 'BetterDiscord', 'data', 'stable')
+        $BetterDiscord_SettingsURLs = @(
+            'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/BetterDiscord/plugins.json',
+            'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/BetterDiscord/themes.json'
+        )
+        foreach ($BetterDiscord_SettingsURL in $BetterDiscord_SettingsURLs) {
+            $BetterDiscord_SettingFilename = [IO.Path]::GetFileName(([URI]$BetterDiscord_SettingsURL).AbsolutePath)
+            $BetterDiscord_SettingSavePath = [IO.Path]::Combine($BetterDiscord_SettingsDir, $BetterDiscord_SettingFilename)
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_SettingFilename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_SettingsURL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_SettingSavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+            (New-Object Net.WebClient).DownloadFile($BetterDiscord_SettingsURL, $BetterDiscord_SettingSavePath)
+        }
     }
 
     $BetterDiscord_DDL = ((Invoke-RestMethod 'https://api.github.com/repos/BetterDiscord/BetterDiscord/releases/latest').assets | Where-Object name -EQ 'betterdiscord.asar').browser_download_url
