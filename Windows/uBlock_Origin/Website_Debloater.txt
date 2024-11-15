@@ -89,6 +89,7 @@ forum.mobilism.me##.icon-light.icon-twitter
 forum.mobilism.me##.icon-stack
 forum.mobilism.me##.twitter-color.icon-stack-base.icon-circle
 forum.mobilism.me##footer
+github.com###first-time-contributor
 github.com##.Link.Link--secondary
 github.com##.blankslate-container > .blankslate-spacious.blankslate
 github.com##.blankslate-spacious.blankslate-large.blankslate

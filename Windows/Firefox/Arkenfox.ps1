@@ -1,98 +1,77 @@
-if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
-    $CurrentFireFoxProfilePath0 = Get-ChildItem -Directory -Path "$env:APPDATA\Mozilla\Firefox\Profiles" -Filter '*.default-release'
-    $CurrentFireFoxProfilePath = "$env:APPDATA\Mozilla\Firefox\Profiles\$CurrentFireFoxProfilePath0"
-    if ((Test-Path -Path $CurrentFireFoxProfilePath) -eq $true) {
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Arkenfox: Closing browser'); [Console]::ResetColor(); [Console]::WriteLine()
-        Stop-Process -Name firefox -Force -ErrorAction SilentlyContinue
+$Firefox_Profiles = [IO.Path]::Combine($env:APPDATA, 'Mozilla', 'Firefox', 'Profiles')
+if (Test-Path $Firefox_Profiles) {
 
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Arkenfox: Disable List all tabs button'); [Console]::ResetColor(); [Console]::WriteLine()
-        New-Item -Path "$CurrentFireFoxProfilePath\chrome\userChrome.css" -ItemType File -Force
-        (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/userChrome.css', "$CurrentFireFoxProfilePath\chrome\userChrome.css")
+    $Firefox_Profile = (Get-ChildItem $Firefox_Profiles -Directory -Filter '*.default-release' | Select-Object -First 1).FullName
+    if (Test-Path $Firefox_Profile) {
 
-        Write-Host "Mozilla Firefox Arkenfox: Downloading 'user-overrides.js'" -ForegroundColor green -BackgroundColor black
-        (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/user-overrides.js', "$CurrentFireFoxProfilePath\user-overrides.js")
+        if (Get-Process -Name firefox -ErrorAction SilentlyContinue) {
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Closing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Mozilla Firefox'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Stop-Process -Name firefox -Force
+        }
         
-        Write-Host "Mozilla Firefox Arkenfox: Downloading 'search.json.mozlz4'" -ForegroundColor green -BackgroundColor black
-        (New-Object System.Net.WebClient).DownloadFile('https://github.com/ByKsTv/Everything/raw/main/Windows/Firefox/search.json.mozlz4', "$CurrentFireFoxProfilePath\search.json.mozlz4")
-        
-        Write-Host "Mozilla Firefox Arkenfox: Downloading 'updater.bat'" -ForegroundColor green -BackgroundColor black
-        (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/arkenfox/user.js/master/updater.bat', "$CurrentFireFoxProfilePath\updater.bat")
-        
-        Write-Host "Mozilla Firefox Arkenfox: Downloading 'prefsCleaner.bat'" -ForegroundColor green -BackgroundColor black
-        (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/arkenfox/user.js/master/prefsCleaner.bat', "$CurrentFireFoxProfilePath\prefsCleaner.bat")
-        
-        Write-Host "Mozilla Firefox Arkenfox: Downloading 'user.js'" -ForegroundColor green -BackgroundColor black
-        (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/arkenfox/user.js/master/user.js', "$CurrentFireFoxProfilePath\user.js")
+        $Firefox_userChromecss_DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/userChrome.css'
+        $Firefox_userChromecss_Filename = [IO.Path]::GetFileName(([URI]$Firefox_userChromecss_DDL).AbsolutePath)
+        $Firefox_userChromecssSavePath = [IO.Path]::Combine($Firefox_Profile, 'chrome', $Firefox_userChromecss_Filename)
+        if (-not (Test-Path $Firefox_userChromecssSavePath)) {
+            New-Item $Firefox_userChromecssSavePath -ItemType File -Force
+        }
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_userChromecss_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_userChromecss_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_userChromecssSavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+        (New-Object System.Net.WebClient).DownloadFile($Firefox_userChromecss_DDL, $Firefox_userChromecssSavePath)
 
-        $Arkenfox_Update = 'Arkenfox Update'
-        $Arkenfox_Update_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $Arkenfox_Update }
-        if (-not ($Arkenfox_Update_Exists)) {
-            Write-Host "Mozilla Firefox Arkenfox: Task Scheduler: Adding $Arkenfox_Update" -ForegroundColor green -BackgroundColor black
-            $Arkenfox_Update_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-            $Arkenfox_Update_Action = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN $CurrentFireFoxProfilePath\updater.bat -unattended -updatebatch ^&exit"
-            $Arkenfox_Update_Trigger = New-ScheduledTaskTrigger -AtLogOn
-            $Arkenfox_Update_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
-            $Arkenfox_Update_Parameters = @{
-                TaskName  = $Arkenfox_Update
-                Principal = $Arkenfox_Update_Principal
-                Action    = $Arkenfox_Update_Action
-                Trigger   = $Arkenfox_Update_Trigger
-                Settings  = $Arkenfox_Update_Settings
+        $Firefox_ScriptsURLs = @(
+            'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/user-overrides.js',
+            'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/search.json.mozlz4',
+            'https://raw.githubusercontent.com/arkenfox/user.js/master/updater.bat',
+            'https://raw.githubusercontent.com/arkenfox/user.js/master/prefsCleaner.bat',
+            'https://raw.githubusercontent.com/arkenfox/user.js/master/user.js'
+        
+        )
+        foreach ($Firefox_ScriptURL in $Firefox_ScriptsURLs) {
+            $Firefox_ScriptFilename = [IO.Path]::GetFileName(([URI]$Firefox_ScriptURL).AbsolutePath)
+            $Firefox_ScriptSavePath = [IO.Path]::Combine($Firefox_Profile, $Firefox_ScriptFilename)
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_ScriptFilename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_ScriptURL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_ScriptSavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+            (New-Object Net.WebClient).DownloadFile($Firefox_ScriptURL, $Firefox_ScriptSavePath)
+        }
+
+        $Arkenfox_Update_TaskName = 'Arkenfox Update'
+        if (-not (Get-ScheduledTask -TaskName $Arkenfox_Update_TaskName -ErrorAction SilentlyContinue)) {
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Arkenfox_Update_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
+            $Arkenfox_Update_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN $Firefox_Profile\updater.bat -unattended -updatebatch ^&exit"
+            $Arkenfox_Update_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
+            $Arkenfox_Update_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
+            $Arkenfox_Update_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
+            Register-ScheduledTask -TaskName $Arkenfox_Update_TaskName -Action $Arkenfox_Update_TaskAction -Trigger $Arkenfox_Update_TaskTrigger -Principal $Arkenfox_Update_TaskPrincipal -Settings $Arkenfox_Update_TaskSettings -Force
+        }
+
+        $Arkenfox_Clean_TaskName = 'Arkenfox Clean'
+        if (-not (Get-ScheduledTask -TaskName $Arkenfox_Clean_TaskName -ErrorAction SilentlyContinue)) {
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Arkenfox_Clean_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
+            $Arkenfox_Clean_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN $Firefox_Profile\prefsCleaner.bat -unattended ^&exit"
+            $Arkenfox_Clean_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
+            $Arkenfox_Clean_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
+            $Arkenfox_Clean_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
+            Register-ScheduledTask -TaskName $Arkenfox_Clean_TaskName -Action $Arkenfox_Clean_TaskAction -Trigger $Arkenfox_Clean_TaskTrigger -Principal $Arkenfox_Clean_TaskPrincipal -Settings $Arkenfox_Clean_TaskSettings -Force
+        }
+
+        $Arkenfox_Overrides_TaskName = 'Arkenfox Overrides'
+        if (-not (Get-ScheduledTask -TaskName $Arkenfox_Overrides_TaskName -ErrorAction SilentlyContinue)) {
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Arkenfox_Overrides_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
+            $Arkenfox_Overrides_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/user-overrides.js -OutFile $Firefox_Profile\user-overrides.js"
+            $Arkenfox_Overrides_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
+            $Arkenfox_Overrides_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
+            $Arkenfox_Overrides_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
+            Register-ScheduledTask -TaskName $Arkenfox_Overrides_TaskName -Action $Arkenfox_Overrides_TaskAction -Trigger $Arkenfox_Overrides_TaskTrigger -Principal $Arkenfox_Overrides_TaskPrincipal -Settings $Arkenfox_Overrides_TaskSettings -Force
+        }
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Starting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Arkenfox_Update_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-ScheduledTask -TaskName $Arkenfox_Update_TaskName
+
+        $Firefox_DirsToDelete = 'datareporting', 'crashes', 'saved-telemetry-pings', 'minidumps'
+        foreach ($Firefox_DirToDelete in $Firefox_DirsToDelete) {
+            $Firefox_TelemetryDir = [IO.Path]::Combine($Firefox_Profile, $Firefox_DirToDelete)
+            if (Test-Path $Firefox_TelemetryDir) {
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Deleting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_DirToDelete'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' folder from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_TelemetryDir'"); [Console]::ResetColor(); [Console]::WriteLine()
+                Remove-Item $Firefox_TelemetryDir -Force -Recurse
             }
-            Register-ScheduledTask @Arkenfox_Update_Parameters -Force
-        }
-
-        $Arkenfox_Clean = 'Arkenfox Clean'
-        $Arkenfox_Clean_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $Arkenfox_Clean }
-        if (-not ($Arkenfox_Clean_Exists)) {
-            Write-Host "Mozilla Firefox Arkenfox: Task Scheduler: Adding $Arkenfox_Clean" -ForegroundColor green -BackgroundColor black
-            $Arkenfox_Clean_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-            $Arkenfox_Clean_Action = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN $CurrentFireFoxProfilePath\prefsCleaner.bat -unattended ^&exit"
-            $Arkenfox_Clean_Trigger = New-ScheduledTaskTrigger -AtLogOn
-            $Arkenfox_Clean_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
-            $Arkenfox_Clean_Parameters = @{
-                TaskName  = $Arkenfox_Clean
-                Principal = $Arkenfox_Clean_Principal
-                Action    = $Arkenfox_Clean_Action
-                Trigger   = $Arkenfox_Clean_Trigger
-                Settings  = $Arkenfox_Clean_Settings
-            }
-            Register-ScheduledTask @Arkenfox_Clean_Parameters -Force
-        }
-
-        $Arkenfox_Overrides = 'Arkenfox Overrides'
-        $Arkenfox_Overrides_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $Arkenfox_Overrides }
-        if (-not ($Arkenfox_Overrides_Exists)) {
-            Write-Host "Mozilla Firefox Arkenfox: Task Scheduler: Adding $Arkenfox_Overrides" -ForegroundColor green -BackgroundColor black
-            $Arkenfox_Overrides_Principal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-            $Arkenfox_Overrides_Action = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/user-overrides.js -OutFile $CurrentFireFoxProfilePath\user-overrides.js"
-            $Arkenfox_Overrides_Trigger = New-ScheduledTaskTrigger -AtLogOn
-            $Arkenfox_Overrides_Settings = New-ScheduledTaskSettingsSet -Compatibility Win8 -StartWhenAvailable
-            $Arkenfox_Overrides_Parameters = @{
-                TaskName  = $Arkenfox_Overrides
-                Principal = $Arkenfox_Overrides_Principal
-                Action    = $Arkenfox_Overrides_Action
-                Trigger   = $Arkenfox_Overrides_Trigger
-                Settings  = $Arkenfox_Overrides_Settings
-            }
-            Register-ScheduledTask @Arkenfox_Overrides_Parameters -Force
-        }
-
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Arkenfox: Starting'); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-ScheduledTask -TaskName $Arkenfox_Update
-
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Arkenfox: Cleaning up'); [Console]::ResetColor(); [Console]::WriteLine()
-        if ((Test-Path -Path "$CurrentFireFoxProfilePath\datareporting") -eq $true) {
-            Remove-Item -Path "$CurrentFireFoxProfilePath\datareporting" -Force -Recurse
-        }
-        if ((Test-Path -Path "$CurrentFireFoxProfilePath\crashes") -eq $true) {
-            Remove-Item -Path "$CurrentFireFoxProfilePath\crashes" -Force -Recurse
-        }
-        if ((Test-Path -Path "$CurrentFireFoxProfilePath\saved-telemetry-pings") -eq $true) {
-            Remove-Item -Path "$CurrentFireFoxProfilePath\saved-telemetry-pings" -Force -Recurse
-        }
-        if ((Test-Path -Path "$CurrentFireFoxProfilePath\minidumps") -eq $true) {
-            Remove-Item -Path "$CurrentFireFoxProfilePath\minidumps" -Force -Recurse
         }
     }
 }
