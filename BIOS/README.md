@@ -59,6 +59,7 @@ Everything about BIOS.
 1. `Advanced` > `Onboard Devices Configuration` > `ASM1061 Configuration` > `ASMedia Storage Controller` > `Disabled`.
 1. `Boot` > `Boot Configuration` > `Fast Boot` > `Disabled`.
 1. `Boot` > `Boot Configuration` > `Boot Logo Display` > `Disabled`.
+1. `Boot` > `Boot Configuration` > `POST Report` > `1 sec`.
 1. `Boot` > `Boot Configuration` > `Bootup NumLock State` > `Off`.
 1. `Tool` > `ASUS Armoury Crate` > `Download & Install ARMOURY CRATE app` > `Disabled`.
 
