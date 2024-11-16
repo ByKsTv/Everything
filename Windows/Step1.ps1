@@ -312,8 +312,13 @@ $Step1_Form_OK.Add_Click{
 $Step1_Form.Add_Shown({ $Step1_Form.Activate() })
 [void] $Step1_Form.ShowDialog()
 
+(New-Object -ComObject Microsoft.Update.ServiceManager).AddService2('7971f918-a847-4430-9279-4a52d1efe18d', 7, '')
+New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings -Name RestartNotificationsAllowed2 -PropertyType DWord -Value 1 -Force
+New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings -Name IsExpedited -PropertyType DWord -Value 1 -Force
+New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings -Name SmartActiveHoursState -PropertyType DWord -Value 0 -Force
+
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Waiting for user to install windows updates'); [Console]::ResetColor(); [Console]::WriteLine()
-Start-Process -FilePath 'ms-settings:windowsupdate'
+Start-Process -FilePath 'ms-settings:windowsupdate' 
 Start-Process -FilePath "$env:SystemRoot\System32\UsoClient.exe" -ArgumentList StartInteractiveScan
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Please restart PC after installing windows updates'); [Console]::ResetColor(); [Console]::WriteLine()
