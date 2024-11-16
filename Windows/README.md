@@ -4,7 +4,7 @@ Everything about Windows.
 
 ## Backup
 
-Usernames, passwords, videos, photos, files, software, desktop layout, macros, mpv settings, firefox profile folder, app data.
+Usernames, passwords, videos, photos, files, software, desktop layout, macros, mpv settings, chrome sync turn on, firefox profile folder, app data.
 
 ## Download ISO
 
@@ -36,6 +36,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. Power off PC.
 1. Disconnect Ethernet Cable.
 1. Disconnect Every Hard Drive Except Windows Drive.
+   > This is to ensure you don't delete data from other drives, but if you know which drive partition belongs to which drive then you don't have to.
 1. Boot to UEFI USB (F12/DEL/F11).
    > Restart to BIOS - CMD (Admin):
    >

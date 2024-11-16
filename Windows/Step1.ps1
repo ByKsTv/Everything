@@ -7,6 +7,10 @@ $NextStep_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\
 $NextStep_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
 Register-ScheduledTask -TaskName $NextStep_TaskName -Action $NextStep_TaskAction -Trigger $NextStep_TaskTrigger -Principal $NextStep_TaskPrincipal -Settings $NextStep_TaskSettings -Force
 
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Closing Edge'); [Console]::ResetColor(); [Console]::WriteLine()
+$stopedgerunning = 'MicrosoftEdgeUpdate', 'OneDrive', 'WidgetService', 'Widgets', 'msedge', 'msedgewebview2'
+$stopedgerunning | ForEach-Object { Stop-Process -Name $_ -Force -ErrorAction SilentlyContinue }
+
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Power Plan: Display: Turn off display after: 0 Seconds (Never)'); [Console]::ResetColor(); [Console]::WriteLine()
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e 0
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e 0
@@ -308,71 +312,8 @@ $Step1_Form_OK.Add_Click{
 $Step1_Form.Add_Shown({ $Step1_Form.Activate() })
 [void] $Step1_Form.ShowDialog()
 
-$maxRetries = 3
-$retryCount = 0
-$success = $false
-while (-not $success -and $retryCount -lt $maxRetries) {
-	$retryCount++
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Waiting for user to install windows updates'); [Console]::ResetColor(); [Console]::WriteLine()
+Start-Process -FilePath 'ms-settings:windowsupdate'
+Start-Process -FilePath "$env:SystemRoot\System32\UsoClient.exe" -ArgumentList StartInteractiveScan
 
-	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Updates: Searching'); [Console]::ResetColor(); [Console]::WriteLine()
-	$updateSession = New-Object -ComObject Microsoft.Update.Session
-	$updateSearcher = $updateSession.CreateUpdateSearcher()
-	$updateDownloader = $updateSession.CreateUpdateDownloader()
-	$updateInstaller = $updateSession.CreateUpdateInstaller()
-	$searchResult = $updateSearcher.Search('IsInstalled=0')
-
-	if ($searchResult.Updates.Count -eq 0) {
-		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Updates: No updates available'); [Console]::ResetColor(); [Console]::WriteLine()
-	}
-
-	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Updates: Available Updates:'); [Console]::ResetColor(); [Console]::WriteLine()
-	for ($i = 0; $i -lt $searchResult.Updates.Count; $i++) {
-		$update = $searchResult.Updates.Item($i)
-		Write-Host "$($i+1). $($update.Title)" -ForegroundColor green -BackgroundColor black
-	}
-
-	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Updates: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-	$updatesToDownload = New-Object -ComObject Microsoft.Update.UpdateColl
-	for ($i = 0; $i -lt $searchResult.Updates.Count; $i++) {
-		$update = $searchResult.Updates.Item($i)
-		$updatesToDownload.Add($update) | Out-Null
-	}
-	$updateDownloader.Updates = $updatesToDownload
-	$downloadResult = $updateDownloader.Download()
-
-	if ($downloadResult.ResultCode -ne 2) {
-		Write-Host "Windows Updates: Download failed. Result code: $($downloadResult.ResultCode)" -ForegroundColor red -BackgroundColor black
-		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'yellow'; [Console]::Write('Windows Updates: Retrying download...'); [Console]::ResetColor(); [Console]::WriteLine()
-		continue
-	}
-
-	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Updates: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
-	$updatesToInstall = New-Object -ComObject Microsoft.Update.UpdateColl
-	for ($i = 0; $i -lt $searchResult.Updates.Count; $i++) {
-		$update = $searchResult.Updates.Item($i)
-		if ($update.IsDownloaded) {
-			$updatesToInstall.Add($update) | Out-Null
-		}
-	}
-	$updateInstaller.Updates = $updatesToInstall
-	$installationResult = $updateInstaller.Install()
-
-	if ($installationResult.ResultCode -ne 2) {
-		Write-Host "Windows Updates: Installation failed. Result code: $($installationResult.ResultCode)" -ForegroundColor red -BackgroundColor black
-		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'yellow'; [Console]::Write('Windows Updates: Retrying installation...'); [Console]::ResetColor(); [Console]::WriteLine()
-		continue
-	}
-
-	$needsReboot = $false
-	for ($i = 0; $i -lt $updatesToInstall.Count; $i++) {
-		if ($updatesToInstall.Item($i).RebootRequired) {
-			$needsReboot = $true
-		}
-	}
-
-	if ($needsReboot) {
-		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Updates: Restarting'); [Console]::ResetColor(); [Console]::WriteLine()
-		Restart-Computer -Force
-		$success = $true
-	}
-}
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Please restart PC after installing windows updates'); [Console]::ResetColor(); [Console]::WriteLine()
