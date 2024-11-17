@@ -40,7 +40,6 @@ if ((Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogo
 }
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'DefaultUsername' -Value $env:username -PropertyType String -Force
 
-Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 [System.Windows.Forms.Application]::EnableVisualStyles()
 
@@ -326,7 +325,6 @@ New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings -Name 
 Start-Process -FilePath 'ms-settings:windowsupdate'
 Start-Process -FilePath "$env:SystemRoot\System32\UsoClient.exe" -ArgumentList StartInteractiveScan
 
-Add-Type -AssemblyName System.Windows.Forms
 $Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{TopMost = $true; ShowInTaskbar = $false; Opacity = 0 }
 $Popup_Text = "1. Click on 'View optional updates'
 2. Click on 'Driver updates'
@@ -335,7 +333,6 @@ $Popup_Text = "1. Click on 'View optional updates'
 [System.Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK')
 $Popup_Usermanual.Dispose()
 
-Add-Type -AssemblyName System.Windows.Forms
 $Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{TopMost = $true; ShowInTaskbar = $false; Opacity = 0 }
 $Popup_Text = 'Please restart PC after installing Windows Updates'
 [System.Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK')
