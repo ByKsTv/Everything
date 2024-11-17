@@ -337,6 +337,6 @@ $Popup_Usermanual.Dispose()
 
 Add-Type -AssemblyName System.Windows.Forms
 $Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{TopMost = $true; ShowInTaskbar = $false; Opacity = 0 }
-$Popup_Text = "Please restart PC after installing Windows Updates"
+$Popup_Text = 'Please restart PC after installing Windows Updates'
 [System.Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK')
 $Popup_Usermanual.Dispose()
