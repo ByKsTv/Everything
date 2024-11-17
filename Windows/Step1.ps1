@@ -11,6 +11,13 @@ Register-ScheduledTask -TaskName $NextStep_TaskName -Action $NextStep_TaskAction
 $stopedgerunning = 'MicrosoftEdgeUpdate', 'OneDrive', 'WidgetService', 'Widgets', 'msedge', 'msedgewebview2'
 $stopedgerunning | ForEach-Object { Stop-Process -Name $_ -Force -ErrorAction SilentlyContinue }
 
+Add-Type -AssemblyName System.Windows.Forms
+$Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{TopMost = $true; ShowInTaskbar = $false; Opacity = 0 }
+$Popup_Text = "1. Pin 'File Explorer' to taskbar
+2. Unpin 'Desktop', 'Documents' and 'Pictures' from Quick Access"
+[System.Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK')
+$Popup_Usermanual.Dispose()
+
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Power Plan: Display: Turn off display after: 0 Seconds (Never)'); [Console]::ResetColor(); [Console]::WriteLine()
 powercfg /SETACVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e 0
 powercfg /SETDCVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e 0
@@ -316,9 +323,20 @@ $Step1_Form.Add_Shown({ $Step1_Form.Activate() })
 New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings -Name RestartNotificationsAllowed2 -PropertyType DWord -Value 1 -Force
 New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings -Name IsExpedited -PropertyType DWord -Value 1 -Force
 New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings -Name SmartActiveHoursState -PropertyType DWord -Value 0 -Force
-
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Waiting for user to install windows updates'); [Console]::ResetColor(); [Console]::WriteLine()
-Start-Process -FilePath 'ms-settings:windowsupdate' 
+Start-Process -FilePath 'ms-settings:windowsupdate'
 Start-Process -FilePath "$env:SystemRoot\System32\UsoClient.exe" -ArgumentList StartInteractiveScan
 
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Please restart PC after installing windows updates'); [Console]::ResetColor(); [Console]::WriteLine()
+Add-Type -AssemblyName System.Windows.Forms
+$Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{TopMost = $true; ShowInTaskbar = $false; Opacity = 0 }
+$Popup_Text = "1. Click on 'View optional updates'
+2. Click on 'Driver updates'
+3. Select all
+4. Click on 'Download and install'"
+[System.Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK')
+$Popup_Usermanual.Dispose()
+
+Add-Type -AssemblyName System.Windows.Forms
+$Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{TopMost = $true; ShowInTaskbar = $false; Opacity = 0 }
+$Popup_Text = "Please restart PC after installing Windows Updates"
+[System.Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK')
+$Popup_Usermanual.Dispose()
