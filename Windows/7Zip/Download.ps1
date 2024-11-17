@@ -9,10 +9,10 @@ if (-not (Get-ScheduledTask -TaskName $7Zip_TaskName -ErrorAction SilentlyContin
 }
 
 $7Zip_InstalledVersion = (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\7-Zip' -ErrorAction SilentlyContinue).DisplayVersion
-$7Zip_LatestVersion = (Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/ip7z/7zip/releases/latest').tag_name
+$7Zip_LatestVersion = (Invoke-RestMethod -Uri 'https://api.github.com/repos/ip7z/7zip/releases/latest').tag_name
 
 if ($null -eq $7Zip_InstalledVersion -or $7Zip_InstalledVersion -notmatch $7Zip_LatestVersion) {
-    $7Zip_DDL = ((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/ip7z/7zip/releases/latest').assets | Where-Object name -Like '*-x64.exe*').browser_download_url
+    $7Zip_DDL = ((Invoke-RestMethod -Uri 'https://api.github.com/repos/ip7z/7zip/releases/latest').assets | Where-Object name -Like '*-x64.exe*').browser_download_url
     $7Zip_Filename = [IO.Path]::GetFileName(([URI]$7Zip_DDL).AbsolutePath)
     $7Zip_SavePath = [IO.Path]::Combine($env:TEMP, $7Zip_Filename)
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'7-Zip'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$7Zip_LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$7Zip_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$7Zip_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()

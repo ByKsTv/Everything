@@ -34,10 +34,10 @@ if ($null -eq $Discord_InstalledVersion -or $Discord_InstalledVersion -notmatch 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Closing Discord process'); [Console]::ResetColor(); [Console]::WriteLine()
     Get-Process -Name 'Discord' -ErrorAction SilentlyContinue | ForEach-Object { $_.Kill() } | Out-Null
 
-    $Discord_DesktopShortCut = "$($env:USERPROFILE)\Desktop\Discord.lnk"
-    if (Test-Path -Path $Discord_DesktopShortCut) {
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Deleting Discord desktop shortcut from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_DesktopShortCut'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Remove-Item -Path $Discord_DesktopShortCut
+    $Discord_DesktopShortcut = "$($env:USERPROFILE)\Desktop\Discord.lnk"
+    if (Test-Path -Path $Discord_DesktopShortcut) {
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Deleting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Discord'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' desktop shortcut from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_DesktopShortcut'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Remove-Item -Path $Discord_DesktopShortcut
     }
     
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Disabling Discord startup'); [Console]::ResetColor(); [Console]::WriteLine()

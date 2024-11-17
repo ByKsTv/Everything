@@ -1,20 +1,22 @@
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox: Downloading group policy'); [Console]::ResetColor(); [Console]::WriteLine()
-(New-Object System.Net.WebClient).DownloadFile(((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/mozilla/policy-templates/releases/latest').assets | Where-Object name -Like 'policy_templates*' ).browser_download_url, "$env:TEMP\policy_templates_firefox.zip")
+$Firefox_PolicyTemplates_DDL = ((Invoke-RestMethod -Uri 'https://api.github.com/repos/mozilla/policy-templates/releases/latest').assets | Where-Object name -Like 'policy_templates*').browser_download_url
+$Firefox_PolicyTemplates_Filename = [IO.Path]::GetFileName(([URI]$Firefox_PolicyTemplates_DDL).AbsolutePath)
+$Firefox_PolicyTemplates_SavePath = [IO.Path]::Combine($env:TEMP, $Firefox_PolicyTemplates_Filename)
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_PolicyTemplates_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_PolicyTemplates_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_PolicyTemplates_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+(New-Object System.Net.WebClient).DownloadFile($Firefox_PolicyTemplates_DDL, $Firefox_PolicyTemplates_SavePath)
 
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox: Extracting group policy'); [Console]::ResetColor(); [Console]::WriteLine()
-Expand-Archive -Path "$env:TEMP\policy_templates_firefox.zip" -DestinationPath "$env:TEMP\policy_templates_firefox" -ErrorAction SilentlyContinue
+$Firefox_PolicyTemplates_Dir = $Firefox_PolicyTemplates_SavePath.TrimEnd('.zip')
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_PolicyTemplates_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_PolicyTemplates_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_PolicyTemplates_Dir'"); [Console]::ResetColor(); [Console]::WriteLine()
+Expand-Archive -Path $Firefox_PolicyTemplates_SavePath -DestinationPath $Firefox_PolicyTemplates_Dir -Force
 
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox: Importing group policy'); [Console]::ResetColor(); [Console]::WriteLine()
-Move-Item -Path "$env:TEMP\policy_templates_firefox\windows\firefox.admx" -Destination "$env:windir\PolicyDefinitions" -ErrorAction SilentlyContinue
-Move-Item -Path "$env:TEMP\policy_templates_firefox\windows\mozilla.admx" -Destination "$env:windir\PolicyDefinitions" -ErrorAction SilentlyContinue
-Move-Item -Path "$env:TEMP\policy_templates_firefox\windows\en-US\firefox.adml" -Destination "$env:windir\PolicyDefinitions\en-US" -ErrorAction SilentlyContinue
-Move-Item -Path "$env:TEMP\policy_templates_firefox\windows\en-US\mozilla.adml" -Destination "$env:windir\PolicyDefinitions\en-US" -ErrorAction SilentlyContinue
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Mozilla Firefox Policy Templates'"); [Console]::ResetColor(); [Console]::WriteLine()
+Copy-Item "$Firefox_PolicyTemplates_Dir\windows\*.admx" "$env:windir\PolicyDefinitions" -Force
+Copy-Item "$Firefox_PolicyTemplates_Dir\windows\en-US\*.adml" "$env:windir\PolicyDefinitions\en-US" -Force
 
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox: Setting Policy'); [Console]::ResetColor(); [Console]::WriteLine()
-# https://mozilla.github.io/policy-templates/
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Setting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Mozilla Firefox Policies'"); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -Path 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox') -ne $true) {
     New-Item 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox' -Force 
 }
+# https://mozilla.github.io/policy-templates/
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox' -Name 'DisableDefaultBrowserAgent' -Value 1 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox' -Name 'BackgroundAppUpdate' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox' -Name 'NoDefaultBookmarks' -Value 1 -PropertyType DWord -Force
@@ -24,19 +26,34 @@ New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox' -Name 'DisableF
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox' -Name 'DisablePocket' -Value 1 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox' -Name 'DisableProfileRefresh' -Value 1 -PropertyType DWord -Force
 
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-(New-Object System.Net.WebClient).DownloadFile('https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US', "$env:TEMP\firefox.exe")
+$Firefox_DDL = (Invoke-WebRequest -UseBasicParsing -Uri 'https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US' -MaximumRedirection 0 -ErrorAction SilentlyContinue).Headers.Location
+$Firefox_Filename = [IO.Path]::GetFileName(([URI]$Firefox_DDL).AbsolutePath)
+$Firefox_SavePath = [Uri]::UnescapeDataString([IO.Path]::Combine($env:TEMP, $Firefox_Filename))
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Mozilla Firefox'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+(New-Object System.Net.WebClient).DownloadFile($Firefox_DDL, $Firefox_SavePath)
 
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
-Start-Process $env:TEMP\firefox.exe -ArgumentList '/S' -Wait
+$Firefox_Argument = '/S'
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Mozilla Firefox'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+Start-Process $Firefox_SavePath -ArgumentList $Firefox_Argument -Wait
 
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox: Deleting Desktop Shortcut'); [Console]::ResetColor(); [Console]::WriteLine()
-if ((Test-Path -Path "$env:PUBLIC\Desktop\Firefox.lnk") -eq $true) {
-    Remove-Item -Path ("$env:PUBLIC\Desktop\Firefox.lnk")
+$Firefox_DesktopShortcut = "$env:PUBLIC\Desktop\Firefox.lnk"
+if (Test-Path -Path $Firefox_DesktopShortcut) {
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Deleting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Mozilla Firefox'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' desktop shortcut from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_DesktopShortcut'"); [Console]::ResetColor(); [Console]::WriteLine()
+    Remove-Item -Path $Firefox_DesktopShortcut
 }
 
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox: Starting'); [Console]::ResetColor(); [Console]::WriteLine()
-Start-Process "$env:ProgramFiles\Mozilla Firefox\firefox.exe"
+$Firefox_Destination = (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*', 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*' -ErrorAction SilentlyContinue | Where-Object { $_.DisplayName -like '*Firefox*' }).InstallLocation
+$Firefox_OLD_PATH = [System.Environment]::GetEnvironmentVariable('Path', [System.EnvironmentVariableTarget]::User)
+if ($Firefox_OLD_PATH -notlike "*$Firefox_Destination*") {
+    $Firefox_NEW_PATH = "$Firefox_OLD_PATH;$Firefox_Destination"
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Mozilla Firefox'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_Destination'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'PATH'"); [Console]::ResetColor(); [Console]::WriteLine()
+    [System.Environment]::SetEnvironmentVariable('Path', $Firefox_NEW_PATH, [System.EnvironmentVariableTarget]::User)
+    $env:Path = [System.Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path', 'User')
+}
+
+$Firefox_EXEDestination = [IO.Path]::Combine($Firefox_Destination, 'firefox.exe')
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Starting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Mozilla Firefox'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_EXEDestination'"); [Console]::ResetColor(); [Console]::WriteLine()
+Start-Process $Firefox_EXEDestination
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox: Waiting for browser'); [Console]::ResetColor(); [Console]::WriteLine()
 while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' } -ErrorAction SilentlyContinue))) {

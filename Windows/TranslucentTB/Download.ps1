@@ -25,7 +25,7 @@ if ($null -eq $TranslucentTBPackage) {
 
 if ($TranslucentTBInstalledVersionParts -ne $TranslucentTBLatestVersionParts) {
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('TranslucentTB: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-    (New-Object System.Net.WebClient).DownloadFile(((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/TranslucentTB/TranslucentTB/releases/latest').assets | Where-Object name -Like '*appinstaller*').browser_download_url, "$env:TEMP\TranslucentTB.appinstaller")
+    (New-Object System.Net.WebClient).DownloadFile(((Invoke-RestMethod -Uri 'https://api.github.com/repos/TranslucentTB/TranslucentTB/releases/latest').assets | Where-Object name -Like '*appinstaller*').browser_download_url, "$env:TEMP\TranslucentTB.appinstaller")
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('TranslucentTB: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
     Add-AppxPackage -AppInstallerFile "$env:TEMP\TranslucentTB.appinstaller"

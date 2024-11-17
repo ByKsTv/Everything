@@ -1,5 +1,5 @@
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('nvidiaProfileInspector: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-(New-Object System.Net.WebClient).DownloadFile((Invoke-RestMethod -Method GET -Uri 'https://api.github.com/repos/Orbmu2k/nvidiaProfileInspector/releases/latest').assets.browser_download_url, "$env:TEMP\nvidiaProfileInspector.zip")
+(New-Object System.Net.WebClient).DownloadFile((Invoke-RestMethod -Uri 'https://api.github.com/repos/Orbmu2k/nvidiaProfileInspector/releases/latest').assets.browser_download_url, "$env:TEMP\nvidiaProfileInspector.zip")
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('nvidiaProfileInspector: Extracting'); [Console]::ResetColor(); [Console]::WriteLine()
 if (-not (Test-Path -Path $env:TEMP\nvidiaProfileInspector)) {
