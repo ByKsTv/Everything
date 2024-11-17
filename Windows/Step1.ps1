@@ -14,7 +14,7 @@ $stopedgerunning | ForEach-Object { Stop-Process -Name $_ -Force -ErrorAction Si
 Add-Type -AssemblyName System.Windows.Forms
 $Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{TopMost = $true; ShowInTaskbar = $false; Opacity = 0 }
 $Popup_Text = "1. Pin 'File Explorer' to taskbar
-2. Unpin 'Desktop', 'Documents' and 'Pictures' from Quick Access"
+2. Unpin 'Documents' and 'Pictures' from Quick Access"
 [System.Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK')
 $Popup_Usermanual.Dispose()
 
