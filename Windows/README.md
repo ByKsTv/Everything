@@ -21,7 +21,6 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. Download LAN drivers matching the motherboard to the USB.
 1. Download Chipset drivers matching the motherboard to the USB.
 1. Download Serial IO drivers matching the motherboard to the USB.
-1. Download Intel(R) Rapid Storage Technology matching the motherboard to the USB.
    > Find Motherboard - PowerShell (Admin):
    >
    > ```powershell
@@ -60,7 +59,6 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. Install LAN drivers matching the motherboard from the USB.
 1. Install Chipset drivers matching the motherboard from the USB.
 1. Install Serial IO drivers matching the motherboard from the USB.
-1. Install Intel(R) Rapid Storage Technology matching the motherboard from the USB.
 
 ## Initial Setup - Auto Install
 
