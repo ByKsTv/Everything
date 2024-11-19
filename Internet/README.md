@@ -15,13 +15,13 @@ Ubiquity
 
 ### Cable equipment
 
-Cat 7 Cable (23AWG)
-[Cable Strain Relief Boots (50PCS, 8.0mm Transparent)](https://www.aliexpress.com/item/4001178933737.html)
-[Cable Stripper](https://www.aliexpress.com/item/1005005858039905.html)
-[Cat 7 Connector (CAT7 Normal Silver)](https://www.aliexpress.com/item/1005004323161234.html)
-[Cat 7 Crimper](https://www.aliexpress.com/item/33031923435.html)
-[Cat 7 Keystone Jack (CAT7 STP)](https://www.aliexpress.com/item/1005006297343620.html)
-[Cable Tester](https://www.aliexpress.com/item/4001142001681.html)
+1. Cat 7 Cable (23AWG)
+1. [Cable Strain Relief Boots (50PCS, 8.0mm Transparent)](https://www.aliexpress.com/item/4001178933737.html)
+1. [Cable Stripper](https://www.aliexpress.com/item/1005005858039905.html)
+1. [Cat 7 Connector (CAT7 Normal Silver)](https://www.aliexpress.com/item/1005004323161234.html)
+1. [Cat 7 Crimper](https://www.aliexpress.com/item/33031923435.html)
+1. [Cat 7 Keystone Jack (CAT7 STP)](https://www.aliexpress.com/item/1005006297343620.html)
+1. [Cable Tester](https://www.aliexpress.com/item/4001142001681.html)
 
 ## ISP
 
@@ -49,10 +49,10 @@ Cat 7 Cable (23AWG)
 
 ### Technicians law
 
-> Technician schduled to arrive from 12:00 to 14:00
-> Technician arrives before 16:00 - No compensation.
-> Technician arrives after 16:00 - X compensation.
-> Technician arrives after 17:00 - X2 compensation.
+Technician schduled to arrive from 12:00 to 14:00
+Technician arrives before 16:00 - No compensation.
+Technician arrives after 16:00 - X compensation.
+Technician arrives after 17:00 - X2 compensation.
 > Search for 'Technician law' on Google
 
 1. Send a public inquiry.
