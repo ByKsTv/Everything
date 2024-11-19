@@ -49,14 +49,14 @@ Ubiquity
 
 ### Technicians law
 
-Technician schduled to arrive from 12:00 to 14:00
-
-Technician arrives before 16:00 - No compensation.
-
-Technician arrives after 16:00 - X compensation.
-
-Technician arrives after 17:00 - X2 compensation.
-
+> Technician schduled to arrive from 12:00 to 14:00
+>
+> Technician arrives before 16:00 - No compensation.
+>
+> Technician arrives after 16:00 - X compensation.
+>
+> Technician arrives after 17:00 - X2 compensation.
+>
 > Search for 'Technician law' on Google
 
 1. Send a public inquiry.
