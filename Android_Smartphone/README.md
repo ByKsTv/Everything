@@ -128,7 +128,7 @@ adb shell pm uninstall org.skvalex.cr
    fastboot devices
    ```
 
-> if not found anything, download [usb drviers](https://developer.android.com/studio/run/win-usb) and install using "have disk"
+   > if not found anything, download [usb drviers](https://developer.android.com/studio/run/win-usb) and install using "have disk"
 
 1. Unlock OEM Bootloader using fastboot:
 
