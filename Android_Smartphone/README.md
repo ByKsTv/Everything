@@ -2,11 +2,6 @@
 
 Everything about Android apps.
 
-## APKs
-
-- [4pda](https://4pda.to/forum/index.php?showforum=212)
-- [mobilism](https://forum.mobilism.me/viewforum.php?f=398)
-
 ## Android Apps
 
 - [UAD-ng](https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/releases/latest) - Android Debloater
@@ -39,6 +34,10 @@ Everything about Android apps.
 - [AccuBattery](https://4pda.to/forum/index.php?act=findpost&pid=52860795&anchor=Spoil-52860795-5) - Mod by Balatan
 - [StudyGe - World Geography Quiz](https://4pda.to/forum/index.php?act=findpost&pid=119912812&anchor=Spoil-119912812-4) - Premium
 
+> [4pda](https://4pda.to/forum/index.php?showforum=212)
+>
+> [mobilism](https://forum.mobilism.me/viewforum.php?f=398)
+>
 > [Registration guide for 4pda](https://www.youtube.com/watch?v=3XOut-lgHRc)
 
 ## Mull Settings

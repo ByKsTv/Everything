@@ -36,7 +36,7 @@ $Firefox_Argument = '/S'
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Mozilla Firefox'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
 Start-Process $Firefox_SavePath -ArgumentList $Firefox_Argument -Wait
 
-$Firefox_DesktopShortcut = "$env:PUBLIC\Desktop\Firefox.lnk"
+$Firefox_DesktopShortcut = [IO.Path]::Combine($env:PUBLIC, 'Desktop', 'Firefox.lnk')
 if (Test-Path -Path $Firefox_DesktopShortcut) {
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Deleting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Mozilla Firefox'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' desktop shortcut from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_DesktopShortcut'"); [Console]::ResetColor(); [Console]::WriteLine()
     Remove-Item -Path $Firefox_DesktopShortcut
