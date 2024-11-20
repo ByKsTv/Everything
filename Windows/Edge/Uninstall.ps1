@@ -28,7 +28,7 @@ if ($InstalledSoftware -match 'Microsoft Edge') {
     }
     New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\EdgeUpdate -Name DoNotUpdateToEdgeWithChromium -PropertyType DWord -Value 1 -Force
 
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Allow '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Edge'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to uninstall'); [Console]::ResetColor(); [Console]::WriteLine()
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Allowing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Edge'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to uninstall'); [Console]::ResetColor(); [Console]::WriteLine()
     if ((Test-Path -Path HKLM:\Software\WOW6432Node\Microsoft\EdgeUpdateDev) -ne $true) {
         New-Item HKLM:\Software\WOW6432Node\Microsoft\EdgeUpdateDev -Force
     }
@@ -40,27 +40,17 @@ if ($InstalledSoftware -match 'Microsoft Edge') {
         New-Item $MicrosoftEdge_TemporaryFile -ItemType File -Force
     }
 
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Edge Uninstaller: Getting UninstallString'); [Console]::ResetColor(); [Console]::WriteLine()
-    $regview = [Microsoft.Win32.RegistryView]::Registry32
-    $microsoft = [Microsoft.Win32.RegistryKey]::OpenBaseKey([Microsoft.Win32.RegistryHive]::LocalMachine, $regview).
-    OpenSubKey('SOFTWARE\Microsoft', $true)
-    $uninstallregkey = $microsoft.OpenSubKey('Windows\CurrentVersion\Uninstall\Microsoft Edge')
-    try {
-        $uninstallstring = $uninstallregkey.GetValue('UninstallString') + ' --force-uninstall'
-    }
-    catch {
-    }
-
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Edge Uninstaller: Uninstalling'); [Console]::ResetColor(); [Console]::WriteLine()
-    Start-Process cmd.exe "/c $uninstallstring" -WindowStyle Hidden -Wait
+    $MicrosoftEdge_UninstallString = ([Microsoft.Win32.RegistryKey]::OpenBaseKey([Microsoft.Win32.RegistryHive]::LocalMachine, [Microsoft.Win32.RegistryView]::Registry32).OpenSubKey('SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Microsoft Edge')).GetValue('UninstallString') + ' --force-uninstall'
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Uninstalling '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Edge'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MicrosoftEdge_UninstallString'"); [Console]::ResetColor(); [Console]::WriteLine()
+    Start-Process cmd.exe "/c $MicrosoftEdge_UninstallString" -WindowStyle Hidden -Wait
 
     $MicrosoftEdge_TemporaryFolder = Split-Path $MicrosoftEdge_TemporaryFile -Parent
     if (Test-Path $MicrosoftEdge_TemporaryFolder) {
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Taking ownership on '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Edge'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' temporary folder from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MicrosoftEdge_TemporaryFolder'"); [Console]::ResetColor(); [Console]::WriteLine()
-        takeown /F $MicrosoftEdge_TemporaryFolder /R /D Y
+        takeown.exe /F $MicrosoftEdge_TemporaryFolder /R /D Y
 
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Granting premissions on '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Edge'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' temporary folder from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MicrosoftEdge_TemporaryFolder'"); [Console]::ResetColor(); [Console]::WriteLine()
-        icacls $MicrosoftEdge_TemporaryFolder /grant 'Everyone:F' /T
+        icacls.exe $MicrosoftEdge_TemporaryFolder /grant 'Everyone:F' /T
 
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Deleting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Edge'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' temporary folder from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MicrosoftEdge_TemporaryFolder'"); [Console]::ResetColor(); [Console]::WriteLine()
         Remove-Item $MicrosoftEdge_TemporaryFolder -Recurse -Force
