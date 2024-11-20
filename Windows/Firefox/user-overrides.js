@@ -94,6 +94,7 @@ user_pref("browser.download.alwaysOpenPanel", true);
 
 // Enable auto fill forms to quickly sign in
 user_pref("signon.autofillForms", true);
+user_pref("signon.autofillForms.http", true);
 
 // Enable Custom userChrome.css
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
