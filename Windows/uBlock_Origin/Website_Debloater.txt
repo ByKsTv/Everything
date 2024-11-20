@@ -248,6 +248,7 @@ www.aliexpress.com##.result-download-app--container--1_KNRHr
 www.aliexpress.com##.result-messenger--messenger-container--cbQSBVf
 www.aliexpress.com##.site-footer
 www.aliexpress.com##.survey-link
+www.amazon.com###nile-inline_feature_div
 www.geektime.co.il##.d-lg-block.d-none.ms-md-auto.col-md-280.col-12
 www.geektime.co.il##.header__btn__random
 www.geektime.co.il##.light_theme.accessability_container
