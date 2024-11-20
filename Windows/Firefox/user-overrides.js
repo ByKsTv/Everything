@@ -92,6 +92,9 @@ user_pref("browser.preferences.experimental", false);
 // Enable Downloads Pop-up when finished downloading (for quick open downloaded files)
 user_pref("browser.download.alwaysOpenPanel", true);
 
+// Enable auto fill forms to quickly sign in
+user_pref("signon.autofillForms", true);
+
 // Enable Custom userChrome.css
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 
