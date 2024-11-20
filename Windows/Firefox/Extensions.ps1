@@ -1,7 +1,7 @@
-if ((Test-Path -Path $env:APPDATA\Mozilla\Firefox\Profiles) -eq $true) {
-    $FirefoxProfiles = Get-ChildItem -Directory -Path "$env:APPDATA\Mozilla\Firefox\Profiles" -Filter '*.default-release'
-    $CurrentFirefoxProfile = "$env:APPDATA\Mozilla\Firefox\Profiles\$FirefoxProfiles"
-    if ((Test-Path -Path $CurrentFirefoxProfile) -eq $true) {
+$Firefox_Profiles = [IO.Path]::Combine($env:APPDATA, 'Mozilla', 'Firefox', 'Profiles')
+if (Test-Path $Firefox_Profiles) {
+    $Firefox_Profile = (Get-ChildItem $Firefox_Profiles -Directory -Filter '*.default-release' | Select-Object -First 1).FullName
+    if (Test-Path $Firefox_Profile) {
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Closing browser'); [Console]::ResetColor(); [Console]::WriteLine()
         Stop-Process -Name firefox -Force -ErrorAction SilentlyContinue
 

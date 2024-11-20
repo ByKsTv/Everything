@@ -1,9 +1,7 @@
 $Firefox_Profiles = [IO.Path]::Combine($env:APPDATA, 'Mozilla', 'Firefox', 'Profiles')
 if (Test-Path $Firefox_Profiles) {
-
     $Firefox_Profile = (Get-ChildItem $Firefox_Profiles -Directory -Filter '*.default-release' | Select-Object -First 1).FullName
     if (Test-Path $Firefox_Profile) {
-
         if (Get-Process -Name firefox -ErrorAction SilentlyContinue) {
             [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Closing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Mozilla Firefox'"); [Console]::ResetColor(); [Console]::WriteLine()
             Stop-Process -Name firefox -Force

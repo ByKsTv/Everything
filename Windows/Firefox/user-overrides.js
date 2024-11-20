@@ -89,6 +89,9 @@ user_pref("browser.tabs.hoverPreview.enabled", false);
 // Disable Firefox Labs
 user_pref("browser.preferences.experimental", false);
 
+// Enable Downloads Pop-up when finished downloading (for quick open downloaded files)
+user_pref("browser.download.alwaysOpenPanel", true);
+
 // Enable Custom userChrome.css
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 

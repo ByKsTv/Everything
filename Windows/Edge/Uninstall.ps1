@@ -10,7 +10,6 @@ if (-not (Get-ScheduledTask -TaskName $EdgeUninstaller_TaskName -ErrorAction Sil
 
 $InstalledSoftware = Get-Package | Select-Object -Property 'Name'
 if (($InstalledSoftware -match 'Microsoft Edge')) {
-    # https://github.com/fr33thytweaks/Ultimate-Windows-Optimization-Guide/blob/main/6%20Windows/14%20Edge.ps1
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Edge Uninstaller: Stopping Related Processes'); [Console]::ResetColor(); [Console]::WriteLine()
     $stopedgerunning = 'MicrosoftEdgeUpdate', 'OneDrive', 'WidgetService', 'Widgets', 'msedge', 'msedgewebview2'
     $stopedgerunning | ForEach-Object { Stop-Process -Name $_ -Force -ErrorAction SilentlyContinue }
@@ -108,12 +107,3 @@ if (($InstalledSoftware -match 'Microsoft Edge')) {
         Remove-Item -Force "$env:USERPROFILE\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\Microsoft Edge.lnk"
     }
 }
-
-# other methods
-#Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ChrisTitusTech/winutil/d0bde83333730a4536497451af747daba11e5039/edgeremoval.ps1')
-
-#Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ChrisTitusTech/winutil/main/edgeremoval.ps1')
-#explorer.exe
-
-# (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/he3als/EdgeRemover/main/RemoveEdge.ps1', "$env:TEMP\RemoveEdge.ps1")
-# Start-Process -FilePath 'powershell' -Verb RunAs -ArgumentList "-NoP -EP Unrestricted -File `"$env:TEMP\RemoveEdge.ps1`" -UninstallEdge -RemoveEdgeData -NonInteractive"
