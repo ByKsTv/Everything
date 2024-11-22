@@ -65,7 +65,7 @@ if (Test-Path $Firefox_Profiles) {
         [System.Diagnostics.Process]::Start('firefox.exe')
 
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Waiting for browser'); [Console]::ResetColor(); [Console]::WriteLine()
-        while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' } -ErrorAction SilentlyContinue))) {
+        while ($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' } -ErrorAction SilentlyContinue)) {
             Start-Sleep -Milliseconds 1000
         }
         Start-Sleep -Milliseconds 20000

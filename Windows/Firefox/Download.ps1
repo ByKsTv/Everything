@@ -56,7 +56,7 @@ $Firefox_EXEDestination = [IO.Path]::Combine($Firefox_Destination, 'firefox.exe'
 Start-Process $Firefox_EXEDestination
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox: Waiting for browser'); [Console]::ResetColor(); [Console]::WriteLine()
-while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' } -ErrorAction SilentlyContinue))) {
+while ($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' } -ErrorAction SilentlyContinue)) {
     Start-Sleep -Milliseconds 1000
 }
 Start-Sleep -Milliseconds 10000

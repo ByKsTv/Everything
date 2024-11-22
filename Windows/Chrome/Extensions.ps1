@@ -44,7 +44,7 @@ if ($InstalledSoftware -match 'Google Chrome') {
     Start-Sleep -Milliseconds 1000
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Waiting for browser'); [Console]::ResetColor(); [Console]::WriteLine()
-    while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'Chrome' } -ErrorAction SilentlyContinue))) {
+    while ($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'Chrome' } -ErrorAction SilentlyContinue)) {
         Start-Sleep -Milliseconds 1000
     }
     Start-Sleep -Milliseconds 20000

@@ -1866,7 +1866,7 @@ if ($null -eq $mobileeventsdatamicrosoft) {
 	Add-Content -Path $env:windir\System32\drivers\etc\hosts -Value "`n127.0.0.1`tmobile.events.data.microsoft.com" -Force
 }
 
-Set-NetFirewallRule -DisplayGroup “File and Printer Sharing” -Enabled True -Profile Private
+Set-NetFirewallRule -DisplayGroup 'File and Printer Sharing' -Enabled True -Profile Private
 
 Add-Type -AssemblyName System.Windows.Forms
 $WakeOnLanAnswer = [System.Windows.Forms.MessageBox]::Show('Enable Wake-On-Lan?
