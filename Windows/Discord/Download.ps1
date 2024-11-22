@@ -13,6 +13,15 @@ $Discord_DDL = (Invoke-WebRequest -UseBasicParsing -Uri 'https://discord.com/api
 $Discord_LatestVersion = [regex]::Match($Discord_DDL, '\d+(\.\d+)+').Value
 
 if ($null -eq $Discord_InstalledVersion -or $Discord_InstalledVersion -notmatch $Discord_LatestVersion) {
+    if (Get-Process -Name 'Discord') {
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Closing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Discord'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Get-Process -Name 'Discord' -ErrorAction SilentlyContinue | ForEach-Object {
+            $_.CloseMainWindow() | Out-Null
+        }
+        Start-Sleep -Milliseconds 1000
+        Get-Process -Name 'Discord' -ErrorAction SilentlyContinue | Stop-Process -Force
+    }
+
     $Discord_Filename = [IO.Path]::GetFileName(([URI]$Discord_DDL).AbsolutePath)
     $Discord_SavePath = [IO.Path]::Combine($env:TEMP, $Discord_Filename)
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Discord'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
