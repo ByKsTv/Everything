@@ -1499,246 +1499,501 @@ $SoftwareSelection_Form_OK.Add_Click{
         }
         New-ItemProperty -Path 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\TrustManager' -Name 'iProtectedView' -Value 2 -PropertyType DWord -Force
 
-        $AcrobatPro_Label = 'https://w14.monkrus.ws/search/label/Acrobat'
-        $AcrobatPro_Title = ((Invoke-WebRequest -UseBasicParsing -Uri $AcrobatPro_Label).Links | Where-Object { $_.outerHTML -match 'x64' } | Select-Object -First 1).outerHTML -replace '.*?>(.*?)</a>', '$1'
-        $AcrobatPro_Post = ((Invoke-WebRequest -UseBasicParsing -Uri $AcrobatPro_Label).Links | Where-Object { $_.outerHTML -match 'x64' } | Select-Object -First 1).href
-        $AcrobatPro_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AcrobatPro_Post).Links | Where-Object { $_.outerHTML -match 'uniondht.org' } | Select-Object -First 1).href
-        if ($null -eq $AcrobatPro_Forum) {
-            $AcrobatPro_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AcrobatPro_Post).Links | Where-Object { $_.outerHTML -match 'pb.wtf' } | Select-Object -First 1).href
-        }
-        $AcrobatPro_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AcrobatPro_Forum).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
-        $AcrobatPro_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
-        if (Test-Path $AcrobatPro_qBittorrent_LOG) {
-            Remove-Item $AcrobatPro_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
-        }
-        Remove-Item -Path "$env:TEMP\*Acrobat*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
-        $AcrobatPro_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($AcrobatPro_Magnet)"""
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process qBittorrent.exe -ArgumentList $AcrobatPro_qBittorrent_Argument
-        while (-not ($AcrobatPro_TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*Acrobat*' | Select-Object -First 1).FullName)) {
-            Start-Sleep -Milliseconds 1000
-        }
+        $AcrobatPro_Form = New-Object System.Windows.Forms.Form
+        $AcrobatPro_Form.Text = 'AcrobatPro Selection'
+        $AcrobatPro_Form.StartPosition = 'CenterScreen'
+        $AcrobatPro_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
+        $AcrobatPro_Form.Topmost = $true
+        $AcrobatPro_Form.MaximizeBox = $false
+        $AcrobatPro_Form.MinimizeBox = $false
+        $AcrobatPro_Form.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
 
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Add-MpPreference -ExclusionPath $AcrobatPro_TempDir
+        $AcrobatPro_DropDown = New-Object System.Windows.Forms.ComboBox
+        $AcrobatPro_DropDown.Location = New-Object System.Drawing.Point(5, 0)
+        $AcrobatPro_DropDown.DropDownStyle = 'DropDownList'
 
-        while (-not ($AcrobatPro_TempISO = (Get-ChildItem $AcrobatPro_TempDir -Filter '*.iso' | Select-Object -First 1).FullName)) {
-            Start-Sleep -Milliseconds 1000
+        $AcrobatPro_nnmclub_search = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w14.monkrus.ws/search/label/Acrobat').Links | Where-Object { $_.outerHTML -match 'x64' -and $_.outerHTML -notmatch '#more' }
+
+        $AcrobatPro_nnmclub_Array = @{}
+        $AcrobatPro_graphics = [System.Drawing.Graphics]::FromHwnd($AcrobatPro_Form.Handle)
+        $AcrobatPro_maxWidth = 0
+        foreach ($AcrobatPro_nnmclub_post in $AcrobatPro_nnmclub_search) {
+            $AcrobatPro_nnmclub_title = ($AcrobatPro_nnmclub_post.outerHTML -replace '.*?>(.*?)</a>', '$1')
+            $AcrobatPro_nnmclub_url = $AcrobatPro_nnmclub_post.href
+            $AcrobatPro_nnmclub_Array[$AcrobatPro_nnmclub_title] = $AcrobatPro_nnmclub_url
+            $null = $AcrobatPro_DropDown.Items.Add($AcrobatPro_nnmclub_title)
+            $AcrobatPro_Width = [int]$AcrobatPro_graphics.MeasureString($AcrobatPro_nnmclub_title, $AcrobatPro_Form.Font).Width
+            if ($AcrobatPro_Width -gt $AcrobatPro_maxWidth) {
+                $AcrobatPro_maxWidth = $AcrobatPro_Width 
+            }
         }
-        do {
-            Start-Sleep -Milliseconds 1000
-        } until ((Get-Content $AcrobatPro_qBittorrent_LOG -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*Acrobat*')
+        $AcrobatPro_DropDown.Width = $AcrobatPro_maxWidth + 10
+        $AcrobatPro_FormWidth = $AcrobatPro_DropDown.Width + 25
+        $AcrobatPro_Form.Size = New-Object System.Drawing.Size($AcrobatPro_FormWidth, 90)
 
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_TempISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_TempDir'"); [Console]::ResetColor(); [Console]::WriteLine()
-        7z.exe x $AcrobatPro_TempISO -o"$AcrobatPro_TempDir" -y
+        $AcrobatPro_Form.Controls.Add($AcrobatPro_DropDown)
 
-        $AcrobatPro_TempInstaller = (Get-ChildItem -Path $AcrobatPro_TempDir -Recurse -Filter 'autoplay.exe').FullName
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_TempInstaller'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process $AcrobatPro_TempInstaller
+        $AcrobatPro_Form_OK = New-Object System.Windows.Forms.Button
+        $AcrobatPro_Form_OK.Text = 'OK'
+        $AcrobatPro_Form_OK.Location = New-Object System.Drawing.Size((($AcrobatPro_Form.Width) / 3 ), (($AcrobatPro_Form.height) - 60))
+        $AcrobatPro_Form_OK.Size = New-Object System.Drawing.Size(57, 20)
+        $AcrobatPro_Form_OK.DialogResult = [System.Windows.Forms.DialogResult]::OK
+        $AcrobatPro_Form.Controls.Add($AcrobatPro_Form_OK)
+        $AcrobatPro_Form.AcceptButton = $AcrobatPro_Form_OK
+
+        $AcrobatPro_Form_Cancel = New-Object System.Windows.Forms.Button
+        $AcrobatPro_Form_Cancel.Location = New-Object System.Drawing.Size((($AcrobatPro_Form.Width) / 2 ), (($AcrobatPro_Form.height) - 60))
+        $AcrobatPro_Form_Cancel.Size = New-Object System.Drawing.Size(57, 20)
+        $AcrobatPro_Form_Cancel.Text = 'Cancel'
+        $AcrobatPro_Form_Cancel.Add_Click({ $AcrobatPro_Form.Close() })
+        $AcrobatPro_Form.Controls.Add($AcrobatPro_Form_Cancel)
+
+        if ($AcrobatPro_Form.ShowDialog() -eq [System.Windows.Forms.DialogResult]::OK) {
+            $AcrobatPro_SelectedVersion = $AcrobatPro_DropDown.SelectedItem
+            $AcrobatPro_SelectedHREF = $AcrobatPro_nnmclub_Array[$AcrobatPro_SelectedVersion]
+
+            $AcrobatPro_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AcrobatPro_SelectedHREF).Links | Where-Object { $_.outerHTML -match 'uniondht.org' } | Select-Object -First 1).href
+            if ($null -eq $AcrobatPro_Forum) {
+                $AcrobatPro_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AcrobatPro_SelectedHREF).Links | Where-Object { $_.outerHTML -match 'pb.wtf' } | Select-Object -First 1).href
+            }
+            $AcrobatPro_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AcrobatPro_Forum).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
+            $AcrobatPro_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
+            if (Test-Path $AcrobatPro_qBittorrent_LOG) {
+                Remove-Item $AcrobatPro_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
+            }
+            Remove-Item -Path "$env:TEMP\*Acrobat*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
+            $AcrobatPro_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($AcrobatPro_Magnet)"""
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Start-Process qBittorrent.exe -ArgumentList $AcrobatPro_qBittorrent_Argument
+            while (-not ($AcrobatPro_TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*Acrobat*' | Select-Object -First 1).FullName)) {
+                Start-Sleep -Milliseconds 1000
+            }
+
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Add-MpPreference -ExclusionPath $AcrobatPro_TempDir
+
+            while (-not ($AcrobatPro_TempISO = (Get-ChildItem $AcrobatPro_TempDir -Filter '*.iso' | Select-Object -First 1).FullName)) {
+                Start-Sleep -Milliseconds 1000
+            }
+            do {
+                Start-Sleep -Milliseconds 1000
+            } until ((Get-Content $AcrobatPro_qBittorrent_LOG -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*Acrobat*')
+
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_TempISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_TempDir'"); [Console]::ResetColor(); [Console]::WriteLine()
+            7z.exe x $AcrobatPro_TempISO -o"$AcrobatPro_TempDir" -y
+
+            $AcrobatPro_TempInstaller = (Get-ChildItem -Path $AcrobatPro_TempDir -Recurse -Filter 'autoplay.exe').FullName
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AcrobatPro_TempInstaller'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Start-Process $AcrobatPro_TempInstaller
+        }
     }
     
     if ($SoftwareSelection_CheckBoxes['Adobe Lightroom Classic'].Checked) {
-        $AdobeLightroomClassic_Label = 'https://w14.monkrus.ws/search/label/Lightroom'
-        $AdobeLightroomClassic_Title = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobeLightroomClassic_Label).Links | Where-Object { $_.outerHTML -match 'Classic' } | Select-Object -First 1).outerHTML -replace '.*?>(.*?)</a>', '$1'
-        $AdobeLightroomClassic_Post = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobeLightroomClassic_Label).Links | Where-Object { $_.outerHTML -match 'Classic' } | Select-Object -First 1).href
-        $AdobeLightroomClassic_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobeLightroomClassic_Post).Links | Where-Object { $_.outerHTML -match 'uniondht.org' } | Select-Object -First 1).href
-        if ($null -eq $AdobeLightroomClassic_Forum) {
-            $AdobeLightroomClassic_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobeLightroomClassic_Post).Links | Where-Object { $_.outerHTML -match 'pb.wtf' } | Select-Object -First 1).href
-        }
-        $AdobeLightroomClassic_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobeLightroomClassic_Forum).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
-        $AdobeLightroomClassic_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
-        if (Test-Path $AdobeLightroomClassic_qBittorrent_LOG) {
-            Remove-Item $AdobeLightroomClassic_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
-        }
-        Remove-Item -Path "$env:TEMP\*Classic*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
-        $AdobeLightroomClassic_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($AdobeLightroomClassic_Magnet)"""
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeLightroomClassic_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeLightroomClassic_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process qBittorrent.exe -ArgumentList $AdobeLightroomClassic_qBittorrent_Argument
-        while (-not ($AdobeLightroomClassic_TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*Classic*' | Select-Object -First 1).FullName)) {
-            Start-Sleep -Milliseconds 1000
-        }
+        $Lightroom_Form = New-Object System.Windows.Forms.Form
+        $Lightroom_Form.Text = 'Lightroom Selection'
+        $Lightroom_Form.StartPosition = 'CenterScreen'
+        $Lightroom_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
+        $Lightroom_Form.Topmost = $true
+        $Lightroom_Form.MaximizeBox = $false
+        $Lightroom_Form.MinimizeBox = $false
+        $Lightroom_Form.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
 
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeLightroomClassic_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Add-MpPreference -ExclusionPath $AdobeLightroomClassic_TempDir
+        $Lightroom_DropDown = New-Object System.Windows.Forms.ComboBox
+        $Lightroom_DropDown.Location = New-Object System.Drawing.Point(5, 0)
+        $Lightroom_DropDown.DropDownStyle = 'DropDownList'
 
-        while (-not ($AdobeLightroomClassic_TempISO = (Get-ChildItem $AdobeLightroomClassic_TempDir -Filter '*.iso' | Select-Object -First 1).FullName)) {
-            Start-Sleep -Milliseconds 1000
+        $Lightroom_nnmclub_search = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w14.monkrus.ws/search/label/Lightroom').Links | Where-Object { $_.outerHTML -match 'Classic' -and $_.outerHTML -notmatch '#more' }
+
+        $Lightroom_nnmclub_Array = @{}
+        $Lightroom_graphics = [System.Drawing.Graphics]::FromHwnd($Lightroom_Form.Handle)
+        $Lightroom_maxWidth = 0
+        foreach ($Lightroom_nnmclub_post in $Lightroom_nnmclub_search) {
+            $Lightroom_nnmclub_title = ($Lightroom_nnmclub_post.outerHTML -replace '.*?>(.*?)</a>', '$1')
+            $Lightroom_nnmclub_url = $Lightroom_nnmclub_post.href
+            $Lightroom_nnmclub_Array[$Lightroom_nnmclub_title] = $Lightroom_nnmclub_url
+            $null = $Lightroom_DropDown.Items.Add($Lightroom_nnmclub_title)
+            $Lightroom_Width = [int]$Lightroom_graphics.MeasureString($Lightroom_nnmclub_title, $Lightroom_Form.Font).Width
+            if ($Lightroom_Width -gt $Lightroom_maxWidth) {
+                $Lightroom_maxWidth = $Lightroom_Width 
+            }
         }
-        do {
-            Start-Sleep -Milliseconds 1000
-        } until ((Get-Content $AdobeLightroomClassic_qBittorrent_LOG -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*Classic*')
+        $Lightroom_DropDown.Width = $Lightroom_maxWidth + 10
+        $Lightroom_FormWidth = $Lightroom_DropDown.Width + 25
+        $Lightroom_Form.Size = New-Object System.Drawing.Size($Lightroom_FormWidth, 90)
 
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeLightroomClassic_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeLightroomClassic_TempISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeLightroomClassic_TempDir'"); [Console]::ResetColor(); [Console]::WriteLine()
-        7z.exe x $AdobeLightroomClassic_TempISO -o"$AdobeLightroomClassic_TempDir" -y
+        $Lightroom_Form.Controls.Add($Lightroom_DropDown)
 
-        $AdobeLightroomClassic_TempInstaller = (Get-ChildItem -Path $AdobeLightroomClassic_TempDir -Recurse -Filter 'autoplay.exe').FullName
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeLightroomClassic_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeLightroomClassic_TempInstaller'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process $AdobeLightroomClassic_TempInstaller
+        $Lightroom_Form_OK = New-Object System.Windows.Forms.Button
+        $Lightroom_Form_OK.Text = 'OK'
+        $Lightroom_Form_OK.Location = New-Object System.Drawing.Size((($Lightroom_Form.Width) / 3 ), (($Lightroom_Form.height) - 60))
+        $Lightroom_Form_OK.Size = New-Object System.Drawing.Size(57, 20)
+        $Lightroom_Form_OK.DialogResult = [System.Windows.Forms.DialogResult]::OK
+        $Lightroom_Form.Controls.Add($Lightroom_Form_OK)
+        $Lightroom_Form.AcceptButton = $Lightroom_Form_OK
+
+        $Lightroom_Form_Cancel = New-Object System.Windows.Forms.Button
+        $Lightroom_Form_Cancel.Location = New-Object System.Drawing.Size((($Lightroom_Form.Width) / 2 ), (($Lightroom_Form.height) - 60))
+        $Lightroom_Form_Cancel.Size = New-Object System.Drawing.Size(57, 20)
+        $Lightroom_Form_Cancel.Text = 'Cancel'
+        $Lightroom_Form_Cancel.Add_Click({ $Lightroom_Form.Close() })
+        $Lightroom_Form.Controls.Add($Lightroom_Form_Cancel)
+
+        if ($Lightroom_Form.ShowDialog() -eq [System.Windows.Forms.DialogResult]::OK) {
+            $Lightroom_SelectedVersion = $Lightroom_DropDown.SelectedItem
+            $Lightroom_SelectedHREF = $Lightroom_nnmclub_Array[$Lightroom_SelectedVersion]
+        
+            $AdobeLightroomClassic_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $Lightroom_SelectedHREF).Links | Where-Object { $_.outerHTML -match 'uniondht.org' } | Select-Object -First 1).href
+            if ($null -eq $AdobeLightroomClassic_Forum) {
+                $AdobeLightroomClassic_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $Lightroom_SelectedHREF).Links | Where-Object { $_.outerHTML -match 'pb.wtf' } | Select-Object -First 1).href
+            }
+            $AdobeLightroomClassic_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobeLightroomClassic_Forum).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
+            $AdobeLightroomClassic_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
+            if (Test-Path $AdobeLightroomClassic_qBittorrent_LOG) {
+                Remove-Item $AdobeLightroomClassic_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
+            }
+            Remove-Item -Path "$env:TEMP\*Classic*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
+            $AdobeLightroomClassic_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($AdobeLightroomClassic_Magnet)"""
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Lightroom_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeLightroomClassic_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Start-Process qBittorrent.exe -ArgumentList $AdobeLightroomClassic_qBittorrent_Argument
+            while (-not ($AdobeLightroomClassic_TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*Classic*' | Select-Object -First 1).FullName)) {
+                Start-Sleep -Milliseconds 1000
+            }
+
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeLightroomClassic_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Add-MpPreference -ExclusionPath $AdobeLightroomClassic_TempDir
+
+            while (-not ($AdobeLightroomClassic_TempISO = (Get-ChildItem $AdobeLightroomClassic_TempDir -Filter '*.iso' | Select-Object -First 1).FullName)) {
+                Start-Sleep -Milliseconds 1000
+            }
+            do {
+                Start-Sleep -Milliseconds 1000
+            } until ((Get-Content $AdobeLightroomClassic_qBittorrent_LOG -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*Classic*')
+
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Lightroom_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeLightroomClassic_TempISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeLightroomClassic_TempDir'"); [Console]::ResetColor(); [Console]::WriteLine()
+            7z.exe x $AdobeLightroomClassic_TempISO -o"$AdobeLightroomClassic_TempDir" -y
+
+            $AdobeLightroomClassic_TempInstaller = (Get-ChildItem -Path $AdobeLightroomClassic_TempDir -Recurse -Filter 'autoplay.exe').FullName
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Lightroom_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeLightroomClassic_TempInstaller'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Start-Process $AdobeLightroomClassic_TempInstaller
+        }
     }
 
     if ($SoftwareSelection_CheckBoxes['Adobe Photoshop'].Checked) {
-        $AdobePhotoshop_Label = 'https://w14.monkrus.ws/search/label/Photoshop'
-        $AdobePhotoshop_Title = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobePhotoshop_Label).Links | Where-Object { $_.outerHTML -notmatch 'Elements' -and $_.outerHTML -notmatch 'Collection' -and $_.outerHTML -match 'Multilingual' } | Select-Object -First 1).outerHTML -replace '.*?>(.*?)</a>', '$1'
-        $AdobePhotoshop_Post = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobePhotoshop_Label).Links | Where-Object { $_.outerHTML -notmatch 'Elements' -and $_.outerHTML -notmatch 'Collection' -and $_.outerHTML -match 'Multilingual' } | Select-Object -First 1).href
-        $AdobePhotoshop_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobePhotoshop_Post).Links | Where-Object { $_.outerHTML -match 'uniondht.org' } | Select-Object -First 1).href
-        if ($null -eq $AdobePhotoshop_Forum) {
-            $AdobePhotoshop_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobePhotoshop_Post).Links | Where-Object { $_.outerHTML -match 'pb.wtf' } | Select-Object -First 1).href
-        }
-        $AdobePhotoshop_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobePhotoshop_Forum).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
-        $AdobePhotoshop_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
-        if (Test-Path $AdobePhotoshop_qBittorrent_LOG) {
-            Remove-Item $AdobePhotoshop_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
-        }
-        Remove-Item -Path "$env:TEMP\*Photoshop*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
-        $AdobePhotoshop_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($AdobePhotoshop_Magnet)"""
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobePhotoshop_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobePhotoshop_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process qBittorrent.exe -ArgumentList $AdobePhotoshop_qBittorrent_Argument
-        while (-not ($AdobePhotoshop_TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*Photoshop*' | Select-Object -First 1).FullName)) {
-            Start-Sleep -Milliseconds 1000
-        }
+        $Photoshop_Form = New-Object System.Windows.Forms.Form
+        $Photoshop_Form.Text = 'Photoshop Selection'
+        $Photoshop_Form.StartPosition = 'CenterScreen'
+        $Photoshop_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
+        $Photoshop_Form.Topmost = $true
+        $Photoshop_Form.MaximizeBox = $false
+        $Photoshop_Form.MinimizeBox = $false
+        $Photoshop_Form.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
 
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobePhotoshop_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Add-MpPreference -ExclusionPath $AdobePhotoshop_TempDir
+        $Photoshop_DropDown = New-Object System.Windows.Forms.ComboBox
+        $Photoshop_DropDown.Location = New-Object System.Drawing.Point(5, 0)
+        $Photoshop_DropDown.DropDownStyle = 'DropDownList'
 
-        while (-not ($AdobePhotoshop_TempISO = (Get-ChildItem $AdobePhotoshop_TempDir -Filter '*.iso' | Select-Object -First 1).FullName)) {
-            Start-Sleep -Milliseconds 1000
+        $Photoshop_nnmclub_search = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w14.monkrus.ws/search/label/Photoshop').Links | Where-Object { $_.outerHTML -notmatch 'Elements' -and $_.outerHTML -notmatch 'Collection' -and $_.outerHTML -match 'Multilingual' -and $_.outerHTML -notmatch '#more' -and $_.outerHTML -match 'Photoshop' }
+
+        $Photoshop_nnmclub_Array = @{}
+        $Photoshop_graphics = [System.Drawing.Graphics]::FromHwnd($Photoshop_Form.Handle)
+        $Photoshop_maxWidth = 0
+        foreach ($Photoshop_nnmclub_post in $Photoshop_nnmclub_search) {
+            $Photoshop_nnmclub_title = ($Photoshop_nnmclub_post.outerHTML -replace '.*?>(.*?)</a>', '$1')
+            $Photoshop_nnmclub_url = $Photoshop_nnmclub_post.href
+            $Photoshop_nnmclub_Array[$Photoshop_nnmclub_title] = $Photoshop_nnmclub_url
+            $null = $Photoshop_DropDown.Items.Add($Photoshop_nnmclub_title)
+            $Photoshop_Width = [int]$Photoshop_graphics.MeasureString($Photoshop_nnmclub_title, $Photoshop_Form.Font).Width
+            if ($Photoshop_Width -gt $Photoshop_maxWidth) {
+                $Photoshop_maxWidth = $Photoshop_Width 
+            }
         }
-        do {
-            Start-Sleep -Milliseconds 1000
-        } until ((Get-Content $AdobePhotoshop_qBittorrent_LOG -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*Photoshop*')
+        $Photoshop_DropDown.Width = $Photoshop_maxWidth + 10
+        $Photoshop_FormWidth = $Photoshop_DropDown.Width + 25
+        $Photoshop_Form.Size = New-Object System.Drawing.Size($Photoshop_FormWidth, 90)
 
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobePhotoshop_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobePhotoshop_TempISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobePhotoshop_TempDir'"); [Console]::ResetColor(); [Console]::WriteLine()
-        7z.exe x $AdobePhotoshop_TempISO -o"$AdobePhotoshop_TempDir" -y
+        $Photoshop_Form.Controls.Add($Photoshop_DropDown)
 
-        $AdobePhotoshop_TempInstaller = (Get-ChildItem -Path $AdobePhotoshop_TempDir -Recurse -Filter 'autoplay.exe').FullName
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobePhotoshop_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobePhotoshop_TempInstaller'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process $AdobePhotoshop_TempInstaller
+        $Photoshop_Form_OK = New-Object System.Windows.Forms.Button
+        $Photoshop_Form_OK.Text = 'OK'
+        $Photoshop_Form_OK.Location = New-Object System.Drawing.Size((($Photoshop_Form.Width) / 3 ), (($Photoshop_Form.height) - 60))
+        $Photoshop_Form_OK.Size = New-Object System.Drawing.Size(57, 20)
+        $Photoshop_Form_OK.DialogResult = [System.Windows.Forms.DialogResult]::OK
+        $Photoshop_Form.Controls.Add($Photoshop_Form_OK)
+        $Photoshop_Form.AcceptButton = $Photoshop_Form_OK
+
+        $Photoshop_Form_Cancel = New-Object System.Windows.Forms.Button
+        $Photoshop_Form_Cancel.Location = New-Object System.Drawing.Size((($Photoshop_Form.Width) / 2 ), (($Photoshop_Form.height) - 60))
+        $Photoshop_Form_Cancel.Size = New-Object System.Drawing.Size(57, 20)
+        $Photoshop_Form_Cancel.Text = 'Cancel'
+        $Photoshop_Form_Cancel.Add_Click({ $Photoshop_Form.Close() })
+        $Photoshop_Form.Controls.Add($Photoshop_Form_Cancel)
+
+        if ($Photoshop_Form.ShowDialog() -eq [System.Windows.Forms.DialogResult]::OK) {
+            $Photoshop_SelectedVersion = $Photoshop_DropDown.SelectedItem
+            $Photoshop_SelectedHREF = $Photoshop_nnmclub_Array[$Photoshop_SelectedVersion]
+    
+            $AdobePhotoshop_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $Photoshop_SelectedHREF).Links | Where-Object { $_.outerHTML -match 'uniondht.org' } | Select-Object -First 1).href
+            if ($null -eq $AdobePhotoshop_Forum) {
+                $AdobePhotoshop_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $Photoshop_SelectedHREF).Links | Where-Object { $_.outerHTML -match 'pb.wtf' } | Select-Object -First 1).href
+            }
+            $AdobePhotoshop_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobePhotoshop_Forum).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
+            $AdobePhotoshop_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
+            if (Test-Path $AdobePhotoshop_qBittorrent_LOG) {
+                Remove-Item $AdobePhotoshop_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
+            }
+            Remove-Item -Path "$env:TEMP\*Photoshop*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
+            $AdobePhotoshop_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($AdobePhotoshop_Magnet)"""
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Photoshop_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobePhotoshop_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Start-Process qBittorrent.exe -ArgumentList $AdobePhotoshop_qBittorrent_Argument
+            while (-not ($AdobePhotoshop_TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*Photoshop*' | Select-Object -First 1).FullName)) {
+                Start-Sleep -Milliseconds 1000
+            }
+
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobePhotoshop_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Add-MpPreference -ExclusionPath $AdobePhotoshop_TempDir
+
+            while (-not ($AdobePhotoshop_TempISO = (Get-ChildItem $AdobePhotoshop_TempDir -Filter '*.iso' | Select-Object -First 1).FullName)) {
+                Start-Sleep -Milliseconds 1000
+            }
+            do {
+                Start-Sleep -Milliseconds 1000
+            } until ((Get-Content $AdobePhotoshop_qBittorrent_LOG -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*Photoshop*')
+
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Photoshop_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobePhotoshop_TempISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobePhotoshop_TempDir'"); [Console]::ResetColor(); [Console]::WriteLine()
+            7z.exe x $AdobePhotoshop_TempISO -o"$AdobePhotoshop_TempDir" -y
+
+            $AdobePhotoshop_TempInstaller = (Get-ChildItem -Path $AdobePhotoshop_TempDir -Recurse -Filter 'autoplay.exe').FullName
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Photoshop_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobePhotoshop_TempInstaller'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Start-Process $AdobePhotoshop_TempInstaller
+        }
     }
 
     if ($SoftwareSelection_CheckBoxes['Autodesk Revit'].Checked) {
-        $AutodeskRevit_Label = 'https://w14.monkrus.ws/search/label/Revit'
-        $AutodeskRevit_Title = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskRevit_Label).Links | Where-Object { $_.outerHTML -match 'Multilingual' } | Select-Object -First 1).outerHTML -replace '.*?>(.*?)</a>', '$1'
-        $AutodeskRevit_Post = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskRevit_Label).Links | Where-Object { $_.outerHTML -match 'Multilingual' } | Select-Object -First 1).href
-        $AutodeskRevit_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskRevit_Post).Links | Where-Object { $_.outerHTML -match 'uniondht.org' } | Select-Object -First 1).href
-        if ($null -eq $AutodeskRevit_Forum) {
-            $AutodeskRevit_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskRevit_Post).Links | Where-Object { $_.outerHTML -match 'pb.wtf' } | Select-Object -First 1).href
-        }
-        $AutodeskRevit_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskRevit_Forum).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
-        $AutodeskRevit_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
-        if (Test-Path $AutodeskRevit_qBittorrent_LOG) {
-            Remove-Item $AutodeskRevit_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
-        }
-        Remove-Item -Path "$env:TEMP\*Revit*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
-        $AutodeskRevit_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($AutodeskRevit_Magnet)"""
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process qBittorrent.exe -ArgumentList $AutodeskRevit_qBittorrent_Argument
-        while (-not ($AutodeskRevit_TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*Revit*' | Select-Object -First 1).FullName)) {
-            Start-Sleep -Milliseconds 1000
-        }
+        $Revit_Form = New-Object System.Windows.Forms.Form
+        $Revit_Form.Text = 'Revit Selection'
+        $Revit_Form.StartPosition = 'CenterScreen'
+        $Revit_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
+        $Revit_Form.Topmost = $true
+        $Revit_Form.MaximizeBox = $false
+        $Revit_Form.MinimizeBox = $false
+        $Revit_Form.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
 
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Add-MpPreference -ExclusionPath $AutodeskRevit_TempDir
+        $Revit_DropDown = New-Object System.Windows.Forms.ComboBox
+        $Revit_DropDown.Location = New-Object System.Drawing.Point(5, 0)
+        $Revit_DropDown.DropDownStyle = 'DropDownList'
 
-        while (-not ($AutodeskRevit_TempISO = (Get-ChildItem $AutodeskRevit_TempDir -Filter '*.iso' | Select-Object -First 1).FullName)) {
-            Start-Sleep -Milliseconds 1000
+        $Revit_nnmclub_search = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w14.monkrus.ws/search/label/Revit').Links | Where-Object { $_.outerHTML -match 'Multilingual' -and $_.outerHTML -notmatch '#more' -and $_.outerHTML -match 'Revit' }
+
+        $Revit_nnmclub_Array = @{}
+        $Revit_graphics = [System.Drawing.Graphics]::FromHwnd($Revit_Form.Handle)
+        $Revit_maxWidth = 0
+        foreach ($Revit_nnmclub_post in $Revit_nnmclub_search) {
+            $Revit_nnmclub_title = ($Revit_nnmclub_post.outerHTML -replace '.*?>(.*?)</a>', '$1')
+            $Revit_nnmclub_url = $Revit_nnmclub_post.href
+            $Revit_nnmclub_Array[$Revit_nnmclub_title] = $Revit_nnmclub_url
+            $null = $Revit_DropDown.Items.Add($Revit_nnmclub_title)
+            $Revit_Width = [int]$Revit_graphics.MeasureString($Revit_nnmclub_title, $Revit_Form.Font).Width
+            if ($Revit_Width -gt $Revit_maxWidth) {
+                $Revit_maxWidth = $Revit_Width 
+            }
         }
-        do {
-            Start-Sleep -Milliseconds 1000
-        } until ((Get-Content $AutodeskRevit_qBittorrent_LOG -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*Revit*')
+        $Revit_DropDown.Width = $Revit_maxWidth + 10
+        $Revit_FormWidth = $Revit_DropDown.Width + 25
+        $Revit_Form.Size = New-Object System.Drawing.Size($Revit_FormWidth, 90)
 
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempDir'"); [Console]::ResetColor(); [Console]::WriteLine()
-        7z.exe x $AutodeskRevit_TempISO -o"$AutodeskRevit_TempDir" -y
+        $Revit_Form.Controls.Add($Revit_DropDown)
 
-        $AutodeskRevit_TempInstaller = (Get-ChildItem -Path $AutodeskRevit_TempDir -Recurse -Filter 'setup.exe').FullName
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempInstaller'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process $AutodeskRevit_TempInstaller
-        while (-not (Get-Process | Where-Object { $_.MainWindowTitle -Like '*Revit*Installer' })) {
-            Start-Sleep -Milliseconds 1000
+        $Revit_Form_OK = New-Object System.Windows.Forms.Button
+        $Revit_Form_OK.Text = 'OK'
+        $Revit_Form_OK.Location = New-Object System.Drawing.Size((($Revit_Form.Width) / 3 ), (($Revit_Form.height) - 60))
+        $Revit_Form_OK.Size = New-Object System.Drawing.Size(57, 20)
+        $Revit_Form_OK.DialogResult = [System.Windows.Forms.DialogResult]::OK
+        $Revit_Form.Controls.Add($Revit_Form_OK)
+        $Revit_Form.AcceptButton = $Revit_Form_OK
+
+        $Revit_Form_Cancel = New-Object System.Windows.Forms.Button
+        $Revit_Form_Cancel.Location = New-Object System.Drawing.Size((($Revit_Form.Width) / 2 ), (($Revit_Form.height) - 60))
+        $Revit_Form_Cancel.Size = New-Object System.Drawing.Size(57, 20)
+        $Revit_Form_Cancel.Text = 'Cancel'
+        $Revit_Form_Cancel.Add_Click({ $Revit_Form.Close() })
+        $Revit_Form.Controls.Add($Revit_Form_Cancel)
+
+        if ($Revit_Form.ShowDialog() -eq [System.Windows.Forms.DialogResult]::OK) {
+            $Revit_SelectedVersion = $Revit_DropDown.SelectedItem
+            $Revit_SelectedHREF = $Revit_nnmclub_Array[$Revit_SelectedVersion]
+
+            $AutodeskRevit_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $Revit_SelectedHREF).Links | Where-Object { $_.outerHTML -match 'uniondht.org' } | Select-Object -First 1).href
+            if ($null -eq $AutodeskRevit_Forum) {
+                $AutodeskRevit_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $Revit_SelectedHREF).Links | Where-Object { $_.outerHTML -match 'pb.wtf' } | Select-Object -First 1).href
+            }
+            $AutodeskRevit_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskRevit_Forum).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
+            $AutodeskRevit_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
+            if (Test-Path $AutodeskRevit_qBittorrent_LOG) {
+                Remove-Item $AutodeskRevit_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
+            }
+            Remove-Item -Path "$env:TEMP\*Revit*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
+            $AutodeskRevit_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($AutodeskRevit_Magnet)"""
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Revit_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Start-Process qBittorrent.exe -ArgumentList $AutodeskRevit_qBittorrent_Argument
+            while (-not ($AutodeskRevit_TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*Revit*' | Select-Object -First 1).FullName)) {
+                Start-Sleep -Milliseconds 1000
+            }
+
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Add-MpPreference -ExclusionPath $AutodeskRevit_TempDir
+
+            while (-not ($AutodeskRevit_TempISO = (Get-ChildItem $AutodeskRevit_TempDir -Filter '*.iso' | Select-Object -First 1).FullName)) {
+                Start-Sleep -Milliseconds 1000
+            }
+            do {
+                Start-Sleep -Milliseconds 1000
+            } until ((Get-Content $AutodeskRevit_qBittorrent_LOG -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*Revit*')
+
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Revit_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempDir'"); [Console]::ResetColor(); [Console]::WriteLine()
+            7z.exe x $AutodeskRevit_TempISO -o"$AutodeskRevit_TempDir" -y
+
+            $AutodeskRevit_TempInstaller = (Get-ChildItem -Path $AutodeskRevit_TempDir -Recurse -Filter 'setup.exe').FullName
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Revit_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempInstaller'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Start-Process $AutodeskRevit_TempInstaller
+            while (-not (Get-Process | Where-Object { $_.MainWindowTitle -Like '*Revit*Installer' })) {
+                Start-Sleep -Milliseconds 1000
+            }
+            while ((Get-Process | Where-Object { $_.MainWindowTitle -Like '*Revit*Installer' })) {
+                Start-Sleep -Milliseconds 1000
+            }
+
+            $AutodeskRevit_TempCrack = (Get-ChildItem -Path $AutodeskRevit_TempDir -Recurse -Filter 'AdskNLM.exe').FullName
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Cracking '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Revit_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempCrack'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Start-Process $AutodeskRevit_TempCrack
+            while (-not (Get-Process | Where-Object { $_.MainWindowTitle -Like '*crack*' })) {
+                Start-Sleep -Seconds 1 
+            }
+            (Get-Process | Where-Object { $_.MainWindowTitle -Like '*crack*' }).CloseMainWindow() | Out-Null
+
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Remove-MpPreference -ExclusionPath $AutodeskRevit_TempDir
+
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Please open '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Revit_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' and select '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Use a network license'"); [Console]::ResetColor(); [Console]::WriteLine()
         }
-        while ((Get-Process | Where-Object { $_.MainWindowTitle -Like '*Revit*Installer' })) {
-            Start-Sleep -Milliseconds 1000
-        }
-
-        $AutodeskRevit_TempCrack = (Get-ChildItem -Path $AutodeskRevit_TempDir -Recurse -Filter 'AdskNLM.exe').FullName
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Cracking '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempCrack'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process $AutodeskRevit_TempCrack
-        while (-not (Get-Process | Where-Object { $_.MainWindowTitle -Like '*crack*' })) {
-            Start-Sleep -Seconds 1 
-        }
-        (Get-Process | Where-Object { $_.MainWindowTitle -Like '*crack*' }).CloseMainWindow() | Out-Null
-
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Remove-MpPreference -ExclusionPath $AutodeskRevit_TempDir
-
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Please open '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' and select '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Use a network license'"); [Console]::ResetColor(); [Console]::WriteLine()
     }
     
     if ($SoftwareSelection_CheckBoxes['Autodesk AutoCAD'].Checked) {
-        $AutodeskAutoCAD_Label = 'https://w14.monkrus.ws/search/label/AutoCAD'
-        $AutodeskAutoCAD_Title = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskAutoCAD_Label).Links | Where-Object { $_.outerHTML -match 'AutoCAD' -and $_.outerHTML -notmatch 'LT' -and $_.outerHTML -notmatch 'Addon' } | Select-Object -First 1).outerHTML -replace '.*?>(.*?)</a>', '$1'
-        $AutodeskAutoCAD_Post = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskAutoCAD_Label).Links | Where-Object { $_.outerHTML -match 'AutoCAD' -and $_.outerHTML -notmatch 'LT' -and $_.outerHTML -notmatch 'Addon' } | Select-Object -First 1).href
-        $AutodeskAutoCAD_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskAutoCAD_Post).Links | Where-Object { $_.outerHTML -match 'uniondht.org' } | Select-Object -First 1).href
-        if ($null -eq $AutodeskAutoCAD_Forum) {
-            $AutodeskAutoCAD_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskAutoCAD_Post).Links | Where-Object { $_.outerHTML -match 'pb.wtf' } | Select-Object -First 1).href
-        }
-        $AutodeskAutoCAD_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskAutoCAD_Forum).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
-        $AutodeskAutoCAD_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
-        if (Test-Path $AutodeskAutoCAD_qBittorrent_LOG) {
-            Remove-Item $AutodeskAutoCAD_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
-        }
-        Remove-Item -Path "$env:TEMP\*AutoCAD*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
-        $AutodeskAutoCAD_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($AutodeskAutoCAD_Magnet)"""
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process qBittorrent.exe -ArgumentList $AutodeskAutoCAD_qBittorrent_Argument
-        while (-not ($AutodeskAutoCAD_TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*AutoCAD*' | Select-Object -First 1).FullName)) {
-            Start-Sleep -Milliseconds 1000
-        }
+        $AutoCAD_Form = New-Object System.Windows.Forms.Form
+        $AutoCAD_Form.Text = 'AutoCAD Selection'
+        $AutoCAD_Form.StartPosition = 'CenterScreen'
+        $AutoCAD_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
+        $AutoCAD_Form.Topmost = $true
+        $AutoCAD_Form.MaximizeBox = $false
+        $AutoCAD_Form.MinimizeBox = $false
+        $AutoCAD_Form.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
 
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Add-MpPreference -ExclusionPath $AutodeskAutoCAD_TempDir
+        $AutoCAD_DropDown = New-Object System.Windows.Forms.ComboBox
+        $AutoCAD_DropDown.Location = New-Object System.Drawing.Point(5, 0)
+        $AutoCAD_DropDown.DropDownStyle = 'DropDownList'
 
-        while (-not ($AutodeskAutoCAD_TempISO = (Get-ChildItem $AutodeskAutoCAD_TempDir -Filter '*.iso' | Select-Object -First 1).FullName)) {
-            Start-Sleep -Milliseconds 1000
+        $AutoCAD_nnmclub_search = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w14.monkrus.ws/search/label/AutoCAD').Links | Where-Object { $_.outerHTML -match 'AutoCAD' -and $_.outerHTML -notmatch 'LT' -and $_.outerHTML -notmatch 'Addon' -and $_.outerHTML -notmatch '#more' }
+
+        $AutoCAD_nnmclub_Array = @{}
+        $AutoCAD_graphics = [System.Drawing.Graphics]::FromHwnd($AutoCAD_Form.Handle)
+        $AutoCAD_maxWidth = 0
+        foreach ($AutoCAD_nnmclub_post in $AutoCAD_nnmclub_search) {
+            $AutoCAD_nnmclub_title = ($AutoCAD_nnmclub_post.outerHTML -replace '.*?>(.*?)</a>', '$1')
+            $AutoCAD_nnmclub_url = $AutoCAD_nnmclub_post.href
+            $AutoCAD_nnmclub_Array[$AutoCAD_nnmclub_title] = $AutoCAD_nnmclub_url
+            $null = $AutoCAD_DropDown.Items.Add($AutoCAD_nnmclub_title)
+            $AutoCAD_Width = [int]$AutoCAD_graphics.MeasureString($AutoCAD_nnmclub_title, $AutoCAD_Form.Font).Width
+            if ($AutoCAD_Width -gt $AutoCAD_maxWidth) {
+                $AutoCAD_maxWidth = $AutoCAD_Width 
+            }
         }
-        do {
-            Start-Sleep -Milliseconds 1000
-        } until ((Get-Content $AutodeskAutoCAD_qBittorrent_LOG -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*AutoCAD*')
+        $AutoCAD_DropDown.Width = $AutoCAD_maxWidth + 10
+        $AutoCAD_FormWidth = $AutoCAD_DropDown.Width + 25
+        $AutoCAD_Form.Size = New-Object System.Drawing.Size($AutoCAD_FormWidth, 90)
 
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_TempISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_TempDir'"); [Console]::ResetColor(); [Console]::WriteLine()
-        7z.exe x $AutodeskAutoCAD_TempISO -o"$AutodeskAutoCAD_TempDir" -y
+        $AutoCAD_Form.Controls.Add($AutoCAD_DropDown)
 
-        $AutodeskAutoCAD_TempInstaller = (Get-ChildItem -Path $AutodeskAutoCAD_TempDir -Recurse -Filter 'setup.exe').FullName
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_TempInstaller'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process $AutodeskAutoCAD_TempInstaller -ArgumentList '/silent'
-        while (-not (Get-Process | Where-Object { $_.MainWindowTitle -Like '*AutoCAD*Installer' })) {
-            Start-Sleep -Milliseconds 1000
+        $AutoCAD_Form_OK = New-Object System.Windows.Forms.Button
+        $AutoCAD_Form_OK.Text = 'OK'
+        $AutoCAD_Form_OK.Location = New-Object System.Drawing.Size((($AutoCAD_Form.Width) / 3 ), (($AutoCAD_Form.height) - 60))
+        $AutoCAD_Form_OK.Size = New-Object System.Drawing.Size(57, 20)
+        $AutoCAD_Form_OK.DialogResult = [System.Windows.Forms.DialogResult]::OK
+        $AutoCAD_Form.Controls.Add($AutoCAD_Form_OK)
+        $AutoCAD_Form.AcceptButton = $AutoCAD_Form_OK
+
+        $AutoCAD_Form_Cancel = New-Object System.Windows.Forms.Button
+        $AutoCAD_Form_Cancel.Location = New-Object System.Drawing.Size((($AutoCAD_Form.Width) / 2 ), (($AutoCAD_Form.height) - 60))
+        $AutoCAD_Form_Cancel.Size = New-Object System.Drawing.Size(57, 20)
+        $AutoCAD_Form_Cancel.Text = 'Cancel'
+        $AutoCAD_Form_Cancel.Add_Click({ $AutoCAD_Form.Close() })
+        $AutoCAD_Form.Controls.Add($AutoCAD_Form_Cancel)
+
+        if ($AutoCAD_Form.ShowDialog() -eq [System.Windows.Forms.DialogResult]::OK) {
+            $AutoCAD_SelectedVersion = $AutoCAD_DropDown.SelectedItem
+            $AutoCAD_SelectedHREF = $AutoCAD_nnmclub_Array[$AutoCAD_SelectedVersion]
+
+            $AutodeskAutoCAD_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AutoCAD_SelectedHREF).Links | Where-Object { $_.outerHTML -match 'uniondht.org' } | Select-Object -First 1).href
+            if ($null -eq $AutodeskAutoCAD_Forum) {
+                $AutodeskAutoCAD_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $AutoCAD_SelectedHREF).Links | Where-Object { $_.outerHTML -match 'pb.wtf' } | Select-Object -First 1).href
+            }
+            $AutodeskAutoCAD_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskAutoCAD_Forum).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
+            $AutodeskAutoCAD_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
+            if (Test-Path $AutodeskAutoCAD_qBittorrent_LOG) {
+                Remove-Item $AutodeskAutoCAD_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
+            }
+            Remove-Item -Path "$env:TEMP\*AutoCAD*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
+            $AutodeskAutoCAD_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($AutodeskAutoCAD_Magnet)"""
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutoCAD_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Start-Process qBittorrent.exe -ArgumentList $AutodeskAutoCAD_qBittorrent_Argument
+            while (-not ($AutodeskAutoCAD_TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*AutoCAD*' | Select-Object -First 1).FullName)) {
+                Start-Sleep -Milliseconds 1000
+            }
+
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Add-MpPreference -ExclusionPath $AutodeskAutoCAD_TempDir
+
+            while (-not ($AutodeskAutoCAD_TempISO = (Get-ChildItem $AutodeskAutoCAD_TempDir -Filter '*.iso' | Select-Object -First 1).FullName)) {
+                Start-Sleep -Milliseconds 1000
+            }
+            do {
+                Start-Sleep -Milliseconds 1000
+            } until ((Get-Content $AutodeskAutoCAD_qBittorrent_LOG -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*AutoCAD*')
+
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutoCAD_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_TempISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_TempDir'"); [Console]::ResetColor(); [Console]::WriteLine()
+            7z.exe x $AutodeskAutoCAD_TempISO -o"$AutodeskAutoCAD_TempDir" -y
+
+            $AutodeskAutoCAD_TempInstaller = (Get-ChildItem -Path $AutodeskAutoCAD_TempDir -Recurse -Filter 'setup.exe').FullName
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutoCAD_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_TempInstaller'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Start-Process $AutodeskAutoCAD_TempInstaller -ArgumentList '/silent'
+            while (-not (Get-Process | Where-Object { $_.MainWindowTitle -Like '*AutoCAD*Installer' })) {
+                Start-Sleep -Milliseconds 1000
+            }
+            while ((Get-Process | Where-Object { $_.MainWindowTitle -Like '*AutoCAD*Installer' })) {
+                Start-Sleep -Milliseconds 1000
+            }
+
+            $AutodeskAutoCAD_TempCrack = (Get-ChildItem -Path $AutodeskAutoCAD_TempDir -Recurse -Filter 'AdskNLM.exe').FullName
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Cracking '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutoCAD_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_TempCrack'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Start-Process $AutodeskAutoCAD_TempCrack
+            while (-not (Get-Process | Where-Object { $_.MainWindowTitle -Like '*crack*' })) {
+                Start-Sleep -Seconds 1 
+            }
+            (Get-Process | Where-Object { $_.MainWindowTitle -Like '*crack*' }).CloseMainWindow() | Out-Null
+
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Remove-MpPreference -ExclusionPath $AutodeskAutoCAD_TempDir
+
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Please open '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutoCAD_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' and select '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Use a network license'"); [Console]::ResetColor(); [Console]::WriteLine()
         }
-        while ((Get-Process | Where-Object { $_.MainWindowTitle -Like '*AutoCAD*Installer' })) {
-            Start-Sleep -Milliseconds 1000
-        }
-
-        $AutodeskAutoCAD_TempCrack = (Get-ChildItem -Path $AutodeskAutoCAD_TempDir -Recurse -Filter 'AdskNLM.exe').FullName
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Cracking '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_TempCrack'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process $AutodeskAutoCAD_TempCrack
-        while (-not (Get-Process | Where-Object { $_.MainWindowTitle -Like '*crack*' })) {
-            Start-Sleep -Seconds 1 
-        }
-        (Get-Process | Where-Object { $_.MainWindowTitle -Like '*crack*' }).CloseMainWindow() | Out-Null
-
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Remove-MpPreference -ExclusionPath $AutodeskAutoCAD_TempDir
-
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Please open '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskAutoCAD_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' and select '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Use a network license'"); [Console]::ResetColor(); [Console]::WriteLine()
     }
 
     if ($SoftwareSelection_CheckBoxes['JitBit Macro Recorder'].Checked) {
@@ -1809,77 +2064,179 @@ $SoftwareSelection_Form_OK.Add_Click{
     }
 
     if ($SoftwareSelection_CheckBoxes['SketchUp'].Checked) {
-        $SketchUp_Label = 'https://nnmclub.to/forum/tracker.php?nm=SketchUp%20KpoJIuK'
-        $SketchUp_Title = ((Invoke-WebRequest -UseBasicParsing -Uri $SketchUp_Label).Links | Where-Object { $_.outerHTML -match 'SketchUp' -and $_.class -match 'genmed topictitle' } | Select-Object -First 1).outerHTML -replace '.*?<b>(.*?)</b></a>', '$1'
-        $SketchUp_Post = 'https://nnmclub.to/forum/' + ((Invoke-WebRequest -UseBasicParsing -Uri $SketchUp_Label).Links | Where-Object { $_.outerHTML -match 'SketchUp' -and $_.class -match 'genmed topictitle' } | Select-Object -First 1).href
-        $SketchUp_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $SketchUp_Post).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
-        $SketchUp_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
-        if (Test-Path $SketchUp_qBittorrent_LOG) {
-            Remove-Item $SketchUp_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
+        $SketchUp_Form = New-Object System.Windows.Forms.Form
+        $SketchUp_Form.Text = 'SketchUp Selection'
+        $SketchUp_Form.StartPosition = 'CenterScreen'
+        $SketchUp_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
+        $SketchUp_Form.Topmost = $true
+        $SketchUp_Form.MaximizeBox = $false
+        $SketchUp_Form.MinimizeBox = $false
+        $SketchUp_Form.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
+        
+        $SketchUp_DropDown = New-Object System.Windows.Forms.ComboBox
+        $SketchUp_DropDown.Location = New-Object System.Drawing.Point(5, 0)
+        $SketchUp_DropDown.DropDownStyle = 'DropDownList'
+        
+        $SketchUp_nnmclub_search = (Invoke-WebRequest -UseBasicParsing -Uri 'https://nnmclub.to/forum/tracker.php?nm=SketchUp%20KpoJIuK').Links | Where-Object { $_.class -match 'genmed topictitle' }
+        
+        $SketchUp_nnmclub_Array = @{}
+        $SketchUp_graphics = [System.Drawing.Graphics]::FromHwnd($SketchUp_Form.Handle)
+        $SketchUp_maxWidth = 0
+        foreach ($SketchUp_nnmclub_post in $SketchUp_nnmclub_search) {
+            $SketchUp_nnmclub_title = ($SketchUp_nnmclub_post.outerHTML -replace '.*?<b>(.*?)</b></a>', '$1')
+            $SketchUp_nnmclub_url = 'https://nnmclub.to/forum/' + $SketchUp_nnmclub_post.href
+            $SketchUp_nnmclub_Array[$SketchUp_nnmclub_title] = $SketchUp_nnmclub_url
+            $null = $SketchUp_DropDown.Items.Add($SketchUp_nnmclub_title)
+            $SketchUp_Width = [int]$SketchUp_graphics.MeasureString($SketchUp_nnmclub_title, $SketchUp_Form.Font).Width
+            if ($SketchUp_Width -gt $SketchUp_maxWidth) {
+                $SketchUp_maxWidth = $SketchUp_Width 
+            }
         }
-        Remove-Item -Path "$env:TEMP\*SketchUp*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
-        $SketchUp_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($SketchUp_Magnet)"""
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SketchUp_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SketchUp_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process qBittorrent.exe -ArgumentList $SketchUp_qBittorrent_Argument
-        while (-not ($SketchUp_TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*SketchUp*' | Select-Object -First 1).FullName)) {
-            Start-Sleep -Milliseconds 1000
+        $SketchUp_DropDown.Width = $SketchUp_maxWidth + 10
+        $SketchUp_FormWidth = $SketchUp_DropDown.Width + 25
+        $SketchUp_Form.Size = New-Object System.Drawing.Size($SketchUp_FormWidth, 90)
+        
+        $SketchUp_Form.Controls.Add($SketchUp_DropDown)
+        
+        $SketchUp_Form_OK = New-Object System.Windows.Forms.Button
+        $SketchUp_Form_OK.Text = 'OK'
+        $SketchUp_Form_OK.Location = New-Object System.Drawing.Size((($SketchUp_Form.Width) / 3 ), (($SketchUp_Form.height) - 60))
+        $SketchUp_Form_OK.Size = New-Object System.Drawing.Size(57, 20)
+        $SketchUp_Form_OK.DialogResult = [System.Windows.Forms.DialogResult]::OK
+        $SketchUp_Form.Controls.Add($SketchUp_Form_OK)
+        $SketchUp_Form.AcceptButton = $SketchUp_Form_OK
+        
+        $SketchUp_Form_Cancel = New-Object System.Windows.Forms.Button
+        $SketchUp_Form_Cancel.Location = New-Object System.Drawing.Size((($SketchUp_Form.Width) / 2 ), (($SketchUp_Form.height) - 60))
+        $SketchUp_Form_Cancel.Size = New-Object System.Drawing.Size(57, 20)
+        $SketchUp_Form_Cancel.Text = 'Cancel'
+        $SketchUp_Form_Cancel.Add_Click({ $SketchUp_Form.Close() })
+        $SketchUp_Form.Controls.Add($SketchUp_Form_Cancel)
+        
+        if ($SketchUp_Form.ShowDialog() -eq [System.Windows.Forms.DialogResult]::OK) {
+            $SketchUp_SelectedVersion = $SketchUp_DropDown.SelectedItem
+            $SketchUp_SelectedHREF = $SketchUp_nnmclub_Array[$SketchUp_SelectedVersion]
+
+            $SketchUp_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $SketchUp_SelectedHREF).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
+            $SketchUp_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
+            if (Test-Path $SketchUp_qBittorrent_LOG) {
+                Remove-Item $SketchUp_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
+            }
+            Remove-Item -Path "$env:TEMP\*SketchUp*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
+            $SketchUp_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($SketchUp_Magnet)"""
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SketchUp_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SketchUp_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Start-Process qBittorrent.exe -ArgumentList $SketchUp_qBittorrent_Argument
+            while (-not ($SketchUp_TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*SketchUp*' | Select-Object -First 1).FullName)) {
+                Start-Sleep -Milliseconds 1000
+            }
+
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$env:TEMP'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Add-MpPreference -ExclusionPath $env:TEMP
+
+            while (-not ($SketchUp_TempEXE = (Get-ChildItem $SketchUp_TempDir -Filter '*.exe' | Select-Object -First 1).FullName)) {
+                Start-Sleep -Milliseconds 1000
+            }
+            do {
+                Start-Sleep -Milliseconds 1000
+            } until ((Get-Content $SketchUp_qBittorrent_LOG -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*SketchUp*')
+
+            $SketchUp_Argument = '/S /EN'
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SketchUp_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SketchUp_TempEXE'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SketchUp_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Unblock-File $SketchUp_TempEXE
+            Start-Process $SketchUp_TempEXE -ArgumentList $SketchUp_Argument -Wait
+
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$env:TEMP'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Remove-MpPreference -ExclusionPath $env:TEMP
         }
-
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$env:TEMP'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Add-MpPreference -ExclusionPath $env:TEMP
-
-        while (-not ($SketchUp_TempEXE = (Get-ChildItem $SketchUp_TempDir -Filter '*.exe' | Select-Object -First 1).FullName)) {
-            Start-Sleep -Milliseconds 1000
-        }
-        do {
-            Start-Sleep -Milliseconds 1000
-        } until ((Get-Content $SketchUp_qBittorrent_LOG -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*SketchUp*')
-
-        $SketchUp_Argument = '/S /EN'
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SketchUp_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SketchUp_TempEXE'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SketchUp_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Unblock-File $SketchUp_TempEXE
-        Start-Process $SketchUp_TempEXE -ArgumentList $SketchUp_Argument -Wait
-
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$env:TEMP'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Remove-MpPreference -ExclusionPath $env:TEMP
     }
-
+    
     if ($SoftwareSelection_CheckBoxes['VMware Workstation'].Checked) {
-        $VMware_Label = 'https://nnmclub.to/forum/tracker.php?nm=VMware%20KpoJIuK'
-        $VMware_Title = ((Invoke-WebRequest -UseBasicParsing -Uri $VMware_Label).Links | Where-Object { $_.outerHTML -match 'VMware' -and $_.class -match 'genmed topictitle' } | Select-Object -First 1).outerHTML -replace '.*?<b>(.*?)</b></a>', '$1'
-        $VMware_Post = 'https://nnmclub.to/forum/' + ((Invoke-WebRequest -UseBasicParsing -Uri $VMware_Label).Links | Where-Object { $_.outerHTML -match 'VMware' -and $_.class -match 'genmed topictitle' } | Select-Object -First 1).href
-        $VMware_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $VMware_Post).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
-        $VMware_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
-        if (Test-Path $VMware_qBittorrent_LOG) {
-            Remove-Item $VMware_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
+        $VMWare_Form = New-Object System.Windows.Forms.Form
+        $VMWare_Form.Text = 'VMWare Selection'
+        $VMWare_Form.StartPosition = 'CenterScreen'
+        $VMWare_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
+        $VMWare_Form.Topmost = $true
+        $VMWare_Form.MaximizeBox = $false
+        $VMWare_Form.MinimizeBox = $false
+        $VMWare_Form.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
+
+        $VMWare_DropDown = New-Object System.Windows.Forms.ComboBox
+        $VMWare_DropDown.Location = New-Object System.Drawing.Point(5, 0)
+        $VMWare_DropDown.DropDownStyle = 'DropDownList'
+
+        $VMWare_nnmclub_search = (Invoke-WebRequest -UseBasicParsing -Uri 'https://nnmclub.to/forum/tracker.php?nm=VMware%20KpoJIuK').Links | Where-Object { $_.class -match 'genmed topictitle' }
+
+        $VMWare_nnmclub_Array = @{}
+        $VMWare_graphics = [System.Drawing.Graphics]::FromHwnd($VMWare_Form.Handle)
+        $VMWare_maxWidth = 0
+        foreach ($VMWare_nnmclub_post in $VMWare_nnmclub_search) {
+            $VMWare_nnmclub_title = ($VMWare_nnmclub_post.outerHTML -replace '.*?<b>(.*?)</b></a>', '$1')
+            $VMWare_nnmclub_url = 'https://nnmclub.to/forum/' + $VMWare_nnmclub_post.href
+            $VMWare_nnmclub_Array[$VMWare_nnmclub_title] = $VMWare_nnmclub_url
+            $null = $VMWare_DropDown.Items.Add($VMWare_nnmclub_title)
+            $VMWare_Width = [int]$VMWare_graphics.MeasureString($VMWare_nnmclub_title, $VMWare_Form.Font).Width
+            if ($VMWare_Width -gt $VMWare_maxWidth) {
+                $VMWare_maxWidth = $VMWare_Width 
+            }
         }
-        Remove-Item -Path "$env:TEMP\*VMware*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
-        $VMware_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($VMware_Magnet)"""
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VMware_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VMware_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process qBittorrent.exe -ArgumentList $VMware_qBittorrent_Argument
-        while (-not ($VMware_TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*VMware*' | Select-Object -First 1).FullName)) {
-            Start-Sleep -Milliseconds 1000
+        $VMWare_DropDown.Width = $VMWare_maxWidth + 10
+        $VMWare_FormWidth = $VMWare_DropDown.Width + 25
+        $VMWare_Form.Size = New-Object System.Drawing.Size($VMWare_FormWidth, 90)
+
+        $VMWare_Form.Controls.Add($VMWare_DropDown)
+
+        $VMWare_Form_OK = New-Object System.Windows.Forms.Button
+        $VMWare_Form_OK.Text = 'OK'
+        $VMWare_Form_OK.Location = New-Object System.Drawing.Size((($VMWare_Form.Width) / 3 ), (($VMWare_Form.height) - 60))
+        $VMWare_Form_OK.Size = New-Object System.Drawing.Size(57, 20)
+        $VMWare_Form_OK.DialogResult = [System.Windows.Forms.DialogResult]::OK
+        $VMWare_Form.Controls.Add($VMWare_Form_OK)
+        $VMWare_Form.AcceptButton = $VMWare_Form_OK
+
+        $VMWare_Form_Cancel = New-Object System.Windows.Forms.Button
+        $VMWare_Form_Cancel.Location = New-Object System.Drawing.Size((($VMWare_Form.Width) / 2 ), (($VMWare_Form.height) - 60))
+        $VMWare_Form_Cancel.Size = New-Object System.Drawing.Size(57, 20)
+        $VMWare_Form_Cancel.Text = 'Cancel'
+        $VMWare_Form_Cancel.Add_Click({ $VMWare_Form.Close() })
+        $VMWare_Form.Controls.Add($VMWare_Form_Cancel)
+
+        if ($VMWare_Form.ShowDialog() -eq [System.Windows.Forms.DialogResult]::OK) {
+            $VMWare_SelectedVersion = $VMWare_DropDown.SelectedItem
+            $VMWare_SelectedHREF = $VMWare_nnmclub_Array[$VMWare_SelectedVersion]
+
+            $VMware_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $VMWare_SelectedHREF).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
+            $VMware_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
+            if (Test-Path $VMware_qBittorrent_LOG) {
+                Remove-Item $VMware_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
+            }
+            Remove-Item -Path "$env:TEMP\*VMware*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
+            $VMware_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($VMware_Magnet)"""
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VMWare_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VMware_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Start-Process qBittorrent.exe -ArgumentList $VMware_qBittorrent_Argument
+            while (-not ($VMware_TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*VMware*' | Select-Object -First 1).FullName)) {
+                Start-Sleep -Milliseconds 1000
+            }
+    
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$env:TEMP'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Add-MpPreference -ExclusionPath $env:TEMP
+    
+            while (-not ($VMware_TempEXE = (Get-ChildItem $VMware_TempDir -Filter '*.exe' | Select-Object -First 1).FullName)) {
+                Start-Sleep -Milliseconds 1000
+            }
+            do {
+                Start-Sleep -Milliseconds 1000
+            } until ((Get-Content $VMware_qBittorrent_LOG -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*VMware*')
+    
+            $VMware_Argument = '/S /QE'
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VMWare_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VMware_TempEXE'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VMware_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Unblock-File $VMware_TempEXE
+            Start-Process $VMware_TempEXE -ArgumentList $VMware_Argument -Wait
+    
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$env:TEMP'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Remove-MpPreference -ExclusionPath $env:TEMP
         }
-
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$env:TEMP'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Add-MpPreference -ExclusionPath $env:TEMP
-
-        while (-not ($VMware_TempEXE = (Get-ChildItem $VMware_TempDir -Filter '*.exe' | Select-Object -First 1).FullName)) {
-            Start-Sleep -Milliseconds 1000
-        }
-        do {
-            Start-Sleep -Milliseconds 1000
-        } until ((Get-Content $VMware_qBittorrent_LOG -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*VMware*')
-
-        $VMware_Argument = '/S /QE'
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VMware_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VMware_TempEXE'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VMware_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Unblock-File $VMware_TempEXE
-        Start-Process $VMware_TempEXE -ArgumentList $VMware_Argument -Wait
-
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$env:TEMP'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Remove-MpPreference -ExclusionPath $env:TEMP
     }
 }
 
