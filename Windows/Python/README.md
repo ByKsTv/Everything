@@ -21,3 +21,14 @@ Everything about Python.
 
 1. Use [Convert_HEIC_to_PNG.py](Convert_HEIC_to_PNG.py)
 1. Edit `directory_path`.
+
+## Convert PNG to ICO (Single file)
+
+1. CMD (Admin):
+
+   ```bash
+   pip install pillow
+   ```
+
+1. Use [Convert_PNG_to_ICO.py](Convert_PNG_to_ICO.py)
+1. Edit `input_path`.
