@@ -11,7 +11,7 @@ Everything about Python.
 
    ```
 
-## Convert HEIC to PNG
+## Convert HEIC to PNG (Batch)
 
 1. CMD (Admin):
 
