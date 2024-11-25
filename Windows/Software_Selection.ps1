@@ -273,6 +273,11 @@ $SoftwareSelection_List = @(
         Icon64  = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1HgAnNN5BPTTeQP/zHYF/7tqCP+tYwv/o10S+ZJOD50AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADUeAA81HgA9tR5Af/SeAP/qV0K/5RQDP+QTQ3/kE4N/5JOD/+STg//kE0Q9o9MEDwAAAAAAAAAAAAAAADUeAA81HgA/tR5Af/VewL/p10K/5RQDP+STwz/lVEO/5hSDv+WUA//lE8P/5FOEP+PTBD+jUsRPAAAAAAAAAAA1HgA9tR5Af/VewL/xHAF/5VQDP+UUAz/llEM/5pTDv+YUg77llAP3JRPD8CRThDvj0wQ+41LEfYAAAAA1HgAnNV5Af/VewL/1nwD/7dpB/+WUQz/lFAM/5xUDf6aUw6cAAAAAAAAAAAAAAAAAAAAAAAAAACNSxFXAAAAANV5Ae/VewL/1n0D/9d/Bf+tYwr/llEM/5dSDP6dVQ1XAAAAAIW+NjyGvzevacE/51fDRe9NyEyvQM5UPAAAAADVewL/1n0E/9d/Bf/XgQf/u24J/5RQDP+ZUw3CAAAAAAAAAACavzPniL83/4DCO/9mw0L/UM1Q/0XRVv461FtX1X0E/9d/Bf/XgQf/2IQI/9aDCv+TUAv/mFINcwAAAAAAAAAAm78znJLBN/+Nxjz/Z8pI/2PRT/9S11n/QNdd79uMD//WgAf/2IQJ/9mGCv/aiQz/wHUO/4tLC8cAAAAAAAAAAMWxN92XxDj/jck//4XORf9v1E//VdZX/0zdX//fnB3/0X8J/9mHC//biQ3/3IwP/92PEf/OhRP/0o4fodyXGMHIrCT/pcc3/5HLQP+H00r/b9RP/2LgXf9M5Gb/6q8s/cWDEP/Vhg3/24wP/92PEf/ekhP/35YW/92XGP/JlRv/0cIq/7/EMP+qyzv/jtVK/4DcU/9o4V3/WOZl//e8MJzzvTD/15we/8mHE//QiRL/0YsV/8eOGP/NpyH/0cIq/9HCKv/BxzL/tM08/5rUR/+M21D/aetn/1rubdwAAAAA9r0x9vO+Mv/svzD/58Aw/+DBLv/XwSv/0sIq/9HCKv/LxzH/vsw4/6rUQ/+a203/fuZe/23qZf9h7208AAAAAPi+MzzzvjL+778y/+jAMf/hwS//28It/9bELv/SxC3/z8Yw/8bKNv+r1kb/qdlJ/4jmXf926mScAAAAAAAAAAAAAAAA+L40PPW/NPbwwDT/5cEx/97DMf/WxC7/0sYw/8/GMP/DzTr/utJA/6TbTP6W4lacAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8sA1nOvCNO/lwjP/18Yy/9XHNP/OzDn/wtE/9rbVRMCp20wfAAAAAAAAAAAAAAAA8A8AAMADAACAAQAAgAEAAAB9AAAAgQAAAYAAAAGAAAABgAAAAAAAAAAAAAAAAAAAgAAAAIABAADAAwAA8AcAAA=='
     },
     @{
+        Name    = 'Uninstall Microsoft Store'
+        Tooltip = ''
+        Icon64  = 'AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAACBSxkQfUkawHpIG/93Rhz/dUUd/3JDHv9vQh//bEAg/2k/If9mPSL/Yzwj/2A6JP9fOiT/XzokwF86JBD///8Ahk4YwIJMGf9/Shr/fUka/3pHG/93Rhz/dEUd/3FDHv9uQh//a0Ag/2g+If9lPSL/Yjsj/186JP9fOiTA////AItQFv+ITxf/hU0Y/3ZFF/9yQhf/b0IY/21AGf9qPxr/Zz0b/2U8G/9iOh3/YDod/2c+If9kPSL/YTsj/////wCQUxT/jVEV/4pQFv95RhX/76QA/++kAP/vpAD/bkEY/wC5//8Auf//ALn//2Q7HP9sQSD/aT8h/2Y+Iv////8AlVUT/5JUFP+PUhT/fkkU/++kAP/vpAD/76QA/3NDFv8Auf//ALn//wC5//9oPhr/cUMe/25CH/9rQCD/////AJpYEf+XVhL/lFUT/4JLEv/vpAD/76QA/++kAP93RRb/ALn//wC5//8Auf//bkAY/3ZGHP9zRB3/cUMe/////wCfWg//nFkQ/5lXEf+HTRD/hUwR/4FLEv9/SRP/fEgU/3lGFf93RRb/dUQW/3JCF/97SBv/eUcc/3ZFHf////8ApF0O/6FcD/+eWhD/jFAO/yJQ8v8iUPL/IlDy/4FLEv8Aun//ALp//wC6f/93RRb/gUsZ/35JGv97SBv/////AKlgDP+mXg3/pF0O/5FSDf8iUPL/IlDy/yJQ8v+GTBH/ALp//wC6f/8Aun//e0cU/4ZOF/+DTBj/gEsZ/////wCvYgr/rGEL/6lfDP+VVAz/IlDy/yJQ8v8iUPL/ik8P/wC6f/8Aun//ALp//4BKE/+LUBb/iE8X/4VNGP////8AtGUJ/7FjCv+uYgv/m1cL/5dVC/+UVAz/kVMN/49RDf+MUA7/iU4P/4dNEP+FTBH/kFMU/41RFf+KUBb/////ALlnB/+2Zgj/s2QJ/7BjCv+tYQv/qmAM/6deDf+kXQ7/oVsP/55aEP+bWBH/mFcS/5VVEv+SVBP/kFMU/////wC8aQagu2gG/7hnB//hqRP/smQJ/69jCv+sYQv/qWAM/6ZeDf+jXA7/oFsP/9WaC/+aWBH/mFcS/5VVE6D///8A////AP///wD///8A+9Mr/////wD///8A////AP///wD///8A////AP///wDxwyD/////AP///wD///8A////AP///wD///8A////APPWTq3/vCL//7wi//+8Iv//vCL//7wi//+8Iv//vCL//9owoP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8AAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAO/vAADgDwAA//8AAA=='
+    },
+    @{
         Name    = 'Valorant'
         Tooltip = ''
         Icon64  = 'AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFVG/wBURv8AVEb/KFRG/1lURv9aVEb/W1RG/09URv8LVEb/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFNF/wBURv8AVEb/IVRG/8VURv//VEb//lRG//tURv+FVEb/BVRG/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABURv8AVEb/EVRG/6lURv//VEb//1RG//9URv+nVEb/EFRG/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABURv8AVEb/BlRG/4lURv/8VEb//1RG//9URv/EVEb/IVVG/wNVRv8FVUb/BVVG/wRVRv8BVUb/AAAAAABURv8AUkX/AVRG/2hURv/1VEb//1RG//9URv/bVEb/NVRG/w9URv+PVEb/tVRG/7NURv+zVEb/XVRF/wFURv8AVEb/AFRG/0ZURv/oVEb//1RG//9URv/tVEb/UlRG/wBURv8AVEb/VlRG/+9URv//VEb//1RG/+hURv9HVEb/AFBE/wFURv+fVEb//1RG//9URv/4VEb/clRG/wJURv8AVEb/AFRG/wJURv9yVEb/+FRG//9URv//VEb/n1ZE/wFRRf8CVEb/pFRG//9URv/+VEb/k1RG/wlURv8AAAAAAAAAAABURv8AVEb/CVRG/5RURv/+VEb//1RG/6RVRf8CUUX/AlRG/6RURv//VEb/s1RG/xVURv8AAAAAAAAAAAAAAAAAAAAAAFRG/wBURv8VVEb/s1RG//9URv+kVUX/AlFF/wJURv+mVEb/0lRG/yhURv8AVEX/AAAAAAAAAAAAAAAAAAAAAABVR/8AVEb/AFRG/yhURv/SVEb/plVF/wJSRf8EVEb/iFRG/0VURv8AVEX/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFRG/wBURv8AVEb/RVRG/4hVRf8EU0b/AlRG/xpURv8DVEb/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVEb/AFRG/wNURv8aVEb/AgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAP//AAD4HwAA8B8AAOA/AADAAwAAgAEAAIGBAAABgAAAA8AAAAfgAAAP8AAAH/gAAB/4AAD//wAA//8AAA=='
@@ -444,9 +449,13 @@ if (Get-ScheduledTask -TaskName $Mediainfo_TaskName -ErrorAction SilentlyContinu
 if ($InstalledSoftware -match 'Microsoft Office' -or $InstalledSoftware -match 'Microsoft 365') {
     $SoftwareSelection_CheckBoxes['Microsoft Office'].Text += ' (Installed)'
 }
-if ($null -ne (Get-AppxPackage -Name Microsoft.WindowsStore)) {
+if ($null -ne (Get-AppxPackage -Name 'Microsoft.WindowsStore')) {
     $SoftwareSelection_CheckBoxes['Microsoft Store'].Enabled = $false
     $SoftwareSelection_CheckBoxes['Microsoft Store'].Text += ' (Installed)'
+}
+if ($null -eq (Get-AppxPackage -Name 'Microsoft.WindowsStore')) {
+    $SoftwareSelection_CheckBoxes['Uninstall Microsoft Store'].Enabled = $false
+    $SoftwareSelection_CheckBoxes['Uninstall Microsoft Store'].Text += ' (Uninstalled)'
 }
 if ((Test-Path -Path "$env:USERPROFILE\mpv")) {
     $SoftwareSelection_CheckBoxes['mpv'].Enabled = $false
@@ -563,17 +572,14 @@ $SoftwareSelection_Form.Controls.Add($SoftwareSelection_Form_Cancel)
 $SoftwareSelection_Form_OK.Add_Click{
     $SoftwareSelection_Form.Topmost = $false
     if ($SoftwareSelection_CheckBoxes['Microsoft Store'].Checked) {
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Microsoft Store: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-        (New-Object System.Net.WebClient).DownloadFile('https://github.com/kkkgo/LTSC-Add-MicrosoftStore/archive/refs/heads/master.zip', "$env:TEMP\LTSC-Add-MicrosoftStore.zip")
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Microsoft Store: Extracting'); [Console]::ResetColor(); [Console]::WriteLine()
-        Expand-Archive -Path "$env:TEMP\LTSC-Add-MicrosoftStore.zip" -DestinationPath "$env:TEMP\LTSC-Add-MicrosoftStore" -Force
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Microsoft Store: Setting Unattended'); [Console]::ResetColor(); [Console]::WriteLine()
-        (Get-Content "$env:TEMP\LTSC-Add-MicrosoftStore\LTSC-Add-MicrosoftStore-master\Add-Store.cmd").Replace('pause >nul', '') | Set-Content "$env:TEMP\LTSC-Add-MicrosoftStore\LTSC-Add-MicrosoftStore-master\Add-Store.cmd"
-        
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: Microsoft Store: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process -FilePath "$env:TEMP\LTSC-Add-MicrosoftStore\LTSC-Add-MicrosoftStore-master\Add-Store.cmd"
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Store'"); [Console]::ResetColor(); [Console]::WriteLine()
+        wsreset -i
+    }
+
+    if ($SoftwareSelection_CheckBoxes['Uninstall Microsoft Store'].Checked) {
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Uninstalling '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Store'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Get-AppxPackage -AllUsers 'Microsoft.WindowsStore' | Remove-AppxPackage -ErrorAction SilentlyContinue
+        Get-AppxPackage -AllUsers 'Microsoft.StorePurchaseApp' | Remove-AppxPackage -ErrorAction SilentlyContinue
     }
 
     if ($SoftwareSelection_CheckBoxes['NordVPN'].Checked) {
