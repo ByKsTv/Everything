@@ -1366,7 +1366,7 @@ $SoftwareSelection_Form_OK.Add_Click{
         New-ItemProperty -Path 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\TrustManager' -Name 'iProtectedView' -Value 2 -PropertyType DWord -Force
 
         $AcrobatPro_Form = New-Object System.Windows.Forms.Form
-        $AcrobatPro_Form.Text = 'AcrobatPro Selection'
+        $AcrobatPro_Form.Text = 'Adobe Acrobat Pro Selection'
         $AcrobatPro_Form.StartPosition = 'CenterScreen'
         $AcrobatPro_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
         $AcrobatPro_Form.Topmost = $true
@@ -1458,7 +1458,7 @@ $SoftwareSelection_Form_OK.Add_Click{
     
     if ($SoftwareSelection_CheckBoxes['Adobe Lightroom Classic'].Checked) {
         $Lightroom_Form = New-Object System.Windows.Forms.Form
-        $Lightroom_Form.Text = 'Lightroom Selection'
+        $Lightroom_Form.Text = 'Adobe Lightroom Classic Selection'
         $Lightroom_Form.StartPosition = 'CenterScreen'
         $Lightroom_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
         $Lightroom_Form.Topmost = $true
@@ -1550,7 +1550,7 @@ $SoftwareSelection_Form_OK.Add_Click{
 
     if ($SoftwareSelection_CheckBoxes['Adobe Photoshop'].Checked) {
         $Photoshop_Form = New-Object System.Windows.Forms.Form
-        $Photoshop_Form.Text = 'Photoshop Selection'
+        $Photoshop_Form.Text = 'Adobe Photoshop Selection'
         $Photoshop_Form.StartPosition = 'CenterScreen'
         $Photoshop_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
         $Photoshop_Form.Topmost = $true
@@ -1642,7 +1642,7 @@ $SoftwareSelection_Form_OK.Add_Click{
 
     if ($SoftwareSelection_CheckBoxes['Autodesk Revit'].Checked) {
         $Revit_Form = New-Object System.Windows.Forms.Form
-        $Revit_Form.Text = 'Revit Selection'
+        $Revit_Form.Text = 'Autodesk Revit Selection'
         $Revit_Form.StartPosition = 'CenterScreen'
         $Revit_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
         $Revit_Form.Topmost = $true
@@ -1753,7 +1753,7 @@ $SoftwareSelection_Form_OK.Add_Click{
     
     if ($SoftwareSelection_CheckBoxes['Autodesk AutoCAD'].Checked) {
         $AutoCAD_Form = New-Object System.Windows.Forms.Form
-        $AutoCAD_Form.Text = 'AutoCAD Selection'
+        $AutoCAD_Form.Text = 'Autodesk AutoCAD Selection'
         $AutoCAD_Form.StartPosition = 'CenterScreen'
         $AutoCAD_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
         $AutoCAD_Form.Topmost = $true
@@ -1931,7 +1931,7 @@ $SoftwareSelection_Form_OK.Add_Click{
 
     if ($SoftwareSelection_CheckBoxes['SketchUp'].Checked) {
         $SketchUp_Form = New-Object System.Windows.Forms.Form
-        $SketchUp_Form.Text = 'SketchUp Selection'
+        $SketchUp_Form.Text = 'SketchUp Pro Selection'
         $SketchUp_Form.StartPosition = 'CenterScreen'
         $SketchUp_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
         $SketchUp_Form.Topmost = $true
@@ -2019,7 +2019,7 @@ $SoftwareSelection_Form_OK.Add_Click{
     
     if ($SoftwareSelection_CheckBoxes['VMware Workstation'].Checked) {
         $VMWare_Form = New-Object System.Windows.Forms.Form
-        $VMWare_Form.Text = 'VMWare Selection'
+        $VMWare_Form.Text = 'VMWare Workstation Pro Selection'
         $VMWare_Form.StartPosition = 'CenterScreen'
         $VMWare_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
         $VMWare_Form.Topmost = $true
