@@ -193,6 +193,11 @@ $SoftwareSelection_List = @(
         Icon64  = 'AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAACBSxkQfUkawHpIG/93Rhz/dUUd/3JDHv9vQh//bEAg/2k/If9mPSL/Yzwj/2A6JP9fOiT/XzokwF86JBD///8Ahk4YwIJMGf9/Shr/fUka/3pHG/93Rhz/dEUd/3FDHv9uQh//a0Ag/2g+If9lPSL/Yjsj/186JP9fOiTA////AItQFv+ITxf/hU0Y/3ZFF/9yQhf/b0IY/21AGf9qPxr/Zz0b/2U8G/9iOh3/YDod/2c+If9kPSL/YTsj/////wCQUxT/jVEV/4pQFv95RhX/76QA/++kAP/vpAD/bkEY/wC5//8Auf//ALn//2Q7HP9sQSD/aT8h/2Y+Iv////8AlVUT/5JUFP+PUhT/fkkU/++kAP/vpAD/76QA/3NDFv8Auf//ALn//wC5//9oPhr/cUMe/25CH/9rQCD/////AJpYEf+XVhL/lFUT/4JLEv/vpAD/76QA/++kAP93RRb/ALn//wC5//8Auf//bkAY/3ZGHP9zRB3/cUMe/////wCfWg//nFkQ/5lXEf+HTRD/hUwR/4FLEv9/SRP/fEgU/3lGFf93RRb/dUQW/3JCF/97SBv/eUcc/3ZFHf////8ApF0O/6FcD/+eWhD/jFAO/yJQ8v8iUPL/IlDy/4FLEv8Aun//ALp//wC6f/93RRb/gUsZ/35JGv97SBv/////AKlgDP+mXg3/pF0O/5FSDf8iUPL/IlDy/yJQ8v+GTBH/ALp//wC6f/8Aun//e0cU/4ZOF/+DTBj/gEsZ/////wCvYgr/rGEL/6lfDP+VVAz/IlDy/yJQ8v8iUPL/ik8P/wC6f/8Aun//ALp//4BKE/+LUBb/iE8X/4VNGP////8AtGUJ/7FjCv+uYgv/m1cL/5dVC/+UVAz/kVMN/49RDf+MUA7/iU4P/4dNEP+FTBH/kFMU/41RFf+KUBb/////ALlnB/+2Zgj/s2QJ/7BjCv+tYQv/qmAM/6deDf+kXQ7/oVsP/55aEP+bWBH/mFcS/5VVEv+SVBP/kFMU/////wC8aQagu2gG/7hnB//hqRP/smQJ/69jCv+sYQv/qWAM/6ZeDf+jXA7/oFsP/9WaC/+aWBH/mFcS/5VVE6D///8A////AP///wD///8A+9Mr/////wD///8A////AP///wD///8A////AP///wDxwyD/////AP///wD///8A////AP///wD///8A////APPWTq3/vCL//7wi//+8Iv//vCL//7wi//+8Iv//vCL//9owoP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8AAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAO/vAADgDwAA//8AAA=='
     },
     @{
+        Name    = 'Minecraft Launcher'
+        Tooltip = ''
+        Icon64  = 'AAABAAEAEBAAAAAAIAAEAgAAFgAAAIlQTkcNChoKAAAADUlIRFIAAAAQAAAAEAgGAAAAH/P/YQAAActJREFUeJylk09rE0EYxn/vZP+kbksMRKQlioJSsAYq4l3BT1DQe7+HR7+KeLNfQNCLF2lBKNKDiNLaFInY/LPZ7M7O62G7SdYkJ+e0szPv732eZ2Zk59Uj5T+GNztRB5DzRASkWADVoo8gZgnAWzGIyatc6nA2LzK+YPzKZRMlG7t/AAriCYevTxj+jFGF24+vsb59FYCzT12+ve8gAqvXq2w9a6JWQWYUiMDZx3N6JyMAGnfWWH+Qrw1+xJx++A1A7cYK95830ZKCwqpO86yEhnDNn3wv2gMgk1MQ6H2OsUPFCwy98z/ESQJANQio1SNs4vBWhdpWtch6RoFC42EEQFjz+fqyzfd3vwC49aTBvRcbjHspAOkom5RNtKlTstTRORqwt7tP+6CLVASpCO2DLnu7+3SOBmSpQ93URikD4wmZVQbHo5LPpG9J+pbMar4nYTEAQEwO0gyKvERAKpQu0FIAqjirtHZucvfpBgBf3rY5fHM8JS4DqFPCyKfZalDfjAia+f/6ZkSz1SCM/JJ/mD3GIgdjqF4JGMcpNrF5l8AjrPrEFwnOuRJgzoJzjmH/AhGZvAubWtIkxZj5EOYzuFRRkimSv84F4y/+nLefrvGdOQAAAABJRU5ErkJggg=='
+    },
+    @{
         Name    = 'mpv'
         Tooltip = ''
         Icon64  = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABMLAAATCwAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAIAAAAFAAAACMAAAAtAAAAMwAAADMAAAAtAAAAIwAAABQAAAAIAAAAAQAAAAAAAAAAAAAAAAAAAAEAAAAKAAAAHSMAI0pLAEulVwBX3lsAW/hbAFv4VwBX3ksAS6UjACNKAAAAHQAAAAoAAAABAAAAAAAAAAAAAAAIAAAAHkAAQHxbAFv2XABc/1wAXP9cAFz/XABc/1wAXP9cAFz/WwBb9kAAQHwAAAAeAAAACAAAAAAAAAADAAAAFkEAQXtcAFz+XABc/1wAXP96NHr/l2WX/5Vklf94MXj/XABc/1wAXP9cAFz+QQBBegAAABYAAAADAAAACSgAKD1bAFv2XABc/2QOZP++pL7/4uLi/9/f3//d3d3/29vb/7Wbtf9jDGP/XABc/1sAW/YoACg9AAAACQAAABBOAE6gXABc/1wAXP/ApsD/5ubm/4FVgf/Px8//4ODg/93d3f/b29v/tJq0/1wAXP9cAFz/TgBOoAAAABAAAAAUWABY3VwAXP99Nn3/6+vr/+np6f9fHV//Wx5b/5p6mv/a2Nr/3d3d/9vb2/93MHf/XABc/1gAWN0AAAAUAAAAFVsAW/ZcAFz/n22f/+3t7f/r6+v/ayRr/2IdYv9YF1j/ZS5l/7ShtP/e3t7/lWKV/1wAXP9bAFv2AAAAFQAAABJcAFz7XABc/6BuoP/w8PD/7u7u/3QrdP9tJW3/Yx5j/2w0bP+4pbj/4ODg/5Zklv9cAFz/XABc+wAAABIAAAANWQBZ21wAXP9+N37/8vLy//Dw8P95L3n/djF2/6mHqf/i4OL/5eXl/+Li4v95MXn/XABc/1kAWdoAAAANAAAABlMAU5ZcAFz/XABc/8muyf/y8vL/nGqc/93U3f/s7Oz/6enp/+fn5/+9or3/XABc/1wAXP9TAFOVAAAABgAAAAI9AD0nWwBb9VwAXP9lDmX/yK3I//Ly8v/w8PD/7u7u/+zs7P/BpsH/ZA5k/1wAXP9bAFv1PQA9JwAAAAIAAAAAAAAABFAAUGFcAFz+XABc/1wAXP99NX3/n2yf/55rnv98M3z/XABc/1wAXP9cAFz+TwBPYAAAAAQAAAAAAAAAAAAAAAEAAAAFUQBRX1sAW/NcAFz/XABc/1wAXP9cAFz/XABc/1wAXP9bAFvzUQBRXwAAAAUAAAABAAAAAAAAAAAAAAAAAAAAAQAAAAM/AD8dVgBWjVoAWtNcAFz1XABc+1oAWtVWAFaNPwA/HQAAAAMAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAMAAAAFAAAABgAAAAYAAAAFAAAAAwAAAAEAAAAAAAAAAAAAAAAAAAAAwAMAAIABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIABAADAAwAA4AcAAA=='
@@ -449,6 +454,10 @@ if (Get-ScheduledTask -TaskName $Mediainfo_TaskName -ErrorAction SilentlyContinu
 if ($InstalledSoftware -match 'Microsoft Office' -or $InstalledSoftware -match 'Microsoft 365') {
     $SoftwareSelection_CheckBoxes['Microsoft Office'].Text += ' (Installed)'
 }
+if ($InstalledSoftware -match 'Minecraft Launcher') {
+    $SoftwareSelection_CheckBoxes['Minecraft Launcher'].Enabled = $false
+    $SoftwareSelection_CheckBoxes['Minecraft Launcher'].Text += ' (Installed)'
+}
 if ($null -ne (Get-AppxPackage -Name 'Microsoft.WindowsStore')) {
     $SoftwareSelection_CheckBoxes['Microsoft Store'].Enabled = $false
     $SoftwareSelection_CheckBoxes['Microsoft Store'].Text += ' (Installed)'
@@ -592,6 +601,18 @@ $SoftwareSelection_Form_OK.Add_Click{
         $NordVPN_Argument = '/verysilent'
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'NordVPN'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$NordVPN_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$NordVPN_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process $NordVPN_SavePath -ArgumentList $NordVPN_Argument
+    }
+
+    if ($SoftwareSelection_CheckBoxes['Minecraft Launcher'].Checked) {
+        $Minecraft_DDL = 'https://launcher.mojang.com/download/MinecraftInstaller.msi'
+        $Minecraft_Filename = [IO.Path]::GetFileName(([URI]$Minecraft_DDL).AbsolutePath)
+        $Minecraft_SavePath = [IO.Path]::Combine($env:TEMP, $Minecraft_Filename)
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Minecraft Launcher'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Minecraft_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Minecraft_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+        (New-Object System.Net.WebClient).DownloadFile($Minecraft_DDL, $Minecraft_SavePath)
+
+        $Minecraft_Argument = '/q'
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Minecraft Launcher'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Minecraft_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Minecraft_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process $Minecraft_SavePath -ArgumentList $Minecraft_Argument
     }
 
     if ($SoftwareSelection_CheckBoxes['Zoom'].Checked) {
