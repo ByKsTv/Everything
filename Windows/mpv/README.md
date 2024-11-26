@@ -23,14 +23,14 @@ Everything about mpv.
 ## Cookies Setup
 
 1. Download [cookies.txt](https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/) extension.
-2. Open incognito window.
-3. Login to `youtube.com` and export `Current Site` cookies.
-4. Move `cookies.firefox-private.txt` to mpv folder.
-5. Whitelist `s.youtube.com` on Pi-Hole.
+1. Open incognito window.
+1. Login to `youtube.com` and export `Current Site` cookies.
+1. Move `cookies.firefox-private.txt` to mpv folder.
+1. Whitelist `s.youtube.com` on Pi-Hole.
 
 ## Summery
 
 1. YouTube videos will be marked as watched on `youtube.com`
-2. mpv will ALT+TAB when 1 seconds remained to the end of the video.
-3. mpv will delete videos when 15 seconds remained to the end of the video (You might want to delete this script).
-4. YouTube videos will skip sponsors and ads ([Python](https://www.python.org/downloads/) required).
+1. mpv will ALT+TAB when 1 seconds remained to the end of the video.
+1. mpv will delete videos when 15 seconds remained to the end of the video (You might want to delete this script).
+1. YouTube videos will skip sponsors and ads ([Python](https://www.python.org/downloads/) required).
