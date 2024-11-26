@@ -63,7 +63,6 @@ if (-not (Test-Path -Path $MPV_ScriptsPath)) {
     New-Item $MPV_ScriptsPath -ItemType Directory -Force
 }
 $MPV_ScriptsURLs = @(
-    'https://raw.githubusercontent.com/mpv-player/mpv/master/TOOLS/lua/autoload.lua',
     'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/browser-switch.lua',
     'https://raw.githubusercontent.com/po5/celebi/master/celebi.lua',
     'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/scripts/hidecursor.lua',
