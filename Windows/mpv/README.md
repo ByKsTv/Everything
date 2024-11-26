@@ -13,7 +13,6 @@ Everything about mpv.
 
 ## Scripts included
 
-- [autoload](https://github.com/mpv-player/mpv/blob/master/TOOLS/lua/autoload.lua)
 - [delete_file](https://github.com/zenyd/mpv-scripts/blob/master/delete_file.lua)
 - [oled-screensaver](https://github.com/Akemi/mpv-oled-screensaver/blob/master/oled-screensaver.lua)
 - [celebi](https://github.com/po5/celebi/blob/master/celebi.lua)
