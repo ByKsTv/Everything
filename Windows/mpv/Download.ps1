@@ -90,7 +90,6 @@ if (-not (Test-Path -Path $MPV_ScriptOptsPath)) {
     New-Item $MPV_ScriptOptsPath -ItemType Directory -Force
 }
 $MPV_ScriptOptsURLs = @(
-    'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/script-opts/autoload.conf',
     'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/script-opts/celebi.conf',
     'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/script-opts/oled_screensaver.conf',
     'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/script-opts/osc.conf',
