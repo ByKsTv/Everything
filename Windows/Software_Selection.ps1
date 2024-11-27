@@ -415,9 +415,8 @@ if ($InstalledSoftware -match 'Epic Games Launcher') {
     $SoftwareSelection_CheckBoxes['Epic Games Launcher'].Enabled = $false
     $SoftwareSelection_CheckBoxes['Epic Games Launcher'].Text += ' (Installed)'
 }
-$Arkenfox_Update = 'Arkenfox Update'
-$Arkenfox_Update_Exists = Get-ScheduledTask | Where-Object { $_.TaskName -like $Arkenfox_Update }
-if (($Arkenfox_Update_Exists)) {
+$Arkenfox_Update_TaskName = 'Arkenfox Update'
+if (Get-ScheduledTask -TaskName $Arkenfox_Update_TaskName -ErrorAction SilentlyContinue) {
     $SoftwareSelection_CheckBoxes['Firefox - Arkenfox'].Enabled = $false
     $SoftwareSelection_CheckBoxes['Firefox - Arkenfox'].Text += ' (Installed)'
 }
