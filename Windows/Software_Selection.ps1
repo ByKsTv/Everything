@@ -844,7 +844,7 @@ ad.ui.show_tile.telemetry=false
         $AnyDesk_LocalCFG = [IO.Path]::Combine($env:APPDATA, 'AnyDesk', 'user.conf')
         New-Item -Path $AnyDesk_LocalCFG -ItemType File -Value $AnyDesk_Settings -Force
 
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: AnyDesk: Optional Offer - Recommended by AnyDesk: Decline'); [Console]::ResetColor(); [Console]::WriteLine()
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('AnyDesk: Optional Offer - Recommended by AnyDesk: Decline'); [Console]::ResetColor(); [Console]::WriteLine()
         if ((Test-Path -Path 'HKCU:\SOFTWARE\Google\No Chrome Offer Until') -ne $true) {
             New-Item 'HKCU:\SOFTWARE\Google\No Chrome Offer Until' -Force 
         }
