@@ -1,4 +1,4 @@
-from PIL import Image # type: ignore
+from PIL import Image  # type: ignore
 import os
 
 input_path = r"C:\Users\Test\Downloads\New folder\input.png"
