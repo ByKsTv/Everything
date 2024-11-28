@@ -837,6 +837,13 @@ $SoftwareSelection_Form_OK.Add_Click{
     }
 
     if ($SoftwareSelection_CheckBoxes['AnyDesk'].Checked) {
+        $AnyDesk_Settings = @'
+ad.discovery.show_tile=0
+ad.ui.show_tile.telemetry=false
+'@
+$AnyDesk_LocalCFG = [IO.Path]::Combine($env:APPDATA, 'AnyDesk', 'user.conf')
+New-Item -Path $AnyDesk_LocalCFG -ItemType File -Value $AnyDesk_Settings -Force
+
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Software Selection: AnyDesk: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
         (New-Object System.Net.WebClient).DownloadFile('https://download.anydesk.com/AnyDesk.exe', "$env:TEMP\AnyDesk.exe")
         
