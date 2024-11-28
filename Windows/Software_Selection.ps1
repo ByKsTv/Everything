@@ -857,9 +857,12 @@ ad.ui.show_tile.telemetry=false
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'AnyDesk'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AnyDesk_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AnyDesk_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
         (New-Object System.Net.WebClient).DownloadFile($AnyDesk_DDL, $AnyDesk_SavePath)
 
-        $AnyDesk_Argument = '--install "C:\Program Files (x86)\AnyDesk" --create-shortcuts --create-desktop-icon --silent'
+        $AnyDesk_Argument = '--install "C:\Program Files (x86)\AnyDesk" --create-shortcuts --silent'
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'AnyDesk'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AnyDesk_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AnyDesk_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-Process $AnyDesk_SavePath -ArgumentList $AnyDesk_Argument
+        Start-Process $AnyDesk_SavePath -ArgumentList $AnyDesk_Argument -Wait
+
+        Stop-Service -Name 'AnyDesk' -Force
+        Set-Service -Name 'AnyDesk' -StartupType Manual
     }
 
     if ($SoftwareSelection_CheckBoxes['Valorant'].Checked) {
