@@ -490,7 +490,8 @@ if (Get-ScheduledTask -TaskName $NotepadPlusPlus_TaskName -ErrorAction SilentlyC
 If ((Get-WmiObject Win32_VideoController).Name -notlike '*NVIDIA*') {
     $SoftwareSelection_CheckBoxes['NVCleanstall'].Text += ' (Incompatible GPU)'
 }
-if ($InstalledSoftware -match 'NVCleanstall') {
+$NVCleanstall_TaskName = 'NVCleanstall Updater'
+if (Get-ScheduledTask -TaskName $NVCleanstall_TaskName -ErrorAction SilentlyContinue) {
     $SoftwareSelection_CheckBoxes['NVCleanstall'].Enabled = $false
     $SoftwareSelection_CheckBoxes['NVCleanstall'].Text += ' (Installed)'
 }
