@@ -1,35 +1,61 @@
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
-[System.Windows.Forms.Application]::EnableVisualStyles()
+[Windows.Forms.Application]::EnableVisualStyles()
 
-$SoftwareSelection_Form = New-Object System.Windows.Forms.Form
-$SoftwareSelection_Form.width = 350
-$SoftwareSelection_Form.height = 600
-$SoftwareSelection_Form.Text = 'Software Selection'
-$SoftwareSelection_Form.StartPosition = 'CenterScreen'
-$SoftwareSelection_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
-$SoftwareSelection_Form.Topmost = $true
-$SoftwareSelection_Form.MaximizeBox = $false
-$SoftwareSelection_Form.MinimizeBox = $false
-$SoftwareSelection_Form.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
+$SoftwareSelection_Form = New-Object System.Windows.Forms.Form -Property @{
+    Text            = 'Software Selection'
+    Font            = [Drawing.Font]::new('Tahoma', 11)
+    Width           = 350
+    Height          = [Windows.Forms.Screen]::PrimaryScreen.WorkingArea.Height
+    StartPosition   = 'CenterScreen'
+    FormBorderStyle = 'FixedDialog'
+    Topmost         = $true
+    MaximizeBox     = $false
+    MinimizeBox     = $false
+    ControlBox      = $false
+}
+
+$SoftwareSelection_ButtonSpacer = 15
+$SoftwareSelection_ButtonWidth = 57
+$SoftwareSelection_ButtonHeight = 20
+$SoftwareSelection_ButtonYLocation = $SoftwareSelection_Form.Height - 60
+
+$SoftwareSelection_Form_OK = New-Object System.Windows.Forms.Button -Property @{
+    Text      = 'OK'
+    Width     = $SoftwareSelection_ButtonWidth
+    Height    = $SoftwareSelection_ButtonHeight
+    Add_Click = ({ $SoftwareSelection_Form.Close() })
+}
+
+$SoftwareSelection_Form_Cancel = New-Object System.Windows.Forms.Button -Property @{
+    Text      = 'Cancel'
+    Width     = $SoftwareSelection_ButtonWidth
+    Height    = $SoftwareSelection_ButtonHeight
+    Add_Click = ({ $SoftwareSelection_Form.Close() })
+}
+
+$SoftwareSelection_TotalButtonWidth = $SoftwareSelection_ButtonSpacer + $SoftwareSelection_Form_OK.Width + $SoftwareSelection_Form_Cancel.Width
+$SoftwareSelection_FormCenterX = [math]::Round(($SoftwareSelection_Form.ClientSize.Width - $SoftwareSelection_TotalButtonWidth) / 2)
+$SoftwareSelection_Form_OK.Location = [Drawing.Point]::new($SoftwareSelection_FormCenterX, $SoftwareSelection_ButtonYLocation)
+$SoftwareSelection_CancelX = $SoftwareSelection_FormCenterX + $SoftwareSelection_Form_OK.Width + $SoftwareSelection_ButtonSpacer
+$SoftwareSelection_Form_Cancel.Location = [Drawing.Point]::new($SoftwareSelection_CancelX, $SoftwareSelection_ButtonYLocation)
+
+$SoftwareSelection_Panel = New-Object System.Windows.Forms.Panel -Property @{
+    Location   = [Drawing.Point]::new(0, 0)
+    Width      = $SoftwareSelection_Form.Width - 17
+    Height     = $SoftwareSelection_Form.Height - $SoftwareSelection_ButtonHeight - 40
+    AutoScroll = $true
+    AutoSize   = $false
+}
 
 $InstalledSoftware = (Get-Package).Name
 $SoftwareSelection_CheckBox_X_Location = 5
 $SoftwareSelection_CheckBox_Y_Location = 0
-$SoftwareSelection_CheckBox_X_Size = (($SoftwareSelection_Form.width) - 40)
-$SoftwareSelection_CheckBox_Y_Size = 26
-$SoftwareSelection_CheckBox_LocationAdd = 26
-# Icons size 16x16, format .ico from .exe file use 7zip
-# [Convert]::ToBase64String((Get-Content "path" -Encoding Byte)) | Clip
+$SoftwareSelection_CheckBoxWidth = $SoftwareSelection_Form.Width - 40
+$SoftwareSelection_CheckBoxHeight = 26
+$SoftwareSelection_Spacer = 26
+$SoftwareSelection_ToolTip = New-Object System.Windows.Forms.ToolTip
 
-$SoftwareSelection_Panel = New-Object System.Windows.Forms.Panel
-$SoftwareSelection_Panel.Location = New-Object System.Drawing.Size(0, 0)
-$SoftwareSelection_Panel.Size = New-Object System.Drawing.Size((($SoftwareSelection_Form.width) - 17), (($SoftwareSelection_Form.Height) - 65))
-$SoftwareSelection_Panel.AutoScroll = $true
-$SoftwareSelection_Panel.AutoSize = $false
-$SoftwareSelection_Form.Controls.Add($SoftwareSelection_Panel)
-
-$SoftwareSelection_CheckboxToolTip = New-Object System.Windows.Forms.ToolTip
 $SoftwareSelection_CheckBoxes = @{}
 $SoftwareSelection_List = @(
     @{
@@ -313,26 +339,30 @@ $SoftwareSelection_List = @(
         Icon64  = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADKSgggwkcJj8RHCL/GSQnvykgI/81KCf/RTAnu0ksJz9hOCY/KSgggAAAAAAAAAAAAAAAAAAAAAAAAAAC/RgiAxUcI/8VHCP/KSAj/zUoJ/9FKCP/TTAn/1k0J/9hOCf/cTwn/4FAJ/+FSCXAAAAAAAAAAAAAAAADCRwlwxUcI/8pICP/NSgn/zUoJ/9NMCf/WTQn/2E4J/9tPCf/gUAn/4FAJ/+RSCf/oUwr/61QKfwAAAADKSgggxUcI/8pICP/NSgn/0UoI/9NMCf/YTgn/208J/+BQCf/gUAn/5FIJ/+hTCv/qVAr/7VUK//JXCv/3WAwgykoJkM1KCf/RSgj/00wJ/9ZNCf/YTgn/3E8J/+BQCf/kUgn/6FMK/+pUCv/tVQr/8lcK//JXCv/2WQr/+FkLkNJLCc/TTAn/4oRW/+2nhP/tp4T/7aeE/+yTZv/rdDj/6FMK/+1VCv/3hEf/8lcK//ZZCv/5jVf//FsL//5cDL/VTQnu2E4J//bTwf/+6+L/8aiE//KphP/xilb//NXC//RsKf/yVwr//vXw//laC//9cSr//uvi//5dDP/+YxLu208J/9xPCf/iXBn/+9/S//KphP/qVAr/7VUK//zVwv/0bCn/9lkK///////+XQz//XEq//7r4v/9ZBX//God/+BQCf/kUgn/5FIJ/+tfGv/739L/96qF//JXCv/81cL/+nk5//xbC////////mAQ//13Mv/+6+L//God//lwJv/lUgrv6FMK//GKVv/2qoX/+7eT///////7l2b/+7eT//7Msv//wqT///////7FqP/+z7j/+7eT//hyKP/2di3v61QJv+1VCv/4oXb//KyF//yshf/8rIX//XEq//5dDP/9qHv//ah7//eER//8rIX//ah7//h1LP/3eDD/9Xw2z/FWC4/yVwr/9lkK//laC//8Wwv//l0M//5gEP/9ZBX//Gca//puIv/5cCb/+HUs//d4MP/1fDT/9H44//OBPpD3WAwg+VoL//xbC//+XQz//mAQ//1kFf/8Zxr//God//lwJv/4cij/93gw//V8NP/0fjj/9IE8//KGQf/vi0wgAAAAAP1cCn/+YBD//WQV//xnGv/8ah3/+m4i//hyKP/4dSz/93gw//R+OP/0gTz/8oZB//GJRf/xikpvAAAAAAAAAAAAAAAA/WUXb/xqHf/6biL/+XAm//h1LP/3eDD/9Xw0//SBPP/zhD7/8YlF//CMSv7vj0x/AAAAAAAAAAAAAAAAAAAAAAAAAAD3cCgg+nQnj/Z3L8/1fDXu9H44//OEPv/xhkPv8ItHv++PTY/vi0wgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
     }
 )
+
 $SoftwareSelection_List | ForEach-Object {
-    $SoftwareSelection_Checkbox = [Windows.Forms.CheckBox]::new()
-    $SoftwareSelection_Checkbox.Size = [Drawing.Size]::new($SoftwareSelection_CheckBox_X_Size, $SoftwareSelection_CheckBox_Y_Size)
-    $SoftwareSelection_Checkbox.Image = [Drawing.Icon]::FromHandle((
-            [Drawing.Bitmap]::new(
-                [IO.MemoryStream]::new(
-                    [Convert]::FromBase64String($_.Icon64)
+    $SoftwareSelection_CheckBox = New-Object System.Windows.Forms.CheckBox -Property @{
+        Size       = [Drawing.Size]::new($SoftwareSelection_CheckBoxWidth, $SoftwareSelection_CheckBoxHeight)
+        Image      = [Drawing.Icon]::FromHandle((
+                [Drawing.Bitmap]::new(
+                    [IO.MemoryStream]::new(
+                        [Convert]::FromBase64String($_.Icon64)
+                    )
                 )
-            )
-        ).GetHIcon())
-    $SoftwareSelection_Checkbox.ImageAlign = $SoftwareSelection_Checkbox.TextAlign = $SoftwareSelection_Checkbox.CheckAlign = 'MiddleLeft'
-    $SoftwareSelection_Checkbox.Text = '    ' + $_.Name
-    $SoftwareSelection_Checkbox.Checked = $false
-    $SoftwareSelection_CheckBoxes[$_.Name] = $SoftwareSelection_Checkbox
-    $SoftwareSelection_CheckboxToolTip.SetToolTip($SoftwareSelection_Checkbox, $_.Tooltip)
-    $SoftwareSelection_Checkbox
+            ).GetHIcon())
+        ImageAlign = 'MiddleLeft'
+        TextAlign  = 'MiddleLeft'
+        CheckAlign = 'MiddleLeft'
+        Text       = '    ' + $_.Name
+        Checked    = $false
+    }
+    $SoftwareSelection_ToolTip.SetToolTip($SoftwareSelection_CheckBox, $_.Tooltip)
+    $SoftwareSelection_CheckBoxes[$_.Name] = $SoftwareSelection_CheckBox
+    $SoftwareSelection_CheckBox
 } | Sort-Object Text | ForEach-Object {
     $_.Location = [Drawing.Point]::new($SoftwareSelection_CheckBox_X_Location, $SoftwareSelection_CheckBox_Y_Location)
     $SoftwareSelection_Panel.Controls.Add($_)
-    $SoftwareSelection_CheckBox_Y_Location += $SoftwareSelection_CheckBox_LocationAdd
+    $SoftwareSelection_CheckBox_Y_Location += $SoftwareSelection_Spacer
 }
 
 $DotNET_TaskName = '.NET Updater'
@@ -572,20 +602,6 @@ $SoftwareSelection_CheckBoxes['NVCleanstall'].Add_Click( {
         }   
     }
 )
-
-$SoftwareSelection_Form_OK = New-Object System.Windows.Forms.Button
-$SoftwareSelection_Form_OK.Location = New-Object System.Drawing.Size((($SoftwareSelection_Form.Width) / 3 ), (($SoftwareSelection_Form.height) - 60))
-$SoftwareSelection_Form_OK.Size = New-Object System.Drawing.Size(57, 20)
-$SoftwareSelection_Form_OK.Text = 'OK'
-$SoftwareSelection_Form_OK.Add_Click({ $SoftwareSelection_Form.Close() })
-$SoftwareSelection_Form.Controls.Add($SoftwareSelection_Form_OK)
-
-$SoftwareSelection_Form_Cancel = New-Object System.Windows.Forms.Button
-$SoftwareSelection_Form_Cancel.Location = New-Object System.Drawing.Size((($SoftwareSelection_Form.Width) / 2 ), (($SoftwareSelection_Form.height) - 60))
-$SoftwareSelection_Form_Cancel.Size = New-Object System.Drawing.Size(57, 20)
-$SoftwareSelection_Form_Cancel.Text = 'Cancel'
-$SoftwareSelection_Form_Cancel.Add_Click({ $SoftwareSelection_Form.Close() })
-$SoftwareSelection_Form.Controls.Add($SoftwareSelection_Form_Cancel)
 
 $SoftwareSelection_Form_OK.Add_Click{
     $SoftwareSelection_Form.Topmost = $false
@@ -2185,5 +2201,8 @@ ad.ui.show_tile.telemetry=false
     }
 }
 
-$SoftwareSelection_Form.Add_Shown({ $SoftwareSelection_Form.Activate() })
+$SoftwareSelection_Form.Controls.Add($SoftwareSelection_Form_OK)
+$SoftwareSelection_Form.Controls.Add($SoftwareSelection_Form_Cancel)
+$SoftwareSelection_Form.Controls.Add($SoftwareSelection_Panel)
+
 [void] $SoftwareSelection_Form.ShowDialog()
