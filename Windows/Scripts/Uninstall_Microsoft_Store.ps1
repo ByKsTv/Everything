@@ -1,0 +1,3 @@
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Uninstalling '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Store'"); [Console]::ResetColor(); [Console]::WriteLine()
+Get-AppxPackage -AllUsers 'Microsoft.WindowsStore' | Remove-AppxPackage -ErrorAction SilentlyContinue
+Get-AppxPackage -AllUsers 'Microsoft.StorePurchaseApp' | Remove-AppxPackage -ErrorAction SilentlyContinue

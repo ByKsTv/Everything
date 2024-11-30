@@ -1,0 +1,9 @@
+$Jellyfin_DDL = 'https://repo.jellyfin.org' + ((Invoke-WebRequest -UseBasicParsing -Uri 'https://repo.jellyfin.org/?path=/server/windows/latest-stable/amd64').Links | Where-Object { $_.outerHTML -match 'x64.exe' } | Select-Object -First 1).href
+$Jellyfin_Filename = [IO.Path]::GetFileName(([URI]$Jellyfin_DDL).AbsolutePath)
+$Jellyfin_SavePath = [IO.Path]::Combine($env:TEMP, $Jellyfin_Filename)
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Jellyfin'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Jellyfin_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Jellyfin_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+(New-Object System.Net.WebClient).DownloadFile($Jellyfin_DDL, $Jellyfin_SavePath)
+
+$Jellyfin_Argument = '/S'
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Jellyfin'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Jellyfin_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Jellyfin_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+Start-Process $Jellyfin_SavePath -ArgumentList $Jellyfin_Argument
