@@ -24,14 +24,14 @@ $SoftwareSelection_Form_OK = New-Object System.Windows.Forms.Button -Property @{
     Text      = 'OK'
     Width     = $SoftwareSelection_ButtonWidth
     Height    = $SoftwareSelection_ButtonHeight
-    Add_Click = ({ $SoftwareSelection_Form.Close() })
+    Add_Click = { $SoftwareSelection_Form.Close() }
 }
 
 $SoftwareSelection_Form_Cancel = New-Object System.Windows.Forms.Button -Property @{
     Text      = 'Cancel'
     Width     = $SoftwareSelection_ButtonWidth
     Height    = $SoftwareSelection_ButtonHeight
-    Add_Click = ({ $SoftwareSelection_Form.Close() })
+    Add_Click = { $SoftwareSelection_Form.Close() }
 }
 
 $SoftwareSelection_TotalButtonWidth = $SoftwareSelection_ButtonSpacer + $SoftwareSelection_Form_OK.Width + $SoftwareSelection_Form_Cancel.Width
