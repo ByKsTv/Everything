@@ -17,6 +17,8 @@ $SoftwareSelection_Form = New-Object System.Windows.Forms.Form -Property @{
 
 $SoftwareSelection_ButtonSpacer = 15
 $SoftwareSelection_ButtonWidth = 57
+$SoftwareSelection_TotalButtonWidth = $SoftwareSelection_ButtonSpacer + $SoftwareSelection_ButtonWidth + $SoftwareSelection_ButtonWidth
+$SoftwareSelection_FormCenterX = [math]::Round(($SoftwareSelection_Form.ClientSize.Width - $SoftwareSelection_TotalButtonWidth) / 2)
 $SoftwareSelection_ButtonHeight = 20
 $SoftwareSelection_ButtonYLocation = $SoftwareSelection_Form.Height - 60
 
@@ -24,21 +26,18 @@ $SoftwareSelection_Form_OK = New-Object System.Windows.Forms.Button -Property @{
     Text      = 'OK'
     Width     = $SoftwareSelection_ButtonWidth
     Height    = $SoftwareSelection_ButtonHeight
+    Location  = [Drawing.Point]::new($SoftwareSelection_FormCenterX, $SoftwareSelection_ButtonYLocation)
     Add_Click = { $SoftwareSelection_Form.Close() }
 }
 
+$SoftwareSelection_CancelX = $SoftwareSelection_FormCenterX + $SoftwareSelection_ButtonWidth + $SoftwareSelection_ButtonSpacer
 $SoftwareSelection_Form_Cancel = New-Object System.Windows.Forms.Button -Property @{
     Text      = 'Cancel'
     Width     = $SoftwareSelection_ButtonWidth
     Height    = $SoftwareSelection_ButtonHeight
+    Location  = [Drawing.Point]::new($SoftwareSelection_CancelX, $SoftwareSelection_ButtonYLocation)
     Add_Click = { $SoftwareSelection_Form.Close() }
 }
-
-$SoftwareSelection_TotalButtonWidth = $SoftwareSelection_ButtonSpacer + $SoftwareSelection_Form_OK.Width + $SoftwareSelection_Form_Cancel.Width
-$SoftwareSelection_FormCenterX = [math]::Round(($SoftwareSelection_Form.ClientSize.Width - $SoftwareSelection_TotalButtonWidth) / 2)
-$SoftwareSelection_Form_OK.Location = [Drawing.Point]::new($SoftwareSelection_FormCenterX, $SoftwareSelection_ButtonYLocation)
-$SoftwareSelection_CancelX = $SoftwareSelection_FormCenterX + $SoftwareSelection_Form_OK.Width + $SoftwareSelection_ButtonSpacer
-$SoftwareSelection_Form_Cancel.Location = [Drawing.Point]::new($SoftwareSelection_CancelX, $SoftwareSelection_ButtonYLocation)
 
 $SoftwareSelection_Panel = New-Object System.Windows.Forms.Panel -Property @{
     Location   = [Drawing.Point]::new(0, 0)
