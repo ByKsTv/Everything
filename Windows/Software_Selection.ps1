@@ -40,9 +40,9 @@ $SoftwareSelection_Form_Cancel = New-Object System.Windows.Forms.Button -Propert
 }
 
 $SoftwareSelection_Panel = New-Object System.Windows.Forms.Panel -Property @{
-    Location   = [Drawing.Point]::new(0, 0)
     Width      = $SoftwareSelection_Form.Width - 17
     Height     = $SoftwareSelection_Form.Height - $SoftwareSelection_ButtonHeight - 40
+    Location   = [Drawing.Point]::new(0, 0)
     AutoScroll = $true
     AutoSize   = $false
 }
