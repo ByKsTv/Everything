@@ -1685,6 +1685,12 @@ $SettingsToChange = @(
 	@{ DisplayName = 'ARP Offload'; DisplayValue = 'Disabled' }
 	@{ DisplayName = 'Adaptive Inter-Frame Spacing'; DisplayValue = 'Disabled' }
 	@{ DisplayName = 'DMA Coalescing'; DisplayValue = 'Disabled' }
+	@{ DisplayName = 'WOL & Shutdown Link Speed'; DisplayValue = 'Not Speed Down' }
+	@{ DisplayName = 'Shutdown Wake-On-Lan'; DisplayValue = 'Disabled' }
+	@{ DisplayName = 'Priority & VLAN'; DisplayValue = 'Priority & VLAN Disabled' }
+	@{ DisplayName = 'Gigabit Lite'; DisplayValue = 'Disabled' }
+	@{ DisplayName = 'Power Saving Mode'; DisplayValue = 'Disabled' }
+	@{ DisplayName = 'Green Ethernet'; DisplayValue = 'Disabled' }
 	@{ DisplayName = 'ECMA'; DisplayValue = 'Enabled' }
 )
 foreach ($Adapter in $NetworkAdapters) {
