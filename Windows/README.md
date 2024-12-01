@@ -18,9 +18,9 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
    ```
 
 1. `START` > Uncheck every box > `OK` > `OK` > When finished close the program.
-1. Download LAN drivers matching the motherboard to the USB.
-1. Download Chipset drivers matching the motherboard to the USB.
-1. Download Serial IO drivers matching the motherboard to the USB.
+1. Create a folder on the USB called `Drivers` and download all motherboard drivers to this folder.
+   > LAN, WiFi, Serial IO, Chipset, Thunderbolt, Audio, TouchPad, NumberPad, Bluetooth, Rapid Storage Technology
+   >
    > Find Motherboard - PowerShell (Admin):
    >
    > ```powershell
@@ -49,6 +49,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. `Delete all` > `Next`.
    > If drives not found - Use `Load Driver` and extract `Intel Rapid Storage Technology (IRST)` driver matching to the motherboard.
 1. Add a name.
+   > Don't add spacebar, don't add family name, long name is ugly.
 1. Don't use password.
 1. Connect Ethernet Cable (After Windows Boots Up).
    > If there's no internet connection - install LAN driver.
@@ -56,11 +57,12 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 ## Drivers
 
-1. Install LAN drivers matching the motherboard from the USB.
-1. Install Chipset drivers matching the motherboard from the USB.
-1. Install Serial IO drivers matching the motherboard from the USB.
+1. On the USB there's a folder called `Drivers` install all motherboard drivers.
+   > Or only what's neccesarry.
 
 ## Initial Setup - Auto Install
+
+> Use only on a fresh install
 
 1. PowerShell (Admin):
 
