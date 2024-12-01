@@ -18,7 +18,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
    ```
 
 1. `START` > Uncheck every box > `OK` > `OK` > When finished close the program.
-1. Create a folder on the USB called `Drivers` and download all motherboard drivers to this folder.
+1. Create a folder on the USB called `Drivers` and download ALL motherboard drivers to this folder.
    > LAN, WiFi, Serial IO, Chipset, Thunderbolt, Audio, TouchPad, NumberPad, Bluetooth, Rapid Storage Technology, BIOS
    >
    > Find Motherboard - PowerShell (Admin):
@@ -57,8 +57,8 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 ## Drivers
 
-1. On the USB there's a folder called `Drivers` install all motherboard drivers.
-   > Or only what's neccesarry.
+1. On the USB there's a folder called `Drivers` install all motherboard drivers (or what's neccesarry).
+   > Some laptops require too many drivers so install ALL.
 
 ## Initial Setup - Auto Install
 
