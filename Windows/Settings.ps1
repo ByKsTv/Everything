@@ -1543,16 +1543,18 @@ Start-Sleep -Seconds 3
 # Open the Start menu to load the new layout
 (New-Object -ComObject wscript.shell).SendKeys('^{ESC}')
 # GPUScheduling -Enable
-if (Get-CimInstance -ClassName CIM_VideoController | Where-Object -FilterScript { ($_.AdapterDACType -ne 'Internal') -and ($null -ne $_.AdapterDACType) }) {
-	# Determining whether an OS is not installed on a virtual machine
-	if ((Get-CimInstance -ClassName CIM_ComputerSystem).Model -notmatch 'Virtual') {
-		# Checking whether a WDDM verion is 2.7 or higher
-		$WddmVersion_Min = [Microsoft.Win32.Registry]::GetValue('HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\GraphicsDrivers\FeatureSetUsage', 'WddmVersion_Min', $null)
-		if ($WddmVersion_Min -ge 2700) {
-			New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\GraphicsDrivers' -Name HwSchMode -PropertyType DWord -Value 2 -Force
-		}
-	}
-}
+
+# if (Get-CimInstance -ClassName CIM_VideoController | Where-Object -FilterScript { ($_.AdapterDACType -ne 'Internal') -and ($null -ne $_.AdapterDACType) }) {
+# 	# Determining whether an OS is not installed on a virtual machine
+# 	if ((Get-CimInstance -ClassName CIM_ComputerSystem).Model -notmatch 'Virtual') {
+# 		# Checking whether a WDDM verion is 2.7 or higher
+# 		$WddmVersion_Min = [Microsoft.Win32.Registry]::GetValue('HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\GraphicsDrivers\FeatureSetUsage', 'WddmVersion_Min', $null)
+# 		if ($WddmVersion_Min -ge 2700) {
+# 			New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\GraphicsDrivers' -Name HwSchMode -PropertyType DWord -Value 2 -Force
+# 		}
+# 	}
+# }
+New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\GraphicsDrivers' -Name HwSchMode -PropertyType DWord -Value 2 -Force
 # NetworkProtection -Disable
 # Set-MpPreference -EnableNetworkProtection Disabled
 # # PUAppsDetection -Disable
