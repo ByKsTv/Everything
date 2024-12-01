@@ -2,7 +2,7 @@
 
 Everything about Samsung TV.
 
-## Samsung TV Settings
+## Samsung TV - SDR Settings
 
 1. `Settings` > `Support` > `Software Update` > `Update Now`.
 
@@ -25,8 +25,22 @@ Everything about Samsung TV.
 1. `Source` > `Edit` > `Blu-ray player` > `Ok`.
 1. `Settings` > `Picture` > `Picture Mode` > `FILMMAKER MODE`.
 1. `Settings` > `Picture` > `Expert Settings` > `Picture Clarity Settings` > `Custom` > `Blur Reduction: 0` > `Judder Reduction: 0`.
+1. `Settings` > `Picture` > `Expert Settings` > `Local Dimming` > `Low`.
 1. `Settings` > `General` > `External Device Manager` > `Anynet+ (HDMI-CEC)` > `Off`.
 1. `Settings` > `General` > `External Device Manager` > `Input Signal Plus` > Select current HDMI > `Close`.
 1. `Settings`> `General` > `Eco Solution` > `Ambient Light Detection` > `Off`
 1. `Settings` > `General` > `Smart Features` > `Autorun Smart Hub: Off` > `Autorun Last App: Off` > `Autorun Multi View Casting: Off`.
-1. Enable HDR: `Settings` > `Picture` > `Expert Settings` > `Picture Clarity Settings` > `Custom` > `Blur Reduction: 0` > `Judder Reduction: 0`.
+
+## Samsung TV - HDR Settings
+
+> Enable HDR Before applying settings
+
+1. `Settings` > `Picture` > `Expert Settings` > `Picture Clarity Settings` > `Custom` > `Blur Reduction: 0` > `Judder Reduction: 0`.
+1. `Settings` > `Picture` > `Expert Settings` > `Local Dimming` > `Low`.
+
+## Samsung TV - Game Mode Settings
+
+1. `Settings` > `General` > `External Device Manager` > `Game Mode Settings` > `On`.
+1. `Game Motion Plus Settings` > `Game Motion Plus` > On.
+1. `Blur Reduction` > 0.
+1. `Judder Reduction` > 0.
