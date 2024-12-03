@@ -196,7 +196,7 @@ $InitialSetup_Cancel = New-Object System.Windows.Forms.Button -Property @{
 
 $InitialSetup_LocX = 5
 $InitialSetup_LocY = 0
-$InitialSetup_SizeX = $InitialSetup_Form.Width - 20
+$InitialSetup_SizeX = $InitialSetup_Form.Width - 60
 $InitialSetup_SizeY = 26
 $InitialSetup__LocAdd = 30
 
@@ -360,19 +360,19 @@ $InitialSetup_OK.Add_Click(
 		$InitialSetup_Form.Topmost = $false
 
 		if ($InitialSetup_TimeZoneSelection.SelectedItem -and $InitialSetup_TimeZoneSelection.Text -ne 'Select Time Zone') {
-			[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Time Zone: Setting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write($InitialSetup_TimeZoneSelection.SelectedItem); [Console]::ResetColor(); [Console]::WriteLine()
+			[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Time Zone: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write($InitialSetup_TimeZoneSelection.SelectedItem); [Console]::ResetColor(); [Console]::WriteLine()
 			tzutil.exe /s $InitialSetup_TimeZoneSelection.SelectedItem
 		}
 
 		if ($InitialSetup_KeyboardSelection.SelectedItem -and $InitialSetup_KeyboardSelection.Text -ne 'Select Keyboard') {
-			[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Keyboard: Setting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write($InitialSetup_KeyboardSelection.SelectedItem); [Console]::ResetColor(); [Console]::WriteLine()
+			[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Keyboard: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write($InitialSetup_KeyboardSelection.SelectedItem); [Console]::ResetColor(); [Console]::WriteLine()
 			$LanguageList = Get-WinUserLanguageList
 			$LanguageList.Add($Keyboard_Map[$InitialSetup_KeyboardSelection.SelectedItem])
 			Set-WinUserLanguageList -LanguageList $LanguageList -Force
 		}
 
 		if ($InitialSetup_ComputerName.Text -ne $InitialSetup_PreComputerName) {
-			[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Computer name: Setting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write($InitialSetup_ComputerName.Text); [Console]::ResetColor(); [Console]::WriteLine()
+			[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Computer name: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write($InitialSetup_ComputerName.Text); [Console]::ResetColor(); [Console]::WriteLine()
 			Rename-Computer -NewName $InitialSetup_ComputerName.Text -Force
 		}
 
