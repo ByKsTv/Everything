@@ -184,7 +184,7 @@ $InitialSetup_ButtonWidth = 57
 $InitialSetup_TotalButtonWidth = $InitialSetup_ButtonSpacer + $InitialSetup_ButtonWidth + $InitialSetup_ButtonWidth
 $InitialSetup_FormCenterX = [math]::Round(($InitialSetup_Form.ClientSize.Width - $InitialSetup_TotalButtonWidth) / 2)
 $InitialSetup_ButtonHeight = 20
-$InitialSetup_ButtonYLocation = $InitialSetup_Form.Height - 30
+$InitialSetup_ButtonYLocation = $InitialSetup_Form.Height - 60
 
 $InitialSetup_OK = New-Object System.Windows.Forms.Button -Property @{
 	Text      = 'OK'
@@ -205,7 +205,7 @@ $InitialSetup_Cancel = New-Object System.Windows.Forms.Button -Property @{
 
 $InitialSetup_LocX = 5
 $InitialSetup_LocY = 0
-$InitialSetup_SizeX = $InitialSetup_Form.Width - 60
+$InitialSetup_SizeX = $InitialSetup_Form.Width - 30
 $InitialSetup_SizeY = 26
 $InitialSetup__LocAdd = 30
 
