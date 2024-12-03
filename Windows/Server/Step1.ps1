@@ -84,14 +84,20 @@ New-ItemProperty -Path 'HKLM:\Software\Microsoft\WindowsUpdate\UX\Settings' -Nam
 # Folder Options: Open File Explorer to: This PC
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'LaunchTo' -PropertyType DWord -Value 1 -Force
 
-# Folder Options: Privacy: Show recently used files: Off
+# Folder Options: General: Privacy: Show recently used files: Off
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer' -Name 'ShowRecent' -PropertyType DWord -Value 0 -Force
 
-# Folder Options: Privacy: Show frequently used folders: Off
+# Folder Options: General: Privacy: Show frequently used folders: Off
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer' -Name 'ShowFrequent' -PropertyType DWord -Value 0 -Force
 
-# Folder Options: Privacy: Show files from Office.com: Off
+# Folder Options: General: Privacy: Show files from Office.com: Off
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer' -Name 'ShowCloudFilesInQuickAccess' -PropertyType DWord -Value 0 -Force
+
+# Folder Options: View: Advanced settings: Decrease space between items (compact view): On
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'UseCompactMode' -PropertyType DWord -Value 1 -Force
+
+# Folder Options: View: Advanced settings: Hidden files and folders: Show hidden files, folders, and drives
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'Hidden' -PropertyType DWord -Value 1 -Force
 
 # Power Plan: Restore default schemes
 powercfg.exe /restoredefaultschemes
