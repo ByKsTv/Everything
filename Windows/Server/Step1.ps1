@@ -147,6 +147,12 @@ secedit.exe /configure /db secedit.sdb /cfg "$env:TEMP\PasswordComplexity.cfg" /
 # Sound: Communications: Do nothing
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Multimedia\Audio' -Name 'UserDuckingPreference' -PropertyType DWord -Value 3 -Force
 
+# Group Policy: Computer Configuration: Administrative Templates: System: Display Shutdown Event Tracker: Disabled
+if (-not (Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows NT\Reliability')) {
+	New-Item -Path 'HKLM:\Software\Policies\Microsoft\Windows NT\Reliability' -Force
+}
+New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows NT\Reliability' -Name 'ShutdownReasonOn' -PropertyType DWord -Value 0 -Force
+
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 [Windows.Forms.Application]::EnableVisualStyles()
@@ -190,7 +196,7 @@ $InitialSetup_Cancel = New-Object System.Windows.Forms.Button -Property @{
 
 $InitialSetup_LocX = 5
 $InitialSetup_LocY = 0
-$InitialSetup_SizeX = $InitialSetup_Form.Width - 5
+$InitialSetup_SizeX = $InitialSetup_Form.Width - 10
 $InitialSetup_SizeY = 26
 $InitialSetup__LocAdd = 30
 
@@ -431,6 +437,7 @@ $InitialSetup_OK.Add_Click(
 
 $InitialSetup_Form.Controls.Add($InitialSetup_OK)
 $InitialSetup_Form.Controls.Add($InitialSetup_Cancel)
+
 $InitialSetup_Form.Controls.Add($InitialSetup_TimeZoneSelection)
 $InitialSetup_Form.Controls.Add($InitialSetup_KeyboardSelection)
 $InitialSetup_Form.Controls.Add($InitialSetup_ComputerName)
