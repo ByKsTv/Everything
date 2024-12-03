@@ -81,6 +81,18 @@ New-ItemProperty -Path 'HKLM:\Software\Microsoft\WindowsUpdate\UX\Settings' -Nam
 # Settings: Windows Update: Advanced options: Notify me when a restart is required to finish updating: On
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\WindowsUpdate\UX\Settings' -Name 'RestartNotificationsAllowed2' -PropertyType DWord -Value 1 -Force
 
+# Folder Options: Open File Explorer to: This PC
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'LaunchTo' -PropertyType DWord -Value 1 -Force
+
+# Folder Options: Privacy: Show recently used files: Off
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer' -Name 'ShowRecent' -PropertyType DWord -Value 0 -Force
+
+# Folder Options: Privacy: Show frequently used folders: Off
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer' -Name 'ShowFrequent' -PropertyType DWord -Value 0 -Force
+
+# Folder Options: Privacy: Show files from Office.com: Off
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer' -Name 'ShowCloudFilesInQuickAccess' -PropertyType DWord -Value 0 -Force
+
 # Power Plan: Restore default schemes
 powercfg.exe /restoredefaultschemes
 $PowerPlanUltimate = powercfg.exe -list | Select-String -Pattern 'Ultimate Performance'
