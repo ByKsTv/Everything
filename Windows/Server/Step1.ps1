@@ -196,7 +196,7 @@ $InitialSetup_Cancel = New-Object System.Windows.Forms.Button -Property @{
 
 $InitialSetup_LocX = 5
 $InitialSetup_LocY = 0
-$InitialSetup_SizeX = $InitialSetup_Form.Width - 10
+$InitialSetup_SizeX = $InitialSetup_Form.Width - 20
 $InitialSetup_SizeY = 26
 $InitialSetup__LocAdd = 30
 
