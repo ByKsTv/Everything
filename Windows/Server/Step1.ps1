@@ -25,6 +25,9 @@ New-ItemProperty -Path 'HKCU:\Control Panel\Mouse' -Name 'MouseThreshold1' -Prop
 New-ItemProperty -Path 'HKCU:\Control Panel\Mouse' -Name 'MouseThreshold2' -PropertyType String -Value 0 -Force
 
 # Settings: Bluetooth & devices: USB: Connection notifications: On
+if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Shell\USB')) {
+	New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Shell\USB' -Force
+}
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Shell\USB' -Name 'NotifyOnUsbErrors' -PropertyType DWord -Value 1 -Force
 
 # Settings: Personalization: Colors: Choose your mode: Dark
@@ -47,7 +50,10 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer
 New-ItemProperty -Path 'HKCU:\Control Panel\Keyboard' -Name 'PrintScreenKeyForSnippingEnabled' -PropertyType DWord -Value 0 -Force
 
 # Settings: Privacy & security: General: Let websites show me locally relevant content by accessing my language list: Off
-Remove-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Internet Explorer\International' -Name 'AcceptLanguage' -Force
+# if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Internet Explorer\International')) {
+# 	New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Internet Explorer\International' -Force
+# }
+# Remove-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Internet Explorer\International' -Name 'AcceptLanguage' -Force
 
 # Settings: Privacy & security: General: Let Windows improve Start and search results by tracking app launches: Off
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'Start_TrackProgs' -PropertyType DWord -Value 0 -Force
@@ -55,9 +61,15 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer
 # Settings: Privacy & security: Inking & typing personalization: Custom inking and typing dictionary: Off
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\InputPersonalization\TrainedDataStore' -Name 'HarvestContacts' -PropertyType DWord -Value 0 -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Personalization\Settings' -Name 'AcceptedPrivacyPolicy' -PropertyType DWord -Value 0 -Force
+if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CPSS\Store\InkingAndTypingPersonalization')) {
+	New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CPSS\Store\InkingAndTypingPersonalization' -Force
+}
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CPSS\Store\InkingAndTypingPersonalization' -Name 'Value' -PropertyType DWord -Value 0 -Force
 
 # Settings: Privacy & security: Feedback: Feedback fequency: Never
+if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Siuf\Rules')) {
+	New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Siuf\Rules' -Force
+}
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Siuf\Rules' -Name 'NumberOfSIUFInPeriod' -PropertyType DWord -Value 0 -Force
 
 # Settings: Windows Update: Advanced options: Receive updates for other Microsoft products: On
@@ -142,7 +154,7 @@ $InitialSetup_ButtonWidth = 57
 $InitialSetup_TotalButtonWidth = $InitialSetup_ButtonSpacer + $InitialSetup_ButtonWidth + $InitialSetup_ButtonWidth
 $InitialSetup_FormCenterX = [math]::Round(($InitialSetup_Form.ClientSize.Width - $InitialSetup_TotalButtonWidth) / 2)
 $InitialSetup_ButtonHeight = 20
-$InitialSetup_ButtonYLocation = $InitialSetup_Form.Height - 50
+$InitialSetup_ButtonYLocation = $InitialSetup_Form.Height - 60
 
 $InitialSetup_OK = New-Object System.Windows.Forms.Button -Property @{
 	Text      = 'OK'
