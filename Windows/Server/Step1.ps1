@@ -50,10 +50,7 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer
 New-ItemProperty -Path 'HKCU:\Control Panel\Keyboard' -Name 'PrintScreenKeyForSnippingEnabled' -PropertyType DWord -Value 0 -Force
 
 # Settings: Privacy & security: General: Let websites show me locally relevant content by accessing my language list: Off
-# if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Internet Explorer\International')) {
-# 	New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Internet Explorer\International' -Force
-# }
-# Remove-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Internet Explorer\International' -Name 'AcceptLanguage' -Force
+New-ItemProperty -Path 'HKCU:\Control Panel\International\User Profile' -Name 'HttpAcceptLanguageOptOut' -PropertyType DWord -Value 1 -Force
 
 # Settings: Privacy & security: General: Let Windows improve Start and search results by tracking app launches: Off
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'Start_TrackProgs' -PropertyType DWord -Value 0 -Force
@@ -175,7 +172,7 @@ $InitialSetup_Cancel = New-Object System.Windows.Forms.Button -Property @{
 
 $InitialSetup_LocX = 5
 $InitialSetup_LocY = 0
-$InitialSetup_SizeX = $InitialSetup_Form.Width - 50
+$InitialSetup_SizeX = $InitialSetup_Form.Width - 5
 $InitialSetup_SizeY = 26
 $InitialSetup__LocAdd = 30
 
