@@ -25,11 +25,6 @@ if (Test-Path $Firefox_Profiles) {
         },
         [PSCustomObject]@{
             Path  = 'SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install'
-            Value = 'https://addons.mozilla.org/firefox/downloads/latest/clearurls/latest.xpi'
-            Name  = ++$count
-        },
-        [PSCustomObject]@{
-            Path  = 'SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install'
             Value = 'https://addons.mozilla.org/firefox/downloads/latest/buster-captcha-solver/latest.xpi'
             Name  = ++$count
         },
