@@ -169,9 +169,11 @@ Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\TabletPC' 
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Windows Feeds' -Name 'EnableFeeds' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsAI' -Name 'DisableAIDataAnalysis' -Type DWORD -Value 1
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsCopilot' -Name 'TurnOffWindowsCopilot' -Type DWORD -Value 1
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'DeferUpdatePeriod' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'DeferUpgrade' -Type DWORD -Value 1
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'DeferUpgradePeriod' -Type DWORD -Value 1
+
+# O&O ShutUp10++: Local Machine: Windows Update: Disable deferring of upgrades: Off
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'DeferUpdatePeriod' -Type CLEAR
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'DeferUpgrade' -Type CLEAR
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'DeferUpgradePeriod' -Type CLEAR
 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: Manage updates offered from Windows: Do not include drivers with Windows Updates: Not configured
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'ExcludeWUDriversInQualityUpdate' -Type CLEAR
