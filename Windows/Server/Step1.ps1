@@ -1052,7 +1052,7 @@ $InitialSetup_OK.Add_Click(
 			tzutil.exe /s $InitialSetup_TimeZoneSelection.SelectedItem
 		}
 
-		if ($InitialSetup_RegionalFormatSelection.SelectedItem) {
+		if ($InitialSetup_RegionalFormatSelection.SelectedItem -and $InitialSetup_TimeZoneSelection.Text -ne 'Select Regional Format') {
 			$InitialSetup_RegionalFormatSelected = $InitialSetup_RegionalFormatSelection.SelectedItem.Split(' ')[0]
 			[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Keyboard: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write($InitialSetup_RegionalFormatSelected); [Console]::ResetColor(); [Console]::WriteLine()
 			Set-Culture -CultureInfo $InitialSetup_RegionalFormatSelected
