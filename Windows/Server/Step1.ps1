@@ -406,7 +406,7 @@ $InitialSetup_OK.Add_Click(
 		}
 		elseif ($InitialSetup_ComputerPasswordCheckBox.Checked -eq $false) {
 			[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('PC Password: Removing'); [Console]::ResetColor(); [Console]::WriteLine()
-			Set-LocalUser -Name $env:USERNAME -Password (ConvertTo-SecureString '' -AsPlainText -Force)
+			Set-LocalUser -Name $env:username -Password ([securestring]::new())
 			New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'AutoAdminLogon' -Value '0' -PropertyType String -Force
 		}
 	
