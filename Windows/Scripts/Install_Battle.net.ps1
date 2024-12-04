@@ -4,15 +4,18 @@ if (-not (Test-Path $BattleNet_Config)) {
 }
 $BattleNet_JSON = @{
     Client = @{
+        
         # Battle.net: Keep me logged in
         AutoLogin = 'true'
-        
+
         # Battle.net: App: ON GAME LAUNCH: Exit Battle.net completely
         GameLaunchWindowBehavior = '2'
         
         # Battle.net: App: ON STARTUP, VIEW: Last Viewed Game Page
         DefaultStartupScreen = '1'
+
         Install = @{
+
             # Battle.net: Downloads: Game updates: Pause updates when I launch a game: Off
             PauseUpdatesWhenLaunching = 'false'
             
