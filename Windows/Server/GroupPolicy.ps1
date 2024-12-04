@@ -84,6 +84,28 @@ $($Type):$($Value)`n
 # Group Policy: Computer Configuration: Administrative Templates: System: Display Shutdown Event Tracker: Disabled
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows NT\Reliability' -Name 'ShutdownReasonOn' -Type DWORD -Value 0
 
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Do not allow web search: Enabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Windows Search' -Name 'DisableWebSearch' -Type DWORD -Value 1
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Don't search the web or display web results in Search: Enabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Windows Search' -Name 'ConnectedSearchUseWeb' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Don't search the web or display web results in Search over metered connections: Enabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Windows Search' -Name 'ConnectedSearchUseWebOverMeteredConnections' -Type DWORD -Value 0
+
+# # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow Cloud Search: Disabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Windows Search' -Name 'AllowCloudSearch' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow Cortana above lock screen: Disabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Windows Search' -Name 'AllowCortanaAboveLock' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow search and Cortana to use location: Disabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Windows Search' -Name 'AllowSearchToUseLocation' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow search highlights: Disabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Windows Search' -Name 'EnableDynamicContentInWSB' -Type DWORD -Value 0
+
+# 
 Set-Policy -Scope Computer -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\DataCollection' -Name 'AllowTelemetry' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'HideSCAMeetNow' -Type DWORD -Value 1
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Biometrics' -Name 'Enabled' -Type DWORD -Value 0
@@ -95,18 +117,23 @@ Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'Confi
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'EdgeShoppingAssistantEnabled' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'HubsSidebarEnabled' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'LocalProvidersEnabled' -Type DWORD -Value 0
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'MetricsReportingEnabled' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'NetworkPredictionOptions' -Type DWORD -Value 2
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'PasswordManagerEnabled' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'PaymentMethodQueryEnabled' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'PersonalizationReportingEnabled' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'ResolveNavigationErrorsUseWebService' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'SearchSuggestEnabled' -Type DWORD -Value 0
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'SendSiteInfoToImproveServices' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'SiteSafetyServicesEnabled' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'SmartScreenEnabled' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'TyposquattingCheckerEnabled' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'UserFeedbackAllowed' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'WebWidgetAllowed' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\InputPersonalization' -Name 'AllowInputPersonalization' -Type DWORD -Value 0
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\MRT' -Name 'DontReportInfectionInformation' -Type DWORD -Value 1
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\MicrosoftEdge\Main' -Name 'AllowPrelaunch' -Type DWORD -Value 0
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\MicrosoftEdge\TabPreloader' -Name 'AllowTabPreloading' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Speech' -Name 'AllowSpeechModelUpdate' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\WMDRM' -Name 'DisableOnline' -Type DWORD -Value 1
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows Defender\Spynet' -Name 'SpyNetReporting' -Type DWORD -Value 0
@@ -140,28 +167,6 @@ Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\System' -N
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\System' -Name 'UploadUserActivities' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\TabletPC' -Name 'PreventHandwritingDataSharing' -Type DWORD -Value 1
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Windows Feeds' -Name 'EnableFeeds' -Type DWORD -Value 0
-
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Do not allow web search: Enabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Windows Search' -Name 'DisableWebSearch' -Type DWORD -Value 1
-
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Don't search the web or display web results in Search: Enabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Windows Search' -Name 'ConnectedSearchUseWeb' -Type DWORD -Value 0
-
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Don't search the web or display web results in Search over metered connections: Enabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Windows Search' -Name 'ConnectedSearchUseWebOverMeteredConnections' -Type DWORD -Value 0
-
-# # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow Cloud Search: Disabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Windows Search' -Name 'AllowCloudSearch' -Type DWORD -Value 0
-
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow Cortana above lock screen: Disabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Windows Search' -Name 'AllowCortanaAboveLock' -Type DWORD -Value 0
-
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow search and Cortana to use location: Disabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Windows Search' -Name 'AllowSearchToUseLocation' -Type DWORD -Value 0
-
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow search highlights: Disabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Windows Search' -Name 'EnableDynamicContentInWSB' -Type DWORD -Value 0
-
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsAI' -Name 'DisableAIDataAnalysis' -Type DWORD -Value 1
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsCopilot' -Name 'TurnOffWindowsCopilot' -Type DWORD -Value 1
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'DeferUpdatePeriod' -Type DWORD -Value 0
@@ -172,8 +177,6 @@ Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpd
 Set-Policy -Scope Computer -Path 'Software\Software\Policies\Microsoft\MRT' -Name 'DontReportInfectionInformation' -Type DWORD -Value 1
 Set-Policy -Scope Computer -Path 'Software\Software\Policies\Microsoft\MicrosoftEdge\Main' -Name 'AllowPrelaunch' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Software\Policies\Microsoft\MicrosoftEdge\TabPreloader' -Name 'AllowTabPreloading' -Type DWORD -Value 0
-
-
 Set-Policy -Scope User -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'HideSCAMeetNow' -Type DWORD -Value 1
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'AddressBarMicrosoftSearchInBingProviderEnabled' -Type DWORD -Value 0
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'AlternateErrorPagesEnabled' -Type DWORD -Value 0
@@ -183,12 +186,14 @@ Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'Configure
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'EdgeShoppingAssistantEnabled' -Type DWORD -Value 0
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'HubsSidebarEnabled' -Type DWORD -Value 0
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'LocalProvidersEnabled' -Type DWORD -Value 0
+Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'MetricsReportingEnabled' -Type DWORD -Value 0
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'NetworkPredictionOptions' -Type DWORD -Value 2
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'PasswordManagerEnabled' -Type DWORD -Value 0
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'PaymentMethodQueryEnabled' -Type DWORD -Value 0
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'PersonalizationReportingEnabled' -Type DWORD -Value 0
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'ResolveNavigationErrorsUseWebService' -Type DWORD -Value 0
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'SearchSuggestEnabled' -Type DWORD -Value 0
+Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'SendSiteInfoToImproveServices' -Type DWORD -Value 0
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'SiteSafetyServicesEnabled' -Type DWORD -Value 0
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'SmartScreenEnabled' -Type DWORD -Value 0
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'TyposquattingCheckerEnabled' -Type DWORD -Value 0
