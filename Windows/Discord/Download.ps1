@@ -41,7 +41,7 @@ if ($null -eq $Discord_InstalledVersion -or $Discord_InstalledVersion -notmatch 
         Start-Sleep -Milliseconds 1000
     }
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Closing Discord process'); [Console]::ResetColor(); [Console]::WriteLine()
-    Get-Process -Name 'Discord' -ErrorAction SilentlyContinue | ForEach-Object { $_.Kill() } | Out-Null
+    Get-Process -Name 'Discord' -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
 
     $Discord_DesktopShortcut = "$($env:USERPROFILE)\Desktop\Discord.lnk"
     if (Test-Path -Path $Discord_DesktopShortcut) {
