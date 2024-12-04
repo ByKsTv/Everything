@@ -524,10 +524,22 @@ New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\WindowsU
 # O&O ShutUp10++: Local Machine: Privacy: Disable Windows Error Reporting: On
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\Windows Error Reporting' -Name 'Disabled' -Value 1 -PropertyType DWord -Force
 
+# O&O ShutUp10++: Local Machine: Location Services: Disable Windows Geolocation Service: On
+New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\lfsvc\Service\Configuration' -Name 'Status' -Value 0 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Sensor\Overrides\{BFA794E4-F964-4FDB-90F6-51056BFE4B44}' -Name 'SensorPermissionState' -Value 0 -PropertyType DWord -Force
+
+# O&O ShutUp10++: Local Machine: Privacy: Disable the Windows Customer Experience Improvement Program
+New-ItemProperty -Path 'HKLM:\Software\Microsoft\SQMClient\Windows' -Name 'CEIPEnable' -Value 0 -PropertyType DWord -Force
+
+# O&O ShutUp10++: Local Machine: User Behavior: Disable application telemetry
+New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\CPSS\Store\AllowTelemetry' -Name 'Value' -Value 0 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Diagnostics\DiagTrack' -Name 'DiagTrackAuthorization' -Value 00001101 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Diagnostics\DiagTrack\TraceManager' -Name 'MiniTraceSlotEnabled' -Value 0 -PropertyType DWord -Force
+
 # O&O ShutUp10++: Local Machine: Security: Disable telemetry: On
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\DiagTrack' -Name 'Start' -Value 4 -PropertyType DWord -Force
-New-ItemProperty -Path 'System\ControlSet001\Control\WMI\AutoLogger\AutoLogger-Diagtrack-Listener' -Name 'Start' -Value 0 -PropertyType DWord -Force
-New-ItemProperty -Path 'System\ControlSet001\Services\dmwappushservice' -Name 'Start' -Value 4 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\System\ControlSet001\Control\WMI\AutoLogger\AutoLogger-Diagtrack-Listener' -Name 'Start' -Value 0 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\dmwappushservice' -Name 'Start' -Value 4 -PropertyType DWord -Force
 
 # O&O ShutUp10++: Local Machine: Miscellaneous: Disable Network Connectivity Status indicator: On
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\NlaSvc\Parameters\Internet' -Name 'EnableActiveProbing' -Value 0 -PropertyType DWord -Force
@@ -610,9 +622,6 @@ if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CPSS\
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CPSS\Store\InkingAndTypingPersonalization' -Name 'Value' -PropertyType DWord -Value 0 -Force
 
 # Settings: Privacy & security: Feedback: Feedback fequency: Never
-if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Siuf\Rules')) {
-	New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Siuf\Rules' -Force
-}
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Siuf\Rules' -Name 'NumberOfSIUFInPeriod' -PropertyType DWord -Value 0 -Force
 
 # Settings: Windows Update: Advanced options: Receive updates for other Microsoft products: On
