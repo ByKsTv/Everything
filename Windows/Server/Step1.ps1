@@ -1054,7 +1054,7 @@ $InitialSetup_OK.Add_Click(
 
 		if ($InitialSetup_RegionalFormatSelection.SelectedItem -and $InitialSetup_RegionalFormatSelection.Text -ne 'Select Regional Format') {
 			$InitialSetup_RegionalFormatSelected = $InitialSetup_RegionalFormatSelection.SelectedItem.Split(' ')[0]
-			[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Keyboard: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write($InitialSetup_RegionalFormatSelected); [Console]::ResetColor(); [Console]::WriteLine()
+			[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Regional Format: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write($InitialSetup_RegionalFormatSelected); [Console]::ResetColor(); [Console]::WriteLine()
 			Set-Culture -CultureInfo $InitialSetup_RegionalFormatSelected
 		}
 
