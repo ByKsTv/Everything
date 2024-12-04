@@ -126,6 +126,18 @@ if (-not (Select-String -Quiet -Path $Discord_IndexJS -Pattern 'betterdiscord'))
             [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_SettingFilename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_SettingsURL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_SettingSavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
             (New-Object Net.WebClient).DownloadFile($BetterDiscord_SettingsURL, $BetterDiscord_SettingSavePath)
         }
+
+        $RepoConfigJsons = @(
+            "$env:AppData\BetterDiscord\plugins\PluginRepo.config.json",
+            "$env:AppData\BetterDiscord\plugins\ThemeRepo.config.json"
+        )
+        foreach ($RepoConfigJson in $RepoConfigJsons) {
+            if (-Not (Test-Path $RepoConfigJson)) {
+                New-Item -ItemType Directory -Path (Split-Path -Path $RepoConfigJson) -Force
+                $RepoJsonSettings = @{ all = @{ general = @{ notifyNewEntries = $false } } } | ConvertTo-Json -Depth 10
+                $RepoJsonSettings | Set-Content -Path $RepoConfigJson
+            }
+        }
     }
 
     $BetterDiscord_DDL = ((Invoke-RestMethod 'https://api.github.com/repos/BetterDiscord/BetterDiscord/releases/latest').assets | Where-Object name -EQ 'betterdiscord.asar').browser_download_url
