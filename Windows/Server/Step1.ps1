@@ -547,8 +547,8 @@ New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\dmwappushservice' -N
 # O&O ShutUp10++: Local Machine: Miscellaneous: Disable Network Connectivity Status indicator: On
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\NlaSvc\Parameters\Internet' -Name 'EnableActiveProbing' -Value 0 -PropertyType DWord -Force
 
-# O&O ShutUp10++: Local Machine: Windows Update: Disable automatic Windows Updates: On
-New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\wuauserv' -Name 'Start' -Value 4 -PropertyType DWord -Force
+# O&O ShutUp10++: Local Machine: Windows Update: Disable automatic Windows Updates: Off
+New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\wuauserv' -Name 'Start' -Value 3 -PropertyType DWord -Force
 
 # Settings: System: Multitasking: Snap windows: When I snap a window, suggest what I can snap next to it: Off
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'SnapAssist' -PropertyType DWord -Value 0 -Force
@@ -626,6 +626,12 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CPSS\Sto
 
 # Settings: Privacy & security: Feedback: Feedback fequency: Never
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Siuf\Rules' -Name 'NumberOfSIUFInPeriod' -PropertyType DWord -Value 0 -Force
+
+# Settings: Privacy & security: Search permissions: SafeSearch: Off
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SearchSettings' -Name 'SafeSearchMode' -PropertyType DWord -Value 0 -Force
+
+# Settings: Privacy & security: Search permissions: History: Search history on this device: Off
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SearchSettings' -Name 'IsDeviceSearchHistoryEnabled' -PropertyType DWord -Value 0 -Force
 
 # Settings: Windows Update: Advanced options: Receive updates for other Microsoft products: On
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\WindowsUpdate\UX\Settings' -Name 'AllowMUUpdateService' -PropertyType DWord -Value 1 -Force
