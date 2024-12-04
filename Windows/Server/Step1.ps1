@@ -5,6 +5,8 @@ if ($SvcRestartTask -and $SvcRestartTask.State -eq 'Disabled') {
 }
 & ([ScriptBlock]::Create(((New-Object System.Net.WebClient).DownloadString('https://get.activated.win/')))) /KMS38
 
+UsoClient.exe StartInteractiveScan
+
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Server/GroupPolicy.ps1')
 
 # Settings: System: Multitasking: Snap windows: When I snap a window, suggest what I can snap next to it: Off
