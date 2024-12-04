@@ -509,11 +509,11 @@ New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Capabili
 # O&O ShutUp10++: Local Machine: Windows Update: Disable automatic downloading manufacturers' apps and icons for devices: Off
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Device Metadata' -Name 'PreventDeviceMetadataFromNetwork' -Value 0 -PropertyType DWord -Force
 
-# O&O ShutUp10++: Local Machine: Windows Update: Disable automatic app updates through Windows Update: On
+# O&O ShutUp10++: Local Machine: Windows Update: Disable automatic app updates through Windows Update: Off
 if (-not (Test-Path -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\WindowsStore\WindowsUpdate')) {
 	New-Item -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\WindowsStore\WindowsUpdate' -Force
 }
-New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\WindowsStore\WindowsUpdate' -Name 'AutoDownload' -Value 2 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\WindowsStore\WindowsUpdate' -Name 'AutoDownload' -Value 4 -PropertyType DWord -Force
 
 # O&O ShutUp10++: Local Machine: Windows Update: Disable Windows Updates for other products (e.g. Microsoft Office): Off
 # Remove-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\Services\7971f918-a847-4430-9279-4a52d1efe18d' -Name 'RegisteredWithAU' -Force
