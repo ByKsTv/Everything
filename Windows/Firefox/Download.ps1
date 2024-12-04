@@ -82,6 +82,11 @@ Write-Host "Mozilla Firefox: Unchecking 'Import from browser'" -ForegroundColor 
 (New-Object -ComObject wscript.shell).SendKeys('{TAB}')
 (New-Object -ComObject wscript.shell).SendKeys('{TAB}')
 (New-Object -ComObject wscript.shell).SendKeys('{TAB}')
+
+# If Server - Needs another tab to select import from browser
+if ((Get-WmiObject -Class Win32_OperatingSystem).ProductType -eq 3) {
+    (New-Object -ComObject wscript.shell).SendKeys('{TAB}')
+}
 (New-Object -ComObject wscript.shell).SendKeys(' ')
 Start-Sleep -Milliseconds 100
 
