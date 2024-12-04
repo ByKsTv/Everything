@@ -1,6 +1,10 @@
 $AnyDesk_Settings = @'
 ad.discovery.show_tile=0
 ad.ui.show_tile.telemetry=false
+ad.roster.contacts.view_type=1
+ad.roster.discovered.view_type=1
+ad.roster.favorites.view_type=1
+ad.roster.recent_out.view_type=1
 '@
 $AnyDesk_LocalCFG = [IO.Path]::Combine($env:APPDATA, 'AnyDesk', 'user.conf')
 New-Item -Path $AnyDesk_LocalCFG -ItemType File -Value $AnyDesk_Settings -Force
