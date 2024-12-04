@@ -678,6 +678,9 @@ elseif ($PowerPlanHigh) {
 powercfg.exe /SETACVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e 0
 powercfg.exe /SETDCVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e 0
 
+# Power Plan: Shutdown settings: Disabling Fast Startup
+New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Power' -Name 'HiberbootEnabled' -PropertyType DWord -Value 0 -Force
+
 # Control Panel: Ease of Access: Ease of Access Center: Make the computer easier to see: Remove background images (when available): On
 $RemoveBackgroundImagesBytes = [byte[]](Get-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'UserPreferencesMask').UserPreferencesMask
 $RemoveBackgroundImagesBytes[4] = $RemoveBackgroundImagesBytes[4]-bor 1
