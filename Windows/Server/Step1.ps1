@@ -1,7 +1,7 @@
 # Settings: System: Activation
-$SvcRestartTask = Get-ScheduledTask | Where-Object TaskName -eq "SvcRestartTask"
-if ($SvcRestartTask -and $SvcRestartTask.State -eq "Disabled") {
-    Enable-ScheduledTask -TaskPath $SvcRestartTask.TaskPath -TaskName $SvcRestartTask.TaskName
+$SvcRestartTask = Get-ScheduledTask | Where-Object TaskName -EQ 'SvcRestartTask'
+if ($SvcRestartTask -and $SvcRestartTask.State -eq 'Disabled') {
+	Enable-ScheduledTask -TaskPath $SvcRestartTask.TaskPath -TaskName $SvcRestartTask.TaskName
 }
 & ([ScriptBlock]::Create(((New-Object System.Net.WebClient).DownloadString('https://get.activated.win/')))) /KMS38
 
