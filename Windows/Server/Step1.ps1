@@ -717,6 +717,67 @@ New-ItemProperty -Path 'HKCU:\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50
 # Taskbar tray icons
 Get-ChildItem 'HKCU:\Control Panel\NotifyIconSettings' -Recurse | ForEach-Object { New-ItemProperty -Path $_.PSPath -Name 'IsPromoted' -Value 1 -PropertyType DWORD -Force }
 
+# Lock Screen: Black image
+takeown.exe /f "$env:windir\Web\Screen" /r /d y
+icacls.exe "$env:windir\Web\Screen" /GRANT Everyone:F, Users:F /t
+Add-Type -AssemblyName System.Drawing
+$file = "$env:windir\Web\Screen\img100.jpg"
+$edit = New-Object System.Drawing.Bitmap 3840, 2160
+$color = [Drawing.Brushes]::Black
+$graphics = [Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:windir\Web\Screen\img101.jpg"
+$edit = New-Object System.Drawing.Bitmap 3840, 2400
+$color = [Drawing.Brushes]::Black
+$graphics = [Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:windir\Web\Screen\img101.png"
+$edit = New-Object System.Drawing.Bitmap 3840, 2400
+$color = [Drawing.Brushes]::Black
+$graphics = [Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:windir\Web\Screen\img102.jpg"
+$edit = New-Object System.Drawing.Bitmap 6400, 4000
+$color = [Drawing.Brushes]::Black
+$graphics = [Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:windir\Web\Screen\img103.jpg"
+$edit = New-Object System.Drawing.Bitmap 3839, 2400
+$color = [Drawing.Brushes]::Black
+$graphics = [Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:windir\Web\Screen\img103.png"
+$edit = New-Object System.Drawing.Bitmap 3839, 2400
+$color = [Drawing.Brushes]::Black
+$graphics = [Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:windir\Web\Screen\img104.jpg"
+$edit = New-Object System.Drawing.Bitmap 3840, 2400
+$color = [Drawing.Brushes]::Black
+$graphics = [Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+$file = "$env:windir\Web\Screen\img105.jpg"
+$edit = New-Object System.Drawing.Bitmap 1920, 1200
+$color = [Drawing.Brushes]::Black
+$graphics = [Drawing.Graphics]::FromImage($edit)
+$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
+$graphics.Dispose()
+$edit.Save($file)
+
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 [Windows.Forms.Application]::EnableVisualStyles()
