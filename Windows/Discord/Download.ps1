@@ -50,7 +50,13 @@ if ($null -eq $Discord_InstalledVersion -or $Discord_InstalledVersion -notmatch 
     }
     
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Disabling Discord startup'); [Console]::ResetColor(); [Console]::WriteLine()
-    Remove-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Run' -Name Discord -Force
-    Remove-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name Discord -Force
-    Remove-Item -Path "$env:ProgramData\SquirrelMachineInstalls\Discord.exe" -Force
+    if ($null -ne (Get-Item -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Run').GetValue('Discord')) {
+        Remove-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Run' -Name 'Discord' -Force
+    }
+    if ($null -ne (Get-Item -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run').GetValue('Discord')) {
+        Remove-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'Discord' -Force
+    }
+    if (Test-Path -Path "$env:ProgramData\SquirrelMachineInstalls\Discord.exe") {
+        Remove-Item -Path "$env:ProgramData\SquirrelMachineInstalls\Discord.exe" -Force
+    }
 }
