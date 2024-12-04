@@ -874,6 +874,7 @@ $InitialSetup_TimeZoneSelection = New-Object System.Windows.Forms.ComboBox -Prop
 	Height        = $InitialSetup_SizeY
 	Location      = [Drawing.Point]::new($InitialSetup_LocX, $InitialSetup_LocY)
 	DropDownStyle = 'DropDownList'
+	AutoSize      = $true
 }
 [void] $InitialSetup_TimeZoneSelection.Items.Add('Select Time Zone')
 $InitialSetup_TimeZoneSelection.SelectedIndex = 0
@@ -882,11 +883,29 @@ $TimeZones = [TimeZoneInfo]::GetSystemTimeZones() | Sort-Object -Property Id
 
 $InitialSetup_LocY += $InitialSetup__LocAdd
 
+$InitialSetup_RegionalFormatSelection = New-Object System.Windows.Forms.ComboBox -Property @{
+	Width         = $InitialSetup_SizeX
+	Height        = $InitialSetup_SizeY
+	Location      = [Drawing.Point]::new($InitialSetup_LocX, $InitialSetup_LocY)
+	DropDownStyle = 'DropDownList'
+	AutoSize      = $true
+}
+[void] $InitialSetup_RegionalFormatSelection.Items.Add('Select Regional Format')
+$InitialSetup_RegionalFormatSelection.SelectedIndex = 0
+$availableCultures = [Globalization.CultureInfo]::GetCultures([Globalization.CultureTypes]::SpecificCultures)
+$regionalFormats = $availableCultures | Where-Object {
+	$_.Name -like 'en-*'
+} | Sort-Object -Property DisplayName | ForEach-Object { '{0} ({1})' -f $_.Name, $_.DisplayName }
+$InitialSetup_RegionalFormatSelection.Items.AddRange($regionalFormats)
+
+$InitialSetup_LocY += $InitialSetup__LocAdd
+
 $InitialSetup_KeyboardSelection = New-Object System.Windows.Forms.ComboBox -Property @{
 	Width         = $InitialSetup_SizeX
 	Height        = $InitialSetup_SizeY
 	Location      = [Drawing.Point]::new($InitialSetup_LocX, $InitialSetup_LocY)
 	DropDownStyle = 'DropDownList'
+	AutoSize      = $true
 }
 [void] $InitialSetup_KeyboardSelection.Items.Add('Select Keyboard')
 $InitialSetup_KeyboardSelection.SelectedIndex = 0
@@ -1033,6 +1052,12 @@ $InitialSetup_OK.Add_Click(
 			tzutil.exe /s $InitialSetup_TimeZoneSelection.SelectedItem
 		}
 
+		if ($InitialSetup_RegionalFormatSelection.SelectedItem) {
+			$InitialSetup_RegionalFormatSelected = $InitialSetup_RegionalFormatSelection.SelectedItem.Split(' ')[0]
+			[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Keyboard: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write($InitialSetup_RegionalFormatSelected); [Console]::ResetColor(); [Console]::WriteLine()
+			Set-Culture -CultureInfo $InitialSetup_RegionalFormatSelected
+		}
+
 		if ($InitialSetup_KeyboardSelection.SelectedItem -and $InitialSetup_KeyboardSelection.Text -ne 'Select Keyboard') {
 			[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Keyboard: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write($InitialSetup_KeyboardSelection.SelectedItem); [Console]::ResetColor(); [Console]::WriteLine()
 			$LanguageList = Get-WinUserLanguageList
@@ -1108,6 +1133,7 @@ $InitialSetup_Form.Controls.Add($InitialSetup_OK)
 $InitialSetup_Form.Controls.Add($InitialSetup_Cancel)
 
 $InitialSetup_Form.Controls.Add($InitialSetup_TimeZoneSelection)
+$InitialSetup_Form.Controls.Add($InitialSetup_RegionalFormatSelection)
 $InitialSetup_Form.Controls.Add($InitialSetup_KeyboardSelection)
 $InitialSetup_Form.Controls.Add($InitialSetup_ComputerName)
 $InitialSetup_Form.Controls.Add($InitialSetup_ComputerPasswordCheckBox)
