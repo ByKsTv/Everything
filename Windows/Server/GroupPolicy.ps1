@@ -174,10 +174,10 @@ Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpd
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'DeferUpgradePeriod' -Type DWORD -Value 1
 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: Manage updates offered from Windows: Do not include drivers with Windows Updates: Not configured
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'ExcludeWUDriversInQualityUpdate' -Type DWORD -Value CLEAR
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'ExcludeWUDriversInQualityUpdate' -Type CLEAR
 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: Manage end user experience: Configure Automatic Updates: Not configured
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'NoAutoUpdate' -Type DWORD -Value CLEAR
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'NoAutoUpdate' -Type CLEAR
 
 Set-Policy -Scope Computer -Path 'Software\Software\Policies\Microsoft\MRT' -Name 'DontReportInfectionInformation' -Type DWORD -Value 1
 Set-Policy -Scope Computer -Path 'Software\Software\Policies\Microsoft\MicrosoftEdge\Main' -Name 'AllowPrelaunch' -Type DWORD -Value 0
