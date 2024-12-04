@@ -105,10 +105,40 @@ Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Windows Se
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow search highlights: Disabled
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Windows Search' -Name 'EnableDynamicContentInWSB' -Type DWORD -Value 0
 
-# 
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Biometrics: Allow the use of biometrics: Disabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Biometrics' -Name 'Enabled' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Control Panel: Regional and Language Options: Allow users to enable online speech recognition services: Disabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\InputPersonalization' -Name 'AllowInputPersonalization' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Speech: Allow Automatic Update of Speech Data: Disabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Speech' -Name 'AllowSpeechModelUpdate' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Media Digitial Rights Management: Prevent Windows Media DRM Internet Access: Enabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\WMDRM' -Name 'DisableOnline' -Type DWORD -Value 1
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: OneDrive: Prevent the usage of OneDrive for file storage: Enabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\OneDrive' -Name 'DisableFileSyncNGSC' -Type DWORD -Value 1
+
+# Group Policy: Computer Configuration: Administrative Templates: Control Panel: Personalization: Prevent enabling lock screen camera: Enabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Personalization' -Name 'NoLockScreenCamera' -Type DWORD -Value 1
+
+# O&O ShutUp10++: Local Machine: Windows Update: Disable deferring of upgrades: Off
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'DeferUpdatePeriod' -Type CLEAR
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'DeferUpgrade' -Type CLEAR
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'DeferUpgradePeriod' -Type CLEAR
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: Manage updates offered from Windows: Do not include drivers with Windows Updates: Not configured
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'ExcludeWUDriversInQualityUpdate' -Type CLEAR
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: Manage end user experience: Configure Automatic Updates: Not configured
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'NoAutoUpdate' -Type CLEAR
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Defender SmartScreen: Microsoft Edge: Configure Windows Defender SmartScreen: Disabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'SmartScreenEnabled' -Type DWORD -Value 0
+
 Set-Policy -Scope Computer -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\DataCollection' -Name 'AllowTelemetry' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'HideSCAMeetNow' -Type DWORD -Value 1
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Biometrics' -Name 'Enabled' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'AddressBarMicrosoftSearchInBingProviderEnabled' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'AlternateErrorPagesEnabled' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'AutofillAddressEnabled' -Type DWORD -Value 0
@@ -126,16 +156,12 @@ Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'Resol
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'SearchSuggestEnabled' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'SendSiteInfoToImproveServices' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'SiteSafetyServicesEnabled' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'SmartScreenEnabled' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'TyposquattingCheckerEnabled' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'UserFeedbackAllowed' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'WebWidgetAllowed' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\InputPersonalization' -Name 'AllowInputPersonalization' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\MRT' -Name 'DontReportInfectionInformation' -Type DWORD -Value 1
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\MicrosoftEdge\Main' -Name 'AllowPrelaunch' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\MicrosoftEdge\TabPreloader' -Name 'AllowTabPreloading' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Speech' -Name 'AllowSpeechModelUpdate' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\WMDRM' -Name 'DisableOnline' -Type DWORD -Value 1
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows Defender\Spynet' -Name 'SpyNetReporting' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows Defender\Spynet' -Name 'SubmitSamplesConsent' -Type DWORD -Value 2
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows NT\CurrentVersion\Software Protection Platform' -Name 'NoGenTicket' -Type DWORD -Value 1
@@ -157,8 +183,6 @@ Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\LocationAn
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Maps' -Name 'AllowUntriggeredNetworkTrafficOnSettingsPage' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Maps' -Name 'AutoDownloadAndUpdateMapData' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Messaging' -Name 'AllowMessageSync' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\OneDrive' -Name 'DisableFileSyncNGSC' -Type DWORD -Value 1
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Personalization' -Name 'NoLockScreenCamera' -Type DWORD -Value 1
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\System' -Name 'AllowClipboardHistory' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\System' -Name 'AllowCrossDeviceClipboard' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\System' -Name 'EnableActivityFeed' -Type DWORD -Value 0
@@ -169,22 +193,16 @@ Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\TabletPC' 
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Windows Feeds' -Name 'EnableFeeds' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsAI' -Name 'DisableAIDataAnalysis' -Type DWORD -Value 1
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsCopilot' -Name 'TurnOffWindowsCopilot' -Type DWORD -Value 1
-
-# O&O ShutUp10++: Local Machine: Windows Update: Disable deferring of upgrades: Off
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'DeferUpdatePeriod' -Type CLEAR
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'DeferUpgrade' -Type CLEAR
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'DeferUpgradePeriod' -Type CLEAR
-
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: Manage updates offered from Windows: Do not include drivers with Windows Updates: Not configured
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'ExcludeWUDriversInQualityUpdate' -Type CLEAR
-
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: Manage end user experience: Configure Automatic Updates: Not configured
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'NoAutoUpdate' -Type CLEAR
-
 Set-Policy -Scope Computer -Path 'Software\Software\Policies\Microsoft\MRT' -Name 'DontReportInfectionInformation' -Type DWORD -Value 1
 Set-Policy -Scope Computer -Path 'Software\Software\Policies\Microsoft\MicrosoftEdge\Main' -Name 'AllowPrelaunch' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Software\Policies\Microsoft\MicrosoftEdge\TabPreloader' -Name 'AllowTabPreloading' -Type DWORD -Value 0
+
+# Group Policy: User Configuration: Administrative Templates: Start Menu and Taskbar: Remove the Meet Now icon: Enabled
 Set-Policy -Scope User -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'HideSCAMeetNow' -Type DWORD -Value 1
+
+# Group Policy: User Configuration: Administrative Templates: Windows Components: Windows Copilot: Turn off Windows Copilot: Enabled
+Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot' -Name 'TurnOffWindowsCopilot' -Type DWORD -Value 1
+
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'AddressBarMicrosoftSearchInBingProviderEnabled' -Type DWORD -Value 0
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'AlternateErrorPagesEnabled' -Type DWORD -Value 0
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'AutofillAddressEnabled' -Type DWORD -Value 0
@@ -208,7 +226,6 @@ Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'UserFeedb
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'WebWidgetAllowed' -Type DWORD -Value 0
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows\Explorer' -Name 'DisableSearchBoxSuggestions' -Type DWORD -Value 1
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsAI' -Name 'DisableAIDataAnalysis' -Type DWORD -Value 1
-Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot' -Name 'TurnOffWindowsCopilot' -Type DWORD -Value 1
 
 if ((Test-Path -Path "$env:TEMP\Computer.txt") -or (Test-Path -Path "$env:TEMP\User.txt")) {
 	if (Test-Path -Path "$env:TEMP\Computer.txt") {
