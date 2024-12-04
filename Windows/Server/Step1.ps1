@@ -874,7 +874,6 @@ $InitialSetup_TimeZoneSelection = New-Object System.Windows.Forms.ComboBox -Prop
 	Height        = $InitialSetup_SizeY
 	Location      = [Drawing.Point]::new($InitialSetup_LocX, $InitialSetup_LocY)
 	DropDownStyle = 'DropDownList'
-	AutoSize      = $true
 }
 [void] $InitialSetup_TimeZoneSelection.Items.Add('Select Time Zone')
 $InitialSetup_TimeZoneSelection.SelectedIndex = 0
@@ -888,7 +887,6 @@ $InitialSetup_RegionalFormatSelection = New-Object System.Windows.Forms.ComboBox
 	Height        = $InitialSetup_SizeY
 	Location      = [Drawing.Point]::new($InitialSetup_LocX, $InitialSetup_LocY)
 	DropDownStyle = 'DropDownList'
-	AutoSize      = $true
 }
 [void] $InitialSetup_RegionalFormatSelection.Items.Add('Select Regional Format')
 $InitialSetup_RegionalFormatSelection.SelectedIndex = 0
@@ -905,7 +903,6 @@ $InitialSetup_KeyboardSelection = New-Object System.Windows.Forms.ComboBox -Prop
 	Height        = $InitialSetup_SizeY
 	Location      = [Drawing.Point]::new($InitialSetup_LocX, $InitialSetup_LocY)
 	DropDownStyle = 'DropDownList'
-	AutoSize      = $true
 }
 [void] $InitialSetup_KeyboardSelection.Items.Add('Select Keyboard')
 $InitialSetup_KeyboardSelection.SelectedIndex = 0
