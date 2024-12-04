@@ -758,62 +758,25 @@ Get-ChildItem 'HKCU:\Control Panel\NotifyIconSettings' -Recurse | ForEach-Object
 takeown.exe /f "$env:windir\Web\Screen" /r /d y
 icacls.exe "$env:windir\Web\Screen" /GRANT Everyone:F, Users:F /t
 Add-Type -AssemblyName System.Drawing
-$file = "$env:windir\Web\Screen\img100.jpg"
-$edit = New-Object System.Drawing.Bitmap 3840, 2160
-$color = [Drawing.Brushes]::Black
-$graphics = [Drawing.Graphics]::FromImage($edit)
-$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-$graphics.Dispose()
-$edit.Save($file)
-$file = "$env:windir\Web\Screen\img101.jpg"
-$edit = New-Object System.Drawing.Bitmap 3840, 2400
-$color = [Drawing.Brushes]::Black
-$graphics = [Drawing.Graphics]::FromImage($edit)
-$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-$graphics.Dispose()
-$edit.Save($file)
-$file = "$env:windir\Web\Screen\img101.png"
-$edit = New-Object System.Drawing.Bitmap 3840, 2400
-$color = [Drawing.Brushes]::Black
-$graphics = [Drawing.Graphics]::FromImage($edit)
-$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-$graphics.Dispose()
-$edit.Save($file)
-$file = "$env:windir\Web\Screen\img102.jpg"
-$edit = New-Object System.Drawing.Bitmap 6400, 4000
-$color = [Drawing.Brushes]::Black
-$graphics = [Drawing.Graphics]::FromImage($edit)
-$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-$graphics.Dispose()
-$edit.Save($file)
-$file = "$env:windir\Web\Screen\img103.jpg"
-$edit = New-Object System.Drawing.Bitmap 3839, 2400
-$color = [Drawing.Brushes]::Black
-$graphics = [Drawing.Graphics]::FromImage($edit)
-$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-$graphics.Dispose()
-$edit.Save($file)
-$file = "$env:windir\Web\Screen\img103.png"
-$edit = New-Object System.Drawing.Bitmap 3839, 2400
-$color = [Drawing.Brushes]::Black
-$graphics = [Drawing.Graphics]::FromImage($edit)
-$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-$graphics.Dispose()
-$edit.Save($file)
-$file = "$env:windir\Web\Screen\img104.jpg"
-$edit = New-Object System.Drawing.Bitmap 3840, 2400
-$color = [Drawing.Brushes]::Black
-$graphics = [Drawing.Graphics]::FromImage($edit)
-$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-$graphics.Dispose()
-$edit.Save($file)
-$file = "$env:windir\Web\Screen\img105.jpg"
-$edit = New-Object System.Drawing.Bitmap 1920, 1200
-$color = [Drawing.Brushes]::Black
-$graphics = [Drawing.Graphics]::FromImage($edit)
-$graphics.FillRectangle($color, 0, 0, $edit.Width, $edit.Height)
-$graphics.Dispose()
-$edit.Save($file)
+$LockScreenImages = @(
+	@{file = 'img100.jpg'; width = 3840; height = 2160 },
+	@{file = 'img101.jpg'; width = 3840; height = 2400 },
+	@{file = 'img101.png'; width = 3840; height = 2400 },
+	@{file = 'img102.jpg'; width = 6400; height = 4000 },
+	@{file = 'img103.jpg'; width = 3839; height = 2400 },
+	@{file = 'img103.png'; width = 3839; height = 2400 },
+	@{file = 'img104.jpg'; width = 3840; height = 2400 },
+	@{file = 'img105.jpg'; width = 1920; height = 1200 }
+)
+foreach ($LockScreenImage in $LockScreenImages) {
+	$filePath = "$env:windir\Web\Screen\$($LockScreenImage.file)"
+	$bitmap = New-Object System.Drawing.Bitmap $LockScreenImage.width, $LockScreenImage.height
+	$graphics = [Drawing.Graphics]::FromImage($bitmap)
+	$graphics.FillRectangle([Drawing.Brushes]::Black, 0, 0, $bitmap.Width, $bitmap.Height)
+	$graphics.Dispose()
+	$bitmap.Save($filePath)
+	$bitmap.Dispose()
+}
 
 # File Explorer: Remove Gallery
 Remove-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\{e88865ea-0e1c-4e20-9aa6-edcd0212c87c}' -Recurse -Force
