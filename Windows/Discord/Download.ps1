@@ -13,7 +13,7 @@ $Discord_DDL = (Invoke-WebRequest -UseBasicParsing -Uri 'https://discord.com/api
 $Discord_LatestVersion = [regex]::Match($Discord_DDL, '\d+(\.\d+)+').Value
 
 if ($null -eq $Discord_InstalledVersion -or $Discord_InstalledVersion -notmatch $Discord_LatestVersion) {
-    if (Get-Process -Name 'Discord') {
+    if (Get-Process -Name 'Discord' -ErrorAction SilentlyContinue) {
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Closing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Discord'"); [Console]::ResetColor(); [Console]::WriteLine()
         Get-Process -Name 'Discord' -ErrorAction SilentlyContinue | ForEach-Object {
             $_.CloseMainWindow() | Out-Null
@@ -28,7 +28,7 @@ if ($null -eq $Discord_InstalledVersion -or $Discord_InstalledVersion -notmatch 
     (New-Object System.Net.WebClient).DownloadFile($Discord_DDL, $Discord_SavePath)
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Discord'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-    Start-Process $Discord_SavePath -Wait
+    Start-Process $Discord_SavePath
 
     $Discord_InstallerPopup = 'Discord Updater'
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Waiting for window '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_InstallerPopup'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to open '); [Console]::ResetColor(); [Console]::WriteLine()
