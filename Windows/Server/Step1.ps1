@@ -876,10 +876,12 @@ $InitialSetup_RegionalFormatSelection = New-Object System.Windows.Forms.ComboBox
 [void] $InitialSetup_RegionalFormatSelection.Items.Add('Select Regional Format')
 $InitialSetup_RegionalFormatSelection.SelectedIndex = 0
 $availableCultures = [Globalization.CultureInfo]::GetCultures([Globalization.CultureTypes]::SpecificCultures)
-$regionalFormats = $availableCultures | Where-Object {
+$regionalFormatMapping = $availableCultures | Where-Object {
 	$_.Name -like 'en-*'
-} | Sort-Object -Property DisplayName | ForEach-Object { '{0} ({1})' -f $_.Name, $_.DisplayName }
-$InitialSetup_RegionalFormatSelection.Items.AddRange($regionalFormats)
+} | Sort-Object -Property DisplayName | ForEach-Object {
+	@{ DisplayName = $_.DisplayName.Split('(')[-1].TrimEnd(')'); CultureCode = $_.Name }
+}
+$InitialSetup_RegionalFormatSelection.Items.AddRange($regionalFormatMapping.DisplayName)
 
 $InitialSetup_LocY += $InitialSetup__LocAdd
 
@@ -1020,9 +1022,10 @@ $InitialSetup_OK.Add_Click(
 		}
 		
 		if ($InitialSetup_RegionalFormatSelection.SelectedItem -and $InitialSetup_RegionalFormatSelection.Text -ne 'Select Regional Format') {
-			$InitialSetup_RegionalFormatSelected = $InitialSetup_RegionalFormatSelection.SelectedItem.Split(' ')[0]
-			[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Regional Format: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write($InitialSetup_RegionalFormatSelected); [Console]::ResetColor(); [Console]::WriteLine()
-			Set-Culture -CultureInfo $InitialSetup_RegionalFormatSelected
+			$selectedDisplayName = $InitialSetup_RegionalFormatSelection.SelectedItem
+			$RegionalFormatSelected = ($regionalFormatMapping | Where-Object { $_.DisplayName -eq $selectedDisplayName }).CultureCode
+			[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Regional Format: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write($RegionalFormatSelected); [Console]::ResetColor(); [Console]::WriteLine()
+			Set-Culture -CultureInfo $RegionalFormatSelected
 		}
 
 		if ($InitialSetup_ComputerName.Text -ne $InitialSetup_PreComputerName) {
