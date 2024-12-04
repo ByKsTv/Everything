@@ -506,8 +506,8 @@ New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Capabili
 # O&O ShutUp10++: Local Machine: App Privacy: Disable app access to camera: On
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\webcam' -Name 'Value' -Value 'Deny' -PropertyType String -Force
 
-# O&O ShutUp10++: Local Machine: Windows Update: Disable automatic downloading manufacturers' apps and icons for devices: On
-New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Device Metadata' -Name 'PreventDeviceMetadataFromNetwork' -Value 1 -PropertyType DWord -Force
+# O&O ShutUp10++: Local Machine: Windows Update: Disable automatic downloading manufacturers' apps and icons for devices: Off
+New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Device Metadata' -Name 'PreventDeviceMetadataFromNetwork' -Value 0 -PropertyType DWord -Force
 
 # O&O ShutUp10++: Local Machine: Windows Update: Disable automatic app updates through Windows Update: On
 if (-not (Test-Path -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\WindowsStore\WindowsUpdate')) {
