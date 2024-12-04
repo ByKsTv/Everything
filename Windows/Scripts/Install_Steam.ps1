@@ -6,4 +6,8 @@ $Steam_SavePath = [IO.Path]::Combine($env:TEMP, $Steam_Filename)
 
 $Steam_Argument = '/S'
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Steam'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Steam_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Steam_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-Start-Process $Steam_SavePath -ArgumentList $Steam_Argument
+Start-Process $Steam_SavePath -ArgumentList $Steam_Argument -Wait
+
+if ($null -ne (Get-Item -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run').GetValue('Steam')) {
+	Remove-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'Steam'
+}

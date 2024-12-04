@@ -34,4 +34,8 @@ $BattleNET_SavePath = [IO.Path]::Combine($env:TEMP, $BattleNET_Filename)
                 
 $BattleNET_Argument = '--lang=enUS --installpath="C:\Program Files (x86)\Battle.net"'
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Battle.net'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BattleNET_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BattleNET_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-Start-Process $BattleNET_SavePath -ArgumentList $BattleNET_Argument
+Start-Process $BattleNET_SavePath -ArgumentList $BattleNET_Argument -Wait
+
+if ($null -ne (Get-Item -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run').GetValue('Battle.net')) {
+	Remove-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'Battle.net'
+}
