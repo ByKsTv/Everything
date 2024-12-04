@@ -686,9 +686,6 @@ $RemoveBackgroundImagesBytes = [byte[]](Get-ItemProperty -Path 'HKCU:\Control Pa
 $RemoveBackgroundImagesBytes[4] = $RemoveBackgroundImagesBytes[4]-bor 1
 New-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'UserPreferencesMask' -PropertyType Binary -Value $RemoveBackgroundImagesBytes -Force
 
-# Uninstall `Feedback Hub`
-Get-AppxPackage 'Microsoft.WindowsFeedbackHub' | Remove-AppxPackage
-
 # Task Manager: Startup apps: Delete: AzureArcSetup
 if ($null -ne (Get-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run').GetValue('AzureArcSetup')) {
 	Remove-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'AzureArcSetup'
@@ -1100,3 +1097,6 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Chrome/Extensions.ps1')
 
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software_Selection.ps1')
+
+# Uninstall Feedback Hub
+Get-AppxPackage 'Microsoft.WindowsFeedbackHub' | Remove-AppxPackage
