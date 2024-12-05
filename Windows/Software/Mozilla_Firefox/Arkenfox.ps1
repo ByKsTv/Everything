@@ -7,7 +7,7 @@ if (Test-Path $Firefox_Profiles) {
             Stop-Process -Name firefox -Force
         }
         
-        $Firefox_userChromecss_DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/userChrome.css'
+        $Firefox_userChromecss_DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/userChrome.css'
         $Firefox_userChromecss_Filename = [IO.Path]::GetFileName(([URI]$Firefox_userChromecss_DDL).AbsolutePath)
         $Firefox_userChromecssSavePath = [IO.Path]::Combine($Firefox_Profile, 'chrome', $Firefox_userChromecss_Filename)
         if (-not (Test-Path $Firefox_userChromecssSavePath)) {
@@ -17,8 +17,8 @@ if (Test-Path $Firefox_Profiles) {
         (New-Object System.Net.WebClient).DownloadFile($Firefox_userChromecss_DDL, $Firefox_userChromecssSavePath)
 
         $Firefox_ScriptsURLs = @(
-            'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/user-overrides.js',
-            'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/search.json.mozlz4',
+            'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/user-overrides.js',
+            'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/search.json.mozlz4',
             'https://raw.githubusercontent.com/arkenfox/user.js/master/updater.bat',
             'https://raw.githubusercontent.com/arkenfox/user.js/master/prefsCleaner.bat',
             'https://raw.githubusercontent.com/arkenfox/user.js/master/user.js'
@@ -54,7 +54,7 @@ if (Test-Path $Firefox_Profiles) {
         $Arkenfox_Overrides_TaskName = 'Arkenfox Overrides'
         if (-not (Get-ScheduledTask -TaskName $Arkenfox_Overrides_TaskName -ErrorAction SilentlyContinue)) {
             [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Arkenfox_Overrides_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
-            $Arkenfox_Overrides_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/user-overrides.js -OutFile $Firefox_Profile\user-overrides.js"
+            $Arkenfox_Overrides_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/user-overrides.js -OutFile $Firefox_Profile\user-overrides.js"
             $Arkenfox_Overrides_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
             $Arkenfox_Overrides_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
             $Arkenfox_Overrides_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8

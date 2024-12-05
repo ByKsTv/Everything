@@ -1,5 +1,3 @@
-// Delete this folder on 01.01.2025
-
 // What should Firefox do with other files? > Save files
 user_pref("browser.download.always_ask_before_handling_new_types", false);
 

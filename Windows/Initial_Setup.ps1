@@ -296,7 +296,7 @@ $InitialSetup_OK.Add_Click(
 		}
 
 		if ($InitialSetup_MozillaFirefox.Checked -eq $true) {
-			Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Firefox/Download.ps1')
+			Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/Download.ps1')
 		}
 	
 		if ($InitialSetup_GoogleChrome.Checked -eq $true) {
