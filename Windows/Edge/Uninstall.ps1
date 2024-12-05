@@ -8,11 +8,11 @@ if (-not (Get-ScheduledTask -TaskName $EdgeUninstaller_TaskName -ErrorAction Sil
     Register-ScheduledTask -TaskName $EdgeUninstaller_TaskName -Action $EdgeUninstaller_TaskAction -Trigger $EdgeUninstaller_TaskTrigger -Principal $EdgeUninstaller_TaskPrincipal -Settings $EdgeUninstaller_TaskSettings -Force
 }
 
-$Task = Get-ScheduledTask -TaskName $BetterDiscord_TaskName -ErrorAction SilentlyContinue
+$Task = Get-ScheduledTask -TaskName $EdgeUninstaller_TaskName -ErrorAction SilentlyContinue
 if ($Task) {
     $Updated_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Windows/Software/Microsoft_Edge/Uninstall.ps1')"
     $Updated_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:COMPUTERNAME\$env:USERNAME" -RunLevel Highest
-    Register-ScheduledTask -TaskName $BetterDiscord_TaskName -Action $Updated_TaskAction -Trigger $Task.Triggers -Principal $Updated_TaskPrincipal -Settings $Task.Settings -Force
+    Register-ScheduledTask -TaskName $EdgeUninstaller_TaskName -Action $Updated_TaskAction -Trigger $Task.Triggers -Principal $Updated_TaskPrincipal -Settings $Task.Settings -Force
 }
 $Task.Dispose()
 
