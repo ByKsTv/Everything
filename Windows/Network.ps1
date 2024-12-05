@@ -14,10 +14,6 @@ New-ItemProperty -Path 'HKLM:\System\ControlSet001\Control\Session Manager\Memor
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -Name 'MaxUserPort' -Value 65534 -PropertyType 'DWord' -Force
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -Name 'TcpTimedWaitDelay' -Value 30 -PropertyType 'DWord' -Force
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -Name 'DefaultTTL' -Value 64 -PropertyType 'DWord' -Force
-if (-not (Test-Path -Path 'HKLM:\Software\Policies\Microsoft\Windows\Psched')) {
-	New-Item -Path 'HKLM:\Software\Policies\Microsoft\Windows\Psched' -Force
-}
-New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Psched' -Name 'NonBestEffortLimit' -Value 0 -PropertyType 'DWord' -Force
 if (-not (Test-Path -Path 'HKLM:\System\ControlSet001\Services\Tcpip\QoS')) {
 	New-Item -Path 'HKLM:\System\ControlSet001\Services\Tcpip\QoS' -Force
 }
