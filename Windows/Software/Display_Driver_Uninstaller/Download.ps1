@@ -14,5 +14,5 @@ if (-not (Test-Path -Path "${env:ProgramFiles(x86)}\Display Driver Uninstaller\S
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Display Driver Uninstaller: Creating Display Driver Uninstaller folder'); [Console]::ResetColor(); [Console]::WriteLine()
     New-Item -Path "${env:ProgramFiles(x86)}\Display Driver Uninstaller" -ItemType Directory -Force
     New-Item -Path "${env:ProgramFiles(x86)}\Display Driver Uninstaller\Settings" -ItemType Directory -Force
-    (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Display_Driver_Uninstaller/Settings.xml', "${env:ProgramFiles(x86)}\Display Driver Uninstaller\Settings\Settings.xml")
+    (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Display_Driver_Uninstaller/Settings.xml', "${env:ProgramFiles(x86)}\Display Driver Uninstaller\Settings\Settings.xml")
 }
