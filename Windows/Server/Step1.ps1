@@ -5,8 +5,7 @@ if ($SvcRestartTask -and $SvcRestartTask.State -eq 'Disabled') {
 }
 & ([ScriptBlock]::Create(((New-Object System.Net.WebClient).DownloadString('https://get.activated.win/')))) /KMS38
 
-# Settings: Windows Update: Check for updates
-UsoClient.exe StartInteractiveScan
+Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Network.ps1')
 
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Server/GroupPolicy.ps1')
 
@@ -1126,3 +1125,6 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 
 # Uninstall Feedback Hub
 Get-AppxPackage 'Microsoft.WindowsFeedbackHub' | Remove-AppxPackage
+
+# Settings: Windows Update: Check for updates
+UsoClient.exe StartInteractiveScan
