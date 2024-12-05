@@ -151,6 +151,9 @@ Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\SQMClient\Windows'
 # Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off Windows Error Reporting: Enabled
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\PCHealth\ErrorReporting' -Name 'DoReport' -Type DWORD -Value 0
 
+# Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off the Windows Messenger Customer Experience Improvement Program: Enabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Messenger\Client' -Name 'CEIP' -Type DWORD -Value 2
+
 # Group Policy: Computer Configuration: Administrative Templates: System: OS Policies: Allow Clipboard History: Disabled
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\System' -Name 'AllowClipboardHistory' -Type DWORD -Value 0
 
@@ -162,6 +165,9 @@ Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\System' -N
 
 # Group Policy: Computer Configuration: Administrative Templates: System: OS Policies: Enabled Activity Feed: Disabled
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\System' -Name 'EnableActivityFeed' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: System: OS Policies: Allow Upload of User Activities: Disabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\System' -Name 'UploadUserActivities' -Type DWORD -Value 0
 
 # Group Policy: Computer Configuration: Administrative Templates: System: Remote Assistance: Configure Solicited Remote Assistance: Disabled
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows NT\Terminal Services' -Name 'fAllowToGetHelp' -Type DWORD -Value 0
@@ -350,7 +356,7 @@ Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot
 # Group Policy: User Configuration: Administrative Templates: Windows Components: Windows Defender SmartScreen: Microsoft Edge: Configure Windows Defender SmartScreen: Disabled
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'SmartScreenEnabled' -Type DWORD -Value 0
 
-# Sort inside earch folder
+# To Sort
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Configure Error Reporting: Disabled
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\PCHealth\ErrorReporting\DW' -Name 'DWReporteeName' -Type CLEAR
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\PCHealth\ErrorReporting\DW' -Name 'DWFileTreeRoot' -Type CLEAR
@@ -361,19 +367,12 @@ Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Handwritin
 # Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off handwriting personalization data sharing: Enabled
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\TabletPC' -Name 'PreventHandwritingDataSharing' -Type DWORD -Value 1
 
-# Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off the Windows Messenger Customer Experience Improvement Program: Enabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Messenger\Client' -Name 'CEIP' -Type DWORD -Value 2
-
-# Group Policy: Computer Configuration: Administrative Templates: System: OS Policies: Allow upload of User Activites: Disabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\System' -Name 'UploadUserActivities' -Type DWORD -Value 0
-
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Data Collection and Preview Builds: Configure collection of browsing data for Desktop Analytics: Do not allow sending intranet or internet history
 Set-Policy -Scope Computer -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\DataCollection' -Name 'MicrosoftEdgeDataOptIn' -Type DWORD -Value 0
 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: File Explorer: Turn off Windows Libraries features that rely on indexed file data: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Explorer' -Name 'DisableIndexedLibraryExperience' -Type DWORD -Value 1
 
-# Not Sorted
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Do not allow web search: Enabled
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Windows Search' -Name 'DisableWebSearch' -Type DWORD -Value 1
 
@@ -383,7 +382,7 @@ Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Windows Se
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Don't search the web or display web results in Search over metered connections: Enabled
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Windows Search' -Name 'ConnectedSearchUseWebOverMeteredConnections' -Type DWORD -Value 0
 
-# # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow Cloud Search: Disabled
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow Cloud Search: Disabled
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Windows Search' -Name 'AllowCloudSearch' -Type DWORD -Value 0
 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow Cortana above lock screen: Disabled
@@ -439,6 +438,7 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\EdgeUpdate' -Name 
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\EdgeUpdate' -Name 'CreateDesktopShortcut{2CD8A007-E189-409D-A2C8-9AF4EF3C72AA}' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\EdgeUpdate' -Name 'CreateDesktopShortcut{0D50BFEC-CD6A-4F9A-964C-C7416E3ACB10}' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\EdgeUpdate' -Name 'CreateDesktopShortcut{65C35B14-6C1D-4122-AC46-7148CC9D6497}' -Type DWORD -Value 0
+# Unknown
 Set-Policy -Scope Computer -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'HideSCAMeetNow' -Type DWORD -Value 1
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'AddressBarMicrosoftSearchInBingProviderEnabled' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'AlternateErrorPagesEnabled' -Type DWORD -Value 0
