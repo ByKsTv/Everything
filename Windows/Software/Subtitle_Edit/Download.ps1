@@ -1,7 +1,7 @@
 $SubtitleEdit_TaskName = 'Subtitle Edit Updater'
 if (-not (Get-ScheduledTask -TaskName $SubtitleEdit_TaskName -ErrorAction SilentlyContinue)) {
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SubtitleEdit_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
-    $SubtitleEdit_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/SubtitleEdit/Download.ps1')"
+    $SubtitleEdit_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Subtitle_Edit/Download.ps1')"
     $SubtitleEdit_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
     $SubtitleEdit_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
     $SubtitleEdit_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
