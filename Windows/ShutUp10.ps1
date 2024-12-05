@@ -543,6 +543,9 @@ if (-not (Test-Path -Path 'HKLM:\System\ControlSet001\Control\WMI\AutoLogger\Aut
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Control\WMI\AutoLogger\AutoLogger-Diagtrack-Listener' -Name 'Start' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\dmwappushservice' -Name 'Start' -Value 4 -PropertyType DWord -Force
 
+# O&O ShutUp10++: Local Machine: Miscellaneous: Disable installation of PC Health Check: On
+New-ItemProperty -Path 'HKLM:\Software\Microsoft\PCHC' -Name 'PreviousUninstall' -Value 1 -PropertyType DWord -Force
+
 # O&O ShutUp10++: Local Machine: Miscellaneous: Disable Network Connectivity Status indicator: On
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\NlaSvc\Parameters\Internet' -Name 'EnableActiveProbing' -Value 0 -PropertyType DWord -Force
 
