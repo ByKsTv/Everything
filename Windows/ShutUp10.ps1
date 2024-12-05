@@ -86,8 +86,8 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Advertis
 # O&O ShutUp10++: Current User: Privacy: Disable sending URLs from apps to Windows Store: On
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppHost' -Name 'EnableWebContentEvaluation' -Value 0 -PropertyType DWord -Force
 
-# O&O ShutUp10++: Current User: App Privacy: Prohibit apps from running in the background: On
-New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications' -Name 'GlobalUserDisabled' -Value 1 -PropertyType DWord -Force
+# O&O ShutUp10++: Current User: App Privacy: Prohibit apps from running in the background: Off
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications' -Name 'GlobalUserDisabled' -Value 0 -PropertyType DWord -Force
 
 # O&O ShutUp10++: Current User: App Privacy: Disable app access to movements: On
 if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\activity')) {
@@ -180,11 +180,11 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Capabili
 # O&O ShutUp10++: Current User: App Privacy: Disable app access to device location: On
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\location' -Name 'Value' -Value 'Deny' -PropertyType String -Force
 
-# O&O ShutUp10++: Current User: App Privacy: Disable app access to device microphone: On
+# O&O ShutUp10++: Current User: App Privacy: Disable app access to device microphone: Off
 if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\microphone')) {
 	New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\microphone' -Force
 }
-New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\microphone' -Name 'Value' -Value 'Deny' -PropertyType String -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\microphone' -Name 'Value' -Value 'Allow' -PropertyType String -Force
 
 # O&O ShutUp10++: Current User: App Privacy: Disable app access to music libraries: On
 if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\musicLibrary')) {
@@ -458,8 +458,8 @@ if (-not (Test-Path -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Capab
 }
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\graphicsCaptureWithoutBorder' -Name 'Value' -Value 'Deny' -PropertyType String -Force
 
-# O&O ShutUp10++: Local Machine: App Privacy: Disable app access to device microphone: On
-New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\microphone' -Name 'Value' -Value 'Deny' -PropertyType String -Force
+# O&O ShutUp10++: Local Machine: App Privacy: Disable app access to device microphone: Off
+New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\microphone' -Name 'Value' -Value 'Allow' -PropertyType String -Force
 
 # O&O ShutUp10++: Local Machine: App Privacy: Disable app access to music libraries: On
 if (-not (Test-Path -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\musicLibrary')) {
@@ -491,8 +491,8 @@ New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Capabili
 # O&O ShutUp10++: Local Machine: App Privacy: Disable app access to videos: On
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\videosLibrary' -Name 'Value' -Value 'Deny' -PropertyType String -Force
 
-# O&O ShutUp10++: Local Machine: App Privacy: Disable app access to camera: On
-New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\webcam' -Name 'Value' -Value 'Deny' -PropertyType String -Force
+# O&O ShutUp10++: Local Machine: App Privacy: Disable app access to camera: Off
+New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\CapabilityAccessManager\ConsentStore\webcam' -Name 'Value' -Value 'Allow' -PropertyType String -Force
 
 # O&O ShutUp10++: Local Machine: Windows Update: Disable automatic downloading manufacturers' apps and icons for devices: Off
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Device Metadata' -Name 'PreventDeviceMetadataFromNetwork' -Value 0 -PropertyType DWord -Force
