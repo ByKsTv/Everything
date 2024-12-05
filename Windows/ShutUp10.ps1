@@ -547,6 +547,9 @@ New-ItemProperty -Path 'HKLM:\System\ControlSet001\Control\WMI\AutoLogger\AutoLo
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\dmwappushservice' -Name 'Start' -Value 4 -PropertyType DWord -Force
 
 # O&O ShutUp10++: Local Machine: Miscellaneous: Disable installation of PC Health Check: On
+if (-not (Test-Path -Path 'HKLM:\Software\Microsoft\PCHC')) {
+	New-Item -Path 'HKLM:\Software\Microsoft\PCHC' -Force
+}
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\PCHC' -Name 'PreviousUninstall' -Value 1 -PropertyType DWord -Force
 
 # O&O ShutUp10++: Local Machine: Miscellaneous: Disable Network Connectivity Status indicator: On
