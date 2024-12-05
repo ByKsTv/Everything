@@ -717,7 +717,7 @@ $SoftwareSelection_Form_OK.Add_Click{
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Install_Minecraft_Launcher.ps1')
     }
     if ($SoftwareSelection_CheckBoxes['mpv'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/mpv/Download.ps1')
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/Download.ps1')
     }
     if ($SoftwareSelection_CheckBoxes['NordVPN'].Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Install_NordVPN.ps1')
