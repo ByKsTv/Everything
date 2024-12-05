@@ -517,9 +517,6 @@ if (-not (Test-Path -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Windo
 }
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\WindowsStore\WindowsUpdate' -Name 'AutoDownload' -Value 4 -PropertyType DWord -Force
 
-# O&O ShutUp10++: Local Machine: Windows Update: Disable Windows Updates for other products (e.g. Microsoft Office): Off
-# Remove-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\WindowsUpdate\Services\7971f918-a847-4430-9279-4a52d1efe18d' -Name 'RegisteredWithAU' -Force
-
 # O&O ShutUp10++: Local Machine: Privacy: Disable Windows Error Reporting: On
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\Windows Error Reporting' -Name 'Disabled' -Value 1 -PropertyType DWord -Force
 
