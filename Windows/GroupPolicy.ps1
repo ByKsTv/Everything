@@ -95,6 +95,9 @@ Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\InputPersonalizati
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\InputPersonalization' -Name 'RestrictImplicitInkCollection' -Type DWORD -Value 1
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\InputPersonalization' -Name 'RestrictImplicitTextCollection' -Type DWORD -Value 1
 
+# Group Policy: Computer Configuration: Administrative Templates: Network: QoS Packet Scheduler: Limit reservable bandwidth: Enabled: 0%
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Psched' -Name 'NonBestEffortLimit' -Type DWORD -Value 0
+
 # Group Policy: Computer Configuration: Administrative Templates: Start Menu and Taskbar: Do not keep history of recently opened documents: Enabled
 Set-Policy -Scope Computer -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'NoRecentDocsHistory' -Type DWORD -Value 1
 
@@ -363,8 +366,6 @@ Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'SmartScreenEnabled' -Type DWORD -Value 0
 
 # To Sort
-# Group Policy: Computer Configuration: Administrative Templates: Network: QoS Packet Scheduler: Limit reservable bandwidth: Enabled: 0%
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Psched' -Name 'NonBestEffortLimit' -Type DWORD -Value 0
 
 # Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off handwriting recognition error reporting: Enabled
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\HandwritingErrorReports' -Name 'PreventHandwritingErrorReports' -Type DWORD -Value 1
