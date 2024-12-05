@@ -610,7 +610,7 @@ $SoftwareSelection_CheckBoxes['NVCleanstall'].Add_Click( {
 $SoftwareSelection_Form_OK.Add_Click{
     $SoftwareSelection_Form.Topmost = $false
     if ($SoftwareSelection_CheckBoxes['.NET'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/.NET/Download.ps1')
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/.NET/Download.ps1')
     }
     if ($SoftwareSelection_CheckBoxes['7-Zip'].Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/7Zip/Download.ps1')
