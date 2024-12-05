@@ -13,7 +13,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. PowerShell (Admin):
 
    ```powershell
-   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/ISO.ps1')
+   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Windows_10_IoT_Enterprise_LTSC_2021/ISO.ps1')
 
    ```
 
