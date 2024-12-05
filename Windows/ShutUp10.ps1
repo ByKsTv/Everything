@@ -56,6 +56,9 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\InputPersonalization\TrainedDat
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Personalization\Settings' -Name 'AcceptedPrivacyPolicy' -Value 0 -PropertyType DWord -Force
 
 # O&O ShutUp10++: Current User: Miscellaneous: Disable feedback reminders: On
+if (-not (Test-Path -Path 'SOFTWARE\Microsoft\Siuf\Rules')) {
+	New-Item -Path 'SOFTWARE\Microsoft\Siuf\Rules' -Force
+}
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Siuf\Rules' -Name 'NumberOfSIUFInPeriod' -Value 0 -PropertyType DWord -Force
 
 # O&O ShutUp10++: Current User: Miscellaneous: Disable Windows Media Player Diagnostics: On
