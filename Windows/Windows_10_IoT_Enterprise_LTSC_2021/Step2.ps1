@@ -11,9 +11,6 @@ $NextStep_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\
 $NextStep_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
 Register-ScheduledTask -TaskName $NextStep_TaskName -Action $NextStep_TaskAction -Trigger $NextStep_TaskTrigger -Principal $NextStep_TaskPrincipal -Settings $NextStep_TaskSettings -Force
 
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Key: Activating'); [Console]::ResetColor(); [Console]::WriteLine()
-& ([ScriptBlock]::Create(((New-Object System.Net.WebClient).DownloadString('https://get.activated.win/')))) /HWID
-
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Arkenfox: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/Arkenfox.ps1')
 
