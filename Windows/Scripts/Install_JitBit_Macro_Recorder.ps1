@@ -33,7 +33,7 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'AbortRecKey
 $JitbitMacro_Label = 'https://rutracker.org/forum/viewtopic.php?t=6357418'
 $JitbitMacro_Title = ((Invoke-WebRequest -UseBasicParsing -Uri $JitbitMacro_Label).Links | Where-Object { $_.outerHTML -match 'Jitbit' } | Select-Object -First 1).outerHTML -replace '.*?>(.*?)</a>', '$1'
 $JitBitMacro_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $JitbitMacro_Label).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
+Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/qBittorrent/Download.ps1')
 $JitbitMacro_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
 if (Test-Path $JitbitMacro_qBittorrent_LOG) {
     Remove-Item $JitbitMacro_qBittorrent_LOG -Force -ErrorAction SilentlyContinue

@@ -52,7 +52,7 @@ if ($VMWare_Form.ShowDialog() -eq [System.Windows.Forms.DialogResult]::OK) {
     $VMWare_SelectedHREF = $VMWare_nnmclub_Array[$VMWare_SelectedVersion]
 
     $VMware_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $VMWare_SelectedHREF).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
-    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/qBittorrent/Download.ps1')
     $VMware_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
     if (Test-Path $VMware_qBittorrent_LOG) {
         Remove-Item $VMware_qBittorrent_LOG -Force -ErrorAction SilentlyContinue

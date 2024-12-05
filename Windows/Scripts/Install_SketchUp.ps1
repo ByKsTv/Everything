@@ -52,7 +52,7 @@ if ($SketchUp_Form.ShowDialog() -eq [System.Windows.Forms.DialogResult]::OK) {
     $SketchUp_SelectedHREF = $SketchUp_nnmclub_Array[$SketchUp_SelectedVersion]
 
     $SketchUp_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $SketchUp_SelectedHREF).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
-    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/qBittorrent/Download.ps1')
     $SketchUp_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
     if (Test-Path $SketchUp_qBittorrent_LOG) {
         Remove-Item $SketchUp_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
