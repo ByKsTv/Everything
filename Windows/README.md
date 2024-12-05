@@ -76,7 +76,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. PowerShell (Admin):
 
    ```powershell
-   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software_Selection.ps1')
+   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Software_Selection.ps1')
 
    ```
 
