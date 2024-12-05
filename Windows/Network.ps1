@@ -2,31 +2,22 @@
 $NetworkAdapters = Get-NetAdapter
 
 # 2. Modify Registry for Network Optimization
-$RegistryValues = @(
-	@{ Path = 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider'; Name = 'LocalPriority'; Value = 4 },
-	@{ Path = 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider'; Name = 'HostsPriority'; Value = 5 },
-	@{ Path = 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider'; Name = 'DnsPriority'; Value = 6 },
-	@{ Path = 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider'; Name = 'NetbtPriority'; Value = 7 },
-	@{ Path = 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile'; Name = 'NetworkThrottlingIndex'; Value = -1 },
-	@{ Path = 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile'; Name = 'SystemResponsiveness'; Value = 0 },
-	@{ Path = 'HKLM:\System\ControlSet001\Services\LanmanServer\Parameters'; Name = 'Size'; Value = 3 },
-	@{ Path = 'HKLM:\System\ControlSet001\Services\LanmanServer\Parameters'; Name = 'IRPStackSize'; Value = 32 },
-	@{ Path = 'HKLM:\System\ControlSet001\Control\Session Manager\Memory Management'; Name = 'LargeSystemCache'; Value = 0 },
-	@{ Path = 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters'; Name = 'MaxUserPort'; Value = 65534 },
-	@{ Path = 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters'; Name = 'TcpTimedWaitDelay'; Value = 30 },
-	@{ Path = 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters'; Name = 'DefaultTTL'; Value = 64 },
-	@{ Path = 'HKLM:\Software\Policies\Microsoft\Windows\Psched'; Name = 'NonBestEffortLimit'; Value = 0 },
-	@{ Path = 'HKLM:\System\ControlSet001\Services\Tcpip\QoS'; Name = 'Do not use NLA'; Value = '1'; PropertyType = 'String' },
-	@{ Path = 'HKLM:\Software\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPER1_0SERVER'; Name = 'iexplore.exe'; Value = 10 },
-	@{ Path = 'HKLM:\Software\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPERSERVER'; Name = 'iexplore.exe'; Value = 10 }
-)
-
-foreach ($Reg in $RegistryValues) {
-	if (-not (Test-Path $Reg.Path)) {
-		New-Item -Path $Reg.Path -Force
-	}
-	New-ItemProperty -Path $Reg.Path -Name $Reg.Name -Value $Reg.Value -PropertyType 'DWord' -Force
-}
+New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Name 'LocalPriority' -Value 4 -PropertyType 'DWord' -Force
+New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Name 'HostsPriority' -Value 5 -PropertyType 'DWord' -Force
+New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Name 'DnsPriority' -Value 6 -PropertyType 'DWord' -Force
+New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Name 'NetbtPriority' -Value 7 -PropertyType 'DWord' -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile' -Name 'NetworkThrottlingIndex' -Value -1 -PropertyType 'DWord' -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile' -Name 'SystemResponsiveness' -Value 0 -PropertyType 'DWord' -Force
+New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\LanmanServer\Parameters' -Name 'Size' -Value 3 -PropertyType 'DWord' -Force
+New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\LanmanServer\Parameters' -Name 'IRPStackSize' -Value 32 -PropertyType 'DWord' -Force
+New-ItemProperty -Path 'HKLM:\System\ControlSet001\Control\Session Manager\Memory Management' -Name 'LargeSystemCache' -Value 0 -PropertyType 'DWord' -Force
+New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -Name 'MaxUserPort' -Value 65534 -PropertyType 'DWord' -Force
+New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -Name 'TcpTimedWaitDelay' -Value 30 -PropertyType 'DWord' -Force
+New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -Name 'DefaultTTL' -Value 64 -PropertyType 'DWord' -Force
+New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows\Psched' -Name 'NonBestEffortLimit' -Value 0 -PropertyType 'DWord' -Force
+New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\QoS' -Name 'Do not use NLA' -Value '1' -PropertyType 'String' -Force
+New-ItemProperty -Path 'HKLM:\Software\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPER1_0SERVER' -Name 'iexplore.exe' -Value 10 -PropertyType 'DWord' -Force
+New-ItemProperty -Path 'HKLM:\Software\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPERSERVER' -Name 'iexplore.exe' -Value 10 -PropertyType 'DWord' -Force
 
 # 3. Apply TCP Settings for Congestion Control, DCA, etc.
 Set-NetTCPSetting -ScalingHeuristics Disabled
