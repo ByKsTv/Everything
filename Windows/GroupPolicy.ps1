@@ -220,6 +220,12 @@ Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\DataCollec
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Data Collection and Preview Builds: Allow Diagnostic Data: Enabled: Diagnostic data off (not recommended)
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\DataCollection' -Name 'AllowTelemetry' -Type DWORD -Value 0
 
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Data Collection and Preview Builds: Allow Telemetry: Enabled
+Set-Policy -Scope Computer -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\DataCollection' -Name 'AllowTelemetry' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Data Collection and Preview Builds: Allow Telemetry: 0 - Security [Enterprise Only]
+Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection' -Name 'MaxTelemetryAllowed' -Type DWORD -Value 1
+
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Data Collection and Preview Builds: Disable OneSettings Downloads: Enabled
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\DataCollection' -Name 'DisableOneSettingsDownloads' -Type DWORD -Value 1
 
@@ -469,8 +475,6 @@ Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsCop
 Set-Policy -Scope Computer -Path 'Software\Software\Policies\Microsoft\MRT' -Name 'DontReportInfectionInformation' -Type DWORD -Value 1
 Set-Policy -Scope Computer -Path 'Software\Software\Policies\Microsoft\MicrosoftEdge\Main' -Name 'AllowPrelaunch' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Software\Policies\Microsoft\MicrosoftEdge\TabPreloader' -Name 'AllowTabPreloading' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\DataCollection' -Name 'AllowTelemetry' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection' -Name 'MaxTelemetryAllowed' -Type DWORD -Value 1
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'AddressBarMicrosoftSearchInBingProviderEnabled' -Type DWORD -Value 0
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'AlternateErrorPagesEnabled' -Type DWORD -Value 0
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'AutofillAddressEnabled' -Type DWORD -Value 0
