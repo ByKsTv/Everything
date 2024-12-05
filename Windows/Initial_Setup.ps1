@@ -300,7 +300,7 @@ $InitialSetup_OK.Add_Click(
 		}
 	
 		if ($InitialSetup_GoogleChrome.Checked -eq $true) {
-			Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Chrome/Download.ps1')
+			Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Google_Chrome/Download.ps1')
 		}
 	}
 )
