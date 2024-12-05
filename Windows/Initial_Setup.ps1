@@ -6,7 +6,7 @@ $InitialSetup_Form = New-Object System.Windows.Forms.Form -Property @{
 	Text            = 'Initial Setup'
 	Font            = [Drawing.Font]::new('Tahoma', 11)
 	Width           = 350
-	Height          = 410
+	Height          = 420
 	StartPosition   = 'CenterScreen'
 	FormBorderStyle = 'FixedDialog'
 	Topmost         = $true
@@ -41,7 +41,7 @@ $InitialSetup_Cancel = New-Object System.Windows.Forms.Button -Property @{
 
 $InitialSetup_LocX = 5
 $InitialSetup_LocY = 0
-$InitialSetup_SizeX = $InitialSetup_Form.Width - 30
+$InitialSetup_SizeX = $InitialSetup_Form.Width - 25
 $InitialSetup_SizeY = 26
 $InitialSetup__LocAdd = 30
 
