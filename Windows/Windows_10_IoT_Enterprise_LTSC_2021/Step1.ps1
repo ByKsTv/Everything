@@ -1,5 +1,5 @@
 $NextStep_TaskName = 'Step2'
-(New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/$NextStep_TaskName.ps1", "$env:TEMP\$NextStep_TaskName.ps1")
+(New-Object System.Net.WebClient).DownloadFile("https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Windows_10_IoT_Enterprise_LTSC_2021/$NextStep_TaskName.ps1", "$env:TEMP\$NextStep_TaskName.ps1")
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$NextStep_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
 $NextStep_TaskAction = New-ScheduledTaskAction -Execute powershell.exe -Argument "-WindowStyle Maximized -ExecutionPolicy Bypass -File $env:TEMP\$NextStep_TaskName.ps1"
 $NextStep_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
