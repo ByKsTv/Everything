@@ -517,6 +517,9 @@ New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Senso
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\SQMClient\Windows' -Name 'CEIPEnable' -Value 0 -PropertyType DWord -Force
 
 # O&O ShutUp10++: Local Machine: User Behavior: Disable application telemetry
+if (-not (Test-Path -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\CPSS\Store\AllowTelemetry')) {
+	New-Item -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\CPSS\Store\AllowTelemetry' -Force
+}
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\CPSS\Store\AllowTelemetry' -Name 'Value' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Diagnostics\DiagTrack' -Name 'DiagTrackAuthorization' -Value 00001101 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\Diagnostics\DiagTrack\TraceManager' -Name 'MiniTraceSlotEnabled' -Value 0 -PropertyType DWord -Force
