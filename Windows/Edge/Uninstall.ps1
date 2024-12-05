@@ -10,7 +10,7 @@ if (-not (Get-ScheduledTask -TaskName $EdgeUninstaller_TaskName -ErrorAction Sil
 
 $Task = Get-ScheduledTask -TaskName $EdgeUninstaller_TaskName -ErrorAction SilentlyContinue
 if ($Task) {
-    $Updated_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Windows/Software/Microsoft_Edge/Uninstall.ps1')"
+    $Updated_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Edge/Uninstall.ps1')"
     $Updated_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:COMPUTERNAME\$env:USERNAME" -RunLevel Highest
     Register-ScheduledTask -TaskName $EdgeUninstaller_TaskName -Action $Updated_TaskAction -Trigger $Task.Triggers -Principal $Updated_TaskPrincipal -Settings $Task.Settings -Force
 }
