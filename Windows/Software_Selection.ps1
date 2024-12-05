@@ -762,7 +762,7 @@ $SoftwareSelection_Form_OK.Add_Click{
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Install_Valorant.ps1') 
     }
     if ($SoftwareSelection_CheckBoxes['Visual Studio Code'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Visual_Studio_Code/Download.ps1')
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Visual_Studio_Code/Download.ps1')
     }
     if ($SoftwareSelection_CheckBoxes['VMware Workstation'].Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Install_VMware_Workstation.ps1') 
