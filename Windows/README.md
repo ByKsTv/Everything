@@ -10,10 +10,19 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 1. Connect USB with at least 8GB.
    > Make sure there's only 1 USB connected.
-1. PowerShell (Admin):
+
+1. Select which ISO to download.
+1. PowerShell (Admin) - Windows 10 IoT Enterprise LTSC 2021:
 
    ```powershell
    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Windows_10_IoT_Enterprise_LTSC_2021/ISO.ps1')
+
+   ```
+
+1. PowerShell (Admin) - Windows Server 2025 Datacenter:
+
+   ```powershell
+   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Windows_Server_2025_Datacenter/ISO.ps1')
 
    ```
 
@@ -48,9 +57,6 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 1. `Delete all` > `Next`.
    > If drives not found - Use `Load Driver` and extract `Intel Rapid Storage Technology (IRST)` driver matching to the motherboard.
-1. Add a name.
-   > Don't add spacebar, don't add family name, long name is ugly.
-1. Don't use password.
 1. Connect Ethernet Cable (After Windows Boots Up).
    > If there's no internet connection - install LAN driver.
 1. `Do you want to allow your PC to be discoverable by other PCs and devices on this network?` > `Yes`.
@@ -59,17 +65,6 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 1. On the USB there's a folder called `Drivers` install all motherboard drivers (or what's neccesarry).
    > Some laptops require too many drivers so install ALL.
-
-## Initial Setup - Auto Install
-
-> Use only on a fresh install
-
-1. PowerShell (Admin):
-
-   ```powershell
-   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Step1.ps1')
-
-   ```
 
 ## Software Selection
 
