@@ -206,7 +206,7 @@ $mpv_Form_OK.Add_Click{
 		
         $InstalledSoftware = Get-Package | Select-Object -Property 'Name'
         if (-not ($InstalledSoftware -match 'Python')) {
-            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Python/Download.ps1')
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Python/Download.ps1')
         }
     }
 

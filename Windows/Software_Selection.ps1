@@ -729,7 +729,7 @@ $SoftwareSelection_Form_OK.Add_Click{
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Install_PuTTY.ps1')
     }
     if ($SoftwareSelection_CheckBoxes['Python'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Python/Download.ps1')
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Python/Download.ps1')
     }
     if ($SoftwareSelection_CheckBoxes['qBittorrent'].Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/qBittorrent/Download.ps1')
