@@ -45,7 +45,7 @@
                 <SynchronousCommand wcm:action="add">
                     <Order>2</Order>
                     <Description>Start Step1.ps1</Description>
-                    <CommandLine>powershell.exe -NoProfile -Command "Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Server/Step1.ps1')"</CommandLine>
+                    <CommandLine>powershell.exe -NoProfile -Command "Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Windows_Server_2025_Datacenter/Step1.ps1')"</CommandLine>
                 </SynchronousCommand>
             </FirstLogonCommands>
             <OOBE>

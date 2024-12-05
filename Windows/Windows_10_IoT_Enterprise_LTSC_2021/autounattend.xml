@@ -69,7 +69,7 @@
                 <SynchronousCommand wcm:action="add">
                     <Order>2</Order>
                     <Description>Start Step1.ps1</Description>
-                    <CommandLine>powershell.exe -NoProfile -Command "Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Step1.ps1')"</CommandLine>
+                    <CommandLine>powershell.exe -NoProfile -Command "Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Windows_10_IoT_Enterprise_LTSC_2021/Step1.ps1')"</CommandLine>
                 </SynchronousCommand>
             </FirstLogonCommands>
             <OOBE>
