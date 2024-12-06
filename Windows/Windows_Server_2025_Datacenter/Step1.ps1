@@ -1,5 +1,5 @@
-Write-Host "1"
-Start-Sleep -Seconds 1
+Write-Host "10"
+Start-Sleep -Seconds 10
 
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Key.ps1')
 
