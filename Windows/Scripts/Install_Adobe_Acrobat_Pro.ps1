@@ -1,56 +1,9 @@
-# https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/index.html
-# https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/FeatureLockDown.html#idkeyname_1_13262
-$AdobeAcrobat_PolicyTemplates_DDL = 'https://ardownload2.adobe.com/pub/adobe/acrobat/win/AcrobatDC/misc/AcrobatADMTemplate.zip'
-$AdobeAcrobat_PolicyTemplates_Filename = [IO.Path]::GetFileName(([URI]$AdobeAcrobat_PolicyTemplates_DDL).AbsolutePath)
-$AdobeAcrobat_PolicyTemplates_SavePath = [IO.Path]::Combine($env:TEMP, $AdobeAcrobat_PolicyTemplates_Filename)
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeAcrobat_PolicyTemplates_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeAcrobat_PolicyTemplates_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeAcrobat_PolicyTemplates_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-(New-Object System.Net.WebClient).DownloadFile($AdobeAcrobat_PolicyTemplates_DDL, $AdobeAcrobat_PolicyTemplates_SavePath)
-        
-$AdobeAcrobat_PolicyTemplates_Dir = $AdobeAcrobat_PolicyTemplates_SavePath.TrimEnd('.zip')
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeAcrobat_PolicyTemplates_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeAcrobat_PolicyTemplates_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeAcrobat_PolicyTemplates_Dir'"); [Console]::ResetColor(); [Console]::WriteLine()
-Expand-Archive -Path $AdobeAcrobat_PolicyTemplates_SavePath -DestinationPath $AdobeAcrobat_PolicyTemplates_Dir -Force
-        
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Adobe Acrobat Policy Templates'"); [Console]::ResetColor(); [Console]::WriteLine()
-Copy-Item "$AdobeAcrobat_PolicyTemplates_Dir\*.admx" "$env:windir\PolicyDefinitions" -Force
-Copy-Item "$AdobeAcrobat_PolicyTemplates_Dir\*.adm" "$env:windir\PolicyDefinitions" -Force
-Copy-Item "$AdobeAcrobat_PolicyTemplates_Dir\en-US\*.adml" "$env:windir\PolicyDefinitions\en-US" -Force
-        
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: User Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: General: Display splash screen at launch: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals') -ne $true) {
     New-Item 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals' -Force
 }
 New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals' -Name 'bDisplayAboutDialog' -Value 0 -PropertyType DWord -Force
         
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Computer Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: General: Disable automatic updates: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
-if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown') -ne $true) {
-    New-Item 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Force
-}
-New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name 'bUpdater' -Value 0 -PropertyType DWord -Force
-        
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Computer Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: General: Show messages when I launch Acrobat: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
-if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown\cIPM') -ne $true) {
-    New-Item 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown\cIPM' -Force
-}
-New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown\cIPM' -Name 'bShowMsgAtLaunch' -Value 0 -PropertyType DWord -Force
-        
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Computer Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: General: Turn off user participation in the feedback program: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
-if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown') -ne $true) {
-    New-Item 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Force
-}
-New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name 'bUsageMeasurement' -Value 0 -PropertyType DWord -Force
-        
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Computer Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: Startup: Protected View: For all files'); [Console]::ResetColor(); [Console]::WriteLine()
-if ((Test-Path -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown') -ne $true) {
-    New-Item 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Force
-}
-New-ItemProperty -LiteralPath 'HKLM:\Software\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name 'iProtectedView' -Value 2 -PropertyType DWord -Force
-        
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Turn off the generative AI features'); [Console]::ResetColor(); [Console]::WriteLine()
-if ((Test-Path -LiteralPath 'HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown') -ne $true) {
-    New-Item 'HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Force
-}
-New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name 'bEnableGentech' -Value 0 -PropertyType DWord -Force
-
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Preferences: Catalog: Enable Logging: Off'); [Console]::ResetColor(); [Console]::WriteLine()
 if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Catalog\cOptions') -ne $true) {
     New-Item 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Catalog\cOptions' -Force

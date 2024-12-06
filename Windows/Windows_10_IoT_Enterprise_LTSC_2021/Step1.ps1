@@ -30,13 +30,7 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\P
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Disabling Restart Apps'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name RestartApps -PropertyType DWord -Value 0 -Force
 
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('PC Name: Renaming to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$env:username'"); [Console]::ResetColor(); [Console]::WriteLine()
-if ($env:computername -ne $env:username) {
-	Rename-Computer -NewName $env:username
-}
-
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('PC Password: Changing to never expires'); [Console]::ResetColor(); [Console]::WriteLine()
-Set-LocalUser -Name $env:username -PasswordNeverExpires 1
 net accounts /maxpwage:unlimited
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('AutoAdminLogon: Adding username'); [Console]::ResetColor(); [Console]::WriteLine()
