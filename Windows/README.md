@@ -9,6 +9,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 ## Download ISO
 
 1. Connect USB with at least 8GB.
+
    > Make sure there's only 1 USB connected.
 
 1. Select which ISO to download.

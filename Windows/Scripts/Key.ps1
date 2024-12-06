@@ -1,6 +1,6 @@
 $SvcRestartTask = Get-ScheduledTask | Where-Object TaskName -EQ 'SvcRestartTask'
 if ($SvcRestartTask -and $SvcRestartTask.State -eq 'Disabled') {
-	Enable-ScheduledTask -TaskPath $SvcRestartTask.TaskPath -TaskName $SvcRestartTask.TaskName
+    Enable-ScheduledTask -TaskPath $SvcRestartTask.TaskPath -TaskName $SvcRestartTask.TaskName
 }
 
 if ((Get-WmiObject -Class Win32_OperatingSystem).ProductType -eq 3) {
