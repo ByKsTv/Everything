@@ -1,10 +1,4 @@
-Write-Host "10"
-Start-Sleep -Seconds 10
-
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Key.ps1')
-
-Write-Host "5"
-Start-Sleep -Seconds 5
 
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Network.ps1')
 
