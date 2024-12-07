@@ -211,3 +211,9 @@ foreach ($capabilityPattern in $capabilitiesToRemove) {
 		}
 	}
 }
+
+# Remote Desktop Connection: Never show pop-up upon ending session
+if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client') -ne $true) {
+	New-Item 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client' -Force 
+}
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client' -Name 'ShowShutdownDialog' -Value 0 -PropertyType DWord -Force

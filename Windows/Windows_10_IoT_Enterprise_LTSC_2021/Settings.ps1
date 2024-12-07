@@ -142,12 +142,6 @@ if ((Test-Path -Path "$env:PUBLIC\Desktop\Microsoft Edge.lnk") -eq $true) {
 	Remove-Item -Path "$env:PUBLIC\Desktop\Microsoft Edge.lnk"
 }
 
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Remote Desktop Connection: Never show pop-up upon ending session'); [Console]::ResetColor(); [Console]::WriteLine()
-if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client') -ne $true) {
-	New-Item 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client' -Force 
-}
-New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client' -Name 'ShowShutdownDialog' -Value 0 -PropertyType DWord -Force
-
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Ease of Access: Keyboard: Allow the shortcut key to start Filter Keys: Off'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -LiteralPath 'HKCU:\Control Panel\Accessibility\Keyboard Response' -Name 'Flags' -Value '122' -PropertyType String -Force
 
