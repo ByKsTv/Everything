@@ -153,25 +153,13 @@ New-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'JPEGImportQuality' -
 # Win32LongPathLimit -Disable
 New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' -Name 'LongPathsEnabled' -PropertyType DWord -Value 1 -Force
 
-# Scheduled Tasks
-Get-ScheduledTask -TaskName 'PcaPatchDbTask' | Disable-ScheduledTask
-Get-ScheduledTask -TaskName 'Consolidator' | Disable-ScheduledTask
-Get-ScheduledTask -TaskName 'DmClient' | Disable-ScheduledTask # Doesn't exist on Server
-Get-ScheduledTask -TaskName 'DmClientOnScenarioDownload' | Disable-ScheduledTask # Doesn't exist on Server
-Get-ScheduledTask -TaskName 'FamilySafetyMonitor' | Disable-ScheduledTask # Doesn't exist on Server
-Get-ScheduledTask -TaskName 'FamilySafetyRefreshTask' | Disable-ScheduledTask # Doesn't exist on Server
-Get-ScheduledTask -TaskName 'MapsToastTask' | Disable-ScheduledTask
-Get-ScheduledTask -TaskName 'MapsUpdateTask' | Disable-ScheduledTask
-Get-ScheduledTask -TaskName 'MareBackup' | Disable-ScheduledTask
-Get-ScheduledTask -TaskName 'Microsoft Compatibility Appraiser' | Disable-ScheduledTask
-Get-ScheduledTask -TaskName 'Microsoft-Windows-DiskDiagnosticDataCollector' | Disable-ScheduledTask
-Get-ScheduledTask -TaskName 'PcaWallpaperAppDetect' | Disable-ScheduledTask # Doesn't exist on Server
-Get-ScheduledTask -TaskName 'ProgramDataUpdater' | Disable-ScheduledTask # Doesn't exist on Server
-Get-ScheduledTask -TaskName 'Proxy' | Disable-ScheduledTask
-Get-ScheduledTask -TaskName 'UsbCeip' | Disable-ScheduledTask
-Get-ScheduledTask -TaskName 'XblGameSaveTask' | Disable-ScheduledTask # Doesn't exist on Server
-Get-ScheduledTask -TaskName 'QueueReporting' | Disable-ScheduledTask
-Get-ScheduledTask -TaskName 'StartupAppTask' | Disable-ScheduledTask
+# List of task names to check and disable
+$taskNames = @('PcaPatchDbTask', 'Consolidator', 'DmClient', 'DmClientOnScenarioDownload', 'FamilySafetyMonitor', 'FamilySafetyRefreshTask', 'MapsToastTask', 'MapsUpdateTask', 'ProgramDataUpdater', 'MareBackup', 'Microsoft Compatibility Appraiser', 'Microsoft-Windows-DiskDiagnosticDataCollector', 'PcaWallpaperAppDetect', 'Proxy', 'StartupAppTask', 'QueueReporting', 'XblGameSaveTask', 'UsbCeip')
+foreach ($taskName in $taskNames) {
+	if (Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue) {
+		Get-ScheduledTask -TaskName $taskName | Disable-ScheduledTask
+	}
+}
 
 # DiagTrackService -Disable
 Get-Service -Name 'DiagTrack' | Stop-Service -Force
