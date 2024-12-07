@@ -185,6 +185,9 @@ Get-Service -Name WerSvc | Set-Service -StartupType Disabled
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'HideMergeConflicts' -PropertyType DWord -Value 0 -Force
 
 # DismissMSAccount
+if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows Security Health\State')) {
+	New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Windows Security Health\State' -Force
+}
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows Security Health\State' -Name 'AccountProtection_MicrosoftAccount_Disconnected' -PropertyType DWord -Value 1 -Force
 
 # DismissSmartScreenFilter
