@@ -508,10 +508,9 @@ Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\GameDVR' -
 
 # Settings: Settings: Personalization: Lock screen: Show lock screen background pictures on the sign-in screen: Off
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\System' -Name 'DisableLogonBackgroundImage' -Type DWORD -Value 0
-# New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'RotatingLockScreenEnabled' -Value 0 -PropertyType DWord -Force
 
 # DiagnosticDataLevel -Minimal
-# New-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Diagnostics\DiagTrack -Name ShowedToastAtLevel -PropertyType DWord -Value 1 -Force
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Diagnostics\DiagTrack' -Name 'ShowedToastAtLevel' -PropertyType DWord -Value 1 -Force
 # AdminApprovalMode -Never
 Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' -Name 'ConsentPromptBehaviorAdmin' -Type DWORD -Value 0
 # MappedDrivesAppElevatedAccess -Enable
