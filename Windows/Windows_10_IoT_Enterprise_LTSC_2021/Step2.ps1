@@ -11,6 +11,8 @@ $NextStep_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\
 $NextStep_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
 Register-ScheduledTask -TaskName $NextStep_TaskName -Action $NextStep_TaskAction -Trigger $NextStep_TaskTrigger -Principal $NextStep_TaskPrincipal -Settings $NextStep_TaskSettings -Force
 
+Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Settings.ps1')
+
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Arkenfox: Initiating'); [Console]::ResetColor(); [Console]::WriteLine()
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/Arkenfox.ps1')
 
