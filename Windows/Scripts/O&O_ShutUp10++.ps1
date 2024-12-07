@@ -520,6 +520,9 @@ New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\WindowsS
 # O&O ShutUp10++: Local Machine: Privacy: Disable Windows Error Reporting: On
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\Windows Error Reporting' -Name 'Disabled' -Value 1 -PropertyType DWord -Force
 
+# O&O ShutUp10++: Current User: Privacy: Disable Windows Error Reporting: On
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\Windows Error Reporting' -Name 'Disabled' -Value 1 -PropertyType DWord -Force
+
 # O&O ShutUp10++: Local Machine: Location Services: Disable Windows Geolocation Service: On
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\lfsvc\Service\Configuration' -Name 'Status' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Sensor\Overrides\{BFA794E4-F964-4FDB-90F6-51056BFE4B44}' -Name 'SensorPermissionState' -Value 0 -PropertyType DWord -Force

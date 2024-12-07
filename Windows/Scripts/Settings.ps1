@@ -146,3 +146,34 @@ New-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'JPEGImportQuality' -
 
 # Win32LongPathLimit -Disable
 New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' -Name 'LongPathsEnabled' -PropertyType DWord -Value 1 -Force
+
+# Scheduled Tasks
+Get-ScheduledTask -TaskName 'PcaPatchDbTask' | Disable-ScheduledTask
+Get-ScheduledTask -TaskName 'Consolidator' | Disable-ScheduledTask
+Get-ScheduledTask -TaskName 'DmClient' | Disable-ScheduledTask
+Get-ScheduledTask -TaskName 'DmClientOnScenarioDownload' | Disable-ScheduledTask
+Get-ScheduledTask -TaskName 'FamilySafetyMonitor' | Disable-ScheduledTask
+Get-ScheduledTask -TaskName 'FamilySafetyRefreshTask' | Disable-ScheduledTask
+Get-ScheduledTask -TaskName 'MapsToastTask' | Disable-ScheduledTask
+Get-ScheduledTask -TaskName 'MapsUpdateTask' | Disable-ScheduledTask
+Get-ScheduledTask -TaskName 'MareBackup' | Disable-ScheduledTask
+Get-ScheduledTask -TaskName 'Microsoft Compatibility Appraiser' | Disable-ScheduledTask
+Get-ScheduledTask -TaskName 'Microsoft-Windows-DiskDiagnosticDataCollector' | Disable-ScheduledTask
+Get-ScheduledTask -TaskName 'PcaWallpaperAppDetect' | Disable-ScheduledTask
+Get-ScheduledTask -TaskName 'ProgramDataUpdater' | Disable-ScheduledTask
+Get-ScheduledTask -TaskName 'Proxy' | Disable-ScheduledTask
+Get-ScheduledTask -TaskName 'UsbCeip' | Disable-ScheduledTask
+Get-ScheduledTask -TaskName 'XblGameSaveTask' | Disable-ScheduledTask
+Get-ScheduledTask -TaskName 'QueueReporting' | Disable-ScheduledTask
+Get-ScheduledTask -TaskName 'StartupAppTask' | Disable-ScheduledTask
+
+# DiagTrackService -Disable
+Get-Service -Name 'DiagTrack' | Stop-Service -Force
+Get-Service -Name 'DiagTrack' | Set-Service -StartupType Disabled
+Get-NetFirewallRule -Group 'DiagTrack' | Set-NetFirewallRule -Enabled True -Action Block
+
+Get-Service -Name WerSvc | Stop-Service -Force
+Get-Service -Name WerSvc | Set-Service -StartupType Disabled
+
+# MergeConflicts -Show
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'HideMergeConflicts' -PropertyType DWord -Value 0 -Force
