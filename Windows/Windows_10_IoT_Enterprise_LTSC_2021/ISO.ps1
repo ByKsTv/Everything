@@ -1,8 +1,8 @@
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Rufus: Show application settings: Check for updates: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
-if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Akeo Consulting\Rufus') -ne $true) {
+if ((Test-Path -Path 'HKCU:\SOFTWARE\Akeo Consulting\Rufus') -ne $true) {
     New-Item 'HKCU:\SOFTWARE\Akeo Consulting\Rufus' -Force
 }
-New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Akeo Consulting\Rufus' -Name 'UpdateCheckInterval' -Value -1 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Akeo Consulting\Rufus' -Name 'UpdateCheckInterval' -Value -1 -PropertyType DWord -Force
 
 $Rufus_DDL = ((Invoke-WebRequest -UseBasicParsing -Uri 'https://rufus.ie/en/').Links | Where-Object { $_.outerHTML -match '.exe' } | Select-Object -First 1).href
 $Rufus_Filename = [IO.Path]::GetFileName(([URI]$Rufus_DDL).AbsolutePath)

@@ -33,19 +33,19 @@ if ($7Zip_OLD_PATH -notlike "*$7Zip_Destination*") {
 }
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('7-Zip: Tools: Options: 7-Zip: Icons in context menus: On'); [Console]::ResetColor(); [Console]::WriteLine()
-if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\7-Zip\Options') -ne $true) {
+if ((Test-Path -Path 'HKCU:\SOFTWARE\7-Zip\Options') -ne $true) {
     New-Item 'HKCU:\SOFTWARE\7-Zip\Options' -Force
 }
-New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\7-Zip\Options' -Name 'MenuIcons' -Value 1 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\7-Zip\Options' -Name 'MenuIcons' -Value 1 -PropertyType DWord -Force
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('7-Zip: Tools: Options: System: Assosiate 7-Zip with: Current User'); [Console]::ResetColor(); [Console]::WriteLine()
-if (-not (Test-Path -LiteralPath 'HKCU:\SOFTWARE\7-Zip\FM')) {
+if (-not (Test-Path -Path 'HKCU:\SOFTWARE\7-Zip\FM')) {
     New-Item -Path 'HKCU:\SOFTWARE\7-Zip\FM' -Force
 }
-if (-not (Test-Path -LiteralPath 'HKCU:\SOFTWARE\7-Zip\FM\Columns')) {
+if (-not (Test-Path -Path 'HKCU:\SOFTWARE\7-Zip\FM\Columns')) {
     New-Item -Path 'HKCU:\SOFTWARE\7-Zip\FM\Columns' -Force
 }
-New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\7-Zip\FM\Columns' -Name 'RootFolder' -Value 'hex(3):01,00,00,00,00,00,00,00,01,00,00,00,04,00,00,00,01,00,00,00,A0,00,00,00' -PropertyType String -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\7-Zip\FM\Columns' -Name 'RootFolder' -Value 'hex(3):01,00,00,00,00,00,00,00,01,00,00,00,04,00,00,00,01,00,00,00,A0,00,00,00' -PropertyType String -Force
 
 $7Zip_Extensions = @(
     @{Extension = '.001'; IconIndex = 9; Description = '001 Archive' },
@@ -99,14 +99,14 @@ foreach ($7Zip_Extension in $7Zip_Extensions) {
     $7Zip_ExtensionDescription = $7Zip_Extension.Description
 
     $7Zip_DotExtensionName = Join-Path $7Zip_RegKey $7Zip_ExtensionName
-    if (-not (Test-Path -LiteralPath $7Zip_DotExtensionName)) {
+    if (-not (Test-Path -Path $7Zip_DotExtensionName)) {
         New-Item -Path $7Zip_RegKey -Name $7Zip_ExtensionName -Force
     }
-    New-ItemProperty -LiteralPath $7Zip_DotExtensionName -Name '(default)' -Value "7-Zip$7Zip_ExtensionName" -PropertyType String -Force
+    New-ItemProperty -Path $7Zip_DotExtensionName -Name '(default)' -Value "7-Zip$7Zip_ExtensionName" -PropertyType String -Force
 
     $7Zip_ExtInd = "7-Zip$7Zip_ExtensionName"
     $7Zip_ExtReg = Join-Path $7Zip_RegKey $7Zip_ExtInd
-    if (-not (Test-Path -LiteralPath $7Zip_ExtReg)) {
+    if (-not (Test-Path -Path $7Zip_ExtReg)) {
         New-Item -Path $7Zip_RegKey -Name $7Zip_ExtInd -Force
     }
 
@@ -116,22 +116,22 @@ foreach ($7Zip_Extension in $7Zip_Extensions) {
     $7Zip_CommandKey = Join-Path $7Zip_OpenKey 'command'
 
     foreach ($7Zip_Key in @($7Zip_DefaultIconKey, $7Zip_ShellKey, $7Zip_OpenKey, $7Zip_CommandKey)) {
-        if (-not (Test-Path -LiteralPath $7Zip_Key)) {
+        if (-not (Test-Path -Path $7Zip_Key)) {
             $7Zip_ParentKey = Split-Path -Parent $7Zip_Key
             $7Zip_NameKey = Split-Path -Leaf $7Zip_Key
             New-Item -Path $7Zip_ParentKey -Name $7Zip_NameKey -Force
         }
     }
 
-    New-ItemProperty -LiteralPath $7Zip_ExtReg -Name '(default)' -Value $7Zip_ExtensionDescription -PropertyType String -Force
+    New-ItemProperty -Path $7Zip_ExtReg -Name '(default)' -Value $7Zip_ExtensionDescription -PropertyType String -Force
 
     $7Zip_IconPath = "$7Zip_Path\7z.dll,$7Zip_IconIndex"
-    New-ItemProperty -LiteralPath $7Zip_DefaultIconKey -Name '(default)' -Value $7Zip_IconPath -PropertyType String -Force
+    New-ItemProperty -Path $7Zip_DefaultIconKey -Name '(default)' -Value $7Zip_IconPath -PropertyType String -Force
 
-    New-ItemProperty -LiteralPath $7Zip_ShellKey -Name '(default)' -Value '' -PropertyType String -Force
-    New-ItemProperty -LiteralPath $7Zip_OpenKey -Name '(default)' -Value '' -PropertyType String -Force
+    New-ItemProperty -Path $7Zip_ShellKey -Name '(default)' -Value '' -PropertyType String -Force
+    New-ItemProperty -Path $7Zip_OpenKey -Name '(default)' -Value '' -PropertyType String -Force
 
     $7Zip_CommandPath = "$7Zip_Path\7zFM.exe"
     $7Zip_CommandValue = "`"$7Zip_CommandPath`" `"%1`""
-    New-ItemProperty -LiteralPath $7Zip_CommandKey -Name '(default)' -Value $7Zip_CommandValue -PropertyType String -Force
+    New-ItemProperty -Path $7Zip_CommandKey -Name '(default)' -Value $7Zip_CommandValue -PropertyType String -Force
 }

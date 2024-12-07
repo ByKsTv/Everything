@@ -143,10 +143,10 @@ if ((Test-Path -Path "$env:PUBLIC\Desktop\Microsoft Edge.lnk") -eq $true) {
 }
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Ease of Access: Keyboard: Allow the shortcut key to start Filter Keys: Off'); [Console]::ResetColor(); [Console]::WriteLine()
-New-ItemProperty -LiteralPath 'HKCU:\Control Panel\Accessibility\Keyboard Response' -Name 'Flags' -Value '122' -PropertyType String -Force
+New-ItemProperty -Path 'HKCU:\Control Panel\Accessibility\Keyboard Response' -Name 'Flags' -Value '122' -PropertyType String -Force
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Ease of Access: Keyboard: Allow the shortcut key to start Toggle Keys: Off'); [Console]::ResetColor(); [Console]::WriteLine()
-New-ItemProperty -LiteralPath 'HKCU:\Control Panel\Accessibility\ToggleKeys' -Name 'Flags' -Value '58' -PropertyType String -Force
+New-ItemProperty -Path 'HKCU:\Control Panel\Accessibility\ToggleKeys' -Name 'Flags' -Value '58' -PropertyType String -Force
 
 # https://docs.google.com/document/d/1c2-lUJq74wuYK1WrA_bIvgb89dUN0sj8-hO3vqmrau4/edit
 # This command forces the kernel timer to constantly poll for interrupts instead of wait for them; dynamic tick was implemented as a power saving feature for laptops but hurts desktop performance
@@ -175,10 +175,10 @@ $svchostram = (Get-CimInstance -ClassName Win32_PhysicalMemory | Measure-Object 
 Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control' -Name 'SvcHostSplitThresholdInKB' -Type DWord -Value $svchostram -Force
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Settings: Settings: Devices: Typing: Typing Insights: Disabling'); [Console]::ResetColor(); [Console]::WriteLine()
-if ((Test-Path -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Input\Settings') -ne $true) {
+if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Input\Settings') -ne $true) {
 	New-Item 'HKCU:\SOFTWARE\Microsoft\Input\Settings' -Force
 }
-New-ItemProperty -LiteralPath 'HKCU:\SOFTWARE\Microsoft\Input\Settings' -Name 'InsightsEnabled' -Value 0 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Input\Settings' -Name 'InsightsEnabled' -Value 0 -PropertyType DWord -Force
 
 takeown /f 'C:\ProgramData\Microsoft\Windows\SystemData' /r /d y
 icacls 'C:\ProgramData\Microsoft\Windows\SystemData' /GRANT Everyone:F, Users:F /t
