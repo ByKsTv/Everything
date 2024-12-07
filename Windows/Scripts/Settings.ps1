@@ -98,7 +98,6 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Multimedia\Audio' -Name 'UserDu
 # Lock Screen: Black image
 takeown.exe /f "$env:windir\Web\Screen" /r /d y
 icacls.exe "$env:windir\Web\Screen" /GRANT Everyone:F, Users:F /t
-Add-Type -AssemblyName System.Drawing
 $LockScreenImages = @(
 	@{file = 'img100.jpg'; width = 3840; height = 2160 },
 	@{file = 'img101.jpg'; width = 3840; height = 2400 },
@@ -109,6 +108,7 @@ $LockScreenImages = @(
 	@{file = 'img104.jpg'; width = 3840; height = 2400 },
 	@{file = 'img105.jpg'; width = 1920; height = 1200 }
 )
+Add-Type -AssemblyName System.Drawing
 foreach ($LockScreenImage in $LockScreenImages) {
 	$filePath = "$env:windir\Web\Screen\$($LockScreenImage.file)"
 	$bitmap = New-Object System.Drawing.Bitmap $LockScreenImage.width, $LockScreenImage.height
@@ -131,3 +131,6 @@ net.exe accounts /maxpwage:unlimited
 $RemoveBackgroundImagesBytes = [byte[]](Get-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'UserPreferencesMask').UserPreferencesMask
 $RemoveBackgroundImagesBytes[4] = $RemoveBackgroundImagesBytes[4]-bor 1
 New-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'UserPreferencesMask' -PropertyType Binary -Value $RemoveBackgroundImagesBytes -Force
+
+# Settings: Accessibility: Visual effects: Always show scrollbars: On
+New-ItemProperty -Path 'HKCU:\Control Panel\Accessibility' -Name 'DynamicScrollbars' -Value 0 -PropertyType DWord -Force
