@@ -11,30 +11,6 @@ if ((Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\WcmSvc\wifinetworkmanager\config'
 }
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\WcmSvc\wifinetworkmanager\config' -Name 'AutoConnectAllowedOEM' -Value 0 -PropertyType DWord -Force
 
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Capabilities: Removing Internet Explorer'); [Console]::ResetColor(); [Console]::WriteLine()
-Remove-WindowsCapability -Name 'Browser.InternetExplorer~~~~0.0.11.0' -Online
-
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Capabilities: Removing Windows Media Player'); [Console]::ResetColor(); [Console]::WriteLine()
-Remove-WindowsCapability -Name 'Media.WindowsMediaPlayer~~~~0.0.12.0' -Online
-
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Capabilities: Removing WordPad'); [Console]::ResetColor(); [Console]::WriteLine()
-Remove-WindowsCapability -Name 'Microsoft.Windows.WordPad~~~~0.0.1.0' -Online
-
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Capabilities: Removing Steps Recorder'); [Console]::ResetColor(); [Console]::WriteLine()
-Remove-WindowsCapability -Name 'App.StepsRecorder~~~~0.0.1.0' -Online
-
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Capabilities: Removing Windows Hello Face'); [Console]::ResetColor(); [Console]::WriteLine()
-Remove-WindowsCapability -Name 'Hello.Face.18967~~~~0.0.1.0' -Online
-
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Capabilities: Removing Quick Assist'); [Console]::ResetColor(); [Console]::WriteLine()
-Remove-WindowsCapability -Name 'App.Support.QuickAssist~~~~0.0.1.0' -Online
-
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Capabilities: Removing Math Input Panel'); [Console]::ResetColor(); [Console]::WriteLine()
-Remove-WindowsCapability -Name 'MathRecognizer~~~~0.0.1.0' -Online
-
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Windows Capabilities: Removing OpenSSH Client'); [Console]::ResetColor(); [Console]::WriteLine()
-Remove-WindowsCapability -Name 'OpenSSH.Client~~~~0.0.1.0' -Online
-
 # [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write("Step2: Windows Packages: Removing Windows Backup app"); [Console]::ResetColor(); [Console]::WriteLine()
 # $windowsbackupapp = Get-WindowsPackage -Online | Where-Object { $_.PackageName -eq 'Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35~amd64~~10.0.19041.4355' }
 # if ($windowsbackupapp.PackageState -match 'Installed') {

@@ -178,8 +178,8 @@ Get-Service -Name 'DiagTrack' | Stop-Service -Force
 Get-Service -Name 'DiagTrack' | Set-Service -StartupType Disabled
 Get-NetFirewallRule -Group 'DiagTrack' | Set-NetFirewallRule -Enabled True -Action Block
 
-Get-Service -Name WerSvc | Stop-Service -Force
-Get-Service -Name WerSvc | Set-Service -StartupType Disabled
+Get-Service -Name 'WerSvc' | Stop-Service -Force
+Get-Service -Name 'WerSvc' | Set-Service -StartupType Disabled
 
 # MergeConflicts -Show
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'HideMergeConflicts' -PropertyType DWord -Value 0 -Force
@@ -213,3 +213,10 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer
 
 # Settings: Accounts: Sign-in options: Automatically save my restartable apps and restart them when I sign back in: Off
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'RestartApps' -PropertyType DWord -Value 0 -Force
+
+# 
+Get-WindowsCapability -Online -Name '*StepsRecorder*' | Remove-WindowsCapability
+Get-WindowsCapability -Online -Name '*WindowsMediaPlayer*' | Remove-WindowsCapability
+Get-WindowsCapability -Online -Name '*InternetExplorer*' | Remove-WindowsCapability
+Get-WindowsCapability -Online -Name '*QuickAssist*' | Remove-WindowsCapability
+Get-WindowsCapability -Online -Name '*WordPad*' | Remove-WindowsCapability
