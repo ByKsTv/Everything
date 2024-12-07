@@ -473,11 +473,9 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\MicrosoftEdge\TabP
 # Enable news and interests on the taskbar: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Feeds' -Name 'EnableFeeds' -Type DWORD -Value 0
 
-# Windows 10 Pro
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Data Collection and Preview Builds: Allow Telemetry: Enabled
+# Settings: Privacy: Diagnostics & feedback: Diagnostic data
 Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection' -Name 'AllowTelemetry' -Type DWORD -Value 0
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Data Collection and Preview Builds: Allow Telemetry: 1 - Required Only
-Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection' -Name 'MaxTelemetryAllowed' -Type DWORD -Value 1
+Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection' -Name 'MaxTelemetryAllowed' -Type DWORD -Value 0
 
 # Doesn't exist
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Data Collection and Preview Builds: Limit Diagnostic Log Collection: Enabled
