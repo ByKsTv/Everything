@@ -1,8 +1,8 @@
 # Information
 
-Everything about Firefox.
+Everything about Mozilla Firefox.
 
-## Firefox Setup - Auto Install
+## Mozilla Firefox Setup - Auto Install
 
 1. PowerShell (Admin):
 
@@ -20,11 +20,20 @@ Everything about Firefox.
 
    ```
 
-## Firefox Extensions - Auto Install
+## Mozilla Firefox Extensions - Auto Install
 
 1. PowerShell (Admin):
 
    ```powershell
    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/Extensions.ps1')
+
+   ```
+
+## Mozilla Firefox Group Policy Templates - Auto Install
+
+1. PowerShell (Admin):
+
+   ```powershell
+   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/Group_Policy_Templates.ps1')
 
    ```
