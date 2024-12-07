@@ -134,3 +134,15 @@ New-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'UserPreferencesMask'
 
 # Settings: Accessibility: Visual effects: Always show scrollbars: On
 New-ItemProperty -Path 'HKCU:\Control Panel\Accessibility' -Name 'DynamicScrollbars' -Value 0 -PropertyType DWord -Force
+
+# FileTransferDialog -Detailed
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager' -Name 'EnthusiastMode' -PropertyType DWord -Value 1 -Force
+
+# FirstLogonAnimation -Disable
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'EnableFirstLogonAnimation' -PropertyType DWord -Value 0 -Force
+
+# JPEGWallpapersQuality -Max
+New-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'JPEGImportQuality' -PropertyType DWord -Value 100 -Force
+
+# Win32LongPathLimit -Disable
+New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' -Name 'LongPathsEnabled' -PropertyType DWord -Value 1 -Force
