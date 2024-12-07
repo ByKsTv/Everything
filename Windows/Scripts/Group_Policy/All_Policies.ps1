@@ -60,6 +60,9 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'NoDe
 # Group Policy: Computer Configuration: Administrative Templates: Network: QoS Packet Scheduler: Limit reservable bandwidth: Enabled: 0%
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Psched' -Name 'NonBestEffortLimit' -Type DWORD -Value 0
 
+# Group Policy: Computer Configuration: Administrative Templates: Network: WLAN Service: WLAN Settings: Allow Windows to automatically connect to suggested open hotspots, to networks shared by contacts, and to hotspots offering paid services: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\WcmSvc\wifinetworkmanager\config' -Name 'AutoConnectAllowedOEM' -Type DWORD -Value 0
+
 # Group Policy: Computer Configuration: Administrative Templates: Start Menu and Taskbar: Do not keep history of recently opened documents: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'NoRecentDocsHistory' -Type DWORD -Value 1
 
@@ -133,6 +136,9 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\System' -N
 
 # Group Policy: Computer Configuration: Administrative Templates: System: OS Policies: Allow Upload of User Activities: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\System' -Name 'UploadUserActivities' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: System: Power Management: Power Throttling Settings: Turn off Power Throttling: Enabled
+Set-Policy -Scope Computer -Path 'System\CurrentControlSet\Control\Power\PowerThrottling' -Name 'PowerThrottlingOff' -Type DWORD -Value 1
 
 # Group Policy: Computer Configuration: Administrative Templates: System: Remote Assistance: Configure Solicited Remote Assistance: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services' -Name 'fAllowToGetHelp' -Type DWORD -Value 0
@@ -254,9 +260,6 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Poli
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Calendar: Turn off Windows Calendar: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Windows' -Name 'TurnOffWinCal' -Type DWORD -Value 1
 
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Defender SmartScreen: Microsoft Edge: Configure Windows Defender SmartScreen: Disabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'SmartScreenEnabled' -Type DWORD -Value 0
-
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Automatically send memory dumps for OS-generated error reports: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting' -Name 'AutoApproveOSDumps' -Type DWORD -Value 0
 
@@ -323,9 +326,11 @@ Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows\Explorer' -Nam
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services' -Name 'AllowUnsignedFiles' -Type DWORD -Value 1
 
 # Group Policy: User Configuration: Administrative Templates: Windows Components: Windows Copilot: Turn off Windows Copilot: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot' -Name 'TurnOffWindowsCopilot' -Type DWORD -Value 1
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot' -Name 'TurnOffWindowsCopilot' -Type DWORD -Value 1
 
 # Group Policy: User Configuration: Administrative Templates: Windows Components: Windows Defender SmartScreen: Microsoft Edge: Configure Windows Defender SmartScreen: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'SmartScreenEnabled' -Type DWORD -Value 0
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'SmartScreenEnabled' -Type DWORD -Value 0
 
 # To Sort
@@ -388,76 +393,112 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Se
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Search' -Name 'ConnectedSearchSafeSearch' -Type DWORD -Value 3
 
 # BingSearch -Disable
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsAI' -Name 'DisableAIDataAnalysis' -Type DWORD -Value 1
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsAI' -Name 'DisableAIDataAnalysis' -Type DWORD -Value 1
 
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Game Recording and Broadcasing: Disable
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Game Recording and Broadcasing: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\GameDVR' -Name 'AllowGameDVR' -Type DWORD -Value 0
 
 # Settings: Settings: Personalization: Lock screen: Show lock screen background pictures on the sign-in screen: Off
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\System' -Name 'DisableLogonBackgroundImage' -Type DWORD -Value 0
 
+# Group Policy: Computer Configuration: Administrative Templates: Microsoft: Edge: Allow personalization of ads, Microsoft Edge, search, news and other Microsoft services by sending browsing history, favorites and collections, usuage and other browsing data to Microsoft: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'PersonalizationReportingEnabled' -Type DWORD -Value 0
+Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'PersonalizationReportingEnabled' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Microsoft: Edge: Allow suggestions from local providers: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'LocalProvidersEnabled' -Type DWORD -Value 0
+Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'LocalProvidersEnabled' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Microsoft: Edge: Allow user feedback: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'UserFeedbackAllowed' -Type DWORD -Value 0
+Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'UserFeedbackAllowed' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Microsoft: Edge: Allow users to configure Site safety services (obsolete): Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'SiteSafetyServicesEnabled' -Type DWORD -Value 0
+Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'SiteSafetyServicesEnabled' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Microsoft: Edge: Allow websites to query for available payment methods: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'PaymentMethodQueryEnabled' -Type DWORD -Value 0
+Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'PaymentMethodQueryEnabled' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Microsoft: Edge: Configure Do Not Track: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'ConfigureDoNotTrack' -Type DWORD -Value 1
+Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'ConfigureDoNotTrack' -Type DWORD -Value 1
+
+# Group Policy: Computer Configuration: Administrative Templates: Microsoft: Edge: Enable AutoFill for addresses: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'AutofillAddressEnabled' -Type DWORD -Value 0
+Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'AutofillAddressEnabled' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Microsoft: Edge: Enable AutoFill for payment instruments: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'AutofillCreditCardEnabled' -Type DWORD -Value 0
+Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'AutofillCreditCardEnabled' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Microsoft: Edge: Enable Microsoft Search in Bing suggestions in the address bar: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'AddressBarMicrosoftSearchInBingProviderEnabled' -Type DWORD -Value 0
+Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'AddressBarMicrosoftSearchInBingProviderEnabled' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Microsoft: Edge: Enable network prediction: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'NetworkPredictionOptions' -Type DWORD -Value 2
+Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'NetworkPredictionOptions' -Type DWORD -Value 2
+
+# Group Policy: Computer Configuration: Administrative Templates: Microsoft: Edge: Enable resolution of navigation errors using a web service: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'ResolveNavigationErrorsUseWebService' -Type DWORD -Value 0
+Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'ResolveNavigationErrorsUseWebService' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Microsoft: Edge: Enable search suggestions: Disalbed
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'SearchSuggestEnabled' -Type DWORD -Value 0
+Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'SearchSuggestEnabled' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Microsoft: Edge: Enable the Search bar (deprecated): Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'WebWidgetAllowed' -Type DWORD -Value 0
+Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'WebWidgetAllowed' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Microsoft: Edge: Enable usuage and crash-related data reporting (obsolete): Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'MetricsReportingEnabled' -Type DWORD -Value 0
+Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'MetricsReportingEnabled' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Microsoft: Edge: Send site information to improve Microsoft services (obsolete): Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'SendSiteInfoToImproveServices' -Type DWORD -Value 0
+Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'SendSiteInfoToImproveServices' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Microsoft: Edge: Shopping in Microsoft Edge Enabled: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'EdgeShoppingAssistantEnabled' -Type DWORD -Value 0
+Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'EdgeShoppingAssistantEnabled' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Microsoft: Edge: Show Hubs Sidebar: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'HubsSidebarEnabled' -Type DWORD -Value 0
+Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'HubsSidebarEnabled' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Microsoft: Edge: Suggest similar pages when a webpage can't be found: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'AlternateErrorPagesEnabled' -Type DWORD -Value 0
+Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'AlternateErrorPagesEnabled' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Microsoft Edge Update: Applications: Microsoft Edge: Create Desktop Shortcut upon install: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\EdgeUpdate' -Name 'CreateDesktopShortcut{56EB18F8-B008-4CBD-B6D2-8C97FE7E9062}' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Microsoft Edge Update: Applications: Microsoft Edge Beta: Create Desktop shortcut upon install: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\EdgeUpdate' -Name 'CreateDesktopShortcut{2CD8A007-E189-409D-A2C8-9AF4EF3C72AA}' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Microsoft Edge Update: Applications: Microsoft Edge Canary: Create Desktop shortcut upon install: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\EdgeUpdate' -Name 'CreateDesktopShortcut{65C35B14-6C1D-4122-AC46-7148CC9D6497}' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Microsoft Edge Update: Applications: Microsoft Edge Dev: Create Desktop shortcut upon install: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\EdgeUpdate' -Name 'CreateDesktopShortcut{0D50BFEC-CD6A-4F9A-964C-C7416E3ACB10}' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Microsoft Edge: Website Typo Protection settings: Configure Edge Website Typo Protection: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'TyposquattingCheckerEnabled' -Type DWORD -Value 0
+Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'TyposquattingCheckerEnabled' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Microsoft: Edge: Password manager and protection: Enable saving passwords to the password manager: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'PasswordManagerEnabled' -Type DWORD -Value 0
+Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'PasswordManagerEnabled' -Type DWORD -Value 0
+
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\MRT' -Name 'DontReportInfectionInformation' -Type DWORD -Value 1
 # AdminApprovalMode -Never
 Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' -Name 'ConsentPromptBehaviorAdmin' -Type DWORD -Value 0
 # MappedDrivesAppElevatedAccess -Enable
 Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' -Name 'EnableLinkedConnections' -Type DWORD -Value 1
-# PreventEdgeShortcutCreation -Channels Stable, Beta, Dev, Canary
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\EdgeUpdate' -Name 'CreateDesktopShortcut{56EB18F8-B008-4CBD-B6D2-8C97FE7E9062}' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\EdgeUpdate' -Name 'CreateDesktopShortcut{2CD8A007-E189-409D-A2C8-9AF4EF3C72AA}' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\EdgeUpdate' -Name 'CreateDesktopShortcut{0D50BFEC-CD6A-4F9A-964C-C7416E3ACB10}' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\EdgeUpdate' -Name 'CreateDesktopShortcut{65C35B14-6C1D-4122-AC46-7148CC9D6497}' -Type DWORD -Value 0
-# Unknown
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'AddressBarMicrosoftSearchInBingProviderEnabled' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'AlternateErrorPagesEnabled' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'AutofillAddressEnabled' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'AutofillCreditCardEnabled' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'ConfigureDoNotTrack' -Type DWORD -Value 1
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'EdgeShoppingAssistantEnabled' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'HubsSidebarEnabled' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'LocalProvidersEnabled' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'MetricsReportingEnabled' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'NetworkPredictionOptions' -Type DWORD -Value 2
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'PasswordManagerEnabled' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'PaymentMethodQueryEnabled' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'PersonalizationReportingEnabled' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'ResolveNavigationErrorsUseWebService' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'SearchSuggestEnabled' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'SendSiteInfoToImproveServices' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'SiteSafetyServicesEnabled' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'TyposquattingCheckerEnabled' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'UserFeedbackAllowed' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'WebWidgetAllowed' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\MRT' -Name 'DontReportInfectionInformation' -Type DWORD -Value 1
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\MicrosoftEdge\Main' -Name 'AllowPrelaunch' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\MicrosoftEdge\TabPreloader' -Name 'AllowTabPreloading' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Feeds' -Name 'EnableFeeds' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsAI' -Name 'DisableAIDataAnalysis' -Type DWORD -Value 1
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot' -Name 'TurnOffWindowsCopilot' -Type DWORD -Value 1
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\MRT' -Name 'DontReportInfectionInformation' -Type DWORD -Value 1
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\MicrosoftEdge\Main' -Name 'AllowPrelaunch' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\MicrosoftEdge\TabPreloader' -Name 'AllowTabPreloading' -Type DWORD -Value 0
-Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'AddressBarMicrosoftSearchInBingProviderEnabled' -Type DWORD -Value 0
-Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'AlternateErrorPagesEnabled' -Type DWORD -Value 0
-Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'AutofillAddressEnabled' -Type DWORD -Value 0
-Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'AutofillCreditCardEnabled' -Type DWORD -Value 0
-Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'ConfigureDoNotTrack' -Type DWORD -Value 1
-Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'EdgeShoppingAssistantEnabled' -Type DWORD -Value 0
-Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'HubsSidebarEnabled' -Type DWORD -Value 0
-Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'LocalProvidersEnabled' -Type DWORD -Value 0
-Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'MetricsReportingEnabled' -Type DWORD -Value 0
-Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'NetworkPredictionOptions' -Type DWORD -Value 2
-Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'PasswordManagerEnabled' -Type DWORD -Value 0
-Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'PaymentMethodQueryEnabled' -Type DWORD -Value 0
-Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'PersonalizationReportingEnabled' -Type DWORD -Value 0
-Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'ResolveNavigationErrorsUseWebService' -Type DWORD -Value 0
-Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'SearchSuggestEnabled' -Type DWORD -Value 0
-Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'SendSiteInfoToImproveServices' -Type DWORD -Value 0
-Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'SiteSafetyServicesEnabled' -Type DWORD -Value 0
-Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'TyposquattingCheckerEnabled' -Type DWORD -Value 0
-Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'UserFeedbackAllowed' -Type DWORD -Value 0
-Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'WebWidgetAllowed' -Type DWORD -Value 0
-
-# Group Policy: Computer Configuration: Administrative Templates: Network: WLAN Service: WLAN Settings: Allow Windows to automatically connect to suggested open hotspots, to networks shared by contacts, and to hotspots offering paid services: Disabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\WcmSvc\wifinetworkmanager\config' -Name 'AutoConnectAllowedOEM' -Type DWORD -Value 0
-
-# Group Policy: Computer Configuration: Administrative Templates: System: Power Management: Power Throttling Settings: Turn off Power Throttling: Enabled
-Set-Policy -Scope Computer -Path 'System\CurrentControlSet\Control\Power\PowerThrottling' -Name 'PowerThrottlingOff' -Type DWORD -Value 1
