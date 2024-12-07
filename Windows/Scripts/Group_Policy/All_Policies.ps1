@@ -1,135 +1,3 @@
-# Google Chrome
-$GoogleChrome_PolicyTemplates_DDL = 'https://dl.google.com/dl/edgedl/chrome/policy/policy_templates.zip'
-$GoogleChrome_PolicyTemplates_Filename = [IO.Path]::GetFileName(([URI]$GoogleChrome_PolicyTemplates_DDL).AbsolutePath)
-$GoogleChrome_PolicyTemplates_SavePath = [IO.Path]::Combine($env:TEMP, $GoogleChrome_PolicyTemplates_Filename)
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$GoogleChrome_PolicyTemplates_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$GoogleChrome_PolicyTemplates_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$GoogleChrome_PolicyTemplates_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-(New-Object System.Net.WebClient).DownloadFile($GoogleChrome_PolicyTemplates_DDL, $GoogleChrome_PolicyTemplates_SavePath)
-        
-$GoogleChrome_PolicyTemplates_Dir = $GoogleChrome_PolicyTemplates_SavePath.TrimEnd('.zip')
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$GoogleChrome_PolicyTemplates_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$GoogleChrome_PolicyTemplates_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$GoogleChrome_PolicyTemplates_Dir'"); [Console]::ResetColor(); [Console]::WriteLine()
-Expand-Archive -Path $GoogleChrome_PolicyTemplates_SavePath -DestinationPath $GoogleChrome_PolicyTemplates_Dir -Force
-        
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Google Chrome Policy Templates'"); [Console]::ResetColor(); [Console]::WriteLine()
-Copy-Item "$GoogleChrome_PolicyTemplates_Dir\windows\admx\*.admx" "$env:windir\PolicyDefinitions" -Force
-Copy-Item "$GoogleChrome_PolicyTemplates_Dir\windows\admx\en-US\*.adml" "$env:windir\PolicyDefinitions\en-US" -Force
-
-# Mozilla Firefox
-$Firefox_PolicyTemplates_DDL = ((Invoke-RestMethod -Uri 'https://api.github.com/repos/mozilla/policy-templates/releases/latest').assets | Where-Object name -Like 'policy_templates*').browser_download_url
-$Firefox_PolicyTemplates_Filename = [IO.Path]::GetFileName(([URI]$Firefox_PolicyTemplates_DDL).AbsolutePath)
-$Firefox_PolicyTemplates_SavePath = [IO.Path]::Combine($env:TEMP, $Firefox_PolicyTemplates_Filename)
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_PolicyTemplates_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_PolicyTemplates_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_PolicyTemplates_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-(New-Object System.Net.WebClient).DownloadFile($Firefox_PolicyTemplates_DDL, $Firefox_PolicyTemplates_SavePath)
-
-$Firefox_PolicyTemplates_Dir = $Firefox_PolicyTemplates_SavePath.TrimEnd('.zip')
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_PolicyTemplates_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_PolicyTemplates_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_PolicyTemplates_Dir'"); [Console]::ResetColor(); [Console]::WriteLine()
-Expand-Archive -Path $Firefox_PolicyTemplates_SavePath -DestinationPath $Firefox_PolicyTemplates_Dir -Force
-
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Mozilla Firefox Policy Templates'"); [Console]::ResetColor(); [Console]::WriteLine()
-Copy-Item "$Firefox_PolicyTemplates_Dir\windows\*.admx" "$env:windir\PolicyDefinitions" -Force
-Copy-Item "$Firefox_PolicyTemplates_Dir\windows\en-US\*.adml" "$env:windir\PolicyDefinitions\en-US" -Force
-
-# Adobe Acrobat
-# https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/index.html
-# https://www.adobe.com/devnet-docs/acrobatetk/tools/PrefRef/Windows/FeatureLockDown.html#idkeyname_1_13262
-$AdobeAcrobat_PolicyTemplates_DDL = 'https://ardownload2.adobe.com/pub/adobe/acrobat/win/AcrobatDC/misc/AcrobatADMTemplate.zip'
-$AdobeAcrobat_PolicyTemplates_Filename = [IO.Path]::GetFileName(([URI]$AdobeAcrobat_PolicyTemplates_DDL).AbsolutePath)
-$AdobeAcrobat_PolicyTemplates_SavePath = [IO.Path]::Combine($env:TEMP, $AdobeAcrobat_PolicyTemplates_Filename)
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeAcrobat_PolicyTemplates_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeAcrobat_PolicyTemplates_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeAcrobat_PolicyTemplates_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-(New-Object System.Net.WebClient).DownloadFile($AdobeAcrobat_PolicyTemplates_DDL, $AdobeAcrobat_PolicyTemplates_SavePath)
-        
-$AdobeAcrobat_PolicyTemplates_Dir = $AdobeAcrobat_PolicyTemplates_SavePath.TrimEnd('.zip')
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeAcrobat_PolicyTemplates_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeAcrobat_PolicyTemplates_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobeAcrobat_PolicyTemplates_Dir'"); [Console]::ResetColor(); [Console]::WriteLine()
-Expand-Archive -Path $AdobeAcrobat_PolicyTemplates_SavePath -DestinationPath $AdobeAcrobat_PolicyTemplates_Dir -Force
-        
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Adobe Acrobat Policy Templates'"); [Console]::ResetColor(); [Console]::WriteLine()
-Copy-Item "$AdobeAcrobat_PolicyTemplates_Dir\*.admx" "$env:windir\PolicyDefinitions" -Force
-Copy-Item "$AdobeAcrobat_PolicyTemplates_Dir\*.adm" "$env:windir\PolicyDefinitions" -Force
-Copy-Item "$AdobeAcrobat_PolicyTemplates_Dir\en-US\*.adml" "$env:windir\PolicyDefinitions\en-US" -Force
-
-# Start
-Get-ChildItem -Path "$env:TEMP\Computer.txt", "$env:TEMP\User.txt" -Force -ErrorAction Ignore | Remove-Item -Force -ErrorAction Ignore
-
-$LGPO_DDL = 'https://download.microsoft.com/download/8/5/C/85C25433-A1B0-4FFA-9429-7E023E7DA8D8/LGPO.zip'
-$LGPO_Filename = [IO.Path]::GetFileName(([URI]$LGPO_DDL).AbsolutePath)
-$LGPO_SavePath = [IO.Path]::Combine($env:TEMP, $LGPO_Filename)
-(New-Object System.Net.WebClient).DownloadFile($LGPO_DDL, $LGPO_SavePath)
-
-Expand-Archive -Path $LGPO_SavePath -DestinationPath $env:TEMP -Force
-
-Move-Item -Path "$env:TEMP\LGPO_30\LGPO.exe" -Destination $env:TEMP -Force
-
-Remove-Item -Path "$env:TEMP\LGPO_30", "$env:TEMP\LGPO.zip" -Recurse -Force
-
-function Set-Policy {
-	[CmdletBinding()]
-	param
-	(
-		[Parameter(
-			Mandatory = $true,
-			Position = 1
-		)]
-		[string]
-		[ValidateSet('Computer', 'User')]
-		$Scope,
-
-		[Parameter(
-			Mandatory = $true,
-			Position = 2
-		)]
-		[string]
-		$Path,
-
-		[Parameter(
-			Mandatory = $true,
-			Position = 3
-		)]
-		[string]
-		$Name,
-
-		[Parameter(
-			Mandatory = $true,
-			Position = 4
-		)]
-		[ValidateSet('DWORD', 'SZ', 'EXSZ', 'CLEAR')]
-		[string]
-		$Type,
-
-		[Parameter(
-			Mandatory = $false,
-			Position = 5
-		)]
-		$Value
-	)
-
-	switch ($Type) {
-		'CLEAR' {
-			$Policy = @"
-$Scope
-$($Path)
-$($Name)
-$($Type)`n
-"@
-		}
-		default {
-			$Policy = @"
-$Scope
-$($Path)
-$($Name)
-$($Type):$($Value)`n
-"@
-		}
-	}
-
-	if ($Scope -eq 'Computer') {
-		$Path = "$env:TEMP\Computer.txt"
-	}
-	else {
-		$Path = "$env:TEMP\User.txt"
-	}
-
-	Add-Content -Path $Path -Value $Policy -Encoding Default -Force
-}
-
 # Sort by Path - Computer
 # Group Policy: Computer Configuration: Administrative Templates: Control Panel: Allow Online Tips: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'AllowOnlineTips' -Type DWORD -Value 0
@@ -456,7 +324,7 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\Featu
 # Computer Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: Startup: Protected View: For all files
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name 'iProtectedView' -Type DWORD -Value 2
 
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adobe Acrobat Pro: Turn off the generative AI features'); [Console]::ResetColor(); [Console]::WriteLine()
+# Adobe Acrobat: Turn off the generative AI features
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name 'bEnableGentech' -Type DWORD -Value 0
 
 # Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off handwriting recognition error reporting: Enabled
@@ -510,8 +378,6 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\GameDVR' -
 # Settings: Settings: Personalization: Lock screen: Show lock screen background pictures on the sign-in screen: Off
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\System' -Name 'DisableLogonBackgroundImage' -Type DWORD -Value 0
 
-# DiagnosticDataLevel -Minimal
-New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Diagnostics\DiagTrack' -Name 'ShowedToastAtLevel' -PropertyType DWord -Value 1 -Force
 # AdminApprovalMode -Never
 Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' -Name 'ConsentPromptBehaviorAdmin' -Type DWORD -Value 0
 # MappedDrivesAppElevatedAccess -Enable
@@ -571,16 +437,3 @@ Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'SiteSafet
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'TyposquattingCheckerEnabled' -Type DWORD -Value 0
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'UserFeedbackAllowed' -Type DWORD -Value 0
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'WebWidgetAllowed' -Type DWORD -Value 0
-
-if ((Test-Path -Path "$env:TEMP\Computer.txt") -or (Test-Path -Path "$env:TEMP\User.txt")) {
-	if (Test-Path -Path "$env:TEMP\Computer.txt") {
-		& "$env:TEMP\LGPO.exe" /t "$env:TEMP\Computer.txt"
-	}
-	if (Test-Path -Path "$env:TEMP\User.txt") {
-		& "$env:TEMP\LGPO.exe" /t "$env:TEMP\User.txt"
-	}
-
-	gpupdate /force
-}
-
-Get-ChildItem -Path "$env:TEMP\Computer.txt", "$env:TEMP\User.txt" -Force -ErrorAction Ignore | Remove-Item -Force -ErrorAction Ignore

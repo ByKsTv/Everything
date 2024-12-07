@@ -14,14 +14,14 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 1. Select which ISO to download:
 
-    Windows 10 IoT Enterprise LTSC 2021 - PowerShell (Admin):
+   Windows 10 IoT Enterprise LTSC 2021 - PowerShell (Admin):
 
    ```powershell
    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Windows_10_IoT_Enterprise_LTSC_2021/ISO.ps1')
 
    ```
 
-    Windows Server 2025 Datacenter - PowerShell (Admin):
+   Windows Server 2025 Datacenter - PowerShell (Admin):
 
    ```powershell
    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Windows_Server_2025_Datacenter/ISO.ps1')

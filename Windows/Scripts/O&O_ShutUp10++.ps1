@@ -537,6 +537,8 @@ if (-not (Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\CPSS\
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\CPSS\Store\AllowTelemetry' -Name 'Value' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Diagnostics\DiagTrack' -Name 'DiagTrackAuthorization' -Value 00001101 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Diagnostics\DiagTrack\TraceManager' -Name 'MiniTraceSlotEnabled' -Value 0 -PropertyType DWord -Force
+# DiagnosticDataLevel -Minimal
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Diagnostics\DiagTrack' -Name 'ShowedToastAtLevel' -PropertyType DWord -Value 1 -Force
 
 # O&O ShutUp10++: Local Machine: Security: Disable telemetry: On
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\DiagTrack' -Name 'Start' -Value 4 -PropertyType DWord -Force
