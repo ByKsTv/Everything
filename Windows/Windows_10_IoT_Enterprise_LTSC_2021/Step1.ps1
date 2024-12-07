@@ -11,7 +11,7 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Closing Edge'); [Console]::ResetColor(); [Console]::WriteLine()
 $stopedgerunning = 'MicrosoftEdgeUpdate', 'OneDrive', 'WidgetService', 'Widgets', 'msedge', 'msedgewebview2'
-$stopedgerunning | ForEach-Object { Stop-Process -Name $_ -Force -ErrorAction SilentlyContinue }
+$stopedgerunning | ForEach-Object { Stop-Process -Name $_ -Force }
 
 Add-Type -AssemblyName System.Windows.Forms
 $Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{TopMost = $true; ShowInTaskbar = $false; Opacity = 0 }
