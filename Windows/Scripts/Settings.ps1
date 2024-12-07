@@ -4,12 +4,10 @@ $PowerPlanUltimate = powercfg.exe -list | Select-String -Pattern 'Ultimate Perfo
 $PowerPlanHigh = powercfg.exe -list | Select-String -Pattern 'High performance'
 if ($PowerPlanUltimate) {
 	$PowerPlanGUID = ($PowerPlanUltimate.Line -split 'GUID: ')[1].Trim().Split(' ')[0]
-	# Power Plan: Ultimate Performance
 	powercfg.exe /setactive $PowerPlanGUID
 }
 elseif ($PowerPlanHigh) {
 	$PowerPlanGUID = ($PowerPlanHigh.Line -split 'GUID: ')[1].Trim().Split(' ')[0]
-	# Power Plan: High performance
 	powercfg.exe /setactive $PowerPlanGUID
 }
 # Power Plan: Turn off display after: 0 Seconds (Never)
@@ -166,6 +164,7 @@ Get-Service -Name 'DiagTrack' | Stop-Service -Force
 Get-Service -Name 'DiagTrack' | Set-Service -StartupType Disabled
 Get-NetFirewallRule -Group 'DiagTrack' | Set-NetFirewallRule -Enabled True -Action Block
 
+# ErrorReporting -Disable
 Get-Service -Name 'WerSvc' | Stop-Service -Force
 Get-Service -Name 'WerSvc' | Set-Service -StartupType Disabled
 
