@@ -109,6 +109,12 @@ Remove-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desk
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\{f874310e-b6b7-47dc-bc84-b9e6b38f5903}' -Name '(default)' -Value 'CLSID_MSGraphHomeFolder' -PropertyType String -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\{f874310e-b6b7-47dc-bc84-b9e6b38f5903}' -Name 'HiddenByDefault' -Value 1 -PropertyType DWord -Force
 
+# Hide Give feedback from settings page
+if (-not (Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\PolicyManager\default\SettingsPageVisibility')) {
+	New-Item -Path 'HKLM:\SOFTWARE\Microsoft\PolicyManager\default\SettingsPageVisibility' -Force
+}
+New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\PolicyManager\default\SettingsPageVisibility" -Name "Value" -Value "hide:Feedback" -Force
+
 # Administrative Shares: Disable
 New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters' -Name 'AutoShareServer' -Value 0 -PropertyType DWord -Force
 
