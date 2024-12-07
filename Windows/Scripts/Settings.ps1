@@ -202,10 +202,12 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'RestartApps' -PropertyType DWord -Value 0 -Force
 
 # List of capabilities to check and remove
-$capabilitiesToRemove = @('*WindowsMediaPlayer*', '*InternetExplorer*', '*WordPad*', '*QuickAssist*', '*StepsRecorder*')
+$capabilitiesToRemove = @('WindowsMediaPlayer', 'InternetExplorer', 'WordPad', 'QuickAssist', 'StepsRecorder')
 foreach ($capabilityPattern in $capabilitiesToRemove) {
-	$capability = Get-WindowsCapability -Online | Where-Object Name -Like $capabilityPattern
-	if ($capability) {
-		Remove-WindowsCapability -Online -Name $capability.Name
+	$capabilities = Get-WindowsCapability -Online | Where-Object { $_.Name -like "*$capabilityPattern*" }
+	foreach ($capability in $capabilities) {
+		if ($capability.State -eq 'Installed') {
+			Remove-WindowsCapability -Online -Name $capability.Name
+		}
 	}
 }
