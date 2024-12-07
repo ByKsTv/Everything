@@ -136,6 +136,9 @@ $RemoveBackgroundImagesBytes[4] = $RemoveBackgroundImagesBytes[4]-bor 1
 New-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'UserPreferencesMask' -PropertyType Binary -Value $RemoveBackgroundImagesBytes -Force
 
 # Settings: Accessibility: Visual effects: Always show scrollbars: On
+if (-not (Test-Path -Path 'HKCU:\Control Panel\Accessibility')) {
+	New-Item -Path 'HKCU:\Control Panel\Accessibility' -Force
+}
 New-ItemProperty -Path 'HKCU:\Control Panel\Accessibility' -Name 'DynamicScrollbars' -Value 0 -PropertyType DWord -Force
 
 # FileTransferDialog -Detailed
