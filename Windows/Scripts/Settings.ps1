@@ -26,6 +26,9 @@ if (-not (Test-Path -Path 'HKLM:\System\ControlSet001\Control\Power\PowerThrottl
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Control\Power\PowerThrottling' -Name 'PowerThrottlingOff' -PropertyType DWord -Value 1 -Force
 
 # Settings: System: For developers: File Explorer: Show file extenstions: On
+if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\TaskbarDeveloperSettings')) {
+	New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\TaskbarDeveloperSettings' -Force
+}
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\TaskbarDeveloperSettings' -Name 'HideFileExt' -PropertyType DWord -Value 0 -Force
 
 # Settings: System: Multitasking: Snap windows: When I snap a window, suggest what I can snap next to it: Off
