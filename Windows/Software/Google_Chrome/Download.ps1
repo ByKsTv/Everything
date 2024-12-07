@@ -1,10 +1,13 @@
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Google_Chrome/Group_Policy_Templates.ps1')
 
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-(New-Object System.Net.WebClient).DownloadFile('https://dl.google.com/dl/chrome/install/googlechromestandaloneenterprise64.msi', "$env:TEMP\googlechromestandaloneenterprise64.msi")
+$Chrome_DDL = 'https://dl.google.com/dl/chrome/install/googlechromestandaloneenterprise64.msi'
+$Chrome_Filename = [IO.Path]::GetFileName(([URI]$Chrome_DDL).AbsolutePath)
+$Chrome_SavePath = [IO.Path]::Combine($env:TEMP, $Chrome_Filename)
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Google Chrome'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Chrome_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Chrome_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+(New-Object System.Net.WebClient).DownloadFile($Chrome_DDL, $Chrome_SavePath)
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
-Start-Process $env:TEMP\googlechromestandaloneenterprise64.msi -ArgumentList '/quiet' -Wait
+Start-Process $Chrome_SavePath -ArgumentList "/quiet /norestart /l*v `"$($env:TEMP)\GoogleChrome.MsiInstall.log`""
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome: Opening default apps on Windows Settings'); [Console]::ResetColor(); [Console]::WriteLine()
 Start-Process 'ms-settings:defaultapps'
