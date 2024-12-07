@@ -214,10 +214,11 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer
 # Settings: Accounts: Sign-in options: Automatically save my restartable apps and restart them when I sign back in: Off
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'RestartApps' -PropertyType DWord -Value 0 -Force
 
-# 
+# List of capabilities to check and remove
 $capabilitiesToRemove = @('*WindowsMediaPlayer*', '*InternetExplorer*', '*WordPad*', '*QuickAssist*', '*StepsRecorder*')
 foreach ($capabilityPattern in $capabilitiesToRemove) {
-	Get-WindowsCapability -Online | Where-Object Name -Like $capabilityPattern | ForEach-Object {
-		Remove-WindowsCapability -Online -Name $_.Name
+	$capability = Get-WindowsCapability -Online | Where-Object Name -Like $capabilityPattern
+	if ($capability) {
+		Remove-WindowsCapability -Online -Name $capability.Name
 	}
 }
