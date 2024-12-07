@@ -215,7 +215,7 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'Smart
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Automatically send memory dumps for OS-generated error reports: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting' -Name 'AutoApproveOSDumps' -Type DWORD -Value 0
 
-# # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Disable Windows Error Reporting: Enabled
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Disable Windows Error Reporting: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting' -Name 'Disabled' -Type DWORD -Value 1
 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Do not send additional data: Enabled
