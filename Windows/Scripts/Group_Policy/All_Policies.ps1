@@ -12,6 +12,46 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\InputPersonalizati
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\InputPersonalization' -Name 'RestrictImplicitInkCollection' -Type DWORD -Value 1
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\InputPersonalization' -Name 'RestrictImplicitTextCollection' -Type DWORD -Value 1
 
+# Computer Configuration: Administrative Templates: Google: Google Chrome: Enable showing full-tab promotional content: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'PromotionalTabsEnabled' -Type DWORD -Value 0
+
+# Computer Configuration: Administrative Templates: Google: Google Chrome: Privacy Sanndbox policies: Choose whether the Privacy Sandbox ad measurement setting can be disabled: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'PrivacySandboxAdMeasurementEnabled' -Type DWORD -Value 0
+
+# Computer Configuration: Administrative Templates: Google: Google Chrome: Privacy Sanndbox policies: Choose whether the Privacy Sandbox Ad topics setting can be disabled: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'PrivacySandboxAdTopicsEnabled' -Type DWORD -Value 0
+
+# Computer Configuration: Administrative Templates: Google: Google Chrome: Privacy Sanndbox policies: Choose whether the Privacy Sandbox prompt can be shown to your users: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'PrivacySandboxPromptEnabled' -Type DWORD -Value 0
+
+# Computer Configuration: Administrative Templates: Google: Google Chrome: Privacy Sanndbox policies: Choose whether the Privacy SandboxSite-suggested ads setting can be disabled: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'PrivacySandboxSiteEnabledAdsEnabled' -Type DWORD -Value 0
+
+# https://mozilla.github.io/policy-templates/
+# Group Policy: Computer Configuration: Administrative Templates: Mozilla: Firefox: Background updater: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'BackgroundAppUpdate' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Mozilla: Firefox: Disable Feedback Commands: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'DisableFeedbackCommands' -Type DWORD -Value 1
+
+# Group Policy: Computer Configuration: Administrative Templates: Mozilla: Firefox: Disable Firefox Studies
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'DisableFirefoxStudies' -Type DWORD -Value 1
+
+# Group Policy: Computer Configuration: Administrative Templates: Mozilla: Firefox: Disable Pocket: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'DisablePocket' -Type DWORD -Value 1
+
+# Group Policy: Computer Configuration: Administrative Templates: Mozilla: Firefox: Disable Profile Refresh: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'DisableProfileRefresh' -Type DWORD -Value 1
+
+# Group Policy: Computer Configuration: Administrative Templates: Mozilla: Firefox: Disable Telemetry: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'DisableTelemetry' -Type DWORD -Value 1
+
+# Group Policy: Computer Configuration: Administrative Templates: Mozilla: Firefox: Disable the default browser agent: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'DisableDefaultBrowserAgent' -Type DWORD -Value 1
+
+# Group Policy: Computer Configuration: Administrative Templates: Mozilla: Firefox: No Default Bookmarks: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'NoDefaultBookmarks' -Type DWORD -Value 1
+
 # Group Policy: Computer Configuration: Administrative Templates: Network: QoS Packet Scheduler: Limit reservable bandwidth: Enabled: 0%
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Psched' -Name 'NonBestEffortLimit' -Type DWORD -Value 0
 
@@ -284,33 +324,6 @@ Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'SmartScreenEnabled' -Type DWORD -Value 0
 
 # To Sort
-# Firefox
-# https://mozilla.github.io/policy-templates/
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'DisableDefaultBrowserAgent' -Type DWORD -Value 1
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'BackgroundAppUpdate' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'NoDefaultBookmarks' -Type DWORD -Value 1
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'DisableTelemetry' -Type DWORD -Value 1
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'DisableFeedbackCommands' -Type DWORD -Value 1
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'DisableFirefoxStudies' -Type DWORD -Value 1
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'DisablePocket' -Type DWORD -Value 1
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'DisableProfileRefresh' -Type DWORD -Value 1
-
-# Chrome
-# Computer Configuration: Administrative Templates: Google: Google Chrome: Enable showing full-tab promotional content: Disabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'PromotionalTabsEnabled' -Type DWORD -Value 0
-
-# Computer Configuration: Administrative Templates: Google: Google Chrome: Privacy Sanndbox policies: Choose whether the Privacy Sandbox ad measurement setting can be disabled: Disabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'PrivacySandboxAdMeasurementEnabled' -Type DWORD -Value 0
-
-# Computer Configuration: Administrative Templates: Google: Google Chrome: Privacy Sanndbox policies: Choose whether the Privacy Sandbox Ad topics setting can be disabled: Disabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'PrivacySandboxAdTopicsEnabled' -Type DWORD -Value 0
-
-# Computer Configuration: Administrative Templates: Google: Google Chrome: Privacy Sanndbox policies: Choose whether the Privacy Sandbox prompt can be shown to your users: Disabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'PrivacySandboxPromptEnabled' -Type DWORD -Value 0
-
-# Computer Configuration: Administrative Templates: Google: Google Chrome: Privacy Sanndbox policies: Choose whether the Privacy SandboxSite-suggested ads setting can be disabled: Disabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'PrivacySandboxSiteEnabledAdsEnabled' -Type DWORD -Value 0
-
 # Adobe
 # Computer Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: General: Disable automatic updates: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name 'bUpdater' -Type DWORD -Value 0
@@ -443,3 +456,9 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\WcmSvc\wifinetworkmanager\c
 
 # Group Policy: Computer Configuration: Administrative Templates: System: Power Management: Power Throttling Settings: Turn off Power Throttling: Enabled
 Set-Policy -Scope Computer -Path 'System\CurrentControlSet\Control\Power\PowerThrottling' -Name 'PowerThrottlingOff' -Type DWORD -Value 1
+
+# Computer Configuration: Administrative Templates: Google: Google Chrome: Enable Bookmark Bar: Enabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Google\Chrome' -Name 'BookmarkBarEnabled' -Type DWORD -Value 1
+
+# Computer Configuration: Administrative Templates: Google: Google Chrome: Show the apps shortcut in the bookmark bar: Disabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Google\Chrome' -Name 'ShowAppsShortcutInBookmarkBar' -Type DWORD -Value 0
