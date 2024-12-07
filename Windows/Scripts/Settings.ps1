@@ -156,20 +156,20 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' -Name
 # Scheduled Tasks
 Get-ScheduledTask -TaskName 'PcaPatchDbTask' | Disable-ScheduledTask
 Get-ScheduledTask -TaskName 'Consolidator' | Disable-ScheduledTask
-Get-ScheduledTask -TaskName 'DmClient' | Disable-ScheduledTask
-Get-ScheduledTask -TaskName 'DmClientOnScenarioDownload' | Disable-ScheduledTask
-Get-ScheduledTask -TaskName 'FamilySafetyMonitor' | Disable-ScheduledTask
-Get-ScheduledTask -TaskName 'FamilySafetyRefreshTask' | Disable-ScheduledTask
+Get-ScheduledTask -TaskName 'DmClient' | Disable-ScheduledTask # Doesn't exist on Server
+Get-ScheduledTask -TaskName 'DmClientOnScenarioDownload' | Disable-ScheduledTask # Doesn't exist on Server
+Get-ScheduledTask -TaskName 'FamilySafetyMonitor' | Disable-ScheduledTask # Doesn't exist on Server
+Get-ScheduledTask -TaskName 'FamilySafetyRefreshTask' | Disable-ScheduledTask # Doesn't exist on Server
 Get-ScheduledTask -TaskName 'MapsToastTask' | Disable-ScheduledTask
 Get-ScheduledTask -TaskName 'MapsUpdateTask' | Disable-ScheduledTask
 Get-ScheduledTask -TaskName 'MareBackup' | Disable-ScheduledTask
 Get-ScheduledTask -TaskName 'Microsoft Compatibility Appraiser' | Disable-ScheduledTask
 Get-ScheduledTask -TaskName 'Microsoft-Windows-DiskDiagnosticDataCollector' | Disable-ScheduledTask
-Get-ScheduledTask -TaskName 'PcaWallpaperAppDetect' | Disable-ScheduledTask
-Get-ScheduledTask -TaskName 'ProgramDataUpdater' | Disable-ScheduledTask
+Get-ScheduledTask -TaskName 'PcaWallpaperAppDetect' | Disable-ScheduledTask # Doesn't exist on Server
+Get-ScheduledTask -TaskName 'ProgramDataUpdater' | Disable-ScheduledTask # Doesn't exist on Server
 Get-ScheduledTask -TaskName 'Proxy' | Disable-ScheduledTask
 Get-ScheduledTask -TaskName 'UsbCeip' | Disable-ScheduledTask
-Get-ScheduledTask -TaskName 'XblGameSaveTask' | Disable-ScheduledTask
+Get-ScheduledTask -TaskName 'XblGameSaveTask' | Disable-ScheduledTask # Doesn't exist on Server
 Get-ScheduledTask -TaskName 'QueueReporting' | Disable-ScheduledTask
 Get-ScheduledTask -TaskName 'StartupAppTask' | Disable-ScheduledTask
 
@@ -215,8 +215,9 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'RestartApps' -PropertyType DWord -Value 0 -Force
 
 # 
-Get-WindowsCapability -Online -Name '*StepsRecorder*' | Remove-WindowsCapability
-Get-WindowsCapability -Online -Name '*WindowsMediaPlayer*' | Remove-WindowsCapability
-Get-WindowsCapability -Online -Name '*InternetExplorer*' | Remove-WindowsCapability
-Get-WindowsCapability -Online -Name '*QuickAssist*' | Remove-WindowsCapability
-Get-WindowsCapability -Online -Name '*WordPad*' | Remove-WindowsCapability
+$capabilitiesToRemove = @('*WindowsMediaPlayer*', '*InternetExplorer*', '*WordPad*', '*QuickAssist*', '*StepsRecorder*')
+foreach ($capabilityPattern in $capabilitiesToRemove) {
+	Get-WindowsCapability -Online | Where-Object Name -Like $capabilityPattern | ForEach-Object {
+		Remove-WindowsCapability -Online -Name $_.Name
+	}
+}
