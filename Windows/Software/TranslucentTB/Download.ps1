@@ -20,7 +20,7 @@ if ($null -eq $TranslucentTBPackage) {
     (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/TranslucentTB/settings.json', "$TranslucentTBSettingsLoc")
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('TranslucentTB: Hiding pop-up'); [Console]::ResetColor(); [Console]::WriteLine()
-    New-ItemProperty -Path 'HKCU:\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppModel\SystemAppData\*TranslucentTB*' -Name 'WasEverActivated' -Value 1 -PropertyType DWord -Force
+    New-ItemProperty -Path 'HKCU:\SOFTWARE\Classes\Local Settings\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModel\SystemAppData\*TranslucentTB*' -Name 'WasEverActivated' -Value 1 -PropertyType DWord -Force
 }
 
 if ($TranslucentTBInstalledVersionParts -ne $TranslucentTBLatestVersionParts) {

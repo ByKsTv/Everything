@@ -90,7 +90,7 @@ $7Zip_Extensions = @(
     @{Extension = '.zst'; IconIndex = 26; Description = 'zst Archive' }
 )
 
-$7Zip_RegKey = 'HKCU:\Software\Classes'
+$7Zip_RegKey = 'HKCU:\SOFTWARE\Classes'
 $7Zip_Path = $7Zip_Destination.TrimEnd('\')
 
 foreach ($7Zip_Extension in $7Zip_Extensions) {

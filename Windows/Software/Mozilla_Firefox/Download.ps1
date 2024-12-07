@@ -82,5 +82,5 @@ if ((Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedul
     $scheduleObject.connect()
     $rootFolder = $scheduleObject.GetFolder('\')
     $rootFolder.DeleteFolder('Mozilla', $null)
-    Remove-Item -Path 'HKLM:\Software\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree\Mozilla' -Force -Recurse -ErrorAction SilentlyContinue
+    Remove-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree\Mozilla' -Force -Recurse -ErrorAction SilentlyContinue
 }

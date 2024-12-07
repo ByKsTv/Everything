@@ -13,7 +13,7 @@ if ($InstalledSoftware -match 'Google Chrome') {
 
     # https://github.com/letsdoautomation/powershell/tree/main/Install%20Google%20Chrome%20Extensions
     $extensions = 'cjpalhdlnbpafiamejdnhcphjbkeiagm', 'jinjaccalgkegednnccohejagnlnfdag', 'mpbjkejclgfgadiemmefgebjfooflfhl', 'ghnomdcacenbmilgjigehppbamfndblo'
-    $key_path = 'Software\Policies\Google\Chrome\ExtensionInstallForcelist'
+    $key_path = 'SOFTWARE\Policies\Google\Chrome\ExtensionInstallForcelist'
     $registry = [Microsoft.Win32.Registry]::LocalMachine.OpenSubKey($key_path, $true)
     $extensions | ForEach-Object {
         if ($null -eq $registry) {
@@ -33,11 +33,11 @@ if ($InstalledSoftware -match 'Google Chrome') {
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: uBlock Origin: Using custom settings'); [Console]::ResetColor(); [Console]::WriteLine()
     # https://www.reddit.com/r/sysadmin/comments/u9fg8c/comment/i5tudv7/
-    New-Item -Path 'HKLM:\Software\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy' -Force
+    New-Item -Path 'HKLM:\SOFTWARE\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy' -Force
     $uBlockDownloadLocation = "$env:TEMP\uBlock_Origin_Backup.json"
     (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.json', "$uBlockDownloadLocation")
     $uBlockLatestContent = Get-Content $uBlockDownloadLocation
-    New-ItemProperty -Path 'HKLM:\Software\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy' -Name 'adminSettings' -Value "$uBlockLatestContent" -PropertyType String -Force
+    New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy' -Name 'adminSettings' -Value "$uBlockLatestContent" -PropertyType String -Force
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Starting browser'); [Console]::ResetColor(); [Console]::WriteLine()
     [System.Diagnostics.Process]::Start('Chrome.exe')
@@ -77,7 +77,7 @@ if ($InstalledSoftware -match 'Google Chrome') {
     (New-Object -ComObject wscript.shell).SendKeys('^{ENTER}')
     
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Cleaning up'); [Console]::ResetColor(); [Console]::WriteLine()
-    if ((Test-Path -Path HKLM:\Software\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy) -eq $true) {
-        Remove-Item HKLM:\Software\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy -Force
+    if ((Test-Path -Path HKLM:\SOFTWARE\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy) -eq $true) {
+        Remove-Item HKLM:\SOFTWARE\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy -Force
     }
 }

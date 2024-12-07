@@ -22,8 +22,8 @@ if (-not (Test-Path -Path 'HKLM:\System\ControlSet001\Services\Tcpip\QoS')) {
 	New-Item -Path 'HKLM:\System\ControlSet001\Services\Tcpip\QoS' -Force
 }
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\QoS' -Name 'Do not use NLA' -Value '1' -PropertyType 'String' -Force
-New-ItemProperty -Path 'HKLM:\Software\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPER1_0SERVER' -Name 'iexplore.exe' -Value 10 -PropertyType 'DWord' -Force
-New-ItemProperty -Path 'HKLM:\Software\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPERSERVER' -Name 'iexplore.exe' -Value 10 -PropertyType 'DWord' -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPER1_0SERVER' -Name 'iexplore.exe' -Value 10 -PropertyType 'DWord' -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPERSERVER' -Name 'iexplore.exe' -Value 10 -PropertyType 'DWord' -Force
 
 # 3. Apply TCP Settings for Congestion Control, DCA, etc.
 Set-NetTCPSetting -ScalingHeuristics Disabled
