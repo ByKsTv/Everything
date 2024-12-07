@@ -10,7 +10,7 @@ Register-ScheduledTask -TaskName $NextStep_TaskName -Action $NextStep_TaskAction
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Key.ps1')
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Closing Edge'); [Console]::ResetColor(); [Console]::WriteLine()
-$stopedgerunning = 'MicrosoftEdgeUpdate', 'OneDrive', 'WidgetService', 'Widgets', 'msedge', 'msedgewebview2'
+$stopedgerunning = 'MicrosoftEdgeUpdate'
 $stopedgerunning | ForEach-Object { Stop-Process -Name $_ -Force }
 
 Add-Type -AssemblyName System.Windows.Forms
