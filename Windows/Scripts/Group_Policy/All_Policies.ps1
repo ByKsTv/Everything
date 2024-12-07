@@ -12,6 +12,12 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\InputPersonalizati
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\InputPersonalization' -Name 'RestrictImplicitInkCollection' -Type DWORD -Value 1
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\InputPersonalization' -Name 'RestrictImplicitTextCollection' -Type DWORD -Value 1
 
+# Computer Configuration: Administrative Templates: Google: Google Chrome: Enable Bookmark Bar: Enabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Google\Chrome' -Name 'BookmarkBarEnabled' -Type DWORD -Value 1
+
+# Computer Configuration: Administrative Templates: Google: Google Chrome: Show the apps shortcut in the bookmark bar: Disabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Google\Chrome' -Name 'ShowAppsShortcutInBookmarkBar' -Type DWORD -Value 0
+
 # Computer Configuration: Administrative Templates: Google: Google Chrome: Enable showing full-tab promotional content: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'PromotionalTabsEnabled' -Type DWORD -Value 0
 
@@ -27,7 +33,6 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'Privac
 # Computer Configuration: Administrative Templates: Google: Google Chrome: Privacy Sanndbox policies: Choose whether the Privacy SandboxSite-suggested ads setting can be disabled: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'PrivacySandboxSiteEnabledAdsEnabled' -Type DWORD -Value 0
 
-# https://mozilla.github.io/policy-templates/
 # Group Policy: Computer Configuration: Administrative Templates: Mozilla: Firefox: Background updater: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'BackgroundAppUpdate' -Type DWORD -Value 0
 
@@ -456,9 +461,3 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\WcmSvc\wifinetworkmanager\c
 
 # Group Policy: Computer Configuration: Administrative Templates: System: Power Management: Power Throttling Settings: Turn off Power Throttling: Enabled
 Set-Policy -Scope Computer -Path 'System\CurrentControlSet\Control\Power\PowerThrottling' -Name 'PowerThrottlingOff' -Type DWORD -Value 1
-
-# Computer Configuration: Administrative Templates: Google: Google Chrome: Enable Bookmark Bar: Enabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Google\Chrome' -Name 'BookmarkBarEnabled' -Type DWORD -Value 1
-
-# Computer Configuration: Administrative Templates: Google: Google Chrome: Show the apps shortcut in the bookmark bar: Disabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Google\Chrome' -Name 'ShowAppsShortcutInBookmarkBar' -Type DWORD -Value 0
