@@ -140,14 +140,6 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer
 # JPEGWallpapersQuality -Max
 New-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'JPEGImportQuality' -PropertyType DWord -Value 100 -Force
 
-# List of task names to check and disable
-$taskNames = @('PcaPatchDbTask', 'Consolidator', 'DmClient', 'DmClientOnScenarioDownload', 'FamilySafetyMonitor', 'FamilySafetyRefreshTask', 'MapsToastTask', 'MapsUpdateTask', 'ProgramDataUpdater', 'MareBackup', 'Microsoft Compatibility Appraiser', 'Microsoft-Windows-DiskDiagnosticDataCollector', 'PcaWallpaperAppDetect', 'Proxy', 'StartupAppTask', 'QueueReporting', 'XblGameSaveTask', 'UsbCeip')
-foreach ($taskName in $taskNames) {
-	if (Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue) {
-		Get-ScheduledTask -TaskName $taskName | Disable-ScheduledTask
-	}
-}
-
 # DiagTrackService -Disable
 Get-Service -Name 'DiagTrack' | Stop-Service -Force
 Get-Service -Name 'DiagTrack' | Set-Service -StartupType Disabled
@@ -189,23 +181,6 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer
 
 # Settings: Accounts: Sign-in options: Automatically save my restartable apps and restart them when I sign back in: Off
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'RestartApps' -PropertyType DWord -Value 0 -Force
-
-# List of capabilities to check and remove
-$capabilitiesToRemove = @('WindowsMediaPlayer', 'InternetExplorer', 'WordPad', 'QuickAssist', 'StepsRecorder')
-foreach ($capabilityPattern in $capabilitiesToRemove) {
-	try {
-		$capabilities = Get-WindowsCapability -Online | Where-Object { $_.State -eq 'Installed' -and $_.Name -like "*$capabilityPattern*" }
-		if ($capabilities) {
-			$capabilities | ForEach-Object { Remove-WindowsCapability -Online -Name $_.Name }
-		}
-		else {
-			Write-Host "No capabilities found for: $capabilityPattern"
-		}
-	}
- catch {
-		Write-Host ('{0}: {1}' -f $capabilityPattern, $_.Exception.Message)
-	}
-}
 
 # Remote Desktop Connection: Never show pop-up upon ending session
 if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client') -ne $true) {
@@ -303,6 +278,31 @@ Delete-DeliveryOptimizationCache -Force
 
 # Do not let Windows manage my default printer
 New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Windows" -Name 'LegacyDefaultPrinterMode' -PropertyType DWord -Value 1 -Force
+
+# List of task names to check and disable
+$taskNames = @('PcaPatchDbTask', 'Consolidator', 'DmClient', 'DmClientOnScenarioDownload', 'FamilySafetyMonitor', 'FamilySafetyRefreshTask', 'MapsToastTask', 'MapsUpdateTask', 'ProgramDataUpdater', 'MareBackup', 'Microsoft Compatibility Appraiser', 'Microsoft-Windows-DiskDiagnosticDataCollector', 'PcaWallpaperAppDetect', 'Proxy', 'StartupAppTask', 'QueueReporting', 'XblGameSaveTask', 'UsbCeip')
+foreach ($taskName in $taskNames) {
+	if (Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue) {
+		Get-ScheduledTask -TaskName $taskName | Disable-ScheduledTask
+	}
+}
+
+# List of capabilities to check and remove
+$capabilitiesToRemove = @('WindowsMediaPlayer', 'InternetExplorer', 'WordPad', 'QuickAssist', 'StepsRecorder')
+foreach ($capabilityPattern in $capabilitiesToRemove) {
+	try {
+		$capabilities = Get-WindowsCapability -Online | Where-Object { $_.State -eq 'Installed' -and $_.Name -like "*$capabilityPattern*" }
+		if ($capabilities) {
+			$capabilities | ForEach-Object { Remove-WindowsCapability -Online -Name $_.Name }
+		}
+		else {
+			Write-Host "No capabilities found for: $capabilityPattern"
+		}
+	}
+ catch {
+		Write-Host ('{0}: {1}' -f $capabilityPattern, $_.Exception.Message)
+	}
+}
 
 # Disable Windows features
 $OptionalFeatureToRemove = @('WorkFolders-Client', 'WindowsMediaPlayer')
