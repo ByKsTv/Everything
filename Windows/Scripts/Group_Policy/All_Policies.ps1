@@ -44,6 +44,9 @@ Set-Policy -Scope Computer -Path 'System\DriverDatabase\Policies\Settings' -Name
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Settings' -Name 'DisableSendRequestAdditionalSoftwareToWER' -Type DWORD -Value 1
 Set-Policy -Scope Computer -Path 'System\DriverDatabase\Policies\Settings' -Name 'DisableSendRequestAdditionalSoftwareToWER' -Type DWORD -Value 1
 
+# Group Policy: Computer Configuration: Administrative Templates: System: Filesystem: Enable Win32 long paths: Enabled
+Set-Policy -Scope Computer -Path 'System\CurrentControlSet\Control\FileSystem' -Name 'LongPathsEnabled' -Type DWORD -Value 1
+
 # Group Policy: Computer Configuration: Administrative Templates: System: Group Policy: Phone-PC linking on this device: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\System' -Name 'EnableMmx' -Type DWORD -Value 0
 
@@ -80,6 +83,9 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\PCHealth\ErrorRepo
 # Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off the Windows Messenger Customer Experience Improvement Program: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Messenger\Client' -Name 'CEIP' -Type DWORD -Value 2
 
+# Group Policy: Computer Configuration: Administrative Templates: System: Logon: Show first sign-in animation: Disabled
+Set-Policy -Scope Computer -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\System' -Name 'EnableFirstLogonAnimation' -Type DWORD -Value 0
+
 # Group Policy: Computer Configuration: Administrative Templates: System: OS Policies: Allow Clipboard History: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\System' -Name 'AllowClipboardHistory' -Type DWORD -Value 0
 
@@ -100,6 +106,9 @@ Set-Policy -Scope Computer -Path 'System\CurrentControlSet\Control\Power\PowerTh
 
 # Group Policy: Computer Configuration: Administrative Templates: System: Remote Assistance: Configure Solicited Remote Assistance: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services' -Name 'fAllowToGetHelp' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: System: Shutdown: Require use of fast startup: Disabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\System' -Name 'HiberbootEnabled' -Type DWORD -Value 0
 
 # Group Policy: Computer Configuration: Administrative Templates: System: User Profiles: Turn off the advertising ID: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\AdvertisingInfo' -Name 'DisabledByGroupPolicy' -Type DWORD -Value 1
@@ -235,6 +244,9 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Messenger\Client' 
 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Mobility Center: Turn off Windows Mobility Center: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\MobilityCenter' -Name 'NoMobilityCenter' -Type DWORD -Value 1
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: Allow updates to be downloaded automatically over metered connections: Enabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'AllowAutoWindowsUpdateDownloadOverMeteredNetwork' -Type DWORD -Value 1
 
 # Group Policy: User Configuration: Administrative Templates: Start Menu and Taskbar: Remove the Meet Now icon: Enabled
 Set-Policy -Scope User -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'HideSCAMeetNow' -Type DWORD -Value 1
