@@ -1,6 +1,15 @@
-# Set-NetFirewallRule -Group '@FirewallAPI.dll,-28502', '@FirewallAPI.dll,-32752' -Profile Private -Enabled True
-# Set-NetFirewallRule -Profile Public, Private -Name FPS-SMB-In-TCP -Enabled True
-# Set-NetConnectionProfile -NetworkCategory Private
+# Private Network
+$FirewallRules = @(
+	# File and printer sharing
+	'@FirewallAPI.dll,-32752',
+
+	# Network discovery
+	'@FirewallAPI.dll,-28502'
+)
+Set-NetFirewallRule -Group $FirewallRules -Profile Private -Enabled True
+Set-NetFirewallRule -Profile Public, Private -Name FPS-SMB-In-TCP -Enabled True
+Set-NetConnectionProfile -NetworkCategory Private
+
 
 # 1. Retrieve All Network Adapters
 $NetworkAdapters = Get-NetAdapter
