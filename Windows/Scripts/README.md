@@ -31,5 +31,5 @@ Everything about Scripts.
 
 ## Powershell + Mediainfo: Extract BDMV Playlist
 
-1. Use [MediaInfo_Extract_BDMV_Playlist.py](MediaInfo_Extract_BDMV_Playlist.py)
+1. Use [MediaInfo_Extract_BDMV_Playlist.ps1](MediaInfo_Extract_BDMV_Playlist.ps1)
 1. Edit `mplsDirectory`.
