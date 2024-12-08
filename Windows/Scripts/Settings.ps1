@@ -189,9 +189,17 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlo
 # List of capabilities to check and remove
 $capabilitiesToRemove = @('WindowsMediaPlayer', 'InternetExplorer', 'WordPad', 'QuickAssist', 'StepsRecorder')
 foreach ($capabilityPattern in $capabilitiesToRemove) {
-	$capabilities = Get-WindowsCapability -Online | Where-Object { $_.State -eq 'Installed' -and $_.Name -like "*$capabilityPattern*" }
-	foreach ($capability in $capabilities) {
-			Remove-WindowsCapability -Online -Name $capability.Name
+	try {
+		$capabilities = Get-WindowsCapability -Online | Where-Object { $_.State -eq 'Installed' -and $_.Name -like "*$capabilityPattern*" }
+		if ($capabilities) {
+			$capabilities | ForEach-Object { Remove-WindowsCapability -Online -Name $_.Name }
+		}
+		else {
+			Write-Host "No capabilities found for: $capabilityPattern"
+		}
+	}
+ catch {
+		Write-Host ('{0}: {1}' -f $capabilityPattern, $_.Exception.Message)
 	}
 }
 
