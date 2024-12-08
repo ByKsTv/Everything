@@ -40,7 +40,7 @@ if ($InstalledSoftware -match 'Google Chrome') {
     New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy' -Name 'adminSettings' -Value "$uBlockLatestContent" -PropertyType String -Force
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Starting browser'); [Console]::ResetColor(); [Console]::WriteLine()
-    [System.Diagnostics.Process]::Start('Chrome.exe')
+    [Diagnostics.Process]::Start('Chrome.exe')
     Start-Sleep -Milliseconds 1000
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Waiting for browser'); [Console]::ResetColor(); [Console]::WriteLine()
@@ -50,7 +50,7 @@ if ($InstalledSoftware -match 'Google Chrome') {
     Start-Sleep -Milliseconds 20000
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Adding option to set foreground'); [Console]::ResetColor(); [Console]::WriteLine()
-    if (-not ([System.Management.Automation.PSTypeName]'SFW').Type) {
+    if (-not ([Management.Automation.PSTypeName]'SFW').Type) {
         Add-Type @'
     using System;
     using System.Runtime.InteropServices;
@@ -66,7 +66,7 @@ if ($InstalledSoftware -match 'Google Chrome') {
     [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'Chrome' }).MainWindowHandle)
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Opening AdsBypasser'); [Console]::ResetColor(); [Console]::WriteLine()
-    [System.Diagnostics.Process]::Start('Chrome.exe', 'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js')
+    [Diagnostics.Process]::Start('Chrome.exe', 'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js')
     Start-Sleep -Milliseconds 5000
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Setting foreground'); [Console]::ResetColor(); [Console]::WriteLine()

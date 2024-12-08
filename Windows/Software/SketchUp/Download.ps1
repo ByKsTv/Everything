@@ -5,7 +5,7 @@ $SketchUp_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
 $SketchUp_Form.Topmost = $true
 $SketchUp_Form.MaximizeBox = $false
 $SketchUp_Form.MinimizeBox = $false
-$SketchUp_Form.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
+$SketchUp_Form.FormBorderStyle = [Windows.Forms.FormBorderStyle]::FixedDialog
         
 $SketchUp_DropDown = New-Object System.Windows.Forms.ComboBox
 $SketchUp_DropDown.Location = New-Object System.Drawing.Point(5, 0)
@@ -14,7 +14,7 @@ $SketchUp_DropDown.DropDownStyle = 'DropDownList'
 $SketchUp_nnmclub_search = (Invoke-WebRequest -UseBasicParsing -Uri 'https://nnmclub.to/forum/tracker.php?nm=SketchUp%20KpoJIuK').Links | Where-Object { $_.class -match 'genmed topictitle' }
         
 $SketchUp_nnmclub_Array = @{}
-$SketchUp_graphics = [System.Drawing.Graphics]::FromHwnd($SketchUp_Form.Handle)
+$SketchUp_graphics = [Drawing.Graphics]::FromHwnd($SketchUp_Form.Handle)
 $SketchUp_maxWidth = 0
 foreach ($SketchUp_nnmclub_post in $SketchUp_nnmclub_search) {
     $SketchUp_nnmclub_title = ($SketchUp_nnmclub_post.outerHTML -replace '.*?<b>(.*?)</b></a>', '$1')
@@ -36,7 +36,7 @@ $SketchUp_Form_OK = New-Object System.Windows.Forms.Button
 $SketchUp_Form_OK.Text = 'OK'
 $SketchUp_Form_OK.Location = New-Object System.Drawing.Size((($SketchUp_Form.Width) / 3 ), (($SketchUp_Form.height) - 60))
 $SketchUp_Form_OK.Size = New-Object System.Drawing.Size(57, 20)
-$SketchUp_Form_OK.DialogResult = [System.Windows.Forms.DialogResult]::OK
+$SketchUp_Form_OK.DialogResult = [Windows.Forms.DialogResult]::OK
 $SketchUp_Form.Controls.Add($SketchUp_Form_OK)
 $SketchUp_Form.AcceptButton = $SketchUp_Form_OK
         
@@ -47,7 +47,7 @@ $SketchUp_Form_Cancel.Text = 'Cancel'
 $SketchUp_Form_Cancel.Add_Click({ $SketchUp_Form.Close() })
 $SketchUp_Form.Controls.Add($SketchUp_Form_Cancel)
         
-if ($SketchUp_Form.ShowDialog() -eq [System.Windows.Forms.DialogResult]::OK) {
+if ($SketchUp_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     $SketchUp_SelectedVersion = $SketchUp_DropDown.SelectedItem
     $SketchUp_SelectedHREF = $SketchUp_nnmclub_Array[$SketchUp_SelectedVersion]
 

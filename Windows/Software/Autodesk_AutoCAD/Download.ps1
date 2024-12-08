@@ -5,7 +5,7 @@ $AutoCAD_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
 $AutoCAD_Form.Topmost = $true
 $AutoCAD_Form.MaximizeBox = $false
 $AutoCAD_Form.MinimizeBox = $false
-$AutoCAD_Form.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
+$AutoCAD_Form.FormBorderStyle = [Windows.Forms.FormBorderStyle]::FixedDialog
 
 $AutoCAD_DropDown = New-Object System.Windows.Forms.ComboBox
 $AutoCAD_DropDown.Location = New-Object System.Drawing.Point(5, 0)
@@ -14,7 +14,7 @@ $AutoCAD_DropDown.DropDownStyle = 'DropDownList'
 $AutoCAD_nnmclub_search = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w14.monkrus.ws/search/label/AutoCAD').Links | Where-Object { $_.outerHTML -match 'AutoCAD' -and $_.outerHTML -notmatch 'LT' -and $_.outerHTML -notmatch 'Addon' -and $_.outerHTML -notmatch '#more' }
 
 $AutoCAD_nnmclub_Array = @{}
-$AutoCAD_graphics = [System.Drawing.Graphics]::FromHwnd($AutoCAD_Form.Handle)
+$AutoCAD_graphics = [Drawing.Graphics]::FromHwnd($AutoCAD_Form.Handle)
 $AutoCAD_maxWidth = 0
 foreach ($AutoCAD_nnmclub_post in $AutoCAD_nnmclub_search) {
     $AutoCAD_nnmclub_title = ($AutoCAD_nnmclub_post.outerHTML -replace '.*?>(.*?)</a>', '$1')
@@ -36,7 +36,7 @@ $AutoCAD_Form_OK = New-Object System.Windows.Forms.Button
 $AutoCAD_Form_OK.Text = 'OK'
 $AutoCAD_Form_OK.Location = New-Object System.Drawing.Size((($AutoCAD_Form.Width) / 3 ), (($AutoCAD_Form.height) - 60))
 $AutoCAD_Form_OK.Size = New-Object System.Drawing.Size(57, 20)
-$AutoCAD_Form_OK.DialogResult = [System.Windows.Forms.DialogResult]::OK
+$AutoCAD_Form_OK.DialogResult = [Windows.Forms.DialogResult]::OK
 $AutoCAD_Form.Controls.Add($AutoCAD_Form_OK)
 $AutoCAD_Form.AcceptButton = $AutoCAD_Form_OK
 
@@ -47,7 +47,7 @@ $AutoCAD_Form_Cancel.Text = 'Cancel'
 $AutoCAD_Form_Cancel.Add_Click({ $AutoCAD_Form.Close() })
 $AutoCAD_Form.Controls.Add($AutoCAD_Form_Cancel)
 
-if ($AutoCAD_Form.ShowDialog() -eq [System.Windows.Forms.DialogResult]::OK) {
+if ($AutoCAD_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     $AutoCAD_SelectedVersion = $AutoCAD_DropDown.SelectedItem
     $AutoCAD_SelectedHREF = $AutoCAD_nnmclub_Array[$AutoCAD_SelectedVersion]
 

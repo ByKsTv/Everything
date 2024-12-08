@@ -5,7 +5,7 @@ $Revit_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
 $Revit_Form.Topmost = $true
 $Revit_Form.MaximizeBox = $false
 $Revit_Form.MinimizeBox = $false
-$Revit_Form.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
+$Revit_Form.FormBorderStyle = [Windows.Forms.FormBorderStyle]::FixedDialog
 
 $Revit_DropDown = New-Object System.Windows.Forms.ComboBox
 $Revit_DropDown.Location = New-Object System.Drawing.Point(5, 0)
@@ -14,7 +14,7 @@ $Revit_DropDown.DropDownStyle = 'DropDownList'
 $Revit_nnmclub_search = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w14.monkrus.ws/search/label/Revit').Links | Where-Object { $_.outerHTML -match 'Multilingual' -and $_.outerHTML -notmatch '#more' -and $_.outerHTML -match 'Revit' }
 
 $Revit_nnmclub_Array = @{}
-$Revit_graphics = [System.Drawing.Graphics]::FromHwnd($Revit_Form.Handle)
+$Revit_graphics = [Drawing.Graphics]::FromHwnd($Revit_Form.Handle)
 $Revit_maxWidth = 0
 foreach ($Revit_nnmclub_post in $Revit_nnmclub_search) {
     $Revit_nnmclub_title = ($Revit_nnmclub_post.outerHTML -replace '.*?>(.*?)</a>', '$1')
@@ -36,7 +36,7 @@ $Revit_Form_OK = New-Object System.Windows.Forms.Button
 $Revit_Form_OK.Text = 'OK'
 $Revit_Form_OK.Location = New-Object System.Drawing.Size((($Revit_Form.Width) / 3 ), (($Revit_Form.height) - 60))
 $Revit_Form_OK.Size = New-Object System.Drawing.Size(57, 20)
-$Revit_Form_OK.DialogResult = [System.Windows.Forms.DialogResult]::OK
+$Revit_Form_OK.DialogResult = [Windows.Forms.DialogResult]::OK
 $Revit_Form.Controls.Add($Revit_Form_OK)
 $Revit_Form.AcceptButton = $Revit_Form_OK
 
@@ -47,7 +47,7 @@ $Revit_Form_Cancel.Text = 'Cancel'
 $Revit_Form_Cancel.Add_Click({ $Revit_Form.Close() })
 $Revit_Form.Controls.Add($Revit_Form_Cancel)
 
-if ($Revit_Form.ShowDialog() -eq [System.Windows.Forms.DialogResult]::OK) {
+if ($Revit_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     $Revit_SelectedVersion = $Revit_DropDown.SelectedItem
     $Revit_SelectedHREF = $Revit_nnmclub_Array[$Revit_SelectedVersion]
 

@@ -24,14 +24,14 @@ if ($null -eq $Git_InstalledVersion -or $Git_InstalledVersion -notmatch $Git_Lat
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Git'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Git_LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Git_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Git_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
     Start-Process $Git_SavePath -ArgumentList $Git_Argument -Wait
 
-    $env:Path = [System.Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path', 'User')
+    $env:Path = [Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [Environment]::GetEnvironmentVariable('Path', 'User')
     $Git_CurrentUsername = git.exe config user.name
     $Git_CurrentEmail = git.exe config user.email
     
     if ($null -eq $Git_CurrentUsername -and $null -eq $Git_CurrentEmail) {
         Add-Type -AssemblyName System.Windows.Forms
         Add-Type -AssemblyName System.Drawing
-        [System.Windows.Forms.Application]::EnableVisualStyles()
+        [Windows.Forms.Application]::EnableVisualStyles()
 
         $Git_Form = New-Object System.Windows.Forms.Form
         $Git_Form.width = 350
@@ -42,7 +42,7 @@ if ($null -eq $Git_InstalledVersion -or $Git_InstalledVersion -notmatch $Git_Lat
         $Git_Form.Topmost = $true
         $Git_Form.MaximizeBox = $false
         $Git_Form.MinimizeBox = $false
-        $Git_Form.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
+        $Git_Form.FormBorderStyle = [Windows.Forms.FormBorderStyle]::FixedDialog
 
         $Git_X_Axis = 5
         $Git_Y_Axis = 0

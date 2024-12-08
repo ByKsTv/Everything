@@ -38,12 +38,12 @@ $MPV_Installer = [IO.Path]::Combine($MPV_Destination, 'installer', 'mpv-install.
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Installer'"); [Console]::ResetColor(); [Console]::WriteLine()
 Start-Process cmd.exe -ArgumentList "/C start /MIN $MPV_Installer /u ^&exit"
 
-$mpv_OLD_PATH = [System.Environment]::GetEnvironmentVariable('Path', [System.EnvironmentVariableTarget]::User)
+$mpv_OLD_PATH = [Environment]::GetEnvironmentVariable('Path', [EnvironmentVariableTarget]::User)
 if ($mpv_OLD_PATH -notlike "*$MPV_Destination*") {
     $mpv_NEW_PATH = "$mpv_OLD_PATH;$MPV_Destination"
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Destination'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'PATH'"); [Console]::ResetColor(); [Console]::WriteLine()
-    [System.Environment]::SetEnvironmentVariable('Path', $mpv_NEW_PATH, [System.EnvironmentVariableTarget]::User)
-    $env:Path = [System.Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path', 'User')
+    [Environment]::SetEnvironmentVariable('Path', $mpv_NEW_PATH, [EnvironmentVariableTarget]::User)
+    $env:Path = [Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [Environment]::GetEnvironmentVariable('Path', 'User')
 }
 
 $MPV_InputCONF_DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/input.conf'
@@ -104,7 +104,7 @@ foreach ($MPV_ScriptOptURL in $MPV_ScriptOptsURLs) {
 
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
-[System.Windows.Forms.Application]::EnableVisualStyles()
+[Windows.Forms.Application]::EnableVisualStyles()
 
 $mpv_Form = New-Object System.Windows.Forms.Form
 $mpv_Form.width = 350
@@ -115,7 +115,7 @@ $mpv_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
 $mpv_Form.Topmost = $true
 $mpv_Form.MaximizeBox = $false
 $mpv_Form.MinimizeBox = $false
-$mpv_Form.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
+$mpv_Form.FormBorderStyle = [Windows.Forms.FormBorderStyle]::FixedDialog
 
 $mpv_X_Axis = 5
 $mpv_Y_Axis = 0

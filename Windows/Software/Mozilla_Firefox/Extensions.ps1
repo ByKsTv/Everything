@@ -57,7 +57,7 @@ if (Test-Path $Firefox_Profiles) {
         Start-Sleep -Milliseconds 1000
     
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Starting browser'); [Console]::ResetColor(); [Console]::WriteLine()
-        [System.Diagnostics.Process]::Start('firefox.exe')
+        [Diagnostics.Process]::Start('firefox.exe')
 
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Waiting for browser'); [Console]::ResetColor(); [Console]::WriteLine()
         while ($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' } -ErrorAction SilentlyContinue)) {
@@ -66,7 +66,7 @@ if (Test-Path $Firefox_Profiles) {
         Start-Sleep -Milliseconds 20000
         
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Adding option to set foreground'); [Console]::ResetColor(); [Console]::WriteLine()
-        if (-not ([System.Management.Automation.PSTypeName]'SFW').Type) {
+        if (-not ([Management.Automation.PSTypeName]'SFW').Type) {
             Add-Type @'
         using System;
         using System.Runtime.InteropServices;
@@ -83,7 +83,7 @@ if (Test-Path $Firefox_Profiles) {
     [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Opening AdsBypasser'); [Console]::ResetColor(); [Console]::WriteLine()
-    [System.Diagnostics.Process]::Start('firefox.exe', 'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js')
+    [Diagnostics.Process]::Start('firefox.exe', 'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js')
     Start-Sleep -Milliseconds 5000
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Setting foreground'); [Console]::ResetColor(); [Console]::WriteLine()

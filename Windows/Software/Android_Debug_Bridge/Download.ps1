@@ -18,10 +18,10 @@ if (-not (Test-Path $ADB_Destination)) {
     Move-Item -Path $ADB_ExtractPath -Destination $ADB_Destination
 }
         
-$ADB_OLD_PATH = [System.Environment]::GetEnvironmentVariable('Path', [System.EnvironmentVariableTarget]::User)
+$ADB_OLD_PATH = [Environment]::GetEnvironmentVariable('Path', [EnvironmentVariableTarget]::User)
 if ($ADB_OLD_PATH -notlike "*$ADB_Destination*") {
     $ADB_NEW_PATH = "$ADB_OLD_PATH;$ADB_Destination"
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'ADB'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ADB_Destination'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'PATH'"); [Console]::ResetColor(); [Console]::WriteLine()
-    [System.Environment]::SetEnvironmentVariable('Path', $ADB_NEW_PATH, [System.EnvironmentVariableTarget]::User)
-    $env:Path = [System.Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path', 'User')
+    [Environment]::SetEnvironmentVariable('Path', $ADB_NEW_PATH, [EnvironmentVariableTarget]::User)
+    $env:Path = [Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [Environment]::GetEnvironmentVariable('Path', 'User')
 }

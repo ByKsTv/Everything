@@ -32,12 +32,12 @@ foreach ($language in $OfficeSelection_LanguageSections.Keys) {
     $content = $OfficeSelection_LanguageSections[$language]['Content']
     # Extract content inside <Tabs> ... </Tabs>
     $tabsPattern = '<Tabs>(.*?)</Tabs>'
-    $tabsMatch = [regex]::Match($content, $tabsPattern, [System.Text.RegularExpressions.RegexOptions]::Singleline)
+    $tabsMatch = [regex]::Match($content, $tabsPattern, [Text.RegularExpressions.RegexOptions]::Singleline)
     if ($tabsMatch.Success) {
         $tabsContent = $tabsMatch.Groups[1].Value
         # Extract each TabItem
         $tabPattern = '<TabItem value="([^"]+)" label="([^"]+)"(?: default)?>\s*(.*?)</TabItem>'
-        $tabMatches = [regex]::Matches($tabsContent, $tabPattern, [System.Text.RegularExpressions.RegexOptions]::Singleline)
+        $tabMatches = [regex]::Matches($tabsContent, $tabPattern, [Text.RegularExpressions.RegexOptions]::Singleline)
         $tabs = @()
         foreach ($tabMatch in $tabMatches) {
             $tabValue = $tabMatch.Groups[1].Value
@@ -106,7 +106,7 @@ $OfficeSelection_Form.StartPosition = 'CenterScreen'
 $OfficeSelection_Form.Topmost = $true
 $OfficeSelection_Form.MaximizeBox = $false
 $OfficeSelection_Form.MinimizeBox = $false
-$OfficeSelection_Form.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
+$OfficeSelection_Form.FormBorderStyle = [Windows.Forms.FormBorderStyle]::FixedDialog
 
 # Add 3 additional checkboxes below the TabControl
 $OfficeSelection_ActivateOffice = New-Object System.Windows.Forms.CheckBox
@@ -223,7 +223,7 @@ $populateTabs = {
     $graphics.Dispose()
 
     # Get the screen working area width
-    $screenWidth = [System.Windows.Forms.Screen]::PrimaryScreen.WorkingArea.Width
+    $screenWidth = [Windows.Forms.Screen]::PrimaryScreen.WorkingArea.Width
 
     # Calculate the new width for the TabControl
     $newTabControlWidth = $totalTabWidth + 20  # Additional padding
@@ -256,7 +256,7 @@ $OfficeSelection_Tabs.add_SelectedIndexChanged({
             if ($tabPage -ne $selectedTab) {
                 # Clear checkboxes in this tab
                 foreach ($control in $tabPage.Controls[0].Controls) {
-                    if ($control -is [System.Windows.Forms.CheckBox]) {
+                    if ($control -is [Windows.Forms.CheckBox]) {
                         $control.Checked = $false
                     }
                 }
@@ -292,7 +292,7 @@ $OfficeSelection_OK.Add_Click({
         $selectedProducts = @()
         $tabPage = $OfficeSelection_Tabs.SelectedTab
         foreach ($control in $tabPage.Controls[0].Controls) {
-            if ($control -is [System.Windows.Forms.CheckBox] -and $control.Checked) {
+            if ($control -is [Windows.Forms.CheckBox] -and $control.Checked) {
                 $productID = $control.Text
                 # Find the product in languageSections
                 $selectedLanguage = $OfficeSelection_LanguageSelector.SelectedItem

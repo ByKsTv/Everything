@@ -5,7 +5,7 @@ $VMWare_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
 $VMWare_Form.Topmost = $true
 $VMWare_Form.MaximizeBox = $false
 $VMWare_Form.MinimizeBox = $false
-$VMWare_Form.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
+$VMWare_Form.FormBorderStyle = [Windows.Forms.FormBorderStyle]::FixedDialog
 
 $VMWare_DropDown = New-Object System.Windows.Forms.ComboBox
 $VMWare_DropDown.Location = New-Object System.Drawing.Point(5, 0)
@@ -14,7 +14,7 @@ $VMWare_DropDown.DropDownStyle = 'DropDownList'
 $VMWare_nnmclub_search = (Invoke-WebRequest -UseBasicParsing -Uri 'https://nnmclub.to/forum/tracker.php?nm=VMware%20KpoJIuK').Links | Where-Object { $_.class -match 'genmed topictitle' }
 
 $VMWare_nnmclub_Array = @{}
-$VMWare_graphics = [System.Drawing.Graphics]::FromHwnd($VMWare_Form.Handle)
+$VMWare_graphics = [Drawing.Graphics]::FromHwnd($VMWare_Form.Handle)
 $VMWare_maxWidth = 0
 foreach ($VMWare_nnmclub_post in $VMWare_nnmclub_search) {
     $VMWare_nnmclub_title = ($VMWare_nnmclub_post.outerHTML -replace '.*?<b>(.*?)</b></a>', '$1')
@@ -36,7 +36,7 @@ $VMWare_Form_OK = New-Object System.Windows.Forms.Button
 $VMWare_Form_OK.Text = 'OK'
 $VMWare_Form_OK.Location = New-Object System.Drawing.Size((($VMWare_Form.Width) / 3 ), (($VMWare_Form.height) - 60))
 $VMWare_Form_OK.Size = New-Object System.Drawing.Size(57, 20)
-$VMWare_Form_OK.DialogResult = [System.Windows.Forms.DialogResult]::OK
+$VMWare_Form_OK.DialogResult = [Windows.Forms.DialogResult]::OK
 $VMWare_Form.Controls.Add($VMWare_Form_OK)
 $VMWare_Form.AcceptButton = $VMWare_Form_OK
 
@@ -47,7 +47,7 @@ $VMWare_Form_Cancel.Text = 'Cancel'
 $VMWare_Form_Cancel.Add_Click({ $VMWare_Form.Close() })
 $VMWare_Form.Controls.Add($VMWare_Form_Cancel)
 
-if ($VMWare_Form.ShowDialog() -eq [System.Windows.Forms.DialogResult]::OK) {
+if ($VMWare_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     $VMWare_SelectedVersion = $VMWare_DropDown.SelectedItem
     $VMWare_SelectedHREF = $VMWare_nnmclub_Array[$VMWare_SelectedVersion]
 

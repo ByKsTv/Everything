@@ -41,7 +41,7 @@ $AcrobatPro_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
 $AcrobatPro_Form.Topmost = $true
 $AcrobatPro_Form.MaximizeBox = $false
 $AcrobatPro_Form.MinimizeBox = $false
-$AcrobatPro_Form.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
+$AcrobatPro_Form.FormBorderStyle = [Windows.Forms.FormBorderStyle]::FixedDialog
 
 $AcrobatPro_DropDown = New-Object System.Windows.Forms.ComboBox
 $AcrobatPro_DropDown.Location = New-Object System.Drawing.Point(5, 0)
@@ -50,7 +50,7 @@ $AcrobatPro_DropDown.DropDownStyle = 'DropDownList'
 $AcrobatPro_nnmclub_search = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w14.monkrus.ws/search/label/Acrobat').Links | Where-Object { $_.outerHTML -match 'x64' -and $_.outerHTML -notmatch '#more' }
 
 $AcrobatPro_nnmclub_Array = @{}
-$AcrobatPro_graphics = [System.Drawing.Graphics]::FromHwnd($AcrobatPro_Form.Handle)
+$AcrobatPro_graphics = [Drawing.Graphics]::FromHwnd($AcrobatPro_Form.Handle)
 $AcrobatPro_maxWidth = 0
 foreach ($AcrobatPro_nnmclub_post in $AcrobatPro_nnmclub_search) {
     $AcrobatPro_nnmclub_title = ($AcrobatPro_nnmclub_post.outerHTML -replace '.*?>(.*?)</a>', '$1')
@@ -72,7 +72,7 @@ $AcrobatPro_Form_OK = New-Object System.Windows.Forms.Button
 $AcrobatPro_Form_OK.Text = 'OK'
 $AcrobatPro_Form_OK.Location = New-Object System.Drawing.Size((($AcrobatPro_Form.Width) / 3 ), (($AcrobatPro_Form.height) - 60))
 $AcrobatPro_Form_OK.Size = New-Object System.Drawing.Size(57, 20)
-$AcrobatPro_Form_OK.DialogResult = [System.Windows.Forms.DialogResult]::OK
+$AcrobatPro_Form_OK.DialogResult = [Windows.Forms.DialogResult]::OK
 $AcrobatPro_Form.Controls.Add($AcrobatPro_Form_OK)
 $AcrobatPro_Form.AcceptButton = $AcrobatPro_Form_OK
 
@@ -83,7 +83,7 @@ $AcrobatPro_Form_Cancel.Text = 'Cancel'
 $AcrobatPro_Form_Cancel.Add_Click({ $AcrobatPro_Form.Close() })
 $AcrobatPro_Form.Controls.Add($AcrobatPro_Form_Cancel)
 
-if ($AcrobatPro_Form.ShowDialog() -eq [System.Windows.Forms.DialogResult]::OK) {
+if ($AcrobatPro_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     $AcrobatPro_SelectedVersion = $AcrobatPro_DropDown.SelectedItem
     $AcrobatPro_SelectedHREF = $AcrobatPro_nnmclub_Array[$AcrobatPro_SelectedVersion]
 

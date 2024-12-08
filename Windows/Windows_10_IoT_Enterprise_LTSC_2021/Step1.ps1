@@ -17,7 +17,7 @@ Add-Type -AssemblyName System.Windows.Forms
 $Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{TopMost = $true; ShowInTaskbar = $false; Opacity = 0 }
 $Popup_Text = "1. Pin 'File Explorer' to taskbar
 2. Unpin 'Documents' and 'Pictures' from Quick Access"
-[System.Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK')
+[Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK')
 $Popup_Usermanual.Dispose()
 
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Initial_Setup.ps1')
@@ -31,10 +31,10 @@ $Popup_Text = "Wait for Windows Updates.
 2. Click on 'Driver updates'
 3. Select all
 4. Click on 'Download and install'"
-[System.Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK')
+[Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK')
 $Popup_Usermanual.Dispose()
 
 $Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{TopMost = $true; ShowInTaskbar = $false; Opacity = 0 }
 $Popup_Text = 'Please restart PC after installing all Windows Updates'
-[System.Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK')
+[Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK')
 $Popup_Usermanual.Dispose()

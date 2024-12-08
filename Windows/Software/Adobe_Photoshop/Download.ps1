@@ -5,7 +5,7 @@ $Photoshop_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
 $Photoshop_Form.Topmost = $true
 $Photoshop_Form.MaximizeBox = $false
 $Photoshop_Form.MinimizeBox = $false
-$Photoshop_Form.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog
+$Photoshop_Form.FormBorderStyle = [Windows.Forms.FormBorderStyle]::FixedDialog
 
 $Photoshop_DropDown = New-Object System.Windows.Forms.ComboBox
 $Photoshop_DropDown.Location = New-Object System.Drawing.Point(5, 0)
@@ -14,7 +14,7 @@ $Photoshop_DropDown.DropDownStyle = 'DropDownList'
 $Photoshop_nnmclub_search = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w14.monkrus.ws/search/label/Photoshop').Links | Where-Object { $_.outerHTML -notmatch 'Elements' -and $_.outerHTML -notmatch 'Collection' -and $_.outerHTML -match 'Multilingual' -and $_.outerHTML -notmatch '#more' -and $_.outerHTML -match 'Photoshop' }
 
 $Photoshop_nnmclub_Array = @{}
-$Photoshop_graphics = [System.Drawing.Graphics]::FromHwnd($Photoshop_Form.Handle)
+$Photoshop_graphics = [Drawing.Graphics]::FromHwnd($Photoshop_Form.Handle)
 $Photoshop_maxWidth = 0
 foreach ($Photoshop_nnmclub_post in $Photoshop_nnmclub_search) {
     $Photoshop_nnmclub_title = ($Photoshop_nnmclub_post.outerHTML -replace '.*?>(.*?)</a>', '$1')
@@ -36,7 +36,7 @@ $Photoshop_Form_OK = New-Object System.Windows.Forms.Button
 $Photoshop_Form_OK.Text = 'OK'
 $Photoshop_Form_OK.Location = New-Object System.Drawing.Size((($Photoshop_Form.Width) / 3 ), (($Photoshop_Form.height) - 60))
 $Photoshop_Form_OK.Size = New-Object System.Drawing.Size(57, 20)
-$Photoshop_Form_OK.DialogResult = [System.Windows.Forms.DialogResult]::OK
+$Photoshop_Form_OK.DialogResult = [Windows.Forms.DialogResult]::OK
 $Photoshop_Form.Controls.Add($Photoshop_Form_OK)
 $Photoshop_Form.AcceptButton = $Photoshop_Form_OK
 
@@ -47,7 +47,7 @@ $Photoshop_Form_Cancel.Text = 'Cancel'
 $Photoshop_Form_Cancel.Add_Click({ $Photoshop_Form.Close() })
 $Photoshop_Form.Controls.Add($Photoshop_Form_Cancel)
 
-if ($Photoshop_Form.ShowDialog() -eq [System.Windows.Forms.DialogResult]::OK) {
+if ($Photoshop_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     $Photoshop_SelectedVersion = $Photoshop_DropDown.SelectedItem
     $Photoshop_SelectedHREF = $Photoshop_nnmclub_Array[$Photoshop_SelectedVersion]
     

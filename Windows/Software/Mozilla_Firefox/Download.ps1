@@ -21,12 +21,12 @@ if (Test-Path -Path $Firefox_DesktopShortcut) {
 }
 
 $Firefox_Destination = (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*', 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*' -ErrorAction SilentlyContinue | Where-Object { $_.DisplayName -like '*Firefox*' }).InstallLocation
-$Firefox_OLD_PATH = [System.Environment]::GetEnvironmentVariable('Path', [System.EnvironmentVariableTarget]::User)
+$Firefox_OLD_PATH = [Environment]::GetEnvironmentVariable('Path', [EnvironmentVariableTarget]::User)
 if ($Firefox_OLD_PATH -notlike "*$Firefox_Destination*") {
     $Firefox_NEW_PATH = "$Firefox_OLD_PATH;$Firefox_Destination"
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Mozilla Firefox'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_Destination'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'PATH'"); [Console]::ResetColor(); [Console]::WriteLine()
-    [System.Environment]::SetEnvironmentVariable('Path', $Firefox_NEW_PATH, [System.EnvironmentVariableTarget]::User)
-    $env:Path = [System.Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path', 'User')
+    [Environment]::SetEnvironmentVariable('Path', $Firefox_NEW_PATH, [EnvironmentVariableTarget]::User)
+    $env:Path = [Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [Environment]::GetEnvironmentVariable('Path', 'User')
 }
 
 $Firefox_EXEDestination = [IO.Path]::Combine($Firefox_Destination, 'firefox.exe')
@@ -40,7 +40,7 @@ while ($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'firefo
 Start-Sleep -Milliseconds 10000
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox: Adding option to set foreground'); [Console]::ResetColor(); [Console]::WriteLine()
-if (-not ([System.Management.Automation.PSTypeName]'SFW').Type) {
+if (-not ([Management.Automation.PSTypeName]'SFW').Type) {
     Add-Type @'
     using System;
     using System.Runtime.InteropServices;
@@ -74,7 +74,7 @@ Start-Sleep -Milliseconds 100
 Start-Sleep -Milliseconds 1000
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox: Waiting for user to sign in'); [Console]::ResetColor(); [Console]::WriteLine()
-[System.Diagnostics.Process]::Start('firefox.exe', 'https://accounts.firefox.com/?context=fx_desktop_v3&entrypoint=fxa_toolbar_button&action=email&service=sync')
+[Diagnostics.Process]::Start('firefox.exe', 'https://accounts.firefox.com/?context=fx_desktop_v3&entrypoint=fxa_toolbar_button&action=email&service=sync')
 Start-Sleep -Milliseconds 1000
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox: Setting foreground'); [Console]::ResetColor(); [Console]::WriteLine()

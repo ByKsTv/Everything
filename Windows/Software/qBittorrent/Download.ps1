@@ -35,11 +35,11 @@ if ($null -eq $qBittorrent_InstalledVersion -or $qBittorrent_InstalledVersion -n
 $qBittorrent_ShortCut = [IO.Path]::Combine($env:ProgramData, 'Microsoft', 'Windows', 'Start Menu', 'Programs', 'qBittorrent', 'qBittorrent.lnk')
 if (Test-Path $qBittorrent_ShortCut) {
     $qBittorrent_Destination = Split-Path (New-Object -ComObject WScript.Shell).CreateShortcut($qBittorrent_ShortCut).TargetPath
-    $qBittorrent_OLD_PATH = [System.Environment]::GetEnvironmentVariable('Path', [System.EnvironmentVariableTarget]::User)
+    $qBittorrent_OLD_PATH = [Environment]::GetEnvironmentVariable('Path', [EnvironmentVariableTarget]::User)
     if ($qBittorrent_OLD_PATH -notlike "*$qBittorrent_Destination*") {
         $qBittorrent_NEW_PATH = "$qBittorrent_OLD_PATH;$qBittorrent_Destination"
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$qBittorrent_Destination'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'PATH'"); [Console]::ResetColor(); [Console]::WriteLine()
-        [System.Environment]::SetEnvironmentVariable('Path', $qBittorrent_NEW_PATH, [System.EnvironmentVariableTarget]::User)
-        $env:Path = [System.Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [System.Environment]::GetEnvironmentVariable('Path', 'User')
+        [Environment]::SetEnvironmentVariable('Path', $qBittorrent_NEW_PATH, [EnvironmentVariableTarget]::User)
+        $env:Path = [Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [Environment]::GetEnvironmentVariable('Path', 'User')
     }
 }
