@@ -10,7 +10,6 @@ Set-NetFirewallRule -Group $FirewallRules -Profile Private -Enabled True
 Set-NetFirewallRule -Profile Public, Private -Name FPS-SMB-In-TCP -Enabled True
 Set-NetConnectionProfile -NetworkCategory Private
 
-
 # 1. Retrieve All Network Adapters
 $NetworkAdapters = Get-NetAdapter
 
