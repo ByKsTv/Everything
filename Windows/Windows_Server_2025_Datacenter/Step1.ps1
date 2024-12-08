@@ -81,7 +81,7 @@ New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer
 if (-not (Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\PolicyManager\default\SettingsPageVisibility')) {
 	New-Item -Path 'HKLM:\SOFTWARE\Microsoft\PolicyManager\default\SettingsPageVisibility' -Force
 }
-New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\PolicyManager\default\SettingsPageVisibility" -Name "Value" -Value "hide:Feedback" -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\PolicyManager\default\SettingsPageVisibility' -Name 'Value' -Value 'hide:Feedback' -Force
 
 # Administrative Shares: Disable
 New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters' -Name 'AutoShareServer' -Value 0 -PropertyType DWord -Force
