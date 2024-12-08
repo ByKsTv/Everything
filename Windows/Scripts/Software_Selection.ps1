@@ -682,7 +682,7 @@ $SoftwareSelection_Form_OK.Add_Click{
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Git/Download.ps1')
     }
     if ($SoftwareSelection_CheckBoxes['HyperX NGENUITY'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Install_HyperX_NGENUITY.ps1') 
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/HyperX_NGENUITY/Download.ps1') 
     }
     if ($SoftwareSelection_CheckBoxes['Jellyfin'].Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Jellyfin/Download.ps1')
