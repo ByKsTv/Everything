@@ -616,7 +616,7 @@ $SoftwareSelection_Form_OK.Add_Click{
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Install_ADB.ps1') 
     }
     if ($SoftwareSelection_CheckBoxes['Adobe Acrobat Pro'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Install_Adobe_Acrobat_Pro.ps1') 
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Acrobat/Download.ps1') 
     }
     if ($SoftwareSelection_CheckBoxes['Adobe Lightroom Classic'].Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Install_Adobe_Lightroom_Classic.ps1') 
