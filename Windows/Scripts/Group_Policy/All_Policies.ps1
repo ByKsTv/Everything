@@ -474,3 +474,6 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Poli
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Acrobat/Group_Policy.ps1')
 
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Office/Group_Policy.ps1')
+
+# Group Policy: Computer Configuration: Administrative Templates: Start Menu and Taskbar: Remove Recommended section from Start Menu: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Explorer' -Name 'HideRecommendedSection' -Type DWORD -Value 1

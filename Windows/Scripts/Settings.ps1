@@ -10,6 +10,10 @@ elseif ($PowerPlanHigh) {
 	$PowerPlanGUID = ($PowerPlanHigh.Line -split 'GUID: ')[1].Trim().Split(' ')[0]
 	powercfg.exe /setactive $PowerPlanGUID
 }
+
+# Disable hibernation
+powercfg.exe /HIBERNATE OFF
+
 # Power Plan: Turn off display after: 0 Seconds (Never)
 powercfg.exe /SETACVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e 0
 powercfg.exe /SETDCVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e 0
@@ -257,3 +261,62 @@ New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer
 # Control Panel: Large Icons
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel' -Name 'AllItemsIconView' -PropertyType DWord -Value 0 -Force
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel' -Name 'StartupPage' -PropertyType DWord -Value 1 -Force
+
+# Do not use a different input method for each app window
+Set-WinLanguageBarOption
+
+# When I grab a windows's title bar and shake it, don't minimize all other windows
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'DisallowShaking' -PropertyType DWord -Value 1 -Force
+
+# Do not group files and folder in the Downloads folder
+Get-ChildItem -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell\Bags\*\Shell' -Recurse | Where-Object -FilterScript { $_.PSChildName -eq '{885A186E-A440-4ADA-812B-DB871B942259}' } | Remove-Item -Force
+# https://learn.microsoft.com/en-us/windows/win32/properties/props-system-null
+if (-not (Test-Path -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}')) {
+	New-Item -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Force
+}
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name 'ColumnList' -PropertyType String -Value 'System.Null' -Force
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name 'GroupBy' -PropertyType String -Value 'System.Null' -Force
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name 'LogicalViewMode' -PropertyType DWord -Value 1 -Force
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name 'Name' -PropertyType String -Value NoName -Force
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name 'Order' -PropertyType DWord -Value 0 -Force
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name 'PrimaryProperty' -PropertyType String -Value 'System.ItemNameDisplay' -Force
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name 'SortByList' -PropertyType String -Value 'prop:System.ItemNameDisplay' -Force
+
+# Do not expand to open folder on navigation pane (default value)
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'NavPaneExpandToCurrentFolder' -PropertyType DWord -Value 0 -Force
+
+# Settings: System: Storage: Storage Sense: Keep Windows running smoothly by automatically cleaning up temporary system and app files: On
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy' -Name '04' -PropertyType DWord -Value 1 -Force
+# Settings: System: Storage: Storage Sense: Automatic User content cleanup: On
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy' -Name '01' -PropertyType DWord -Value 1 -Force
+# Settings: System: Storage: Storage Sense: Run Storage Sense: Every day
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy' -Name '2048' -PropertyType DWord -Value 1 -Force
+# Settings: System: Storage: Storage Sense: Delete files in my recycle bin if they have been there for over: 60 days
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy' -Name '256' -PropertyType DWord -Value 60 -Force
+# Delete files in my Downloads folder if they haven't been opened for more than: 60 days
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy' -Name '32' -PropertyType DWord -Value 1 -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy' -Name '512' -PropertyType DWord -Value 60 -Force
+
+# Turn off Delivery Optimization
+New-ItemProperty -Path 'Registry::HKEY_USERS\S-1-5-20\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Settings' -Name 'DownloadMode' -PropertyType DWord -Value 0 -Force
+Delete-DeliveryOptimizationCache -Force
+
+# Do not let Windows manage my default printer
+New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Windows" -Name 'LegacyDefaultPrinterMode' -PropertyType DWord -Value 1 -Force
+
+# Disable Windows features
+$OptionalFeatureToRemove = @('WorkFolders-Client', 'WindowsMediaPlayer')
+foreach ($OptionalFeaturePattern in $OptionalFeatureToRemove) {
+	try {
+		$OptionalFeature = Get-WindowsOptionalFeature -Online | Where-Object { $_.State -eq 'Enabled' -and $_.FeatureName -like "*$OptionalFeaturePattern*" }
+		if ($OptionalFeature) {
+			$OptionalFeature | ForEach-Object { Disable-WindowsOptionalFeature -Online -NoRestart -FeatureName $_.FeatureName }
+		}
+		else {
+			Write-Host "No Optional Feature found for: $OptionalFeaturePattern"
+		}
+	}
+ catch {
+		Write-Host ('{0}: {1}' -f $OptionalFeaturePattern, $_.Exception.Message)
+	}
+}
