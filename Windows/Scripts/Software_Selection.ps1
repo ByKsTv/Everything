@@ -760,7 +760,7 @@ $SoftwareSelection_Form_OK.Add_Click{
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Visual_Studio_Code/Download.ps1')
     }
     if ($SoftwareSelection_CheckBoxes['VMware Workstation'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Install_VMware_Workstation.ps1') 
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/VMware_Workstation/Download.ps1') 
     }
     if ($SoftwareSelection_CheckBoxes['Windows 10 IoT Enterprise LTSC 2021'].Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Windows_10_IoT_Enterprise_LTSC_2021/ISO.ps1')
