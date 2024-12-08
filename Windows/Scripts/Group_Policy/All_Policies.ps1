@@ -11,50 +11,9 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\InputPersonalizati
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\InputPersonalization' -Name 'RestrictImplicitInkCollection' -Type DWORD -Value 1
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\InputPersonalization' -Name 'RestrictImplicitTextCollection' -Type DWORD -Value 1
 
-# Computer Configuration: Administrative Templates: Google: Google Chrome: Enable Bookmark Bar: Enabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Google\Chrome' -Name 'BookmarkBarEnabled' -Type DWORD -Value 1
+Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Google_Chrome/Group_Policy.ps1')
 
-# Computer Configuration: Administrative Templates: Google: Google Chrome: Show the apps shortcut in the bookmark bar: Disabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Google\Chrome' -Name 'ShowAppsShortcutInBookmarkBar' -Type DWORD -Value 0
-
-# Computer Configuration: Administrative Templates: Google: Google Chrome: Enable showing full-tab promotional content: Disabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'PromotionalTabsEnabled' -Type DWORD -Value 0
-
-# Computer Configuration: Administrative Templates: Google: Google Chrome: Privacy Sanndbox policies: Choose whether the Privacy Sandbox ad measurement setting can be disabled: Disabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'PrivacySandboxAdMeasurementEnabled' -Type DWORD -Value 0
-
-# Computer Configuration: Administrative Templates: Google: Google Chrome: Privacy Sanndbox policies: Choose whether the Privacy Sandbox Ad topics setting can be disabled: Disabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'PrivacySandboxAdTopicsEnabled' -Type DWORD -Value 0
-
-# Computer Configuration: Administrative Templates: Google: Google Chrome: Privacy Sanndbox policies: Choose whether the Privacy Sandbox prompt can be shown to your users: Disabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'PrivacySandboxPromptEnabled' -Type DWORD -Value 0
-
-# Computer Configuration: Administrative Templates: Google: Google Chrome: Privacy Sanndbox policies: Choose whether the Privacy Sandbox Site-suggested ads setting can be disabled: Disabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'PrivacySandboxSiteEnabledAdsEnabled' -Type DWORD -Value 0
-
-# Group Policy: Computer Configuration: Administrative Templates: Mozilla: Firefox: Background updater: Disabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'BackgroundAppUpdate' -Type DWORD -Value 0
-
-# Group Policy: Computer Configuration: Administrative Templates: Mozilla: Firefox: Disable Feedback Commands: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'DisableFeedbackCommands' -Type DWORD -Value 1
-
-# Group Policy: Computer Configuration: Administrative Templates: Mozilla: Firefox: Disable Firefox Studies: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'DisableFirefoxStudies' -Type DWORD -Value 1
-
-# Group Policy: Computer Configuration: Administrative Templates: Mozilla: Firefox: Disable Pocket: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'DisablePocket' -Type DWORD -Value 1
-
-# Group Policy: Computer Configuration: Administrative Templates: Mozilla: Firefox: Disable Profile Refresh: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'DisableProfileRefresh' -Type DWORD -Value 1
-
-# Group Policy: Computer Configuration: Administrative Templates: Mozilla: Firefox: Disable Telemetry: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'DisableTelemetry' -Type DWORD -Value 1
-
-# Group Policy: Computer Configuration: Administrative Templates: Mozilla: Firefox: Disable the default browser agent: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'DisableDefaultBrowserAgent' -Type DWORD -Value 1
-
-# Group Policy: Computer Configuration: Administrative Templates: Mozilla: Firefox: No Default Bookmarks: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'NoDefaultBookmarks' -Type DWORD -Value 1
+Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/Group_Policy.ps1')
 
 # Group Policy: Computer Configuration: Administrative Templates: Network: QoS Packet Scheduler: Limit reservable bandwidth: Enabled: 0%
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Psched' -Name 'NonBestEffortLimit' -Type DWORD -Value 0
@@ -336,6 +295,10 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\Featu
 # Computer Configuration: Administrative Templates: Adobe Acrobat DC: Preferences: Startup: Protected View: For all files
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name 'iProtectedView' -Type DWORD -Value 2
 
+# Doesnt exist
+# Adobe Acrobat: Turn off the generative AI features
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name 'bEnableGentech' -Type DWORD -Value 0
+
 # Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off handwriting recognition error reporting: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\HandwritingErrorReports' -Name 'PreventHandwritingErrorReports' -Type DWORD -Value 1
 
@@ -480,10 +443,6 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Poli
 # Doesn't exist
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Data Collection and Preview Builds: Limit Diagnostic Log Collection: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\DataCollection' -Name 'LimitDiagnosticLogCollection' -Type DWORD -Value 1
-
-# Doesnt exist
-# Adobe Acrobat: Turn off the generative AI features
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Adobe\Adobe Acrobat\DC\FeatureLockDown' -Name 'bEnableGentech' -Type DWORD -Value 0
 
 # Doesn't exist
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Don't search the web or display web results in Search: Enabled

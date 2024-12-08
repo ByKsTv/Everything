@@ -1,5 +1,9 @@
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/Group_Policy_Templates.ps1')
 
+Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Group_Policy/Pre.ps1')
+Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/Group_Policy.ps1')
+Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Group_Policy/Post.ps1')
+
 $Firefox_DDL = (Invoke-WebRequest -UseBasicParsing -Uri 'https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US' -MaximumRedirection 0 -ErrorAction SilentlyContinue).Headers.Location
 $Firefox_Filename = [IO.Path]::GetFileName(([URI]$Firefox_DDL).AbsolutePath)
 $Firefox_SavePath = [Uri]::UnescapeDataString([IO.Path]::Combine($env:TEMP, $Firefox_Filename))
