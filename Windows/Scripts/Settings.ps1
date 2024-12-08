@@ -250,3 +250,10 @@ if (Get-CimInstance -ClassName CIM_VideoController | Where-Object -FilterScript 
 		}
 	}
 }
+
+# Settings: Personalization: Taskbar: Combine taskbar buttons and hide labels: Always
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'TaskbarGlomLevel' -PropertyType DWord -Value 0 -Force
+
+# Control Panel: Large Icons
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel' -Name 'AllItemsIconView' -PropertyType DWord -Value 0 -Force
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel' -Name 'StartupPage' -PropertyType DWord -Value 1 -Force
