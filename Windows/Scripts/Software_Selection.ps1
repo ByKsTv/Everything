@@ -700,7 +700,7 @@ $SoftwareSelection_Form_OK.Add_Click{
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Office/Download.ps1') 
     }
     if ($SoftwareSelection_CheckBoxes['Microsoft Store'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Install_Microsoft_Store.ps1')
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Store/Download.ps1')
     }
     if ($SoftwareSelection_CheckBoxes['Minecraft Launcher'].Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Install_Minecraft_Launcher.ps1')
