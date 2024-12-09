@@ -47,6 +47,7 @@ Set-NetOffloadGlobalSetting -Chimney Disabled
 
 # 6. Update Adapter-Specific Settings
 $SettingsToChange = @(
+	@{ DisplayName = 'Enable PME'; DisplayValues = @('Disabled') }
 	@{ DisplayName = 'Wake on Magic Packet'; DisplayValues = @('Disabled') }
 	@{ DisplayName = 'Wake on Magic Packet'; DisplayValues = @('Disabled') }
 	@{ DisplayName = 'ARP Offload'; DisplayValues = @('Disabled') }
