@@ -47,6 +47,9 @@ Set-NetOffloadGlobalSetting -Chimney Disabled
 
 # 6. Update Adapter-Specific Settings
 $SettingsToChange = @(
+	@{ DisplayName = 'Wake on Magic Packet'; DisplayValues = @('Disabled') }
+	@{ DisplayName = 'Wake on Magic Packet'; DisplayValues = @('Disabled') }
+	@{ DisplayName = 'ARP Offload'; DisplayValues = @('Disabled') }
 	@{ DisplayName = 'Energy Efficient Ethernet'; DisplayValues = @('Disabled', 'Off') }
 	@{ DisplayName = 'Flow Control'; DisplayValues = @('Disabled') }
 	@{ DisplayName = 'Gigabit Master Slave Mode'; DisplayValues = @('Auto Detect') }
