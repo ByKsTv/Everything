@@ -141,7 +141,7 @@ foreach ($Adapter in $NetworkAdapters) {
 }
 
 if ($UnusedSettings.Count -gt 0) {
-	Write-Host 'Unused Settings Found:' -ForegroundColor Yellow
+	Write-Host 'Unused Settings Found:' -ForegroundColor Red
 	foreach ($Setting in $UnusedSettings) {
 		Write-Host "$($Setting.AdapterName): $($Setting.DisplayName): Valid Values: $($Setting.ValidValues)"
 	}
