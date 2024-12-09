@@ -509,8 +509,6 @@ $ProcessCreationXML = @"
 if (-not (Test-Path -Path "$env:ProgramData\Microsoft\Event Viewer\Views")) {
     New-Item -Path "$env:ProgramData\Microsoft\Event Viewer\Views" -ItemType Directory -Force
 }
-
-# Save ProcessCreation.xml in the UTF-8 without BOM encoding
 Set-Content -Path "$env:ProgramData\Microsoft\Event Viewer\Views\ProcessCreation.xml" -Value $ProcessCreationXML -Encoding Default -NoNewline -Force
 
 # Group Policy: User Configuration: Administrative Templates: Windows Components: Windows PowerShell: Turn on Module Logging: Enabled
