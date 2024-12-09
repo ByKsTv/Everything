@@ -46,6 +46,18 @@ Set-NetOffloadGlobalSetting -ReceiveSideScaling Disabled
 Set-NetOffloadGlobalSetting -Chimney Disabled
 
 # 6. Update Adapter-Specific Settings
+# In case we need to add more settings
+# foreach ($Adapter in $NetworkAdapters) {
+#     Write-Host "Advanced properties for adapter: $($Adapter.Name)" -ForegroundColor Cyan
+#     $AdvancedProperties = Get-NetAdapterAdvancedProperty -Name $Adapter.Name
+#     foreach ($Property in $AdvancedProperties) {
+#         Write-Host "Property: $($Property.DisplayName)" -ForegroundColor Green
+#         Write-Host "Current Value: $($Property.DisplayValue)"
+#         Write-Host "Valid Options: $($Property.ValidDisplayValues -join ', ')" -ForegroundColor Yellow
+#         Write-Host ""
+#     }
+# }
+
 $SettingsToChange = @(
 	@{ DisplayName = 'Energy Efficient Ethernet'; DisplayValues = @('Disabled', 'Off') }
 	@{ DisplayName = 'Flow Control'; DisplayValues = @('Disabled') }
@@ -101,7 +113,15 @@ foreach ($Adapter in $NetworkAdapters) {
 	foreach ($Setting in $SettingsToChange) {
 		$Property = $AdvancedProperties | Where-Object { $_.DisplayName -eq $Setting.DisplayName }
 		if ($Property) {
-			foreach ($Value in $Setting.DisplayValues) {
+			$ValidValues = $Property.ValidDisplayValues
+			Write-Host "$($Adapter.Name): $($Setting.DisplayName): Options: $($ValidValues)"
+			$ValuesToApply = if ($ValidValues -and $ValidValues.Count -gt 0) {
+				$Setting.DisplayValues | Where-Object { $ValidValues -contains $_ }
+			}
+			else {
+				$Setting.DisplayValues
+			}
+			foreach ($Value in $ValuesToApply) {
 				Write-Host "$($Adapter.Name): $($Setting.DisplayName): $Value" -ForegroundColor Green
 				Set-NetAdapterAdvancedProperty -Name $Adapter.Name -DisplayName $Setting.DisplayName -DisplayValue $Value
 			}
