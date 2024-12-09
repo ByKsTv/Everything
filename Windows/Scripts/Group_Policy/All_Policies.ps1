@@ -477,3 +477,6 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 
 # Group Policy: Computer Configuration: Administrative Templates: Start Menu and Taskbar: Remove Recommended section from Start Menu: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Explorer' -Name 'HideRecommendedSection' -Type DWORD -Value 1
+
+# Group Policy: Computer Configuration: Administrative Templates: Control Panel: Printers: Turn off Windows default printer management: Enabled
+Set-Policy -Scope User -Path 'Software\Microsoft\Windows NT\CurrentVersion\Windows' -Name 'LegacyDefaultPrinterMode' -Type DWORD -Value 1
