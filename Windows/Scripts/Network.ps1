@@ -47,56 +47,56 @@ Set-NetOffloadGlobalSetting -Chimney Disabled
 
 # 6. Update Adapter-Specific Settings
 $SettingsToChange = @(
-	@{ DisplayName = 'Enable PME'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Wake on Magic Packet'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Wake on Magic Packet'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'ARP Offload'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Energy Efficient Ethernet'; DisplayValues = @('Disabled', 'Off') }
-	@{ DisplayName = 'Flow Control'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Gigabit Master Slave Mode'; DisplayValues = @('Auto Detect') }
-	@{ DisplayName = 'IPv4 Checksum Offload'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Interrupt Moderation Rate'; DisplayValues = @('Off') }
-	@{ DisplayName = 'Interrupt Moderation'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Jumbo Frame'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Jumbo Packet'; DisplayValues = @('1514', 'Disabled') }
-	@{ DisplayName = 'Large Send Offload (IPv4)'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Large Send Offload v2 (IPv4)'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Large Send Offload v2 (IPv6)'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Legacy Switch Compatibility Mode'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Log Link State Event'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Max IRQ per Second'; DisplayValues = @('30000') }
-	@{ DisplayName = 'Maximum Number of RSS Queues'; DisplayValues = @('1 RSS Queues', '1 Queue') }
-	@{ DisplayName = 'NS Offload'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'PTP Hardware Timestamp'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Packet Priority & VLAN'; DisplayValues = @('Packet Priority & VLAN Disabled') }
-	@{ DisplayName = 'Protocol ARP Offload'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Protocol NS Offload'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Receive Buffers'; DisplayValues = @('2048') }
-	@{ DisplayName = 'Receive Side Scaling'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Reduce Speed On Power Down'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Selective Suspend'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Selective Suspend Idle Timeout'; DisplayValues = @('5') }
-	@{ DisplayName = 'Software Timestamp'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Speed & Duplex'; DisplayValues = @('1.0 Gbps Full Duplex') }
-	@{ DisplayName = 'System Idle Power Saver'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'TCP Checksum Offload (IPv4)'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'TCP Checksum Offload (IPv6)'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Transmit Buffers'; DisplayValues = @('1024', '2048') }
-	@{ DisplayName = 'UDP Checksum Offload (IPv4)'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'UDP Checksum Offload (IPv6)'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Ultra Low Power Mode'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Wait for Link'; DisplayValues = @('Off') }
-	@{ DisplayName = 'Wake from S0ix on Magic Packet'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Wake on Link Settings'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Wake on Pattern Match'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Adaptive Inter-Frame Spacing'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'DMA Coalescing'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'WOL & Shutdown Link Speed'; DisplayValues = @('Not Speed Down') }
-	@{ DisplayName = 'Shutdown Wake-On-Lan'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Priority & VLAN'; DisplayValues = @('Priority & VLAN Disabled') }
-	@{ DisplayName = 'Gigabit Lite'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Power Saving Mode'; DisplayValues = @('Disabled') }
-	@{ DisplayName = 'Green Ethernet'; DisplayValues = @('Disabled') }
+	@{ DisplayName = 'Enable PME'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Wake on Magic Packet'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Wake on Magic Packet'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'ARP Offload'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Energy Efficient Ethernet'; DisplayValues = @('Disabled', 'Off') },
+	@{ DisplayName = 'Flow Control'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Gigabit Master Slave Mode'; DisplayValues = @('Auto Detect') },
+	@{ DisplayName = 'IPv4 Checksum Offload'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Interrupt Moderation Rate'; DisplayValues = @('Off') },
+	@{ DisplayName = 'Interrupt Moderation'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Jumbo Frame'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Jumbo Packet'; DisplayValues = @('1514', 'Disabled') },
+	@{ DisplayName = 'Large Send Offload (IPv4)'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Large Send Offload v2 (IPv4)'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Large Send Offload v2 (IPv6)'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Legacy Switch Compatibility Mode'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Log Link State Event'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Max IRQ per Second'; DisplayValues = @('30000') },
+	@{ DisplayName = 'Maximum Number of RSS Queues'; DisplayValues = @('1 RSS Queues', '1 Queue') },
+	@{ DisplayName = 'NS Offload'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'PTP Hardware Timestamp'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Packet Priority & VLAN'; DisplayValues = @('Packet Priority & VLAN Disabled') },
+	@{ DisplayName = 'Protocol ARP Offload'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Protocol NS Offload'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Receive Buffers'; DisplayValues = @('2048') },
+	@{ DisplayName = 'Receive Side Scaling'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Reduce Speed On Power Down'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Selective Suspend'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Selective Suspend Idle Timeout'; DisplayValues = @('5') },
+	@{ DisplayName = 'Software Timestamp'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Speed & Duplex'; DisplayValues = @('1.0 Gbps Full Duplex') },
+	@{ DisplayName = 'System Idle Power Saver'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'TCP Checksum Offload (IPv4)'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'TCP Checksum Offload (IPv6)'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Transmit Buffers'; DisplayValues = @('1024', '2048') },
+	@{ DisplayName = 'UDP Checksum Offload (IPv4)'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'UDP Checksum Offload (IPv6)'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Ultra Low Power Mode'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Wait for Link'; DisplayValues = @('Off') },
+	@{ DisplayName = 'Wake from S0ix on Magic Packet'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Wake on Link Settings'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Wake on Pattern Match'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Adaptive Inter-Frame Spacing'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'DMA Coalescing'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'WOL & Shutdown Link Speed'; DisplayValues = @('Not Speed Down') },
+	@{ DisplayName = 'Shutdown Wake-On-Lan'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Priority & VLAN'; DisplayValues = @('Priority & VLAN Disabled') },
+	@{ DisplayName = 'Gigabit Lite'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Power Saving Mode'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Green Ethernet'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'ECMA'; DisplayValues = @('Enabled') }
 )
 
