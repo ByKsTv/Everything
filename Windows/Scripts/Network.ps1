@@ -46,18 +46,6 @@ Set-NetOffloadGlobalSetting -ReceiveSideScaling Disabled
 Set-NetOffloadGlobalSetting -Chimney Disabled
 
 # 6. Update Adapter-Specific Settings
-# In case we need to add more settings
-# foreach ($Adapter in $NetworkAdapters) {
-#     Write-Host "Advanced properties for adapter: $($Adapter.Name)" -ForegroundColor Cyan
-#     $AdvancedProperties = Get-NetAdapterAdvancedProperty -Name $Adapter.Name
-#     foreach ($Property in $AdvancedProperties) {
-#         Write-Host "Property: $($Property.DisplayName)" -ForegroundColor Green
-#         Write-Host "Current Value: $($Property.DisplayValue)"
-#         Write-Host "Valid Options: $($Property.ValidDisplayValues -join ', ')" -ForegroundColor Yellow
-#         Write-Host ""
-#     }
-# }
-
 $SettingsToChange = @(
 	@{ DisplayName = 'Energy Efficient Ethernet'; DisplayValues = @('Disabled', 'Off') }
 	@{ DisplayName = 'Flow Control'; DisplayValues = @('Disabled') }
@@ -108,13 +96,22 @@ $SettingsToChange = @(
 	@{ DisplayName = 'ECMA'; DisplayValues = @('Enabled') }
 )
 
+$UnusedSettings = @()
+
 foreach ($Adapter in $NetworkAdapters) {
-	$AdvancedProperties = Get-NetAdapterAdvancedProperty -Name $Adapter.Name -ErrorAction Stop
+	$AdvancedProperties = try {
+		Get-NetAdapterAdvancedProperty -Name $Adapter.Name -ErrorAction Stop
+	}
+ catch {
+		Write-Host "Error retrieving properties for adapter: $($Adapter.Name)" -ForegroundColor Red
+		continue
+	}
+
 	foreach ($Setting in $SettingsToChange) {
 		$Property = $AdvancedProperties | Where-Object { $_.DisplayName -eq $Setting.DisplayName }
 		if ($Property) {
 			$ValidValues = $Property.ValidDisplayValues
-			Write-Host "$($Adapter.Name): $($Setting.DisplayName): Options: $($ValidValues)"
+			Write-Host "$($Adapter.Name): $($Setting.DisplayName): Options: $($ValidValues -join ', ')"
 			$ValuesToApply = if ($ValidValues -and $ValidValues.Count -gt 0) {
 				$Setting.DisplayValues | Where-Object { $ValidValues -contains $_ }
 			}
@@ -122,11 +119,35 @@ foreach ($Adapter in $NetworkAdapters) {
 				$Setting.DisplayValues
 			}
 			foreach ($Value in $ValuesToApply) {
-				Write-Host "$($Adapter.Name): $($Setting.DisplayName): $Value" -ForegroundColor Green
-				Set-NetAdapterAdvancedProperty -Name $Adapter.Name -DisplayName $Setting.DisplayName -DisplayValue $Value
+				try {
+					Write-Host "$($Adapter.Name): $($Setting.DisplayName): Applying Value: $Value" -ForegroundColor Green
+					Set-NetAdapterAdvancedProperty -Name $Adapter.Name -DisplayName $Setting.DisplayName -DisplayValue $Value -ErrorAction Stop
+				}
+				catch {
+					Write-Host "Error applying value '$Value' for '$($Setting.DisplayName)' on '$($Adapter.Name)'" -ForegroundColor Red
+				}
 			}
 		}
 	}
+
+	$UsedDisplayNames = $SettingsToChange.DisplayName
+	$UnusedSettings += $AdvancedProperties | Where-Object { $UsedDisplayNames -notcontains $_.DisplayName } | ForEach-Object {
+		[PSCustomObject]@{
+			AdapterName = $Adapter.Name
+			DisplayName = $_.DisplayName
+			ValidValues = $_.ValidDisplayValues -join ', '
+		}
+	}
+}
+
+if ($UnusedSettings.Count -gt 0) {
+	Write-Host 'Unused Settings Found:' -ForegroundColor Yellow
+	foreach ($Setting in $UnusedSettings) {
+		Write-Host "$($Setting.AdapterName): $($Setting.DisplayName): Valid Values: $($Setting.ValidValues)"
+	}
+}
+else {
+	Write-Host 'No unused settings found.' -ForegroundColor Green
 }
 
 # 7. Disable Binding Settings for Specific Adapters
