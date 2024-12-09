@@ -12,6 +12,9 @@ Start-Service -Name "SSDPSRV"
 Set-Service -Name "upnphost" -StartupType Automatic
 Start-Service -Name "upnphost"
 
+# Settings: Network & Internet: Public networks: File and printer sharing: Off
+Set-NetFirewallRule -Profile Public -Name FPS-SMB-In-TCP -Enabled False
+
 # 1. Retrieve All Network Adapters
 $NetworkAdapters = Get-NetAdapter
 
