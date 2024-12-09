@@ -1,8 +1,16 @@
-# Private Network
-Set-NetFirewallRule -Group '@FirewallAPI.dll,-28502', '@FirewallAPI.dll,-32752' -Profile Private -Enabled True
-Set-NetFirewallRule -Profile Private -Name FPS-SMB-In-TCP -Enabled True
-Set-NetFirewallRule -Profile Public -Name FPS-SMB-In-TCP -Enabled False
+# Settings: Network & Internet: Private networks: Current profile
 Set-NetConnectionProfile -NetworkCategory Private
+# Settings: Network & Internet: Private networks: Network discovery: On
+Set-NetFirewallRule -Group '@FirewallAPI.dll,-28502' -Profile Private -Enabled True
+# Settings: Network & Internet: Private networks: File and printer sharing: On
+Set-NetFirewallRule -Group '@FirewallAPI.dll,-32752' -Profile Private -Enabled True
+Set-NetFirewallRule -Profile Private -Name FPS-SMB-In-TCP -Enabled True
+Set-Service -Name "FDResPub" -StartupType Automatic
+Start-Service -Name "FDResPub"
+Set-Service -Name "SSDPSRV" -StartupType Automatic
+Start-Service -Name "SSDPSRV"
+Set-Service -Name "upnphost" -StartupType Automatic
+Start-Service -Name "upnphost"
 
 # 1. Retrieve All Network Adapters
 $NetworkAdapters = Get-NetAdapter
