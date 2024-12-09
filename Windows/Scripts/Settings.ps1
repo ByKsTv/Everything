@@ -234,6 +234,9 @@ if (Get-CimInstance -ClassName CIM_VideoController | Where-Object -FilterScript 
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'TaskbarGlomLevel' -PropertyType DWord -Value 0 -Force
 
 # Control Panel: Large Icons
+if (-not (Test-Path -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel')) {
+	New-Item -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel' -Force
+}
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel' -Name 'AllItemsIconView' -PropertyType DWord -Value 0 -Force
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel' -Name 'StartupPage' -PropertyType DWord -Value 1 -Force
 
@@ -277,7 +280,7 @@ New-ItemProperty -Path 'Registry::HKEY_USERS\S-1-5-20\SOFTWARE\Microsoft\Windows
 Delete-DeliveryOptimizationCache -Force
 
 # Do not let Windows manage my default printer
-New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Windows" -Name 'LegacyDefaultPrinterMode' -PropertyType DWord -Value 1 -Force
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Windows' -Name 'LegacyDefaultPrinterMode' -PropertyType DWord -Value 1 -Force
 
 # List of task names to check and disable
 $taskNames = @('PcaPatchDbTask', 'Consolidator', 'DmClient', 'DmClientOnScenarioDownload', 'FamilySafetyMonitor', 'FamilySafetyRefreshTask', 'MapsToastTask', 'MapsUpdateTask', 'ProgramDataUpdater', 'MareBackup', 'Microsoft Compatibility Appraiser', 'Microsoft-Windows-DiskDiagnosticDataCollector', 'PcaWallpaperAppDetect', 'Proxy', 'StartupAppTask', 'QueueReporting', 'XblGameSaveTask', 'UsbCeip')
