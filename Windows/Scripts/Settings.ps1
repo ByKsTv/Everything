@@ -327,6 +327,9 @@ New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings' -Nam
 # Override for default input method: English
 Set-WinDefaultInputMethodOverride -InputTip '0409:00000409'
 
+# Let me use a different input method for each app window
+Set-WinLanguageBarOption -UseLegacySwitchMode
+
 # Use the latest installed .NET runtime for all apps
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NETFramework' -Name 'OnlyUseLatestCLR' -PropertyType DWord -Value 1 -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\.NETFramework' -Name 'OnlyUseLatestCLR' -PropertyType DWord -Value 1 -Force
@@ -383,11 +386,11 @@ New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Security Health\State' 
 # Enable apps and files checking within Microsoft Defender SmartScreen
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer' -Name 'SmartScreenEnabled' -PropertyType String -Value Warn -Force
 
-# Disable Windows Script Host
+# Enable Windows Script Host
 if (-not (Test-Path -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings')) {
 	New-Item -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings' -Force
 }
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings' -Name 'Enabled' -PropertyType DWord -Value 0 -Force
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings' -Name 'Enabled' -PropertyType DWord -Value 1 -Force
 
 # Enable Windows Sandbox
 if ((Get-CimInstance -ClassName CIM_Processor).VirtualizationFirmwareEnabled) {
