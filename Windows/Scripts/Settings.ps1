@@ -346,8 +346,8 @@ New-ItemProperty -Path 'HKCU:\Software\Classes\Typelib\{8cec5860-07a1-11d9-b15e-
 # Enable Num Lock at startup
 New-ItemProperty -Path 'Registry::HKEY_USERS\.DEFAULT\Control Panel\Keyboard' -Name 'InitialKeyboardIndicators' -PropertyType String -Value 2147483650 -Force
 
-# Disable Caps Lock
-New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Keyboard Layout" -Name "Scancode Map" -PropertyType Binary -Value ([byte[]](0,0,0,0,0,0,0,0,2,0,0,0,0,0,58,0,0,0,0,0)) -Force
+# Enable Caps Lock
+Remove-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Keyboard Layout" -Name "Scancode Map" -Force -ErrorAction Ignore
 
 # Use AutoPlay for all media and devices
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers' -Name 'DisableAutoplay' -PropertyType DWord -Value 0 -Force
@@ -424,23 +424,11 @@ foreach ($InterfaceGuid in $InterfaceGuids) {
 Clear-DnsClientCache
 Register-DnsClient
 
-# Show the "Extract all" item in the Windows Installer (.msi) context menu
-if (-not (Test-Path -Path 'Registry::HKEY_CLASSES_ROOT\Msi.Package\shell\Extract\Command')) {
-	New-Item -Path 'Registry::HKEY_CLASSES_ROOT\Msi.Package\shell\Extract\Command' -Force
-}
-$Value = "msiexec.exe /a `"%1`" /qb TARGETDIR=`"%1 extracted`""
-New-ItemProperty -Path 'Registry::HKEY_CLASSES_ROOT\Msi.Package\shell\Extract\Command' -Name '(default)' -PropertyType String -Value $Value -Force
-New-ItemProperty -Path 'Registry::HKEY_CLASSES_ROOT\Msi.Package\shell\Extract' -Name 'MUIVerb' -PropertyType String -Value '@shell32.dll,-37514' -Force
-New-ItemProperty -Path 'Registry::HKEY_CLASSES_ROOT\Msi.Package\shell\Extract' -Name 'Icon' -PropertyType String -Value 'shell32.dll,-16817' -Force
+# Hide the "Extract all" item from the Windows Installer (.msi) context menu
+Remove-Item -Path 'Registry::HKEY_CLASSES_ROOT\Msi.Package\shell\Extract' -Recurse -Force -ErrorAction Ignore
 
-# Show the "Install" item in the Cabinet (.cab) filenames extensions context menu
-if (-not (Test-Path -Path 'Registry::HKEY_CLASSES_ROOT\CABFolder\Shell\runas\Command')) {
-	New-Item -Path 'Registry::HKEY_CLASSES_ROOT\CABFolder\Shell\runas\Command' -Force
-}
-$Value = "cmd /c DISM.exe /Online /Add-Package /PackagePath:`"%1`" /NoRestart & pause"
-New-ItemProperty -Path 'Registry::HKEY_CLASSES_ROOT\CABFolder\Shell\runas\Command' -Name '(default)' -PropertyType String -Value $Value -Force
-New-ItemProperty -Path 'Registry::HKEY_CLASSES_ROOT\CABFolder\Shell\runas' -Name 'MUIVerb' -PropertyType String -Value '@shell32.dll,-10210' -Force
-New-ItemProperty -Path 'Registry::HKEY_CLASSES_ROOT\CABFolder\Shell\runas' -Name 'HasLUAShield' -PropertyType String -Value '' -Force
+# Hide the "Install" item from the Cabinet (.cab) filenames extensions context menu
+Remove-Item -Path 'Registry::HKEY_CLASSES_ROOT\CABFolder\Shell\runas' -Recurse -Force -ErrorAction Ignore
 
 # Hide the "Print" item from the .bat and .cmd context menu
 New-ItemProperty -Path 'Registry::HKEY_CLASSES_ROOT\batfile\shell\print' -Name 'ProgrammaticAccessOnly' -PropertyType String -Value '' -Force
