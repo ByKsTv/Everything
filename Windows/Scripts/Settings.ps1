@@ -320,3 +320,6 @@ foreach ($OptionalFeaturePattern in $OptionalFeatureToRemove) {
 		Write-Host ('{0}: {1}' -f $OptionalFeaturePattern, $_.Exception.Message)
 	}
 }
+
+# Settings: Windows Update: Get the latest updates as soon as they're available: Off
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings' -Name 'IsContinuousInnovationOptedIn' -PropertyType DWord -Value 0 -Force
