@@ -323,3 +323,140 @@ foreach ($OptionalFeaturePattern in $OptionalFeatureToRemove) {
 
 # Settings: Windows Update: Get the latest updates as soon as they're available: Off
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings' -Name 'IsContinuousInnovationOptedIn' -PropertyType DWord -Value 0 -Force
+
+# Override for default input method: English
+Set-WinDefaultInputMethodOverride -InputTip '0409:00000409'
+
+# Use the latest installed .NET runtime for all apps
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NETFramework' -Name 'OnlyUseLatestCLR' -PropertyType DWord -Value 1 -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\.NETFramework' -Name 'OnlyUseLatestCLR' -PropertyType DWord -Value 1 -Force
+
+# Launch folder windows in a separate process
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'SeparateProcess' -PropertyType DWord -Value 1 -Force
+
+# Disable and delete reserved storage after the next update installation
+Set-WindowsReservedStorageState -State Disabled
+
+# Disable help lookup via F1
+if (-not (Test-Path -Path 'HKCU:\Software\Classes\Typelib\{8cec5860-07a1-11d9-b15e-000d56bfe6ee}\1.0\0\win64')) {
+	New-Item -Path 'HKCU:\Software\Classes\Typelib\{8cec5860-07a1-11d9-b15e-000d56bfe6ee}\1.0\0\win64' -Force
+}
+New-ItemProperty -Path 'HKCU:\Software\Classes\Typelib\{8cec5860-07a1-11d9-b15e-000d56bfe6ee}\1.0\0\win64' -Name '(default)' -PropertyType String -Value '' -Force
+
+# Enable Num Lock at startup
+New-ItemProperty -Path 'Registry::HKEY_USERS\.DEFAULT\Control Panel\Keyboard' -Name 'InitialKeyboardIndicators' -PropertyType String -Value 2147483650 -Force
+
+# Disable Caps Lock
+New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Keyboard Layout" -Name "Scancode Map" -PropertyType Binary -Value ([byte[]](0,0,0,0,0,0,0,0,2,0,0,0,0,0,58,0,0,0,0,0)) -Force
+
+# Use AutoPlay for all media and devices
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers' -Name 'DisableAutoplay' -PropertyType DWord -Value 0 -Force
+
+# Enable thumbnail cache removal
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\Thumbnail Cache' -Name 'Autorun' -PropertyType DWord -Value 3 -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\Thumbnail Cache' -Name 'Autorun' -PropertyType DWord -Value 3 -Force
+
+# Prevent all internal SATA drives from showing up as removable media in the taskbar notification area
+New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\storahci\Parameters\Device' -Name 'TreatAsInternalPort' -Type MultiString -Value @(0, 1, 2, 3, 4, 5) -Force
+
+# Back up the system registry to %SystemRoot%\System32\config\RegBack folder
+New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Configuration Manager" -Name 'EnablePeriodicBackup' -Type DWord -Value 1 -Force
+
+# Enable Microsoft Defender Exploit Guard network protection
+Set-MpPreference -EnableNetworkProtection Enabled
+
+# Enable detection for potentially unwanted applications and block them
+Set-MpPreference -PUAProtection Enabled
+
+# Enable sandboxing for Microsoft Defender
+& "$env:SystemRoot\System32\setx.exe" /M MP_FORCE_USE_SANDBOX 1
+
+# Dismiss Microsoft Defender offer in the Windows Security about signing in Microsoft account
+if (-not (Test-Path -Path 'HKCU:\Software\Microsoft\Windows Security Health\State')) {
+	New-Item -Path 'HKCU:\Software\Microsoft\Windows Security Health\State' -Force
+}
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Security Health\State' -Name 'AccountProtection_MicrosoftAccount_Disconnected' -PropertyType DWord -Value 1 -Force
+
+# Dismiss Microsoft Defender offer in the Windows Security about turning on the SmartScreen filter for Microsoft Edge
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Security Health\State' -Name 'AppAndBrowser_EdgeSmartScreenOff' -PropertyType DWord -Value 0 -Force
+
+# Enable apps and files checking within Microsoft Defender SmartScreen
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer' -Name 'SmartScreenEnabled' -PropertyType String -Value Warn -Force
+
+# Disable Windows Script Host
+if (-not (Test-Path -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings')) {
+	New-Item -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings' -Force
+}
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings' -Name 'Enabled' -PropertyType DWord -Value 0 -Force
+
+# Enable Windows Sandbox
+if ((Get-CimInstance -ClassName CIM_Processor).VirtualizationFirmwareEnabled) {
+	Enable-WindowsOptionalFeature -FeatureName 'Containers-DisposableClientVM' -All -Online -NoRestart
+}
+else {
+	try {
+		if ((Get-CimInstance -ClassName CIM_ComputerSystem).HypervisorPresent) {
+			Enable-WindowsOptionalFeature -FeatureName 'Containers-DisposableClientVM' -All -Online -NoRestart
+		}
+	}
+	catch [Exception] {
+		Write-Error -Message $Localization.EnableHardwareVT -ErrorAction SilentlyContinue
+		Write-Error -Message ($Localization.RestartFunction -f $MyInvocation.Line.Trim()) -ErrorAction SilentlyContinue
+	}
+}
+
+# Disable DNS-over-HTTPS for IPv4
+if (-not (Get-CimInstance -ClassName CIM_ComputerSystem).HypervisorPresent) {
+	$InterfaceGuids = @((Get-NetAdapter -Physical).InterfaceGuid)
+}
+else {
+	$InterfaceGuids = @((Get-NetRoute -AddressFamily IPv4 | Where-Object -FilterScript { $_.DestinationPrefix -eq '0.0.0.0/0' } | Get-NetAdapter).InterfaceGuid)
+}
+if (-not (Get-CimInstance -ClassName CIM_ComputerSystem).HypervisorPresent) {
+	Get-NetAdapter -Physical | Get-NetIPInterface -AddressFamily IPv4 | Set-DnsClientServerAddress -ResetServerAddresses
+}
+else {
+	Get-NetRoute | Where-Object -FilterScript { $_.DestinationPrefix -eq '0.0.0.0/0' } | Get-NetAdapter | Set-DnsClientServerAddress -ResetServerAddresses
+}
+foreach ($InterfaceGuid in $InterfaceGuids) {
+	Remove-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Dnscache\InterfaceSpecificParameters\$InterfaceGuid\DohInterfaceSettings\Doh" -Recurse -Force -ErrorAction Ignore
+}
+Clear-DnsClientCache
+Register-DnsClient
+
+# Show the "Extract all" item in the Windows Installer (.msi) context menu
+if (-not (Test-Path -Path 'Registry::HKEY_CLASSES_ROOT\Msi.Package\shell\Extract\Command')) {
+	New-Item -Path 'Registry::HKEY_CLASSES_ROOT\Msi.Package\shell\Extract\Command' -Force
+}
+$Value = "msiexec.exe /a `"%1`" /qb TARGETDIR=`"%1 extracted`""
+New-ItemProperty -Path 'Registry::HKEY_CLASSES_ROOT\Msi.Package\shell\Extract\Command' -Name '(default)' -PropertyType String -Value $Value -Force
+New-ItemProperty -Path 'Registry::HKEY_CLASSES_ROOT\Msi.Package\shell\Extract' -Name 'MUIVerb' -PropertyType String -Value '@shell32.dll,-37514' -Force
+New-ItemProperty -Path 'Registry::HKEY_CLASSES_ROOT\Msi.Package\shell\Extract' -Name 'Icon' -PropertyType String -Value 'shell32.dll,-16817' -Force
+
+# Show the "Install" item in the Cabinet (.cab) filenames extensions context menu
+if (-not (Test-Path -Path 'Registry::HKEY_CLASSES_ROOT\CABFolder\Shell\runas\Command')) {
+	New-Item -Path 'Registry::HKEY_CLASSES_ROOT\CABFolder\Shell\runas\Command' -Force
+}
+$Value = "cmd /c DISM.exe /Online /Add-Package /PackagePath:`"%1`" /NoRestart & pause"
+New-ItemProperty -Path 'Registry::HKEY_CLASSES_ROOT\CABFolder\Shell\runas\Command' -Name '(default)' -PropertyType String -Value $Value -Force
+New-ItemProperty -Path 'Registry::HKEY_CLASSES_ROOT\CABFolder\Shell\runas' -Name 'MUIVerb' -PropertyType String -Value '@shell32.dll,-10210' -Force
+New-ItemProperty -Path 'Registry::HKEY_CLASSES_ROOT\CABFolder\Shell\runas' -Name 'HasLUAShield' -PropertyType String -Value '' -Force
+
+# Hide the "Print" item from the .bat and .cmd context menu
+New-ItemProperty -Path 'Registry::HKEY_CLASSES_ROOT\batfile\shell\print' -Name 'ProgrammaticAccessOnly' -PropertyType String -Value '' -Force
+New-ItemProperty -Path 'Registry::HKEY_CLASSES_ROOT\cmdfile\shell\print' -Name 'ProgrammaticAccessOnly' -PropertyType String -Value '' -Force
+
+# Hide the "Compressed (zipped) Folder" item from the "New" context menu
+Remove-Item -Path 'Registry::HKEY_CLASSES_ROOT\.zip\CompressedFolder\ShellNew' -Force -ErrorAction Ignore
+
+# Enable the "Open", "Print", and "Edit" items if more than 15 files selected
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer' -Name 'MultipleInvokePromptMinimum' -PropertyType DWord -Value 300 -Force
+
+# Do not use item check boxes
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'AutoCheckSelect' -PropertyType DWord -Value 0 -Force
+
+# Save screenshots by pressing Win+PrtScr in the Pictures folder
+Remove-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders' -Name '{B7BEDE81-DF94-4682-A7D8-57A52620B86F}' -Force -ErrorAction SilentlyContinue
+
+# Settings: Update & Security: Troubleshoot: Don't run any troubleshooters
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\WindowsMitigation' -Name 'UserPreference' -PropertyType DWord -Value 1 -Force

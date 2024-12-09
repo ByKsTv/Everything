@@ -86,6 +86,26 @@ New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\PolicyManager\default\SettingsP
 # Administrative Shares: Disable
 New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters' -Name 'AutoShareServer' -Value 0 -PropertyType DWord -Force
 
+# Show default Start layout
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'Start_Layout' -PropertyType DWord -Value 0 -Force
+
+# Enable Local Security Authority protection to prevent code injection without UEFI lock
+if ((Get-CimInstance -ClassName CIM_Processor).VirtualizationFirmwareEnabled) {
+	New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Lsa' -Name 'RunAsPPL' -PropertyType DWord -Value 2 -Force
+	New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Lsa' -Name 'RunAsPPLBoot' -PropertyType DWord -Value 2 -Force
+}
+else {
+	try {
+		if ((Get-CimInstance -ClassName CIM_ComputerSystem).HypervisorPresent) {
+			New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Lsa' -Name 'RunAsPPL' -PropertyType DWord -Value 2 -Force
+			New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Lsa' -Name 'RunAsPPLBoot' -PropertyType DWord -Value 2 -Force
+		}
+	}
+	catch [Exception] {
+		Write-Error -Message $Localization.EnableHardwareVT -ErrorAction SilentlyContinue
+	}
+}
+
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Initial_Setup.ps1')
 
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/Arkenfox.ps1')

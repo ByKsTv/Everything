@@ -1,5 +1,5 @@
 $SearchDirectory = "$env:windir\PolicyDefinitions"
-$SearchText = '*ConnectedSearchUseWeb*'
+$SearchText = '*AllowAutoWindowsUpdateDownloadOverMeteredNetwork*'
 $Files = Get-ChildItem -Path $SearchDirectory -Recurse -File
 foreach ($File in $Files) {
     try {
