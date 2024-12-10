@@ -135,13 +135,13 @@ $InitialSetup_ComputerPasswordTextBox = New-Object System.Windows.Forms.TextBox 
 	Location = [Drawing.Point]::new($InitialSetup_LocX, $InitialSetup_LocY)
 }
 $InitialSetup_ComputerPasswordTextBox.Add_GotFocus{ if ($InitialSetup_ComputerPasswordTextBox.Text -eq $InitialSetup_PreComputerPassword) {
-	$InitialSetup_ComputerPasswordTextBox.Text = ''
-}
-}
-$InitialSetup_ComputerPasswordTextBox.Add_LostFocus({ if ($InitialSetup_ComputerPasswordTextBox.Text -eq '') {
-		$InitialSetup_ComputerPasswordTextBox.Text = $InitialSetup_PreComputerName
+		$InitialSetup_ComputerPasswordTextBox.Text = ''
 	}
 }
+$InitialSetup_ComputerPasswordTextBox.Add_LostFocus({ if ($InitialSetup_ComputerPasswordTextBox.Text -eq '') {
+			$InitialSetup_ComputerPasswordTextBox.Text = $InitialSetup_PreComputerName
+		}
+	}
 )
 
 $InitialSetup_LocY += $InitialSetup__LocAdd
