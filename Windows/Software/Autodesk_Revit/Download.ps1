@@ -1,3 +1,6 @@
+Add-Type -AssemblyName System.Windows.Forms
+[Windows.Forms.Application]::EnableVisualStyles()
+
 $Revit_Form = New-Object System.Windows.Forms.Form
 $Revit_Form.Text = 'Autodesk Revit Selection'
 $Revit_Form.StartPosition = 'CenterScreen'

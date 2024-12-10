@@ -1,3 +1,6 @@
+Add-Type -AssemblyName System.Windows.Forms
+[Windows.Forms.Application]::EnableVisualStyles()
+
 $SketchUp_Form = New-Object System.Windows.Forms.Form
 $SketchUp_Form.Text = 'SketchUp Pro Selection'
 $SketchUp_Form.StartPosition = 'CenterScreen'

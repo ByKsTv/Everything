@@ -1,3 +1,6 @@
+Add-Type -AssemblyName System.Windows.Forms
+[Windows.Forms.Application]::EnableVisualStyles()
+
 $Lightroom_Form = New-Object System.Windows.Forms.Form
 $Lightroom_Form.Text = 'Adobe Lightroom Classic Selection'
 $Lightroom_Form.StartPosition = 'CenterScreen'

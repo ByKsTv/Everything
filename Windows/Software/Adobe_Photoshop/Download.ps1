@@ -1,3 +1,6 @@
+Add-Type -AssemblyName System.Windows.Forms
+[Windows.Forms.Application]::EnableVisualStyles()
+
 $Photoshop_Form = New-Object System.Windows.Forms.Form
 $Photoshop_Form.Text = 'Adobe Photoshop Selection'
 $Photoshop_Form.StartPosition = 'CenterScreen'

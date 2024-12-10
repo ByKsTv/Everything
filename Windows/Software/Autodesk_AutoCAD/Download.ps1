@@ -1,3 +1,6 @@
+Add-Type -AssemblyName System.Windows.Forms
+[Windows.Forms.Application]::EnableVisualStyles()
+
 $AutoCAD_Form = New-Object System.Windows.Forms.Form
 $AutoCAD_Form.Text = 'Autodesk AutoCAD Selection'
 $AutoCAD_Form.StartPosition = 'CenterScreen'
