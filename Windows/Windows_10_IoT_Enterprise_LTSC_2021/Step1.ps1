@@ -9,9 +9,8 @@ Register-ScheduledTask -TaskName $NextStep_TaskName -Action $NextStep_TaskAction
 
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Key.ps1')
 
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Closing Edge'); [Console]::ResetColor(); [Console]::WriteLine()
-$stopedgerunning = 'MicrosoftEdgeUpdate'
-$stopedgerunning | ForEach-Object { Stop-Process -Name $_ -Force }
+# Closing Microsoft Edge
+Stop-Process -Name 'MicrosoftEdgeUpdate' -Force
 
 Add-Type -AssemblyName System.Windows.Forms
 $Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{TopMost = $true; ShowInTaskbar = $false; Opacity = 0 }
