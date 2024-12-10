@@ -90,7 +90,7 @@ if ($BDMV_PLAYLIST_OK -eq [Windows.Forms.DialogResult]::OK) {
     [void] $BDMV_Episode_Form.ShowDialog()
 
     if ($true -eq $BDMV_Episode_OK_Click) {
-        
+
         $BDMV_Episode_Form.Topmost = $false
 
         $ChosenNumber = $BDMV_Episode_Form_TextBox.Text
@@ -123,6 +123,8 @@ if ($BDMV_PLAYLIST_OK -eq [Windows.Forms.DialogResult]::OK) {
             # Remove the \\?\ prefix for MediaInfo processing
             $mplsFilePath = $mplsFile.FullName
 
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/MediaInfo/Download.ps1')
+            
             # Run MediaInfo with JSON output and capture the output
             $mediaInfoOutput = & MediaInfo.exe --Output=JSON "$mplsFilePath"
 
