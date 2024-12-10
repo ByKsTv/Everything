@@ -40,7 +40,7 @@ if ($InstalledSoftware -match 'Google Chrome') {
     New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy' -Name 'adminSettings' -Value "$uBlockLatestContent" -PropertyType String -Force
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Starting browser'); [Console]::ResetColor(); [Console]::WriteLine()
-    [Diagnostics.Process]::Start('Chrome.exe')
+    [Diagnostics.Process]::Start('chrome.exe')
     Start-Sleep -Milliseconds 1000
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Waiting for browser'); [Console]::ResetColor(); [Console]::WriteLine()
