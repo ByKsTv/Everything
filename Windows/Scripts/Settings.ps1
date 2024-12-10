@@ -443,8 +443,8 @@ New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Security Health\State' 
 # Dismiss Microsoft Defender offer in the Windows Security about turning on the SmartScreen filter for Microsoft Edge
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Security Health\State' -Name 'AppAndBrowser_EdgeSmartScreenOff' -PropertyType DWord -Value 0 -Force
 
-# Enable apps and files checking within Microsoft Defender SmartScreen
-New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer' -Name 'SmartScreenEnabled' -PropertyType String -Value Warn -Force
+# Disable apps and files checking within Microsoft Defender SmartScreen
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer' -Name 'SmartScreenEnabled' -PropertyType String -Value 'Off' -Force
 
 # Enable Windows Script Host
 if (-not (Test-Path -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings')) {
@@ -452,14 +452,14 @@ if (-not (Test-Path -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings
 }
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings' -Name 'Enabled' -PropertyType DWord -Value 1 -Force
 
-# Enable Windows Sandbox
+# Disable Windows Sandbox
 if ((Get-CimInstance -ClassName CIM_Processor).VirtualizationFirmwareEnabled) {
-	Enable-WindowsOptionalFeature -FeatureName 'Containers-DisposableClientVM' -All -Online -NoRestart
+	Disable-WindowsOptionalFeature -FeatureName Containers-DisposableClientVM -Online -NoRestart
 }
 else {
 	try {
 		if ((Get-CimInstance -ClassName CIM_ComputerSystem).HypervisorPresent) {
-			Enable-WindowsOptionalFeature -FeatureName 'Containers-DisposableClientVM' -All -Online -NoRestart
+			Disable-WindowsOptionalFeature -FeatureName Containers-DisposableClientVM -Online -NoRestart
 		}
 	}
 	catch [Exception] {
