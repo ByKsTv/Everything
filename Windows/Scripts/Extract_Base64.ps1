@@ -1,6 +1,9 @@
 Add-Type -AssemblyName System.Windows.Forms
 
 $FileDialog = New-Object System.Windows.Forms.OpenFileDialog
+$FileDialog.CheckFileExists = $false
+$FileDialog.ValidateNames = $false
+$FileDialog.FileName = 'Select File'
 $FileDialog.Filter = 'All Files (*.*)|*.*'
 
 $form = New-Object System.Windows.Forms.Form
