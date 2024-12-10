@@ -2,7 +2,7 @@ Add-Type -AssemblyName System.Windows.Forms
 [Windows.Forms.Application]::EnableVisualStyles()
 
 $BuildISO_FileDialog = New-Object System.Windows.Forms.OpenFileDialog -Property @{
-    FileName        = 'Select File'
+    FileName        = 'Select Folder'
     CheckFileExists = $false
     ValidateNames   = $false
 }
@@ -18,7 +18,7 @@ $BuildISO_Form.Dispose()
 if ($BuildISO_OK -eq [Windows.Forms.DialogResult]::OK) {
     $BuildISO_FileSelected = [IO.Path]::GetDirectoryName($BuildISO_FileDialog.FileName)
 
-    & 'C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\amd64\Oscdimg\oscdimg.exe' -m -o -u2 -udfver102 $BuildISO_FileSelected "$BuildISO_FileSelected\File.iso"
+    & 'C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\amd64\Oscdimg\oscdimg.exe' -m -o -u2 -udfver102 $BuildISO_FileSelected "$BuildISO_FileSelected\ISO.iso"
 }
 else {
     Write-Output 'No file selected.'
