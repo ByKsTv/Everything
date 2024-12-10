@@ -34,7 +34,7 @@ $cancelButton.Add_Click({
 $form.Controls.Add($textBox)
 $form.Controls.Add($okButton)
 $form.Controls.Add($cancelButton)
-$form.ShowDialog()
+$form.ShowDialog() | Out-Null
 
 $SearchText = $form.Tag
 if (![string]::IsNullOrWhiteSpace($SearchText)) {
