@@ -33,25 +33,25 @@ Everything about Scripts.
 
 1. PowerShell (Admin):
 
-```powershell
-  Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/MediaInfo_Extract_BDMV_Playlist.ps1')
+   ```powershell
+   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/MediaInfo_Extract_BDMV_Playlist.ps1')
 
-```
+   ```
 
 ## Powershell: Search Group Policy
 
 1. PowerShell (Admin):
 
-```powershell
-  Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Group_Policy/Search.ps1')
+   ```powershell
+   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Group_Policy/Search.ps1')
 
-```
+   ```
 
 ## Powershell: Extract Base64
 
 1. PowerShell (Admin):
 
-```powershell
-  Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Extract_Base64.ps1')
+   ```powershell
+   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Extract_Base64.ps1')
 
-```
+   ```
