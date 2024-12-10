@@ -232,8 +232,6 @@ New-ItemProperty -Path 'Registry::HKEY_CLASSES_ROOT\AllFilesystemObjects\shellex
 # BitmapImageNewContext -Hide
 Remove-Item -Path 'Registry::HKEY_CLASSES_ROOT\.bmp\ShellNew' -Force
 
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Network.ps1')
-
 # [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Hosts: Adding mobile.events.data.microsoft.com'); [Console]::ResetColor(); [Console]::WriteLine()
 # $mobileeventsdatamicrosoft = Select-String -Path $env:windir\System32\drivers\etc\hosts -Pattern 'mobile.events.data.microsoft.com'
 # if ($null -eq $mobileeventsdatamicrosoft) {
