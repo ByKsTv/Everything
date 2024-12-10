@@ -126,13 +126,23 @@ $InitialSetup_ComputerPasswordCheckBox = New-Object System.Windows.Forms.CheckBo
 
 $InitialSetup_LocY += $InitialSetup__LocAdd
 
+$InitialSetup_PreComputerPassword = 'Enter Computer Password'
 $InitialSetup_ComputerPasswordTextBox = New-Object System.Windows.Forms.TextBox -Property @{
-	Text     = 'Computer Password'
+	Text     = $InitialSetup_PreComputerPassword
 	Enabled  = $false
 	Width    = $InitialSetup_SizeX
 	Height   = $InitialSetup_SizeY
 	Location = [Drawing.Point]::new($InitialSetup_LocX, $InitialSetup_LocY)
 }
+$InitialSetup_ComputerPasswordTextBox.Add_GotFocus{ if ($InitialSetup_ComputerPasswordTextBox.Text -eq $InitialSetup_PreComputerPassword) {
+	$InitialSetup_ComputerPasswordTextBox.Text = ''
+}
+}
+$InitialSetup_ComputerPasswordTextBox.Add_LostFocus({ if ($InitialSetup_ComputerPasswordTextBox.Text -eq '') {
+		$InitialSetup_ComputerPasswordTextBox.Text = $InitialSetup_PreComputerName
+	}
+}
+)
 
 $InitialSetup_LocY += $InitialSetup__LocAdd
 
