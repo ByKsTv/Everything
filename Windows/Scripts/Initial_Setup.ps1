@@ -139,7 +139,7 @@ $InitialSetup_ComputerPasswordTextBox.Add_GotFocus{ if ($InitialSetup_ComputerPa
 	}
 }
 $InitialSetup_ComputerPasswordTextBox.Add_LostFocus({ if ($InitialSetup_ComputerPasswordTextBox.Text -eq '') {
-			$InitialSetup_ComputerPasswordTextBox.Text = $InitialSetup_PreComputerName
+			$InitialSetup_ComputerPasswordTextBox.Text = $InitialSetup_PreComputerPassword
 		}
 	}
 )

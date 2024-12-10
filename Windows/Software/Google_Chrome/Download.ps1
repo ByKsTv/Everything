@@ -37,5 +37,5 @@ Start-Process 'ms-settings:defaultapps'
 Add-Type -AssemblyName System.Windows.Forms
 $Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{TopMost = $true; ShowInTaskbar = $false; Opacity = 0 }
 $Popup_Text = "Please set 'Google Chrome' as default web browser"
-[Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK')
+[Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK') | Out-Null
 $Popup_Usermanual.Dispose()
