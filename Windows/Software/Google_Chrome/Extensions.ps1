@@ -41,6 +41,12 @@ if ($InstalledSoftware -match 'Google Chrome') {
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Starting browser'); [Console]::ResetColor(); [Console]::WriteLine()
     [Diagnostics.Process]::Start('chrome.exe')
+    #     Exception calling "Start" with "1" argument(s): "The system cannot find the file specified"
+    # At line:43 char:5
+    # +     [Diagnostics.Process]::Start('chrome.exe')
+    # +     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    #     + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    #     + FullyQualifiedErrorId : Win32Exception
     Start-Sleep -Milliseconds 1000
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Waiting for browser'); [Console]::ResetColor(); [Console]::WriteLine()
@@ -67,6 +73,12 @@ if ($InstalledSoftware -match 'Google Chrome') {
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Opening AdsBypasser'); [Console]::ResetColor(); [Console]::WriteLine()
     [Diagnostics.Process]::Start('Chrome.exe', 'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js')
+    #     Exception calling "Start" with "1" argument(s): "The system cannot find the file specified"
+    # At line:43 char:5
+    # +     [Diagnostics.Process]::Start('chrome.exe')
+    # +     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    #     + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+    #     + FullyQualifiedErrorId : Win32Exception
     Start-Sleep -Milliseconds 5000
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Setting foreground'); [Console]::ResetColor(); [Console]::WriteLine()
