@@ -425,14 +425,14 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\storahci\Paramet
 # Back up the system registry to %SystemRoot%\System32\config\RegBack folder
 New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Configuration Manager' -Name 'EnablePeriodicBackup' -Type DWord -Value 1 -Force
 
-# Enable Microsoft Defender Exploit Guard network protection
-Set-MpPreference -EnableNetworkProtection Enabled
+# Disable Microsoft Defender Exploit Guard network protection
+Set-MpPreference -EnableNetworkProtection Disabled
 
-# Enable detection for potentially unwanted applications and block them
-Set-MpPreference -PUAProtection Enabled
+# Disable detection for potentially unwanted applications and block them
+Set-MpPreference -PUAProtection Disabled
 
-# Enable sandboxing for Microsoft Defender
-& "$env:SystemRoot\System32\setx.exe" /M MP_FORCE_USE_SANDBOX 1
+# Disable sandboxing for Microsoft Defender
+& "$env:SystemRoot\System32\setx.exe" /M MP_FORCE_USE_SANDBOX 0
 
 # Dismiss Microsoft Defender offer in the Windows Security about signing in Microsoft account
 if (-not (Test-Path -Path 'HKCU:\Software\Microsoft\Windows Security Health\State')) {
