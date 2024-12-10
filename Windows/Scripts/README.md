@@ -32,4 +32,11 @@ Everything about Scripts.
 ## Powershell + Mediainfo: Extract BDMV Playlist
 
 1. Use [MediaInfo_Extract_BDMV_Playlist.ps1](MediaInfo_Extract_BDMV_Playlist.ps1)
-1. Edit `mplsDirectory`.
+
+## Powershell: Search Group Policy
+
+1. Use [Search.ps1](\Group_Policy\Search.ps1)
+
+## Powershell: Extract Base64
+
+1. Use [Extract_Base64.ps1](Extract_Base64.ps1)
