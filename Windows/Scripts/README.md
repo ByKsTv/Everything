@@ -31,12 +31,27 @@ Everything about Scripts.
 
 ## Powershell + Mediainfo: Extract BDMV Playlist
 
-1. Use [MediaInfo_Extract_BDMV_Playlist.ps1](MediaInfo_Extract_BDMV_Playlist.ps1)
+1. PowerShell (Admin):
+
+```powershell
+  Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/MediaInfo_Extract_BDMV_Playlist.ps1')
+
+```
 
 ## Powershell: Search Group Policy
 
-1. Use [Search.ps1](Group_Policy/Search.ps1)
+1. PowerShell (Admin):
+
+```powershell
+  Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Group_Policy/Search.ps1')
+
+```
 
 ## Powershell: Extract Base64
 
-1. Use [Extract_Base64.ps1](Extract_Base64.ps1)
+1. PowerShell (Admin):
+
+```powershell
+  Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Extract_Base64.ps1')
+
+```
