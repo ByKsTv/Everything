@@ -592,6 +592,10 @@ if (Get-ScheduledTask -TaskName $VSCode_TaskName -ErrorAction SilentlyContinue) 
 if ($InstalledSoftware -match 'VMware Workstation') {
     $SoftwareSelection_CheckBoxes['VMware Workstation'].Text += ' (Installed)'
 }
+if ($InstalledSoftware -match 'Windows System Image Manager') {
+    $SoftwareSelection_CheckBoxes['Windows Deployment Tools'].Enabled = $false
+    $SoftwareSelection_CheckBoxes['Windows Deployment Tools'].Text += ' (Installed)'
+}
 if ($InstalledSoftware -match 'Zoom') {
     $SoftwareSelection_CheckBoxes['Zoom'].Enabled = $false
     $SoftwareSelection_CheckBoxes['Zoom'].Text += ' (Installed)'
