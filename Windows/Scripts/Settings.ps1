@@ -391,7 +391,6 @@ Set-WinLanguageBarOption -UseLegacySwitchMode
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NETFramework' -Name 'OnlyUseLatestCLR' -PropertyType DWord -Value 1 -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\.NETFramework' -Name 'OnlyUseLatestCLR' -PropertyType DWord -Value 1 -Force
 
-
 # Disable and delete reserved storage after the next update installation
 Set-WindowsReservedStorageState -State Disabled
 
