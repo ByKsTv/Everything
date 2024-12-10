@@ -2,7 +2,7 @@ Add-Type -AssemblyName System.Windows.Forms
 [Windows.Forms.Application]::EnableVisualStyles()
 
 $BuildISO_FileDialog = New-Object System.Windows.Forms.OpenFileDialog -Property @{
-    FileName        = 'Select Folder'
+    FileName        = 'Select File'
     CheckFileExists = $false
     ValidateNames   = $false
 }
