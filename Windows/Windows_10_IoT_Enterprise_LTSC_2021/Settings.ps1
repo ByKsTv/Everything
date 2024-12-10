@@ -176,13 +176,13 @@ New-ItemProperty -Path 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVers
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{35286a68-3c57-41a1-bbb1-0eae73d76c95}\PropertyBag' -Name 'ThisPCPolicy' -PropertyType String -Value Hide -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{35286a68-3c57-41a1-bbb1-0eae73d76c95}\PropertyBag' -Name 'ThisPCPolicy' -PropertyType String -Value Hide -Force
 
-# WindowsInkWorkspace -Hide
+# Hide the Windows Ink Workspace button on the taskbar
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\PenWorkspace' -Name 'PenWorkspaceButtonDesiredVisibility' -PropertyType DWord -Value 0 -Force
 
-# NotificationAreaIcons -Show
+# Always show all icons in the notification area
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer' -Name 'EnableAutoTray' -PropertyType DWord -Value 0 -Force
 
-# TaskManagerWindow -Expanded
+# Start Task Manager in the expanded mode
 $Taskmgr = Get-Process -Name Taskmgr -ErrorAction Ignore
 if ($Taskmgr) {
 	$Taskmgr.CloseMainWindow()
@@ -196,7 +196,7 @@ Stop-Process -Name Taskmgr -ErrorAction SilentlyContinue
 $Preferences[28] = 0
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\TaskManager' -Name 'Preferences' -PropertyType Binary -Value $Preferences -Force
 
-# PinToStart -UnpinAll
+# Unpin all the Start tiles
 $Path = "$env:TEMP\StartLayout.xml"
 Export-StartLayout -Path $Path -UseDesktopApplicationID
 [xml]$XML = Get-Content $Path
@@ -214,22 +214,22 @@ Remove-Item $Path -Force
 Stop-Process -Name 'StartMenuExperienceHost' -Force -ErrorAction SilentlyContinue
 (New-Object -ComObject wscript.shell).SendKeys('^{ESC}')
 
-# CastToDeviceContext -Hide
+# Hide the "Cast to Device" item from the media files and folders context menu
 if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked')) {
 	New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked' -Force
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked' -Name '{7AD84985-87B4-4a16-BE58-8B72A5B390F7}' -PropertyType String -Value '' -Force
 
-# ShareContext -Hide
+# Hide the "Share" item from the context menu
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked' -Name '{E2BF9676-5F8F-435C-97EB-11607A5BEDF7}' -PropertyType String -Value '' -Force
 
-# IncludeInLibraryContext -Hide
+# Hide the "Include in Library" item from the folders and drives context menu
 New-ItemProperty -Path 'Registry::HKEY_CLASSES_ROOT\Folder\ShellEx\ContextMenuHandlers\Library Location' -Name '(default)' -PropertyType String -Value '-{3dad6c5d-2167-4cae-9914-f99e41c12cfa}' -Force
 
-# SendToContext -Hide
+# Hide the "Send to" item from the folders context menu
 New-ItemProperty -Path 'Registry::HKEY_CLASSES_ROOT\AllFilesystemObjects\shellex\ContextMenuHandlers\SendTo' -Name '(default)' -PropertyType String -Value '-{7BA4C740-9E81-11CF-99D3-00AA004AE837}' -Force
 
-# BitmapImageNewContext -Hide
+# Hide the "Bitmap image" item from the "New" context menu
 Remove-Item -Path 'Registry::HKEY_CLASSES_ROOT\.bmp\ShellNew' -Force
 
 # [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Hosts: Adding mobile.events.data.microsoft.com'); [Console]::ResetColor(); [Console]::WriteLine()
