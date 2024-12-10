@@ -19,6 +19,9 @@ Get-WindowsPackage -Online | Where-Object { $_.PackageName -like '*Microsoft-Win
 Get-AppxPackage -AllUsers -PackageTypeFilter Bundle -Name '*Windows.DevHome*' | Remove-AppxPackage -AllUsers
 
 # Disable Input language switching notification
+if (-not (Test-Path -Path 'HKCU:\Keyboard Layout\ShowToast')) {
+	New-Item -Path 'HKCU:\Keyboard Layout\ShowToast' -Force
+}
 New-ItemProperty -Path 'HKCU:\Keyboard Layout\ShowToast' -Name 'Show' -Value 1 -PropertyType DWord -Force
 
 # Disable Bing Search
@@ -143,6 +146,9 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Par
 # Remove-Item 'C:\ProgramData\Microsoft\Windows\SystemData' -Force -Recurse
 
 # UserFolders -ThreeDObjects Hide 
+if (-not (Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag')) {
+	New-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag' -Force
+}
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag' -Name 'ThisPCPolicy' -PropertyType String -Value Hide -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag' -Name 'ThisPCPolicy' -PropertyType String -Value Hide -Force
 
@@ -209,6 +215,9 @@ Stop-Process -Name 'StartMenuExperienceHost' -Force -ErrorAction SilentlyContinu
 (New-Object -ComObject wscript.shell).SendKeys('^{ESC}')
 
 # CastToDeviceContext -Hide
+if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked')) {
+	New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked' -Force
+}
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked' -Name '{7AD84985-87B4-4a16-BE58-8B72A5B390F7}' -PropertyType String -Value '' -Force
 
 # ShareContext -Hide
