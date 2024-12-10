@@ -139,6 +139,9 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Par
 # Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control' -Name 'SvcHostSplitThresholdInKB' -Type DWord -Value $svchostram -Force
 
 # Settings: Devices: Typing: Typing Insights: Disabling
+if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Input\Settings')) {
+	New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Input\Settings' -Force
+}
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Input\Settings' -Name 'InsightsEnabled' -Value 0 -PropertyType DWord -Force
 
 # takeown /f 'C:\ProgramData\Microsoft\Windows\SystemData' /r /d y
