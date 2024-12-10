@@ -10,13 +10,12 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 # Settings: Windows Update: Advanced options: Download updates over metered connections: On
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\StateVariables' -Name 'AlwaysAllowMeteredNetwork' -PropertyType DWord -Value 1 -Force
 
-# [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write("Step2: Windows Packages: Removing Windows Backup app"); [Console]::ResetColor(); [Console]::WriteLine()
-# $windowsbackupapp = Get-WindowsPackage -Online | Where-Object { $_.PackageName -eq 'Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35~amd64~~10.0.19041.4355' }
-# if ($windowsbackupapp.PackageState -match 'Installed') {
-# 	Remove-WindowsPackage -PackageName 'Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35~amd64~~10.0.19041.4355' -Online -NoRestart
-# }
+# Uninstall Windows Backup app
+Get-WindowsPackage -Online | Where-Object { $_.PackageName -like '*Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35*' } | ForEach-Object {
+	Remove-WindowsPackage -PackageName $_.PackageName -Online -NoRestart
+}
 
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing Dev Home'); [Console]::ResetColor(); [Console]::WriteLine()
+# Uninstall Dev Home app
 Get-AppxPackage -AllUsers -PackageTypeFilter Bundle -Name '*Windows.DevHome*' | Remove-AppxPackage -AllUsers
 
 # Disable Input language switching notification
