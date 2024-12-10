@@ -35,7 +35,7 @@ Everything about Scripts.
 
 ## Powershell: Search Group Policy
 
-1. Use [Search.ps1](\Group_Policy\Search.ps1)
+1. Use [Search.ps1](Group_Policy/Search.ps1)
 
 ## Powershell: Extract Base64
 
