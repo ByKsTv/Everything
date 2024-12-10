@@ -301,13 +301,7 @@ if (-not (Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Deliv
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config' -Name 'DODownloadMode' -Value 0 -PropertyType DWord -Force
 
 # O&O ShutUp10++: Current User: Taskbar: Disable widgets in Windows Explorer: On
-Set-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'TaskbarDa' -Value 0 -PropertyType DWord -Force
-# New-ItemProperty : Attempted to perform an unauthorized operation.
-# At line:304 char:1
-# + New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersi ...
-# + ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#     + CategoryInfo          : PermissionDenied: (HKEY_CURRENT_US...plorer\Advanced:String) [New-ItemProperty], UnauthorizedAccessException
-#     + FullyQualifiedErrorId : System.UnauthorizedAccessException,Microsoft.PowerShell.Commands.NewItemPropertyCommand
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'TaskbarDa' -Value 0 -PropertyType DWord -Force
 
 # O&O ShutUp10++: Current User: Windows Copilot: Disable the Copilot button from the taskbar: On
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'ShowCopilotButton' -Value 0 -PropertyType DWord -Force
@@ -326,12 +320,6 @@ if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds
 	New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds' -Force
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Feeds' -Name 'ShellFeedsTaskbarViewMode' -Value 2 -PropertyType DWord -Force
-# New-ItemProperty : Attempted to perform an unauthorized operation.
-# At line:322 char:1
-# + New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersi ...
-# + ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#     + CategoryInfo          : PermissionDenied: (HKEY_CURRENT_US...ntVersion\Feeds:String) [New-ItemProperty], UnauthorizedAccessException
-#     + FullyQualifiedErrorId : System.UnauthorizedAccessException,Microsoft.PowerShell.Commands.NewItemPropertyCommand
 
 # O&O ShutUp10++: Current User: Mobile Devices: Disable Phone Link app: On
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Mobility' -Name 'PhoneLinkEnabled' -Value 0 -PropertyType DWord -Force
