@@ -301,7 +301,7 @@ if (-not (Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Deliv
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config' -Name 'DODownloadMode' -Value 0 -PropertyType DWord -Force
 
 # O&O ShutUp10++: Current User: Taskbar: Disable widgets in Windows Explorer: On
-New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'TaskbarDa' -Value 0 -PropertyType DWord -Force
+Set-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'TaskbarDa' -Value 0 -PropertyType DWord -Force
 # New-ItemProperty : Attempted to perform an unauthorized operation.
 # At line:304 char:1
 # + New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersi ...
@@ -571,3 +571,6 @@ New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\NlaSvc\Parameters\In
 
 # O&O ShutUp10++: Local Machine: Windows Update: Disable automatic Windows Updates: Off
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\wuauserv' -Name 'Start' -Value 3 -PropertyType DWord -Force
+
+# O&O ShutUp10++: Current User: Search: Disable extenstion of Windows search with Bing: On
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer' -Name 'DisableSearchBoxSuggestions' -Value 1 -PropertyType DWord -Force
