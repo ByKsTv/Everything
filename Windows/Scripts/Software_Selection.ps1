@@ -27,7 +27,7 @@ $SoftwareSelection_Form_OK = New-Object System.Windows.Forms.Button -Property @{
     Width     = $SoftwareSelection_ButtonWidth
     Height    = $SoftwareSelection_ButtonHeight
     Location  = [Drawing.Point]::new($SoftwareSelection_FormCenterX, $SoftwareSelection_ButtonYLocation)
-    Add_Click = { $SoftwareSelection_Form.Close() }
+    Add_Click = ({ $SoftwareSelection_Form.Close() })
 }
 
 $SoftwareSelection_CancelX = $SoftwareSelection_FormCenterX + $SoftwareSelection_ButtonWidth + $SoftwareSelection_ButtonSpacer
@@ -36,7 +36,7 @@ $SoftwareSelection_Form_Cancel = New-Object System.Windows.Forms.Button -Propert
     Width     = $SoftwareSelection_ButtonWidth
     Height    = $SoftwareSelection_ButtonHeight
     Location  = [Drawing.Point]::new($SoftwareSelection_CancelX, $SoftwareSelection_ButtonYLocation)
-    Add_Click = { $SoftwareSelection_Form.Close() }
+    Add_Click = ({ $SoftwareSelection_Form.Close() })
 }
 
 $SoftwareSelection_Panel = New-Object System.Windows.Forms.Panel -Property @{
@@ -597,190 +597,189 @@ if ($InstalledSoftware -match 'Zoom') {
     $SoftwareSelection_CheckBoxes['Zoom'].Text += ' (Installed)'
 }
 
-$SoftwareSelection_CheckBoxes['NVCleanstall'].Add_Click( {
+$SoftwareSelection_CheckBoxes['NVCleanstall'].Add_Click({
         if ($SoftwareSelection_CheckBoxes['NVCleanstall'].Checked -eq $true) {
             $SoftwareSelection_CheckBoxes['Display Driver Uninstaller'].Checked = $true
         }
         elseif ($SoftwareSelection_CheckBoxes['NVCleanstall'].Checked -eq $false) {
             $SoftwareSelection_CheckBoxes['Display Driver Uninstaller'].Checked = $false
-        }   
-    }
-)
+        }
+    })
 
-$SoftwareSelection_Form_OK.Add_Click{
-    $SoftwareSelection_Form.Topmost = $false
-    if ($SoftwareSelection_CheckBoxes['.NET'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/.NET/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['7-Zip'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/7-Zip/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['Activate Windows'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Key.ps1')     
-    }
-    if ($SoftwareSelection_CheckBoxes['ADB'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Android_Debug_Bridge/Download.ps1') 
-    }
-    if ($SoftwareSelection_CheckBoxes['Adobe Acrobat Pro'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Acrobat/Download.ps1') 
-    }
-    if ($SoftwareSelection_CheckBoxes['Adobe Lightroom Classic'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Lightroom_Classic/Download.ps1') 
-    }
-    if ($SoftwareSelection_CheckBoxes['Adobe Photoshop'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Photoshop/Download.ps1') 
-    }
-    if ($SoftwareSelection_CheckBoxes['AnyDesk'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/AnyDesk/Download.ps1') 
-    }
-    if ($SoftwareSelection_CheckBoxes['Autodesk AutoCAD'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Autodesk_AutoCAD/Download.ps1') 
-    }
-    if ($SoftwareSelection_CheckBoxes['Autodesk Revit'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Autodesk_Revit/Download.ps1') 
-    }
-    if ($SoftwareSelection_CheckBoxes['Battle.net'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Battle.net/Download.ps1') 
-    }
-    if ($SoftwareSelection_CheckBoxes['BetterDiscord'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/BetterDiscord/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['Chrome'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Google_Chrome/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['Chrome - Extensions'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Google_Chrome/Extensions.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['CrystalDiskInfo'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/CrystalDiskInfo/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['CrystalDiskMark'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/CrystalDiskMark/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['CurseForge'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/CurseForge/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['Discord'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Discord/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['Display Driver Uninstaller'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Display_Driver_Uninstaller/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['Edge WebView2'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Edge_WebView2/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['eM Client - License Fix'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/eM_Client/License.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['Epic Games Launcher'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Epic_Games_Launcher/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['Firefox'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['Firefox - Arkenfox'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/Arkenfox.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['Firefox - Extensions'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/Extensions.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['Git'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Git/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['HyperX NGENUITY'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/HyperX_NGENUITY/Download.ps1') 
-    }
-    if ($SoftwareSelection_CheckBoxes['Jellyfin'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Jellyfin/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['JitBit Macro Recorder'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Jitbit_Macro_Recorder/Download.ps1') 
-    }
-    if ($SoftwareSelection_CheckBoxes['Logitech G HUB'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Logitech_G_HUB/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['MediaInfo'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/MediaInfo/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['Microsoft Office'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Office/Download.ps1') 
-    }
-    if ($SoftwareSelection_CheckBoxes['Microsoft Store'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Store/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['Minecraft Launcher'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Minecraft_Launcher/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['mpv'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['NordVPN'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/NordVPN/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['Notepad++'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Notepad++/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['NVCleanstall'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/NVCleanstall/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['Plex'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Plex_Media_Server/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['PuTTY'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/PuTTY/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['Python'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Python/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['qBittorrent'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/qBittorrent/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['Razer Synapse'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Razer_Synapse/Download.ps1') 
-    }
-    if ($SoftwareSelection_CheckBoxes['SketchUp'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/SketchUp/Download.ps1') 
-    }
-    if ($SoftwareSelection_CheckBoxes['Steam'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Steam/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['Subtitle Edit'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Subtitle_Edit/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['Telegram'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Telegram/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['TranslucentTB'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/TranslucentTB/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['Uninstall Edge'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Edge/Uninstall.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['Uninstall Microsoft Store'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Store/Uninstall.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['Valorant'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Valorant/Download.ps1') 
-    }
-    if ($SoftwareSelection_CheckBoxes['Visual Studio Code'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Visual_Studio_Code/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['VMware Workstation'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/VMware_Workstation/Download.ps1') 
-    }
-    if ($SoftwareSelection_CheckBoxes['Windows 10 IoT Enterprise LTSC 2021'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Windows_10_IoT_Enterprise_LTSC_2021/ISO.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['Windows Deployment Tools'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Windows_Assessment_and_Deployment_Kit/Deployment_Tools/Download.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['Windows Server 2025 Datacenter'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Windows_Server_2025_Datacenter/ISO.ps1')
-    }
-    if ($SoftwareSelection_CheckBoxes['Zoom'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Zoom/Download.ps1')
-    }
-}
+$SoftwareSelection_Form_OK.Add_Click({
+        $SoftwareSelection_Form.Topmost = $false
+        if ($SoftwareSelection_CheckBoxes['.NET'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/.NET/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['7-Zip'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/7-Zip/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['Activate Windows'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Key.ps1')     
+        }
+        if ($SoftwareSelection_CheckBoxes['ADB'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Android_Debug_Bridge/Download.ps1') 
+        }
+        if ($SoftwareSelection_CheckBoxes['Adobe Acrobat Pro'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Acrobat/Download.ps1') 
+        }
+        if ($SoftwareSelection_CheckBoxes['Adobe Lightroom Classic'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Lightroom_Classic/Download.ps1') 
+        }
+        if ($SoftwareSelection_CheckBoxes['Adobe Photoshop'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Photoshop/Download.ps1') 
+        }
+        if ($SoftwareSelection_CheckBoxes['AnyDesk'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/AnyDesk/Download.ps1') 
+        }
+        if ($SoftwareSelection_CheckBoxes['Autodesk AutoCAD'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Autodesk_AutoCAD/Download.ps1') 
+        }
+        if ($SoftwareSelection_CheckBoxes['Autodesk Revit'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Autodesk_Revit/Download.ps1') 
+        }
+        if ($SoftwareSelection_CheckBoxes['Battle.net'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Battle.net/Download.ps1') 
+        }
+        if ($SoftwareSelection_CheckBoxes['BetterDiscord'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/BetterDiscord/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['Chrome'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Google_Chrome/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['Chrome - Extensions'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Google_Chrome/Extensions.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['CrystalDiskInfo'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/CrystalDiskInfo/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['CrystalDiskMark'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/CrystalDiskMark/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['CurseForge'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/CurseForge/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['Discord'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Discord/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['Display Driver Uninstaller'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Display_Driver_Uninstaller/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['Edge WebView2'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Edge_WebView2/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['eM Client - License Fix'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/eM_Client/License.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['Epic Games Launcher'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Epic_Games_Launcher/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['Firefox'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['Firefox - Arkenfox'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/Arkenfox.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['Firefox - Extensions'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/Extensions.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['Git'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Git/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['HyperX NGENUITY'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/HyperX_NGENUITY/Download.ps1') 
+        }
+        if ($SoftwareSelection_CheckBoxes['Jellyfin'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Jellyfin/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['JitBit Macro Recorder'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Jitbit_Macro_Recorder/Download.ps1') 
+        }
+        if ($SoftwareSelection_CheckBoxes['Logitech G HUB'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Logitech_G_HUB/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['MediaInfo'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/MediaInfo/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['Microsoft Office'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Office/Download.ps1') 
+        }
+        if ($SoftwareSelection_CheckBoxes['Microsoft Store'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Store/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['Minecraft Launcher'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Minecraft_Launcher/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['mpv'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['NordVPN'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/NordVPN/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['Notepad++'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Notepad++/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['NVCleanstall'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/NVCleanstall/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['Plex'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Plex_Media_Server/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['PuTTY'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/PuTTY/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['Python'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Python/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['qBittorrent'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/qBittorrent/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['Razer Synapse'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Razer_Synapse/Download.ps1') 
+        }
+        if ($SoftwareSelection_CheckBoxes['SketchUp'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/SketchUp/Download.ps1') 
+        }
+        if ($SoftwareSelection_CheckBoxes['Steam'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Steam/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['Subtitle Edit'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Subtitle_Edit/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['Telegram'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Telegram/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['TranslucentTB'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/TranslucentTB/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['Uninstall Edge'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Edge/Uninstall.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['Uninstall Microsoft Store'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Store/Uninstall.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['Valorant'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Valorant/Download.ps1') 
+        }
+        if ($SoftwareSelection_CheckBoxes['Visual Studio Code'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Visual_Studio_Code/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['VMware Workstation'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/VMware_Workstation/Download.ps1') 
+        }
+        if ($SoftwareSelection_CheckBoxes['Windows 10 IoT Enterprise LTSC 2021'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Windows_10_IoT_Enterprise_LTSC_2021/ISO.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['Windows Deployment Tools'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Windows_Assessment_and_Deployment_Kit/Deployment_Tools/Download.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['Windows Server 2025 Datacenter'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Windows_Server_2025_Datacenter/ISO.ps1')
+        }
+        if ($SoftwareSelection_CheckBoxes['Zoom'].Checked) {
+            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Zoom/Download.ps1')
+        }
+    })
 
 $SoftwareSelection_Form.Controls.Add($SoftwareSelection_Form_OK)
 $SoftwareSelection_Form.Controls.Add($SoftwareSelection_Form_Cancel)

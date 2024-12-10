@@ -20,6 +20,3 @@ if ($BuildISO_OK -eq [Windows.Forms.DialogResult]::OK) {
 
     & 'C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\amd64\Oscdimg\oscdimg.exe' -m -o -u2 -udfver102 $BuildISO_FileSelected "$BuildISO_FileSelected\ISO.iso"
 }
-else {
-    Write-Output 'No file selected.'
-}

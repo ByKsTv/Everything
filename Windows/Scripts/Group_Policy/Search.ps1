@@ -26,7 +26,7 @@ $SearchPolicy_OK = New-Object System.Windows.Forms.Button -Property @{
 	Width     = $SearchPolicy_ButtonWidth
 	Height    = $SearchPolicy_ButtonHeight
 	Location  = [Drawing.Point]::new($SearchPolicy_FormCenterX, $SearchPolicy_ButtonYLocation)
-	Add_Click = { $SearchPolicy_Form.Close() }
+	Add_Click = ({ $SearchPolicy_Form.Close() })
 }
 
 $SearchPolicy_CancelX = $SearchPolicy_FormCenterX + $SearchPolicy_ButtonWidth + $SearchPolicy_ButtonSpacer
@@ -35,7 +35,7 @@ $SearchPolicy_Cancel = New-Object System.Windows.Forms.Button -Property @{
 	Width     = $SearchPolicy_ButtonWidth
 	Height    = $SearchPolicy_ButtonHeight
 	Location  = [Drawing.Point]::new($SearchPolicy_CancelX, $SearchPolicy_ButtonYLocation)
-	Add_Click = { $SearchPolicy_Form.Close() }
+	Add_Click = ({ $SearchPolicy_Form.Close() })
 }
 
 $SearchPolicy_LocX = 5
@@ -44,9 +44,9 @@ $SearchPolicy_SizeX = $SearchPolicy_Form.Width - 25
 $SearchPolicy_SizeY = 26
 
 $SearchPolicy_TextBox = New-Object System.Windows.Forms.TextBox -Property @{
-	Width         = $SearchPolicy_SizeX
-	Height        = $SearchPolicy_SizeY
-	Location      = [Drawing.Point]::new($SearchPolicy_LocX, $SearchPolicy_LocY)
+	Width    = $SearchPolicy_SizeX
+	Height   = $SearchPolicy_SizeY
+	Location = [Drawing.Point]::new($SearchPolicy_LocX, $SearchPolicy_LocY)
 }
 
 $SearchPolicy_Form.Controls.Add($SearchPolicy_OK)
@@ -58,16 +58,16 @@ $SearchPolicy_Form.Controls.Add($SearchPolicy_TextBox)
 
 $SearchPolicy_UserDefined = $SearchPolicy_TextBox.Text
 if ($SearchPolicy_UserDefined) {
-    $SearchPolicy_UserDefined = "*$SearchPolicy_UserDefined*"
-    $SearchPolicy_Dir = Get-ChildItem -Path "$env:windir\PolicyDefinitions" -Recurse -File
-    foreach ($SearchPolicy_File in $SearchPolicy_Dir) {
-        try {
-            if ((Get-Content $SearchPolicy_File.FullName -ErrorAction Stop) -like $SearchPolicy_UserDefined) {
-                Write-Host "Found '$SearchPolicy_UserDefined' in: $($SearchPolicy_File.FullName)" -ForegroundColor Green
-            }
-        }
-        catch {
-            Write-Host "Error reading: $($SearchPolicy_File.FullName)" -ForegroundColor Red
-        }
-    }
+	$SearchPolicy_UserDefined = "*$SearchPolicy_UserDefined*"
+	$SearchPolicy_Dir = Get-ChildItem -Path "$env:windir\PolicyDefinitions" -Recurse -File
+	foreach ($SearchPolicy_File in $SearchPolicy_Dir) {
+		try {
+			if ((Get-Content $SearchPolicy_File.FullName -ErrorAction Stop) -like $SearchPolicy_UserDefined) {
+				Write-Host "Found '$SearchPolicy_UserDefined' in: $($SearchPolicy_File.FullName)" -ForegroundColor Green
+			}
+		}
+		catch {
+			Write-Host "Error reading: $($SearchPolicy_File.FullName)" -ForegroundColor Red
+		}
+	}
 }

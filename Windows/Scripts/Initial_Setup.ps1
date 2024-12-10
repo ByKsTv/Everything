@@ -27,7 +27,7 @@ $InitialSetup_OK = New-Object System.Windows.Forms.Button -Property @{
 	Width     = $InitialSetup_ButtonWidth
 	Height    = $InitialSetup_ButtonHeight
 	Location  = [Drawing.Point]::new($InitialSetup_FormCenterX, $InitialSetup_ButtonYLocation)
-	Add_Click = { $InitialSetup_Form.Close() }
+	Add_Click = ({ $InitialSetup_Form.Close() })
 }
 
 $InitialSetup_CancelX = $InitialSetup_FormCenterX + $InitialSetup_ButtonWidth + $InitialSetup_ButtonSpacer
@@ -36,7 +36,7 @@ $InitialSetup_Cancel = New-Object System.Windows.Forms.Button -Property @{
 	Width     = $InitialSetup_ButtonWidth
 	Height    = $InitialSetup_ButtonHeight
 	Location  = [Drawing.Point]::new($InitialSetup_CancelX, $InitialSetup_ButtonYLocation)
-	Add_Click = { $InitialSetup_Form.Close() }
+	Add_Click = ({ $InitialSetup_Form.Close() })
 }
 
 $InitialSetup_LocX = 5
