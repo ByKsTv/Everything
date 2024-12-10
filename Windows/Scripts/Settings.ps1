@@ -122,21 +122,21 @@ New-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'UserPreferencesMask'
 # Settings: Accessibility: Visual effects: Always show scrollbars: On
 New-ItemProperty -Path 'HKCU:\Control Panel\Accessibility' -Name 'DynamicScrollbars' -Value 0 -PropertyType DWord -Force
 
-# FileTransferDialog -Detailed
+# Show the file transfer dialog box in the detailed mode
 if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager')) {
 	New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager' -Force
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\OperationStatusManager' -Name 'EnthusiastMode' -PropertyType DWord -Value 1 -Force
 
-# JPEGWallpapersQuality -Max
+# Set the quality factor of the JPEG desktop wallpapers to maximum
 New-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'JPEGImportQuality' -PropertyType DWord -Value 100 -Force
 
-# DiagTrackService -Disable
+# Disable the Connected User Experiences and Telemetry (DiagTrack) service, and block connection for the Unified Telemetry Client Outbound Traffic
 Get-Service -Name 'DiagTrack' | Stop-Service -Force
 Get-Service -Name 'DiagTrack' | Set-Service -StartupType Disabled
 Get-NetFirewallRule -Group 'DiagTrack' | Set-NetFirewallRule -Enabled True -Action Block
 
-# ErrorReporting -Disable
+# Turn off Windows Error Reporting
 Get-Service -Name 'WerSvc' | Stop-Service -Force
 Get-Service -Name 'WerSvc' | Set-Service -StartupType Disabled
 
@@ -215,29 +215,16 @@ if (-not (Test-Path -Path 'HKCU:\Software\Classes\CLSID\{031E4825-7B94-4dc3-B131
 }
 New-ItemProperty -Path 'HKCU:\Software\Classes\CLSID\{031E4825-7B94-4dc3-B131-E946B44C8DD5}' -Name 'System.IsPinnedToNameSpaceTree' -PropertyType DWord -Value 0 -Force
 
-# DismissMSAccount
-if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows Security Health\State')) {
-	New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Windows Security Health\State' -Force
-}
-New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows Security Health\State' -Name 'AccountProtection_MicrosoftAccount_Disconnected' -PropertyType DWord -Value 1 -Force
-
-# DismissSmartScreenFilter
-New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows Security Health\State' -Name 'AppAndBrowser_EdgeSmartScreenOff' -PropertyType DWord -Value 0 -Force
-
-# StickyShift -Disable
+# Turn off Sticky keys by pressing the Shift key 5 times
 New-ItemProperty -Path 'HKCU:\Control Panel\Accessibility\StickyKeys' -Name 'Flags' -PropertyType String -Value 506 -Force
 
-# LatestInstalled.NET -Enable
-New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NETFramework' -Name 'OnlyUseLatestCLR' -PropertyType DWord -Value 1 -Force
-New-ItemProperty -Path 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\.NETFramework' -Name 'OnlyUseLatestCLR' -PropertyType DWord -Value 1 -Force
-
-# BSoDStopError -Enable
+# Display Stop error code when BSoD occurs
 New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\CrashControl' -Name 'DisplayParameters' -PropertyType DWord -Value 1 -Force
 
-# SecondsInSystemClock -Hide
+# Hide seconds on the taskbar clock
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'ShowSecondsInSystemClock' -PropertyType DWord -Value 0 -Force
 
-# RecycleBinDeleteConfirmation -Enable
+# Display the recycle bin files delete confirmation dialog
 $ShellState = Get-ItemPropertyValue -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer' -Name 'ShellState'
 $ShellState[4] = 51
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer' -Name 'ShellState' -PropertyType Binary -Value $ShellState -Force
@@ -446,11 +433,11 @@ New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Security Health\State' 
 # Disable apps and files checking within Microsoft Defender SmartScreen
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer' -Name 'SmartScreenEnabled' -PropertyType String -Value 'Off' -Force
 
-# Enable Windows Script Host
+# Disable Windows Script Host
 if (-not (Test-Path -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings')) {
 	New-Item -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings' -Force
 }
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings' -Name 'Enabled' -PropertyType DWord -Value 1 -Force
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings' -Name 'Enabled' -PropertyType DWord -Value 0 -Force
 
 # Disable Windows Sandbox
 if ((Get-CimInstance -ClassName CIM_Processor).VirtualizationFirmwareEnabled) {
