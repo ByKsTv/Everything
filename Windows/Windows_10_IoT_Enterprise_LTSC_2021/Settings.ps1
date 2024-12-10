@@ -1,5 +1,3 @@
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/O&O_ShutUp10++.ps1')
-
 # Settings: Windows Update: Advanced options: Receive updates for other Microsoft products: On
 (New-Object -ComObject Microsoft.Update.ServiceManager).AddService2('7971f918-a847-4430-9279-4a52d1efe18d', 7, '')
 
