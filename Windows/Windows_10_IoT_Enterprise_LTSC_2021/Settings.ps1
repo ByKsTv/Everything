@@ -30,42 +30,45 @@ Remove-Item "$BagMRU_RegPath\Bags", "$BagMRU_RegPath\BagMRU" -Recurse -Force -Er
 New-ItemProperty -Path (New-Item (New-Item "$BagMRU_RegPath\Bags\AllFolders" -Force).PSPath -Name Shell -Force).PSPath -Name FolderType -Value 'NotSpecified' -PropertyType String -Force
 
 # Settings: Personalization: Start: Choose which folders appears on Start: Settings + Explorer
-$displayItems = @('explorer', 'settings')
-$registryKey = Get-ItemProperty 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CloudStore\Store\Cache\DefaultAccount\*windows.data.unifiedtile.startglobalproperties\Current'
-$baseData = $registryKey.Data[0..19] -Join ',' + ",203,50,10,$($displayItems.Length)"
-$baseData += $displayItems | ForEach-Object {
-	Switch ($_) {
-		'explorer' {
-			',5,188,201,168,164,1,36,140,172,3,68,137,133,1,102,160,129,186,203,189,215,168,164,130,1,0'
-		}
-		'settings' {
-			',5,134,145,204,147,5,36,170,163,1,68,195,132,1,102,159,247,157,177,135,203,209,172,212,1,0'
-		}
-		'documents' {
-			',5,206,171,211,233,2,36,218,244,3,68,195,138,1,102,130,229,139,177,174,253,253,187,60,0'
-		}
-		'downloads' {
-			',5,175,230,158,155,14,36,222,147,2,68,213,134,1,102,191,157,135,155,191,143,198,212,55,0'
-		}
-		'music' {
-			',5,160,140,172,128,11,36,209,254,1,68,178,152,1,102,170,189,208,225,204,234,223,185,21,0'
-		}
-		'pictures' {
-			',5,160,143,252,193,3,36,138,208,3,68,128,153,1,102,176,181,153,220,205,176,151,222,77,0'
-		}
-		'videos' {
-			',5,197,203,206,149,4,36,134,251,1,68,244,133,1,102,128,201,206,212,175,217,158,196,181,1,0'
-		}
-		'network' {
-			',5,196,130,214,243,15,36,141,16,68,174,133,1,102,139,181,211,233,254,210,237,177,148,1,0'
-		}
-		'personal' {
-			',5,202,224,246,165,7,36,202,242,3,68,232,158,1,102,139,173,143,194,249,160,135,212,188,1,0'
+$itemsToDisplay = @('explorer', 'settings')
+$key = Get-ItemProperty 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CloudStore\Store\Cache\DefaultAccount\*windows.data.unifiedtile.startglobalproperties\Current'
+$data = $key.Data[0..19] -Join ','
+If ($itemsToDisplay.Length -gt 0) {
+	$data += ",203,50,10,$($itemsToDisplay.Length)"
+	$data += $itemsToDisplay | ForEach-Object {
+		switch ($_) {
+			'explorer' {
+				',5,188,201,168,164,1,36,140,172,3,68,137,133,1,102,160,129,186,203,189,215,168,164,130,1,0'
+   }
+			'settings' {
+				',5,134,145,204,147,5,36,170,163,1,68,195,132,1,102,159,247,157,177,135,203,209,172,212,1,0'
+   }
+			'documents' {
+				',5,206,171,211,233,2,36,218,244,3,68,195,138,1,102,130,229,139,177,174,253,253,187,60,0'
+   }
+			'downloads' {
+				',5,175,230,158,155,14,36,222,147,2,68,213,134,1,102,191,157,135,155,191,143,198,212,55,0'
+   }
+			'music' {
+				',5,160,140,172,128,11,36,209,254,1,68,178,152,1,102,170,189,208,225,204,234,223,185,21,0'
+   }
+			'pictures' {
+				',5,160,143,252,193,3,36,138,208,3,68,128,153,1,102,176,181,153,220,205,176,151,222,77,0'
+   }
+			'videos' {
+				',5,197,203,206,149,4,36,134,251,1,68,244,133,1,102,128,201,206,212,175,217,158,196,181,1,0'
+   }
+			'network' {
+				',5,196,130,214,243,15,36,141,16,68,174,133,1,102,139,181,211,233,254,210,237,177,148,1,0'
+   }
+			'personal' {
+				',5,202,224,246,165,7,36,202,242,3,68,232,158,1,102,139,173,143,194,249,160,135,212,188,1,0'
+   }
 		}
 	}
 }
-$baseData += ',194,60,1,194,70,1,197,90,1,0'
-Set-ItemProperty -Path $registryKey.PSPath -Name 'Data' -Type Binary -Value $baseData.Split(',')
+$data += ',194,60,1,194,70,1,197,90,1,0'
+Set-ItemProperty -Path $key.PSPath -Name 'Data' -Type Binary -Value $data.Split(',')
 
 # Disable ContentDeliveryManager
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager' -Name 'FeatureManagementEnabled' -Value 0 -PropertyType DWord -Force
