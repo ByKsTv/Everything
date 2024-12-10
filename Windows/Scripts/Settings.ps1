@@ -18,12 +18,6 @@ powercfg.exe /HIBERNATE OFF
 powercfg.exe /SETACVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e 0
 powercfg.exe /SETDCVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 3c0bc021-c8a8-4e07-a973-6b14cbcb2b7e 0
 
-# Settings: System: For developers: File Explorer: Show file extenstions: On
-if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\TaskbarDeveloperSettings')) {
-	New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\TaskbarDeveloperSettings' -Force
-}
-New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\TaskbarDeveloperSettings' -Name 'HideFileExt' -PropertyType DWord -Value 0 -Force
-
 # Settings: System: Multitasking: Snap windows: When I snap a window, suggest what I can snap next to it: Off
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'SnapAssist' -PropertyType DWord -Value 0 -Force
 
@@ -72,9 +66,6 @@ New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings' -Nam
 
 # Settings: Personalization: Taskbar: Taskbar items: Task view: Off
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'ShowTaskViewButton' -Value 0 -PropertyType DWord -Force
-
-# Folder Options: View: Advanced settings: Hidden files and folders: Show hidden files, folders, and drives
-New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'Hidden' -PropertyType DWord -Value 1 -Force
 
 # Settings: Privacy & security: Search permissions: History: Search history on this device: Off
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\SearchSettings' -Name 'IsDeviceSearchHistoryEnabled' -PropertyType DWord -Value 0 -Force
@@ -149,8 +140,77 @@ Get-NetFirewallRule -Group 'DiagTrack' | Set-NetFirewallRule -Enabled True -Acti
 Get-Service -Name 'WerSvc' | Stop-Service -Force
 Get-Service -Name 'WerSvc' | Set-Service -StartupType Disabled
 
-# MergeConflicts -Show
+# Folder Options: View: Always show icons, never thumbnails: Disabled
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'IconsOnly' -PropertyType DWord -Value 0 -Force
+
+# Folder Options: View: Always show menus: Disabled
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'AlwaysShowMenus' -PropertyType DWord -Value 0 -Force
+
+# Folder Options: View: Display file icon on thumbnails: Enabled
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'ShowTypeOverlay' -PropertyType DWord -Value 1 -Force
+
+# Folder Options: View: Display file size information in folder tips: Enabled
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'FolderContentsInfoTip' -PropertyType DWord -Value 1 -Force
+
+# Folder Options: View: Display the full path in the title bar: Enabled
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\CabinetState' -Name 'FullPath' -PropertyType DWord -Value 1 -Force
+
+# Folder Options: View: Hidden files and folders: Show hidden files, folders, and drives
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'Hidden' -PropertyType DWord -Value 1 -Force
+
+# Folder Options: View: Hide empty drives: Disabled
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'HideDrivesWithNoMedia' -Value 0 -PropertyType DWord -Force
+
+# Folder Options: View: Hide extensions for known file types: Disabled
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'HideFileExt' -Value 0 -PropertyType DWord -Force
+
+# Folder Options: View: Hide folder merge conflicts: Disabled
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'HideMergeConflicts' -PropertyType DWord -Value 0 -Force
+
+# Folder Options: View: Hide protected operating system files (Recommended): Disabled
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'ShowSuperHidden' -PropertyType DWord -Value 0 -Force
+
+# Folder Options: View: Launch folder windows in a separate process: Enabled
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'SeparateProcess' -PropertyType DWord -Value 1 -Force
+
+# Folder Options: View: Restore previous folder windows at logon: Disabled
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'PersistBrowsers' -PropertyType DWord -Value 0 -Force
+
+# Folder Options: View: Show drive letters: Enabled
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer' -Name 'ShowDriveLettersFirst' -PropertyType DWord -Value 0 -Force
+
+# Folder Options: View: Show encrypted or compressed NTFS files in color: Enabled
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'ShowEncryptCompressedColor' -PropertyType DWord -Value 1 -Force
+
+# Folder Options: View: Show pop-up description for folder and desktop items: Enabled
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'ShowInfoTip' -PropertyType DWord -Value 1 -Force
+
+# Folder Options: View: Show preview handlers in pewview pane: Enabled
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'ShowPreviewHandlers' -PropertyType DWord -Value 1 -Force
+
+# Folder Options: View: Show status bar: Enabled
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'ShowStatusBar' -PropertyType DWord -Value 1 -Force
+
+# Folder Options: View: Use check boxes to select items: Disabled
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'AutoCheckSelect' -PropertyType DWord -Value 0 -Force
+
+# Folder Options: View: Use Sharing Wizard (Recommended): Enabled
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'SharingWizardOn' -PropertyType DWord -Value 1 -Force
+
+# Folder Options: View: When typing into list view: Select the typed item in the view
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'TypeAhead' -PropertyType DWord -Value 0 -Force
+
+# Folder Options: View: Navigation pane: Always show availability status: Disabled
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'NavPaneShowAllCloudStates' -PropertyType DWord -Value 0 -Force
+
+# Folder Options: View: Navigation pane: Expand to open folder: Disabled
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'NavPaneExpandToCurrentFolder' -PropertyType DWord -Value 0 -Force
+
+# Folder Options: View: Navigation pane: Show all folders: Disabled
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'NavPaneShowAllFolders' -PropertyType DWord -Value 0 -Force
+
+# Folder Options: View: Navigation pane: Show libraries: Disabled
+New-ItemProperty -Path 'HKCU:\Software\Classes\CLSID\{031E4825-7B94-4dc3-B131-E946B44C8DD5}' -Name 'System.IsPinnedToNameSpaceTree' -PropertyType DWord -Value 0 -Force
 
 # DismissMSAccount
 if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows Security Health\State')) {
@@ -260,9 +320,6 @@ New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name 'PrimaryProperty' -PropertyType String -Value 'System.ItemNameDisplay' -Force
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name 'SortByList' -PropertyType String -Value 'prop:System.ItemNameDisplay' -Force
 
-# Do not expand to open folder on navigation pane (default value)
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'NavPaneExpandToCurrentFolder' -PropertyType DWord -Value 0 -Force
-
 # Settings: System: Storage: Storage Sense: Keep Windows running smoothly by automatically cleaning up temporary system and app files: On
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy' -Name '04' -PropertyType DWord -Value 1 -Force
 # Settings: System: Storage: Storage Sense: Automatic User content cleanup: On
@@ -334,8 +391,6 @@ Set-WinLanguageBarOption -UseLegacySwitchMode
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NETFramework' -Name 'OnlyUseLatestCLR' -PropertyType DWord -Value 1 -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\.NETFramework' -Name 'OnlyUseLatestCLR' -PropertyType DWord -Value 1 -Force
 
-# Launch folder windows in a separate process
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'SeparateProcess' -PropertyType DWord -Value 1 -Force
 
 # Disable and delete reserved storage after the next update installation
 Set-WindowsReservedStorageState -State Disabled
@@ -442,9 +497,6 @@ Remove-Item -Path 'Registry::HKEY_CLASSES_ROOT\.zip\CompressedFolder\ShellNew' -
 
 # Enable the "Open", "Print", and "Edit" items if more than 15 files selected
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer' -Name 'MultipleInvokePromptMinimum' -PropertyType DWord -Value 300 -Force
-
-# Do not use item check boxes
-New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'AutoCheckSelect' -PropertyType DWord -Value 0 -Force
 
 # Save screenshots by pressing Win+PrtScr in the Pictures folder
 Remove-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders' -Name '{B7BEDE81-DF94-4682-A7D8-57A52620B86F}' -Force -ErrorAction SilentlyContinue

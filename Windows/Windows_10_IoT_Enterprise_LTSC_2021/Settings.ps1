@@ -10,9 +10,6 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 # Settings: Windows Update: Advanced options: Download updates over metered connections: On
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\StateVariables' -Name 'AlwaysAllowMeteredNetwork' -PropertyType DWord -Value 1 -Force
 
-# Folder Options: View: Hide empty drives: Off
-New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'HideDrivesWithNoMedia' -Value 0 -PropertyType DWord -Force
-
 # [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write("Step2: Windows Packages: Removing Windows Backup app"); [Console]::ResetColor(); [Console]::WriteLine()
 # $windowsbackupapp = Get-WindowsPackage -Online | Where-Object { $_.PackageName -eq 'Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35~amd64~~10.0.19041.4355' }
 # if ($windowsbackupapp.PackageState -match 'Installed') {

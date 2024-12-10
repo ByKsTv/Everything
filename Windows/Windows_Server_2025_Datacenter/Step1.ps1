@@ -16,9 +16,6 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer
 # Settings: System: For developers: End Task: On
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\TaskbarDeveloperSettings' -Name 'TaskbarEndTask' -PropertyType DWord -Value 1 -Force
 
-# Settings: System: For developers: File Explorer: Show empty drives: On
-New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\TaskbarDeveloperSettings' -Name 'HideDrivesWithNoMedia' -PropertyType DWord -Value 0 -Force
-
 # Settings: Personalization: Start: Show recently added apps: Off
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Start' -Name 'ShowRecentList' -PropertyType DWord -Value 0 -Force
 
@@ -40,7 +37,7 @@ New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings' -Nam
 # Folder Options: General: Privacy: Show files from Office.com: Off
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer' -Name 'ShowCloudFilesInQuickAccess' -PropertyType DWord -Value 0 -Force
 
-# Folder Options: View: Advanced settings: Decrease space between items (compact view): On
+# Folder Options: View: Decrease space between items (compact view): On
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'UseCompactMode' -PropertyType DWord -Value 1 -Force
 
 # Task Manager: Startup apps: Delete: AzureArcSetup
