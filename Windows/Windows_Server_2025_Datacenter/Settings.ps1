@@ -74,22 +74,8 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Par
 # Show default Start layout
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'Start_Layout' -PropertyType DWord -Value 0 -Force
 
-# Enable Local Security Authority protection to prevent code injection without UEFI lock
-if ((Get-CimInstance -ClassName CIM_Processor).VirtualizationFirmwareEnabled) {
-	New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Lsa' -Name 'RunAsPPL' -PropertyType DWord -Value 2 -Force
-	New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Lsa' -Name 'RunAsPPLBoot' -PropertyType DWord -Value 2 -Force
-}
-else {
-	try {
-		if ((Get-CimInstance -ClassName CIM_ComputerSystem).HypervisorPresent) {
-			New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Lsa' -Name 'RunAsPPL' -PropertyType DWord -Value 2 -Force
-			New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Lsa' -Name 'RunAsPPLBoot' -PropertyType DWord -Value 2 -Force
-		}
-	}
-	catch [Exception] {
-		Write-Error -Message $Localization.EnableHardwareVT -ErrorAction SilentlyContinue
-	}
-}
+# Disable Local Security Authority protection to prevent code injection without UEFI lock
+Remove-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Lsa' -Name 'RunAsPPL', 'RunAsPPLBoot' -Force -ErrorAction Ignore
 
 # Settings: Accessibility: Keyboard: Notification preferences: Notify me when I turn on Sticky, Filter, or Toogle keys from keyboard: Off
 # Settings: Accessibility: Keyboard: Notification preferences: Play a sound when I turn Sticky, Filter, or Toogle keys on or off from the keyboard: Off
