@@ -12,6 +12,11 @@ Get-WindowsPackage -Online | Where-Object { $_.PackageName -like '*Microsoft-Win
 # Uninstall Dev Home app
 Get-AppxPackage -AllUsers -PackageTypeFilter Bundle -Name '*Windows.DevHome*' | Remove-AppxPackage -AllUsers
 
+# Black Lock Screen Image
+takeown.exe /f "$env:ProgramData\Microsoft\Windows\SystemData" /r /d y
+icacls.exe "$env:ProgramData\Microsoft\Windows\SystemData" /GRANT Everyone:F, Users:F /t
+Remove-Item "$env:ProgramData\Microsoft\Windows\SystemData" -Force -Recurse
+
 # Disable Input language switching notification
 if (-not (Test-Path -Path 'HKCU:\Keyboard Layout\ShowToast')) {
 	New-Item -Path 'HKCU:\Keyboard Layout\ShowToast' -Force
@@ -137,10 +142,6 @@ if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Input\Settings')) {
 	New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Input\Settings' -Force
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Input\Settings' -Name 'InsightsEnabled' -Value 0 -PropertyType DWord -Force
-
-# takeown /f 'C:\ProgramData\Microsoft\Windows\SystemData' /r /d y
-# icacls 'C:\ProgramData\Microsoft\Windows\SystemData' /GRANT Everyone:F, Users:F /t
-# Remove-Item 'C:\ProgramData\Microsoft\Windows\SystemData' -Force -Recurse
 
 # UserFolders -ThreeDObjects Hide 
 if (-not (Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag')) {
