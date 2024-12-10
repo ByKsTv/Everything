@@ -409,8 +409,8 @@ New-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVers
 # Prevent all internal SATA drives from showing up as removable media in the taskbar notification area
 New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\storahci\Parameters\Device' -Name 'TreatAsInternalPort' -Type MultiString -Value @(0, 1, 2, 3, 4, 5) -Force
 
-# Back up the system registry to %SystemRoot%\System32\config\RegBack folder
-New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Configuration Manager' -Name 'EnablePeriodicBackup' -Type DWord -Value 1 -Force
+# Do not back up the system registry to %SystemRoot%\System32\config\RegBack folder
+Remove-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Configuration Manager" -Name 'EnablePeriodicBackup' -Force -ErrorAction Ignore
 
 # Disable Microsoft Defender Exploit Guard network protection
 Set-MpPreference -EnableNetworkProtection Disabled
