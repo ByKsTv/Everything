@@ -227,6 +227,22 @@ New-ItemProperty -Path 'Registry::HKEY_CLASSES_ROOT\AllFilesystemObjects\shellex
 # Hide the "Bitmap image" item from the "New" context menu
 Remove-Item -Path 'Registry::HKEY_CLASSES_ROOT\.bmp\ShellNew' -Force
 
+# Disable Windows Sandbox
+if ((Get-CimInstance -ClassName CIM_Processor).VirtualizationFirmwareEnabled) {
+	Disable-WindowsOptionalFeature -FeatureName 'Containers-DisposableClientVM' -Online -NoRestart
+}
+else {
+	try {
+		if ((Get-CimInstance -ClassName CIM_ComputerSystem).HypervisorPresent) {
+			Disable-WindowsOptionalFeature -FeatureName 'Containers-DisposableClientVM' -Online -NoRestart
+		}
+	}
+	catch [Exception] {
+		Write-Error -Message $Localization.EnableHardwareVT -ErrorAction SilentlyContinue
+		Write-Error -Message ($Localization.RestartFunction -f $MyInvocation.Line.Trim()) -ErrorAction SilentlyContinue
+	}
+}
+
 # [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Hosts: Adding mobile.events.data.microsoft.com'); [Console]::ResetColor(); [Console]::WriteLine()
 # $mobileeventsdatamicrosoft = Select-String -Path $env:windir\System32\drivers\etc\hosts -Pattern 'mobile.events.data.microsoft.com'
 # if ($null -eq $mobileeventsdatamicrosoft) {

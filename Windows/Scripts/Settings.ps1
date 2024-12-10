@@ -439,22 +439,6 @@ if (-not (Test-Path -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings
 }
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings' -Name 'Enabled' -PropertyType DWord -Value 0 -Force
 
-# Disable Windows Sandbox
-if ((Get-CimInstance -ClassName CIM_Processor).VirtualizationFirmwareEnabled) {
-	Disable-WindowsOptionalFeature -FeatureName Containers-DisposableClientVM -Online -NoRestart
-}
-else {
-	try {
-		if ((Get-CimInstance -ClassName CIM_ComputerSystem).HypervisorPresent) {
-			Disable-WindowsOptionalFeature -FeatureName Containers-DisposableClientVM -Online -NoRestart
-		}
-	}
-	catch [Exception] {
-		Write-Error -Message $Localization.EnableHardwareVT -ErrorAction SilentlyContinue
-		Write-Error -Message ($Localization.RestartFunction -f $MyInvocation.Line.Trim()) -ErrorAction SilentlyContinue
-	}
-}
-
 # Disable DNS-over-HTTPS for IPv4
 if (-not (Get-CimInstance -ClassName CIM_ComputerSystem).HypervisorPresent) {
 	$InterfaceGuids = @((Get-NetAdapter -Physical).InterfaceGuid)
