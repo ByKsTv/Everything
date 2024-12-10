@@ -1,4 +1,5 @@
 Add-Type -AssemblyName System.Windows.Forms
+[Windows.Forms.Application]::EnableVisualStyles()
 
 $FileDialog = New-Object System.Windows.Forms.OpenFileDialog
 $FileDialog.CheckFileExists = $false
