@@ -484,36 +484,12 @@ Set-Policy -Scope User -Path 'Software\Microsoft\Windows NT\CurrentVersion\Windo
 # Group Policy: User Configuration: Administrative Templates: Windows Components: File Explorer: Turn off caching of thumbnail pictures: Enabled
 Set-Policy -Scope User -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'NoThumbnailCache' -Type DWORD -Value 1
 
-# Group Policy: Computer Configuration: Administrative Templates: System: Audit Process Creation: Include command line in process creation events: Enabled
-auditpol.exe /set /subcategory:"{0CCE922B-69AE-11D9-BED3-505054503030}" /success:enable /failure:enable
-Set-Policy -Scope Computer -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\System\Audit' -Name 'ProcessCreationIncludeCmdLine_Enabled' -Type DWORD -Value 1
-$ProcessCreationXML = @"
-<ViewerConfig>
-	<QueryConfig>
-		<QueryParams>
-			<UserQuery />
-		</QueryParams>
-		<QueryNode>
-			<Name>$($Localization.EventViewerCustomViewName)</Name>
-			<Description>$($Localization.EventViewerCustomViewDescription)</Description>
-			<QueryList>
-				<Query Id="0" Path="Security">
-					<Select Path="Security">*[System[(EventID=4688)]]</Select>
-				</Query>
-			</QueryList>
-		</QueryNode>
-	</QueryConfig>
-</ViewerConfig>
-"@
+# Group Policy: Computer Configuration: Administrative Templates: System: Audit Process Creation: Include command line in process creation events: Disabled
+auditpol.exe /set /subcategory:"{0CCE922B-69AE-11D9-BED3-505054503030}" /success:disable /failure:disable
+Set-Policy -Scope Computer -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\System\Audit' -Name 'ProcessCreationIncludeCmdLine_Enabled' -Type DWORD -Value 0
 
-if (-not (Test-Path -Path "$env:ProgramData\Microsoft\Event Viewer\Views")) {
-	New-Item -Path "$env:ProgramData\Microsoft\Event Viewer\Views" -ItemType Directory -Force
-}
-Set-Content -Path "$env:ProgramData\Microsoft\Event Viewer\Views\ProcessCreation.xml" -Value $ProcessCreationXML -Encoding Default -NoNewline -Force
+# Group Policy: User Configuration: Administrative Templates: Windows Components: Windows PowerShell: Turn on Module Logging: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\PowerShell\ModuleLogging' -Name 'EnableModuleLogging' -Type DWORD -Value 0
 
-# Group Policy: User Configuration: Administrative Templates: Windows Components: Windows PowerShell: Turn on Module Logging: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\PowerShell\ModuleLogging' -Name 'EnableModuleLogging' -Type DWORD -Value 1
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\PowerShell\ModuleLogging\ModuleNames' -Name * -Type SZ -Value *
-
-# Group Policy: User Configuration: Administrative Templates: Windows Components: Windows PowerShell: Turn on PowerShell Script Block Logging: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging' -Name 'EnableScriptBlockLogging' -Type DWORD -Value 1
+# Group Policy: User Configuration: Administrative Templates: Windows Components: Windows PowerShell: Turn on PowerShell Script Block Logging: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging' -Name 'EnableScriptBlockLogging' -Type DWORD -Value 0
