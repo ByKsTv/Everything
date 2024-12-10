@@ -507,7 +507,7 @@ $ProcessCreationXML = @"
 "@
 
 if (-not (Test-Path -Path "$env:ProgramData\Microsoft\Event Viewer\Views")) {
-    New-Item -Path "$env:ProgramData\Microsoft\Event Viewer\Views" -ItemType Directory -Force
+	New-Item -Path "$env:ProgramData\Microsoft\Event Viewer\Views" -ItemType Directory -Force
 }
 Set-Content -Path "$env:ProgramData\Microsoft\Event Viewer\Views\ProcessCreation.xml" -Value $ProcessCreationXML -Encoding Default -NoNewline -Force
 
