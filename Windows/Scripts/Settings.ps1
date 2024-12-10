@@ -210,6 +210,9 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'NavPaneShowAllFolders' -PropertyType DWord -Value 0 -Force
 
 # Folder Options: View: Navigation pane: Show libraries: Disabled
+if (-not (Test-Path -Path 'HKCU:\Software\Classes\CLSID\{031E4825-7B94-4dc3-B131-E946B44C8DD5}')) {
+	New-Item -Path 'HKCU:\Software\Classes\CLSID\{031E4825-7B94-4dc3-B131-E946B44C8DD5}' -Force
+}
 New-ItemProperty -Path 'HKCU:\Software\Classes\CLSID\{031E4825-7B94-4dc3-B131-E946B44C8DD5}' -Name 'System.IsPinnedToNameSpaceTree' -PropertyType DWord -Value 0 -Force
 
 # DismissMSAccount
@@ -501,4 +504,7 @@ New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer
 Remove-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders' -Name '{B7BEDE81-DF94-4682-A7D8-57A52620B86F}' -Force -ErrorAction SilentlyContinue
 
 # Settings: Update & Security: Troubleshoot: Don't run any troubleshooters
+if (-not (Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\WindowsMitigation')) {
+	New-Item -Path 'HKLM:\SOFTWARE\Microsoft\WindowsMitigation' -Force
+}
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\WindowsMitigation' -Name 'UserPreference' -PropertyType DWord -Value 1 -Force
