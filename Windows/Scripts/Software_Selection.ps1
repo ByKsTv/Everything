@@ -55,6 +55,7 @@ $SoftwareSelection_CheckBoxHeight = 26
 $SoftwareSelection_Spacer = 26
 $SoftwareSelection_ToolTip = New-Object System.Windows.Forms.ToolTip
 
+# Format: .ico, Size: 16x16, extract .exe using 7-Zip
 $SoftwareSelection_CheckBoxes = @{}
 $SoftwareSelection_List = @(
     @{
