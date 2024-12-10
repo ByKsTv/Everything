@@ -225,7 +225,7 @@ New-ItemProperty -Path 'Registry::HKEY_CLASSES_ROOT\Folder\ShellEx\ContextMenuHa
 New-ItemProperty -Path 'Registry::HKEY_CLASSES_ROOT\AllFilesystemObjects\shellex\ContextMenuHandlers\SendTo' -Name '(default)' -PropertyType String -Value '-{7BA4C740-9E81-11CF-99D3-00AA004AE837}' -Force
 
 # Hide the "Bitmap image" item from the "New" context menu
-Remove-Item -Path 'Registry::HKEY_CLASSES_ROOT\.bmp\ShellNew' -Force
+Remove-Item -Path 'Registry::HKEY_CLASSES_ROOT\.bmp\ShellNew' -Force -ErrorAction Ignore
 
 # Disable Windows Sandbox
 if ((Get-CimInstance -ClassName CIM_Processor).VirtualizationFirmwareEnabled) {
