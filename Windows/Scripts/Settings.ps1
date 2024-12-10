@@ -511,3 +511,9 @@ if (-not (Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\WindowsMitigation')) {
 	New-Item -Path 'HKLM:\SOFTWARE\Microsoft\WindowsMitigation' -Force
 }
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\WindowsMitigation' -Name 'UserPreference' -PropertyType DWord -Value 1 -Force
+
+# Settings: Devices: Typing: Typing Insights: Disabling
+if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Input\Settings')) {
+	New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Input\Settings' -Force
+}
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Input\Settings' -Name 'InsightsEnabled' -Value 0 -PropertyType DWord -Force

@@ -91,6 +91,14 @@ else {
 	}
 }
 
+# Settings: Accessibility: Keyboard: Notification preferences: Notify me when I turn on Sticky, Filter, or Toogle keys from keyboard: Off
+# Settings: Accessibility: Keyboard: Notification preferences: Play a sound when I turn Sticky, Filter, or Toogle keys on or off from the keyboard: Off
+New-ItemProperty -Path 'HKCU:\Control Panel\Accessibility' -Name 'Warning Sounds' -PropertyType DWord -Value 0 -Force
+New-ItemProperty -Path 'HKCU:\Control Panel\Accessibility' -Name 'Sound on Activation' -PropertyType DWord -Value 0 -Force
+New-ItemProperty -Path 'HKCU:\Control Panel\Accessibility\Keyboard Response' -Name 'Flags' -PropertyType DWord -Value 102 -Force
+New-ItemProperty -Path 'HKCU:\Control Panel\Accessibility\StickyKeys' -Name 'Flags' -PropertyType DWord -Value 486 -Force
+New-ItemProperty -Path 'HKCU:\Control Panel\Accessibility\ToggleKeys' -Name 'Flags' -PropertyType DWord -Value 38 -Force
+
 # Uninstall Feedback Hub
 Get-AppxPackage 'Microsoft.WindowsFeedbackHub' | Remove-AppxPackage
 
