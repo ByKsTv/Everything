@@ -207,7 +207,7 @@ New-ItemProperty 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer' -Name 'Loc
 New-ItemProperty 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer' -Name 'StartLayoutFile' -Type ExpandString -Value $Path -Force
 Stop-Process -Name 'StartMenuExperienceHost' -Force -ErrorAction SilentlyContinue
 (New-Object -ComObject wscript.shell).SendKeys('^{ESC}')
-Start-Sleep -Milliseconds 1000
+Start-Sleep -Milliseconds 2000
 Remove-ItemProperty 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer' -Name 'LockedStartLayout' -Force
 Remove-ItemProperty 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer' -Name 'StartLayoutFile' -Force
 Remove-Item $Path -Force
