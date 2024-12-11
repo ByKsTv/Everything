@@ -493,3 +493,6 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\PowerShell
 
 # Group Policy: User Configuration: Administrative Templates: Windows Components: Windows PowerShell: Turn on PowerShell Script Block Logging: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging' -Name 'EnableScriptBlockLogging' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Windows Settings: Security Settings: Local Policies: Security Options: User Account Control: Admin Approval Mode for the Built-in Administrator Account: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' -Name 'FilterAdministratorToken' -Type DWORD -Value 1

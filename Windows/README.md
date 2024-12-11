@@ -47,7 +47,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. Disconnect Ethernet Cable.
 1. Disconnect Every Hard Drive Except Windows Drive.
    > This is to ensure you don't delete data from other drives, but if you know which drive partition belongs to which drive then you don't have to.
-1. Boot to UEFI USB (F12/DEL/F11).
+1. Boot to UEFI USB (DEL/F12/F11).
    > Restart to BIOS - CMD (Admin):
    >
    > ```cmd
@@ -60,11 +60,11 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. `Delete all` > `Next`.
    > If drives not found - Use `Load Driver` and extract `Intel Rapid Storage Technology (IRST)` driver matching to the motherboard.
 1. Connect Ethernet Cable (After Windows Boots Up).
-   > If there's no internet connection - install LAN driver.
 1. `Do you want to allow your PC to be discoverable by other PCs and devices on this network?` > `Yes`.
 
 ## Drivers
 
+1. Open `Device Manager`, Click on PC Name, Click on `Action` and `Add drivers`, Choose `Drivers` folder from USB.
 1. On the USB there's a folder called `Drivers` install all motherboard drivers (or what's neccesarry).
    > Some laptops require too many drivers so install ALL.
 
