@@ -88,6 +88,7 @@ forum.mobilism.me##.icon-chevron-up
 forum.mobilism.me##.icon-light.icon-twitter
 forum.mobilism.me##.icon-stack
 forum.mobilism.me##.twitter-color.icon-stack-base.icon-circle
+forum.mobilism.me##.welcome-bar
 forum.mobilism.me##footer
 github.com###first-time-contributor
 github.com##.Link.Link--secondary
@@ -132,6 +133,7 @@ lrepacks.net##.page-top
 lrepacks.net##.page-up
 lrepacks.net##div.skiptranslate
 missav.com##.hover\:text-primary.text-nord6.mx-auto.h-8.w-8
+missav.com##.mb-5.space-y-5
 missav.com##.pt-8.border-gray-700.border-t.my-12
 missav.com##.xl\:col-span-2.xl\:mt-0.gap-8.grid-cols-2.grid.mt-12
 missav.com##footer.px-4.mx-auto.sm\:container
@@ -150,6 +152,9 @@ nnmclub.to##.signature
 nnmclub.to##.ya-share2__icon
 nnmclub.to##.ya-share2_inited.ya-share2
 nnmclub.to##tr.rowlightgreen > .genmed
+pb.wtf###OnBottom
+pb.wtf##.footer.bs-docs-footer
+pb.wtf##.go-up
 pi.hole##.col-sm-6.col-xs-12
 pi.hole##.login-donate
 pi.hole##[href="https://pi-hole.net/donate/"]
