@@ -183,7 +183,7 @@ foreach ($Setting in $DisableAdapterSettings) {
 
 # 8. Enable or Disable Wake-on-LAN Based on User Input
 Add-Type -AssemblyName System.Windows.Forms
-$WakeOnLanAnswer = [Windows.Forms.MessageBox]::Show((New-Object Windows.Forms.Form -Property @{ TopMost = $true }), 'Enable Wake-On-Lan?', 'Wake-On-Lan', 4, 32) | Out-Null
+$WakeOnLanAnswer = [Windows.Forms.MessageBox]::Show((New-Object Windows.Forms.Form -Property @{ TopMost = $true }), 'Enable Wake-On-Lan?', 'Wake-On-Lan', 4, 32)
 $PnPValue = if ($WakeOnLanAnswer -eq 'Yes') {
  256 
 }
