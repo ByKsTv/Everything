@@ -488,3 +488,9 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Input\Settings' -Name 'Insights
 
 # Settings: Windows Security: Virus & threat protection: Manage settings: Change notification settings: Recent activity and scan results: Off
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows Defender Security Center\Virus and threat protection' -Name 'SummaryNotificationDisabled' -Value 1 -PropertyType DWord -Force
+
+# On-Screen Keyboard: Options: Use click sound: Off
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Osk' -Name 'ClickSound' -Value 0 -PropertyType DWord -Force
+
+# On-Screen Keyboard: Options: Use Text Prediction: Off
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Osk' -Name 'UseTextPrediction' -Value 0 -PropertyType DWord -Force
