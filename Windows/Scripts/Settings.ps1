@@ -406,11 +406,8 @@ New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\Thumbnail Cache' -Name 'Autorun' -PropertyType DWord -Value 3 -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\Thumbnail Cache' -Name 'Autorun' -PropertyType DWord -Value 3 -Force
 
-# Prevent all internal SATA drives from showing up as removable media in the taskbar notification area
-New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\storahci\Parameters\Device' -Name 'TreatAsInternalPort' -Type MultiString -Value @(0, 1, 2, 3, 4, 5) -Force
-
 # Do not back up the system registry to %SystemRoot%\System32\config\RegBack folder
-Remove-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Configuration Manager" -Name 'EnablePeriodicBackup' -Force -ErrorAction Ignore
+Remove-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Configuration Manager' -Name 'EnablePeriodicBackup' -Force -ErrorAction Ignore
 
 # Disable Microsoft Defender Exploit Guard network protection
 Set-MpPreference -EnableNetworkProtection Disabled
@@ -488,3 +485,6 @@ if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Input\Settings')) {
 	New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Input\Settings' -Force
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Input\Settings' -Name 'InsightsEnabled' -Value 0 -PropertyType DWord -Force
+
+# Settings: Windows Security: Virus & threat protection: Manage settings: Change notification settings: Recent activity and scan results: Off
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows Defender Security Center\Virus and threat protection' -Name 'SummaryNotificationDisabled' -Value 1 -PropertyType DWord -Force

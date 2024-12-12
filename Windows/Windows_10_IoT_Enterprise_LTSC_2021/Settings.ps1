@@ -92,9 +92,6 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\TabletTip\1.7' -Name 'EnablePre
 # Settings: Devices: Typing: Add a period after I double-tap the Spacebar: Off
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\TabletTip\1.7' -Name 'EnableDoubleTapSpace' -Value 0 -PropertyType DWord -Force
 
-# Settings: Windows Security: Virus & threat protection: Manage settings: Change notification settings: Recent activity and scan results: Off
-New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows Defender Security Center\Virus and threat protection' -Name 'SummaryNotificationDisabled' -Value 1 -PropertyType DWord -Force
-
 # Settings: Windows Security Notification Icon: Off
 if ($null -ne (Get-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run').GetValue('SecurityHealth')) {
 	Remove-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'SecurityHealth'
@@ -243,8 +240,8 @@ else {
 	}
 }
 
-# [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Hosts: Adding mobile.events.data.microsoft.com'); [Console]::ResetColor(); [Console]::WriteLine()
-# $mobileeventsdatamicrosoft = Select-String -Path $env:windir\System32\drivers\etc\hosts -Pattern 'mobile.events.data.microsoft.com'
-# if ($null -eq $mobileeventsdatamicrosoft) {
-# 	Add-Content -Path $env:windir\System32\drivers\etc\hosts -Value "`n127.0.0.1`tmobile.events.data.microsoft.com" -Force
-# }
+$HostsPath = "$env:WINDIR\System32\drivers\etc\hosts"
+$Urls = 'mobile.events.data.microsoft.com'
+$Urls | ForEach-Object { $Line = '0.0.0.0 ' + $_; if (-not(Select-String -Path $HostsPath -Pattern $Line)) {
+		Add-Content -Path $HostsPath -Value $Line
+	} }
