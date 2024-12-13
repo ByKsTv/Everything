@@ -126,26 +126,9 @@ $OfficeSelection_DisableTelemetry.Location = New-Object System.Drawing.Point(5, 
 $OfficeSelection_DisableTelemetry.Size = New-Object System.Drawing.Size(300, 20)
 $OfficeSelection_Form.Controls.Add($OfficeSelection_DisableTelemetry)
 
-$OfficeSelection_EnableTelemetry = New-Object System.Windows.Forms.CheckBox
-$OfficeSelection_EnableTelemetry.Text = 'Enable Telemetry'
-$OfficeSelection_EnableTelemetry.Enabled = $false
-$OfficeSelection_EnableTelemetry.Location = New-Object System.Drawing.Point(5, 370)
-$OfficeSelection_EnableTelemetry.Size = New-Object System.Drawing.Size(300, 20)
-$OfficeSelection_Form.Controls.Add($OfficeSelection_EnableTelemetry)
-
-$OfficeSelection_DisableTelemetry.add_CheckedChanged({
-        $OfficeSelection_EnableTelemetry.Enabled = -not $OfficeSelection_DisableTelemetry.Checked
-        $OfficeSelection_EnableTelemetry.Checked = $false
-    })
-
-$OfficeSelection_EnableTelemetry.add_CheckedChanged({
-        $OfficeSelection_DisableTelemetry.Enabled = -not $OfficeSelection_EnableTelemetry.Checked
-        $OfficeSelection_DisableTelemetry.Checked = $false
-    })
-
 $OfficeSelection_Scrubber = New-Object System.Windows.Forms.CheckBox
 $OfficeSelection_Scrubber.Text = 'Office Scrubber (Uninstall Office)'
-$OfficeSelection_Scrubber.Location = New-Object System.Drawing.Point(5, 390)
+$OfficeSelection_Scrubber.Location = New-Object System.Drawing.Point(5, 370)
 $OfficeSelection_Scrubber.Size = New-Object System.Drawing.Size(300, 20)
 $OfficeSelection_Form.Controls.Add($OfficeSelection_Scrubber)
 
@@ -331,11 +314,6 @@ $OfficeSelection_OK.Add_Click({
             Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Group_Policy/Pre.ps1')
             Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Office/Group_Policy.ps1')
             Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Group_Policy/Post.ps1')
-        }
-
-        if ($OfficeSelection_EnableTelemetry.Checked) {
-            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office: Enable Telemetry'); [Console]::ResetColor(); [Console]::WriteLine()
-            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/abbodi1406/WHD/master/scripts/OC2R_RevertTelemetry.ps1')
         }
 
         $OfficeSelection_Form.Close()
