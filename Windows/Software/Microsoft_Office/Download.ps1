@@ -1,3 +1,6 @@
+Add-Type -AssemblyName System.Windows.Forms
+[Windows.Forms.Application]::EnableVisualStyles()
+
 $OfficeSelection_GraveSoft = (Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/gravesoft/gravesoft.dev/main/docs/office_c2r_links.md' -UseBasicParsing).Content
 
 $OfficeSelection_Scrubber_Regex = '\[\*\*download Office Scrubber\*\*\]\((.*?)\)'
@@ -324,7 +327,6 @@ $OfficeSelection_OK.Add_Click({
 
         if ($OfficeSelection_DisableTelemetry.Checked) {
             [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office: Disable Telemetry'); [Console]::ResetColor(); [Console]::WriteLine()
-            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/abbodi1406/WHD/master/scripts/OC2R_DisableTelemetry.ps1')
 
             Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Group_Policy/Pre.ps1')
             Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Office/Group_Policy.ps1')
