@@ -272,6 +272,9 @@ www.pornhub.com##.js_dropdownBound.languageWrapper
 www.pornhub.com##.original.video-wrapper.hd-videos_wrapper.hd-smallerWidth.sectionWrapper
 www.pornhub.com##.relatedSearchTermsBottom.sectionWrapper
 www.pornhub.com##.tagsForWomen
+www.speedtest.net##.audienceComponent
+www.speedtest.net##.footer
+www.speedtest.net##.lower-content-blend.lower-content
 xxxclub.to##.fa-arrow-up.fa
 xxxclub.to##.footer-bottom
 xxxclub.to##.footer-top

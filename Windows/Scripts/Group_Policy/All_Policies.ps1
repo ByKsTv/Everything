@@ -494,5 +494,30 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\PowerShell
 # Group Policy: User Configuration: Administrative Templates: Windows Components: Windows PowerShell: Turn on PowerShell Script Block Logging: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging' -Name 'EnableScriptBlockLogging' -Type DWORD -Value 0
 
-# Group Policy: Computer Configuration: Windows Settings: Security Settings: Local Policies: Security Options: User Account Control: Admin Approval Mode for the Built-in Administrator Account: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' -Name 'FilterAdministratorToken' -Type DWORD -Value 1
+# Group Policy: Computer Configuration: Windows Settings: Security Settings: Local Policies: Security Options: User Account Control: Admin Approval Mode for the Built-in Administrator Account: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' -Name 'FilterAdministratorToken' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: 
+# Install updates for other Microsoft products
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AllowMUUpdateService' -Type DWORD -Value 1
+# Configure automatic updating
+# Install during automatic maintenance
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'NoAutoUpdate' -Type DWORD -Value 0
+# Scheduled install time: 3AM
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'ScheduledInstallTime' -Type DWORD -Value 3
+# 4 - Auto download and schedule the install
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AUOptions' -Type DWORD -Value 4
+# Install during automatic maintenance
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'ScheduledInstallDay' -Type DWORD -Value 0
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AutomaticMaintenanceEnabled' -Type DWORD -Value 1
+
+# Always automatically restart at the scheduled time
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AlwaysAutoRebootAtScheduledTime' -Type DWORD -Value 1
+# The restart timer will give users
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AlwaysAutoRebootAtScheduledTimeMinutes' -Type DWORD -Value 15
+
+# Turn off auto-restart for updates during active hours
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'SetActiveHours' -Type DWORD -Value 0
+
+# No auto-restart with logged on users for scheduled automatic updates installations
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'NoAutoRebootWithLoggedOnUsers' -Type DWORD -Value 0
