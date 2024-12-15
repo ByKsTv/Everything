@@ -30,6 +30,7 @@ Everything about mpv.
 
 ## Summery
 
+1. mpv will wait for untill you copy a url and then it will play it.
 1. YouTube videos will be marked as watched on `youtube.com`
 1. mpv will ALT+TAB when 1 seconds remained to the end of the video.
 1. mpv will delete videos when 15 seconds remained to the end of the video (You might want to delete this script).

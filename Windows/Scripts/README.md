@@ -24,7 +24,7 @@ Everything about Scripts.
 1. Use [Convert_PNG_to_ICO.py](Convert_PNG_to_ICO.py)
 1. Edit `input_path`.
 
-## Powershell: Sorting subtitles and fonts to the current video files
+## Python: Sorting subtitles and fonts to the current video files
 
 ### Directory Layout
 
@@ -32,12 +32,8 @@ Everything about Scripts.
 - **Subs/**: This is a subfolder inside **TV Show Name/**.
 - **Episode 1/**, **Episode 2/**, etc.: These are subfolders within **Subs/**.
 
-1. PowerShell (Admin):
-
-   ```powershell
-   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Subtitles_Sorting.ps1')
-
-   ```
+1. Use [Subtitles_Sorting.py](Subtitles_Sorting.py)
+1. Edit `Path_To_TVShow`.
 
 ## Powershell: Extract BDMV PLAYLIST
 
