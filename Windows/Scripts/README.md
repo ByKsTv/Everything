@@ -33,7 +33,7 @@ Everything about Scripts.
 - **Episode 1/**, **Episode 2/**, etc.: These are subfolders within **Subs/**.
 
 1. Use [Subtitles_Sorting.py](Subtitles_Sorting.py)
-1. Edit `Path_To_TVShow`.
+1. Edit `ExtractFontsFrom`.
 
 ## Powershell: Extract BDMV PLAYLIST
 
