@@ -71,7 +71,7 @@ Everything about Websites.
 - [NoNaMe Club](https://nnmclub.to/)
 - [LRepacks](https://lrepacks.net/)
 - [Diakov](https://diakov.net/)
-- [monkrus](http://www.monkrus.ws/) - Adobe & Autodesk
+- [monkrus](http://www.monkrus.ws/) / [mirror](https://vk.com/monkrus) - Adobe & Autodesk
 - [Ratiborus](https://msfree.su/index.php)
 
 ## NSFW

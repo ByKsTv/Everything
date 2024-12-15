@@ -67,3 +67,10 @@ Ubiquity
 
 1. Take a picture of the damaged ISP cable.
 1. Contact ISP in every way and claim: `Cable is damaged, I don't have internet and I work from home`.
+
+## Mobile Plan
+
+1. When first joining a mobile SIM company, check goverment map for areas of coverage.
+1. When first joining a mobile SIM company, request discounts.
+1. Each year you'll have to renew the plan, when doing so use the Public Inquiry page, don't comminicate with the Customer Service via Whatsapp or phone call.
+   > Remove all the extra charges such as `5G`, `Cyber Security` and bundled `TV` plans, all you actually need is phone calls + data plan.
