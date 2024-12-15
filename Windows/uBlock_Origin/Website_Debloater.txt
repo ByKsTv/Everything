@@ -275,6 +275,7 @@ www.pornhub.com##.tagsForWomen
 www.speedtest.net##.audienceComponent
 www.speedtest.net##.footer
 www.speedtest.net##.lower-content-blend.lower-content
+www.techpowerup.com##.p-footer-copyright
 xxxclub.to##.fa-arrow-up.fa
 xxxclub.to##.footer-bottom
 xxxclub.to##.footer-top
