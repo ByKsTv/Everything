@@ -80,7 +80,7 @@ $foreground = [Win32Api]::GetForegroundWindow()
 
 # Prepare cursor info
 $ci = New-Object Win32Api+CURSORINFO
-$ci.cbSize = [System.Runtime.InteropServices.Marshal]::SizeOf($ci)
+$ci.cbSize = [Runtime.InteropServices.Marshal]::SizeOf($ci)
 [Win32Api]::GetCursorInfo([ref]$ci) | Out-Null
 
 $arrowCursor = [Win32Api]::LoadCursor([IntPtr]::Zero, [Win32Api]::IDC_ARROW)

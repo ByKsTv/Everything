@@ -1,17 +1,17 @@
 Add-Type -AssemblyName System.Windows.Forms
 [Windows.Forms.Application]::EnableVisualStyles()
 
-$FileDialog = New-Object System.Windows.Forms.OpenFileDialog
-$FileDialog.CheckFileExists = $false
-$FileDialog.ValidateNames = $false
-$FileDialog.FileName = 'Select File'
-$FileDialog.Filter = 'All Files (*.*)|*.*'
+$ExtractBase64_Form = New-Object System.Windows.Forms.Form -Property @{
+    TopMost = $true
+}
+$ExtractBase64_OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog -Property @{
+    FileName        = 'Select file'
+    Filter          = 'All Files (*.*)|*.*'
+    CheckFileExists = $false
+}
 
-$form = New-Object System.Windows.Forms.Form
-$form.TopMost = $true
-
-if ($FileDialog.ShowDialog($form) -eq 'OK') {
-    $FileName = $FileDialog.FileName
+if ($ExtractBase64_OpenFileDialog.ShowDialog($ExtractBase64_Form) -eq [Windows.Forms.DialogResult]::OK) {
+    $FileName = $ExtractBase64_OpenFileDialog.FileName
     $Base64Content = [Convert]::ToBase64String((Get-Content $FileName -Encoding Byte))
 
     Write-Output "Selected File: $FileName"
@@ -19,3 +19,5 @@ if ($FileDialog.ShowDialog($form) -eq 'OK') {
 
     $Base64Content | Clip
 }
+
+$ExtractBase64_Form.Dispose()

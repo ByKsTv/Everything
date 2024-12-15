@@ -1,21 +1,16 @@
 Add-Type -AssemblyName System.Windows.Forms
 [Windows.Forms.Application]::EnableVisualStyles()
 
+$BDMV_PLAYLIST_Form = New-Object System.Windows.Forms.Form -Property @{
+    TopMost = $true
+}
 $BDMV_PLAYLIST_FileDialog = New-Object System.Windows.Forms.OpenFileDialog -Property @{
     FileName        = 'Select PLAYLIST Folder'
+    Filter          = 'Folders|*.'
     CheckFileExists = $false
-    ValidateNames   = $false
 }
-$BDMV_PLAYLIST_Form = New-Object System.Windows.Forms.Form -Property @{ 
-    TopMost       = $true
-    ShowInTaskbar = $false
-    Opacity       = 0 
-}
-$BDMV_PLAYLIST_Form.Show()
-$BDMV_PLAYLIST_OK = $BDMV_PLAYLIST_FileDialog.ShowDialog($BDMV_PLAYLIST_Form)
-$BDMV_PLAYLIST_Form.Dispose()
 
-if ($BDMV_PLAYLIST_OK -eq [Windows.Forms.DialogResult]::OK) {
+if ($BDMV_PLAYLIST_FileDialog.ShowDialog($BDMV_PLAYLIST_Form) -eq [Windows.Forms.DialogResult]::OK) {
     $BDMV_PLAYLIST_FolderSelected = [IO.Path]::GetDirectoryName($BDMV_PLAYLIST_FileDialog.FileName)
 
     Write-Output "Selected Folder: $BDMV_PLAYLIST_FolderSelected"
@@ -208,3 +203,5 @@ if ($BDMV_PLAYLIST_OK -eq [Windows.Forms.DialogResult]::OK) {
         Write-Output 'Processing completed.'
     }
 }
+
+$BDMV_PLAYLIST_Form.Dispose()
