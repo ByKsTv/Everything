@@ -85,10 +85,6 @@ New-ItemProperty -Path 'HKCU:\Control Panel\Accessibility\ToggleKeys' -Name 'Fla
 # Settings: System: Display: Multiple displays: Ease cursor movement between displays: Off
 New-ItemProperty -Path 'HKCU:\Control Panel\Cursors' -Name 'CursorDeadzoneJumpingSetting' -PropertyType DWord -Value 0 -Force
 
-# Settings: System: Display: Graphics: Optimizations for windowed games: Off
-New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\DirectX\GraphicsSettings' -Name 'SwapEffectUpgradeCache' -PropertyType DWord -Value 1 -Force
-New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\DirectX\UserGpuPreferences' -Name 'DirectXUserGlobalSettings' -PropertyType String -Value 'SwapEffectUpgradeEnable=0;' -Force
-
 # Uninstall Feedback Hub
 Get-AppxPackage 'Microsoft.WindowsFeedbackHub' | Remove-AppxPackage
 
