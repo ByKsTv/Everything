@@ -46,6 +46,7 @@ Ubiquity
 1. Contractors with heavy machinery will cut the road and get a network pipe 50CM diameter and will fill up the road with sand.
 1. Contractors will later arrive to create an FDT box.
 1. Contact ISP customer service on whatsapp and request to connect to the newly installed FDT box.
+1. Sumbit a public inquiry to request a fix to the road.
 
 ### Technicians law
 
