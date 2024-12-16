@@ -35,6 +35,8 @@ Ubiquity
 1. Call ISP Customer Service.
 1. Contact Ministery of communications.
 
+> Each year you'll have to renew the plan.
+
 ### Underground infrastructure
 
 1. Contact Ministery of communications, request an underground infrastructure (some require payment).
