@@ -85,6 +85,9 @@ New-ItemProperty -Path 'HKCU:\Control Panel\Accessibility\Keyboard Response' -Na
 New-ItemProperty -Path 'HKCU:\Control Panel\Accessibility\StickyKeys' -Name 'Flags' -PropertyType DWord -Value 486 -Force
 New-ItemProperty -Path 'HKCU:\Control Panel\Accessibility\ToggleKeys' -Name 'Flags' -PropertyType DWord -Value 38 -Force
 
+# Settings: System: Display: Multiple displays: Ease cursor movement between displays: Off
+New-ItemProperty -Path 'HKCU:\Control Panel\Cursors' -Name 'CursorDeadzoneJumpingSetting' -PropertyType DWord -Value 0 -Force
+
 # Uninstall Feedback Hub
 Get-AppxPackage 'Microsoft.WindowsFeedbackHub' | Remove-AppxPackage
 
