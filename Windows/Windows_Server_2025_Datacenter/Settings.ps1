@@ -74,9 +74,6 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Par
 # Show default Start layout
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'Start_Layout' -PropertyType DWord -Value 0 -Force
 
-# Disable Local Security Authority protection to prevent code injection without UEFI lock
-Remove-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Lsa' -Name 'RunAsPPL', 'RunAsPPLBoot' -Force -ErrorAction Ignore
-
 # Settings: Accessibility: Keyboard: Notification preferences: Notify me when I turn on Sticky, Filter, or Toogle keys from keyboard: Off
 # Settings: Accessibility: Keyboard: Notification preferences: Play a sound when I turn Sticky, Filter, or Toogle keys on or off from the keyboard: Off
 New-ItemProperty -Path 'HKCU:\Control Panel\Accessibility' -Name 'Warning Sounds' -PropertyType DWord -Value 0 -Force
