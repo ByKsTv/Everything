@@ -416,6 +416,9 @@ Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpd
 # No auto-restart with logged on users for scheduled automatic updates installations
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'NoAutoRebootWithLoggedOnUsers' -Type DWORD -Value 0
 
+# Do not include drivers with Windows Updates: Disabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'ExcludeWUDriversInQualityUpdate' -Type DWORD -Value 0
+
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Acrobat/Group_Policy.ps1')
 
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Google_Chrome/Group_Policy.ps1')

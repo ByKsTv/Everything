@@ -494,3 +494,9 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Osk' -Name 'ClickSound' -Value 
 
 # On-Screen Keyboard: Options: Use Text Prediction: Off
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Osk' -Name 'UseTextPrediction' -Value 0 -PropertyType DWord -Force
+
+# Install Drivers from 'Drivers' folder on USB
+$USB_Unattend_Drive = (Get-WmiObject -Class Win32_LogicalDisk | Where-Object { $_.DriveType -eq 2 }).DeviceID
+if ($USB_Unattend_Drive) {
+	pnputil.exe /add-driver "$USB_Unattend_Drive\Drivers\*.inf" /subdirs /install
+}
