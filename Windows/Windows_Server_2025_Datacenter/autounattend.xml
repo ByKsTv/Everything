@@ -39,11 +39,16 @@
             <FirstLogonCommands>
                 <SynchronousCommand wcm:action="add">
                     <Order>1</Order>
+                    <Description>Install Drivers</Description>
+                    <CommandLine>powershell.exe -NoProfile -Command "Get-WmiObject Win32_LogicalDisk -Filter 'DriveType=2' | ForEach-Object { pnputil /add-driver \"$($_.DeviceID)\Drivers\*.inf\" /subdirs /install }"</CommandLine>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <Order>2</Order>
                     <Description>Wait for network connection</Description>
                     <CommandLine>powershell.exe -NoProfile -Command "Write-Output 'Waiting for network connection'; while (!(Resolve-DnsName google.com -ErrorAction SilentlyContinue)) { Start-Sleep -Seconds 1 }; Write-Output 'Network connection established'"</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <Order>2</Order>
+                    <Order>3</Order>
                     <Description>Start Step1.ps1</Description>
                     <CommandLine>powershell.exe -NoProfile -Command "Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Windows_Server_2025_Datacenter/Step1.ps1')"</CommandLine>
                 </SynchronousCommand>
