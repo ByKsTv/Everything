@@ -96,6 +96,12 @@ user_pref("browser.download.alwaysOpenPanel", true);
 user_pref("signon.autofillForms", true);
 user_pref("signon.autofillForms.http", true);
 
+// Settings: General: Performance: Use recommended performance settings: Off
+user_pref("browser.preferences.defaultPerformanceSettings.enabled", false);
+
+// VSync ON
+user_pref("layers.acceleration.force-enabled", true);
+
 // Enable Custom userChrome.css
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 
