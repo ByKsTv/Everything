@@ -329,11 +329,28 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageS
 New-ItemProperty -Path 'Registry::HKEY_USERS\S-1-5-20\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Settings' -Name 'DownloadMode' -PropertyType DWord -Value 0 -Force
 Delete-DeliveryOptimizationCache -Force
 
-# List of task names to check and disable
-$taskNames = @('PcaPatchDbTask', 'Consolidator', 'DmClient', 'DmClientOnScenarioDownload', 'FamilySafetyMonitor', 'FamilySafetyRefreshTask', 'MapsToastTask', 'MapsUpdateTask', 'ProgramDataUpdater', 'MareBackup', 'Microsoft Compatibility Appraiser', 'Microsoft-Windows-DiskDiagnosticDataCollector', 'PcaWallpaperAppDetect', 'Proxy', 'StartupAppTask', 'QueueReporting', 'XblGameSaveTask', 'UsbCeip', 'WinSAT')
-foreach ($taskName in $taskNames) {
-	if (Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue) {
-		Get-ScheduledTask -TaskName $taskName | Disable-ScheduledTask
+# Disable Scheduled Tasks
+'Consolidator',
+'DmClient',
+'DmClientOnScenarioDownload',
+'FamilySafetyMonitor',
+'FamilySafetyRefreshTask',
+'MapsToastTask',
+'MapsUpdateTask',
+'MareBackup',
+'Microsoft Compatibility Appraiser',
+'Microsoft-Windows-DiskDiagnosticDataCollector',
+'PcaPatchDbTask',
+'PcaWallpaperAppDetect',
+'ProgramDataUpdater',
+'Proxy',
+'QueueReporting',
+'StartupAppTask',
+'UsbCeip',
+'WinSAT',
+'XblGameSaveTask' | ForEach-Object { 
+	if (Get-ScheduledTask -TaskName $_ -ErrorAction SilentlyContinue) {
+		Get-ScheduledTask -TaskName $_ | Disable-ScheduledTask
 	}
 }
 
