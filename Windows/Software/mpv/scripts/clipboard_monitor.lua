@@ -94,34 +94,49 @@ local function clear_clipboard()
     end
 end
 
--- Clipboard Monitor
 local function monitor_clipboard()
+    print("Waiting for user to copy URL")
     clear_clipboard()
     local last_clipboard = ""
 
-    mp.add_periodic_timer(1, function()
+    -- Define the timer variable outside to control it later
+    local clipboard_timer = nil
+
+    -- Create the periodic timer
+    clipboard_timer = mp.add_periodic_timer(1, function()
+        print("Waiting")
         local new_clipboard = get_clipboard_content()
         if new_clipboard and new_clipboard ~= last_clipboard and new_clipboard:match("^https?://") then
             last_clipboard = new_clipboard
+
+            -- Print the detected URL
+            print("Detected URL: " .. new_clipboard)
+
             mp.commandv("loadfile", new_clipboard)
             bring_to_foreground()
             clear_clipboard()
+
+            -- Stop the timer once the action is performed
+            clipboard_timer:kill()
+            print("URL loaded and timer stopped.")
         end
     end)
 end
 
--- Main Logic
-mp.register_event("file-loaded", function()
-    local path = mp.get_property("path", nil)
-    if path and (path:match("^https?://") or path ~= "") then
-        mp.observe_property("time-remaining", "number", function(_, time_remaining)
-            if time_remaining and time_remaining < 1 then
-                monitor_clipboard()
-            end
-        end)
+local idle_active = false
+
+mp.observe_property("idle-active", "bool", function(_, is_idle)
+    idle_active = is_idle
+end)
+
+mp.observe_property("path", "string", function(_, path)
+    if idle_active and not path then
+        monitor_clipboard()
     end
 end)
 
-if mp.get_property_bool("core-idle", true) or not mp.get_property("path", nil) then
-    monitor_clipboard()
-end
+mp.observe_property("eof-reached", "bool", function(_, eof_reached)
+    if eof_reached then
+        monitor_clipboard()
+    end
+end)
