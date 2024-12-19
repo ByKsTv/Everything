@@ -36,12 +36,9 @@ Everything about BIOS.
 
 ### Asus Motherboard
 
-1. `Ai Tweaker` > `Intel(R) Adaptive Boost Technology` > `Disabled`.
 1. `Advanced` > `Platform Misc Configuration` > `PCI Express Native Power Management` > `Enabled` (Wake-On-Lan). (default)
 1. `Advanced` > `Platform Misc Configuration` > `ASPM` > `Disabled`.
 1. `Advanced` > `CPU Configuration` > `Intel (VMX) Virtualization Technology` > `Disabled`.
-1. `Advanced` > `CPU Configuration` > `CPU - Power Management Control` > `Intel(R) SpeedStep(tm)` > `Disabled`.
-1. `Advanced` > `CPU Configuration` > `CPU - Power Management Control` > `Intel(R) Speed Shift Technology` > `Disabled`.
 1. `Advanced` > `System Agent (SA) Configuration` > `VT-d` > `Disabled`.
 1. `Advanced` > `System Agent (SA) Configuration` > `PCI Express Configuration` > `M.2_2 Link Speed` > `Gen4`.
 1. `Advanced` > `System Agent (SA) Configuration` > `PCI Express Configuration` > `PCIEX16(G5)` > `Gen5`.
@@ -51,7 +48,6 @@ Everything about BIOS.
 1. `Advanced` > `PCH Configuration` > `PCI Express Configuration` > `M.2_3 Link Speed` > `Gen4`.
 1. `Advanced` > `PCH Configuration` > `PCI Express Configuration` > `PCIEX16(G4) Link Speed` > `Gen4`.
 1. `Advanced` > `ThunderBolt(TM) Configuration` > `PCIE Tunneling over USB4` > `Disabled`.
-1. `Advanced` > `Trusted Computing` > `Security Device Support` > `Disable`.
 1. `Advanced` > `APM Configuration` > `Power On By PCI-E` > `Enabled` (Wake-On-Lan).
 1. `Advanced` > `Onboard Devices Configuration` > `Wi-Fi Controller` > `Disabled`.
 1. `Advanced` > `Onboard Devices Configuration` > `Bluetooth Controller` > `Disabled`.
@@ -60,7 +56,6 @@ Everything about BIOS.
 1. `Boot` > `Boot Configuration` > `Fast Boot` > `Disabled`.
 1. `Boot` > `Boot Configuration` > `Boot Logo Display` > `Disabled`.
 1. `Boot` > `Boot Configuration` > `POST Report` > `1 sec`.
-1. `Boot` > `Boot Configuration` > `Bootup NumLock State` > `Off`.
 1. `Tool` > `ASUS Armoury Crate` > `Download & Install ARMOURY CRATE app` > `Disabled`.
 
 > Note: [djdallmann Guide](https://github.com/djdallmann/GamingPCSetup/tree/master/CONTENT/DOCS/BIOS)
