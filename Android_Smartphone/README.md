@@ -38,13 +38,6 @@ Everything about Android apps.
 | YouTube ReVanced               | [4pda](https://4pda.to/forum/index.php?showtopic=1050118&view=findpost&p=115638129)                                                                                 | ReVanced patches                                                                           |
 | aRDP                           | [4pda](https://4pda.to/forum/index.php?showtopic=658880#entry39545784)                                                                                              | Paid                                                                                       |
 
-## Android Apps Sources
-
-| Name     | Links                                                     | Register                                                    |
-| -------- | --------------------------------------------------------- | ----------------------------------------------------------- |
-| 4pda     | [4pda](https://4pda.to/forum/index.php?showforum=212)     | [Register](https://4pda.to/forum/index.php?act=auth#reg)    |
-| mobilism | [mobilism](https://forum.mobilism.me/viewforum.php?f=398) | [Register](https://forum.mobilism.me/ucp.php?mode=register) |
-
 ## Mull Settings
 
 1. `Set as default browser` > `Sign in` > `Not Now`.
