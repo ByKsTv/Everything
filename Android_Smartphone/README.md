@@ -40,8 +40,10 @@ Everything about Android apps.
 
 ## Android Apps Sources
 
-- [4pda](https://4pda.to/forum/index.php?showforum=212) + [Registration guide](https://www.youtube.com/watch?v=3XOut-lgHRc)
-- [mobilism](https://forum.mobilism.me/viewforum.php?f=398)
+| Name     | Links                                                     | Register                                                                                                                     |
+| -------- | --------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| 4pda     | [4pda](https://4pda.to/forum/index.php?showforum=212)     | [Register](https://4pda.to/forum/index.php?act=auth#reg) + [Registration guide](https://www.youtube.com/watch?v=3XOut-lgHRc) |
+| mobilism | [mobilism](https://forum.mobilism.me/viewforum.php?f=398) | [Register](https://forum.mobilism.me/ucp.php?mode=register)                                                                  |
 
 ## Mull Settings
 
