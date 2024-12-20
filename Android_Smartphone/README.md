@@ -4,7 +4,10 @@ Everything about Android apps.
 
 ## Android Apps
 
-- [UAD-ng](https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/releases/latest) - Android Debloater
+| App name + link                                                                                                       | Mod to download / Explanation |
+| --------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| [UAD-ng](https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/releases/latest) | Android Debloater             |
+
 - [Mull](https://divestos.org/pages/our_apps#directDownloads) - (`us.spotco.fennec_dos`) Firefox mobile browser
 - [Nova Launcher](https://4pda.to/forum/index.php?act=findpost&pid=10706661&anchor=Spoil-10706661-8) - Prime by Balatan
 - [Sesame Shortcuts](https://4pda.to/forum/index.php?showtopic=921566#entry77882334) - Search add-ons for Nova Launcher
