@@ -144,3 +144,38 @@ if (-not (Select-String -Quiet -Path $Discord_IndexJS -Pattern 'betterdiscord'))
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_IndexJS'"); [Console]::ResetColor(); [Console]::WriteLine()
     Set-Content $Discord_IndexJS -Value "require('$($env:APPDATA -replace '\\','/')/BetterDiscord/data/betterdiscord.asar');`nmodule.exports = require('./core.asar');" -Force
 }
+
+# Delete this code on 01/01/2025
+
+# Define the folder path and the list of files to check
+$folderPath = "$env:APPDATA\BetterDiscord\plugins"
+$fileNames = @(
+    '0PluginLibrary.plugin.js',
+    'PluginRepo.plugin.js',
+    '0BDFDB.plugin.js',
+    'CallTimeCounter.plugin.js',
+    'ThemeRepo.plugin.js',
+    'RemoveChatButtons.plugin.js',
+    'removeTrackingURL.plugin.js'
+)
+
+# Iterate through each file in the list
+foreach ($fileName in $fileNames) {
+    # Combine folder path with the file name to get the full path
+    $filePath = Join-Path -Path $folderPath -ChildPath $fileName
+
+    # Check if the file exists
+    if (Test-Path -Path $filePath) {
+        try {
+            # Attempt to delete the file
+            Remove-Item -Path $filePath -Force
+            Write-Host "Deleted: $fileName" -ForegroundColor Green
+        }
+        catch {
+            Write-Host "Failed to delete: $fileName. Error: $_" -ForegroundColor Red
+        }
+    }
+    else {
+        Write-Host "File does not exist: $fileName" -ForegroundColor Yellow
+    }
+}
