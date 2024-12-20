@@ -34,26 +34,24 @@ Everything about Android apps.
 - [AccuBattery](https://4pda.to/forum/index.php?act=findpost&pid=52860795&anchor=Spoil-52860795-5) - Mod by Balatan
 - [StudyGe - World Geography Quiz](https://4pda.to/forum/index.php?act=findpost&pid=119912812&anchor=Spoil-119912812-4) - Premium
 
-> [4pda](https://4pda.to/forum/index.php?showforum=212)
->
-> [mobilism](https://forum.mobilism.me/viewforum.php?f=398)
->
-> [Registration guide for 4pda](https://www.youtube.com/watch?v=3XOut-lgHRc)
+## Android Apps Sources
+
+- [4pda](https://4pda.to/forum/index.php?showforum=212) + [Registration guide](https://www.youtube.com/watch?v=3XOut-lgHRc)
+- [mobilism](https://forum.mobilism.me/viewforum.php?f=398)
 
 ## Mull Settings
 
 1. `Set as default browser` > `Sign in` > `Not Now`.
-2. `Settings` > `Search` > `Default search engine` > `Google`.
-3. `Settings` > `Search` > Disable all except `Search browsing history` and `Search bookmarks`.
-4. `Settings` > `Tabs` > `List`.
-5. `Settings` > `Tabs` > `Tabs you haven't viewed for two weeks get moved to the inactive section.` > Off.
-6. `Settings` > `Homepage` > Disable all.
-7. `Settings` > `Homepage` > `Last tab`.
-8. `Settings` > `Customise` > `Buttom`.
-9. `Settings` > `Add-ons` > Add `uBlock Origin` > `Settings` > [Restore from file](https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Website_Debloater.txt).
-10. `Settings` > `Add-ons` > Add `ClearURLs`.
-11. `about:config` > `browser.cache.disk.enable` > `false`.
-12. `about:config` > `webgl.disabled` > `false`.
+1. `Settings` > `Search` > `Default search engine` > `Google`.
+1. `Settings` > `Search` > Disable all except `Search browsing history` and `Search bookmarks`.
+1. `Settings` > `Tabs` > `List`.
+1. `Settings` > `Tabs` > `Tabs you haven't viewed for two weeks get moved to the inactive section.` > Off.
+1. `Settings` > `Homepage` > Disable all.
+1. `Settings` > `Homepage` > `Last tab`.
+1. `Settings` > `Customise` > `Buttom`.
+1. `Settings` > `Add-ons` > Add `uBlock Origin` > `Settings` > [Restore from file](https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Website_Debloater.txt).
+1. `about:config` > `browser.cache.disk.enable` > `false`.
+1. `about:config` > `webgl.disabled` > `false`.
 
 ## ADB Commands
 
