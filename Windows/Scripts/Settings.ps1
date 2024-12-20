@@ -290,9 +290,6 @@ if (-not (Test-Path -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explo
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel' -Name 'AllItemsIconView' -PropertyType DWord -Value 0 -Force
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel' -Name 'StartupPage' -PropertyType DWord -Value 1 -Force
 
-# Do not use a different input method for each app window
-Set-WinLanguageBarOption
-
 # When I grab a windows's title bar and shake it, don't minimize all other windows
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'DisallowShaking' -PropertyType DWord -Value 1 -Force
 
