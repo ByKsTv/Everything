@@ -1,3 +1,6 @@
+# Group Policy: Computer Configuration: Windows Settings: Security Settings: Local Policies: Security Options: User Account Control: Admin Approval Mode for the Built-in Administrator Account: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' -Name 'FilterAdministratorToken' -Type DWORD -Value 0
+
 # Group Policy: Computer Configuration: Administrative Templates: Control Panel: Allow Online Tips: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'AllowOnlineTips' -Type DWORD -Value 0
 
@@ -413,9 +416,6 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Poli
 # Doesn't exist
 # MappedDrivesAppElevatedAccess -Enable
 Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' -Name 'EnableLinkedConnections' -Type DWORD -Value 1
-
-# Group Policy: Computer Configuration: Windows Settings: Security Settings: Local Policies: Security Options: User Account Control: Admin Approval Mode for the Built-in Administrator Account: Disabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' -Name 'FilterAdministratorToken' -Type DWORD -Value 0
 
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Acrobat/Group_Policy.ps1')
 
