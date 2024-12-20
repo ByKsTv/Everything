@@ -1,9 +1,6 @@
 # Settings: Windows Update: Advanced options: Receive updates for other Microsoft products: On
 (New-Object -ComObject Microsoft.Update.ServiceManager).AddService2('7971f918-a847-4430-9279-4a52d1efe18d', 7, '')
 
-# Settings: Windows Update: Advanced options: Download updates over metered connections: On
-New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\StateVariables' -Name 'AlwaysAllowMeteredNetwork' -PropertyType DWord -Value 1 -Force
-
 # Uninstall Windows Backup app
 Get-WindowsPackage -Online | Where-Object { $_.PackageName -like '*Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35*' } | ForEach-Object {
 	Remove-WindowsPackage -PackageName $_.PackageName -Online -NoRestart
