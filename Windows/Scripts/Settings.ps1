@@ -482,9 +482,6 @@ Remove-Item -Path 'Registry::HKEY_CLASSES_ROOT\.zip\CompressedFolder\ShellNew' -
 # Enable the "Open", "Print", and "Edit" items if more than 15 files selected
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer' -Name 'MultipleInvokePromptMinimum' -PropertyType DWord -Value 300 -Force
 
-# Save screenshots by pressing Win+PrtScr in the Pictures folder
-Remove-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders' -Name '{B7BEDE81-DF94-4682-A7D8-57A52620B86F}' -Force -ErrorAction SilentlyContinue
-
 # Settings: Update & Security: Troubleshoot: Don't run any troubleshooters
 if (-not (Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\WindowsMitigation')) {
 	New-Item -Path 'HKLM:\SOFTWARE\Microsoft\WindowsMitigation' -Force
