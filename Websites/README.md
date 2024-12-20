@@ -64,12 +64,12 @@ Everything about Websites.
 
 > [awesome-piracy](https://github.com/Shakil-Shahadat/awesome-piracy?tab=readme-ov-file#gaming)
 
-## APKs
+## Android Apps Sources
 
-- [4pda](https://4pda.to/forum/index.php?showforum=212)
-  > Required an account.
-- [mobilism](https://forum.mobilism.me/viewforum.php?f=398)
-  > Required an account.
+| Name     | Links                                                     | Register                                                    |
+| -------- | --------------------------------------------------------- | ----------------------------------------------------------- |
+| 4pda     | [4pda](https://4pda.to/forum/index.php?showforum=212)     | [Register](https://4pda.to/forum/index.php?act=auth#reg)    |
+| mobilism | [mobilism](https://forum.mobilism.me/viewforum.php?f=398) | [Register](https://forum.mobilism.me/ucp.php?mode=register) |
 
 ## Software
 
