@@ -17,11 +17,14 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Psched' -N
 # Group Policy: Computer Configuration: Administrative Templates: Network: WLAN Service: WLAN Settings: Allow Windows to automatically connect to suggested open hotspots, to networks shared by contacts, and to hotspots offering paid services: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\WcmSvc\wifinetworkmanager\config' -Name 'AutoConnectAllowedOEM' -Type DWORD -Value 0
 
-# Group Policy: Computer Configuration: Administrative Templates: Start Menu and Taskbar: Do not keep history of recently opened documents: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'NoRecentDocsHistory' -Type DWORD -Value 1
-
 # Group Policy: Computer Configuration: Administrative Templates: Start Menu and Taskbar: Remove "Recently added" list from Start Menu: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Explorer' -Name 'HideRecentlyAddedApps' -Type DWORD -Value 1
+
+# Group Policy: Computer Configuration: Administrative Templates: Start Menu and Taskbar: Remove Recommended section from Start Menu: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Explorer' -Name 'HideRecommendedSection' -Type DWORD -Value 1
+
+# Group Policy: Computer Configuration: Administrative Templates: Start Menu and Taskbar: Do not keep history of recently opened documents: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'NoRecentDocsHistory' -Type DWORD -Value 1
 
 # Group Policy: Computer Configuration: Administrative Templates: Start Menu and Taskbar: Notifications: Turn off notifications network usage: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\PushNotifications' -Name 'NoCloudApplicationNotification' -Type DWORD -Value 1
@@ -31,6 +34,10 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows NT\Reliabi
 
 # Group Policy: Computer Configuration: Administrative Templates: System: App-V: CEIP: Microsoft Customer Experience Improvement Program (CEIP): Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\AppV\CEIP' -Name 'CEIPEnable' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: System: Audit Process Creation: Include command line in process creation events: Disabled
+# auditpol.exe /set /subcategory:"{0CCE922B-69AE-11D9-BED3-505054503030}" /success:disable /failure:disable
+Set-Policy -Scope Computer -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\System\Audit' -Name 'ProcessCreationIncludeCmdLine_Enabled' -Type DWORD -Value 0
 
 # Group Policy: Computer Configuration: Administrative Templates: System: Device Installation: Do not send a Windows error report when a generic driver is installed on a device: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Settings' -Name 'DisableSendGenericDriverNotFoundToWER' -Type DWORD -Value 1
@@ -46,8 +53,8 @@ Set-Policy -Scope Computer -Path 'System\CurrentControlSet\Control\FileSystem' -
 # Group Policy: Computer Configuration: Administrative Templates: System: Group Policy: Phone-PC linking on this device: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\System' -Name 'EnableMmx' -Type DWORD -Value 0
 
-# Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off access to the Store: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Explorer' -Name 'NoUseStoreOpenWith' -Type DWORD -Value 1
+# Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off Windows Customer Experience Improvement Program: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\SQMClient\Windows' -Name 'CEIPEnable' -Type DWORD -Value 0
 
 # Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off Help and Support Center "Did you know?" content: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\PCHealth\HelpSvc' -Name 'Headlines' -Type DWORD -Value 0
@@ -55,29 +62,26 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\PCHealth\HelpSvc' 
 # Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off Help and Support Center Microsoft Knowledge Base search: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\PCHealth\HelpSvc' -Name 'MicrosoftKBSearch' -Type DWORD -Value 0
 
-# Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off Internet download for Web publishing and online ordering wizards: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'NoWebServices' -Type DWORD -Value 1
+# Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off Windows Error Reporting: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\PCHealth\ErrorReporting' -Name 'DoReport' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off Search Companion content file updates: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\SearchCompanion' -Name 'DisableContentFileUpdates' -Type DWORD -Value 1
 
 # Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off Internet File Association service: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'NoInternetOpenWith' -Type DWORD -Value 1
 
-# Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off Search Companion content file updates: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\SearchCompanion' -Name 'DisableContentFileUpdates' -Type DWORD -Value 1
+# Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off access to the Store: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Explorer' -Name 'NoUseStoreOpenWith' -Type DWORD -Value 1
+
+# Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off Internet download for Web publishing and online ordering wizards: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'NoWebServices' -Type DWORD -Value 1
 
 # Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off the 'Order Prints' picture task: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'NoOnlinePrintsWizard' -Type DWORD -Value 1
 
 # Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off the 'Publish to Web' task for files and folders: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'NoPublishingWizard' -Type DWORD -Value 1
-
-# Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off Windows Customer Experience Improvement Program: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\SQMClient\Windows' -Name 'CEIPEnable' -Type DWORD -Value 0
-
-# Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off Windows Error Reporting: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\PCHealth\ErrorReporting' -Name 'DoReport' -Type DWORD -Value 0
-
-# Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off the Windows Messenger Customer Experience Improvement Program: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Messenger\Client' -Name 'CEIP' -Type DWORD -Value 2
 
 # Group Policy: Computer Configuration: Administrative Templates: System: Logon: Show first sign-in animation: Disabled
 Set-Policy -Scope Computer -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\System' -Name 'EnableFirstLogonAnimation' -Type DWORD -Value 0
@@ -88,11 +92,11 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\System' -N
 # Group Policy: Computer Configuration: Administrative Templates: System: OS Policies: Allow Clipboard synchronization across devices: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\System' -Name 'AllowCrossDeviceClipboard' -Type DWORD -Value 0
 
-# Group Policy: Computer Configuration: Administrative Templates: System: OS Policies: Allow publishing of User Activities: Disabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\System' -Name 'PublishUserActivities' -Type DWORD -Value 0
-
 # Group Policy: Computer Configuration: Administrative Templates: System: OS Policies: Enables Activity Feed: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\System' -Name 'EnableActivityFeed' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: System: OS Policies: Allow publishing of User Activities: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\System' -Name 'PublishUserActivities' -Type DWORD -Value 0
 
 # Group Policy: Computer Configuration: Administrative Templates: System: OS Policies: Allow upload of User Activities: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\System' -Name 'UploadUserActivities' -Type DWORD -Value 0
@@ -112,35 +116,35 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Advertisin
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Application Compatibility: Remove Program Compatibility Property Page: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\AppCompat' -Name 'DisablePropPage' -Type DWORD -Value 1
 
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Application Compatibility: Turn off Application Compatibility Engine: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\AppCompat' -Name 'DisableEngine' -Type DWORD -Value 1
-
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Application Compatibility: Turn off Application Telemetry: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\AppCompat' -Name 'AITEnable' -Type DWORD -Value 0
 
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Application Compatibility: Turn off Inventory Collector: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\AppCompat' -Name 'DisableInventory' -Type DWORD -Value 1
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Application Compatibility: Turn off Application Compatibility Engine: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\AppCompat' -Name 'DisableEngine' -Type DWORD -Value 1
 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Application Compatibility: Turn off Program Compatibility Assistant: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\AppCompat' -Name 'DisablePCA' -Type DWORD -Value 1
 
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Application Compatibility: Turn off Steps Recorder: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\AppCompat' -Name 'DisableUAR' -Type DWORD -Value 1
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Application Compatibility: Turn off Inventory Collector: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\AppCompat' -Name 'DisableInventory' -Type DWORD -Value 1
 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Application Compatibility: Turn off SwitchBack Compatibility Engine: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\AppCompat' -Name 'SbEnable' -Type DWORD -Value 0
 
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Application Compatibility: Turn off Steps Recorder: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\AppCompat' -Name 'DisableUAR' -Type DWORD -Value 1
+
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Biometrics: Allow the use of biometrics: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Biometrics' -Name 'Enabled' -Type DWORD -Value 0
 
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Cloud Content: Do not show Windows tips: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Name 'DisableSoftLanding' -Type DWORD -Value 1
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Cloud Content: Turn off cloud optimized content: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Name 'DisableCloudOptimizedContent' -Type DWORD -Value 1
 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Cloud Content: Turn off cloud consumer account state content: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Name 'DisableConsumerAccountStateContent' -Type DWORD -Value 1
 
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Cloud Content: Turn off cloud optimized content: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Name 'DisableCloudOptimizedContent' -Type DWORD -Value 1
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Cloud Content: Do not show Windows tips: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Name 'DisableSoftLanding' -Type DWORD -Value 1
 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Cloud Content: Turn off Microsoft consumer experiences: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Name 'DisableWindowsConsumerFeatures' -Type DWORD -Value 1
@@ -151,11 +155,14 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\CredUI' -N
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Data Collection and Preview Builds: Allow device name to be sent in Windows diagnostic data: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\DataCollection' -Name 'AllowDeviceNameInTelemetry' -Type DWORD -Value 0
 
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Data Collection and Preview Builds: Allow Telemetry: 0 - Security [Enterprise Only]
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Data Collection and Preview Builds: Allow Telemetry: 0 - Security [Enterprise Only] / Diagnostic data off (not recommended)
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\DataCollection' -Name 'AllowTelemetry' -Type DWORD -Value 0
 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Data Collection and Preview Builds: Disable OneSettings Downloads: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\DataCollection' -Name 'DisableOneSettingsDownloads' -Type DWORD -Value 1
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Data Collection and Preview Builds: Limit Diagnostic Log Collection: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\DataCollection' -Name 'LimitDiagnosticLogCollection' -Type DWORD -Value 1
 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Data Collection and Preview Builds: Do not show feedback notifications: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\DataCollection' -Name 'DoNotShowFeedbackNotifications' -Type DWORD -Value 1
@@ -169,11 +176,11 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\EdgeUI' -N
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: File Explorer: Do not show the 'new application installed' notification: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Explorer' -Name 'NoNewAppAlert' -Type DWORD -Value 1
 
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Location and Sensors: Turn off location: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors' -Name 'DisableLocation' -Type DWORD -Value 1
-
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Location and Sensors: Turn off location scripting: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors' -Name 'DisableLocationScripting' -Type DWORD -Value 1
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Location and Sensors: Turn off location: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors' -Name 'DisableLocation' -Type DWORD -Value 1
 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Location and Sensors: Turn off sensors: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors' -Name 'DisableSensors' -Type DWORD -Value 1
@@ -181,11 +188,11 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\LocationAn
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Location and Sensors: Windows Location Provider: Turn off Windows Location Provider: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors' -Name 'DisableWindowsLocationProvider' -Type DWORD -Value 1
 
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Maps: Turn off Automatic Download and Update of Map Data: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Maps' -Name 'AutoDownloadAndUpdateMapData' -Type DWORD -Value 0
-
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Maps: Turn off unsolicited network traffic on the Offline Maps settings page: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Maps' -Name 'AllowUntriggeredNetworkTrafficOnSettingsPage' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Maps: Turn off Automatic Download and Update of Map Data: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Maps' -Name 'AutoDownloadAndUpdateMapData' -Type DWORD -Value 0
 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Messaging: Allow Message Service Cloud Sync: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Messaging' -Name 'AllowMessageSync' -Type DWORD -Value 0
@@ -202,6 +209,36 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\OneDrive' 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Online Assistance: Turn off Active Help: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Assistance\Client\1.0' -Name 'NoActiveHelp' -Type DWORD -Value 1
 
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow Cloud Search: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Search' -Name 'AllowCloudSearch' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow Cortana: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Search' -Name 'AllowCortana' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow Cortana above lock screen: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Search' -Name 'AllowCortanaAboveLock' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow Cortana Page in OOBE on an AAD account: Disable Cortana Page in AAD
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Search' -Name 'AllowCortanaInAADPathOOBE' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow search highlights: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Search' -Name 'EnableDynamicContentInWSB' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow search and Cortana to use location: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Search' -Name 'AllowSearchToUseLocation' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Do not allow web search: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Search' -Name 'DisableWebSearch' -Type DWORD -Value 1
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Don't search the web or display web results in Search: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Search' -Name 'ConnectedSearchUseWeb' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Don't search the web or display web results in Search over metered connections: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Search' -Name 'ConnectedSearchUseWebOverMeteredConnections' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Set the SafeSearch setting for Search: Off
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Search' -Name 'ConnectedSearchSafeSearch' -Type DWORD -Value 3
+
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Software Protection Platform: Turn off KMS Client Online AVS Validation: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows NT\CurrentVersion\Software Protection Platform' -Name 'NoGenTicket' -Type DWORD -Value 1
 
@@ -214,20 +251,23 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Poli
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Calendar: Turn off Windows Calendar: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Windows' -Name 'TurnOffWinCal' -Type DWORD -Value 1
 
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Defender SmartScreen: Microsoft Edge: Configure Microsoft Defender SmartScreen: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'SmartScreenEnabled' -Type DWORD -Value 0
+
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Automatically send memory dumps for OS-generated error reports: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting' -Name 'AutoApproveOSDumps' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Send data when on connected to a restricted/costed network: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting' -Name 'BypassNetworkCostThrottling' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Send additional data when on battery power: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting' -Name 'BypassPowerThrottling' -Type DWORD -Value 0
 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Disable Windows Error Reporting: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting' -Name 'Disabled' -Type DWORD -Value 1
 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Do not send additional data: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting' -Name 'DontSendAdditionalData' -Type DWORD -Value 1
-
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Send additional data when on battery power: Disabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting' -Name 'BypassPowerThrottling' -Type DWORD -Value 0
-
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Error Reporting: Send data when on connected to a restricted/costed network: Disabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting' -Name 'BypassNetworkCostThrottling' -Type DWORD -Value 0
 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Media Digitial Rights Management: Prevent Windows Media DRM Internet Access: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\WMDRM' -Name 'DisableOnline' -Type DWORD -Value 1
@@ -241,12 +281,46 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Messenger\Client' 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Mobility Center: Turn off Windows Mobility Center: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\MobilityCenter' -Name 'NoMobilityCenter' -Type DWORD -Value 1
 
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows PowerShell: Turn on Module Logging: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\PowerShell\ModuleLogging' -Name 'EnableModuleLogging' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows PowerShell: Turn on PowerShell Script Block Logging: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging' -Name 'EnableScriptBlockLogging' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: Legacy Policies: Always automatically restart at the scheduled time: Enabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AlwaysAutoRebootAtScheduledTime' -Type DWORD -Value 1
+# The restart timer will give users this much time to save their work (minutes):
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AlwaysAutoRebootAtScheduledTimeMinutes' -Type DWORD -Value 15
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: Legacy Policies: No auto-restart with logged on users for scheduled automatic updates installations: Disabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'NoAutoRebootWithLoggedOnUsers' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: Legacy Policies: Turn off auto-restart for updates during active hours: Disabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'SetActiveHours' -Type DWORD -Value 0
+
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: Allow updates to be downloaded automatically over metered connections: Enabled
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'AllowAutoWindowsUpdateDownloadOverMeteredNetwork' -Type DWORD -Value 1
 
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: Manage end user experience: Configure Automatic Updats: Enabled: 
+# 4 - Auto download and schedule the install
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AUOptions' -Type DWORD -Value 4
+# Install during automatic maintenance: Enabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AutomaticMaintenanceEnabled' -Type DWORD -Value 1
+# Scheduled install day: 0 - Every day
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'ScheduledInstallDay' -Type DWORD -Value 0
+# Scheduled install time: 01:00
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'ScheduledInstallTime' -Type DWORD -Value 3
+# Install updates for other Microsoft products: Enabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AllowMUUpdateService' -Type DWORD -Value 1
+
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: Manage updates offered from Windows Update: Do not include drivers with Windows Updates: Disabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'ExcludeWUDriversInQualityUpdate' -Type DWORD -Value 0
+
+# Group Policy: User Configuration: Administrative Templates: Control Panel: Printers: Turn off Windows default printer management: Enabled
+Set-Policy -Scope User -Path 'Software\Microsoft\Windows NT\CurrentVersion\Windows' -Name 'LegacyDefaultPrinterMode' -Type DWORD -Value 1
+
 # Group Policy: User Configuration: Administrative Templates: Start Menu and Taskbar: Remove the Meet Now icon: Enabled
 Set-Policy -Scope User -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'HideSCAMeetNow' -Type DWORD -Value 1
-Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'HideSCAMeetNow' -Type DWORD -Value 1
 
 # Group Policy: User Configuration: Administrative Templates: Windows Components: Attachment Manager: Do not preserve zone information in file attachments: Enabled
 Set-Policy -Scope User -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Attachments' -Name 'SaveZoneInformation' -Type DWORD -Value 1
@@ -263,11 +337,11 @@ Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows\CloudContent' 
 # Group Policy: User Configuration: Administrative Templates: Windows Components: Cloud Content: Do not suggest third-party content in Windows spotlight: Enabled
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Name 'DisableThirdPartySuggestions' -Type DWORD -Value 1
 
-# Group Policy: User Configuration: Administrative Templates: Windows Components: Cloud Content: Turn off Windows Spotlight on Action Center: Enabled
-Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Name 'DisableWindowsSpotlightOnActionCenter' -Type DWORD -Value 1
-
 # Group Policy: User Configuration: Administrative Templates: Windows Components: Cloud Content: Turn off all Windows spotlight features: Enabled
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Name 'DisableWindowsSpotlightFeatures' -Type DWORD -Value 1
+
+# Group Policy: User Configuration: Administrative Templates: Windows Components: Cloud Content: Turn off Windows Spotlight on Action Center: Enabled
+Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Name 'DisableWindowsSpotlightOnActionCenter' -Type DWORD -Value 1
 
 # Group Policy: User Configuration: Administrative Templates: Windows Components: Cloud Content: Turn off Windows Spotlight on Settings: Enabled
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Name 'DisableWindowsSpotlightOnSettings' -Type DWORD -Value 1
@@ -278,18 +352,26 @@ Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows\CloudContent' 
 # Group Policy: User Configuration: Administrative Templates: Windows Components: File Explorer: Turn off display of recent search entries in the File Explorer search box: Enabled
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows\Explorer' -Name 'DisableSearchBoxSuggestions' -Type DWORD -Value 1
 
+# Group Policy: User Configuration: Administrative Templates: Windows Components: File Explorer: Turn off caching of thumbnail pictures: Enabled
+Set-Policy -Scope User -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'NoThumbnailCache' -Type DWORD -Value 1
+
 # Group Policy: User Configuration: Administrative Templates: Windows Components: Remote Desktop Services: Remote Desktop Connection Client: Allow .rdp files from unknown publishers: Enabled
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services' -Name 'AllowUnsignedFiles' -Type DWORD -Value 1
 
 # Group Policy: User Configuration: Administrative Templates: Windows Components: Windows Copilot: Turn off Windows Copilot: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot' -Name 'TurnOffWindowsCopilot' -Type DWORD -Value 1
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot' -Name 'TurnOffWindowsCopilot' -Type DWORD -Value 1
 
 # Group Policy: User Configuration: Administrative Templates: Windows Components: Windows Defender SmartScreen: Microsoft Edge: Configure Microsoft Defender SmartScreen: Disabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'SmartScreenEnabled' -Type DWORD -Value 0
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'SmartScreenEnabled' -Type DWORD -Value 0
 
 # To Sort
+Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'HideSCAMeetNow' -Type DWORD -Value 1
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot' -Name 'TurnOffWindowsCopilot' -Type DWORD -Value 1
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'NoAutoUpdate' -Type DWORD -Value 0
+
+# Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off the Windows Messenger Customer Experience Improvement Program: Enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Messenger\Client' -Name 'CEIP' -Type DWORD -Value 2
+
 # Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off handwriting recognition error reporting: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\HandwritingErrorReports' -Name 'PreventHandwritingErrorReports' -Type DWORD -Value 1
 
@@ -302,27 +384,6 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Poli
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: File Explorer: Turn off Windows Libraries features that rely on indexed file data: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Explorer' -Name 'DisableIndexedLibraryExperience' -Type DWORD -Value 1
 
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Do not allow web search: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Search' -Name 'DisableWebSearch' -Type DWORD -Value 1
-
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow Cloud Search: Disabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Search' -Name 'AllowCloudSearch' -Type DWORD -Value 0
-
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow Cortana above lock screen: Disabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Search' -Name 'AllowCortanaAboveLock' -Type DWORD -Value 0
-
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow search and Cortana to use location: Disabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Search' -Name 'AllowSearchToUseLocation' -Type DWORD -Value 0
-
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow search highlights: Disabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Search' -Name 'EnableDynamicContentInWSB' -Type DWORD -Value 0
-
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow Cortana: Disabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Search' -Name 'AllowCortana' -Type DWORD -Value 0
-
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Allow Cortana Page in OOBE on an AAD account: Disable Cortana Page in AAD
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Search' -Name 'AllowCortanaInAADPathOOBE' -Type DWORD -Value 0
-
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Enables or disables Windows Game Recording and Broadcasting: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\GameDVR' -Name 'AllowGameDVR' -Type DWORD -Value 0
 
@@ -332,22 +393,6 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Fe
 # Settings: Privacy: Diagnostics & feedback: Diagnostic data
 Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection' -Name 'AllowTelemetry' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection' -Name 'MaxTelemetryAllowed' -Type DWORD -Value 0
-
-# Doesn't exist
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Data Collection and Preview Builds: Limit Diagnostic Log Collection: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\DataCollection' -Name 'LimitDiagnosticLogCollection' -Type DWORD -Value 1
-
-# Doesn't exist
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Don't search the web or display web results in Search: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Search' -Name 'ConnectedSearchUseWeb' -Type DWORD -Value 0
-
-# Doesn't exist
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Don't search the web or display web results in Search over metered connections: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Search' -Name 'ConnectedSearchUseWebOverMeteredConnections' -Type DWORD -Value 0
-
-# Doesn't exist
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Search: Set the SafeSearch setting for Search: Off
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Windows Search' -Name 'ConnectedSearchSafeSearch' -Type DWORD -Value 3
 
 # Doesn't exist
 # BingSearch -Disable
@@ -369,55 +414,8 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Poli
 # MappedDrivesAppElevatedAccess -Enable
 Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' -Name 'EnableLinkedConnections' -Type DWORD -Value 1
 
-# Group Policy: Computer Configuration: Administrative Templates: Start Menu and Taskbar: Remove Recommended section from Start Menu: Enabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\Explorer' -Name 'HideRecommendedSection' -Type DWORD -Value 1
-
-# Group Policy: Computer Configuration: Administrative Templates: Control Panel: Printers: Turn off Windows default printer management: Enabled
-Set-Policy -Scope User -Path 'Software\Microsoft\Windows NT\CurrentVersion\Windows' -Name 'LegacyDefaultPrinterMode' -Type DWORD -Value 1
-
-# Group Policy: User Configuration: Administrative Templates: Windows Components: File Explorer: Turn off caching of thumbnail pictures: Enabled
-Set-Policy -Scope User -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'NoThumbnailCache' -Type DWORD -Value 1
-
-# Group Policy: Computer Configuration: Administrative Templates: System: Audit Process Creation: Include command line in process creation events: Disabled
-auditpol.exe /set /subcategory:"{0CCE922B-69AE-11D9-BED3-505054503030}" /success:disable /failure:disable
-Set-Policy -Scope Computer -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\System\Audit' -Name 'ProcessCreationIncludeCmdLine_Enabled' -Type DWORD -Value 0
-
-# Group Policy: User Configuration: Administrative Templates: Windows Components: Windows PowerShell: Turn on Module Logging: Disabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\PowerShell\ModuleLogging' -Name 'EnableModuleLogging' -Type DWORD -Value 0
-
-# Group Policy: User Configuration: Administrative Templates: Windows Components: Windows PowerShell: Turn on PowerShell Script Block Logging: Disabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging' -Name 'EnableScriptBlockLogging' -Type DWORD -Value 0
-
 # Group Policy: Computer Configuration: Windows Settings: Security Settings: Local Policies: Security Options: User Account Control: Admin Approval Mode for the Built-in Administrator Account: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' -Name 'FilterAdministratorToken' -Type DWORD -Value 0
-
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: 
-# Install updates for other Microsoft products
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AllowMUUpdateService' -Type DWORD -Value 1
-# Configure automatic updating
-# Install during automatic maintenance
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'NoAutoUpdate' -Type DWORD -Value 0
-# Scheduled install time: 3AM
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'ScheduledInstallTime' -Type DWORD -Value 3
-# 4 - Auto download and schedule the install
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AUOptions' -Type DWORD -Value 4
-# Install during automatic maintenance
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'ScheduledInstallDay' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AutomaticMaintenanceEnabled' -Type DWORD -Value 1
-
-# Always automatically restart at the scheduled time
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AlwaysAutoRebootAtScheduledTime' -Type DWORD -Value 1
-# The restart timer will give users
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AlwaysAutoRebootAtScheduledTimeMinutes' -Type DWORD -Value 15
-
-# Turn off auto-restart for updates during active hours
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'SetActiveHours' -Type DWORD -Value 0
-
-# No auto-restart with logged on users for scheduled automatic updates installations
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'NoAutoRebootWithLoggedOnUsers' -Type DWORD -Value 0
-
-# Do not include drivers with Windows Updates: Disabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'ExcludeWUDriversInQualityUpdate' -Type DWORD -Value 0
 
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Acrobat/Group_Policy.ps1')
 
