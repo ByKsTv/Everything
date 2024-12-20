@@ -1,6 +1,3 @@
-# Settings: Windows Update: Advanced options: Receive updates for other Microsoft products: On
-(New-Object -ComObject Microsoft.Update.ServiceManager).AddService2('7971f918-a847-4430-9279-4a52d1efe18d', 7, '')
-
 # Uninstall Windows Backup app
 Get-WindowsPackage -Online | Where-Object { $_.PackageName -like '*Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35*' } | ForEach-Object {
 	Remove-WindowsPackage -PackageName $_.PackageName -Online -NoRestart
