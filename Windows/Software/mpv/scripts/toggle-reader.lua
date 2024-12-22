@@ -39,12 +39,12 @@ local function toggle_reader()
         mp.set_property("pause", "yes")
         mp.set_property("panscan", 1)
         mp.set_property("video-align-y", -1)
-        mp.add_forced_key_binding("RIGHT", "next-page", function()
+        mp.add_forced_key_binding("LEFT", "next-page", function()
             reset_page(1)
         end, {
             repeatable = true
         })
-        mp.add_forced_key_binding("LEFT", "prev-page", function()
+        mp.add_forced_key_binding("RIGHT", "prev-page", function()
             reset_page(-1)
         end, {
             repeatable = true
