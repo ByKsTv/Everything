@@ -65,6 +65,7 @@ if (-not (Test-Path -Path $MPV_ScriptsPath)) {
 $MPV_ScriptsURLs = @(
     'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/scripts/browser-switch.lua',
     'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/scripts/clipboard_monitor.lua',
+    'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/scripts/toggle-reader.lua',
     'https://raw.githubusercontent.com/po5/celebi/master/celebi.lua',
     'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/scripts/hidecursor.lua',
     'https://raw.githubusercontent.com/Akemi/mpv-oled-screensaver/master/oled-screensaver.lua',
