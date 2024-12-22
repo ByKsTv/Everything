@@ -78,7 +78,12 @@ local function auto_toggle_reader()
     end
 
     local image_extensions = {
-        jpg = true, jpeg = true, png = true, bmp = true, gif = true, tiff = true
+        jpg = true,
+        jpeg = true,
+        png = true,
+        bmp = true,
+        gif = true,
+        tiff = true
     }
 
     local ext = path:match("%.([^%.]+)$")
