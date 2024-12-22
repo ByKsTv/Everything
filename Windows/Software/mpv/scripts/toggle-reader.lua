@@ -11,8 +11,10 @@ local function reset_page(dir)
     end
     page_dir = dir
     if dir == 1 then
+        mp.set_property("video-align-y", 1) -- Reset alignment for next file
         mp.commandv("playlist-prev")
     elseif dir == -1 then
+        mp.set_property("video-align-y", -1) -- Reset alignment for next file
         mp.commandv("playlist-next")
     end
 end
@@ -24,10 +26,10 @@ local function adjust_pan(dir)
     vertical_offset = vertical_offset - (dir * step_size)
     if vertical_offset > 1 then
         reset_page(1)
-        vertical_offset = -1
+        vertical_offset = 0 -- Reset pan offset
     elseif vertical_offset < -1 then
         reset_page(-1)
-        vertical_offset = 1
+        vertical_offset = 0 -- Reset pan offset
     end
     mp.set_property("video-pan-y", vertical_offset)
 end
