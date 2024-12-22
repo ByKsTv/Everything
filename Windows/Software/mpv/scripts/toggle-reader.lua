@@ -61,6 +61,7 @@ local function toggle_reader()
         })
     else
         mp.osd_message("Reader Mode: Off")
+        mp.set_property("pause", "no")
         mp.set_property("panscan", 0)
         mp.set_property("video-pan-y", 0)
         mp.remove_key_binding("next-page")
