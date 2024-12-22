@@ -13,7 +13,7 @@ if (-not (Get-ScheduledTask -TaskName $Discord_TaskName -ErrorAction SilentlyCon
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Discord/Download.ps1')
 }
 if (Get-ScheduledTask -TaskName $Discord_TaskName -ErrorAction SilentlyContinue) {
-    Start-Sleep -Milliseconds 2000
+    Start-Sleep -Milliseconds 3000
     while ((Get-ScheduledTask -TaskName $Discord_TaskName).State -eq 'Running') {
         Start-Sleep -Milliseconds 1000
     }
