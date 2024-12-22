@@ -10,28 +10,40 @@ local function reset_page(dir)
         return
     end
     page_dir = dir
+
+    -- Flip to previous/next
     if dir == 1 then
-        mp.set_property("video-align-y", 1) -- Reset alignment for next file
+        mp.set_property("video-align-y", 1)
         mp.commandv("playlist-prev")
     elseif dir == -1 then
-        mp.set_property("video-align-y", -1) -- Reset alignment for next file
+        mp.set_property("video-align-y", -1)
         mp.commandv("playlist-next")
     end
+
+    -- After flipping pages, ensure the offset is back to 0
+    vertical_offset = 0
+    mp.set_property("video-pan-y", 0)
 end
 
 local function adjust_pan(dir)
     if not reader_mode then
         return
     end
-    vertical_offset = vertical_offset - (dir * step_size)
-    if vertical_offset > 1 then
+
+    -- Compute the potential new offset BEFORE applying it
+    local new_offset = vertical_offset - (dir * step_size)
+    local threshold = 0.65
+
+    -- If this would exceed the threshold, flip pages immediately
+    if new_offset > threshold then
         reset_page(1)
-        vertical_offset = 0 -- Reset pan offset
-    elseif vertical_offset < -1 then
+    elseif new_offset < -threshold then
         reset_page(-1)
-        vertical_offset = 0 -- Reset pan offset
+    else
+        -- Otherwise, safely apply the new offset
+        vertical_offset = new_offset
+        mp.set_property("video-pan-y", vertical_offset)
     end
-    mp.set_property("video-pan-y", vertical_offset)
 end
 
 local function toggle_reader(state)
@@ -87,8 +99,8 @@ local function auto_toggle_reader()
         gif = true,
         tiff = true
     }
-
     local ext = path:match("%.([^%.]+)$")
+
     if ext and image_extensions[ext:lower()] then
         if not reader_mode then
             toggle_reader(true)
