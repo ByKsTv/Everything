@@ -32,8 +32,8 @@ local function adjust_pan(dir)
     mp.set_property("video-pan-y", vertical_offset)
 end
 
-local function toggle_reader()
-    reader_mode = not reader_mode
+local function toggle_reader(state)
+    reader_mode = state
     if reader_mode then
         mp.osd_message("Reader Mode: On")
         mp.set_property("pause", "yes")
@@ -71,4 +71,29 @@ local function toggle_reader()
     end
 end
 
-mp.add_key_binding("ctrl+m", "toggle-reader", toggle_reader)
+local function auto_toggle_reader()
+    local path = mp.get_property("path", "")
+    if path == "" then
+        return
+    end
+
+    local image_extensions = {
+        jpg = true, jpeg = true, png = true, bmp = true, gif = true, tiff = true
+    }
+
+    local ext = path:match("%.([^%.]+)$")
+    if ext and image_extensions[ext:lower()] then
+        if not reader_mode then
+            toggle_reader(true)
+        end
+    else
+        if reader_mode then
+            toggle_reader(false)
+        end
+    end
+end
+
+mp.observe_property("path", "string", auto_toggle_reader)
+mp.add_key_binding("ctrl+m", "toggle-reader", function()
+    toggle_reader(not reader_mode)
+end)
