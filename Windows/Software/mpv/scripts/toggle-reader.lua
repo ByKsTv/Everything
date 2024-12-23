@@ -1,6 +1,5 @@
 local mp = require "mp"
 
--- User-configurable values
 local config = {
     threshold = 1,
     base_step = 50
@@ -9,13 +8,10 @@ local config = {
 local reader_mode = false
 local vertical_offset = 0
 
--- Dynamically update step size based on video height, fallback if unavailable
 local function update_step_size()
     local h = mp.get_property_number("video-params/h", 0)
     if h > 0 then
         step_size = config.base_step / h
-    else
-        step_size = 0.005
     end
 end
 
@@ -23,7 +19,6 @@ local function flip_page(dir)
     if not reader_mode then
         return
     end
-    -- Flip (previous if dir=1, next if dir=-1)
     if dir == 1 then
         mp.set_property("video-align-y", 1)
         mp.commandv("playlist-prev")
@@ -90,7 +85,6 @@ local function toggle_reader(state)
     end
 end
 
--- Automatically enable/disable Reader Mode for images
 local function auto_toggle()
     local path = mp.get_property("path", "")
     if path ~= "" then
