@@ -2,7 +2,8 @@ local mp = require "mp"
 
 local config = {
     threshold = 1,
-    base_step = 50
+    base_step = 50,
+    pan_limit = 1
 }
 
 local reader_mode = false
@@ -35,12 +36,13 @@ local function adjust_pan(dir)
         return
     end
     local new_offset = vertical_offset - dir * step_size
-    if new_offset > config.threshold then
+    vertical_offset = new_offset
+
+    if vertical_offset >= config.pan_limit then
         flip_page(1)
-    elseif new_offset < -config.threshold then
+    elseif vertical_offset <= -config.pan_limit then
         flip_page(-1)
     else
-        vertical_offset = new_offset
         mp.set_property("video-pan-y", vertical_offset)
     end
 end
