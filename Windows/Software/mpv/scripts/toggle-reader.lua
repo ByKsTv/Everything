@@ -2,8 +2,21 @@ local mp = require 'mp'
 
 local reader_mode = false
 local vertical_offset = 0
-local step_size = 0.1
 local page_dir = 0
+
+local function update_step_size()
+    local video_height = mp.get_property("video-params/h", nil) -- Get the height as a string
+    if video_height then
+        video_height = tonumber(video_height) -- Convert to a number
+    end
+
+    if video_height and video_height > 0 then
+        step_size = 50 / video_height -- Dynamically calculate based on height
+    else
+        step_size = 0.005 -- Default fallback value
+    end
+    -- mp.osd_message(string.format("Step size updated: %.6f", step_size)) -- Optional debug message
+end
 
 local function reset_page(dir)
     if not reader_mode then
@@ -32,7 +45,7 @@ local function adjust_pan(dir)
 
     -- Compute the potential new offset BEFORE applying it
     local new_offset = vertical_offset - (dir * step_size)
-    local threshold = 0.7
+    local threshold = 0.69
 
     -- If this would exceed the threshold, flip pages immediately
     if new_offset > threshold then
@@ -53,6 +66,7 @@ local function toggle_reader(state)
         mp.set_property("pause", "yes")
         mp.set_property("panscan", 1)
         mp.set_property("video-align-y", -1)
+        update_step_size() -- Update step_size when reader mode is enabled
         mp.add_forced_key_binding("LEFT", "next-page", function()
             reset_page(1)
         end, {
@@ -111,6 +125,13 @@ local function auto_toggle_reader()
         end
     end
 end
+
+-- Observe changes to the video resolution
+mp.observe_property("video-params/h", "number", function()
+    if reader_mode then
+        update_step_size()
+    end
+end)
 
 mp.observe_property("path", "string", auto_toggle_reader)
 mp.add_key_binding("ctrl+m", "toggle-reader", function()
