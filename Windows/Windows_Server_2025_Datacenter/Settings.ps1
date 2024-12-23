@@ -82,6 +82,14 @@ New-ItemProperty -Path 'HKCU:\Control Panel\Accessibility\ToggleKeys' -Name 'Fla
 # Settings: System: Display: Multiple displays: Ease cursor movement between displays: Off
 New-ItemProperty -Path 'HKCU:\Control Panel\Cursors' -Name 'CursorDeadzoneJumpingSetting' -PropertyType DWord -Value 0 -Force
 
+# Context menu: Remove 'Share'
+New-Item -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked' -Force
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked' -Name '{e2bf9676-5f8f-435c-97eb-11607a5bedf7}' -Value '' -PropertyType String -Force
+
+# Context menu: Remove 'Cast to device'
+New-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked' -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked' -Name '{7AD84985-87B4-4a16-BE58-8B72A5B390F7}' -Value 'Play to Menu' -PropertyType String -Force
+
 # Uninstall Feedback Hub
 Get-AppxPackage 'Microsoft.WindowsFeedbackHub' | Remove-AppxPackage
 
