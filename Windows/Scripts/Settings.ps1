@@ -502,3 +502,26 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Osk' -Name 'ClickSound' -Value 
 
 # On-Screen Keyboard: Options: Use Text Prediction: Off
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Osk' -Name 'UseTextPrediction' -Value 0 -PropertyType DWord -Force
+
+# Context menu: Remove 'Rotate right', 'Rotate left'
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.avci\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.avif\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.bmp\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.dds\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.dib\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.gif\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.heic\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.heif\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.hif\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.ico\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.jfif\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.jpe\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.jpeg\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.jpg\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.jxr\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.png\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.rle\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.tif\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.tiff\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.wdp\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.webp\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
