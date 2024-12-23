@@ -28,7 +28,7 @@ Everything about Websites.
 | bato.to   | [Website](https://bato.to)              |              |
 | nHentai   | [Website](https://nhentai.net)          | NSFW         |
 
-## TV Shows
+## TV Shows & Movies
 
 | Name          | Links                                                                                              | Notes                                                                            |
 | ------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
