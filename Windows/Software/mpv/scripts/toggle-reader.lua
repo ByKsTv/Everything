@@ -1,7 +1,7 @@
 local mp = require "mp"
 
 local rmode, voff, sstep = false, 0, 0
-local bstep, plimit = 100, 1
+local bstep, plimit = 100, 0.97
 
 local function update_step()
     local h = mp.get_property_number("video-params/h", 0)
