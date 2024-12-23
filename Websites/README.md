@@ -58,8 +58,8 @@ Everything about Websites.
 
 | Name     | Links                                                     | Notes                                                                  |
 | -------- | --------------------------------------------------------- | ---------------------------------------------------------------------- |
-| 4pda     | [4pda](https://4pda.to/forum/index.php?showforum=212)     | [Requires an account](https://4pda.to/forum/index.php?act=auth#reg)    |
-| mobilism | [mobilism](https://forum.mobilism.me/viewforum.php?f=398) | [Requires an account](https://forum.mobilism.me/ucp.php?mode=register) |
+| 4pda     | [Website](https://4pda.to/forum/index.php?showforum=212)     | [Requires an account](https://4pda.to/forum/index.php?act=auth#reg)    |
+| mobilism | [Website](https://forum.mobilism.me/viewforum.php?f=398) | [Requires an account](https://forum.mobilism.me/ucp.php?mode=register) |
 
 ## Software
 
