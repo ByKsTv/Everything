@@ -45,7 +45,7 @@ local function adjust_pan(dir)
 
     -- Compute the potential new offset BEFORE applying it
     local new_offset = vertical_offset - (dir * step_size)
-    local threshold = 0.69
+    local threshold = 1
 
     -- If this would exceed the threshold, flip pages immediately
     if new_offset > threshold then
