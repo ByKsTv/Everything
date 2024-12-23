@@ -56,9 +56,9 @@ Everything about Websites.
 
 ## Android Apps Sources
 
-| Name     | Links                                                     | Notes                                                                  |
-| -------- | --------------------------------------------------------- | ---------------------------------------------------------------------- |
-| 4pda     | [Website](https://4pda.to/forum/index.php?showforum=212)     | [Requires an account](https://4pda.to/forum/index.php?act=auth#reg)    |
+| Name     | Links                                                    | Notes                                                                  |
+| -------- | -------------------------------------------------------- | ---------------------------------------------------------------------- |
+| 4pda     | [Website](https://4pda.to/forum/index.php?showforum=212) | [Requires an account](https://4pda.to/forum/index.php?act=auth#reg)    |
 | mobilism | [Website](https://forum.mobilism.me/viewforum.php?f=398) | [Requires an account](https://forum.mobilism.me/ucp.php?mode=register) |
 
 ## Software
@@ -69,11 +69,11 @@ Everything about Websites.
 | NoNaMe Club   | [Website](https://nnmclub.to)                                       |                                                                              |
 | LRepacks      | [Website](https://lrepacks.net)                                     |                                                                              |
 | Diakov        | [Website](https://diakov.net)                                       |                                                                              |
-| monkrus       | [Website](http://www.monkrus.ws) / [mirror](https://vk.com/monkrus) | Adobe & Autodesk                                                             |
+| monkrus       | [Website](http://www.monkrus.ws) / [Mirror](https://vk.com/monkrus) | Adobe & Autodesk                                                             |
 | Ratiborus     | [Website](https://msfree.su/index.php)                              |                                                                              |
 
 ## Reviews
 
-| Name       | Links                             | Notes |
-| ---------- | --------------------------------- | ----- |
-| RTINGS.com | [Website](https://www.rtings.com) |       |
+| Name   | Links                             | Notes |
+| ------ | --------------------------------- | ----- |
+| RTINGS | [Website](https://www.rtings.com) |       |
