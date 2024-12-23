@@ -1,60 +1,47 @@
 local mp = require "mp"
 
-local config = {
-    threshold = 1,
-    base_step = 50,
-    pan_limit = 1
-}
+local rmode, voff, sstep = false, 0, 0
+local bstep, plimit = 50, 1
 
-local reader_mode = false
-local vertical_offset = 0
-
-local function update_step_size()
+local function update_step()
     local h = mp.get_property_number("video-params/h", 0)
     if h > 0 then
-        step_size = config.base_step / h
+        sstep = bstep / h
     end
 end
 
 local function flip_page(dir)
-    if not reader_mode then
+    if not rmode then
         return
     end
-    if dir == 1 then
-        mp.set_property("video-align-y", 1)
-        mp.commandv("playlist-prev")
-    else
-        mp.set_property("video-align-y", -1)
-        mp.commandv("playlist-next")
-    end
-    vertical_offset = 0
+    mp.set_property("video-align-y", (dir == 1) and 1 or -1)
+    mp.commandv((dir == 1) and "playlist-prev" or "playlist-next")
+    voff = 0
     mp.set_property("video-pan-y", 0)
 end
 
 local function adjust_pan(dir)
-    if not reader_mode then
+    if not rmode then
         return
     end
-    local new_offset = vertical_offset - dir * step_size
-    vertical_offset = new_offset
-
-    if vertical_offset >= config.pan_limit then
+    voff = voff - dir * sstep
+    if voff >= plimit then
         flip_page(1)
-    elseif vertical_offset <= -config.pan_limit then
+    elseif voff <= -plimit then
         flip_page(-1)
     else
-        mp.set_property("video-pan-y", vertical_offset)
+        mp.set_property("video-pan-y", voff)
     end
 end
 
 local function toggle_reader(state)
-    reader_mode = state
-    if reader_mode then
-        mp.osd_message("Reader Mode: On")
-        mp.set_property("pause", "yes")
-        mp.set_property("panscan", 1)
-        mp.set_property("video-align-y", -1)
-        update_step_size()
+    rmode = state
+    mp.osd_message("Reader Mode: " .. (rmode and "On" or "Off"))
+    mp.set_property("pause", rmode and "yes" or "no")
+    mp.set_property("panscan", rmode and 1 or 0)
+    mp.set_property("video-align-y", rmode and -1 or 0)
+    if rmode then
+        update_step()
         mp.add_forced_key_binding("LEFT", "flip-forward", function()
             flip_page(1)
         end, {
@@ -76,9 +63,6 @@ local function toggle_reader(state)
             repeatable = true
         })
     else
-        mp.osd_message("Reader Mode: Off")
-        mp.set_property("pause", "no")
-        mp.set_property("panscan", 0)
         mp.set_property("video-pan-y", 0)
         mp.remove_key_binding("flip-forward")
         mp.remove_key_binding("flip-backward")
@@ -90,21 +74,13 @@ end
 local function auto_toggle()
     local path = mp.get_property("path", "")
     if path ~= "" then
-        local ext = path:match("%.([^%.]+)$") or ""
-        local img_exts = {
-            jpg = true,
-            jpeg = true,
-            png = true,
-            bmp = true,
-            gif = true,
-            tiff = true
-        }
-        if img_exts[ext:lower()] then
-            if not reader_mode then
+        local e = (path:match("%.([^%.]+)$") or ""):lower()
+        if e == "jpg" or e == "jpeg" or e == "png" or e == "bmp" or e == "gif" or e == "tiff" then
+            if not rmode then
                 toggle_reader(true)
             end
         else
-            if reader_mode then
+            if rmode then
                 toggle_reader(false)
             end
         end
@@ -112,11 +88,11 @@ local function auto_toggle()
 end
 
 mp.observe_property("video-params/h", "number", function()
-    if reader_mode then
-        update_step_size()
+    if rmode then
+        update_step()
     end
 end)
 mp.observe_property("path", "string", auto_toggle)
 mp.add_key_binding("ctrl+m", "toggle-reader", function()
-    toggle_reader(not reader_mode)
+    toggle_reader(not rmode)
 end)
