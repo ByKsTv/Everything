@@ -91,33 +91,10 @@ New-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked' -Name '{7AD84985-87B4-4a16-BE58-8B72A5B390F7}' -Value 'Play to Menu' -PropertyType String -Force
 
 # File Explorer: Disable history of paths (also reverts back to Windows 10 menu)
-# Define the registry path
-$regPath = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths'
-
-# Check if the registry key exists
-if (Test-Path $regPath) {
-	Write-Host 'Registry key found. Proceeding to deny permissions...' -ForegroundColor Green
-    
-	# Use Set-Acl to deny write permissions for the current user
-	$acl = Get-Acl -Path $regPath
-	$user = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
-
-	# Create a Deny permission rule for the current user
-	$denyRule = New-Object System.Security.AccessControl.RegistryAccessRule(
-		$user,
-		'FullControl',
-		'Deny'
-	)
-
-	# Add the deny rule to the registry key
-	$acl.SetAccessRule($denyRule)
-	Set-Acl -Path $regPath -AclObject $acl
-
-	Write-Host 'Permissions successfully updated. New entries will not be saved.' -ForegroundColor Green
-}
-else {
-	Write-Host 'Registry key not found. TypedPaths might already be disabled.' -ForegroundColor Yellow
-}
+$TypedPaths_AccessControl = (Get-Acl 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths')
+$TypedPaths_AccessControl.SetAccessRule((New-Object System.Security.AccessControl.RegistryAccessRule(
+			[System.Security.Principal.WindowsIdentity]::GetCurrent().Name, 'FullControl', 'Deny')))
+Set-Acl -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths' -AclObject $TypedPaths_AccessControl
 
 # Context Menu: Remove 'Add to Favorites'
 [Microsoft.Win32.Registry]::ClassesRoot.DeleteSubKeyTree('*\shell\pintohomefile')
