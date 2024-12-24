@@ -268,23 +268,3 @@ wmdcommander.appspot.com
 ```text
 Wheres my droid
 ```
-
-### Honey
-
-```text
-s.joinhoney.com
-```
-
-```text
-Honey
-```
-
-### Honey (Another)
-
-```text
-d.joinhoney.com
-```
-
-```text
-Honey
-```
