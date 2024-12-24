@@ -93,7 +93,7 @@ New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Ex
 # File Explorer: Disable history of paths (also reverts back to Windows 10 menu)
 $TypedPaths_AccessControl = (Get-Acl 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths')
 $TypedPaths_AccessControl.SetAccessRule((New-Object System.Security.AccessControl.RegistryAccessRule(
-			[System.Security.Principal.WindowsIdentity]::GetCurrent().Name, 'FullControl', 'Deny')))
+			[Security.Principal.WindowsIdentity]::GetCurrent().Name, 'FullControl', 'Deny')))
 Set-Acl -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths' -AclObject $TypedPaths_AccessControl
 
 # Context Menu: Remove 'Add to Favorites'
