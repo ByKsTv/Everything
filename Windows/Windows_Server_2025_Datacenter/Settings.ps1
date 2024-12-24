@@ -90,6 +90,52 @@ New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Shell Ex
 New-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked' -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked' -Name '{7AD84985-87B4-4a16-BE58-8B72A5B390F7}' -Value 'Play to Menu' -PropertyType String -Force
 
+# File Explorer: Disable history of paths (also reverts back to Windows 10 menu)
+# Define the registry path
+$regPath = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths'
+
+# Check if the registry key exists
+if (Test-Path $regPath) {
+	Write-Host 'Registry key found. Proceeding to deny permissions...' -ForegroundColor Green
+    
+	# Use Set-Acl to deny write permissions for the current user
+	$acl = Get-Acl -Path $regPath
+	$user = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+
+	# Create a Deny permission rule for the current user
+	$denyRule = New-Object System.Security.AccessControl.RegistryAccessRule(
+		$user,
+		'FullControl',
+		'Deny'
+	)
+
+	# Add the deny rule to the registry key
+	$acl.SetAccessRule($denyRule)
+	Set-Acl -Path $regPath -AclObject $acl
+
+	Write-Host 'Permissions successfully updated. New entries will not be saved.' -ForegroundColor Green
+}
+else {
+	Write-Host 'Registry key not found. TypedPaths might already be disabled.' -ForegroundColor Yellow
+}
+
+# Context Menu: Remove 'Add to Favorites'
+# Use the .NET Registry class for direct registry access
+Try {
+	$RegistryKey = [Microsoft.Win32.Registry]::ClassesRoot.OpenSubKey('*\shell\pintohomefile', $true)
+	if ($RegistryKey) {
+		# Delete the key
+		[Microsoft.Win32.Registry]::ClassesRoot.DeleteSubKeyTree('*\shell\pintohomefile')
+		Write-Host 'Registry key removed successfully.'
+	}
+ else {
+		Write-Host 'Registry key does not exist.'
+	}
+}
+Catch {
+	Write-Host "An error occurred while trying to delete the registry key: $($_.Exception.Message)"
+}
+
 # Uninstall Feedback Hub
 Get-AppxPackage 'Microsoft.WindowsFeedbackHub' | Remove-AppxPackage
 
