@@ -120,21 +120,7 @@ else {
 }
 
 # Context Menu: Remove 'Add to Favorites'
-# Use the .NET Registry class for direct registry access
-Try {
-	$RegistryKey = [Microsoft.Win32.Registry]::ClassesRoot.OpenSubKey('*\shell\pintohomefile', $true)
-	if ($RegistryKey) {
-		# Delete the key
-		[Microsoft.Win32.Registry]::ClassesRoot.DeleteSubKeyTree('*\shell\pintohomefile')
-		Write-Host 'Registry key removed successfully.'
-	}
- else {
-		Write-Host 'Registry key does not exist.'
-	}
-}
-Catch {
-	Write-Host "An error occurred while trying to delete the registry key: $($_.Exception.Message)"
-}
+[Microsoft.Win32.Registry]::ClassesRoot.DeleteSubKeyTree('*\shell\pintohomefile')
 
 # Uninstall Feedback Hub
 Get-AppxPackage 'Microsoft.WindowsFeedbackHub' | Remove-AppxPackage
