@@ -96,6 +96,8 @@ if ($Autodesk_Revit_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     
     $Autodesk_Revit_Source_Forum_Post_Magnet_UnEscape = [Uri]::UnescapeDataString($Autodesk_Revit_Source_Forum_Post_Magnet)
 
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/7-Zip/Download.ps1')
+
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/qBittorrent/Download.ps1')
 
     $Autodesk_Revit_qBittorrent_Log = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
@@ -124,8 +126,6 @@ if ($Autodesk_Revit_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     do {
         Start-Sleep -Milliseconds 1000
     } until ((Get-Content $Autodesk_Revit_qBittorrent_Log -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*Revit*')
-
-    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/7-Zip/Download.ps1')
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_Revit_Form_DropDownList_SelectedItem'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_Revit_Temporary_ISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_Revit_Temporary_Directory'"); [Console]::ResetColor(); [Console]::WriteLine()
     7z.exe x $Autodesk_Revit_Temporary_ISO -o"$Autodesk_Revit_Temporary_Directory" -y
