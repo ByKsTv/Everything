@@ -327,52 +327,67 @@ New-ItemProperty -Path 'Registry::HKEY_USERS\S-1-5-20\SOFTWARE\Microsoft\Windows
 Delete-DeliveryOptimizationCache -Force
 
 # Disable Scheduled Tasks
-'Consolidator',
-'DmClient',
-'DmClientOnScenarioDownload',
-'FamilySafetyMonitor',
-'FamilySafetyRefreshTask',
-'MapsToastTask',
-'MapsUpdateTask',
-'MareBackup',
-'Microsoft Compatibility Appraiser',
-'Microsoft-Windows-DiskDiagnosticDataCollector',
-'PcaPatchDbTask',
-'PcaWallpaperAppDetect',
-'ProgramDataUpdater',
-'Proxy',
-'QueueReporting',
-'StartupAppTask',
-'UsbCeip',
-'WinSAT',
-'XblGameSaveTask' | ForEach-Object { 
-	if (Get-ScheduledTask -TaskName $_ -ErrorAction SilentlyContinue) {
-		Get-ScheduledTask -TaskName $_ | Disable-ScheduledTask
+$TasksToDisable = @(
+	'Consolidator',
+	'DmClient',
+	'DmClientOnScenarioDownload',
+	'FamilySafetyMonitor',
+	'FamilySafetyRefreshTask',
+	'MapsToastTask',
+	'MapsUpdateTask',
+	'MareBackup',
+	'Microsoft Compatibility Appraiser',
+	'Microsoft-Windows-DiskDiagnosticDataCollector',
+	'PcaPatchDbTask',
+	'PcaWallpaperAppDetect',
+	'ProgramDataUpdater',
+	'Proxy',
+	'QueueReporting',
+	'StartupAppTask',
+	'UsbCeip',
+	'WinSAT',
+	'XblGameSaveTask'
+)
+
+foreach ($Task in $TasksToDisable) {
+	if (Get-ScheduledTask -TaskName $Task -ErrorAction SilentlyContinue) {
+		Get-ScheduledTask -TaskName $Task | Disable-ScheduledTask
 	}
 }
 
 # Disable Windows Capabilities
-'InternetExplorer',
-'QuickAssist',
-'StepsRecorder',
-'WindowsMediaPlayer',
-'WordPad' | ForEach-Object {
-	Get-WindowsCapability -Online | Where-Object {
-		$_.State -eq 'Installed' -and
-		$_.Name -like "*$_*"
-	} | ForEach-Object {
-		Remove-WindowsCapability -Online -Name $_.Name
+$AppsToRemove = @(
+	'InternetExplorer',
+	'QuickAssist',
+	'StepsRecorder',
+	'WindowsMediaPlayer',
+	'WordPad'
+)
+
+foreach ($App in $AppsToRemove) {
+	$Capabilities = Get-WindowsCapability -Online | Where-Object {
+		$_.State -eq 'Installed' -and $_.Name -like "*$App*"
+	}
+
+	foreach ($Capability in $Capabilities) {
+		Remove-WindowsCapability -Online -Name $Capability.Name
 	}
 }
 
 # Disable Windows features
-'WindowsMediaPlayer',
-'WorkFolders-Client' | ForEach-Object {
-	Get-WindowsOptionalFeature -Online | Where-Object {
-		$_.State -eq 'Enabled' -and
-		$_.FeatureName -like "*$_*"
-	} | ForEach-Object {
-		Disable-WindowsOptionalFeature -Online -NoRestart -FeatureName $_.FeatureName
+$FeaturesToDisable = @(
+	'WindowsMediaPlayer',
+	'WorkFolders-Client'
+)
+
+foreach ($Feature in $FeaturesToDisable) {
+	# Check if the optional feature exists and is enabled
+	$EnabledFeatures = Get-WindowsOptionalFeature -Online | Where-Object {
+		$_.State -eq 'Enabled' -and $_.FeatureName -like "*$Feature*"
+	}
+
+	foreach ($EnabledFeature in $EnabledFeatures) {
+		Disable-WindowsOptionalFeature -Online -NoRestart -FeatureName $EnabledFeature.FeatureName
 	}
 }
 
