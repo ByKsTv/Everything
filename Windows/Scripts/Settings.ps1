@@ -351,20 +351,17 @@ Delete-DeliveryOptimizationCache -Force
 	}
 }
 
-# List of capabilities to check and remove
-$capabilitiesToRemove = @('WindowsMediaPlayer', 'InternetExplorer', 'WordPad', 'QuickAssist', 'StepsRecorder')
-foreach ($capabilityPattern in $capabilitiesToRemove) {
-	try {
-		$capabilities = Get-WindowsCapability -Online | Where-Object { $_.State -eq 'Installed' -and $_.Name -like "*$capabilityPattern*" }
-		if ($capabilities) {
-			$capabilities | ForEach-Object { Remove-WindowsCapability -Online -Name $_.Name }
-		}
-		else {
-			Write-Host "No capabilities found for: $capabilityPattern"
-		}
-	}
- catch {
-		Write-Host ('{0}: {1}' -f $capabilityPattern, $_.Exception.Message)
+# Disable Windows Capabilities
+'InternetExplorer',
+'QuickAssist',
+'StepsRecorder',
+'WindowsMediaPlayer',
+'WordPad' | ForEach-Object {
+	Get-WindowsCapability -Online | Where-Object {
+		$_.State -eq 'Installed' -and
+		$_.Name -like "*$_*"
+	} | ForEach-Object {
+		Remove-WindowsCapability -Online -Name $_.Name
 	}
 }
 
