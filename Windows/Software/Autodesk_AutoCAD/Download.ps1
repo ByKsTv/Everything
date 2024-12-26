@@ -131,7 +131,26 @@ if ($Autodesk_AutoCAD_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_AutoCAD_Form_DropDownList_SelectedItem'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_AutoCAD_Temporary_ISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_AutoCAD_Temporary_Directory'"); [Console]::ResetColor(); [Console]::WriteLine()
     7z.exe x $Autodesk_AutoCAD_Temporary_ISO -o"$Autodesk_AutoCAD_Temporary_Directory" -y
     
-    $Autodesk_AutoCAD_Temporary_AutoPlayEXE = (Get-ChildItem -Path $Autodesk_AutoCAD_Temporary_Directory -Recurse -Filter 'autoplay.exe').FullName
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_AutoCAD_Form_DropDownList_SelectedItem'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_AutoCAD_Temporary_AutoPlayEXE'"); [Console]::ResetColor(); [Console]::WriteLine()
-    Start-Process $Autodesk_AutoCAD_Temporary_AutoPlayEXE
+    $Autodesk_AutoCAD_Temporary_SetupEXE = (Get-ChildItem -Path $Autodesk_AutoCAD_Temporary_Directory -Recurse -Filter 'setup.exe').FullName
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_AutoCAD_Form_DropDownList_SelectedItem'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_AutoCAD_Temporary_SetupEXE'"); [Console]::ResetColor(); [Console]::WriteLine()
+    Start-Process $Autodesk_AutoCAD_Temporary_SetupEXE -ArgumentList '/silent'
+    while (-not (Get-Process | Where-Object { $_.MainWindowTitle -Like '*AutoCAD*Installer' })) {
+        Start-Sleep -Milliseconds 1000
+    }
+    while ((Get-Process | Where-Object { $_.MainWindowTitle -Like '*AutoCAD*Installer' })) {
+        Start-Sleep -Milliseconds 1000
+    }
+
+    $Autodesk_AutoCAD_Temporary_Crack = (Get-ChildItem -Path $Autodesk_AutoCAD_Temporary_Directory -Recurse -Filter 'AdskNLM.exe').FullName
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Cracking '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_AutoCAD_Form_DropDownList_SelectedItem'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_AutoCAD_Temporary_Crack'"); [Console]::ResetColor(); [Console]::WriteLine()
+    Start-Process $Autodesk_AutoCAD_Temporary_Crack
+    while (-not (Get-Process | Where-Object { $_.MainWindowTitle -Like '*crack*' })) {
+        Start-Sleep -Seconds 1 
+    }
+            (Get-Process | Where-Object { $_.MainWindowTitle -Like '*crack*' }).CloseMainWindow() | Out-Null
+
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_AutoCAD_Temporary_Directory'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+    Remove-MpPreference -ExclusionPath $Autodesk_AutoCAD_Temporary_Directory
+
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Please open '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_AutoCAD_Form_DropDownList_SelectedItem'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' and select '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Use a network license'"); [Console]::ResetColor(); [Console]::WriteLine()
 }
