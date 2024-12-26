@@ -14,7 +14,7 @@ $AutoCAD_DropDown = New-Object System.Windows.Forms.ComboBox
 $AutoCAD_DropDown.Location = New-Object System.Drawing.Point(5, 0)
 $AutoCAD_DropDown.DropDownStyle = 'DropDownList'
 
-$AutoCAD_nnmclub_search = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w14.monkrus.ws/search/label/AutoCAD').Links | Where-Object { $_.outerHTML -match 'AutoCAD' -and $_.outerHTML -notmatch 'LT' -and $_.outerHTML -notmatch 'Addon' -and $_.outerHTML -notmatch '#more' }
+$AutoCAD_nnmclub_search = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w16.monkrus.ws/search/label/AutoCAD').Links | Where-Object { $_.outerHTML -match 'AutoCAD' -and $_.outerHTML -notmatch 'LT' -and $_.outerHTML -notmatch 'Addon' -and $_.outerHTML -notmatch '#more' }
 
 $AutoCAD_nnmclub_Array = @{}
 $AutoCAD_graphics = [Drawing.Graphics]::FromHwnd($AutoCAD_Form.Handle)
