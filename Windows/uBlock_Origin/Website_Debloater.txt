@@ -228,21 +228,21 @@ torrentgalaxy.to##footer
 uniondht.org###heading
 uniondht.org##.row3
 uniondht.org##.spacer_10
-w14.monkrus.ws###Attribution1 > .widget-content
-w14.monkrus.ws###HTML1
-w14.monkrus.ws###HTML4
-w14.monkrus.ws###HTML5
-w14.monkrus.ws###HTML6
-w14.monkrus.ws###HTML7
-w14.monkrus.ws###HTML8 > .widget-content
-w14.monkrus.ws##.BlogArchive.widget
-w14.monkrus.ws##.PopularPosts.widget
-w14.monkrus.ws##.Stats.widget
-w14.monkrus.ws##.footer-inner.region-inner
-w14.monkrus.ws##.footer-outer
-w14.monkrus.ws##.post-footer
-w14.monkrus.ws##[href="http://www.monkrus.ws/p/donate.html"]
-w14.monkrus.ws##div.skiptranslate
+w16.monkrus.ws###Attribution1 > .widget-content
+w16.monkrus.ws###HTML1
+w16.monkrus.ws###HTML4
+w16.monkrus.ws###HTML5
+w16.monkrus.ws###HTML6
+w16.monkrus.ws###HTML7
+w16.monkrus.ws###HTML8 > .widget-content
+w16.monkrus.ws##.BlogArchive.widget
+w16.monkrus.ws##.PopularPosts.widget
+w16.monkrus.ws##.Stats.widget
+w16.monkrus.ws##.footer-inner.region-inner
+w16.monkrus.ws##.footer-outer
+w16.monkrus.ws##.post-footer
+w16.monkrus.ws##[href="http://www.monkrus.ws/p/donate.html"]
+w16.monkrus.ws##div.skiptranslate
 www.aliexpress.com##.bottom--container--1EMPdiV
 www.aliexpress.com##.cart-summary-suggestion
 www.aliexpress.com##.es--product-fix-sns--3dZQv4l
