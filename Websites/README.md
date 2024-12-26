@@ -69,7 +69,7 @@ Everything about Websites.
 | NoNaMe Club   | [Website](https://nnmclub.to)                                                                      |                                                                              |
 | LRepacks      | [Website](https://lrepacks.net)                                                                    |                                                                              |
 | Diakov        | [Website](https://diakov.net)                                                                      |                                                                              |
-| monkrus       | [Website](http://www.monkrus.ws) / [VK](https://vk.com/monkrus) / [Telegram](https://t.me/m0nkrus) | Adobe & Autodesk                                                             |
+| monkrus       | [Website](http://www.monkrus.ws) / [VK](https://vk.com/monkrus) / [Telegram](https://t.me/real_monkrus) | Adobe & Autodesk                                                             |
 | Ratiborus     | [Website](https://msfree.su/index.php)                                                             |                                                                              |
 
 ## Reviews
