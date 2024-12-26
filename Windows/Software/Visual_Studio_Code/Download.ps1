@@ -8,12 +8,17 @@ if (-not (Get-ScheduledTask -TaskName $VSCode_TaskName -ErrorAction SilentlyCont
     Register-ScheduledTask -TaskName $VSCode_TaskName -Action $VSCode_TaskAction -Trigger $VSCode_TaskTrigger -Principal $VSCode_TaskPrincipal -Settings $VSCode_TaskSettings -Force
 }
 
-$Task = Get-ScheduledTask -TaskName $VSCode_TaskName -ErrorAction SilentlyContinue
-if ($Task) {
-    $Updated_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Visual_Studio_Code/Download.ps1')"
-    $Updated_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:COMPUTERNAME\$env:USERNAME" -RunLevel Highest
-    Register-ScheduledTask -TaskName $VSCode_TaskName -Action $Updated_TaskAction -Trigger $Task.Triggers -Principal $Updated_TaskPrincipal -Settings $Task.Settings -Force
-}
-$Task.Dispose()
+$VSCode_InstalledVersion = (Get-Package -Name 'Microsoft Visual Studio Code' -ErrorAction SilentlyContinue).Version
+$VSCode_LatestVersion = (Invoke-RestMethod https://api.github.com/repos/microsoft/vscode/releases).tag_name | Select-Object -First 1
 
-# Delete this folder on 01/01/2025
+if ($null -eq $VSCode_InstalledVersion -or $VSCode_InstalledVersion -notmatch $VSCode_LatestVersion) {
+    $VSCode_DDL = 'https://code.visualstudio.com/sha/download?build=stable&os=win32-x64'
+    $VSCode_Filename = 'VSCodeSetup-x64-' + "$VSCode_LatestVersion" + '.exe'
+    $VSCode_SavePath = [IO.Path]::Combine($env:TEMP, $VSCode_Filename)
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Visual Studio Code'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VSCode_LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VSCode_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VSCode_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+    (New-Object System.Net.WebClient).DownloadFile($VSCode_DDL, $VSCode_SavePath)
+    
+    $VSCode_Argument = '/VERYSILENT /MERGETASKS=!runcode'
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Visual Studio Code'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VSCode_LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VSCode_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VSCode_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+    Start-Process $VSCode_SavePath -ArgumentList $VSCode_Argument
+}
