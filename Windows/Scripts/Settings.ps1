@@ -366,19 +366,13 @@ Delete-DeliveryOptimizationCache -Force
 }
 
 # Disable Windows features
-$OptionalFeatureToRemove = @('WorkFolders-Client', 'WindowsMediaPlayer')
-foreach ($OptionalFeaturePattern in $OptionalFeatureToRemove) {
-	try {
-		$OptionalFeature = Get-WindowsOptionalFeature -Online | Where-Object { $_.State -eq 'Enabled' -and $_.FeatureName -like "*$OptionalFeaturePattern*" }
-		if ($OptionalFeature) {
-			$OptionalFeature | ForEach-Object { Disable-WindowsOptionalFeature -Online -NoRestart -FeatureName $_.FeatureName }
-		}
-		else {
-			Write-Host "No Optional Feature found for: $OptionalFeaturePattern"
-		}
-	}
- catch {
-		Write-Host ('{0}: {1}' -f $OptionalFeaturePattern, $_.Exception.Message)
+'WindowsMediaPlayer',
+'WorkFolders-Client' | ForEach-Object {
+	Get-WindowsOptionalFeature -Online | Where-Object {
+		$_.State -eq 'Enabled' -and
+		$_.FeatureName -like "*$_*"
+	} | ForEach-Object {
+		Disable-WindowsOptionalFeature -Online -NoRestart -FeatureName $_.FeatureName
 	}
 }
 
