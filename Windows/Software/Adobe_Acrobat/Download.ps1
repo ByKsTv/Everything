@@ -50,7 +50,7 @@ $AcrobatPro_DropDown = New-Object System.Windows.Forms.ComboBox
 $AcrobatPro_DropDown.Location = New-Object System.Drawing.Point(5, 0)
 $AcrobatPro_DropDown.DropDownStyle = 'DropDownList'
 
-$AcrobatPro_nnmclub_search = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w14.monkrus.ws/search/label/Acrobat').Links | Where-Object { $_.outerHTML -match 'x64' -and $_.outerHTML -notmatch '#more' }
+$AcrobatPro_nnmclub_search = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w16.monkrus.ws/search/label/Acrobat').Links | Where-Object { $_.outerHTML -match 'x64' -and $_.outerHTML -notmatch '#more' }
 
 $AcrobatPro_nnmclub_Array = @{}
 $AcrobatPro_graphics = [Drawing.Graphics]::FromHwnd($AcrobatPro_Form.Handle)
