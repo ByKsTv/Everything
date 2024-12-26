@@ -131,7 +131,7 @@ if ($Autodesk_Revit_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     7z.exe x $Autodesk_Revit_Temporary_ISO -o"$Autodesk_Revit_Temporary_Directory" -y
     
     $Autodesk_Revit_Temporary_SetupEXE = (Get-ChildItem -Path $Autodesk_Revit_Temporary_Directory -Recurse -Filter 'setup.exe').FullName
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Revit_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_Revit_Temporary_SetupEXE'"); [Console]::ResetColor(); [Console]::WriteLine()
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_Revit_Form_DropDownList_SelectedItem'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_Revit_Temporary_SetupEXE'"); [Console]::ResetColor(); [Console]::WriteLine()
     Start-Process $Autodesk_Revit_Temporary_SetupEXE
     while (-not (Get-Process | Where-Object { $_.MainWindowTitle -Like '*Revit*Installer' })) {
         Start-Sleep -Milliseconds 1000
@@ -141,7 +141,7 @@ if ($Autodesk_Revit_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     }
 
     $Autodesk_Revit_Temporary_Crack = (Get-ChildItem -Path $Autodesk_Revit_Temporary_Directory -Recurse -Filter 'AdskNLM.exe').FullName
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Cracking '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Revit_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_Revit_Temporary_Crack'"); [Console]::ResetColor(); [Console]::WriteLine()
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Cracking '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_Revit_Form_DropDownList_SelectedItem'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_Revit_Temporary_Crack'"); [Console]::ResetColor(); [Console]::WriteLine()
     Start-Process $Autodesk_Revit_Temporary_Crack
     while (-not (Get-Process | Where-Object { $_.MainWindowTitle -Like '*crack*' })) {
         Start-Sleep -Seconds 1 
@@ -151,5 +151,5 @@ if ($Autodesk_Revit_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_Revit_Temporary_Directory'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
     Remove-MpPreference -ExclusionPath $Autodesk_Revit_Temporary_Directory
 
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Please open '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Revit_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' and select '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Use a network license'"); [Console]::ResetColor(); [Console]::WriteLine()
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Please open '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_Revit_Form_DropDownList_SelectedItem'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' and select '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Use a network license'"); [Console]::ResetColor(); [Console]::WriteLine()
 }
