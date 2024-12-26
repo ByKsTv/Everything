@@ -153,4 +153,11 @@ if ($Autodesk_AutoCAD_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     Remove-MpPreference -ExclusionPath $Autodesk_AutoCAD_Temporary_Directory
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Please open '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_AutoCAD_Form_DropDownList_SelectedItem'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' and select '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Use a network license'"); [Console]::ResetColor(); [Console]::WriteLine()
+
+    $Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{
+        TopMost = $true
+    }
+    $Popup_Text = "Run AutoDesk AutoCAD and Select 'Use a network license'"
+    [Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK') | Out-Null
+    $Popup_Usermanual.Dispose()
 }
