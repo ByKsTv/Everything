@@ -103,6 +103,8 @@ if ($Adobe_Acrobat_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     
     $Adobe_Acrobat_Source_Forum_Post_Magnet_UnEscape = [Uri]::UnescapeDataString($Adobe_Acrobat_Source_Forum_Post_Magnet)
 
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/7-Zip/Download.ps1')
+
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/qBittorrent/Download.ps1')
 
     $Adobe_Acrobat_qBittorrent_Log = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
@@ -131,8 +133,6 @@ if ($Adobe_Acrobat_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     do {
         Start-Sleep -Milliseconds 1000
     } until ((Get-Content $Adobe_Acrobat_qBittorrent_Log -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*Acrobat*')
-
-    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/7-Zip/Download.ps1')
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Adobe_Acrobat_Form_DropDownList_SelectedItem'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Adobe_Acrobat_Temporary_ISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Adobe_Acrobat_Temporary_Directory'"); [Console]::ResetColor(); [Console]::WriteLine()
     7z.exe x $Adobe_Acrobat_Temporary_ISO -o"$Adobe_Acrobat_Temporary_Directory" -y
