@@ -63,14 +63,14 @@ Everything about Websites.
 
 ## Software
 
-| Name          | Links                                                                                              | Notes                                                                        |
-| ------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| RuTracker.org | [Website](https://rutracker.org/forum/index.php)                                                   | [Requires an account](https://rutracker.org/forum/profile.php?mode=register) |
-| NoNaMe Club   | [Website](https://nnmclub.to)                                                                      |                                                                              |
-| LRepacks      | [Website](https://lrepacks.net)                                                                    |                                                                              |
-| Diakov        | [Website](https://diakov.net)                                                                      |                                                                              |
+| Name          | Links                                                                                                   | Notes                                                                        |
+| ------------- | ------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| RuTracker.org | [Website](https://rutracker.org/forum/index.php)                                                        | [Requires an account](https://rutracker.org/forum/profile.php?mode=register) |
+| NoNaMe Club   | [Website](https://nnmclub.to)                                                                           |                                                                              |
+| LRepacks      | [Website](https://lrepacks.net)                                                                         |                                                                              |
+| Diakov        | [Website](https://diakov.net)                                                                           |                                                                              |
 | monkrus       | [Website](http://www.monkrus.ws) / [VK](https://vk.com/monkrus) / [Telegram](https://t.me/real_monkrus) | Adobe & Autodesk                                                             |
-| Ratiborus     | [Website](https://msfree.su/index.php)                                                             |                                                                              |
+| Ratiborus     | [Website](https://msfree.su/index.php)                                                                  |                                                                              |
 
 ## Reviews
 
