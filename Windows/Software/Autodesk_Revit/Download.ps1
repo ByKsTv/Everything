@@ -110,7 +110,6 @@ if ($Autodesk_Revit_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     $Autodesk_Revit_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($Autodesk_Revit_Source_Forum_Post_Magnet_UnEscape)"""
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_Revit_Form_DropDownList_SelectedItem'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_Revit_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-
     Start-Process qBittorrent.exe -ArgumentList $Autodesk_Revit_qBittorrent_Argument
 
     while (-not ($Autodesk_Revit_Temporary_Directory = (Get-ChildItem $env:TEMP -Directory -Filter '*Revit*' | Select-Object -First 1).FullName)) {
@@ -133,6 +132,7 @@ if ($Autodesk_Revit_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     $Autodesk_Revit_Temporary_SetupEXE = (Get-ChildItem -Path $Autodesk_Revit_Temporary_Directory -Recurse -Filter 'setup.exe').FullName
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_Revit_Form_DropDownList_SelectedItem'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_Revit_Temporary_SetupEXE'"); [Console]::ResetColor(); [Console]::WriteLine()
     Start-Process $Autodesk_Revit_Temporary_SetupEXE
+
     while (-not (Get-Process | Where-Object { $_.MainWindowTitle -Like '*Revit*Installer' })) {
         Start-Sleep -Milliseconds 1000
     }
@@ -143,8 +143,9 @@ if ($Autodesk_Revit_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     $Autodesk_Revit_Temporary_Crack = (Get-ChildItem -Path $Autodesk_Revit_Temporary_Directory -Recurse -Filter 'AdskNLM.exe').FullName
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Cracking '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_Revit_Form_DropDownList_SelectedItem'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_Revit_Temporary_Crack'"); [Console]::ResetColor(); [Console]::WriteLine()
     Start-Process $Autodesk_Revit_Temporary_Crack
+
     while (-not (Get-Process | Where-Object { $_.MainWindowTitle -Like '*crack*' })) {
-        Start-Sleep -Seconds 1 
+        Start-Sleep -Milliseconds 1000
     }
     (Get-Process | Where-Object { $_.MainWindowTitle -Like '*crack*' }).CloseMainWindow() | Out-Null
 

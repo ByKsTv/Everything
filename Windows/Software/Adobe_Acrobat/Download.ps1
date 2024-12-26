@@ -117,7 +117,6 @@ if ($Adobe_Acrobat_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     $Adobe_Acrobat_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($Adobe_Acrobat_Source_Forum_Post_Magnet_UnEscape)"""
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Adobe_Acrobat_Form_DropDownList_SelectedItem'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Adobe_Acrobat_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-
     Start-Process qBittorrent.exe -ArgumentList $Adobe_Acrobat_qBittorrent_Argument
 
     while (-not ($Adobe_Acrobat_Temporary_Directory = (Get-ChildItem $env:TEMP -Directory -Filter '*Acrobat*' | Select-Object -First 1).FullName)) {
