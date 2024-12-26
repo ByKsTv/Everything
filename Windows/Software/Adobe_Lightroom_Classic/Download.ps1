@@ -14,7 +14,7 @@ $Lightroom_DropDown = New-Object System.Windows.Forms.ComboBox
 $Lightroom_DropDown.Location = New-Object System.Drawing.Point(5, 0)
 $Lightroom_DropDown.DropDownStyle = 'DropDownList'
 
-$Lightroom_nnmclub_search = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w14.monkrus.ws/search/label/Lightroom').Links | Where-Object { $_.outerHTML -match 'Classic' -and $_.outerHTML -notmatch '#more' }
+$Lightroom_nnmclub_search = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w16.monkrus.ws/search/label/Lightroom').Links | Where-Object { $_.outerHTML -match 'Classic' -and $_.outerHTML -notmatch '#more' }
 
 $Lightroom_nnmclub_Array = @{}
 $Lightroom_graphics = [Drawing.Graphics]::FromHwnd($Lightroom_Form.Handle)
