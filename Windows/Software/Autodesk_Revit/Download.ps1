@@ -1,94 +1,138 @@
 Add-Type -AssemblyName System.Windows.Forms
+Add-Type -AssemblyName System.Drawing
 [Windows.Forms.Application]::EnableVisualStyles()
 
-$Revit_Form = New-Object System.Windows.Forms.Form
-$Revit_Form.Text = 'Autodesk Revit Selection'
-$Revit_Form.StartPosition = 'CenterScreen'
-$Revit_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
-$Revit_Form.Topmost = $true
-$Revit_Form.MaximizeBox = $false
-$Revit_Form.MinimizeBox = $false
-$Revit_Form.FormBorderStyle = [Windows.Forms.FormBorderStyle]::FixedDialog
+$Autodesk_Revit_Form = New-Object System.Windows.Forms.Form -Property @{
+    Text            = 'Autodesk Revit Selection'
+    Font            = [Drawing.Font]::new('Tahoma', 11)
+    Height          = 90
+    StartPosition   = 'CenterScreen'
+    FormBorderStyle = 'FixedDialog'
+    Topmost         = $true
+    MaximizeBox     = $false
+    MinimizeBox     = $false
+    ControlBox      = $false
+}
 
-$Revit_DropDown = New-Object System.Windows.Forms.ComboBox
-$Revit_DropDown.Location = New-Object System.Drawing.Point(5, 0)
-$Revit_DropDown.DropDownStyle = 'DropDownList'
+$Autodesk_Revit_Form_DropDownList = New-Object System.Windows.Forms.ComboBox -Property @{
+    DropDownStyle = 'DropDownList'
+    Location      = [Drawing.Point]::new(5, 0)
+}
 
-$Revit_nnmclub_search = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w16.monkrus.ws/search/label/Revit').Links | Where-Object { $_.outerHTML -match 'Multilingual' -and $_.outerHTML -notmatch '#more' -and $_.outerHTML -match 'Revit' }
+$Autodesk_Revit_Source = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w16.monkrus.ws/search/label/Revit').Links | Where-Object {
+    $_.outerHTML -notmatch '#more' -and
+    $_.outerHTML -match 'Multilingual' -and
+    $_.outerHTML -match 'Revit'
+}
 
-$Revit_nnmclub_Array = @{}
-$Revit_graphics = [Drawing.Graphics]::FromHwnd($Revit_Form.Handle)
-$Revit_maxWidth = 0
-foreach ($Revit_nnmclub_post in $Revit_nnmclub_search) {
-    $Revit_nnmclub_title = ($Revit_nnmclub_post.outerHTML -replace '.*?>(.*?)</a>', '$1')
-    $Revit_nnmclub_url = $Revit_nnmclub_post.href
-    $Revit_nnmclub_Array[$Revit_nnmclub_title] = $Revit_nnmclub_url
-    $null = $Revit_DropDown.Items.Add($Revit_nnmclub_title)
-    $Revit_Width = [int]$Revit_graphics.MeasureString($Revit_nnmclub_title, $Revit_Form.Font).Width
-    if ($Revit_Width -gt $Revit_maxWidth) {
-        $Revit_maxWidth = $Revit_Width 
+$Autodesk_Revit_Source_Array = @{}
+
+$Autodesk_Revit_Form_Graphics = [Drawing.Graphics]::FromHwnd($Autodesk_Revit_Form.Handle)
+$Autodesk_Revit_Form_DropDownList_MaxWidth = 0
+
+foreach ($Autodesk_Revit_Source_Post in $Autodesk_Revit_Source) {
+    $Autodesk_Revit_Source_PostTitle = ($Autodesk_Revit_Source_Post.outerHTML -replace '.*?>(.*?)</a>', '$1')
+    $Autodesk_Revit_Source_PostHREF = $Autodesk_Revit_Source_Post.href
+    $Autodesk_Revit_Source_Array[$Autodesk_Revit_Source_PostTitle] = $Autodesk_Revit_Source_PostHREF
+
+    $Autodesk_Revit_Form_DropDownList.Items.Add($Autodesk_Revit_Source_PostTitle) | Out-Null
+    
+    $Autodesk_Revit_Form_Source_Post_Width = [int]$Autodesk_Revit_Form_Graphics.MeasureString($Autodesk_Revit_Source_PostTitle, $Autodesk_Revit_Form.Font).Width
+    if ($Autodesk_Revit_Form_Source_Post_Width -gt $Autodesk_Revit_Form_DropDownList_MaxWidth) {
+        $Autodesk_Revit_Form_DropDownList_MaxWidth = $Autodesk_Revit_Form_Source_Post_Width 
     }
 }
-$Revit_DropDown.Width = $Revit_maxWidth + 10
-$Revit_FormWidth = $Revit_DropDown.Width + 25
-$Revit_Form.Size = New-Object System.Drawing.Size($Revit_FormWidth, 90)
 
-$Revit_Form.Controls.Add($Revit_DropDown)
+$Autodesk_Revit_Form_DropDownList.Width = $Autodesk_Revit_Form_DropDownList_MaxWidth + 10
+$Autodesk_Revit_Form.Width = $Autodesk_Revit_Form_DropDownList.Width + 25
 
-$Revit_Form_OK = New-Object System.Windows.Forms.Button
-$Revit_Form_OK.Text = 'OK'
-$Revit_Form_OK.Location = New-Object System.Drawing.Size((($Revit_Form.Width) / 3 ), (($Revit_Form.height) - 60))
-$Revit_Form_OK.Size = New-Object System.Drawing.Size(57, 20)
-$Revit_Form_OK.DialogResult = [Windows.Forms.DialogResult]::OK
-$Revit_Form.Controls.Add($Revit_Form_OK)
-$Revit_Form.AcceptButton = $Revit_Form_OK
+$Autodesk_Revit_Form.Controls.Add($Autodesk_Revit_Form_DropDownList)
 
-$Revit_Form_Cancel = New-Object System.Windows.Forms.Button
-$Revit_Form_Cancel.Location = New-Object System.Drawing.Size((($Revit_Form.Width) / 2 ), (($Revit_Form.height) - 60))
-$Revit_Form_Cancel.Size = New-Object System.Drawing.Size(57, 20)
-$Revit_Form_Cancel.Text = 'Cancel'
-$Revit_Form_Cancel.Add_Click({ $Revit_Form.Close() })
-$Revit_Form.Controls.Add($Revit_Form_Cancel)
+$Autodesk_Revit_Form_ButtonSpacer = 15
+$Autodesk_Revit_Form_ButtonWidth = 57
+$Autodesk_Revit_Form_ButtonWidthTotal = $Autodesk_Revit_Form_ButtonSpacer + $Autodesk_Revit_Form_ButtonWidth + $Autodesk_Revit_Form_ButtonWidth
+$Autodesk_Revit_Form_ButtonCenterX = [math]::Round(($Autodesk_Revit_Form.ClientSize.Width - $Autodesk_Revit_Form_ButtonWidthTotal) / 2)
+$Autodesk_Revit_Form_ButtonHeight = 20
+$Autodesk_Revit_Form_ButtonYLocation = $Autodesk_Revit_Form.Height - 60
 
-if ($Revit_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
-    $Revit_SelectedVersion = $Revit_DropDown.SelectedItem
-    $Revit_SelectedHREF = $Revit_nnmclub_Array[$Revit_SelectedVersion]
+$Autodesk_Revit_Form_OK = New-Object System.Windows.Forms.Button -Property @{
+    Text         = 'OK'
+    DialogResult = [Windows.Forms.DialogResult]::OK
+    Width        = $Autodesk_Revit_Form_ButtonWidth
+    Height       = $Autodesk_Revit_Form_ButtonHeight
+    Location     = [Drawing.Point]::new($Autodesk_Revit_Form_ButtonCenterX, $Autodesk_Revit_Form_ButtonYLocation)
+    Add_Click    = ({ $Autodesk_Revit_Form.Close() })
+}
 
-    $AutodeskRevit_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $Revit_SelectedHREF).Links | Where-Object { $_.outerHTML -match 'uniondht.org' } | Select-Object -First 1).href
-    if ($null -eq $AutodeskRevit_Forum) {
-        $AutodeskRevit_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $Revit_SelectedHREF).Links | Where-Object { $_.outerHTML -match 'pb.wtf' } | Select-Object -First 1).href
+$Autodesk_Revit_Form_Cancel_ButtonXLocation = $Autodesk_Revit_Form_ButtonCenterX + $Autodesk_Revit_Form_ButtonWidth + $Autodesk_Revit_Form_ButtonSpacer
+$Autodesk_Revit_Form_Cancel = New-Object System.Windows.Forms.Button -Property @{
+    Text      = 'Cancel'
+    Width     = $Autodesk_Revit_Form_ButtonWidth
+    Height    = $Autodesk_Revit_Form_ButtonHeight
+    Location  = [Drawing.Point]::new($Autodesk_Revit_Form_Cancel_ButtonXLocation, $Autodesk_Revit_Form_ButtonYLocation)
+    Add_Click = ({ $Autodesk_Revit_Form.Close() })
+}
+
+$Autodesk_Revit_Form.Controls.Add($Autodesk_Revit_Form_OK)
+$Autodesk_Revit_Form.Controls.Add($Autodesk_Revit_Form_Cancel)
+
+if ($Autodesk_Revit_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
+    $Autodesk_Revit_Form_DropDownList_SelectedItem = $Autodesk_Revit_Form_DropDownList.SelectedItem
+    $Autodesk_Revit_Form_DropDownList_SelectedItemHREF = $Autodesk_Revit_Source_Array[$Autodesk_Revit_Form_DropDownList_SelectedItem]
+
+    $Autodesk_Revit_Source_Forum_Post = ((Invoke-WebRequest -UseBasicParsing -Uri $Autodesk_Revit_Form_DropDownList_SelectedItemHREF).Links | Where-Object {
+            $_.outerHTML -match 'uniondht.org'
+        }).href | Select-Object -First 1
+
+    if ($null -eq $Autodesk_Revit_Source_Forum_Post) {
+        $Autodesk_Revit_Source_Forum_Post = ((Invoke-WebRequest -UseBasicParsing -Uri $Autodesk_Revit_Form_DropDownList_SelectedItemHREF).Links | Where-Object {
+                $_.outerHTML -match 'pb.wtf'
+            }).href | Select-Object -First 1
     }
-    $AutodeskRevit_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AutodeskRevit_Forum).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
+
+    $Autodesk_Revit_Source_Forum_Post_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $Autodesk_Revit_Source_Forum_Post).Links | Where-Object {
+            $_.outerHTML -match 'magnet'
+        }).href | Select-Object -First 1
+    
+    $Autodesk_Revit_Source_Forum_Post_Magnet_UnEscape = [Uri]::UnescapeDataString($Autodesk_Revit_Source_Forum_Post_Magnet)
+
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/qBittorrent/Download.ps1')
-    $AutodeskRevit_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
-    if (Test-Path $AutodeskRevit_qBittorrent_LOG) {
-        Remove-Item $AutodeskRevit_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
+
+    $Autodesk_Revit_qBittorrent_Log = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
+    if (Test-Path $Autodesk_Revit_qBittorrent_Log) {
+        Remove-Item $Autodesk_Revit_qBittorrent_Log -Force -ErrorAction SilentlyContinue
     }
+
     Remove-Item -Path "$env:TEMP\*Revit*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
-    $AutodeskRevit_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($AutodeskRevit_Magnet)"""
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Revit_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-    Start-Process qBittorrent.exe -ArgumentList $AutodeskRevit_qBittorrent_Argument
-    while (-not ($AutodeskRevit_TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*Revit*' | Select-Object -First 1).FullName)) {
+
+    $Autodesk_Revit_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($Autodesk_Revit_Source_Forum_Post_Magnet_UnEscape)"""
+
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_Revit_Form_DropDownList_SelectedItem'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_Revit_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+
+    Start-Process qBittorrent.exe -ArgumentList $Autodesk_Revit_qBittorrent_Argument
+
+    while (-not ($Autodesk_Revit_Temporary_Directory = (Get-ChildItem $env:TEMP -Directory -Filter '*Revit*' | Select-Object -First 1).FullName)) {
         Start-Sleep -Milliseconds 1000
     }
 
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
-    Add-MpPreference -ExclusionPath $AutodeskRevit_TempDir
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_Revit_Temporary_Directory'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+    Add-MpPreference -ExclusionPath $Autodesk_Revit_Temporary_Directory
 
-    while (-not ($AutodeskRevit_TempISO = (Get-ChildItem $AutodeskRevit_TempDir -Filter '*.iso' | Select-Object -First 1).FullName)) {
+    while (-not ($Autodesk_Revit_Temporary_ISO = (Get-ChildItem $Autodesk_Revit_Temporary_Directory -Filter '*.iso' | Select-Object -First 1).FullName)) {
         Start-Sleep -Milliseconds 1000
     }
     do {
         Start-Sleep -Milliseconds 1000
-    } until ((Get-Content $AutodeskRevit_qBittorrent_LOG -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*Revit*')
+    } until ((Get-Content $Autodesk_Revit_qBittorrent_Log -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*Revit*')
 
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/7-Zip/Download.ps1')
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Revit_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempDir'"); [Console]::ResetColor(); [Console]::WriteLine()
-    7z.exe x $AutodeskRevit_TempISO -o"$AutodeskRevit_TempDir" -y
 
-    $AutodeskRevit_TempInstaller = (Get-ChildItem -Path $AutodeskRevit_TempDir -Recurse -Filter 'setup.exe').FullName
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Revit_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempInstaller'"); [Console]::ResetColor(); [Console]::WriteLine()
-    Start-Process $AutodeskRevit_TempInstaller
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_Revit_Form_DropDownList_SelectedItem'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_Revit_Temporary_ISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_Revit_Temporary_Directory'"); [Console]::ResetColor(); [Console]::WriteLine()
+    7z.exe x $Autodesk_Revit_Temporary_ISO -o"$Autodesk_Revit_Temporary_Directory" -y
+    
+    $Autodesk_Revit_Temporary_SetupEXE = (Get-ChildItem -Path $Autodesk_Revit_Temporary_Directory -Recurse -Filter 'setup.exe').FullName
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Revit_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_Revit_Temporary_SetupEXE'"); [Console]::ResetColor(); [Console]::WriteLine()
+    Start-Process $Autodesk_Revit_Temporary_SetupEXE
     while (-not (Get-Process | Where-Object { $_.MainWindowTitle -Like '*Revit*Installer' })) {
         Start-Sleep -Milliseconds 1000
     }
@@ -96,16 +140,16 @@ if ($Revit_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
         Start-Sleep -Milliseconds 1000
     }
 
-    $AutodeskRevit_TempCrack = (Get-ChildItem -Path $AutodeskRevit_TempDir -Recurse -Filter 'AdskNLM.exe').FullName
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Cracking '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Revit_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempCrack'"); [Console]::ResetColor(); [Console]::WriteLine()
-    Start-Process $AutodeskRevit_TempCrack
+    $Autodesk_Revit_Temporary_Crack = (Get-ChildItem -Path $Autodesk_Revit_Temporary_Directory -Recurse -Filter 'AdskNLM.exe').FullName
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Cracking '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Revit_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_Revit_Temporary_Crack'"); [Console]::ResetColor(); [Console]::WriteLine()
+    Start-Process $Autodesk_Revit_Temporary_Crack
     while (-not (Get-Process | Where-Object { $_.MainWindowTitle -Like '*crack*' })) {
         Start-Sleep -Seconds 1 
     }
     (Get-Process | Where-Object { $_.MainWindowTitle -Like '*crack*' }).CloseMainWindow() | Out-Null
 
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutodeskRevit_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
-    Remove-MpPreference -ExclusionPath $AutodeskRevit_TempDir
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Autodesk_Revit_Temporary_Directory'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+    Remove-MpPreference -ExclusionPath $Autodesk_Revit_Temporary_Directory
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Please open '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Revit_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' and select '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Use a network license'"); [Console]::ResetColor(); [Console]::WriteLine()
 }
