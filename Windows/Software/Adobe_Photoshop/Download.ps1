@@ -14,7 +14,7 @@ $Photoshop_DropDown = New-Object System.Windows.Forms.ComboBox
 $Photoshop_DropDown.Location = New-Object System.Drawing.Point(5, 0)
 $Photoshop_DropDown.DropDownStyle = 'DropDownList'
 
-$Photoshop_nnmclub_search = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w14.monkrus.ws/search/label/Photoshop').Links | Where-Object { $_.outerHTML -notmatch 'Elements' -and $_.outerHTML -notmatch 'Collection' -and $_.outerHTML -match 'Multilingual' -and $_.outerHTML -notmatch '#more' -and $_.outerHTML -match 'Photoshop' }
+$Photoshop_nnmclub_search = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w16.monkrus.ws/search/label/Photoshop').Links | Where-Object { $_.outerHTML -notmatch 'Elements' -and $_.outerHTML -notmatch 'Collection' -and $_.outerHTML -match 'Multilingual' -and $_.outerHTML -notmatch '#more' -and $_.outerHTML -match 'Photoshop' }
 
 $Photoshop_nnmclub_Array = @{}
 $Photoshop_graphics = [Drawing.Graphics]::FromHwnd($Photoshop_Form.Handle)
