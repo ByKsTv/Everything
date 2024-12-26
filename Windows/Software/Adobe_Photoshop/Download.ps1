@@ -1,92 +1,138 @@
 Add-Type -AssemblyName System.Windows.Forms
+Add-Type -AssemblyName System.Drawing
 [Windows.Forms.Application]::EnableVisualStyles()
 
-$Photoshop_Form = New-Object System.Windows.Forms.Form
-$Photoshop_Form.Text = 'Adobe Photoshop Selection'
-$Photoshop_Form.StartPosition = 'CenterScreen'
-$Photoshop_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
-$Photoshop_Form.Topmost = $true
-$Photoshop_Form.MaximizeBox = $false
-$Photoshop_Form.MinimizeBox = $false
-$Photoshop_Form.FormBorderStyle = [Windows.Forms.FormBorderStyle]::FixedDialog
+$Adobe_Photoshop_Form = New-Object System.Windows.Forms.Form -Property @{
+    Text            = 'Adobe Photoshop Selection'
+    Font            = [Drawing.Font]::new('Tahoma', 11)
+    Height          = 90
+    StartPosition   = 'CenterScreen'
+    FormBorderStyle = 'FixedDialog'
+    Topmost         = $true
+    MaximizeBox     = $false
+    MinimizeBox     = $false
+    ControlBox      = $false
+}
 
-$Photoshop_DropDown = New-Object System.Windows.Forms.ComboBox
-$Photoshop_DropDown.Location = New-Object System.Drawing.Point(5, 0)
-$Photoshop_DropDown.DropDownStyle = 'DropDownList'
+$Adobe_Photoshop_Form_DropDownList = New-Object System.Windows.Forms.ComboBox -Property @{
+    DropDownStyle = 'DropDownList'
+    Location      = [Drawing.Point]::new(5, 0)
+}
 
-$Photoshop_nnmclub_search = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w16.monkrus.ws/search/label/Photoshop').Links | Where-Object { $_.outerHTML -notmatch 'Elements' -and $_.outerHTML -notmatch 'Collection' -and $_.outerHTML -match 'Multilingual' -and $_.outerHTML -notmatch '#more' -and $_.outerHTML -match 'Photoshop' }
+$Adobe_Photoshop_Source = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w16.monkrus.ws/search/label/Photoshop').Links | Where-Object {
+    $_.outerHTML -notmatch '#more' -and
+    $_.outerHTML -notmatch 'Elements' -and
+    $_.outerHTML -notmatch 'Collection' -and
+    $_.outerHTML -match 'Multilingual' -and
+    $_.outerHTML -match 'Photoshop'
+}
 
-$Photoshop_nnmclub_Array = @{}
-$Photoshop_graphics = [Drawing.Graphics]::FromHwnd($Photoshop_Form.Handle)
-$Photoshop_maxWidth = 0
-foreach ($Photoshop_nnmclub_post in $Photoshop_nnmclub_search) {
-    $Photoshop_nnmclub_title = ($Photoshop_nnmclub_post.outerHTML -replace '.*?>(.*?)</a>', '$1')
-    $Photoshop_nnmclub_url = $Photoshop_nnmclub_post.href
-    $Photoshop_nnmclub_Array[$Photoshop_nnmclub_title] = $Photoshop_nnmclub_url
-    $null = $Photoshop_DropDown.Items.Add($Photoshop_nnmclub_title)
-    $Photoshop_Width = [int]$Photoshop_graphics.MeasureString($Photoshop_nnmclub_title, $Photoshop_Form.Font).Width
-    if ($Photoshop_Width -gt $Photoshop_maxWidth) {
-        $Photoshop_maxWidth = $Photoshop_Width 
+$Adobe_Photoshop_Source_Array = @{}
+
+$Adobe_Photoshop_Form_Graphics = [Drawing.Graphics]::FromHwnd($Adobe_Photoshop_Form.Handle)
+$Adobe_Photoshop_Form_DropDownList_MaxWidth = 0
+
+foreach ($Adobe_Photoshop_Source_Post in $Adobe_Photoshop_Source) {
+    $Adobe_Photoshop_Source_PostTitle = ($Adobe_Photoshop_Source_Post.outerHTML -replace '.*?>(.*?)</a>', '$1')
+    $Adobe_Photoshop_Source_PostHREF = $Adobe_Photoshop_Source_Post.href
+    $Adobe_Photoshop_Source_Array[$Adobe_Photoshop_Source_PostTitle] = $Adobe_Photoshop_Source_PostHREF
+
+    $Adobe_Photoshop_Form_DropDownList.Items.Add($Adobe_Photoshop_Source_PostTitle) | Out-Null
+    
+    $Adobe_Photoshop_Form_Source_Post_Width = [int]$Adobe_Photoshop_Form_Graphics.MeasureString($Adobe_Photoshop_Source_PostTitle, $Adobe_Photoshop_Form.Font).Width
+    if ($Adobe_Photoshop_Form_Source_Post_Width -gt $Adobe_Photoshop_Form_DropDownList_MaxWidth) {
+        $Adobe_Photoshop_Form_DropDownList_MaxWidth = $Adobe_Photoshop_Form_Source_Post_Width 
     }
 }
-$Photoshop_DropDown.Width = $Photoshop_maxWidth + 10
-$Photoshop_FormWidth = $Photoshop_DropDown.Width + 25
-$Photoshop_Form.Size = New-Object System.Drawing.Size($Photoshop_FormWidth, 90)
 
-$Photoshop_Form.Controls.Add($Photoshop_DropDown)
+$Adobe_Photoshop_Form_DropDownList.Width = $Adobe_Photoshop_Form_DropDownList_MaxWidth + 10
+$Adobe_Photoshop_Form.Width = $Adobe_Photoshop_Form_DropDownList.Width + 25
 
-$Photoshop_Form_OK = New-Object System.Windows.Forms.Button
-$Photoshop_Form_OK.Text = 'OK'
-$Photoshop_Form_OK.Location = New-Object System.Drawing.Size((($Photoshop_Form.Width) / 3 ), (($Photoshop_Form.height) - 60))
-$Photoshop_Form_OK.Size = New-Object System.Drawing.Size(57, 20)
-$Photoshop_Form_OK.DialogResult = [Windows.Forms.DialogResult]::OK
-$Photoshop_Form.Controls.Add($Photoshop_Form_OK)
-$Photoshop_Form.AcceptButton = $Photoshop_Form_OK
+$Adobe_Photoshop_Form.Controls.Add($Adobe_Photoshop_Form_DropDownList)
 
-$Photoshop_Form_Cancel = New-Object System.Windows.Forms.Button
-$Photoshop_Form_Cancel.Location = New-Object System.Drawing.Size((($Photoshop_Form.Width) / 2 ), (($Photoshop_Form.height) - 60))
-$Photoshop_Form_Cancel.Size = New-Object System.Drawing.Size(57, 20)
-$Photoshop_Form_Cancel.Text = 'Cancel'
-$Photoshop_Form_Cancel.Add_Click({ $Photoshop_Form.Close() })
-$Photoshop_Form.Controls.Add($Photoshop_Form_Cancel)
+$Adobe_Photoshop_Form_ButtonSpacer = 15
+$Adobe_Photoshop_Form_ButtonWidth = 57
+$Adobe_Photoshop_Form_ButtonWidthTotal = $Adobe_Photoshop_Form_ButtonSpacer + $Adobe_Photoshop_Form_ButtonWidth + $Adobe_Photoshop_Form_ButtonWidth
+$Adobe_Photoshop_Form_ButtonCenterX = [math]::Round(($Adobe_Photoshop_Form.ClientSize.Width - $Adobe_Photoshop_Form_ButtonWidthTotal) / 2)
+$Adobe_Photoshop_Form_ButtonHeight = 20
+$Adobe_Photoshop_Form_ButtonYLocation = $Adobe_Photoshop_Form.Height - 60
 
-if ($Photoshop_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
-    $Photoshop_SelectedVersion = $Photoshop_DropDown.SelectedItem
-    $Photoshop_SelectedHREF = $Photoshop_nnmclub_Array[$Photoshop_SelectedVersion]
+$Adobe_Photoshop_Form_OK = New-Object System.Windows.Forms.Button -Property @{
+    Text         = 'OK'
+    DialogResult = [Windows.Forms.DialogResult]::OK
+    Width        = $Adobe_Photoshop_Form_ButtonWidth
+    Height       = $Adobe_Photoshop_Form_ButtonHeight
+    Location     = [Drawing.Point]::new($Adobe_Photoshop_Form_ButtonCenterX, $Adobe_Photoshop_Form_ButtonYLocation)
+    Add_Click    = ({ $Adobe_Photoshop_Form.Close() })
+}
+
+$Adobe_Photoshop_Form_Cancel_ButtonXLocation = $Adobe_Photoshop_Form_ButtonCenterX + $Adobe_Photoshop_Form_ButtonWidth + $Adobe_Photoshop_Form_ButtonSpacer
+$Adobe_Photoshop_Form_Cancel = New-Object System.Windows.Forms.Button -Property @{
+    Text      = 'Cancel'
+    Width     = $Adobe_Photoshop_Form_ButtonWidth
+    Height    = $Adobe_Photoshop_Form_ButtonHeight
+    Location  = [Drawing.Point]::new($Adobe_Photoshop_Form_Cancel_ButtonXLocation, $Adobe_Photoshop_Form_ButtonYLocation)
+    Add_Click = ({ $Adobe_Photoshop_Form.Close() })
+}
+
+$Adobe_Photoshop_Form.Controls.Add($Adobe_Photoshop_Form_OK)
+$Adobe_Photoshop_Form.Controls.Add($Adobe_Photoshop_Form_Cancel)
+
+if ($Adobe_Photoshop_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
+    $Adobe_Photoshop_Form_DropDownList_SelectedItem = $Adobe_Photoshop_Form_DropDownList.SelectedItem
+    $Adobe_Photoshop_Form_DropDownList_SelectedItemHREF = $Adobe_Photoshop_Source_Array[$Adobe_Photoshop_Form_DropDownList_SelectedItem]
+
+    $Adobe_Photoshop_Source_Forum_Post = ((Invoke-WebRequest -UseBasicParsing -Uri $Adobe_Photoshop_Form_DropDownList_SelectedItemHREF).Links | Where-Object {
+            $_.outerHTML -match 'uniondht.org'
+        }).href | Select-Object -First 1
+
+    if ($null -eq $Adobe_Photoshop_Source_Forum_Post) {
+        $Adobe_Photoshop_Source_Forum_Post = ((Invoke-WebRequest -UseBasicParsing -Uri $Adobe_Photoshop_Form_DropDownList_SelectedItemHREF).Links | Where-Object {
+                $_.outerHTML -match 'pb.wtf'
+            }).href | Select-Object -First 1
+    }
+
+    $Adobe_Photoshop_Source_Forum_Post_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $Adobe_Photoshop_Source_Forum_Post).Links | Where-Object {
+            $_.outerHTML -match 'magnet'
+        }).href | Select-Object -First 1
     
-    $AdobePhotoshop_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $Photoshop_SelectedHREF).Links | Where-Object { $_.outerHTML -match 'uniondht.org' } | Select-Object -First 1).href
-    if ($null -eq $AdobePhotoshop_Forum) {
-        $AdobePhotoshop_Forum = ((Invoke-WebRequest -UseBasicParsing -Uri $Photoshop_SelectedHREF).Links | Where-Object { $_.outerHTML -match 'pb.wtf' } | Select-Object -First 1).href
-    }
-    $AdobePhotoshop_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $AdobePhotoshop_Forum).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
+    $Adobe_Photoshop_Source_Forum_Post_Magnet_UnEscape = [Uri]::UnescapeDataString($Adobe_Photoshop_Source_Forum_Post_Magnet)
+
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/qBittorrent/Download.ps1')
-    $AdobePhotoshop_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
-    if (Test-Path $AdobePhotoshop_qBittorrent_LOG) {
-        Remove-Item $AdobePhotoshop_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
+
+    $Adobe_Photoshop_qBittorrent_Log = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
+    if (Test-Path $Adobe_Photoshop_qBittorrent_Log) {
+        Remove-Item $Adobe_Photoshop_qBittorrent_Log -Force -ErrorAction SilentlyContinue
     }
+
     Remove-Item -Path "$env:TEMP\*Photoshop*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
-    $AdobePhotoshop_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($AdobePhotoshop_Magnet)"""
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Photoshop_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobePhotoshop_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-    Start-Process qBittorrent.exe -ArgumentList $AdobePhotoshop_qBittorrent_Argument
-    while (-not ($AdobePhotoshop_TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*Photoshop*' | Select-Object -First 1).FullName)) {
+
+    $Adobe_Photoshop_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($Adobe_Photoshop_Source_Forum_Post_Magnet_UnEscape)"""
+
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Adobe_Photoshop_Form_DropDownList_SelectedItem'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Adobe_Photoshop_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+
+    Start-Process qBittorrent.exe -ArgumentList $Adobe_Photoshop_qBittorrent_Argument
+
+    while (-not ($Adobe_Photoshop_Temporary_Directory = (Get-ChildItem $env:TEMP -Directory -Filter '*Photoshop*' | Select-Object -First 1).FullName)) {
         Start-Sleep -Milliseconds 1000
     }
 
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobePhotoshop_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
-    Add-MpPreference -ExclusionPath $AdobePhotoshop_TempDir
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Adobe_Photoshop_Temporary_Directory'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+    Add-MpPreference -ExclusionPath $Adobe_Photoshop_Temporary_Directory
 
-    while (-not ($AdobePhotoshop_TempISO = (Get-ChildItem $AdobePhotoshop_TempDir -Filter '*.iso' | Select-Object -First 1).FullName)) {
+    while (-not ($Adobe_Photoshop_Temporary_ISO = (Get-ChildItem $Adobe_Photoshop_Temporary_Directory -Filter '*.iso' | Select-Object -First 1).FullName)) {
         Start-Sleep -Milliseconds 1000
     }
     do {
         Start-Sleep -Milliseconds 1000
-    } until ((Get-Content $AdobePhotoshop_qBittorrent_LOG -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*Photoshop*')
+    } until ((Get-Content $Adobe_Photoshop_qBittorrent_Log -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*Photoshop*')
 
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/7-Zip/Download.ps1')
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Photoshop_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobePhotoshop_TempISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobePhotoshop_TempDir'"); [Console]::ResetColor(); [Console]::WriteLine()
-    7z.exe x $AdobePhotoshop_TempISO -o"$AdobePhotoshop_TempDir" -y
 
-    $AdobePhotoshop_TempInstaller = (Get-ChildItem -Path $AdobePhotoshop_TempDir -Recurse -Filter 'autoplay.exe').FullName
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Photoshop_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AdobePhotoshop_TempInstaller'"); [Console]::ResetColor(); [Console]::WriteLine()
-    Start-Process $AdobePhotoshop_TempInstaller
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Adobe_Photoshop_Form_DropDownList_SelectedItem'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Adobe_Photoshop_Temporary_ISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Adobe_Photoshop_Temporary_Directory'"); [Console]::ResetColor(); [Console]::WriteLine()
+    7z.exe x $Adobe_Photoshop_Temporary_ISO -o"$Adobe_Photoshop_Temporary_Directory" -y
+    
+    $Adobe_Photoshop_Temporary_AutoPlayEXE = (Get-ChildItem -Path $Adobe_Photoshop_Temporary_Directory -Recurse -Filter 'autoplay.exe').FullName
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Adobe_Photoshop_Form_DropDownList_SelectedItem'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Adobe_Photoshop_Temporary_AutoPlayEXE'"); [Console]::ResetColor(); [Console]::WriteLine()
+    Start-Process $Adobe_Photoshop_Temporary_AutoPlayEXE
 }
