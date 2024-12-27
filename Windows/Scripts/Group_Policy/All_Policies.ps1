@@ -292,8 +292,8 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\PowerShell
 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: Legacy Policies: Always automatically restart at the scheduled time: Enabled
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AlwaysAutoRebootAtScheduledTime' -Type DWORD -Value 1
-# The restart timer will give users this much time to save their work (minutes):
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AlwaysAutoRebootAtScheduledTimeMinutes' -Type DWORD -Value 15
+# The restart timer will give users this much time to save their work (minutes): 5
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AlwaysAutoRebootAtScheduledTimeMinutes' -Type DWORD -Value 5
 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: Legacy Policies: No auto-restart with logged on users for scheduled automatic updates installations: Disabled
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'NoAutoRebootWithLoggedOnUsers' -Type DWORD -Value 0
