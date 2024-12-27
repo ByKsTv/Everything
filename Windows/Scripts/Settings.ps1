@@ -366,7 +366,8 @@ $AppsToRemove = @(
 
 foreach ($App in $AppsToRemove) {
 	$Capabilities = Get-WindowsCapability -Online | Where-Object {
-		$_.State -eq 'Installed' -and $_.Name -like "*$App*"
+		$_.State -eq 'Installed' -and
+		$_.Name -like "*$App*"
 	}
 
 	foreach ($Capability in $Capabilities) {
@@ -381,9 +382,9 @@ $FeaturesToDisable = @(
 )
 
 foreach ($Feature in $FeaturesToDisable) {
-	# Check if the optional feature exists and is enabled
 	$EnabledFeatures = Get-WindowsOptionalFeature -Online | Where-Object {
-		$_.State -eq 'Enabled' -and $_.FeatureName -like "*$Feature*"
+		$_.State -eq 'Enabled' -and
+		$_.FeatureName -like "*$Feature*"
 	}
 
 	foreach ($EnabledFeature in $EnabledFeatures) {
