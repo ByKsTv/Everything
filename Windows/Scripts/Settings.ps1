@@ -547,3 +547,21 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer
 
 # Performance Options: Advanced: Processor scheduling: Adjust for best performance of: Programs
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Control\PriorityControl' -Name 'Win32PrioritySeparation' -Value 38 -PropertyType DWord -Force
+
+$PciDevicesPath = 'HKLM:\SYSTEM\CurrentControlSet\Enum\PCI'
+Get-ChildItem -Path $PciDevicesPath -ErrorAction SilentlyContinue | Where-Object { $_.PSIsContainer } | ForEach-Object {
+    Get-ChildItem -Path $_.PSPath -ErrorAction SilentlyContinue | Where-Object { $_.PSIsContainer } | ForEach-Object {
+        $InterruptManagementPath = Join-Path -Path $_.PSPath -ChildPath 'Device Parameters\Interrupt Management'
+        $DeviceParametersPath = Join-Path -Path $InterruptManagementPath -ChildPath 'MessageSignaledInterruptProperties'
+        $AffinityPolicyPath = Join-Path -Path $InterruptManagementPath -ChildPath 'Affinity Policy'
+
+        @($InterruptManagementPath, $DeviceParametersPath, $AffinityPolicyPath) | ForEach-Object {
+            if (-not (Test-Path $_)) {
+                New-Item -Path $_ -ItemType Directory -Force
+            }
+        }
+
+        New-ItemProperty -Path $DeviceParametersPath -Name 'MSISupported' -Value 1 -PropertyType DWord -Force
+        New-ItemProperty -Path $AffinityPolicyPath -Name 'DevicePriority' -Value 3 -PropertyType DWord -Force
+    }
+}
