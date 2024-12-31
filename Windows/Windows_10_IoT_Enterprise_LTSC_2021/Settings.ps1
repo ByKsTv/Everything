@@ -227,6 +227,26 @@ else {
 	}
 }
 
+# Disable Windows Capabilities
+$AppsToRemove = @(
+	'InternetExplorer',
+	'QuickAssist',
+	'StepsRecorder',
+	'WindowsMediaPlayer',
+	'WordPad'
+)
+
+foreach ($App in $AppsToRemove) {
+	$Capabilities = Get-WindowsCapability -Online | Where-Object {
+		$_.State -eq 'Installed' -and
+		$_.Name -like "*$App*"
+	}
+
+	foreach ($Capability in $Capabilities) {
+		Remove-WindowsCapability -Online -Name $Capability.Name
+	}
+}
+
 $HostsPath = "$env:WINDIR\System32\drivers\etc\hosts"
 $Urls = 'mobile.events.data.microsoft.com'
 $Urls | ForEach-Object { $Line = '0.0.0.0 ' + $_; if (-not(Select-String -Path $HostsPath -Pattern $Line)) {

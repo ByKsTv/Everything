@@ -358,26 +358,6 @@ foreach ($Task in $TasksToDisable) {
 	}
 }
 
-# Disable Windows Capabilities
-$AppsToRemove = @(
-	'InternetExplorer',
-	'QuickAssist',
-	'StepsRecorder',
-	'WindowsMediaPlayer',
-	'WordPad'
-)
-
-foreach ($App in $AppsToRemove) {
-	$Capabilities = Get-WindowsCapability -Online | Where-Object {
-		$_.State -eq 'Installed' -and
-		$_.Name -like "*$App*"
-	}
-
-	foreach ($Capability in $Capabilities) {
-		Remove-WindowsCapability -Online -Name $Capability.Name
-	}
-}
-
 # Disable Windows features
 $FeaturesToDisable = @(
 	'WindowsMediaPlayer',
