@@ -601,15 +601,6 @@ if ($InstalledSoftware -match 'Zoom') {
     $SoftwareSelection_CheckBoxes['Zoom'].Text += ' (Installed)'
 }
 
-$SoftwareSelection_CheckBoxes['NVCleanstall'].Add_Click({
-        if ($SoftwareSelection_CheckBoxes['NVCleanstall'].Checked -eq $true) {
-            $SoftwareSelection_CheckBoxes['Display Driver Uninstaller'].Checked = $true
-        }
-        elseif ($SoftwareSelection_CheckBoxes['NVCleanstall'].Checked -eq $false) {
-            $SoftwareSelection_CheckBoxes['Display Driver Uninstaller'].Checked = $false
-        }
-    })
-
 $SoftwareSelection_Form_OK.Add_Click({
         $SoftwareSelection_Form.Topmost = $false
         if ($SoftwareSelection_CheckBoxes['.NET'].Checked) {
