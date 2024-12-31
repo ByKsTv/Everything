@@ -109,9 +109,6 @@ New-ItemProperty -Path 'HKCU:\Control Panel\Accessibility\ToggleKeys' -Name 'Fla
 # # https://www.tomshardware.com/how-to/disable-vbs-windows-11
 # New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\DeviceGuard' -Name 'EnableVirtualizationBasedSecurity' -Value 0 -PropertyType DWord -Force
 
-# Process scheduling - 22 = Long, variable, 3x foreground boost (36:12)
-# New-ItemProperty -Path 'HKLM:\SYSTEM\ControlSet001\Control\PriorityControl' -Name 'Win32PrioritySeparation' -Value 22 -PropertyType DWord -Force
-
 # https://github.com/djdallmann/GamingPCSetup/blob/master/CONTENT/DOCS/POSTINSTALL/README.md
 # fsutil behavior set DisableDeleteNotify 0
 # fsutil behavior set disableLastAccess 1
