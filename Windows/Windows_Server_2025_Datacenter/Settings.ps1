@@ -90,7 +90,10 @@ New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Shell Ex
 New-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked' -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked' -Name '{7AD84985-87B4-4a16-BE58-8B72A5B390F7}' -Value 'Play to Menu' -PropertyType String -Force
 
-# File Explorer: Disable history of paths (also reverts back to Windows 10 menu)
+# File Explorer: Restore to Windows 10 Navigation bar
+if (-not (Test-Path -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths')) {
+	New-Item -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths' -Force
+}
 $TypedPaths_AccessControl = (Get-Acl 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths')
 $TypedPaths_AccessControl.SetAccessRule((New-Object System.Security.AccessControl.RegistryAccessRule(
 			[Security.Principal.WindowsIdentity]::GetCurrent().Name, 'FullControl', 'Deny')))
