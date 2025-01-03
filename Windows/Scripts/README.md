@@ -61,3 +61,12 @@ Everything about Scripts.
    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Extract_Base64.ps1')
 
    ```
+
+## FFmpeg: Convert to FLAC (Requires FFmpeg in Path)
+
+1. PowerShell (Admin):
+
+   ```powershell
+   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Convert_to_FLAC.ps1')
+
+   ```
