@@ -49,28 +49,71 @@ Everything about Android apps.
 1. `Settings` > `Homepage` > Disable all.
 1. `Settings` > `Homepage` > `Last tab`.
 1. `Settings` > `Customise` > `Buttom`.
-1. `Settings` > `Add-ons` > Add `uBlock Origin` > `Settings` > [Restore from file](https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Website_Debloater.txt).
+1. `Settings` > `Add-ons` > Add `uBlock Origin` > `Settings` > [Restore from file](https://github.com/ByKsTv/Everything/blob/main/Windows/uBlock_Origin/Backup.json).
 1. `about:config` > `browser.cache.disk.enable` > `false`.
 1. `about:config` > `webgl.disabled` > `false`.
 
-## ADB Commands
+## Common ADB Commands
 
-Connect USB to PC
+- Set the default ADB port for the device:
 
 ```bash
 adb tcpip 5555
 ```
 
-adb connect {DeviceIP}
-adb install us.spotco.fennec_dos_21210020.apk
-adb pull /data/app/com.example.someapp-2.apk
-adb push test.txt /storage/emulated/0/download
-adb shell cmd package install-existing tv.alphonso.alphonso_eula
+- Connect to the device using WiFi:
+
+```bash
+adb connect [IP]
+```
+
+- Install APK directly to the device:
+
+```bash
+adb install [APK]
+```
+
+- Copy file from the device to the PC:
+
+```bash
+adb pull [PATH]
+```
+
+- Copy file from the PC to the device:
+
+```bash
+adb push [FILE] [PATH]
+```
+
+- Install previously uninstalled package:
+
+```bash
+adb shell cmd package install-existing [PACKAGE]
+```
+
+- List all packages on the device:
+
+```bash
 adb shell pm list packages
-adb shell pm path com.miui.tv.analytics
+```
+
+- Get the path of an app:
+
+```bash
+adb shell pm path [PACKAGE]
+```
+
+- Reset all app permissions:
+
+```bash
 adb shell pm reset-permissions
-adb shell pm uninstall -k --user 0 com.miui.tv.analytics
-adb shell pm uninstall org.skvalex.cr
+```
+
+- Force uninstall app:
+
+```bash
+adb shell pm uninstall [PACKAGE]
+```
 
 ## Install LineageOS + Magisk (ROOT) + Lucky Patcher + Call Recorder + Play Intergrity + Google Apps
 
@@ -79,99 +122,177 @@ adb shell pm uninstall org.skvalex.cr
 1. Charge phone.
 1. Enable OEM Unlock in Developer Options.
 1. Enable USB Debugging in Developer Options.
-1. Connect USB Cable to PC.
+1. Connect USB Cable from the device to the PC.
 1. Download latest `.zip` and `.img` files for [Lineageos](https://download.lineageos.org/devices) (Select your device and follow their wiki of installation).
 1. Download [Google Apps](https://wiki.lineageos.org/gapps/#mobile) (Select `ARM64`).
 1. Download [Magisk](https://github.com/topjohnwu/Magisk/releases/latest).
 1. Download [PlayIntegrityFix](https://github.com/chiteroman/PlayIntegrityFix/releases).
 1. Download [Basic Call Recorder](https://github.com/chenxiaolong/BCR/releases).
 1. Download [Lucky Patcher](https://www.luckypatchers.com/apps/LP_Installer.apk).
-1. Connect using ADB to the phone:
+1. Connect to the device using USB:
 
-   ```bash
-   adb devices
-   ```
+> ADB is required to be in PATH.
 
-1. One the phone click "Allow".
+```bash
+adb devices
+```
 
-1. Install Magisk App using ADB to the phone:
+1. On the device click "Allow".
 
-   ```bash
-   adb install [Magisk apk]
-   ```
+1. Install Magisk App to the device:
 
-1. Push `boot.img` from PC to phone using ADB:
+```bash
+adb install [Magisk.apk]
+```
 
-   ```bash
-   adb push boot.img /storage/emulated/0/Download
-   ```
+1. Push `boot.img` from the PC to the device:
+
+```bash
+adb push boot.img /storage/emulated/0/Download
+```
 
 1. Open `Magisk` App, On `Magisk` Click `Install`, Click `Select and Patch a File`, Select the latest `boot.img`, Click `Let's Go`.
-1. Pull the patched `boot.img` file from phone to PC (Change the file name):
+1. Pull the patched `boot.img` file from the device to the PC:
 
-   ```bash
-   adb pull /storage/emulated/0/Download/[Patched file]
-   ```
+```bash
+adb pull /storage/emulated/0/Download/[magisk_patched.img]
+```
 
-1. Reboot to `bootloader` using ADB:
+1. Reboot to `bootloader`:
 
-   ```bash
-   adb -d reboot bootloader
-   ```
+```bash
+adb reboot bootloader
+```
 
-1. Connect to device using fastboot:
+1. Connect to the device:
 
-   ```bash
-   fastboot devices
-   ```
+```bash
+fastboot devices
+```
 
-   > if not found anything, download [usb drviers](https://developer.android.com/studio/run/win-usb) and install using "have disk"
+> if not found anything, download [usb drviers](https://developer.android.com/studio/run/win-usb), open Device manager and install using "Add Drivers"
 
-1. Unlock OEM Bootloader using fastboot:
+1. Unlock OEM Bootloader:
 
-   ```bash
-   fastboot oem unlock
-   ```
+```bash
+fastboot oem unlock
+```
 
-1. Select `UNLOCK THE BOOTLOADER` (This will wipe the device)
+1. Select `UNLOCK THE BOOTLOADER` (WARNING: This will wipe the data on the device)
+1. Reboot to Android OS:
+
+```bash
+fastboot reboot
+```
+
 1. Enable USB Debugging in Developer Options.
 1. Install the latest android updates if available.
-1. Reboot to `bootloader` using ADB:
+1. Reboot to `bootloader`:
 
-   ```bash
-   adb -d reboot bootloader
-   ```
+```bash
+adb reboot bootloader
+```
 
-1. Use fastboot to install new ROM:
+1. Flash new ROM:
 
-   ```bash
-   fastboot flash dtbo dtbo.img
-   fastboot flash vbmeta vbmeta.img
-   fastboot flash boot boot.img
-   fastboot flash boot magisk_patched-27000_ChangeThis.img
-   ```
+```bash
+fastboot flash dtbo dtbo.img
+fastboot flash vbmeta vbmeta.img
+fastboot flash boot boot.img
+fastboot flash boot [magisk_patched.img]
+```
 
-1. `Reboot into recovery`.
+1. Reboot to recovery:
+
+```bash
+fastboot reboot recovery
+```
+
 1. `Factory Reset` > `Format data / factory reset` > `Format data`
 1. `Main menu` > `Apply Update` > `Apply from ADB`
+1. Sideload LineageOS zip file:
 
-   ```bash
-   adb -d sideload lineage-ChangeThis.zip
-   ```
+```bash
+adb sideload [LineageOS.zip]
+```
 
 1. `Reboot to recovery` > `Yes`
 1. `Apply Update` > `Apply from ADB`
+1. Sideload Google Apps zip file:
 
-   ```bash
-   adb -d sideload GoogleApps.zip
-   ```
+```bash
+adb sideload [MindTheGapps.zip]
+```
 
 1. `Signature verification failed, install anyway?` > `Yes`
 1. `Reboot system now`
 
-### Update LineageOS + Reinstall Magisk (ROOT)
+### Update LineageOS + GApps + Magisk (ROOT)
 
 > Everytime LineageOS updates we need to reinstall Magisk (ROOT).
 
-1. `System` > `System updates` > `Preferences` > `Delete updates when installed` > Disabled
-1. Once there's an update click `Download`.
+1. Manually check for LineageOS updates on your PC, download all files from the website.
+1. Enable USB Debugging.
+1. Connect to the device using USB:
+
+> ADB is required to be in PATH.
+
+```bash
+adb devices
+```
+
+1. On the device click "Allow".
+1. Push `boot.img` from the PC to the device:
+
+```bash
+adb push boot.img /storage/emulated/0/Download
+```
+
+1. Open `Magisk` App, On `Magisk` Click `Install`, Click `Select and Patch a File`, Select the latest `boot.img`, Click `Let's Go`.
+1. Pull the patched `boot.img` file from the device to the PC:
+
+```bash
+adb pull /storage/emulated/0/Download/[magisk_patched.img]
+```
+
+1. Reboot to sideload mode:
+
+```bash
+adb reboot sideload
+```
+
+1. Sideload LineageOS zip file:
+
+```bash
+adb sideload [LineageOS.zip]
+```
+
+1. `Reboot to recovery` > `Yes`
+1. `Apply Update` > `Apply from ADB`
+1. Sideload Google Apps zip file:
+
+```bash
+adb sideload [MindTheGapps.zip]
+```
+
+1. `Signature verification failed, install anyway?` > `Yes`
+
+1. Reboot to `bootloader`:
+
+```bash
+adb reboot bootloader
+```
+
+1. Flash ROOT:
+
+```bash
+fastboot flash boot [magisk_patched.img]
+```
+
+1. Reboot to Android:
+
+```bash
+fastboot reboot
+```
+
+1. Disable USB Debugging.
