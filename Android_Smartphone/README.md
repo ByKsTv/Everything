@@ -248,13 +248,13 @@ adb push [BCR-release.zip] /storage/emulated/0/Download
 adb install [LP_Downloader.apk]
 ```
 
+1. Disable USB Debugging.
 1. Open `Magisk` App > `Settings` > `Systemless hosts`
 1. Open `Magisk` App > `Settings` > `Zygisk`
 1. Open `Magisk` App > `Settings` > `Enforce DenyList`
 1. Open `Magisk` App > `Settings` > `Configure DenyList` > Add Bank App, Credit Card apps, Health Care App.
 1. Open `Lucky Patcher` App > `Toolbox` > `Block Ads` > `Turn off Google Ads services`
 1. Open `Lucky Patcher` App > `Toolbox` > `Block Ads` > `Block ads on Device`
-1. Disable USB Debugging.
 
 ### Update LineageOS + GApps + Magisk (ROOT)
 
