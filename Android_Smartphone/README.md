@@ -123,12 +123,12 @@ adb shell pm uninstall [PACKAGE]
 1. Enable OEM Unlock in Developer Options.
 1. Enable USB Debugging in Developer Options.
 1. Connect USB Cable from the device to the PC.
-1. Download latest `.zip` and `.img` files for [Lineageos](https://download.lineageos.org/devices) (Select your device and follow their wiki of installation).
+1. Download latest `.zip` and `.img` files for [LineageOS](https://download.lineageos.org/devices) (Select your device and follow their wiki of installation).
 1. Download [Google Apps](https://wiki.lineageos.org/gapps/#mobile) (Select `ARM64`).
 1. Download [Magisk](https://github.com/topjohnwu/Magisk/releases/latest).
 1. Download [PlayIntegrityFix](https://github.com/chiteroman/PlayIntegrityFix/releases).
 1. Download [Basic Call Recorder](https://github.com/chenxiaolong/BCR/releases).
-1. Download [Lucky Patcher](https://www.luckypatchers.com/apps/LP_Installer.apk).
+1. Download [Lucky Patcher](https://chelpus.com/download/LP_Downloader.apk).
 1. Connect to the device using USB:
 
 > ADB is required to be in PATH.
@@ -226,6 +226,35 @@ adb sideload [MindTheGapps.zip]
 
 1. `Signature verification failed, install anyway?` > `Yes`
 1. `Reboot system now`
+1. Copy `PlayIntegrityFix` to the device:
+
+```bash
+adb push [PlayIntegrityFix.zip] /storage/emulated/0/Download
+```
+
+1. Open `Magisk` App, On `Magisk` Click `Modules`, Click `Install from storage`, Select the `PlayIntegrityFix.zip`
+
+1. Copy `Basic Call Recorder` to the device:
+
+```bash
+adb push [BCR-release.zip] /storage/emulated/0/Download
+```
+
+1. Open `Magisk` App, On `Magisk` Click `Modules`, Click `Install from storage`, Select the `BCR-release.zip`
+
+1. Install `Lucky Patcher`:
+
+```bash
+adb install [LP_Downloader.apk]
+```
+
+1. Open `Magisk` App > `Settings` > `Systemless hosts`
+1. Open `Magisk` App > `Settings` > `Zygisk`
+1. Open `Magisk` App > `Settings` > `Enforce DenyList`
+1. Open `Magisk` App > `Settings` > `Configure DenyList` > Add Bank App, Credit Card apps, Health Care App.
+1. Open `Lucky Patcher` App > `Toolbox` > `Block Ads` > `Turn off Google Ads services`
+1. Open `Lucky Patcher` App > `Toolbox` > `Block Ads` > `Block ads on Device`
+1. Disable USB Debugging.
 
 ### Update LineageOS + GApps + Magisk (ROOT)
 
@@ -296,3 +325,6 @@ fastboot reboot
 ```
 
 1. Disable USB Debugging.
+1. Open `Magisk` App, On `Magisk` Click `Modules`, Update everything.
+1. Open `Lucky Patcher` App > `Toolbox` > `Block Ads` > `Turn off Google Ads services`
+1. Open `Lucky Patcher` App > `Toolbox` > `Block Ads` > `Block ads on Device`
