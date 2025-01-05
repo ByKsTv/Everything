@@ -256,7 +256,7 @@ adb install [LP_Downloader.apk]
 1. Open `Lucky Patcher` App > `Toolbox` > `Block Ads` > `Turn off Google Ads services`
 1. Open `Lucky Patcher` App > `Toolbox` > `Block Ads` > `Block ads on Device`
 
-### Update LineageOS + GApps + Magisk (ROOT)
+## Update LineageOS + GApps + Magisk (ROOT)
 
 > Everytime LineageOS updates we need to reinstall Magisk (ROOT).
 
