@@ -232,7 +232,7 @@ adb sideload [MindTheGapps.zip]
 adb push [PlayIntegrityFix.zip] /storage/emulated/0/Download
 ```
 
-1. Open `Magisk` App, On `Magisk` Click `Modules`, Click `Install from storage`, Select the `PlayIntegrityFix.zip`
+1. Open `Magisk` App > `Modules` > `Install from storage` > `PlayIntegrityFix.zip`
 
 1. Copy `Basic Call Recorder` to the device:
 
@@ -240,7 +240,7 @@ adb push [PlayIntegrityFix.zip] /storage/emulated/0/Download
 adb push [BCR-release.zip] /storage/emulated/0/Download
 ```
 
-1. Open `Magisk` App, On `Magisk` Click `Modules`, Click `Install from storage`, Select the `BCR-release.zip`
+1. Open `Magisk` App > `Modules` > `Install from storage` > `BCR-release.zip`
 
 1. Install `Lucky Patcher`:
 
@@ -325,6 +325,6 @@ fastboot reboot
 ```
 
 1. Disable USB Debugging.
-1. Open `Magisk` App, On `Magisk` Click `Modules`, Update everything.
+1. Open `Magisk` > `Modules`, Update everything.
 1. Open `Lucky Patcher` App > `Toolbox` > `Block Ads` > `Turn off Google Ads services`
 1. Open `Lucky Patcher` App > `Toolbox` > `Block Ads` > `Block ads on Device`
