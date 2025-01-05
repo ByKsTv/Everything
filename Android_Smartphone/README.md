@@ -145,14 +145,14 @@ adb devices
 adb install [Magisk.apk]
 ```
 
-1. Push `boot.img` from the PC to the device:
+1. Copy `boot.img` from the PC to the device:
 
 ```bash
 adb push boot.img /storage/emulated/0/Download
 ```
 
 1. Open `Magisk` App, On `Magisk` Click `Install`, Click `Select and Patch a File`, Select the latest `boot.img`, Click `Let's Go`.
-1. Pull the patched `boot.img` file from the device to the PC:
+1. Copy the patched `boot.img` file from the device to the PC:
 
 ```bash
 adb pull /storage/emulated/0/Download/[magisk_patched.img]
@@ -271,14 +271,14 @@ adb devices
 ```
 
 1. On the device click "Allow".
-1. Push `boot.img` from the PC to the device:
+1. Copy `boot.img` from the PC to the device:
 
 ```bash
 adb push boot.img /storage/emulated/0/Download
 ```
 
 1. Open `Magisk` App, On `Magisk` Click `Install`, Click `Select and Patch a File`, Select the latest `boot.img`, Click `Let's Go`.
-1. Pull the patched `boot.img` file from the device to the PC:
+1. Copy the patched `boot.img` file from the device to the PC:
 
 ```bash
 adb pull /storage/emulated/0/Download/[magisk_patched.img]
