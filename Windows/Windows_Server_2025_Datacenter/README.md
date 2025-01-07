@@ -7,3 +7,4 @@ Everything about Windows Server 2025 Datacenter.
 - Using a VM and running AutoCAD the first window related to choosing a license doesn't show
 - Windows update doesn't install any drivers
 - Stuttering in Overwatch (?)
+- USB driver issues when using adb and fastboot
