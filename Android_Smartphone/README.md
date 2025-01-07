@@ -255,6 +255,7 @@ adb install [LP_Downloader.apk]
 1. Open `Magisk` App > `Settings` > `Configure DenyList` > Add Bank App, Credit Card apps, Health Care App.
 1. Open `Lucky Patcher` App > `Toolbox` > `Block Ads` > `Turn off Google Ads services`
 1. Open `Lucky Patcher` App > `Toolbox` > `Block Ads` > `Block ads on Device`
+1. Open `BCR` App > `Output format`: `FLAC`
 
 ## Update LineageOS + GApps + Magisk (ROOT)
 
@@ -326,5 +327,3 @@ fastboot reboot
 
 1. Disable USB Debugging.
 1. Open `Magisk` > `Modules`, Update everything.
-1. Open `Lucky Patcher` App > `Toolbox` > `Block Ads` > `Turn off Google Ads services`
-1. Open `Lucky Patcher` App > `Toolbox` > `Block Ads` > `Block ads on Device`
