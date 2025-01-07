@@ -113,6 +113,14 @@ $SettingsToChange = @(
 	@{ DisplayName = 'Power Saving Mode'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'Green Ethernet'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'ECMA'; DisplayValues = @('Enabled') }
+
+	# TODO
+	# Ethernet0: Maximum number of RSS Processors: Valid Values: 1, 2, 4, 8
+	# Ethernet0: Preferred NUMA node: Valid Values: 
+	# Ethernet0: RSS Base Processor Number: Valid Values: 
+	# Ethernet0: Maximum RSS Processor Number: Valid Values: 
+	# Ethernet0: RSS load balancing profile: Valid Values: ClosestProcessor, ClosestProcessorStatic, NUMAScaling, NUMAScalingStatic, ConservativeScaling
+	# Ethernet0: Locally Administered Address: Valid Values:
 )
 
 $UnusedSettings = @()
