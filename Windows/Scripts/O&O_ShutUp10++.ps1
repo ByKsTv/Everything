@@ -559,6 +559,3 @@ New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\NlaSvc\Parameters\In
 
 # O&O ShutUp10++: Local Machine: Windows Update: Disable automatic Windows Updates: Off
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\wuauserv' -Name 'Start' -Value 3 -PropertyType DWord -Force
-
-# O&O ShutUp10++: Current User: Search: Disable extenstion of Windows search with Bing: On
-# New-ItemProperty -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer' -Name 'DisableSearchBoxSuggestions' -Value 1 -PropertyType DWord -Force
