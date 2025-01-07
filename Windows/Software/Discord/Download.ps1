@@ -22,6 +22,17 @@ if ($null -eq $Discord_InstalledVersion -or $Discord_InstalledVersion -notmatch 
         Get-Process -Name 'Discord' -ErrorAction SilentlyContinue | Stop-Process -Force
     }
 
+    $Discord_AppData_Dir = "$env:APPDATA\discord"
+    if (-not (Test-Path $Discord_AppData_Dir)) {
+        New-Item -Path $Discord_AppData_Dir -ItemType Directory -Force
+    }
+
+    $Discord_AppData_DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Discord/settings.json'
+    $Discord_AppData_Filename = [IO.Path]::GetFileName(([URI]$Discord_AppData_DDL).AbsolutePath)
+    $Discord_AppData_SavePath = [IO.Path]::Combine($Discord_AppData_Dir, $Discord_AppData_Filename)
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Discord'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' settings from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_AppData_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_AppData_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+    (New-Object System.Net.WebClient).DownloadFile($Discord_AppData_DDL, $Discord_AppData_SavePath)
+
     $Discord_Filename = [IO.Path]::GetFileName(([URI]$Discord_DDL).AbsolutePath)
     $Discord_SavePath = [IO.Path]::Combine($env:TEMP, $Discord_Filename)
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Discord'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
