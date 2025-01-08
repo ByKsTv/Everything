@@ -115,6 +115,12 @@ adb shell pm reset-permissions
 adb shell pm uninstall [PACKAGE]
 ```
 
+## Backup
+
+- Google: Apps, Photos & videos, SMS & MMS messages, Call history, Device settings, Google Account data
+- App Data: aRDP, HeliBoard, Instagram, Nova Launcher, Seasame, Wake on Lan
+- WhatsApp, Files
+
 ## Install LineageOS + Magisk (ROOT) + Lucky Patcher + Call Recorder + Play Intergrity + Google Apps
 
 > This process will wipe the data of your device so make sure to back up.
