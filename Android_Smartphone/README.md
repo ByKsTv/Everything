@@ -121,12 +121,11 @@ adb shell pm uninstall [PACKAGE]
 
 1. Charge phone.
 1. Enable OEM Unlock in Developer Options.
-1. Enable USB Debugging in Developer Options.
 1. Connect USB Cable from the device to the PC.
+1. Enable USB Debugging in Developer Options.
 1. Download latest `.zip` and `.img` files for [LineageOS](https://download.lineageos.org/devices) (Select your device and follow their wiki of installation).
 1. Download [Google Apps](https://wiki.lineageos.org/gapps/#mobile) (Select `ARM64`).
 1. Download [Magisk](https://github.com/topjohnwu/Magisk/releases/latest).
-1. Download [PlayIntegrityFix](https://github.com/chiteroman/PlayIntegrityFix/releases).
 1. Download [Basic Call Recorder](https://github.com/chenxiaolong/BCR/releases).
 1. Download [Lucky Patcher](https://chelpus.com/download/LP_Downloader.apk).
 1. Connect to the device using USB:
@@ -137,8 +136,7 @@ adb shell pm uninstall [PACKAGE]
 adb devices
 ```
 
-1. On the device click "Allow".
-
+1. On the device select `Always allow from this computer` and click Allow`.
 1. Install Magisk App to the device:
 
 ```bash
@@ -155,7 +153,7 @@ adb push boot.img /storage/emulated/0/Download
 1. Copy the patched `boot.img` file from the device to the PC:
 
 ```bash
-adb pull /storage/emulated/0/Download/[magisk_patched.img]
+adb pull /storage/emulated/0/Download/magisk_patched.img
 ```
 
 1. Reboot to `bootloader`:
@@ -199,7 +197,7 @@ adb reboot bootloader
 fastboot flash dtbo dtbo.img
 fastboot flash vbmeta vbmeta.img
 fastboot flash boot boot.img
-fastboot flash boot [magisk_patched.img]
+fastboot flash boot magisk_patched.img
 ```
 
 1. Reboot to recovery:
@@ -213,7 +211,7 @@ fastboot reboot recovery
 1. Sideload LineageOS zip file:
 
 ```bash
-adb sideload [LineageOS.zip]
+adb sideload lineage-22.1-20250105-nightly-guacamoleb-signed.zip
 ```
 
 1. `Reboot to recovery` > `Yes`
@@ -221,23 +219,16 @@ adb sideload [LineageOS.zip]
 1. Sideload Google Apps zip file:
 
 ```bash
-adb sideload [MindTheGapps.zip]
+adb sideload MindTheGapps-15.0.0-arm64-20240928_150548.zip
 ```
 
 1. `Signature verification failed, install anyway?` > `Yes`
 1. `Reboot system now`
-1. Copy `PlayIntegrityFix` to the device:
-
-```bash
-adb push [PlayIntegrityFix.zip] /storage/emulated/0/Download
-```
-
-1. Open `Magisk` App > `Modules` > `Install from storage` > `PlayIntegrityFix.zip`
 
 1. Copy `Basic Call Recorder` to the device:
 
 ```bash
-adb push [BCR-release.zip] /storage/emulated/0/Download
+adb push BCR-release.zip /storage/emulated/0/Download
 ```
 
 1. Open `Magisk` App > `Modules` > `Install from storage` > `BCR-release.zip`
@@ -245,7 +236,7 @@ adb push [BCR-release.zip] /storage/emulated/0/Download
 1. Install `Lucky Patcher`:
 
 ```bash
-adb install [LP_Downloader.apk]
+adb install LP_Downloader.apk
 ```
 
 1. Disable USB Debugging.
@@ -261,8 +252,10 @@ adb install [LP_Downloader.apk]
 
 > Everytime LineageOS updates we need to reinstall Magisk (ROOT).
 
-1. Manually check for LineageOS updates on your PC, download all files from the website.
-1. Enable USB Debugging.
+1. Download latest `.zip` and `.img` files for [LineageOS](https://download.lineageos.org/devices) (Select your device)
+1. Download [Google Apps](https://wiki.lineageos.org/gapps/#mobile) (Select `ARM64`).
+1. Connect USB Cable from the device to the PC.
+1. Enable USB Debugging in Developer Options.
 1. Connect to the device using USB:
 
 > ADB is required to be in PATH.
@@ -271,7 +264,7 @@ adb install [LP_Downloader.apk]
 adb devices
 ```
 
-1. On the device click "Allow".
+1. On the device select `Always allow from this computer` and click Allow`.
 1. Copy `boot.img` from the PC to the device:
 
 ```bash
@@ -282,7 +275,7 @@ adb push boot.img /storage/emulated/0/Download
 1. Copy the patched `boot.img` file from the device to the PC:
 
 ```bash
-adb pull /storage/emulated/0/Download/[magisk_patched.img]
+adb pull /storage/emulated/0/Download/magisk_patched.img
 ```
 
 1. Reboot to sideload mode:
@@ -294,19 +287,19 @@ adb reboot sideload
 1. Sideload LineageOS zip file:
 
 ```bash
-adb sideload [LineageOS.zip]
+adb sideload lineage-22.1-20250105-nightly-guacamoleb-signed.zip
 ```
 
 1. `Reboot to recovery` > `Yes`
+1. `Enable ADB`.
 1. `Apply Update` > `Apply from ADB`
 1. Sideload Google Apps zip file:
 
 ```bash
-adb sideload [MindTheGapps.zip]
+adb sideload MindTheGapps-15.0.0-arm64-20240928_150548.zip
 ```
 
 1. `Signature verification failed, install anyway?` > `Yes`
-
 1. Reboot to `bootloader`:
 
 ```bash
@@ -316,7 +309,7 @@ adb reboot bootloader
 1. Flash ROOT:
 
 ```bash
-fastboot flash boot [magisk_patched.img]
+fastboot flash boot magisk_patched.img
 ```
 
 1. Reboot to Android:
