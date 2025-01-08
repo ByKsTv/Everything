@@ -4,7 +4,7 @@ Everything about Windows.
 
 ## Backup
 
-Usernames, passwords, videos, photos, files, software, desktop layout, macros, mpv settings, chrome sync turn on, firefox profile folder, app data.
+Usernames, passwords, videos, photos, files, software, desktop layout, macros, mpv settings, chrome sync turn on, firefox profile folder, app data, quick access pinned items.
 
 ## Download ISO
 
@@ -29,7 +29,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
    ```
 
 1. `START` > Uncheck every box > `OK` > `OK` > When finished close the program.
-1. Create a folder on the USB called `Drivers` and download ALL motherboard (or laptop model) drivers to this folder + [USB Drivers](https://developer.android.com/studio/run/win-usb).
+1. Create a folder on the USB called `Drivers` and download ALL motherboard (or laptop model) drivers to this folder + [USB Drivers](https://developer.android.com/studio/run/win-usb), then extract all the zip drivers to folders.
    > LAN, WiFi, Serial IO, Chipset, Thunderbolt, Audio, TouchPad, NumberPad, Bluetooth, Rapid Storage Technology, BIOS
    >
    > Find Motherboard - PowerShell (Admin):
@@ -44,7 +44,6 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 ## Pre Installation
 
 1. Power off PC.
-1. Disconnect Ethernet Cable.
 1. Disconnect Every Hard Drive Except Windows Drive.
    > This is to ensure you don't delete data from other drives, but if you know which drive partition belongs to which drive then you don't have to.
 1. Boot to UEFI USB (DEL/F12/F11).
@@ -59,14 +58,6 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 1. `Delete all` > `Next`.
    > If drives not found - Use `Load Driver` and extract `Intel Rapid Storage Technology (IRST)` driver matching to the motherboard.
-1. Connect Ethernet Cable (After Windows Boots Up).
-1. `Do you want to allow your PC to be discoverable by other PCs and devices on this network?` > `Yes`.
-
-## Drivers
-
-1. Open `Device Manager`, Click on PC Name, Click on `Action` and `Add drivers`, Choose `Drivers` folder from USB.
-1. On the USB there's a folder called `Drivers` install all motherboard drivers (or what's neccesarry).
-   > Some laptops require too many drivers so install ALL.
 
 ## Software Selection
 
