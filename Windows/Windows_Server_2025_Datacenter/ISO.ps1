@@ -10,9 +10,10 @@ $Rufus_SavePath = [IO.Path]::Combine($env:TEMP, $Rufus_Filename)
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Rufus'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Rufus_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Rufus_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
 (New-Object System.Net.WebClient).DownloadFile($Rufus_DDL, $Rufus_SavePath)
 
-$Windows_DDL = ((Invoke-WebRequest -UseBasicParsing -Uri 'https://massgrave.dev/windows_server_links').Links | Where-Object { $_.outerHTML -match 'en-us' -and $_.outerHTML -match 'windows' -and $_.outerHTML -match 'server' -and $_.outerHTML -match 'x64' } | Select-Object -First 1).href
+$Windows_DDL1 = ((Invoke-WebRequest -UseBasicParsing -Uri 'https://massgrave.dev/windows_server_links').Links | Where-Object { $_.outerHTML -match 'en-us' } | Select-Object -First 1).href
+$Windows_DDL = $Windows_DDL1 -replace '&amp;', '&'
 $Windows_Filename = [IO.Path]::GetFileName(([URI]$Windows_DDL).AbsolutePath)
-$Windows_SavePath = [IO.Path]::Combine($env:TEMP, $Windows_Filename)
+$Windows_SavePath = "$env:TEMP\$Windows_Filename.iso"
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Windows Server 2025'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Windows_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Windows_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
 (New-Object System.Net.WebClient).DownloadFile($Windows_DDL, $Windows_SavePath)
 
