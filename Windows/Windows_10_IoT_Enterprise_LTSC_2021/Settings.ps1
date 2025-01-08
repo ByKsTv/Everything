@@ -229,7 +229,10 @@ else {
 
 # Disable Windows Capabilities
 $AppsToRemove = @(
+	'Hello.Face',
 	'InternetExplorer',
+	'MathRecognizer',
+	'OpenSSH',
 	'QuickAssist',
 	'StepsRecorder',
 	'WindowsMediaPlayer',
