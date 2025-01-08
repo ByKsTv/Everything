@@ -1,6 +1,6 @@
 # Uninstall Windows Backup app
 Get-WindowsPackage -Online | Where-Object { $_.PackageName -like '*Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35*' } | ForEach-Object {
-	Remove-WindowsPackage -PackageName $_.PackageName -Online -NoRestart
+	Remove-WindowsPackage -PackageName $_.PackageName -Online -NoRestart -ErrorAction SilentlyContinue
 }
 
 # Uninstall Dev Home app
