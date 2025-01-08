@@ -502,7 +502,7 @@ Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.dib\ShellEx\Co
 Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.gif\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
 Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.heic\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
 Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.heif\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
-Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.hif\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.hif\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force -ErrorAction SilentlyContinue
 Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.ico\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
 Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.jfif\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
 Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.jpe\ShellEx\ContextMenuHandlers\ShellImagePreview' -Force
@@ -528,7 +528,7 @@ Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.heic\Shell\set
 Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.heics\Shell\setdesktopwallpaper' -Force -Recurse
 Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.heif\Shell\setdesktopwallpaper' -Force -Recurse
 Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.heifs\Shell\setdesktopwallpaper' -Force -Recurse
-Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.hif\Shell\setdesktopwallpaper' -Force -Recurse
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.hif\Shell\setdesktopwallpaper' -Force -Recurse -ErrorAction SilentlyContinue
 Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.jfif\Shell\setdesktopwallpaper' -Force -Recurse
 Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.jpe\Shell\setdesktopwallpaper' -Force -Recurse
 Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.jpeg\Shell\setdesktopwallpaper' -Force -Recurse
@@ -548,6 +548,7 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer
 # Performance Options: Advanced: Processor scheduling: Adjust for best performance of: Programs
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Control\PriorityControl' -Name 'Win32PrioritySeparation' -Value 38 -PropertyType DWord -Force
 
+# Enable MSI and High Priority
 $PciDevicesPath = 'HKLM:\SYSTEM\CurrentControlSet\Enum\PCI'
 Get-ChildItem -Path $PciDevicesPath -ErrorAction SilentlyContinue | Where-Object { $_.PSIsContainer } | ForEach-Object {
 	Get-ChildItem -Path $_.PSPath -ErrorAction SilentlyContinue | Where-Object { $_.PSIsContainer } | ForEach-Object {
@@ -565,3 +566,9 @@ Get-ChildItem -Path $PciDevicesPath -ErrorAction SilentlyContinue | Where-Object
 		New-ItemProperty -Path $AffinityPolicyPath -Name 'DevicePriority' -Value 3 -PropertyType DWord -Force
 	}
 }
+
+# Control Panel: Ease of Access: Ease of Access Center: Always read this section aloud: off
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Ease of Access' -Name 'selfvoice' -Value 0 -PropertyType DWord -Force
+
+# Control Panel: Ease of Access: Ease of Access Center: Always scan this section: off
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Ease of Access' -Name 'selfscan' -Value 0 -PropertyType DWord -Force
