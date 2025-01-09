@@ -118,10 +118,10 @@ adb shell pm uninstall [PACKAGE]
 ## Backup
 
 - Google: Apps, Photos & videos, SMS & MMS messages, Call history, Device settings, Google Account data
-- App Data: aRDP, HeliBoard, Instagram, Nova Launcher, Seasame, Wake on Lan
+- App Data: aRDP, HeliBoard, Instagram, Nova Launcher, Seasame, Wake on Lan, GCAM
 - WhatsApp, Files
 
-## Install LineageOS + Magisk (ROOT) + Lucky Patcher + Call Recorder + Play Intergrity + Google Apps
+## Install LineageOS + Magisk (ROOT) + Lucky Patcher + Basic Call Recorder + Google Play Store
 
 > This process will wipe the data of your device so make sure to back up.
 
@@ -253,7 +253,7 @@ adb install LP_Downloader.apk
 1. `Lucky Patcher` > `Toolbox` > `Block Ads` > `Block ads on Device`
 1. `BCR` > `Output format`: `FLAC`
 
-## Update LineageOS + GApps + Magisk (ROOT)
+## Update LineageOS + Google Play Store + Magisk (ROOT)
 
 > Everytime LineageOS updates we need to reinstall Magisk (ROOT).
 
