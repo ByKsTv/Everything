@@ -132,7 +132,7 @@ adb shell pm uninstall [PACKAGE]
 1. Download latest `.zip` and `.img` files for [LineageOS](https://download.lineageos.org/devices) (Select your device and follow their wiki of installation).
 1. Download [Google Apps](https://wiki.lineageos.org/gapps/#mobile) (Select `ARM64`).
 1. Download [Magisk](https://github.com/topjohnwu/Magisk/releases/latest).
-1. Download [Basic Call Recorder](https://github.com/chenxiaolong/BCR/releases).
+1. Download [Basic Call Recorder](https://github.com/chenxiaolong/BCR/releases/latest).
 1. Download [Lucky Patcher](https://chelpus.com/download/LP_Downloader.apk).
 1. Connect to the device using USB:
 
