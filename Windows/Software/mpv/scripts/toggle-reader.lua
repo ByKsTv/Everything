@@ -75,7 +75,7 @@ local function auto_toggle()
     local path = mp.get_property("path", "")
     if path ~= "" then
         local e = (path:match("%.([^%.]+)$") or ""):lower()
-        if e == "jpg" or e == "jpeg" or e == "png" or e == "bmp" or e == "gif" or e == "tiff" then
+        if e == "jpg" or e == "jpeg" or e == "png" or e == "bmp" or e == "webp" then
             if not rmode then
                 toggle_reader(true)
             end
