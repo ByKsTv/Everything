@@ -142,11 +142,11 @@ adb shell pm uninstall [PACKAGE]
 adb devices
 ```
 
-1. On the device select `Always allow from this computer` and click Allow`.
+1. `Always allow from this computer` > `Allow`.
 1. Install Magisk App to the device:
 
 ```bash
-adb install [Magisk.apk]
+adb install Magisk-v28.1.apk
 ```
 
 1. Copy `boot.img` from the PC to the device:
@@ -155,7 +155,7 @@ adb install [Magisk.apk]
 adb push boot.img /storage/emulated/0/Download
 ```
 
-1. Open `Magisk` App, On `Magisk` Click `Install`, Click `Select and Patch a File`, Select the latest `boot.img`, Click `Let's Go`.
+1. `Magisk` > `Install` > `Select and Patch a File` > `boot.img` > `Let's Go`.
 1. Copy the patched `boot.img` file from the device to the PC:
 
 ```bash
@@ -174,7 +174,7 @@ adb reboot bootloader
 fastboot devices
 ```
 
-> if not found anything, download [usb drviers](https://developer.android.com/studio/run/win-usb), open Device manager and install using "Add Drivers"
+> if device is not found - Install [USB Drivers](https://developer.android.com/studio/run/win-usb) using `Device Manager` > `Add Drivers` > Search for Windows Updates.
 
 1. Unlock OEM Bootloader:
 
@@ -221,6 +221,7 @@ adb sideload lineage-22.1-20250105-nightly-guacamoleb-signed.zip
 ```
 
 1. `Reboot to recovery` > `Yes`
+1. `Enable ADB`.
 1. `Apply Update` > `Apply from ADB`
 1. Sideload Google Apps zip file:
 
@@ -230,15 +231,13 @@ adb sideload MindTheGapps-15.0.0-arm64-20240928_150548.zip
 
 1. `Signature verification failed, install anyway?` > `Yes`
 1. `Reboot system now`
-
 1. Copy `Basic Call Recorder` to the device:
 
 ```bash
-adb push BCR-release.zip /storage/emulated/0/Download
+adb push BCR-1.76-release.zip /storage/emulated/0/Download
 ```
 
-1. Open `Magisk` App > `Modules` > `Install from storage` > `BCR-release.zip`
-
+1. `Magisk` > `Modules` > `Install from storage` > `BCR-1.76-release.zip`
 1. Install `Lucky Patcher`:
 
 ```bash
@@ -246,13 +245,13 @@ adb install LP_Downloader.apk
 ```
 
 1. Disable USB Debugging.
-1. Open `Magisk` App > `Settings` > `Systemless hosts`
-1. Open `Magisk` App > `Settings` > `Zygisk`
-1. Open `Magisk` App > `Settings` > `Enforce DenyList`
-1. Open `Magisk` App > `Settings` > `Configure DenyList` > Add Bank App, Credit Card apps, Health Care App.
-1. Open `Lucky Patcher` App > `Toolbox` > `Block Ads` > `Turn off Google Ads services`
-1. Open `Lucky Patcher` App > `Toolbox` > `Block Ads` > `Block ads on Device`
-1. Open `BCR` App > `Output format`: `FLAC`
+1. `Magisk` > `Settings` > `Systemless hosts`
+1. `Magisk` > `Settings` > `Zygisk`
+1. `Magisk` > `Settings` > `Enforce DenyList`
+1. `Magisk` > `Settings` > `Configure DenyList` > Add Bank App, Credit Card apps, Health Care App.
+1. `Lucky Patcher` > `Toolbox` > `Block Ads` > `Turn off Google Ads services`
+1. `Lucky Patcher` > `Toolbox` > `Block Ads` > `Block ads on Device`
+1. `BCR` > `Output format`: `FLAC`
 
 ## Update LineageOS + GApps + Magisk (ROOT)
 
@@ -270,14 +269,14 @@ adb install LP_Downloader.apk
 adb devices
 ```
 
-1. On the device select `Always allow from this computer` and click Allow`.
+1. `Always allow from this computer` > `Allow`.
 1. Copy `boot.img` from the PC to the device:
 
 ```bash
 adb push boot.img /storage/emulated/0/Download
 ```
 
-1. Open `Magisk` App, On `Magisk` Click `Install`, Click `Select and Patch a File`, Select the latest `boot.img`, Click `Let's Go`.
+1. `Magisk` > `Install` > `Select and Patch a File` > `boot.img` > `Let's Go`.
 1. Copy the patched `boot.img` file from the device to the PC:
 
 ```bash
@@ -325,4 +324,4 @@ fastboot reboot
 ```
 
 1. Disable USB Debugging.
-1. Open `Magisk` > `Modules`, Update everything.
+1. `Magisk` > `Modules` > Update all.
