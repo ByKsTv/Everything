@@ -119,7 +119,7 @@ adb shell pm uninstall [PACKAGE]
 
 - Google: Apps, Photos & videos, SMS & MMS messages, Call history, Device settings, Google Account data
 - App Data: aRDP, HeliBoard, Instagram, Nova Launcher, Seasame, Wake on Lan, GCAM
-- WhatsApp, Files
+- WhatsApp, Files, Ringtones
 
 ## Install LineageOS + Magisk (ROOT) + Lucky Patcher + Basic Call Recorder + Google Play Store
 
