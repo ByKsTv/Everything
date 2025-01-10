@@ -29,4 +29,12 @@ if ($USB_Unattend_Drive) {
     $USB_Unattend_SavePath = [IO.Path]::Combine($USB_Unattend_Drive, $USB_Unattend_Filename)
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$USB_Unattend_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$USB_Unattend_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$USB_Unattend_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
     (New-Object System.Net.WebClient).DownloadFile($USB_Unattend_DDL, $USB_Unattend_SavePath)
+
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/USB_Driver/Download.ps1')
+    $USB_Driver_SavePath_Drive = [IO.Path]::Combine($USB_Unattend_Drive, 'Drivers')
+    if (-not (Test-Path $USB_Driver_SavePath_Drive)) {
+        New-Item $USB_Driver_SavePath_Drive -ItemType Directory
+    }
+    Copy-Item -Path $USB_Driver_Dir_SavePath -Recurse -Destination $USB_Driver_SavePath_Drive
+    Invoke-Item $USB_Driver_SavePath_Drive
 }
