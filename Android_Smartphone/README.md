@@ -174,8 +174,14 @@ adb reboot bootloader
 fastboot devices
 ```
 
-> if device is not found - Install [USB Drivers](https://developer.android.com/studio/run/win-usb) using `Device Manager` > `Add Drivers` > Search for Windows Updates.
+1. if device is not found - Powershell (Admin):
 
+```powershell
+Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/USB_Driver/Download.ps1')
+
+```
+
+1. Check for Windows Update for drivers.
 1. Unlock OEM Bootloader:
 
 ```bash
@@ -231,27 +237,27 @@ adb sideload MindTheGapps-15.0.0-arm64-20240928_150548.zip
 
 1. `Signature verification failed, install anyway?` > `Yes`
 1. `Reboot system now`
-1. Copy `Basic Call Recorder` to the device:
+1. Copy `BCR-1.76-release.zip` to the device:
 
 ```bash
 adb push BCR-1.76-release.zip /storage/emulated/0/Download
 ```
 
-1. `Magisk` > `Modules` > `Install from storage` > `BCR-1.76-release.zip`
+1. `Magisk` > `Modules` > `Install from storage` > `BCR-1.76-release.zip` > `Reboot Now`
+1. `BCR` > `Output format`: `FLAC`
 1. Install `Lucky Patcher`:
 
 ```bash
 adb install LP_Downloader.apk
 ```
 
-1. Disable USB Debugging.
+1. `Lucky Patcher` > `Toolbox` > `Block Ads` > `Turn off Google Ads services`
+1. `Lucky Patcher` > `Toolbox` > `Block Ads` > `Block ads on Device`
 1. `Magisk` > `Settings` > `Systemless hosts`
 1. `Magisk` > `Settings` > `Zygisk`
 1. `Magisk` > `Settings` > `Enforce DenyList`
 1. `Magisk` > `Settings` > `Configure DenyList` > Add Bank App, Credit Card apps, Health Care App.
-1. `Lucky Patcher` > `Toolbox` > `Block Ads` > `Turn off Google Ads services`
-1. `Lucky Patcher` > `Toolbox` > `Block Ads` > `Block ads on Device`
-1. `BCR` > `Output format`: `FLAC`
+1. Disable USB Debugging.
 
 ## Update LineageOS + Google Play Store + Magisk (ROOT)
 
@@ -323,5 +329,5 @@ fastboot flash boot magisk_patched.img
 fastboot reboot
 ```
 
-1. Disable USB Debugging.
 1. `Magisk` > `Modules` > Update all.
+1. Disable USB Debugging.
