@@ -212,17 +212,17 @@ New-ItemProperty -Path 'Registry::HKEY_CLASSES_ROOT\AllFilesystemObjects\shellex
 Remove-Item -Path 'Registry::HKEY_CLASSES_ROOT\.bmp\ShellNew' -Force -ErrorAction Ignore
 
 # Hide the "Edit with Paint 3D" from context menu
-Remove-Item -Path "HKLM:\SOFTWARE\Classes\SystemFileAssociations\.3mf\Shell\3D Edit" -Force -Recurse
-Remove-Item -Path "HKLM:\SOFTWARE\Classes\SystemFileAssociations\.bmp\Shell\3D Edit" -Force -Recurse
-Remove-Item -Path "HKLM:\SOFTWARE\Classes\SystemFileAssociations\.fbx\Shell\3D Edit" -Force -Recurse
-Remove-Item -Path "HKLM:\SOFTWARE\Classes\SystemFileAssociations\.gif\Shell\3D Edit" -Force -Recurse
-Remove-Item -Path "HKLM:\SOFTWARE\Classes\SystemFileAssociations\.jfif\Shell\3D Edit" -Force -Recurse
-Remove-Item -Path "HKLM:\SOFTWARE\Classes\SystemFileAssociations\.jpe\Shell\3D Edit" -Force -Recurse
-Remove-Item -Path "HKLM:\SOFTWARE\Classes\SystemFileAssociations\.jpeg\Shell\3D Edit" -Force -Recurse
-Remove-Item -Path "HKLM:\SOFTWARE\Classes\SystemFileAssociations\.jpg\Shell\3D Edit" -Force -Recurse
-Remove-Item -Path "HKLM:\SOFTWARE\Classes\SystemFileAssociations\.png\Shell\3D Edit" -Force -Recurse
-Remove-Item -Path "HKLM:\SOFTWARE\Classes\SystemFileAssociations\.tif\Shell\3D Edit" -Force -Recurse
-Remove-Item -Path "HKLM:\SOFTWARE\Classes\SystemFileAssociations\.tiff\Shell\3D Edit" -Force -Recurse
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.3mf\Shell\3D Edit' -Force -Recurse
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.bmp\Shell\3D Edit' -Force -Recurse
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.fbx\Shell\3D Edit' -Force -Recurse
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.gif\Shell\3D Edit' -Force -Recurse
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.jfif\Shell\3D Edit' -Force -Recurse
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.jpe\Shell\3D Edit' -Force -Recurse
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.jpeg\Shell\3D Edit' -Force -Recurse
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.jpg\Shell\3D Edit' -Force -Recurse
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.png\Shell\3D Edit' -Force -Recurse
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.tif\Shell\3D Edit' -Force -Recurse
+Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.tiff\Shell\3D Edit' -Force -Recurse
 
 # Disable Windows Sandbox
 if ((Get-CimInstance -ClassName CIM_Processor).VirtualizationFirmwareEnabled) {
