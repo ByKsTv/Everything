@@ -29,7 +29,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
    ```
 
 1. `START` > Uncheck every box > `OK` > `OK` > When finished close the program.
-1. Create a folder on the USB called `Drivers` and download ALL motherboard (or laptop model) drivers to this folder + [USB Drivers](https://developer.android.com/studio/run/win-usb), then extract all the zip drivers to folders.
+1. A folder called `Drivers` has been opened, download and extract all of your motherboard drivers to this folder.
    > LAN, WiFi, Serial IO, Chipset, Thunderbolt, Audio, TouchPad, NumberPad, Bluetooth, Rapid Storage Technology, BIOS
    >
    > Find Motherboard - PowerShell (Admin):
