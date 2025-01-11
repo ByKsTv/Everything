@@ -118,8 +118,8 @@ adb shell pm uninstall [PACKAGE]
 ## Backup
 
 - Google: Apps, Photos & videos, SMS & MMS messages, Call history, Device settings, Google Account data
-- App Data: aRDP, HeliBoard, Instagram, Nova Launcher, Seasame, Wake on Lan, GCAM
-- WhatsApp, Files, Ringtones
+- App Data: aRDP, HeliBoard, Instagram Mod, Nova Launcher, Seasame (Clean the file: `linkData.json`), Wake on Lan, GCAM
+- WhatsApp (Chats: `msgstore.db.crypt14`), Files, Ringtones
 
 ## Install LineageOS + Magisk (ROOT) + Lucky Patcher + Basic Call Recorder + Google Play Store
 
@@ -245,6 +245,10 @@ adb push BCR-1.76-release.zip /storage/emulated/0/Download
 
 1. `Magisk` > `Modules` > `Install from storage` > `BCR-1.76-release.zip` > `Reboot Now`
 1. `BCR` > `Output format`: `FLAC`
+1. `Magisk` > `Settings` > `Systemless hosts`
+1. `Magisk` > `Settings` > `Zygisk`
+1. `Magisk` > `Settings` > `Enforce DenyList`
+1. `Magisk` > `Settings` > `Configure DenyList` > Add Bank App, Credit Card apps, Health Care App.
 1. Install `Lucky Patcher`:
 
 ```bash
@@ -253,10 +257,6 @@ adb install LP_Downloader.apk
 
 1. `Lucky Patcher` > `Toolbox` > `Block Ads` > `Turn off Google Ads services`
 1. `Lucky Patcher` > `Toolbox` > `Block Ads` > `Block ads on Device`
-1. `Magisk` > `Settings` > `Systemless hosts`
-1. `Magisk` > `Settings` > `Zygisk`
-1. `Magisk` > `Settings` > `Enforce DenyList`
-1. `Magisk` > `Settings` > `Configure DenyList` > Add Bank App, Credit Card apps, Health Care App.
 1. Disable USB Debugging.
 
 ## Update LineageOS + Google Play Store + Magisk (ROOT)
