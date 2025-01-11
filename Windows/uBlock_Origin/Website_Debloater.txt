@@ -256,7 +256,12 @@ w16.monkrus.ws##.footer-outer
 w16.monkrus.ws##.post-footer
 w16.monkrus.ws##[href="http://www.monkrus.ws/p/donate.html"]
 w16.monkrus.ws##div.skiptranslate
+www.aliexpress.com###fusionPageCard
 www.aliexpress.com##.bottom--container--1EMPdiV
+www.aliexpress.com##.cart-product-name-ope-findSimilar
+www.aliexpress.com##.cart-product-name-ope-trashCan
+www.aliexpress.com##.cart-product-name-ope-wishlist
+www.aliexpress.com##.cart-service-wrap
 www.aliexpress.com##.cart-summary-suggestion
 www.aliexpress.com##.es--product-fix-sns--3dZQv4l
 www.aliexpress.com##.footer-copywrite
@@ -264,6 +269,7 @@ www.aliexpress.com##.product-recommend-pc.product-recommend
 www.aliexpress.com##.relatedSearch--bottomWrapper--2lxD0Q4
 www.aliexpress.com##.result-download-app--container--1_KNRHr
 www.aliexpress.com##.result-messenger--messenger-container--cbQSBVf
+www.aliexpress.com##.root-sidecart
 www.aliexpress.com##.site-footer
 www.aliexpress.com##.survey-link
 www.amazon.com###nile-inline_feature_div
@@ -276,6 +282,7 @@ www.geektime.co.il##.text-md-start.text-center.footer-bottom.row
 www.geektime.co.il##.w-100.follow.bg-green.block-green.gt_app
 www.geektime.co.il##.wpd-form-head
 www.iec.co.il##app-sticky-banner
+www.mediafire.com##.lifetime-promo
 www.pornhub.com###footer
 www.pornhub.com##.footer
 www.pornhub.com##.footer-title
