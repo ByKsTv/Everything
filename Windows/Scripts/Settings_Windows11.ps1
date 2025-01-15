@@ -43,12 +43,19 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50
 Get-ChildItem 'HKCU:\Control Panel\NotifyIconSettings' -Recurse | ForEach-Object { New-ItemProperty -Path $_.PSPath -Name 'IsPromoted' -Value 1 -PropertyType DWORD -Force }
 
 # File Explorer: Remove pinned quick access items
-cmd.exe /c "rmdir /s /q %USERPROFILE%\Documents"
-cmd.exe /c "rmdir /s /q %USERPROFILE%\Pictures"
-cmd.exe /c "rmdir /s /q %USERPROFILE%\Music"
-cmd.exe /c "rmdir /s /q %USERPROFILE%\Videos"
-cmd.exe /c "del /q /f %AppData%\Microsoft\Windows\Recent\AutomaticDestinations\*"
+$Pinned_QuickAccess = @("Documents", "Pictures", "Music", "Videos")
+
+$Pinned_QuickAccess | ForEach-Object {
+    Remove-Item -Path "$env:USERPROFILE\$_" -Recurse -Force -ErrorAction SilentlyContinue
+    $path = New-Item -ItemType Directory -Path "$env:USERPROFILE\$_"
+    New-Item -ItemType File -Path "$path\temp.txt"
+}
+
 Remove-Item -Path "$env:APPDATA\Microsoft\Windows\Recent\AutomaticDestinations\*" -Force -ErrorAction SilentlyContinue
+
+$Pinned_QuickAccess | ForEach-Object {
+    Remove-Item -Path "$env:USERPROFILE\$_" -Recurse -Force -ErrorAction SilentlyContinue
+}
 
 # File Explorer: Remove Gallery
 Remove-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\{e88865ea-0e1c-4e20-9aa6-edcd0212c87c}' -Recurse -Force
