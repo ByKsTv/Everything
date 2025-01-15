@@ -298,7 +298,7 @@ New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer
 
 # Control Panel: Ease of Access Center: Make the computer easier to see: Turn off all unnecessary animations (when possible): On
 New-ItemProperty -Path 'HKCU:\Control Panel\Desktop\WindowMetrics' -Name 'MinAnimate' -Value '0' -PropertyType String -Force
-New-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "UserPreferencesMask" -Value ([byte[]](0x90, 0x12, 0x07, 0x80, 0x91, 0x00, 0x00, 0x00)) -PropertyType Binary -Force
+New-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'UserPreferencesMask' -Value ([byte[]](0x90, 0x12, 0x07, 0x80, 0x91, 0x00, 0x00, 0x00)) -PropertyType Binary -Force
 
 # Do not group files and folder in the Downloads folder
 Get-ChildItem -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell\Bags\*\Shell' -Recurse -ErrorAction SilentlyContinue | Where-Object -FilterScript {
@@ -581,3 +581,11 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Ease of Access' -Name 'selfvoic
 
 # Control Panel: Ease of Access: Ease of Access Center: Always scan this section: off
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Ease of Access' -Name 'selfscan' -Value 0 -PropertyType DWord -Force
+
+# File Explorer: Remove pinned quick access items
+Remove-Item -Path "$env:USERPROFILE\Documents" -Recurse -Force
+Remove-Item -Path "$env:USERPROFILE\Music" -Recurse -Force
+Remove-Item -Path "$env:USERPROFILE\Pictures" -Recurse -Force
+Remove-Item -Path "$env:USERPROFILE\Videos" -Recurse -Force
+Remove-Item "$env:APPDATA\Microsoft\Windows\Recent\AutomaticDestinations\*" -Force -Recurse
+Stop-Process -Name explorer -Force
