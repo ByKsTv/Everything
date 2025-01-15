@@ -296,6 +296,9 @@ New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer
 # When I grab a windows's title bar and shake it, don't minimize all other windows
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'DisallowShaking' -PropertyType DWord -Value 1 -Force
 
+# Control Panel: Ease of Access Center: Make the computer easier to see: Turn off all unnecessary animations (when possible): On
+New-ItemProperty -Path 'HKCU:\Control Panel\Desktop\WindowMetrics' -Name 'MinAnimate' -Value '0' -PropertyType String -Force
+
 # Do not group files and folder in the Downloads folder
 Get-ChildItem -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell\Bags\*\Shell' -Recurse | Where-Object -FilterScript { $_.PSChildName -eq '{885A186E-A440-4ADA-812B-DB871B942259}' } | Remove-Item -Force
 # https://learn.microsoft.com/en-us/windows/win32/properties/props-system-null

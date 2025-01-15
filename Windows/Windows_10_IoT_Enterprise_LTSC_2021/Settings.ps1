@@ -69,9 +69,6 @@ Set-ItemProperty -Path $key.PSPath -Name 'Data' -Type Binary -Value $data.Split(
 # Settings: System: Tablet: When I sign in: Never use tablet mode
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell' -Name 'SignInMode' -Value 1 -PropertyType DWord -Force
 
-# Control Panel: Ease of Access Center: Make the computer easier to see: Turn off all unnecessary animations (when possible): On
-New-ItemProperty -Path 'HKCU:\Control Panel\Desktop\WindowMetrics' -Name 'MinAnimate' -Value '0' -PropertyType String -Force
-
 # Settings: System: Shared experiences: Share across devices: Off
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CDP' -Name 'RomeSdkChannelUserAuthzPolicy' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CDP' -Name 'CdpSessionUserAuthzPolicy' -Value 0 -PropertyType DWord -Force
