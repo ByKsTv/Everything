@@ -227,6 +227,8 @@ share.dmhy.org##[href^="https://mypikpak.com/drive/url-checker"]
 share.dmhy.org##p:nth-of-type(4)
 share.dmhy.org##p:nth-of-type(5)
 share.dmhy.org##p:nth-of-type(6)
+signin.ebay.com###glbfooter
+signin.ebay.com##.gf-legal
 torrentgalaxy.to###intblockslide > .txdark.hotlist > tbody > .txdark.hotlist
 torrentgalaxy.to###intblockslide > center > .txdark.panel-primary.panel
 torrentgalaxy.to###inthpslide > .txdark.hotlist
@@ -265,6 +267,7 @@ www.aliexpress.com##.cart-service-wrap
 www.aliexpress.com##.cart-summary-suggestion
 www.aliexpress.com##.es--product-fix-sns--3dZQv4l
 www.aliexpress.com##.footer-copywrite
+www.aliexpress.com##.more-to-love-v2--wrap--Moj3lp3
 www.aliexpress.com##.product-recommend-pc.product-recommend
 www.aliexpress.com##.relatedSearch--bottomWrapper--2lxD0Q4
 www.aliexpress.com##.result-download-app--container--1_KNRHr
@@ -272,7 +275,20 @@ www.aliexpress.com##.result-messenger--messenger-container--cbQSBVf
 www.aliexpress.com##.root-sidecart
 www.aliexpress.com##.site-footer
 www.aliexpress.com##.survey-link
+www.amazon.com###desktop-dp-btf-shopbylook
 www.amazon.com###nile-inline_feature_div
+www.amazon.com###universal-product-alert
+www.amazon.com###value-pick-ac
+www.ebay.com###glbfooter
+www.ebay.com###vi-global-footer > .gh-w
+www.ebay.com##.gf-legal
+www.ebay.com##.s-footer-notes
+www.ebay.com##.srp-img-answer-guidance
+www.ebay.com##.srp-save-search
+www.ebay.com##.x-evo-btf-river.vi-grid.vim
+www.ebay.com##.x-footer
+www.ebay.com##.x-report-item.vim
+www.ebay.com##.x-vi-evo-main-container__top-panel
 www.geektime.co.il##.d-lg-block.d-none.ms-md-auto.col-md-280.col-12
 www.geektime.co.il##.header__btn__random
 www.geektime.co.il##.light_theme.accessability_container
