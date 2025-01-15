@@ -434,6 +434,9 @@ New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Security Health\State' 
 # Dismiss Microsoft Defender offer in the Windows Security about turning on the SmartScreen filter for Microsoft Edge
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Security Health\State' -Name 'AppAndBrowser_EdgeSmartScreenOff' -PropertyType DWord -Value 0 -Force
 
+# Microsoft Defender: App & browser control: SmartScreen for Microsoft Store apps: Dismiss offer
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Security Health\State' -Name 'AppAndBrowser_StoreAppsSmartScreenOff' -Value 0 -PropertyType DWord -Force
+
 # Disable apps and files checking within Microsoft Defender SmartScreen
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer' -Name 'SmartScreenEnabled' -PropertyType String -Value 'Off' -Force
 
@@ -589,6 +592,3 @@ Remove-Item -Path "$env:USERPROFILE\Pictures" -Recurse -Force
 Remove-Item -Path "$env:USERPROFILE\Videos" -Recurse -Force
 Remove-Item "$env:APPDATA\Microsoft\Windows\Recent\AutomaticDestinations\*" -Force -Recurse
 Stop-Process -Name explorer -Force
-
-# Dismiss Microsoft Defender alerts
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Security Health\State' -Name 'AppAndBrowser_StoreAppsSmartScreenOff' -Value 0 -PropertyType DWord -Force
