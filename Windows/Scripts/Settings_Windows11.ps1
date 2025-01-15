@@ -53,6 +53,8 @@ $Pinned_QuickAccess | ForEach-Object {
 
 Remove-Item -Path "$env:APPDATA\Microsoft\Windows\Recent\AutomaticDestinations\*" -Force -ErrorAction SilentlyContinue
 
+Stop-Process -Name explorer -Force
+
 $Pinned_QuickAccess | ForEach-Object {
     Remove-Item -Path "$env:USERPROFILE\$_" -Recurse -Force -ErrorAction SilentlyContinue
 }
