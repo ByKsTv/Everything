@@ -40,3 +40,24 @@ $Popup_Text = "1. Pin 'File Explorer' to taskbar
 2. Unpin 'Documents', 'Pictures', 'Music' and 'Videos' from Quick Access"
 [Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK') | Out-Null
 $Popup_Usermanual.Dispose()
+
+Start-Process -FilePath 'ms-settings:windowsupdate'
+UsoClient.exe StartInteractiveScan
+
+$Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{
+    TopMost = $true
+}
+$Popup_Text = "Wait for Windows Updates.
+1. Click on 'View optional updates'
+2. Click on 'Driver updates'
+3. Select all
+4. Click on 'Download and install'"
+[Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK') | Out-Null
+$Popup_Usermanual.Dispose()
+
+$Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{
+    TopMost = $true
+}
+$Popup_Text = 'Please restart PC after installing all Windows Updates'
+[Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK') | Out-Null
+$Popup_Usermanual.Dispose()

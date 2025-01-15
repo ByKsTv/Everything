@@ -24,7 +24,7 @@ $Popup_Usermanual.Dispose()
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Initial_Setup.ps1')
 
 Start-Process -FilePath 'ms-settings:windowsupdate'
-Start-Process -FilePath "$env:SystemRoot\System32\UsoClient.exe" -ArgumentList StartInteractiveScan
+UsoClient.exe StartInteractiveScan
 
 $Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{
     TopMost = $true
