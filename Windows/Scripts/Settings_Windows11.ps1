@@ -46,17 +46,13 @@ Get-ChildItem 'HKCU:\Control Panel\NotifyIconSettings' -Recurse | ForEach-Object
 $Pinned_QuickAccess = @("Documents", "Pictures", "Music", "Videos")
 
 $Pinned_QuickAccess | ForEach-Object {
-    Remove-Item -Path "$env:USERPROFILE\$_" -Recurse -Force -ErrorAction SilentlyContinue
-    $Pinned_QuickAccess_Path = New-Item -ItemType Directory -Path "$env:USERPROFILE\$_"
-    New-Item -ItemType File -Path "$Pinned_QuickAccess_Path\temp.txt"
-}
-
-Remove-Item -Path "$env:APPDATA\Microsoft\Windows\Recent\AutomaticDestinations\*" -Force -ErrorAction SilentlyContinue
-
-Stop-Process -Name explorer -Force
-
-$Pinned_QuickAccess | ForEach-Object {
-    Remove-Item -Path "$env:USERPROFILE\$_" -Recurse -Force -ErrorAction SilentlyContinue
+    $Path = "$env:USERPROFILE\$_"
+    Remove-Item -Path $Path -Recurse -Force -ErrorAction SilentlyContinue
+    New-Item -ItemType Directory -Path $Path | Out-Null
+    New-Item -ItemType File -Path "$Path\temp.txt" | Out-Null
+    Remove-Item "$env:APPDATA\Microsoft\Windows\Recent\AutomaticDestinations\*" -Force -ErrorAction SilentlyContinue
+    Stop-Process -Name explorer -Force -ErrorAction SilentlyContinue
+    Remove-Item -Path $Path -Recurse -Force -ErrorAction SilentlyContinue
 }
 
 # File Explorer: Remove Gallery
