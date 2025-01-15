@@ -48,6 +48,7 @@ cmd.exe /c "rmdir /s /q %USERPROFILE%\Pictures"
 cmd.exe /c "rmdir /s /q %USERPROFILE%\Music"
 cmd.exe /c "rmdir /s /q %USERPROFILE%\Videos"
 cmd.exe /c "del /q /f %AppData%\Microsoft\Windows\Recent\AutomaticDestinations\*"
+Remove-Item -Path "$env:APPDATA\Microsoft\Windows\Recent\AutomaticDestinations\*" -Force -ErrorAction SilentlyContinue
 
 # File Explorer: Remove Gallery
 Remove-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\{e88865ea-0e1c-4e20-9aa6-edcd0212c87c}' -Recurse -Force
