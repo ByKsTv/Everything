@@ -12,6 +12,7 @@ TODO
 
 Network rack 6U
 Ubiquity
+Change country to United States for better WiFi signal
 
 ### Cable equipment
 
