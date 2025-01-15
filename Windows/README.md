@@ -21,6 +21,13 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
    ```
 
+   Windows 11 IoT Enterprise LTSC 2024 - PowerShell (Admin):
+
+   ```powershell
+   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Windows_11_IoT_Enterprise_LTSC_2024/ISO.ps1')
+
+   ```
+
    Windows Server 2025 Datacenter - PowerShell (Admin):
 
    ```powershell
