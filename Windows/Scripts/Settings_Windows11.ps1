@@ -47,8 +47,8 @@ $Pinned_QuickAccess = @("Documents", "Pictures", "Music", "Videos")
 
 $Pinned_QuickAccess | ForEach-Object {
     Remove-Item -Path "$env:USERPROFILE\$_" -Recurse -Force -ErrorAction SilentlyContinue
-    $path = New-Item -ItemType Directory -Path "$env:USERPROFILE\$_"
-    New-Item -ItemType File -Path "$path\temp.txt"
+    $Pinned_QuickAccess_Path = New-Item -ItemType Directory -Path "$env:USERPROFILE\$_"
+    New-Item -ItemType File -Path "$Pinned_QuickAccess_Path\temp.txt"
 }
 
 Remove-Item -Path "$env:APPDATA\Microsoft\Windows\Recent\AutomaticDestinations\*" -Force -ErrorAction SilentlyContinue
