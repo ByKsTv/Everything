@@ -16,8 +16,7 @@ Add-Type -AssemblyName System.Windows.Forms
 $Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{
     TopMost = $true
 }
-$Popup_Text = "1. Pin 'File Explorer' to taskbar
-2. Unpin 'Documents' and 'Pictures' from Quick Access"
+$Popup_Text = "Pin 'File Explorer' to taskbar"
 [Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK') | Out-Null
 $Popup_Usermanual.Dispose()
 
