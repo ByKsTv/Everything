@@ -14,7 +14,7 @@ if ($BuildISO_FileDialog.ShowDialog($BuildISO_Form) -eq [Windows.Forms.DialogRes
     $BuildISO_FileSelected = [IO.Path]::GetDirectoryName($BuildISO_FileDialog.FileName)
 
     $InstalledSoftware = (Get-Package).Name
-    if ($InstalledSoftware -notmatch 'Windows System Image Manager') {
+    if ($InstalledSoftware -notcontains 'Windows System Image Manager') {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Windows_Assessment_and_Deployment_Kit/Deployment_Tools/Download.ps1')
     }
 
