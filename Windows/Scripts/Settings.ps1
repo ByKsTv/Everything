@@ -298,6 +298,7 @@ New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer
 
 # Control Panel: Ease of Access Center: Make the computer easier to see: Turn off all unnecessary animations (when possible): On
 New-ItemProperty -Path 'HKCU:\Control Panel\Desktop\WindowMetrics' -Name 'MinAnimate' -Value '0' -PropertyType String -Force
+New-ItemProperty -Path "HKCU:\Control Panel\Desktop" -Name "UserPreferencesMask" -Value ([byte[]](0x90, 0x12, 0x07, 0x80, 0x91, 0x00, 0x00, 0x00)) -PropertyType Binary -Force
 
 # Do not group files and folder in the Downloads folder
 Get-ChildItem -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell\Bags\*\Shell' -Recurse -ErrorAction SilentlyContinue | Where-Object -FilterScript {
