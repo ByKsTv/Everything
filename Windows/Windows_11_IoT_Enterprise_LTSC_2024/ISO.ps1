@@ -11,10 +11,10 @@ $Rufus_SavePath = [IO.Path]::Combine($env:TEMP, $Rufus_Filename)
 (New-Object System.Net.WebClient).DownloadFile($Rufus_DDL, $Rufus_SavePath)
 
 $Windows_DDL1 = ((Invoke-WebRequest -UseBasicParsing -Uri 'https://massgrave.dev/windows_ltsc_links').Links | Where-Object {
-    $_.outerHTML -match 'en-us' -and
-    $_.outerHTML -match 'x64' -and
-    $_.outerHTML -match 'ENTERPRISES'
-} | Select-Object -First 1).href
+        $_.outerHTML -match 'en-us' -and
+        $_.outerHTML -match 'x64' -and
+        $_.outerHTML -match 'ENTERPRISES'
+    } | Select-Object -First 1).href
 
 $Windows_DDL = $Windows_DDL1 -replace '&amp;', '&'
 $Windows_Filename = [IO.Path]::GetFileName(([URI]$Windows_DDL).AbsolutePath)
