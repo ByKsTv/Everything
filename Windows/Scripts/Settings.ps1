@@ -300,7 +300,9 @@ New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer
 New-ItemProperty -Path 'HKCU:\Control Panel\Desktop\WindowMetrics' -Name 'MinAnimate' -Value '0' -PropertyType String -Force
 
 # Do not group files and folder in the Downloads folder
-Get-ChildItem -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell\Bags\*\Shell' -Recurse | Where-Object -FilterScript { $_.PSChildName -eq '{885A186E-A440-4ADA-812B-DB871B942259}' } | Remove-Item -Force
+Get-ChildItem -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell\Bags\*\Shell' -Recurse -ErrorAction SilentlyContinue | Where-Object -FilterScript {
+	$_.PSChildName -eq '{885A186E-A440-4ADA-812B-DB871B942259}'
+} | Remove-Item -Force
 # https://learn.microsoft.com/en-us/windows/win32/properties/props-system-null
 if (-not (Test-Path -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}')) {
 	New-Item -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Force
