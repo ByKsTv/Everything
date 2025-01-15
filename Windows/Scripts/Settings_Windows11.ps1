@@ -48,11 +48,11 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50
 Get-ChildItem 'HKCU:\Control Panel\NotifyIconSettings' -Recurse | ForEach-Object { New-ItemProperty -Path $_.PSPath -Name 'IsPromoted' -Value 1 -PropertyType DWORD -Force }
 
 # File Explorer: Remove pinned quick access items
-rmdir /s /q "%USERPROFILE%\Documents"
-rmdir /s /q "%USERPROFILE%\Pictures"
-rmdir /s /q "%USERPROFILE%\Music"
-rmdir /s /q "%USERPROFILE%\Videos"
-del /q /f "%AppData%\Microsoft\Windows\Recent\AutomaticDestinations\*"
+cmd.exe /c "rmdir /s /q %USERPROFILE%\Documents"
+cmd.exe /c "rmdir /s /q %USERPROFILE%\Pictures"
+cmd.exe /c "rmdir /s /q %USERPROFILE%\Music"
+cmd.exe /c "rmdir /s /q %USERPROFILE%\Videos"
+cmd.exe /c "del /q /f %AppData%\Microsoft\Windows\Recent\AutomaticDestinations\*"
 
 # File Explorer: Remove Gallery
 Remove-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\{e88865ea-0e1c-4e20-9aa6-edcd0212c87c}' -Recurse -Force
