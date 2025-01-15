@@ -282,9 +282,16 @@ www.amazon.com###value-pick-ac
 www.ebay.com###glbfooter
 www.ebay.com###vi-global-footer > .gh-w
 www.ebay.com##.gf-legal
+www.ebay.com##.gh-btt-button--show.icon-btn.gh-btt-button
+www.ebay.com##.icon-btn--transparent.icon-btn.ifh-list-item
+www.ebay.com##.ifh-content
+www.ebay.com##.ifh-hide-in-mobile.ifh-container
+www.ebay.com##.ifh-skin-var-overrides.ifh-root
 www.ebay.com##.s-footer-notes
 www.ebay.com##.srp-img-answer-guidance
 www.ebay.com##.srp-save-search
+www.ebay.com##.x-atf-left-bottom-river.vim
+www.ebay.com##.x-category-pills.vim
 www.ebay.com##.x-evo-atf-top-river.vi-grid.vim
 www.ebay.com##.x-evo-btf-river.vi-grid.vim
 www.ebay.com##.x-footer
