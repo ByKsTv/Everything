@@ -589,3 +589,6 @@ Remove-Item -Path "$env:USERPROFILE\Pictures" -Recurse -Force
 Remove-Item -Path "$env:USERPROFILE\Videos" -Recurse -Force
 Remove-Item "$env:APPDATA\Microsoft\Windows\Recent\AutomaticDestinations\*" -Force -Recurse
 Stop-Process -Name explorer -Force
+
+# Dismiss Microsoft Defender alerts
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Security Health\State' -Name 'AppAndBrowser_StoreAppsSmartScreenOff' -Value 0 -PropertyType DWord -Force
