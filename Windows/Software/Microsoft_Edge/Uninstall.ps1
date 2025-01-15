@@ -109,4 +109,9 @@ if ($InstalledSoftware -match 'Microsoft Edge') {
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Deleting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Edge'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' shortcut from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MicrosoftEdge_SystemQuickLaunch'"); [Console]::ResetColor(); [Console]::WriteLine()
         Remove-Item $MicrosoftEdge_SystemQuickLaunch -Force
     }
+
+    # Microsoft Edge: Deleting Desktop Shortcut
+if ((Test-Path -Path "$env:PUBLIC\Desktop\Microsoft Edge.lnk") -eq $true) {
+	Remove-Item -Path "$env:PUBLIC\Desktop\Microsoft Edge.lnk"
+}
 }
