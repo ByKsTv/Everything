@@ -84,11 +84,6 @@ if ($null -ne (Get-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\R
 	Remove-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'SecurityHealth'
 }
 
-# Microsoft Edge: Deleting Desktop Shortcut
-if ((Test-Path -Path "$env:PUBLIC\Desktop\Microsoft Edge.lnk") -eq $true) {
-	Remove-Item -Path "$env:PUBLIC\Desktop\Microsoft Edge.lnk"
-}
-
 # Ease of Access: Keyboard: Allow the shortcut key to start Filter Keys: Off
 New-ItemProperty -Path 'HKCU:\Control Panel\Accessibility\Keyboard Response' -Name 'Flags' -Value '122' -PropertyType String -Force
 
