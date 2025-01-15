@@ -14,6 +14,8 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Network.ps1')
 
+UsoClient.exe StartInteractiveScan
+
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Initial_Setup.ps1')
 
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/Arkenfox.ps1')
@@ -41,7 +43,6 @@ $Popup_Text = "Pin 'File Explorer' to taskbar"
 $Popup_Usermanual.Dispose()
 
 Start-Process -FilePath 'ms-settings:windowsupdate'
-UsoClient.exe StartInteractiveScan
 
 $Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{
     TopMost = $true
