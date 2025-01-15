@@ -111,7 +111,7 @@ if ($InstalledSoftware -match 'Microsoft Edge') {
     }
 
     # Microsoft Edge: Deleting Desktop Shortcut
-if ((Test-Path -Path "$env:PUBLIC\Desktop\Microsoft Edge.lnk") -eq $true) {
-	Remove-Item -Path "$env:PUBLIC\Desktop\Microsoft Edge.lnk"
-}
+    if ((Test-Path -Path "$env:PUBLIC\Desktop\Microsoft Edge.lnk") -eq $true) {
+        Remove-Item -Path "$env:PUBLIC\Desktop\Microsoft Edge.lnk"
+    }
 }

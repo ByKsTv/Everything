@@ -62,9 +62,9 @@ Write-Host "Mozilla Firefox: Unchecking 'Import from browser'" -ForegroundColor 
 (New-Object -ComObject wscript.shell).SendKeys('{TAB}')
 
 # If Windows is not Windows 10 - Needs another tab to select import from browser
-$BuildNumber = [int](Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" -Name "CurrentBuild").CurrentBuild
+$BuildNumber = [int](Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion' -Name 'CurrentBuild').CurrentBuild
 if ($BuildNumber -ge 22000) {
-    Write-Host "Mozilla Firefox: The operating system is not Windows 10 - Sending another ALT key" -ForegroundColor green -BackgroundColor black
+    Write-Host 'Mozilla Firefox: The operating system is not Windows 10 - Sending another ALT key' -ForegroundColor green -BackgroundColor black
     (New-Object -ComObject wscript.shell).SendKeys('{TAB}')
 }
 (New-Object -ComObject wscript.shell).SendKeys(' ')
