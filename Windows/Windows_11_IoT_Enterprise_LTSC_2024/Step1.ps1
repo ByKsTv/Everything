@@ -51,7 +51,7 @@ $Popup_Text = "Wait for Windows Updates.
 1. Click on 'Advanced options'
 2. Click on 'Optional updates'
 3. Select all
-4. Click on 'Download and install'"
+4. Click on 'Download & install'"
 [Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK') | Out-Null
 $Popup_Usermanual.Dispose()
 
