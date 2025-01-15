@@ -568,6 +568,9 @@ Get-ChildItem -Path $PciDevicesPath -ErrorAction SilentlyContinue | Where-Object
 }
 
 # Control Panel: Ease of Access: Ease of Access Center: Always read this section aloud: off
+if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Ease of Access')) {
+	New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Ease of Access' -Force
+}
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Ease of Access' -Name 'selfvoice' -Value 0 -PropertyType DWord -Force
 
 # Control Panel: Ease of Access: Ease of Access Center: Always scan this section: off
