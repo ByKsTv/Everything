@@ -114,4 +114,9 @@ if ($InstalledSoftware -match 'Microsoft Edge') {
     if ((Test-Path -Path "$env:PUBLIC\Desktop\Microsoft Edge.lnk") -eq $true) {
         Remove-Item -Path "$env:PUBLIC\Desktop\Microsoft Edge.lnk"
     }
+
+    $DesktopPath = [Environment]::GetFolderPath('Desktop')
+    if ((Test-Path -Path "$DesktopPath\Microsoft Edge.lnk") -eq $true) {
+        Remove-Item -Path "$DesktopPath\Microsoft Edge.lnk"
+    }
 }
