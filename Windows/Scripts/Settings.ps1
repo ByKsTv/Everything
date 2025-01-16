@@ -382,6 +382,30 @@ foreach ($Feature in $FeaturesToDisable) {
 	}
 }
 
+# Disable Windows Capabilities
+$AppsToRemove = @(
+	'Hello.Face',
+	'InternetExplorer',
+	'MathRecognizer',
+	'OpenSSH',
+	'QuickAssist',
+	'StepsRecorder',
+	'Wallpapers',
+	'WindowsMediaPlayer',
+	'WordPad'
+)
+
+foreach ($App in $AppsToRemove) {
+	$Capabilities = Get-WindowsCapability -Online | Where-Object {
+		$_.State -eq 'Installed' -and
+		$_.Name -like "*$App*"
+	}
+
+	foreach ($Capability in $Capabilities) {
+		Remove-WindowsCapability -Online -Name $Capability.Name
+	}
+}
+
 # Settings: Windows Update: Get the latest updates as soon as they're available: Off
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings' -Name 'IsContinuousInnovationOptedIn' -PropertyType DWord -Value 0 -Force
 
@@ -593,3 +617,12 @@ Remove-Item -Path "$env:USERPROFILE\Pictures" -Recurse -Force
 Remove-Item -Path "$env:USERPROFILE\Videos" -Recurse -Force
 Remove-Item "$env:APPDATA\Microsoft\Windows\Recent\AutomaticDestinations\*" -Force -Recurse
 Stop-Process -Name explorer -Force
+
+$HostsPath = "$env:WINDIR\System32\drivers\etc\hosts"
+$Urls = 'mobile.events.data.microsoft.com', 'r.bing.comms-appx-web'
+$Urls | ForEach-Object { $Line = '0.0.0.0 ' + $_; if (-not(Select-String -Path $HostsPath -Pattern $Line)) {
+		Add-Content -Path $HostsPath -Value $Line
+	} }
+
+# Disabling service
+Get-Service -Name 'dmwappushservice' | Set-Service -StartupType Disabled

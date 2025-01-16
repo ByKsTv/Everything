@@ -16,9 +16,3 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Par
 
 # Uninstall Feedback Hub
 Get-AppxPackage 'Microsoft.WindowsFeedbackHub' | Remove-AppxPackage
-
-$HostsPath = "$env:WINDIR\System32\drivers\etc\hosts"
-$Urls = 'r.bing.comms-appx-web'
-$Urls | ForEach-Object { $Line = '0.0.0.0 ' + $_; if (-not(Select-String -Path $HostsPath -Pattern $Line)) {
-		Add-Content -Path $HostsPath -Value $Line
-	} }
