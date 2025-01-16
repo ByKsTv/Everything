@@ -367,7 +367,8 @@ foreach ($Task in $TasksToDisable) {
 # Disable Windows features
 $FeaturesToDisable = @(
 	'WindowsMediaPlayer',
-	'WorkFolders-Client'
+	'WorkFolders-Client',
+	'Recall'
 )
 
 foreach ($Feature in $FeaturesToDisable) {
