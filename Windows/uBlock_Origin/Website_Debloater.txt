@@ -62,6 +62,7 @@ amazon.*###nile-inline_feature_div
 amazon.*###product-comparison_feature_div
 amazon.*###rhf
 amazon.*###sc-about > p
+amazon.*###sc-buy-it-again
 amazon.*###smart-wagon-recommendations-btf
 amazon.*###tellAmazon_feature_div
 amazon.*###universal-product-alert
@@ -76,6 +77,7 @@ amazon.*##.nav-flyout.nav-signin-tt
 amazon.*##.nav-sprite-v1.navLeftFooter
 amazon.*##.navAccessibility.navFooterVerticalRow
 amazon.*##.navFooterDescLine.navFooterLinkLine.navFooterLine
+amazon.*##.recommendation-widget.a-section
 amazon.*##.s-widget-spacing-large.sg-col-12-of-16.sg-col.s-widget.sg-col-16-of-20.sg-col-0-of-12.s-result-item.sg-col-20-of-24
 amazon.*##.sw-atf-recommendations-container
 amazon.*##.widgetId\=feedback.template\=FEEDBACK.slot\=MAIN.celwidget.s-widget-container-height-medium.s-spacing-medium.s-widget-container
@@ -296,6 +298,7 @@ www.ebay.com##.x-evo-btf-river.vi-grid.vim
 www.ebay.com##.x-footer
 www.ebay.com##.x-report-item.vim
 www.ebay.com##.x-vi-evo-main-container__top-panel
+www.electric-elite.co.il##.cookiesPopup112904__wrapper_1
 www.geektime.co.il##.d-lg-block.d-none.ms-md-auto.col-md-280.col-12
 www.geektime.co.il##.header__btn__random
 www.geektime.co.il##.light_theme.accessability_container
@@ -315,6 +318,7 @@ www.pornhub.com##.js_dropdownBound.languageWrapper
 www.pornhub.com##.original.video-wrapper.hd-videos_wrapper.hd-smallerWidth.sectionWrapper
 www.pornhub.com##.relatedSearchTermsBottom.sectionWrapper
 www.pornhub.com##.tagsForWomen
+www.senetic.co.il###ubiquiti-network-popup
 www.speedtest.net##.audienceComponent
 www.speedtest.net##.footer
 www.speedtest.net##.lower-content-blend.lower-content
@@ -334,6 +338,8 @@ www.zap.co.il##.footer-model-item-container
 www.zap.co.il##.guide
 www.zap.co.il##.last-products-carousel
 www.zap.co.il##.model-page-bids
+www.zap.co.il##.tag
+www.zap.co.il##.to-compare-list.ModelRow
 www.zap.co.il##[href="https://www.wisebuy.co.il"]
 www.zap.co.il##[href="https://www.zapcars.co.il/"]
 xxxclub.to##.fa-arrow-up.fa
