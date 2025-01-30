@@ -7,7 +7,7 @@
   "AddHardwareId": false,
   "ShowDlssIndicator": false,
   "DisableMPO": false,
-  "DisableNvCamera": false,
+  "DisableNvCamera": true,
   "ShowExpertOptions": true,
   "DisableDriverTelemetry": false,
   "DisableNvContainer": false,
