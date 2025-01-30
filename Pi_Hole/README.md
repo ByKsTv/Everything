@@ -219,52 +219,20 @@ https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts https://raw.git
 
 ## Domains Whitelist
 
-### Kan11
-
-```text
-smartplugin.youbora.com
-```
-
-```text
-VOD @ Kan11
-```
-
 ### N12
 
-```text
-pubads.g.doubleclick.net
-```
-
-```text
-TVShows Not Starting @ N12
-```
-
-### 13tv
-
-```text
+```md
 imasdk.googleapis.com
 ```
 
-```text
-AdBlocker Warning @ 13tv
-```
+### YouTube Mark Watched
 
-### YouTube
-
-```text
+```md
 s.youtube.com
 ```
 
-```text
-Mark Watched @ YouTube
-```
+### Wheres my droid
 
-### Where's my droid
-
-```text
+```md
 wmdcommander.appspot.com
-```
-
-```text
-Wheres my droid
 ```
