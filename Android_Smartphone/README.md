@@ -18,11 +18,11 @@ Everything about Android apps.
 | GmsCore                        | [GitHub](https://github.com/microg/GmsCore/releases/latest)                                                                                                         | com.google.android.gms-version.apk                                                         |
 | Google Camera                  | [celsoazevedo](https://www.celsoazevedo.com/files/android/google-camera/links/)                                                                                     | Use official telegram groups instead                                                       |
 | HeliBoard                      | [GitHub](https://github.com/Helium314/HeliBoard/releases/latest) + [Dictionary](https://codeberg.org/Helium314/aosp-dictionaries)                                   | HeliBoard_version-release.apk                                                              |
-| Instagram                      | [4pda](https://4pda.to/forum/index.php?showtopic=326697#Spoil-12392478-7)                                                                                           | AeroInsta                                                                                  |
+| Instagram                      | [4pda](https://4pda.to/forum/index.php?showtopic=326697#Spoil-12392478-7)                                                                                           | InstaPro V2                                                                                |
+| IronFox                        | [GitLab](https://gitlab.com/ironfox-oss/IronFox/-/releases)                                                                                                         |                                                                                            |
 | Lockwatch                      | [4pda](https://4pda.to/forum/index.php?showtopic=677900#entry41610679)                                                                                              | Premium by youarefinished                                                                  |
 | MacroDroid                     | [4pda](https://4pda.to/forum/index.php?act=findpost&pid=15401143)                                                                                                   | Pro by Balatan                                                                             |
 | Moovit: Bus & Train Schedules  | [4pda](https://4pda.to/forum/index.php?showtopic=719545#Spoil-46361566-4) / [mobilism](https://forum.mobilism.me/search.php?keywords=Moovit&sr=topics&sf=titleonly) | Ad Free                                                                                    |
-| Mull                           | [divestos](https://divestos.org/pages/our_apps#directDownloads)                                                                                                     | us.spotco.fennec_dos                                                                       |
 | Network Analyzer               | [4pda](https://4pda.to/forum/index.php?showtopic=969002&view=findpost&p=89769375)                                                                                   | Patched by youarefinished                                                                  |
 | Nova Launcher                  | [4pda](https://4pda.to/forum/index.php?act=findpost&pid=10706661&anchor=Spoil-10706661-8)                                                                           | Prime by Balatan                                                                           |
 | Sesame Shortcuts               | [4pda](https://4pda.to/forum/index.php?showtopic=921566#entry77882334)                                                                                              | Unlocked by Balatan                                                                        |
@@ -40,19 +40,27 @@ Everything about Android apps.
 | YouTube ReVanced               | [4pda](https://4pda.to/forum/index.php?showtopic=1050118&view=findpost&p=115638129)                                                                                 | ReVanced patches                                                                           |
 | aRDP                           | [4pda](https://4pda.to/forum/index.php?showtopic=658880#entry39545784)                                                                                              | Paid                                                                                       |
 
-## Mull Settings
+## IronFox Settings
 
-1. `Set as default browser` > `Sign in` > `Not Now`.
-1. `Settings` > `Search` > `Default search engine` > `Google`.
-1. `Settings` > `Search` > Disable all except `Search browsing history` and `Search bookmarks`.
-1. `Settings` > `Tabs` > `List`.
-1. `Settings` > `Tabs` > `Tabs you haven't viewed for two weeks get moved to the inactive section.` > Off.
-1. `Settings` > `Homepage` > Disable all.
-1. `Settings` > `Homepage` > `Last tab`.
-1. `Settings` > `Customise` > `Buttom`.
+1. `Set IronFox as your default browser app`
+1. `Try IronFox Widget` > `Not Now`
+1. `Sign In`
+1. `Turn on notifications`
+1. `Settings` > `Search` > `Default search engine` > `Google`
+1. `Settings` > `Search` > `Manage alternative search engines` > Disable all
+1. `Settings` > `Search` > Disable all except `Search browsing history` and `Search bookmarks`
+1. `Settings` > `Tabs` > `List`
+1. `Settings` > `Tabs` > `Tabs you haven't viewed for two weeks get moved to the inactive section.` > Off
+1. `Settings` > `Homepage` > Disable all
+1. `Settings` > `Homepage` > `Last tab`
+1. `Settings` > `Customise` > `Buttom`
+1. `Settings` > `Customise` > `Pull to refresh` > Off
+1. `Settings` > `Passwords` > `Ask to save`
+1. `Settings` > `Passwords` > `Autofill in IronFox` > On
+1. `Settings` > `Passwords` > `Autofill in other apps` > On
 1. `Settings` > `Add-ons` > Add `uBlock Origin` > `Settings` > [Restore from file](https://github.com/ByKsTv/Everything/blob/main/Windows/uBlock_Origin/Backup.json).
-1. `about:config` > `browser.cache.disk.enable` > `false`.
 1. `about:config` > `webgl.disabled` > `false`.
+1. `about:config` > `media.autoplay.blocking_policy` > `0`.
 
 ## Common ADB Commands
 
