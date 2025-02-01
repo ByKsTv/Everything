@@ -47,8 +47,8 @@ user_pref("general.smoothScroll", false);
 // Hide Account Icon with Letters
 user_pref("identity.fxaccounts.toolbar.enabled", false);
 
-// Disable Autoplay and use click to play
-user_pref("media.autoplay.blocking_policy", 2);
+// Enable media autoplay
+user_pref("media.autoplay.blocking_policy", 0);
 
 // Enable picture-in-picture video controls > Off
 user_pref("media.videocontrols.picture-in-picture.video-toggle.enabled", false);
