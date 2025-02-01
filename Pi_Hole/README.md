@@ -236,3 +236,9 @@ s.youtube.com
 ```md
 wmdcommander.appspot.com
 ```
+
+### Kan11
+
+```md
+smartplugin.youbora.com
+```
