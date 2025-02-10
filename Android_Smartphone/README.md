@@ -58,7 +58,7 @@ Everything about Android apps.
 1. `Settings` > `Passwords` > `Ask to save`
 1. `Settings` > `Passwords` > `Autofill in IronFox` > On
 1. `Settings` > `Passwords` > `Autofill in other apps` > On
-1. `Settings` > `Add-ons` > Add `uBlock Origin` > `Settings` > [Restore from file](https://github.com/ByKsTv/Everything/blob/main/Windows/uBlock_Origin/Backup.json).
+1. `Settings` > `Add-ons` > `uBlock Origin` > `Settings` > [Restore from file](https://github.com/ByKsTv/Everything/blob/main/Windows/uBlock_Origin/Backup.json).
 1. `about:config` > `webgl.disabled` > `false`.
 1. `about:config` > `media.autoplay.blocking_policy` > `0`.
 
