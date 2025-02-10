@@ -9,6 +9,7 @@ Everything about Online Shopping.
 1. Use [Camelizer](https://camelcamelcamel.com/camelizer).
 1. Use [Today's Deals](https://www.amazon.com/gp/goldbox).
 1. In case of issues contact [Amazon Support](https://www.amazon.com/message-us?paradigm=foresight#) after 17:00 (say `Chat with an associate now`).
+   > Alternativly: You can send email to [mailto:cs-reply@amazon.com](cs-reply@amazon.com)
 1. In case of package delayed or not received (after estimated delivery date) contact support and say `Item not received`.
 1. Do not return packages.
 1. Do not use filters when searching for products.
