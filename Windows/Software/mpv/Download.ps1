@@ -58,6 +58,24 @@ $MPV_CONF_SavePath = [IO.Path]::Combine($MPV_Destination, $MPV_CONF_Filename)
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' settings '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_CONF_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_CONF_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_CONF_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
 (New-Object System.Net.WebClient).DownloadFile($MPV_CONF_DDL, $MPV_CONF_SavePath)
 
+$MPV_FSRCNNXx16_DDL = ((Invoke-RestMethod 'https://api.github.com/repos/igv/FSRCNN-TensorFlow/releases/latest').assets | Where-Object name -Like 'FSRCNNX_x2_16*').browser_download_url
+$MPV_FSRCNNXx16_Filename = [IO.Path]::GetFileName(([URI]$MPV_FSRCNNXx16_DDL).AbsolutePath)
+$MPV_FSRCNNXx16_SavePath = [IO.Path]::Combine($MPV_Destination, $MPV_FSRCNNXx16_Filename)
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_FSRCNNXx16_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_FSRCNNXx16_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_FSRCNNXx16_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+(New-Object System.Net.WebClient).DownloadFile($MPV_FSRCNNXx16_DDL, $MPV_FSRCNNXx16_SavePath)
+
+$MPV_FSRCNNXx8_DDL = ((Invoke-RestMethod 'https://api.github.com/repos/igv/FSRCNN-TensorFlow/releases/latest').assets | Where-Object name -Like 'FSRCNNX_x2_8*').browser_download_url
+$MPV_FSRCNNXx8_Filename = [IO.Path]::GetFileName(([URI]$MPV_FSRCNNXx8_DDL).AbsolutePath)
+$MPV_FSRCNNXx8_SavePath = [IO.Path]::Combine($MPV_Destination, $MPV_FSRCNNXx8_Filename)
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_FSRCNNXx8_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_FSRCNNXx8_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_FSRCNNXx8_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+(New-Object System.Net.WebClient).DownloadFile($MPV_FSRCNNXx8_DDL, $MPV_FSRCNNXx8_SavePath)
+
+$MPV_KrigBilateral_DDL = 'https://gist.githubusercontent.com/igv/a015fc885d5c22e6891820ad89555637/raw/'
+$MPV_KrigBilateral_Filename = 'KrigBilateral.glsl'
+$MPV_KrigBilateral_SavePath = [IO.Path]::Combine($MPV_Destination, $MPV_KrigBilateral_Filename)
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_KrigBilateral_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_KrigBilateral_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_KrigBilateral_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+(New-Object System.Net.WebClient).DownloadFile($MPV_KrigBilateral_DDL, $MPV_KrigBilateral_SavePath)
+
 $MPV_ScriptsPath = [IO.Path]::Combine($MPV_Destination, 'scripts')
 if (-not (Test-Path -Path $MPV_ScriptsPath)) {
     New-Item $MPV_ScriptsPath -ItemType Directory -Force
