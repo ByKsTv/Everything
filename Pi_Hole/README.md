@@ -219,10 +219,22 @@ https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts https://raw.git
 
 ## Domains Whitelist
 
-### N12
+### Kan11 Loading Fix
+
+```md
+smartplugin.youbora.com
+```
+
+### N12 Ad Blocker Warning
 
 ```md
 imasdk.googleapis.com
+```
+
+### N12 Android TV App Full Screen
+
+```md
+pubads.g.doubleclick.net
 ```
 
 ### YouTube Mark Watched
@@ -237,8 +249,8 @@ s.youtube.com
 wmdcommander.appspot.com
 ```
 
-### Kan11
+### TV Time Stats
 
 ```md
-smartplugin.youbora.com
+stats.tvtime.com
 ```
