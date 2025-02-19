@@ -1,7 +1,7 @@
 $PlexMediaServer_TaskName = 'PlexMediaServer Updater'
 if (-not (Get-ScheduledTask -TaskName $PlexMediaServer_TaskName -ErrorAction SilentlyContinue)) {
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$PlexMediaServer_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
-    $PlexMediaServer_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Plex_Media_Server/Download.ps1')"
+    $PlexMediaServer_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized -Command `"`$Host.UI.RawUI.WindowTitle = '$PlexMediaServer_TaskName'; while (!(Resolve-DnsName google.com -ErrorAction SilentlyContinue)) { Start-Sleep -Seconds 1 }; Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Plex_Media_Server/Download.ps1')`""
     $PlexMediaServer_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
     $PlexMediaServer_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
     $PlexMediaServer_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8

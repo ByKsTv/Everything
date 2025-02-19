@@ -1,7 +1,7 @@
 $TranslucentTB_TaskName = 'TranslucentTB Updater'
 if (-not (Get-ScheduledTask -TaskName $TranslucentTB_TaskName -ErrorAction SilentlyContinue)) {
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$TranslucentTB_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
-    $TranslucentTB_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/TranslucentTB/Download.ps1')"
+    $TranslucentTB_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized -Command `"`$Host.UI.RawUI.WindowTitle = '$TranslucentTB_TaskName'; while (!(Resolve-DnsName google.com -ErrorAction SilentlyContinue)) { Start-Sleep -Seconds 1 }; Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/TranslucentTB/Download.ps1')`""
     $TranslucentTB_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
     $TranslucentTB_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
     $TranslucentTB_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8

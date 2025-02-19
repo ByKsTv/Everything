@@ -1,7 +1,7 @@
 $DotNET_TaskName = '.NET Updater'
 if (-not (Get-ScheduledTask -TaskName $DotNET_TaskName -ErrorAction SilentlyContinue)) {
 	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
-	$DotNET_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/.NET/Download.ps1')"
+	$DotNET_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized -Command `"`$Host.UI.RawUI.WindowTitle = '$DotNET_TaskName'; while (!(Resolve-DnsName google.com -ErrorAction SilentlyContinue)) { Start-Sleep -Seconds 1 }; Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/.NET/Download.ps1')`""
 	$DotNET_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
 	$DotNET_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
 	$DotNET_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8

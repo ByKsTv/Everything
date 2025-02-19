@@ -1,7 +1,7 @@
 $NotepadPlusPlus_TaskName = 'Notepad++ Updater'
 if (-not (Get-ScheduledTask -TaskName $NotepadPlusPlus_TaskName -ErrorAction SilentlyContinue)) {
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$NotepadPlusPlus_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
-    $NotepadPlusPlus_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Notepad++/Download.ps1')"
+    $NotepadPlusPlus_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized -Command `"`$Host.UI.RawUI.WindowTitle = '$NotepadPlusPlus_TaskName'; while (!(Resolve-DnsName google.com -ErrorAction SilentlyContinue)) { Start-Sleep -Seconds 1 }; Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Notepad++/Download.ps1')`""
     $NotepadPlusPlus_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
     $NotepadPlusPlus_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
     $NotepadPlusPlus_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8

@@ -1,7 +1,7 @@
 $qBittorrent_TaskName = 'qBittorrent Updater'
 if (-not (Get-ScheduledTask -TaskName $qBittorrent_TaskName -ErrorAction SilentlyContinue)) {
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$qBittorrent_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
-    $qBittorrent_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/qBittorrent/Download.ps1')"
+    $qBittorrent_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized -Command `"`$Host.UI.RawUI.WindowTitle = '$qBittorrent_TaskName'; while (!(Resolve-DnsName google.com -ErrorAction SilentlyContinue)) { Start-Sleep -Seconds 1 }; Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/qBittorrent/Download.ps1')`""
     $qBittorrent_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
     $qBittorrent_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
     $qBittorrent_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8

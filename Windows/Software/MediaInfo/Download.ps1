@@ -1,7 +1,7 @@
 $Mediainfo_TaskName = 'Mediainfo Updater'
 if (-not (Get-ScheduledTask -TaskName $Mediainfo_TaskName -ErrorAction SilentlyContinue)) {
 	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Mediainfo_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
-	$Mediainfo_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/MediaInfo/Download.ps1')"
+	$Mediainfo_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized -Command `"`$Host.UI.RawUI.WindowTitle = '$Mediainfo_TaskName'; while (!(Resolve-DnsName google.com -ErrorAction SilentlyContinue)) { Start-Sleep -Seconds 1 }; Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/MediaInfo/Download.ps1')`""
 	$Mediainfo_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
 	$Mediainfo_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
 	$Mediainfo_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8

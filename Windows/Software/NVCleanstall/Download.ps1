@@ -1,7 +1,7 @@
 $NVCleanstall_TaskName = 'NVCleanstall Updater'
 if (-not (Get-ScheduledTask -TaskName $NVCleanstall_TaskName -ErrorAction SilentlyContinue)) {
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$NVCleanstall_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
-    $NVCleanstall_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/NVCleanstall/Download.ps1')"
+    $NVCleanstall_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized -Command `"`$Host.UI.RawUI.WindowTitle = '$NVCleanstall_TaskName'; while (!(Resolve-DnsName google.com -ErrorAction SilentlyContinue)) { Start-Sleep -Seconds 1 }; Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/NVCleanstall/Download.ps1')`""
     $NVCleanstall_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
     $NVCleanstall_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
     $NVCleanstall_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
