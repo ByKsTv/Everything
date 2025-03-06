@@ -1,17 +1,29 @@
-// What should Firefox do with other files? > Save files
+// about:preferences > General > Files and Applications > Downloads > Always ask you where to save files > Off
+user_pref("browser.download.useDownloadDir", true);
+
+// about:preferences > General > Files and Applications > Applications > What should Firefox do with other files? > Save files
 user_pref("browser.download.always_ask_before_handling_new_types", false);
 
-// Always ask you where to save files > Off
-user_pref("browser.download.useDownloadDir", true);
+// about:preferences > General > Performance > Use recommended performance settings > Off
+user_pref("browser.preferences.defaultPerformanceSettings.enabled", false);
+
+// about:preferences > General > Performance > Use hardware acceleration when available > On
+user_pref("layers.acceleration.disabled", false);
+
+// about:preferences > General > Browsing > Use smooth scrolling > Off
+user_pref("general.smoothScroll", false);
+
+// about:preferences#home > Home > Firefox Home Content > Web Search > Off
+user_pref("browser.newtabpage.activity-stream.showSearch", false);
+
+// about:preferences#home > Home > Firefox Home Content > Shortcuts > Off
+user_pref("browser.newtabpage.activity-stream.feeds.topsites", false);
+
+// about:preferences#privacy > Privacy & Security > Website Privacy Preferences > Tell websites not to sell or share my data > On
+user_pref("privacy.globalprivacycontrol.enabled", true);
 
 // Disable Recommended by Pocket
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
-
-// Disable Shortcuts
-user_pref("browser.newtabpage.activity-stream.feeds.topsites", false);
-
-// Disable Web Search
-user_pref("browser.newtabpage.activity-stream.showSearch", false);
 
 // Disable search tabs
 user_pref("browser.tabs.tabmanager.enabled", false);
@@ -41,9 +53,6 @@ user_pref("full-screen-api.transition-duration.enter", "0 0");
 // No fade animation to leave full screen
 user_pref("full-screen-api.transition-duration.leave", "0 0");
 
-// Disable Use smooth scrolling
-user_pref("general.smoothScroll", false);
-
 // Hide Account Icon with Letters
 user_pref("identity.fxaccounts.toolbar.enabled", false);
 
@@ -54,10 +63,6 @@ user_pref("media.autoplay.blocking_policy", 0);
 user_pref("media.videocontrols.picture-in-picture.video-toggle.enabled", false);
 
 // Don't auto delete
-user_pref("privacy.clearOnShutdown.cookies", false);
-user_pref("privacy.clearOnShutdown.history", false);
-user_pref("privacy.clearOnShutdown.offlineApps", false);
-user_pref("privacy.clearOnShutdown.sessions", false);
 user_pref("privacy.clearOnShutdown_v2.cookiesAndStorage", false);
 user_pref("privacy.clearOnShutdown_v2.historyFormDataAndDownloads", false);
 user_pref("privacy.clearSiteData.cookiesAndStorage", false);
@@ -95,12 +100,6 @@ user_pref("browser.download.alwaysOpenPanel", true);
 // Enable auto fill forms to quickly sign in
 user_pref("signon.autofillForms", true);
 user_pref("signon.autofillForms.http", true);
-
-// Settings: General: Performance: Use recommended performance settings: Off
-user_pref("browser.preferences.defaultPerformanceSettings.enabled", false);
-
-// VSync ON
-user_pref("layers.acceleration.force-enabled", true);
 
 // Enable Custom userChrome.css
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
