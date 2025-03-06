@@ -94,6 +94,11 @@ anidex.info##.footer
 danbooru.donmai.us##.gap-1.justify-center.items-center.flex-wrap.flex.border-t.w-full.py-3.mt-4.flex-initial.text-center.text-sm
 danbooru.donmai.us##.hidden-posts-notice.fineprint
 e-services.clalit.co.il#@##divDisclaimer
+filespayouts.com###premium_pro > .paybox.row
+filespayouts.com##.active.show.fade.tab-pane
+filespayouts.com##.container > .paybox.row
+filespayouts.com##.download-meta .text-muted
+filespayouts.com##div.package.mb-md-4.mb-3.col-lg-3.col-6 > .premiumPlan
 fitgirl-repacks.site###block-7
 fitgirl-repacks.site###custom_html-4
 fitgirl-repacks.site###custom_html-5
@@ -117,6 +122,7 @@ forum.mobilism.me##.icon-stack
 forum.mobilism.me##.twitter-color.icon-stack-base.icon-circle
 forum.mobilism.me##.welcome-bar
 forum.mobilism.me##footer
+frdl.io##.d-sm-block.d-none.report
 github.com###first-time-contributor
 github.com##.Link.Link--secondary
 github.com##.blankslate-container > .blankslate-spacious.blankslate
@@ -143,11 +149,13 @@ ksp.co.il##.muirtl-1qsxih2.banner-0-3-454.MuiContainer-maxWidthLg.MuiContainer-r
 ksp.co.il##.muirtl-6flbmm.MuiSvgIcon-fontSizeLarge.MuiSvgIcon-root
 ksp.co.il##.muirtl-q0gjsm.title-0-3-118.MuiTypography-body1.MuiTypography-root
 ksp.co.il##.muirtl-vubbuv.arrow-0-3-121.MuiSvgIcon-fontSizeMedium.MuiSvgIcon-root
+ksp.co.il##.swiper-backface-hidden.swiper-rtl.swiper-horizontal.swiper-initialized.swiper
 ksp.co.il##.swiper-slide-active.swiper-slide
 ksp.co.il##.swiper-slide-next.swiper-slide-active.swiper-slide
 ksp.co.il##[class*="banner-0-3-"][class*="MuiContainer-maxWidthLg"][class*="MuiContainer-root"]
 ksp.co.il##[class^="DynamicFooter-menu-0-3-"]
 ksp.co.il##[class^="banner-0-3-"]
+ksp.co.il##[class^="complementaryProducts-0-3-"]
 ksp.co.il##[class^="extraMenu-0-3-"][class*="menu-0-3-"]
 ksp.co.il##[class^="root-0-3-"] > div > .muirtl-q0gjsm.MuiTypography-body1.MuiTypography-root
 ktuvit.me##.text-center.popup-container
@@ -315,11 +323,14 @@ www.geektime.co.il##.wpd-form-head
 www.iec.co.il##app-sticky-banner
 www.mediafire.com##.lifetime-promo
 www.pornhub.com###footer
+www.pornhub.com##.extraMargin.languages.pornInLangWrapper.sectionWrapper
 www.pornhub.com##.footer
 www.pornhub.com##.footer-title
 www.pornhub.com##.footerContent
 www.pornhub.com##.homePageFooter.logoFooterWrapper
 www.pornhub.com##.js_dropdownBound.languageWrapper
+www.pornhub.com##.latestThumbDesign.extraRelatedVid
+www.pornhub.com##.latestThumbDesign.sectionWrapper.frontListingWrapper > .sectionWrapper
 www.pornhub.com##.original.video-wrapper.hd-videos_wrapper.hd-smallerWidth.sectionWrapper
 www.pornhub.com##.relatedSearchTermsBottom.sectionWrapper
 www.pornhub.com##.tagsForWomen
@@ -328,6 +339,9 @@ www.speedtest.net##.audienceComponent
 www.speedtest.net##.footer
 www.speedtest.net##.lower-content-blend.lower-content
 www.techpowerup.com##.p-footer-copyright
+www.xvideos.com##.botLinks
+www.xvideos.com##.slogan
+www.xvideos.com##.terms
 www.zap.co.il###FooterBottomBarSection
 www.zap.co.il###FooterBottomComment
 www.zap.co.il###FooterLinksSection
