@@ -1,3 +1,9 @@
+// about:preferences > General > Startup > Always check if Firefox is your default browser > Off
+user_pref("browser.shell.checkDefaultBrowser", false);
+
+// about:preferences > General > Tabs > Enable Container Tabs > Off
+user_pref("privacy.userContext.enabled", false);
+
 // about:preferences > General > Files and Applications > Downloads > Always ask you where to save files > Off
 user_pref("browser.download.useDownloadDir", true);
 
@@ -13,14 +19,47 @@ user_pref("layers.acceleration.disabled", false);
 // about:preferences > General > Browsing > Use smooth scrolling > Off
 user_pref("general.smoothScroll", false);
 
+// about:preferences > General > Browsing > Enable Picture-in-Picture video controls > Off
+user_pref("media.videocontrols.picture-in-picture.video-toggle.enabled", false);
+
 // about:preferences#home > Home > Firefox Home Content > Web Search > Off
 user_pref("browser.newtabpage.activity-stream.showSearch", false);
 
 // about:preferences#home > Home > Firefox Home Content > Shortcuts > Off
 user_pref("browser.newtabpage.activity-stream.feeds.topsites", false);
 
+// about:preferences#search > Search > Search Suggestions > Show recent searches > Off
+user_pref("browser.urlbar.suggest.recentsearches", false);
+
+// about:preferences#search > Search > Address Bar > Browsing history > Off
+user_pref("browser.urlbar.suggest.history", false);
+
+// about:preferences#search > Search > Address Bar > Bookmarks > Off
+user_pref("browser.urlbar.suggest.bookmark", false);
+
+// about:preferences#search > Search > Address Bar > Open tabs > Off
+user_pref("browser.urlbar.suggest.openpage", false);
+
+// about:preferences#search > Search > Address Bar > Shortcuts > Off
+user_pref("browser.urlbar.suggest.topsites", false);
+
+// about:preferences#search > Search > Address Bar > Search engines > Off
+user_pref("browser.urlbar.suggest.engines", false);
+
 // about:preferences#privacy > Privacy & Security > Website Privacy Preferences > Tell websites not to sell or share my data > On
 user_pref("privacy.globalprivacycontrol.enabled", true);
+
+// about:preferences#privacy > Privacy & Security > Passwords > Fill usernames and passwords automatically > On
+user_pref("signon.autofillForms", true);
+
+// about:preferences#privacy > Privacy & Security > Passwords > Suggest strong passwords > Off
+user_pref("signon.generation.enabled", false);
+
+// about:preferences#privacy > Privacy & Security > Passwords > Suggest Firefox Relay email masks to protect your email address > Off
+user_pref("signon.firefoxRelay.feature", "disabled");
+
+// about:preferences#privacy > Privacy & Security > History > Clear history when Firefox closes > Settings > Cookies and site data > Off
+user_pref("privacy.clearOnShutdown_v2.cookiesAndStorage", false);
 
 // Disable Recommended by Pocket
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
@@ -42,7 +81,6 @@ user_pref("browser.urlbar.shortcuts.tabs", false);
 
 // Disable Firefox Default Browser
 user_pref("default-browser-agent.enabled", false);
-user_pref("browser.shell.checkDefaultBrowser", false);
 
 // Disable Pocket
 user_pref("extensions.pocket.enabled", false);
@@ -59,22 +97,11 @@ user_pref("identity.fxaccounts.toolbar.enabled", false);
 // Enable media autoplay
 user_pref("media.autoplay.blocking_policy", 0);
 
-// Enable picture-in-picture video controls > Off
-user_pref("media.videocontrols.picture-in-picture.video-toggle.enabled", false);
-
-// Don't auto delete
-user_pref("privacy.clearOnShutdown_v2.cookiesAndStorage", false);
-user_pref("privacy.clearOnShutdown_v2.historyFormDataAndDownloads", false);
-user_pref("privacy.clearSiteData.cookiesAndStorage", false);
-
 // Maximize Window
 user_pref("privacy.resistFingerprinting", false);
 
 // Disable letterbox inner window
 user_pref("privacy.resistFingerprinting.letterboxing", false);
-
-// Disable container tabs
-user_pref("privacy.userContext.enabled", false);
 
 // Fix slow performance issues and high memory usage
 user_pref("webgl.disabled", false);
@@ -96,10 +123,6 @@ user_pref("browser.preferences.experimental", false);
 
 // Enable Downloads Pop-up when finished downloading (for quick open downloaded files)
 user_pref("browser.download.alwaysOpenPanel", true);
-
-// Enable auto fill forms to quickly sign in
-user_pref("signon.autofillForms", true);
-user_pref("signon.autofillForms.http", true);
 
 // Enable Custom userChrome.css
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
