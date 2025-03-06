@@ -32,6 +32,9 @@ Everything about BIOS.
    >
    > BIOS Update can take around 8 minutes.
 
+1. Press F1 to enter BIOS setup
+1. Press F5 to Reset to Defaults
+
 ## BIOS Settings
 
 ### Asus Motherboard
@@ -57,6 +60,7 @@ Everything about BIOS.
 1. `Boot` > `Boot Configuration` > `Boot Logo Display` > `Disabled`.
 1. `Boot` > `Boot Configuration` > `POST Report` > `1 sec`.
 1. `Tool` > `ASUS Armoury Crate` > `Download & Install ARMOURY CRATE app` > `Disabled`.
+1. Press F10 to Save Changes
 
 > Note: [djdallmann Guide](https://github.com/djdallmann/GamingPCSetup/tree/master/CONTENT/DOCS/BIOS)
 >
