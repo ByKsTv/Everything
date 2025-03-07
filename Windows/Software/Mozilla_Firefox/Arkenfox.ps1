@@ -1,3 +1,13 @@
+$Arkenfox_TaskName = 'Arkenfox Updater'
+if (-not (Get-ScheduledTask -TaskName $Arkenfox_TaskName -ErrorAction SilentlyContinue)) {
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Arkenfox_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
+    $Arkenfox_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized -Command `"`$Host.UI.RawUI.WindowTitle = '$Arkenfox_TaskName'; while (!(Resolve-DnsName google.com -ErrorAction SilentlyContinue)) { Start-Sleep -Seconds 1 }; Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/Arkenfox.ps1')`""
+    $Arkenfox_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
+    $Arkenfox_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
+    $Arkenfox_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
+    Register-ScheduledTask -TaskName $Arkenfox_TaskName -Action $Arkenfox_TaskAction -Trigger $Arkenfox_TaskTrigger -Principal $Arkenfox_TaskPrincipal -Settings $Arkenfox_TaskSettings -Force
+}
+
 $Firefox_Profiles = [IO.Path]::Combine($env:APPDATA, 'Mozilla', 'Firefox', 'Profiles')
 if (Test-Path $Firefox_Profiles) {
     $Firefox_Profile = (Get-ChildItem $Firefox_Profiles -Directory -Filter '*.default-release' | Select-Object -First 1).FullName
@@ -30,38 +40,10 @@ if (Test-Path $Firefox_Profiles) {
             [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_ScriptFilename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_ScriptURL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Firefox_ScriptSavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
             (New-Object Net.WebClient).DownloadFile($Firefox_ScriptURL, $Firefox_ScriptSavePath)
         }
+        
+        & "$Firefox_Profile\updater.bat" -unattended -updatebatch
 
-        $Arkenfox_Update_TaskName = 'Arkenfox Update'
-        if (-not (Get-ScheduledTask -TaskName $Arkenfox_Update_TaskName -ErrorAction SilentlyContinue)) {
-            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Arkenfox_Update_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
-            $Arkenfox_Update_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN $Firefox_Profile\updater.bat -unattended -updatebatch ^&exit"
-            $Arkenfox_Update_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
-            $Arkenfox_Update_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-            $Arkenfox_Update_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
-            Register-ScheduledTask -TaskName $Arkenfox_Update_TaskName -Action $Arkenfox_Update_TaskAction -Trigger $Arkenfox_Update_TaskTrigger -Principal $Arkenfox_Update_TaskPrincipal -Settings $Arkenfox_Update_TaskSettings -Force
-        }
-
-        $Arkenfox_Clean_TaskName = 'Arkenfox Clean'
-        if (-not (Get-ScheduledTask -TaskName $Arkenfox_Clean_TaskName -ErrorAction SilentlyContinue)) {
-            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Arkenfox_Clean_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
-            $Arkenfox_Clean_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN $Firefox_Profile\prefsCleaner.bat -unattended ^&exit"
-            $Arkenfox_Clean_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
-            $Arkenfox_Clean_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-            $Arkenfox_Clean_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
-            Register-ScheduledTask -TaskName $Arkenfox_Clean_TaskName -Action $Arkenfox_Clean_TaskAction -Trigger $Arkenfox_Clean_TaskTrigger -Principal $Arkenfox_Clean_TaskPrincipal -Settings $Arkenfox_Clean_TaskSettings -Force
-        }
-
-        $Arkenfox_Overrides_TaskName = 'Arkenfox Overrides'
-        if (-not (Get-ScheduledTask -TaskName $Arkenfox_Overrides_TaskName -ErrorAction SilentlyContinue)) {
-            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Arkenfox_Overrides_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
-            $Arkenfox_Overrides_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized Invoke-WebRequest -Uri https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/user-overrides.js -OutFile $Firefox_Profile\user-overrides.js"
-            $Arkenfox_Overrides_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
-            $Arkenfox_Overrides_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-            $Arkenfox_Overrides_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
-            Register-ScheduledTask -TaskName $Arkenfox_Overrides_TaskName -Action $Arkenfox_Overrides_TaskAction -Trigger $Arkenfox_Overrides_TaskTrigger -Principal $Arkenfox_Overrides_TaskPrincipal -Settings $Arkenfox_Overrides_TaskSettings -Force
-        }
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Starting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Arkenfox_Update_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Start-ScheduledTask -TaskName $Arkenfox_Update_TaskName
+        & "$Firefox_Profile\prefsCleaner.bat" -unattended
 
         $Firefox_DirsToDelete = 'datareporting', 'crashes', 'saved-telemetry-pings', 'minidumps'
         foreach ($Firefox_DirToDelete in $Firefox_DirsToDelete) {
