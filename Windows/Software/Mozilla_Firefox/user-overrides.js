@@ -31,11 +31,11 @@ user_pref("browser.newtabpage.activity-stream.feeds.topsites", false);
 // about:preferences#search > Search > Search Suggestions > Show recent searches > Off
 user_pref("browser.urlbar.suggest.recentsearches", false);
 
-// about:preferences#search > Search > Address Bar > Browsing history > Off
-user_pref("browser.urlbar.suggest.history", false);
+// about:preferences#search > Search > Address Bar > Browsing history > On
+user_pref("browser.urlbar.suggest.history", true);
 
-// about:preferences#search > Search > Address Bar > Bookmarks > Off
-user_pref("browser.urlbar.suggest.bookmark", false);
+// about:preferences#search > Search > Address Bar > Bookmarks > On
+user_pref("browser.urlbar.suggest.bookmark", true);
 
 // about:preferences#search > Search > Address Bar > Open tabs > Off
 user_pref("browser.urlbar.suggest.openpage", false);
@@ -57,6 +57,9 @@ user_pref("signon.generation.enabled", false);
 
 // about:preferences#privacy > Privacy & Security > Passwords > Suggest Firefox Relay email masks to protect your email address > Off
 user_pref("signon.firefoxRelay.feature", "disabled");
+
+// about:preferences#privacy > Privacy & Security > History > Clear history when Firefox closes > Settings > Browsing & download history > Off
+user_pref("privacy.clearOnShutdown_v2.browsingHistoryAndDownloads", false);
 
 // about:preferences#privacy > Privacy & Security > History > Clear history when Firefox closes > Settings > Cookies and site data > Off
 user_pref("privacy.clearOnShutdown_v2.cookiesAndStorage", false);
