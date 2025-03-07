@@ -9,34 +9,17 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Destination'"); [Console]::ResetColor(); [Console]::WriteLine()
 7z.exe x $MPV_SavePath -o"$MPV_Destination" -y
 
+$MPV_Installer = [IO.Path]::Combine($MPV_Destination, 'installer', 'mpv-install.bat')
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Installer'"); [Console]::ResetColor(); [Console]::WriteLine()
+Start-Process cmd.exe -ArgumentList "/C start /MIN $MPV_Installer /u ^&exit"
+
 $MPV_SettingsXML_DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/settings.xml'
 $MPV_SettingsXML_Filename = [IO.Path]::GetFileName(([URI]$MPV_SettingsXML_DDL).AbsolutePath)
 $MPV_SettingsXML_SavePath = [IO.Path]::Combine($MPV_Destination, $MPV_SettingsXML_Filename)
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' settings '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_SettingsXML_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_SettingsXML_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_SettingsXML_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
 (New-Object System.Net.WebClient).DownloadFile($MPV_SettingsXML_DDL, $MPV_SettingsXML_SavePath)
 
-$MPV_Updater = [IO.Path]::Combine($MPV_Destination, 'updater.bat')
-$MPV_TaskName = 'MPV Updater'
-if (-not (Get-ScheduledTask -TaskName $MPV_TaskName -ErrorAction SilentlyContinue)) {
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
-    $MPV_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN $MPV_Updater ^&exit"
-    $MPV_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
-    $MPV_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-    $MPV_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
-    Register-ScheduledTask -TaskName $MPV_TaskName -Action $MPV_TaskAction -Trigger $MPV_TaskTrigger -Principal $MPV_TaskPrincipal -Settings $MPV_TaskSettings -Force
-}
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Updating '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Updater'"); [Console]::ResetColor(); [Console]::WriteLine()
-Start-ScheduledTask -TaskName $MPV_TaskName
-while (($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'cmd.exe' } -ErrorAction SilentlyContinue))) {
-    Start-Sleep -Milliseconds 1000
-}
-while (-not ($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'cmd.exe' } -ErrorAction SilentlyContinue))) {
-    Start-Sleep -Milliseconds 1000
-}
-
-$MPV_Installer = [IO.Path]::Combine($MPV_Destination, 'installer', 'mpv-install.bat')
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Installer'"); [Console]::ResetColor(); [Console]::WriteLine()
-Start-Process cmd.exe -ArgumentList "/C start /MIN $MPV_Installer /u ^&exit"
+Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/Updater.ps1')
 
 $mpv_OLD_PATH = [Environment]::GetEnvironmentVariable('Path', [EnvironmentVariableTarget]::User)
 if ($mpv_OLD_PATH -notlike "*$MPV_Destination*") {
