@@ -23,16 +23,16 @@ if ($InstalledSoftware -match 'Microsoft Edge') {
     }
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Disabling '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Edge'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' updates'); [Console]::ResetColor(); [Console]::WriteLine()
-    if ((Test-Path -Path HKLM:\SOFTWARE\Microsoft\EdgeUpdate) -ne $true) {
-        New-Item -Path HKLM:\SOFTWARE\Microsoft\EdgeUpdate -Force
+    if ((Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\EdgeUpdate') -ne $true) {
+        New-Item -Path 'HKLM:\SOFTWARE\Microsoft\EdgeUpdate' -Force
     }
-    New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\EdgeUpdate -Name DoNotUpdateToEdgeWithChromium -PropertyType DWord -Value 1 -Force
+    New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\EdgeUpdate' -Name 'DoNotUpdateToEdgeWithChromium' -PropertyType DWord -Value 1 -Force
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Allowing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Edge'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to uninstall'); [Console]::ResetColor(); [Console]::WriteLine()
-    if ((Test-Path -Path HKLM:\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdateDev) -ne $true) {
-        New-Item HKLM:\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdateDev -Force
+    if ((Test-Path -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdateDev') -ne $true) {
+        New-Item 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdateDev' -Force
     }
-    New-ItemProperty -Path HKLM:\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdateDev -Name 'AllowUninstall' -Value '' -PropertyType String -Force
+    New-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdateDev' -Name 'AllowUninstall' -Value '' -PropertyType String -Force
 
     $MicrosoftEdge_TemporaryFile = [IO.Path]::Combine($env:SystemRoot, 'SystemApps', 'Microsoft.MicrosoftEdge_8wekyb3d8bbwe', 'MicrosoftEdge.exe')
     if (-not (Test-Path $MicrosoftEdge_TemporaryFile)) {
