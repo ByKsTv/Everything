@@ -58,15 +58,13 @@ if ($SketchUp_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
             $_.outerHTML -match 'magnet'
         } | Select-Object -First 1).href
 
-    $SketchUp_Magnet_UnEscape = [Uri]::UnescapeDataString($SketchUp_Magnet)
-
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/qBittorrent/Download.ps1')
     $SketchUp_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
     if (Test-Path $SketchUp_qBittorrent_LOG) {
         Remove-Item $SketchUp_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
     }
     Remove-Item -Path "$env:TEMP\*SketchUp*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
-    $SketchUp_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($SketchUp_Magnet_UnEscape)"""
+    $SketchUp_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($SketchUp_Magnet)"""
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SketchUp_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SketchUp_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
 
     Start-Process qBittorrent.exe -ArgumentList $SketchUp_qBittorrent_Argument
