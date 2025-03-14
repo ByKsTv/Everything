@@ -18,3 +18,6 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'Privac
 
 # Computer Configuration: Administrative Templates: Google: Google Chrome: Privacy Sanndbox policies: Choose whether the Privacy Sandbox Site-suggested ads setting can be disabled: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'PrivacySandboxSiteEnabledAdsEnabled' -Type DWORD -Value 0
+
+# Computer Configuration: Administrative Templates: Google: Google Chrome: Extensions: Control Manifest v2 extension availability: Manifest v2 is enabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'ExtensionManifestV2Availability' -Type DWORD -Value 2
