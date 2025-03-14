@@ -88,12 +88,12 @@ if ($Adobe_Acrobat_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     $Adobe_Acrobat_Form_DropDownList_SelectedItemHREF = $Adobe_Acrobat_Source_Array[$Adobe_Acrobat_Form_DropDownList_SelectedItem]
 
     $Adobe_Acrobat_Source_Forum_Post = ((Invoke-WebRequest -UseBasicParsing -Uri $Adobe_Acrobat_Form_DropDownList_SelectedItemHREF).Links | Where-Object {
-            $_.outerHTML -match 'uniondht.org'
+            $_.outerHTML -match 'pb.wtf'
         }).href | Select-Object -First 1
 
     if ($null -eq $Adobe_Acrobat_Source_Forum_Post) {
         $Adobe_Acrobat_Source_Forum_Post = ((Invoke-WebRequest -UseBasicParsing -Uri $Adobe_Acrobat_Form_DropDownList_SelectedItemHREF).Links | Where-Object {
-                $_.outerHTML -match 'pb.wtf'
+                $_.outerHTML -match 'uniondht.org'
             }).href | Select-Object -First 1
     }
 
