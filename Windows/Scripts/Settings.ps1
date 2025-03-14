@@ -392,7 +392,9 @@ $AppsToRemove = @(
 	'StepsRecorder',
 	'Wallpapers',
 	'WindowsMediaPlayer',
-	'WordPad'
+	'WordPad',
+	'Narrator',
+	'Print.Management.Console'
 )
 
 foreach ($App in $AppsToRemove) {
@@ -403,6 +405,25 @@ foreach ($App in $AppsToRemove) {
 
 	foreach ($Capability in $Capabilities) {
 		Remove-WindowsCapability -Online -Name $Capability.Name
+	}
+}
+
+# Add Windows Capabilities
+$AppsToInstall = @(
+	'Print.Fax.Scan',
+	'MSPaint',
+	'Notepad',
+	'SnippingTool'
+)
+
+foreach ($AppInstall in $AppsToInstall) {
+	$CapabilitiesInstall = Get-WindowsCapability -Online | Where-Object {
+		$_.State -eq 'NotPresent' -and
+		$_.Name -like "*$AppInstall*"
+	}
+
+	foreach ($CapabilityInstall in $CapabilitiesInstall) {
+		Add-WindowsCapability -Online -Name $CapabilityInstall.Name
 	}
 }
 
