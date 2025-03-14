@@ -53,12 +53,15 @@ Set-NetTCPSetting -Timestamps Disabled
 
 # 4. Disable RSS Globally
 netsh int tcp set global rss=disabled
+netsh int tcp set supplemental internet congestionprovider=cubic
 
 # 5. Disable Specific Offloads Globally
 Set-NetOffloadGlobalSetting -ReceiveSegmentCoalescing Disabled
 Set-NetOffloadGlobalSetting -PacketCoalescingFilter Disabled
 Set-NetOffloadGlobalSetting -ReceiveSideScaling Disabled
 Set-NetOffloadGlobalSetting -Chimney Disabled
+Disable-NetAdapterLso -Name *
+Disable-NetAdapterChecksumOffload -Name *
 
 # 6. Update Adapter-Specific Settings
 $SettingsToChange = @(
