@@ -70,3 +70,15 @@ Everything about Scripts.
    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Convert_to_FLAC.ps1')
 
    ```
+
+## YT-DLP: Download Video as Audio Only (Requires YT-DLP in Path)
+
+```bash
+yt-dlp --extract-audio --audio-quality=0 -o input URL
+```
+
+## FFmpeg: Cut audio from mm:ss to mm:ss (Requires FFmpeg in Path)
+
+```bash
+ffmpeg -ss 00:00 -to 00:00 -y -i input.opus -c copy output.opus
+```
