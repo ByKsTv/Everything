@@ -72,8 +72,8 @@ Everything about Websites.
 | monkrus       | [Website](http://www.monkrus.ws) / [VK](https://vk.com/monkrus) / [Telegram](https://t.me/real_monkrus) / [RSS](https://w16.monkrus.ws/atom.xml) | Adobe & Autodesk                                                             |
 | Ratiborus     | [Website](https://msfree.su/index.php)                                                                                                           |                                                                              |
 
-## Reviews
+## Other
 
-| Name   | Links                             | Notes |
-| ------ | --------------------------------- | ----- |
-| RTINGS | [Website](https://www.rtings.com) |       |
+| Name   | Links                             | Notes   |
+| ------ | --------------------------------- | ------- |
+| RTINGS | [Website](https://www.rtings.com) | Reviews |
