@@ -626,3 +626,9 @@ $Urls | ForEach-Object { $Line = '0.0.0.0 ' + $_; if (-not(Select-String -Path $
 
 # Disabling service
 Get-Service -Name 'dmwappushservice' | Set-Service -StartupType Disabled
+
+# Open as Notepad
+$NotepadDefaultExts = @('.lua', '.conf', '.json', '.glsl', '.xml')
+foreach ($NotepadDefaultExt in $NotepadDefaultExts) {
+	New-Item "HKCU:\Software\Classes\$NotepadDefaultExt\shell\open\command" -Force | Set-ItemProperty -Name '(default)' -Value 'notepad.exe %1' 
+}
