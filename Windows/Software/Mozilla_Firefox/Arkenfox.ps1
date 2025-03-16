@@ -41,9 +41,9 @@ if (Test-Path $Firefox_Profiles) {
             (New-Object Net.WebClient).DownloadFile($Firefox_ScriptURL, $Firefox_ScriptSavePath)
         }
         
-        & "$Firefox_Profile\updater.bat" -unattended -updatebatch
+        Start-Process -FilePath "$Firefox_Profile\updater.bat" -ArgumentList "-unattended", "-updatebatch" -Wait
 
-        & "$Firefox_Profile\prefsCleaner.bat" -unattended
+        Start-Process -FilePath "$Firefox_Profile\prefsCleaner.bat" -ArgumentList "-unattended" -Wait
 
         $Firefox_DirsToDelete = 'datareporting', 'crashes', 'saved-telemetry-pings', 'minidumps'
         foreach ($Firefox_DirToDelete in $Firefox_DirsToDelete) {
