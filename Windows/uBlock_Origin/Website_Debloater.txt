@@ -16,6 +16,11 @@ myanimelist.net##.mal-tooltip-layer
 pi.hole##[href="https://pi-hole.net/donate/"]
 pornolab.net###logo
 rutracker.org###logo
+www.aliexpress.com##.order-block.order-recommend
+www.aliexpress.com##[class*="fusion-page-card--fusionPageCard"]
+www.aliexpress.com##[class*="recommend-platform--wrap"]
+www.amazon.com##.copilot-secure-display
+www.iec.co.il##.ng-star-inserted.sticky-banner--container.bottom
 www.ynet.co.il##.articleShareButtons
 xxxclub.to##[href="/c/donate/"]
 youtube.com##[page-subtype="home"] ytd-thumbnail-overlay-resume-playback-renderer:upward(ytd-rich-item-renderer)
