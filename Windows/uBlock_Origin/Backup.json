@@ -1,6 +1,6 @@
 {
-	"timeStamp": 1719304576830,
-	"version": "1.58.0",
+	"timeStamp": 1742098764051,
+	"version": "1.62.0",
 	"userSettings": {
 		"externalLists": "https://filters.adtidy.org/extension/ublock/filters/14.txt\nhttps://malware-filter.gitlab.io/pup-filter/pup-filter.txt\nhttps://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Website_Debloater.txt\nhttps://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt\nhttps://raw.githubusercontent.com/Spam404/lists/master/adblock-list.txt\nhttps://raw.githubusercontent.com/bogachenko/fuckfuckadblock/master/fuckfuckadblock.txt\nhttps://raw.githubusercontent.com/gijsdev/ublock-hide-yt-shorts/master/list.txt\nhttps://secure.fanboy.co.nz/fanboy-annoyance_ubo.txt",
 		"firewallPaneMinimized": false,
@@ -15,7 +15,7 @@
 			"https://secure.fanboy.co.nz/fanboy-annoyance_ubo.txt"
 		],
 		"popupPanelSections": 63,
-		"suspendUntilListsAreLoaded": true,
+		"tooltipsDisabled": true,
 		"webrtcIPAddressHidden": true
 	},
 	"selectedFilterLists": [
@@ -82,6 +82,7 @@
 		"POL-2",
 		"ROU-1",
 		"RUS-0",
+		"RUS-1",
 		"SWE-1",
 		"SVN-0",
 		"THA-0",
