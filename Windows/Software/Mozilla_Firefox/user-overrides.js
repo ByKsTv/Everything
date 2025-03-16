@@ -108,7 +108,7 @@ user_pref("privacy.resistFingerprinting", false);
 user_pref("privacy.resistFingerprinting.letterboxing", false);
 
 // Fix slow performance issues and high memory usage
-user_pref("webgl.disabled", false);
+// user_pref("webgl.disabled", false);
 
 // Disable session restore
 user_pref("browser.sessionstore.resume_from_crash", false);
