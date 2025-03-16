@@ -2,9 +2,21 @@
 ! Homepage: https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Website_Debloater.txt
 ! Title: Website Debloater
 4pda.to###logostrip
+9gag.com##.comment-community__guideline
+9gag.com##.post-action-btn
+9gag.com##.post-award-btn
+9gag.com##.post-award-users
+9gag.com##.text-center.inline-banner
 forum.mobilism.me##.welcome-bar
 github.com##.protip
+ksp.co.il##.null[class*="root-0-3-"]
+ksp.co.il##[class*="banner-0-3-"]
+ksp.co.il##[class*="muirtl-"][class*="banner-0-3-"].MuiContainer-maxWidthLg.MuiContainer-root
 myanimelist.net##.mal-tooltip-layer
+pi.hole##[href="https://pi-hole.net/donate/"]
 pornolab.net###logo
 rutracker.org###logo
+www.ynet.co.il##.articleShareButtons
 xxxclub.to##[href="/c/donate/"]
+youtube.com##[page-subtype="home"] ytd-thumbnail-overlay-resume-playback-renderer:upward(ytd-rich-item-renderer)
+||bringthemhomenow.net^
