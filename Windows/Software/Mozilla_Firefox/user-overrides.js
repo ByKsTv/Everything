@@ -49,9 +49,6 @@ user_pref("browser.urlbar.suggest.engines", false);
 // about:preferences#privacy > Privacy & Security > Website Privacy Preferences > Tell websites not to sell or share my data > On
 user_pref("privacy.globalprivacycontrol.enabled", true);
 
-// about:preferences#privacy > Privacy & Security > Passwords > Fill usernames and passwords automatically > On
-user_pref("signon.autofillForms", true);
-
 // about:preferences#privacy > Privacy & Security > Passwords > Suggest strong passwords > Off
 user_pref("signon.generation.enabled", false);
 
@@ -106,9 +103,6 @@ user_pref("privacy.resistFingerprinting", false);
 
 // Disable letterbox inner window
 user_pref("privacy.resistFingerprinting.letterboxing", false);
-
-// Fix slow performance issues and high memory usage
-// user_pref("webgl.disabled", false);
 
 // Disable session restore
 user_pref("browser.sessionstore.resume_from_crash", false);
