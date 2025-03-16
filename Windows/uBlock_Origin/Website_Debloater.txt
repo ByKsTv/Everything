@@ -1,3 +1,10 @@
 ! Expires: 1 hours
 ! Homepage: https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Website_Debloater.txt
 ! Title: Website Debloater
+4pda.to###logostrip
+forum.mobilism.me##.welcome-bar
+github.com##.protip
+myanimelist.net##.mal-tooltip-layer
+pornolab.net###logo
+rutracker.org###logo
+xxxclub.to##[href="/c/donate/"]
