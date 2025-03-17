@@ -427,7 +427,6 @@ if ($InstalledSoftware -match 'Google Chrome') {
     $SoftwareSelection_CheckBoxes['Chrome'].Text += ' (Installed)'
 }
 if ((Test-Path -Path 'HKLM:\SOFTWARE\Policies\Google\Chrome\ExtensionInstallForcelist') -eq $true) {
-    $SoftwareSelection_CheckBoxes['Chrome - Extensions'].Enabled = $false
     $SoftwareSelection_CheckBoxes['Chrome - Extensions'].Text += ' (Installed)'
 }
 if ($InstalledSoftware -match 'CrystalDiskInfo') {
