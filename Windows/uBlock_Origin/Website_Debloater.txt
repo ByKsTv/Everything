@@ -22,6 +22,10 @@ www.aliexpress.com##[class*="fusion-page-card--fusionPageCard"]
 www.aliexpress.com##[class*="recommend-platform--wrap"]
 www.amazon.com###nile-inline_feature_div
 www.amazon.com##.copilot-secure-display
+www.amazon.com##div#similarities_feature_div.celwidget
+www.ebay.com##.x-atf-left-bottom-river.vim
+www.ebay.com##.x-evo-btf-river.vi-grid.vim
+www.ebay.com##.x-vi-evo-main-container__top-panel
 www.iec.co.il##.ng-star-inserted.sticky-banner--container.bottom
 www.ynet.co.il##.articleShareButtons
 xxxclub.to##[href="/c/donate/"]
