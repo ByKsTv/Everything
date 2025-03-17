@@ -21,7 +21,6 @@ www.aliexpress.com##[class*="cross-link--crossLink"]
 www.aliexpress.com##[class*="fusion-page-card--fusionPageCard"]
 www.aliexpress.com##[class*="recommend-platform--wrap"]
 www.amazon.com###nile-inline_feature_div
-www.amazon.com##.a-cardui-deck > div > .a-cardui
 www.amazon.com##.copilot-secure-display
 www.iec.co.il##.ng-star-inserted.sticky-banner--container.bottom
 www.ynet.co.il##.articleShareButtons
