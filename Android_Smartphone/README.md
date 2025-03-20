@@ -45,7 +45,8 @@ Everything about Android apps.
 1. `Set IronFox as your default browser app`
 1. `Try IronFox Widget` > `Not Now`
 1. `Sign In`
-1. `Turn on notifications`
+1. `Theme` > `Dark`
+1. `Address bar location` > `Down`
 1. `Settings` > `Search` > `Default search engine` > `Google`
 1. `Settings` > `Search` > `Manage alternative search engines` > Disable all
 1. `Settings` > `Search` > Disable all except `Search browsing history` and `Search bookmarks`
@@ -53,14 +54,15 @@ Everything about Android apps.
 1. `Settings` > `Tabs` > `Tabs you haven't viewed for two weeks get moved to the inactive section.` > Off
 1. `Settings` > `Homepage` > Disable all
 1. `Settings` > `Homepage` > `Last tab`
-1. `Settings` > `Customise` > `Buttom`
 1. `Settings` > `Customise` > `Pull to refresh` > Off
 1. `Settings` > `Passwords` > `Ask to save`
 1. `Settings` > `Passwords` > `Autofill in IronFox` > On
 1. `Settings` > `Passwords` > `Autofill in other apps` > On
+1. `Settings` > `Delete browsing data` > Disable `Open tabs` and `Browsing history` and `Cookies and site data`
+1. `Settings` > `Delete browsing data on quit` > Disable `Open tabs` and `Browsing history` and `Cookies and site data`
 1. `Settings` > `Add-ons` > `uBlock Origin` > `Settings` > [Restore from file](https://github.com/ByKsTv/Everything/blob/main/Windows/uBlock_Origin/Backup.json).
-1. `about:config` > `webgl.disabled` > `false`.
-1. `about:config` > `media.autoplay.blocking_policy` > `0`.
+<!-- 1. `about:config` > `webgl.disabled` > `false`.
+1. `about:config` > `media.autoplay.blocking_policy` > `0`. -->
 
 ## Common ADB Commands
 
