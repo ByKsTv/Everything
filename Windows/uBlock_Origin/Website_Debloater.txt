@@ -7,6 +7,7 @@
 9gag.com##.post-award-btn
 9gag.com##.post-award-users
 9gag.com##.text-center.inline-banner
+account.xiaomi.com##._-src-components-CookieBanner-wrapper
 forum.mobilism.me##.welcome-bar
 github.com##.protip
 ksp.co.il##.null[class*="root-0-3-"]
