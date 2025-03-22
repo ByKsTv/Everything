@@ -368,7 +368,8 @@ foreach ($Task in $TasksToDisable) {
 $FeaturesToDisable = @(
 	'WindowsMediaPlayer',
 	'WorkFolders-Client',
-	'Recall'
+	'Recall',
+	'MediaPlayback'
 )
 
 foreach ($Feature in $FeaturesToDisable) {
@@ -383,30 +384,30 @@ foreach ($Feature in $FeaturesToDisable) {
 }
 
 # Disable Windows Capabilities
-$AppsToRemove = @(
-	'Hello.Face',
-	'InternetExplorer',
-	'MathRecognizer',
-	'OpenSSH',
-	'QuickAssist',
-	'StepsRecorder',
-	'Wallpapers',
-	'WindowsMediaPlayer',
-	'WordPad',
-	'Narrator',
-	'Print.Management.Console'
-)
+# $AppsToRemove = @(
+# 	'Hello.Face',
+# 	'InternetExplorer',
+# 	'MathRecognizer',
+# 	'OpenSSH',
+# 	'QuickAssist',
+# 	'StepsRecorder',
+# 	'Wallpapers',
+# 	'WindowsMediaPlayer',
+# 	'WordPad',
+# 	'Narrator',
+# 	'Print.Management.Console'
+# )
 
-foreach ($App in $AppsToRemove) {
-	$Capabilities = Get-WindowsCapability -Online | Where-Object {
-		$_.State -eq 'Installed' -and
-		$_.Name -like "*$App*"
-	}
+# foreach ($App in $AppsToRemove) {
+# 	$Capabilities = Get-WindowsCapability -Online | Where-Object {
+# 		$_.State -eq 'Installed' -and
+# 		$_.Name -like "*$App*"
+# 	}
 
-	foreach ($Capability in $Capabilities) {
-		Remove-WindowsCapability -Online -Name $Capability.Name
-	}
-}
+# 	foreach ($Capability in $Capabilities) {
+# 		Remove-WindowsCapability -Online -Name $Capability.Name
+# 	}
+# }
 
 # Add Windows Capabilities
 $AppsToInstall = @(
