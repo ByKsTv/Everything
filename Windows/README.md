@@ -61,9 +61,11 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
    >
    > ```
 
+1. `Boot` > `Boot Override` > `UEFI`
+
 ## Installation
 
-1. `Delete all` > `Next`.
+1. `Delete` all partitions from the drive you want to install windows on > `Next`.
    > If drives not found - Use `Load Driver` and extract `Intel Rapid Storage Technology (IRST)` driver matching to the motherboard.
 
 ## Software Selection
@@ -77,8 +79,8 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 ### NVCleanstall
 
-1. Restart to Safe Mode (SHIFT+RESTART) `Troubleshoot` > `Advanced options` > `Startup Settings` > `Restart` > `Safe mode` (4) > Disconnect Ethernet Cable > Open Display Driver Uninstaller (Admin) > `---Select device type---` > `GPU` > `Clean and restart`.
-1. Open NVCleanstall (Admin) > Connect Ethernet Cable > `Refresh` > `Manually select a driver version` > `Studio` > `Next` > `Recommended` > `Next` > `Use Previous Settings` > `Next` > `Install` > Restart.
+1. Restart to Safe Mode (SHIFT+RESTART) `Troubleshoot` > `Advanced options` > `Startup Settings` > `Restart` > `Safe mode` (4) > Open Display Driver Uninstaller > `---Select device type---` > `GPU` > `Clean and restart`.
+1. Open NVCleanstall > `Manually select a driver version` > `Studio` > `Next` > `Recommended` > `Next` > `Use Previous Settings` > `Next` > `Install` > Restart.
 
 ### NVIDIA Control Panel
 
