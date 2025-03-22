@@ -274,71 +274,21 @@ adb install LP_Downloader.apk
 
 > Everytime LineageOS updates we need to reinstall Magisk (ROOT).
 
-1. Download latest `.zip` and `.img` files for [LineageOS](https://download.lineageos.org/devices) (Select your device)
+1. Download latest `LineageOS.zip` and `boot.img` files for [LineageOS](https://download.lineageos.org/devices) (Select your device)
 1. Download [Google Apps](https://wiki.lineageos.org/gapps/#mobile) (Select `ARM64`).
 1. Connect USB Cable from the device to the PC.
 1. Enable USB Debugging in Developer Options.
-1. Connect to the device using USB:
 
-> ADB is required to be in PATH.
+1. PowerShell (Admin):
 
-```bash
-adb devices
-```
+   ```powershell
+   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Android_Smartphone/LineageOS_Update_with_Magisk.ps1')
 
-1. `Always allow from this computer` > `Allow`.
-1. Copy `boot.img` from the PC to the device:
+   ```
 
-```bash
-adb push boot.img /storage/emulated/0/Download
-```
+## Transfer data from existing non-functional phone to existing old functional phone
 
-1. `Magisk` > `Install` > `Select and Patch a File` > `boot.img` > `Let's Go`.
-1. Copy the patched `boot.img` file from the device to the PC:
-
-```bash
-adb pull /storage/emulated/0/Download/magisk_patched.img
-```
-
-1. Reboot to sideload mode:
-
-```bash
-adb reboot sideload
-```
-
-1. Sideload LineageOS zip file:
-
-```bash
-adb sideload lineage-22.1-20250105-nightly-guacamoleb-signed.zip
-```
-
-1. `Reboot to recovery` > `Yes`
-1. `Enable ADB`.
-1. `Apply Update` > `Apply from ADB`
-1. Sideload Google Apps zip file:
-
-```bash
-adb sideload MindTheGapps-15.0.0-arm64-20240928_150548.zip
-```
-
-1. `Signature verification failed, install anyway?` > `Yes`
-1. Reboot to `bootloader`:
-
-```bash
-adb reboot bootloader
-```
-
-1. Flash ROOT:
-
-```bash
-fastboot flash boot magisk_patched.img
-```
-
-1. Reboot to Android:
-
-```bash
-fastboot reboot
-```
-
-1. `Magisk` > `Modules` > Update all.
-1. Disable USB Debugging.
+1. On the non-functional phone: Remove the existing SIM
+1. On the old functional phone: Backup Google Photos, etc.
+1. On the old functional phone: Factory reset and if requires a password use the saved password.
+   > Do NOT factory reset using Recovery (Volume Up + Power).
