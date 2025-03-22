@@ -8,6 +8,14 @@ Register-ScheduledTask -TaskName $NextStep_TaskName -Action $NextStep_TaskAction
 
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Key.ps1')
 
+Add-Type -AssemblyName System.Windows.Forms
+$Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{
+    TopMost = $true
+}
+$Popup_Text = "Pin 'File Explorer' to taskbar"
+[Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK') | Out-Null
+$Popup_Usermanual.Dispose()
+
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Initial_Setup.ps1')
 
 Start-Process -FilePath 'ms-settings:windowsupdate'
@@ -17,10 +25,10 @@ $Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{
     TopMost = $true
 }
 $Popup_Text = "Wait for Windows Updates.
-1. Click on 'View optional updates'
-2. Click on 'Driver updates'
+1. Click on 'Advanced options'
+2. Click on 'Optional updates'
 3. Select all
-4. Click on 'Download and install'"
+4. Click on 'Download & install'"
 [Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK') | Out-Null
 $Popup_Usermanual.Dispose()
 
