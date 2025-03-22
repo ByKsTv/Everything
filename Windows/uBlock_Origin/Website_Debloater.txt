@@ -16,6 +16,7 @@ myanimelist.net##.mal-tooltip-layer
 pi.hole##[href="https://pi-hole.net/donate/"]
 pornolab.net###logo
 rutracker.org###logo
+www.aliexpress.com##.cart-recommend
 www.aliexpress.com##.order-block.order-recommend
 www.aliexpress.com##[class*="cross-link--crossLink"]
 www.aliexpress.com##[class*="fusion-page-card--fusionPageCard"]
@@ -28,6 +29,7 @@ www.ebay.com##.x-evo-btf-river.vi-grid.vim
 www.ebay.com##.x-vi-evo-main-container__top-panel
 www.iec.co.il##.ng-star-inserted.sticky-banner--container.bottom
 www.ynet.co.il##.articleShareButtons
+www.youtube.com###attached-survey
 xxxclub.to##[href="/c/donate/"]
 youtube.com##[page-subtype="home"] ytd-thumbnail-overlay-resume-playback-renderer:upward(ytd-rich-item-renderer)
 ||bringthemhomenow.net^
