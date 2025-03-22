@@ -4,7 +4,7 @@ Everything about Windows.
 
 ## Backup
 
-Usernames, passwords, videos, photos, files, software, desktop layout, macros, mpv settings, chrome sync turn on, firefox profile folder, app data, quick access pinned items.
+Usernames, passwords, videos, photos, files, software, desktop layout, macros, mpv settings, chrome sync turn on, firefox profile folder, app data, quick access pinned items, ublock filters.
 
 ## Download ISO
 
