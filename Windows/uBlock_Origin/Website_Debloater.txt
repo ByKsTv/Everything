@@ -9,6 +9,7 @@
 9gag.com##.text-center.inline-banner
 account.xiaomi.com##._-src-components-CookieBanner-wrapper
 forum.mobilism.me##.welcome-bar
+github.com##.mb-2.mt-md-2.mt-3.color-fg-muted.text-small
 github.com##.protip
 ksp.co.il##.null[class*="root-0-3-"]
 ksp.co.il##[class*="banner-0-3-"]
@@ -16,6 +17,7 @@ ksp.co.il##[class*="muirtl-"][class*="banner-0-3-"].MuiContainer-maxWidthLg.MuiC
 myanimelist.net##.mal-tooltip-layer
 pi.hole##[href="https://pi-hole.net/donate/"]
 pornolab.net###logo
+pornolab.net##tr.tCenter.row3 > .med
 rutracker.org###logo
 www.aliexpress.com##.cart-recommend
 www.aliexpress.com##.order-block.order-recommend
@@ -29,6 +31,11 @@ www.ebay.com##.x-atf-left-bottom-river.vim
 www.ebay.com##.x-evo-btf-river.vi-grid.vim
 www.ebay.com##.x-vi-evo-main-container__top-panel
 www.iec.co.il##.ng-star-inserted.sticky-banner--container.bottom
+www.pornhub.com##.extraMargin.languages.pornInLangWrapper.sectionWrapper
+www.pornhub.com##.latestThumbDesign.extraRelatedVid
+www.pornhub.com##.original.video-wrapper.hd-videos_wrapper.hd-smallerWidth.sectionWrapper
+www.pornhub.com##.relatedSearchTermsBottom.sectionWrapper
+www.xvideos.com##.slogan
 www.ynet.co.il##.articleShareButtons
 www.youtube.com###attached-survey
 xxxclub.to##[href="/c/donate/"]
