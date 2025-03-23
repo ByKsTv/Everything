@@ -42,17 +42,21 @@ New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\QoS' -Name 'Do
 New-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPER1_0SERVER' -Name 'iexplore.exe' -Value 10 -PropertyType 'DWord' -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPERSERVER' -Name 'iexplore.exe' -Value 10 -PropertyType 'DWord' -Force
 
+New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters' -Name 'SackOpts' -PropertyType DWord -Value 0 -Force
+New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'FastSendDatagramThreshold' -PropertyType DWord -Value 0x10000 -Force
+New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Ndis\Parameters' -Name 'RssBaseCpu' -PropertyType DWord -Value 1 -Force
+
 # 3. Apply TCP Settings for Congestion Control, DCA, etc.
 Set-NetTCPSetting -ScalingHeuristics Disabled
 Set-NetTCPSetting -MaxSynRetransmissions 2
 Set-NetTCPSetting -NonSackRttResiliency Disabled
-Set-NetTCPSetting -InitialRtoMs 2000
+Set-NetTCPSetting -InitialRtoMs 300
 Set-NetTCPSetting -AutoTuningLevelLocal Normal
 Set-NetTCPSetting -EcnCapability Disabled
 Set-NetTCPSetting -Timestamps Disabled
 
 # 4. Disable RSS Globally
-netsh int tcp set global rss=disabled
+netsh int tcp set global rss=enabled
 netsh int tcp set supplemental internet congestionprovider=cubic
 
 # 5. Disable Specific Offloads Globally
@@ -82,15 +86,16 @@ $SettingsToChange = @(
 	@{ DisplayName = 'Large Send Offload v2 (IPv6)'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'Legacy Switch Compatibility Mode'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'Log Link State Event'; DisplayValues = @('Disabled') },
-	@{ DisplayName = 'Max IRQ per Second'; DisplayValues = @('30000') },
-	@{ DisplayName = 'Maximum Number of RSS Queues'; DisplayValues = @('1 RSS Queues', '1 Queue') },
+	@{ DisplayName = 'Max IRQ per Second'; DisplayValues = @('30000', '0') },
+	@{ DisplayName = 'Maximum Number of RSS Queues'; DisplayValues = @('1 RSS Queues', '2 RSS Queues', '4 RSS Queues', '1 Queue', '2 Queue', '4 Queue') },
+	@{ DisplayName = 'Maximum number of RSS Processors'; DisplayValues = @('1', '2', '4', '8') },
 	@{ DisplayName = 'NS Offload'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'PTP Hardware Timestamp'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'Packet Priority & VLAN'; DisplayValues = @('Packet Priority & VLAN Disabled') },
 	@{ DisplayName = 'Protocol ARP Offload'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'Protocol NS Offload'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'Receive Buffers'; DisplayValues = @('2048') },
-	@{ DisplayName = 'Receive Side Scaling'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Receive Side Scaling'; DisplayValues = @('Enabled') },
 	@{ DisplayName = 'Reduce Speed On Power Down'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'Selective Suspend'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'Selective Suspend Idle Timeout'; DisplayValues = @('5') },
@@ -111,6 +116,7 @@ $SettingsToChange = @(
 	@{ DisplayName = 'DMA Coalescing'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'WOL & Shutdown Link Speed'; DisplayValues = @('Not Speed Down') },
 	@{ DisplayName = 'Shutdown Wake-On-Lan'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Shutdown Wake Up'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'Priority & VLAN'; DisplayValues = @('Priority & VLAN Disabled') },
 	@{ DisplayName = 'Gigabit Lite'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'Power Saving Mode'; DisplayValues = @('Disabled') },
@@ -118,12 +124,24 @@ $SettingsToChange = @(
 	@{ DisplayName = 'ECMA'; DisplayValues = @('Enabled') }
 
 	# TODO
-	# Ethernet0: Maximum number of RSS Processors: Valid Values: 1, 2, 4, 8
+	# Ethernet0: Locally Administered Address: Valid Values:
+	# Ethernet0: Maximum RSS Processor Number: Valid Values: 
 	# Ethernet0: Preferred NUMA node: Valid Values: 
 	# Ethernet0: RSS Base Processor Number: Valid Values: 
-	# Ethernet0: Maximum RSS Processor Number: Valid Values: 
 	# Ethernet0: RSS load balancing profile: Valid Values: ClosestProcessor, ClosestProcessorStatic, NUMAScaling, NUMAScalingStatic, ConservativeScaling
-	# Ethernet0: Locally Administered Address: Valid Values:
+	# Ethernet: Network Address: Valid Values:
+	# Ethernet: SWOI: Valid Values: Enabled, Disabled
+	# Ethernet: VLAN ID: Valid Values:
+	# Local Area Connection: MAC Address: Valid Values:
+	# Local Area Connection: MTU: Valid Values:
+	# Local Area Connection: Media Status: Valid Values: Application Controlled, Always Connected
+	# Local Area Connection: Non-Admin Access: Valid Values: Not Allowed, Allowed
+	# VMware Network Adapter VMnet1: Priority / VLAN tag: Valid Values: Priority & VLAN Disabled, Priority Enabled, VLAN Enabled, Priority & VLAN Enabled
+	# VMware Network Adapter VMnet1: VLAN ID: Valid Values:
+	# VMware Network Adapter VMnet1: Wake on LAN: Valid Values: Disabled, Enabled
+	# VMware Network Adapter VMnet8: Priority / VLAN tag: Valid Values: Priority & VLAN Disabled, Priority Enabled, VLAN Enabled, Priority & VLAN Enabled
+	# VMware Network Adapter VMnet8: VLAN ID: Valid Values:
+	# VMware Network Adapter VMnet8: Wake on LAN: Valid Values: Disabled, Enabled
 )
 
 $UnusedSettings = @()
