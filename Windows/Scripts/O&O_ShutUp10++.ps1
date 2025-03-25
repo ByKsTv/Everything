@@ -524,7 +524,7 @@ New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\Windows Error Reporting' -Name 'Disabled' -Value 1 -PropertyType DWord -Force
 
 # O&O ShutUp10++: Local Machine: Location Services: Disable Windows Geolocation Service: On
-New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\lfsvc\Service\Configuration' -Name 'Status' -Value 0 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\lfsvc\Service\Configuration' -Name 'Status' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Sensor\Overrides\{BFA794E4-F964-4FDB-90F6-51056BFE4B44}' -Name 'SensorPermissionState' -Value 0 -PropertyType DWord -Force
 
 # O&O ShutUp10++: Local Machine: Privacy: Disable the Windows Customer Experience Improvement Program
@@ -541,12 +541,12 @@ New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Diagnost
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Diagnostics\DiagTrack' -Name 'ShowedToastAtLevel' -PropertyType DWord -Value 1 -Force
 
 # O&O ShutUp10++: Local Machine: Security: Disable telemetry: On
-New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\DiagTrack' -Name 'Start' -Value 4 -PropertyType DWord -Force
-if (-not (Test-Path -Path 'HKLM:\System\ControlSet001\Control\WMI\AutoLogger\AutoLogger-Diagtrack-Listener')) {
-	New-Item -Path 'HKLM:\System\ControlSet001\Control\WMI\AutoLogger\AutoLogger-Diagtrack-Listener' -Force
+New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\DiagTrack' -Name 'Start' -Value 4 -PropertyType DWord -Force
+if (-not (Test-Path -Path 'HKLM:\System\CurrentControlSet\Control\WMI\AutoLogger\AutoLogger-Diagtrack-Listener')) {
+	New-Item -Path 'HKLM:\System\CurrentControlSet\Control\WMI\AutoLogger\AutoLogger-Diagtrack-Listener' -Force
 }
-New-ItemProperty -Path 'HKLM:\System\ControlSet001\Control\WMI\AutoLogger\AutoLogger-Diagtrack-Listener' -Name 'Start' -Value 0 -PropertyType DWord -Force
-New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\dmwappushservice' -Name 'Start' -Value 4 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\WMI\AutoLogger\AutoLogger-Diagtrack-Listener' -Name 'Start' -Value 0 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\dmwappushservice' -Name 'Start' -Value 4 -PropertyType DWord -Force
 
 # O&O ShutUp10++: Local Machine: Miscellaneous: Disable installation of PC Health Check: On
 if (-not (Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\PCHC')) {
@@ -555,7 +555,7 @@ if (-not (Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\PCHC')) {
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\PCHC' -Name 'PreviousUninstall' -Value 1 -PropertyType DWord -Force
 
 # O&O ShutUp10++: Local Machine: Miscellaneous: Disable Network Connectivity Status indicator: On
-New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\NlaSvc\Parameters\Internet' -Name 'EnableActiveProbing' -Value 0 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\NlaSvc\Parameters\Internet' -Name 'EnableActiveProbing' -Value 0 -PropertyType DWord -Force
 
 # O&O ShutUp10++: Local Machine: Windows Update: Disable automatic Windows Updates: Off
-New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\wuauserv' -Name 'Start' -Value 3 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\wuauserv' -Name 'Start' -Value 3 -PropertyType DWord -Force
