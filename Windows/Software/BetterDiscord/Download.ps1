@@ -23,7 +23,7 @@ if (Get-ScheduledTask -TaskName $Discord_TaskName -ErrorAction SilentlyContinue)
     }
 }
 
-$Discord_IndexJS = (Get-ChildItem "$env:LOCALAPPDATA\Discord\app*\modules\discord_desktop*\discord_desktop*" -Directory | Sort-Object -Descending | Select-Object -First 1).FullName + '\index.js'
+$Discord_IndexJS = (Get-ChildItem "$env:LOCALAPPDATA\Discord\app*\modules\discord_desktop_core-1\discord_desktop_core" -Directory | Sort-Object -Descending | Select-Object -First 1).FullName + '\index.js'
 if (Select-String -Quiet -Path $Discord_IndexJS -Pattern 'betterdiscord') {
     $BetterDiscord_DDL = ((Invoke-RestMethod 'https://api.github.com/repos/BetterDiscord/BetterDiscord/releases/latest').assets | Where-Object name -EQ 'betterdiscord.asar').browser_download_url
     $BetterDiscord_Filename = [IO.Path]::GetFileName(([URI]$BetterDiscord_DDL).AbsolutePath)
