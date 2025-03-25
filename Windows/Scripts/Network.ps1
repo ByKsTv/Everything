@@ -19,10 +19,6 @@ Start-Service -Name 'SSDPSRV'
 Set-Service -Name 'upnphost' -StartupType Automatic
 Start-Service -Name 'upnphost'
 
-# 1. Retrieve All Network Adapters
-$NetworkAdapters = Get-NetAdapter
-
-# 2. Modify Registry for Network Optimization
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Name 'LocalPriority' -Value 4 -PropertyType 'DWord' -Force
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Name 'HostsPriority' -Value 5 -PropertyType 'DWord' -Force
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Name 'DnsPriority' -Value 6 -PropertyType 'DWord' -Force
@@ -35,18 +31,17 @@ New-ItemProperty -Path 'HKLM:\System\ControlSet001\Control\Session Manager\Memor
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -Name 'MaxUserPort' -Value 65534 -PropertyType 'DWord' -Force
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -Name 'TcpTimedWaitDelay' -Value 30 -PropertyType 'DWord' -Force
 New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -Name 'DefaultTTL' -Value 64 -PropertyType 'DWord' -Force
-if (-not (Test-Path -Path 'HKLM:\System\ControlSet001\Services\Tcpip\QoS')) {
-	New-Item -Path 'HKLM:\System\ControlSet001\Services\Tcpip\QoS' -Force
-}
-New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\QoS' -Name 'Do not use NLA' -Value '1' -PropertyType 'String' -Force
-New-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPER1_0SERVER' -Name 'iexplore.exe' -Value 10 -PropertyType 'DWord' -Force
-New-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MAXCONNECTIONSPERSERVER' -Name 'iexplore.exe' -Value 10 -PropertyType 'DWord' -Force
-
-New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters' -Name 'SackOpts' -PropertyType DWord -Value 0 -Force
+New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters' -Name 'SackOpts' -PropertyType DWord -Value 1 -Force
+New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters' -Name 'TcpMaxDupAcks' -PropertyType DWord -Value 2 -Force
 New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'FastSendDatagramThreshold' -PropertyType DWord -Value 0x10000 -Force
 New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Ndis\Parameters' -Name 'RssBaseCpu' -PropertyType DWord -Value 1 -Force
+New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\Parameters' -Name 'Tcp1323Opts' -PropertyType DWord -Value 1 -Force
 
-# 3. Apply TCP Settings for Congestion Control, DCA, etc.
+Get-ChildItem 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces' | ForEach-Object {
+	New-ItemProperty -Path $_.PsPath -Name 'TcpAckFrequency' -PropertyType DWord -Value 1 -Force
+	New-ItemProperty -Path $_.PsPath -Name 'TCPNoDelay' -PropertyType DWord -Value 1 -Force
+}
+
 Set-NetTCPSetting -ScalingHeuristics Disabled
 Set-NetTCPSetting -MaxSynRetransmissions 2
 Set-NetTCPSetting -NonSackRttResiliency Disabled
@@ -55,19 +50,21 @@ Set-NetTCPSetting -AutoTuningLevelLocal Normal
 Set-NetTCPSetting -EcnCapability Disabled
 Set-NetTCPSetting -Timestamps Disabled
 
-# 4. Disable RSS Globally
+netsh interface teredo set state disabled
 netsh int tcp set global rss=enabled
-netsh int tcp set supplemental internet congestionprovider=cubic
+netsh int tcp set global netdma=disabled
+netsh int tcp set global ecncapability=disabled
+netsh int tcp set global fastopen=enabled
+netsh int tcp set global timestamps=disabled
+netsh int tcp set supplemental internet congestionprovider=ctcp
 
-# 5. Disable Specific Offloads Globally
 Set-NetOffloadGlobalSetting -ReceiveSegmentCoalescing Disabled
 Set-NetOffloadGlobalSetting -PacketCoalescingFilter Disabled
-Set-NetOffloadGlobalSetting -ReceiveSideScaling Disabled
+Set-NetOffloadGlobalSetting -ReceiveSideScaling Enabled
 Set-NetOffloadGlobalSetting -Chimney Disabled
 Disable-NetAdapterLso -Name *
 Disable-NetAdapterChecksumOffload -Name *
 
-# 6. Update Adapter-Specific Settings
 $SettingsToChange = @(
 	@{ DisplayName = 'Enable PME'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'Wake on Magic Packet'; DisplayValues = @('Disabled') },
@@ -139,13 +136,11 @@ $SettingsToChange = @(
 	# VMware Network Adapter VMnet1: Priority / VLAN tag: Valid Values: Priority & VLAN Disabled, Priority Enabled, VLAN Enabled, Priority & VLAN Enabled
 	# VMware Network Adapter VMnet1: VLAN ID: Valid Values:
 	# VMware Network Adapter VMnet1: Wake on LAN: Valid Values: Disabled, Enabled
-	# VMware Network Adapter VMnet8: Priority / VLAN tag: Valid Values: Priority & VLAN Disabled, Priority Enabled, VLAN Enabled, Priority & VLAN Enabled
-	# VMware Network Adapter VMnet8: VLAN ID: Valid Values:
-	# VMware Network Adapter VMnet8: Wake on LAN: Valid Values: Disabled, Enabled
 )
 
 $UnusedSettings = @()
 
+$NetworkAdapters = Get-NetAdapter
 foreach ($Adapter in $NetworkAdapters) {
 	$AdvancedProperties = try {
 		Get-NetAdapterAdvancedProperty -Name $Adapter.Name -ErrorAction Stop
@@ -198,19 +193,6 @@ else {
 	Write-Host 'No unused settings found.' -ForegroundColor Green
 }
 
-# 7. Disable Binding Settings for Specific Adapters
-$DisableAdapterSettings = @('Large Send Offload', 'Checksum Offload')
-foreach ($Setting in $DisableAdapterSettings) {
-	Write-Host "Disabling $Setting for all adapters" -ForegroundColor Green
-	Get-NetAdapter | ForEach-Object {
-		$Binding = Get-NetAdapterBinding -Name $_.Name -AllBindings | Where-Object { $_.DisplayName -eq $Setting }
-		if ($Binding) {
-			Disable-NetAdapterBinding -Name $_.Name -DisplayName $Setting -Confirm:$false
-		}
-	}
-}
-
-# 8. Enable or Disable Wake-on-LAN Based on User Input
 Add-Type -AssemblyName System.Windows.Forms
 $WakeOnLanAnswer = [Windows.Forms.MessageBox]::Show((New-Object Windows.Forms.Form -Property @{ TopMost = $true }), 'Enable Wake-On-Lan?', 'Wake-On-Lan', 4, 32)
 $PnPValue = if ($WakeOnLanAnswer -eq 'Yes') {
@@ -226,14 +208,12 @@ else {
  'Disabled' 
 }
 
-# Update Wake-on-LAN settings with the PnPValue
 $NetworkAdapters | ForEach-Object {
 	Set-NetAdapterPowerManagement -Name $_.Name -WakeOnPattern $WakeOnLanStatus -Confirm:$false
 	Set-NetAdapterPowerManagement -Name $_.Name -WakeOnMagicPacket $WakeOnLanStatus -Confirm:$false
 	Set-NetAdapterPowerManagement -Name $_.Name -DeviceSleepOnDisconnect $WakeOnLanStatus -Confirm:$false
 }
 
-# Update Registry for Enabling/Disabling Wake-on-LAN Based on User Input
 $KeyPath = 'HKLM:\SYSTEM\CurrentControlSet\Control\Class\{4D36E972-E325-11CE-BFC1-08002bE10318}\'
 $NetworkAdapters | ForEach-Object {
 	$Adapter = $_
@@ -268,10 +248,6 @@ foreach ($Adapter in $NetworkAdapters) {
 	}
 }
 
-# 9. Disable Teredo
-netsh interface teredo set state disabled
-
-# 10. Wait for Network Connection
 while (!(Resolve-DnsName google.com -ErrorAction SilentlyContinue)) {
 	Start-Sleep -Milliseconds 1000
 }
