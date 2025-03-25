@@ -54,6 +54,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. Disconnect Every Hard Drive Except Windows Drive.
    > This is to ensure you don't delete data from other drives, but if you know which drive partition belongs to which drive then you don't have to.
 1. Boot to UEFI USB (DEL/F12/F11).
+
    > Restart to BIOS - CMD (Admin):
    >
    > ```cmd

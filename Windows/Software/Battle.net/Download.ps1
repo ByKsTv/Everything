@@ -33,5 +33,5 @@ Start-Process $BattleNET_SavePath -ArgumentList $BattleNET_Argument -Wait
 
 # Task Manager: Startup apps: Delete: Battle.net
 if ($null -ne (Get-Item -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run').GetValue('Battle.net')) {
-	Remove-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'Battle.net'
+    Remove-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'Battle.net'
 }
