@@ -71,13 +71,16 @@ netsh int tcp set supplemental internet congestionprovider=ctcp
 netsh interface teredo set state disabled
 
 $SettingsToChange = @(
-	@{ DisplayName = 'Enable PME'; DisplayValues = @('Disabled') },
-	@{ DisplayName = 'Wake on Magic Packet'; DisplayValues = @('Disabled') },
-	@{ DisplayName = 'Wake on Magic Packet'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'ARP Offload'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Adaptive Inter-Frame Spacing'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'DMA Coalescing'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'ECMA'; DisplayValues = @('Enabled') },
+	@{ DisplayName = 'Enable PME'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'Energy Efficient Ethernet'; DisplayValues = @('Disabled', 'Off') },
 	@{ DisplayName = 'Flow Control'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Gigabit Lite'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'Gigabit Master Slave Mode'; DisplayValues = @('Auto Detect') },
+	@{ DisplayName = 'Green Ethernet'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'IPv4 Checksum Offload'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'Interrupt Moderation Rate'; DisplayValues = @('Off') },
 	@{ DisplayName = 'Interrupt Moderation'; DisplayValues = @('Disabled') },
@@ -91,16 +94,25 @@ $SettingsToChange = @(
 	@{ DisplayName = 'Max IRQ per Second'; DisplayValues = @('30000', '0') },
 	@{ DisplayName = 'Maximum Number of RSS Queues'; DisplayValues = @('1 RSS Queues', '2 RSS Queues', '4 RSS Queues', '1 Queue', '2 Queue', '4 Queue') },
 	@{ DisplayName = 'Maximum number of RSS Processors'; DisplayValues = @('1', '2', '4', '8') },
+	@{ DisplayName = 'Media Status'; DisplayValues = @('Always Connected') },
 	@{ DisplayName = 'NS Offload'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Non-Admin Access'; DisplayValues = @('Not Allowed') },
 	@{ DisplayName = 'PTP Hardware Timestamp'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'Packet Priority & VLAN'; DisplayValues = @('Packet Priority & VLAN Disabled') },
+	@{ DisplayName = 'Power Saving Mode'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Priority & VLAN'; DisplayValues = @('Priority & VLAN Disabled') },
+	@{ DisplayName = 'Priority / VLAN tag'; DisplayValues = @('Priority & VLAN Disabled') },
 	@{ DisplayName = 'Protocol ARP Offload'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'Protocol NS Offload'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'RSS load balancing profile'; DisplayValues = @('ClosestProcessor') },
 	@{ DisplayName = 'Receive Buffers'; DisplayValues = @('2048') },
 	@{ DisplayName = 'Receive Side Scaling'; DisplayValues = @('Enabled') },
 	@{ DisplayName = 'Reduce Speed On Power Down'; DisplayValues = @('Disabled') },
-	@{ DisplayName = 'Selective Suspend'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'SWOI'; DisplayValues = @('Enabled') },
 	@{ DisplayName = 'Selective Suspend Idle Timeout'; DisplayValues = @('5') },
+	@{ DisplayName = 'Selective Suspend'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Shutdown Wake Up'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Shutdown Wake-On-Lan'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'Software Timestamp'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'Speed & Duplex'; DisplayValues = @('1.0 Gbps Full Duplex') },
 	@{ DisplayName = 'System Idle Power Saver'; DisplayValues = @('Disabled') },
@@ -110,37 +122,24 @@ $SettingsToChange = @(
 	@{ DisplayName = 'UDP Checksum Offload (IPv4)'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'UDP Checksum Offload (IPv6)'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'Ultra Low Power Mode'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'WOL & Shutdown Link Speed'; DisplayValues = @('Not Speed Down') },
 	@{ DisplayName = 'Wait for Link'; DisplayValues = @('Off') },
 	@{ DisplayName = 'Wake from S0ix on Magic Packet'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Wake on LAN'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'Wake on Link Settings'; DisplayValues = @('Disabled') },
-	@{ DisplayName = 'Wake on Pattern Match'; DisplayValues = @('Disabled') },
-	@{ DisplayName = 'Adaptive Inter-Frame Spacing'; DisplayValues = @('Disabled') },
-	@{ DisplayName = 'DMA Coalescing'; DisplayValues = @('Disabled') },
-	@{ DisplayName = 'WOL & Shutdown Link Speed'; DisplayValues = @('Not Speed Down') },
-	@{ DisplayName = 'Shutdown Wake-On-Lan'; DisplayValues = @('Disabled') },
-	@{ DisplayName = 'Shutdown Wake Up'; DisplayValues = @('Disabled') },
-	@{ DisplayName = 'Priority & VLAN'; DisplayValues = @('Priority & VLAN Disabled') },
-	@{ DisplayName = 'Gigabit Lite'; DisplayValues = @('Disabled') },
-	@{ DisplayName = 'Power Saving Mode'; DisplayValues = @('Disabled') },
-	@{ DisplayName = 'Green Ethernet'; DisplayValues = @('Disabled') },
-	@{ DisplayName = 'ECMA'; DisplayValues = @('Enabled') }
+	@{ DisplayName = 'Wake on Magic Packet'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Wake on Pattern Match'; DisplayValues = @('Disabled') }
 
 	# TODO
 	# Ethernet0: Locally Administered Address: Valid Values:
 	# Ethernet0: Maximum RSS Processor Number: Valid Values: 
 	# Ethernet0: Preferred NUMA node: Valid Values: 
 	# Ethernet0: RSS Base Processor Number: Valid Values: 
-	# Ethernet0: RSS load balancing profile: Valid Values: ClosestProcessor, ClosestProcessorStatic, NUMAScaling, NUMAScalingStatic, ConservativeScaling
 	# Ethernet: Network Address: Valid Values:
-	# Ethernet: SWOI: Valid Values: Enabled, Disabled
 	# Ethernet: VLAN ID: Valid Values:
 	# Local Area Connection: MAC Address: Valid Values:
 	# Local Area Connection: MTU: Valid Values:
-	# Local Area Connection: Media Status: Valid Values: Application Controlled, Always Connected
-	# Local Area Connection: Non-Admin Access: Valid Values: Not Allowed, Allowed
-	# VMware Network Adapter VMnet1: Priority / VLAN tag: Valid Values: Priority & VLAN Disabled, Priority Enabled, VLAN Enabled, Priority & VLAN Enabled
 	# VMware Network Adapter VMnet1: VLAN ID: Valid Values:
-	# VMware Network Adapter VMnet1: Wake on LAN: Valid Values: Disabled, Enabled
 )
 
 $UnusedSettings = @()
