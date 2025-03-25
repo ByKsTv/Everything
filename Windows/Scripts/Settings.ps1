@@ -419,7 +419,7 @@ $AppsToInstall = @(
 
 foreach ($AppInstall in $AppsToInstall) {
 	$CapabilitiesInstall = Get-WindowsCapability -Online | Where-Object {
-		$_.State -eq 'NotPresent' -and
+		$_.State -ne 'Installed' -and
 		$_.Name -like "*$AppInstall*"
 	}
 
