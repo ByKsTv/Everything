@@ -19,18 +19,18 @@ Start-Service -Name 'SSDPSRV'
 Set-Service -Name 'upnphost' -StartupType Automatic
 Start-Service -Name 'upnphost'
 
-New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Name 'LocalPriority' -Value 4 -PropertyType 'DWord' -Force
-New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Name 'HostsPriority' -Value 5 -PropertyType 'DWord' -Force
-New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Name 'DnsPriority' -Value 6 -PropertyType 'DWord' -Force
-New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\ServiceProvider' -Name 'NetbtPriority' -Value 7 -PropertyType 'DWord' -Force
+New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\ServiceProvider' -Name 'LocalPriority' -Value 4 -PropertyType 'DWord' -Force
+New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\ServiceProvider' -Name 'HostsPriority' -Value 5 -PropertyType 'DWord' -Force
+New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\ServiceProvider' -Name 'DnsPriority' -Value 6 -PropertyType 'DWord' -Force
+New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\ServiceProvider' -Name 'NetbtPriority' -Value 7 -PropertyType 'DWord' -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile' -Name 'NetworkThrottlingIndex' -Value -1 -PropertyType 'DWord' -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile' -Name 'SystemResponsiveness' -Value 0 -PropertyType 'DWord' -Force
-New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\LanmanServer\Parameters' -Name 'Size' -Value 3 -PropertyType 'DWord' -Force
-New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\LanmanServer\Parameters' -Name 'IRPStackSize' -Value 32 -PropertyType 'DWord' -Force
-New-ItemProperty -Path 'HKLM:\System\ControlSet001\Control\Session Manager\Memory Management' -Name 'LargeSystemCache' -Value 0 -PropertyType 'DWord' -Force
-New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -Name 'MaxUserPort' -Value 65534 -PropertyType 'DWord' -Force
-New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -Name 'TcpTimedWaitDelay' -Value 30 -PropertyType 'DWord' -Force
-New-ItemProperty -Path 'HKLM:\System\ControlSet001\Services\Tcpip\Parameters' -Name 'DefaultTTL' -Value 64 -PropertyType 'DWord' -Force
+New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\LanmanServer\Parameters' -Name 'Size' -Value 3 -PropertyType 'DWord' -Force
+New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\LanmanServer\Parameters' -Name 'IRPStackSize' -Value 32 -PropertyType 'DWord' -Force
+New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Session Manager\Memory Management' -Name 'LargeSystemCache' -Value 0 -PropertyType 'DWord' -Force
+New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\Parameters' -Name 'MaxUserPort' -Value 65534 -PropertyType 'DWord' -Force
+New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\Parameters' -Name 'TcpTimedWaitDelay' -Value 30 -PropertyType 'DWord' -Force
+New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\Parameters' -Name 'DefaultTTL' -Value 64 -PropertyType 'DWord' -Force
 New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters' -Name 'SackOpts' -PropertyType DWord -Value 1 -Force
 New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters' -Name 'TcpMaxDupAcks' -PropertyType DWord -Value 2 -Force
 New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'FastSendDatagramThreshold' -PropertyType DWord -Value 0x10000 -Force
@@ -42,28 +42,33 @@ Get-ChildItem 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfac
 	New-ItemProperty -Path $_.PsPath -Name 'TCPNoDelay' -PropertyType DWord -Value 1 -Force
 }
 
-Set-NetTCPSetting -ScalingHeuristics Disabled
-Set-NetTCPSetting -MaxSynRetransmissions 2
-Set-NetTCPSetting -NonSackRttResiliency Disabled
-Set-NetTCPSetting -InitialRtoMs 300
+Disable-NetAdapterChecksumOffload -Name *
+Disable-NetAdapterLso -Name *
+Set-NetOffloadGlobalSetting -Chimney Disabled
+Set-NetOffloadGlobalSetting -PacketCoalescingFilter Disabled
+Set-NetOffloadGlobalSetting -ReceiveSegmentCoalescing Disabled
+Set-NetOffloadGlobalSetting -ReceiveSideScaling Enabled
 Set-NetTCPSetting -AutoTuningLevelLocal Normal
 Set-NetTCPSetting -EcnCapability Disabled
+Set-NetTCPSetting -InitialRtoMs 300
+Set-NetTCPSetting -MaxSynRetransmissions 2
+Set-NetTCPSetting -NonSackRttResiliency Disabled
+Set-NetTCPSetting -ScalingHeuristics Disabled
 Set-NetTCPSetting -Timestamps Disabled
-
-netsh interface teredo set state disabled
-netsh int tcp set global rss=enabled
-netsh int tcp set global netdma=disabled
+netsh int tcp set global autotuninglevel=normal
+netsh int tcp set global dca=disabled
 netsh int tcp set global ecncapability=disabled
 netsh int tcp set global fastopen=enabled
+netsh int tcp set global maxsynretransmissions=2
+netsh int tcp set global netdma=disabled
+netsh int tcp set global nonsackrttresiliency=disabled
+netsh int tcp set global pacingprofile=off
+netsh int tcp set global rsc=disabled
+netsh int tcp set global rss=enabled
 netsh int tcp set global timestamps=disabled
+netsh int tcp set heuristics disabled
 netsh int tcp set supplemental internet congestionprovider=ctcp
-
-Set-NetOffloadGlobalSetting -ReceiveSegmentCoalescing Disabled
-Set-NetOffloadGlobalSetting -PacketCoalescingFilter Disabled
-Set-NetOffloadGlobalSetting -ReceiveSideScaling Enabled
-Set-NetOffloadGlobalSetting -Chimney Disabled
-Disable-NetAdapterLso -Name *
-Disable-NetAdapterChecksumOffload -Name *
+netsh interface teredo set state disabled
 
 $SettingsToChange = @(
 	@{ DisplayName = 'Enable PME'; DisplayValues = @('Disabled') },
