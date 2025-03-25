@@ -21,6 +21,7 @@ pornolab.net##tr.tCenter.row3 > .med
 rutracker.org###logo
 www.aliexpress.com##.cart-recommend
 www.aliexpress.com##.order-block.order-recommend
+www.aliexpress.com##.product-recommend-pc.product-recommend
 www.aliexpress.com##[class*="cross-link--crossLink"]
 www.aliexpress.com##[class*="fusion-page-card--fusionPageCard"]
 www.aliexpress.com##[class*="recommend-platform--wrap"]
@@ -38,6 +39,7 @@ www.pornhub.com##.relatedSearchTermsBottom.sectionWrapper
 www.xvideos.com##.slogan
 www.ynet.co.il##.articleShareButtons
 www.youtube.com###attached-survey
+www.youtube.com##tp-yt-paper-dialog.ytd-popup-container.style-scope > .ytd-popup-container.style-scope
 xxxclub.to##[href="/c/donate/"]
 youtube.com##[page-subtype="home"] ytd-thumbnail-overlay-resume-playback-renderer:upward(ytd-rich-item-renderer)
 ||bringthemhomenow.net^
