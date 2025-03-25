@@ -91,7 +91,7 @@ $SettingsToChange = @(
 	@{ DisplayName = 'Large Send Offload v2 (IPv6)'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'Legacy Switch Compatibility Mode'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'Log Link State Event'; DisplayValues = @('Disabled') },
-	@{ DisplayName = 'Max IRQ per Second'; DisplayValues = @('30000', '0') },
+	@{ DisplayName = 'Max IRQ per Second'; DisplayValues = @('30000') },
 	@{ DisplayName = 'Maximum Number of RSS Queues'; DisplayValues = @('1 RSS Queues', '2 RSS Queues', '4 RSS Queues', '1 Queue', '2 Queue', '4 Queue') },
 	@{ DisplayName = 'Maximum number of RSS Processors'; DisplayValues = @('1', '2', '4', '8') },
 	@{ DisplayName = 'Media Status'; DisplayValues = @('Always Connected') },
