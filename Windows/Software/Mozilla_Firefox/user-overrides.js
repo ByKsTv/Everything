@@ -96,7 +96,7 @@ user_pref("identity.fxaccounts.toolbar.enabled", false);
 
 // Enable media autoplay
 user_pref("media.autoplay.blocking_policy", 0);
-user_pref("media.autoplay.default", 0);
+user_pref("media.autoplay.default", 1);
 
 // Maximize Window
 user_pref("privacy.resistFingerprinting", false);
