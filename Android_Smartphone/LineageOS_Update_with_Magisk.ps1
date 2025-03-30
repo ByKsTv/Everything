@@ -28,7 +28,9 @@ Write-Host "Magisk > Install > Select and Patch a File > boot.img > Let's Go." -
 Write-Host 'Please wait for phone to reboot into sideload' -ForegroundColor Yellow 
 [Windows.Forms.MessageBox]::Show('Please wait for phone to reboot into sideload', [Windows.Forms.MessageBoxButtons]::OK)
 
-& adb.exe sideload (Get-ChildItem "$env:USERPROFILE\Downloads\*.zip" | Where-Object { $_.Name -like '*lineage*' } | Select-Object -First 1).FullName
+& adb.exe sideload (Get-ChildItem "$env:USERPROFILE\Downloads\*.zip" | Where-Object {
+        $_.Name -like '*lineage*'
+    } | Select-Object -First 1).FullName
 
 Write-Host 'Do you want to reboot to recovery now? Yes' -ForegroundColor Yellow 
 [Windows.Forms.MessageBox]::Show('Do you want to reboot to recovery now? Yes', [Windows.Forms.MessageBoxButtons]::OK)
@@ -56,7 +58,9 @@ do {
 Write-Host 'Please wait for phone to reboot into sideload' -ForegroundColor Yellow 
 [Windows.Forms.MessageBox]::Show('Please wait for phone to reboot into sideload', [Windows.Forms.MessageBoxButtons]::OK)
 
-& adb.exe sideload (Get-ChildItem "$env:USERPROFILE\Downloads\*.zip" | Where-Object { $_.Name -like '*MindTheGapps*' } | Select-Object -First 1).FullName
+& adb.exe sideload (Get-ChildItem "$env:USERPROFILE\Downloads\*.zip" | Where-Object {
+        $_.Name -like '*MindTheGapps*'
+    } | Select-Object -First 1).FullName
 
 Write-Host 'Install anyway? > Yes' -ForegroundColor Yellow 
 [Windows.Forms.MessageBox]::Show('Install anyway? > Yes', [Windows.Forms.MessageBoxButtons]::OK)
