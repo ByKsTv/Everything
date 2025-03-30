@@ -2,7 +2,7 @@
 
 Everything about Android apps.
 
-## Android Apps
+## APKs
 
 | Name                           | Links                                                                                                                                                               | Mod to download                                                                            |
 | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
@@ -24,7 +24,7 @@ Everything about Android apps.
 | MacroDroid                     | [4pda](https://4pda.to/forum/index.php?act=findpost&pid=15401143)                                                                                                   | Pro by Balatan                                                                             |
 | Moovit: Bus & Train Schedules  | [4pda](https://4pda.to/forum/index.php?showtopic=719545#Spoil-46361566-4) / [mobilism](https://forum.mobilism.me/search.php?keywords=Moovit&sr=topics&sf=titleonly) | Ad Free                                                                                    |
 | Network Analyzer               | [4pda](https://4pda.to/forum/index.php?showtopic=969002&view=findpost&p=89769375)                                                                                   | Patched by youarefinished                                                                  |
-| Nova Launcher                  | [4pda](https://4pda.to/forum/index.php?act=findpost&pid=10706661&anchor=Spoil-10706661-9)                                                                           | Prime by Balatan                                                                           |
+| Nova Launcher                  | [4pda](https://4pda.to/forum/index.php?act=findpost&pid=10706661&anchor=Spoil-10706661-8)                                                                           | Prime by Balatan                                                                           |
 | Sesame Shortcuts               | [4pda](https://4pda.to/forum/index.php?showtopic=921566#entry77882334)                                                                                              | Unlocked by Balatan                                                                        |
 | Shazam                         | [4pda](https://4pda.to/forum/index.php?showtopic=128657#Spoil-2955496-4)                                                                                            | Mod by Balatan                                                                             |
 | Spotify                        | [4pda](https://4pda.to/forum/index.php?act=findpost&pid=8030514&anchor=Spoil-8030514-11)                                                                            | [Mod] [Amoled] [Gold] [Old] by LITEAPKS                                                    |
@@ -42,242 +42,130 @@ Everything about Android apps.
 
 ## IronFox Settings
 
-1. `Set IronFox as your default browser app`
-1. `Try IronFox Widget` > `Not Now`
-1. `Sign In`
-1. `Theme` > `Dark`
-1. `Address bar location` > `Down`
-1. `Settings` > `Search` > `Default search engine` > `Google`
-1. `Settings` > `Search` > `Manage alternative search engines` > Disable all
-1. `Settings` > `Search` > Disable all except `Search browsing history` and `Search bookmarks`
-1. `Settings` > `Tabs` > `List`
-1. `Settings` > `Tabs` > `Tabs you haven't viewed for two weeks get moved to the inactive section.` > Off
-1. `Settings` > `Homepage` > Disable all
-1. `Settings` > `Homepage` > `Last tab`
-1. `Settings` > `Customise` > `Pull to refresh` > Off
-1. `Settings` > `Passwords` > `Ask to save`
-1. `Settings` > `Passwords` > `Autofill in IronFox` > On
-1. `Settings` > `Passwords` > `Autofill in other apps` > On
-1. `Settings` > `Delete browsing data` > Disable `Open tabs` and `Browsing history` and `Cookies and site data`
-1. `Settings` > `Delete browsing data on quit` > Disable `Open tabs` and `Browsing history` and `Cookies and site data`
-1. `Settings` > `Add-ons` > `uBlock Origin` > `Settings` > [Restore from file](https://github.com/ByKsTv/Everything/blob/main/Windows/uBlock_Origin/Backup.json).
-<!-- 1. `about:config` > `webgl.disabled` > `false`.
-1. `about:config` > `media.autoplay.blocking_policy` > `0`. -->
+| Location                                                                                         | Action                                                                                                |
+| ------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
+|                                                                                                  | `Set IronFox as your default browser app`                                                             |
+| `Try IronFox Widget`                                                                             | `Not Now`                                                                                             |
+|                                                                                                  | `Sign In`                                                                                             |
+| `Theme`                                                                                          | `Dark`                                                                                                |
+| `Address bar location`                                                                           | `Down`                                                                                                |
+| `Settings` > `Search` > `Default search engine`                                                  | Disable all > Add `Google` with `https://www.google.com/search?q=%s`                                  |
+| `Settings` > `Search` > `Manage alternative search engines`                                      | Disable all                                                                                           |
+| `Settings` > `Search`                                                                            | Disable all except `Search browsing history` + `Search bookmarks`                                     |
+| `Settings` > `Tabs`                                                                              | `List`                                                                                                |
+| `Settings` > `Tabs` > `Tabs you haven't viewed for two weeks get moved to the inactive section.` | Disable                                                                                               |
+| `Settings` > `Homepage`                                                                          | Disable all                                                                                           |
+| `Settings` > `Homepage`                                                                          | `Last tab`                                                                                            |
+| `Settings` > `Customise` > `Pull to refresh`                                                     | Disable                                                                                               |
+| `Settings` > `Passwords` > `Save passwords`                                                      | `Ask to save`                                                                                         |
+| `Settings` > `Passwords` > `Autofill in IronFox`                                                 | Enable                                                                                                |
+| `Settings` > `Passwords` > `Autofill in other apps`                                              | Enable                                                                                                |
+| `Settings` > `Delete browsing data`                                                              | Disable: `Open tabs`, `Browsing history`, `Cookies and site data`                                     |
+| `Settings` > `Delete browsing data on quit`                                                      | Disable: `Open tabs`, `Browsing history`, `Cookies and site data`                                     |
+| `Settings` > `Add-ons` > `uBlock Origin` > `Settings`                                            | [Restore from file](https://github.com/ByKsTv/Everything/blob/main/Windows/uBlock_Origin/Backup.json) |
+| `about:config` > `media.autoplay.blocking_policy`                                                | `0`                                                                                                   |
+| `about:config` > `media.autoplay.default`                                                        | `1`                                                                                                   |
 
-## Common ADB Commands
+## Useful ADB Commands
 
-- Set the default ADB port for the device:
+| Command                                            | Description                            |
+| -------------------------------------------------- | -------------------------------------- |
+| `adb install <APK>`                                | Install APK directly to the device     |
+| `adb push <FILE> /storage/emulated/0/Download`     | Copy file from the PC to the device    |
+| `adb pull <PATH>`                                  | Copy file from the device to the PC    |
+| `adb shell pm list packages`                       | List all packages on the device        |
+| `adb shell pm path <PACKAGE>`                      | Get the path of an app                 |
+| `adb shell pm reset-permissions`                   | Reset all app permissions              |
+| `adb shell pm uninstall <PACKAGE>`                 | Force uninstall app                    |
+| `adb shell cmd package install-existing <PACKAGE>` | Install previously uninstalled package |
 
-```bash
-adb tcpip 5555
-```
+## What to backup
 
-- Connect to the device using WiFi:
+| Related to | Settings                                                                                                    |
+| ---------- | ----------------------------------------------------------------------------------------------------------- |
+| Google     | Google One (Apps, Photos & videos, SMS & MMS messages, Call history, Device settings, Google Account data)  |
+| WhatsApp   | `Settings` > `Chats` > `Chat backup` > `Back up` (`msgstore.db.crypt14`)                                    |
+| App data   | aRDP, HeliBoard, Instagram Mod, Nova Launcher, Seasame (Clean the file: `linkData.json`), Wake on Lan, GCAM |
+| Device     | Ringtones, Important files                                                                                  |
 
-```bash
-adb connect [IP]
-```
+## Switch from Official ROM to Custom ROM
 
-- Install APK directly to the device:
+### Prerequisites to Switching to Custom ROM
 
-```bash
-adb install [APK]
-```
+| To do                                                                                       |
+| ------------------------------------------------------------------------------------------- |
+| [Backup](#what-to-backup)                                                                   |
+| Charge device's battery                                                                     |
+| `Settings` > `Security` > `Screen lock` > `None`                                            |
+| `Settings` > `System` > `Developer options` > `OEM Unlock` > Enable                         |
+| `Settings` > `System` > `Developer options` > `USB debugging` > Enable                      |
+| Connect USB Cable from the device to the PC                                                 |
+| Download [LineageOS](https://download.lineageos.org/devices)                                |
+| Download [Google Apps](https://wiki.lineageos.org/gapps) matching `Mobile` and `ARM64`      |
+| Download [Magisk](https://github.com/topjohnwu/Magisk/releases/latest)                      |
+| Download [Lucky Patcher](https://chelpus.com/download/LP_Downloader.apk)                    |
+| Download [Basic Call Recorder](https://github.com/chenxiaolong/BCR/releases/latest)         |
+| Download [PlayIntegrityFix](https://github.com/chiteroman/PlayIntegrityFix/releases/latest) |
 
-- Copy file from the device to the PC:
+### Process of Switching from Official ROM to Custom ROM
 
-```bash
-adb pull [PATH]
-```
+| Command / Action                                                                            | Description                                                                                                       |
+| ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | --- | --- |
+| `adb devices`                                                                               | Make sure the device is detected by the PC                                                                        |
+| `Always allow from this computer` > `Allow`                                                 | Allow access on the device                                                                                        |
+| `adb install Magisk-v28.1.apk`                                                              | Install `Magisk` app to the device                                                                                |
+| `adb push boot.img /storage/emulated/0/Download`                                            | Copy `boot.img` from the PC to `Downloads` folder on the device                                                   |
+| `Magisk` > `Install` > `Select and Patch a File` > `boot.img` > `Let's Go`                  | Patch `boot.img` using `Magisk` app                                                                               |
+| `adb pull /storage/emulated/0/Download/magisk_patched.img`                                  | Copy patched `boot.img` from the device to the PC                                                                 |
+| `adb reboot bootloader`                                                                     | Reboot to bootloader                                                                                              |
+| `fastboot devices`                                                                          | If no devices detected - check Windows Update for drivers / `Device Manager` and manually select to update driver |
+| `fastboot oem unlock` > `UNLOCK THE BOOTLOADER`                                             | Unlock OEM Bootloader - This will wipe the data on the device                                                     |
+| `fastboot reboot`                                                                           | Reboot to system                                                                                                  |
+| `Settings` > `System` > `Developer options` > `USB debugging` > Enable                      | Enable `USB debugging`                                                                                            |
+| `Settings` > `System` > `System updates` > `Update`                                         | Update to latest android version                                                                                  |
+| `adb reboot bootloader`                                                                     | Reboot to bootloader                                                                                              |
+| `fastboot flash dtbo dtbo.img`                                                              | Flash `dtbo.img`                                                                                                  |
+| `fastboot flash vbmeta vbmeta.img`                                                          | Flash `vbmeta.img`                                                                                                |
+| `fastboot flash boot boot.img`                                                              | Flash original recovery image of Custom ROM                                                                       |
+| `fastboot flash boot magisk_patched.img`                                                    | Flash rooted recovery image of Custom ROM                                                                         |
+| `fastboot reboot recovery`                                                                  | Reboot to recovery                                                                                                |
+| `Factory Reset` > `Format data / factory reset` > `Format data`                             | Factory reset                                                                                                     |
+| `Advanced` > `Enable ADB` > `Apply Update` > `Apply from ADB`                               | Enable ADB and Use ADB to Sideload                                                                                |
+| `adb sideload lineage-22.1-20250105-nightly-signed.zip`                                     | Sideload Custom ROM                                                                                               |
+| `Reboot to recovery` > `Yes`                                                                | Reboot to recovery                                                                                                |
+| `Advanced` > `Enable ADB` > `Apply Update` > `Apply from ADB`                               | Enable ADB and Use ADB to Sideload                                                                                |     |     |
+| `adb sideload MindTheGapps-15.0.0-arm64-20240928_150548.zip`                                | Sideload Google Apps                                                                                              |
+| `Signature verification failed, install anyway?` > `Yes`                                    | Install anyway                                                                                                    |
+| `Reboot system now`                                                                         | Reboot to system                                                                                                  |
+| `adb push BCR-1.77-release.zip /storage/emulated/0/Download`                                | Copy `Basic Call Recorder` from PC to `Downloads` folder on the device                                            |
+| `Magisk` > `Modules` > `Install from storage` > `BCR-1.77-release.zip` > `Reboot Now`       | Install `Basic Call Recorder` app                                                                                 |
+| `adb push PlayIntegrityFix_v18.8.zip /storage/emulated/0/Download`                          | Copy `Play Integrity Fix` from PC to `Downloads` folder on the device                                             |
+| `Magisk` > `Modules` > `Install from storage` > `PlayIntegrityFix_v18.8.zip` > `Reboot Now` | Install `Play Integrity Fix` on the device                                                                        |
+| `adb install LP_Downloader.apk`                                                             | Install `Lucky Patcher`                                                                                           |
 
-- Copy file from the PC to the device:
+### Finish Setting Up
 
-```bash
-adb push [FILE] [PATH]
-```
+| Action                                                                                         | Description |
+| ---------------------------------------------------------------------------------------------- | ----------- |
+| `BCR` > `Output format` > `FLAC`                                                               |             |
+| `Magisk` > `Settings` > `Systemless hosts`                                                     |             |
+| `Magisk` > `Settings` > `Zygisk`                                                               |             |
+| `Magisk` > `Settings` > `Enforce DenyList`                                                     |             |
+| `Magisk` > `Settings` > `Configure DenyList` > Add Bank App, Credit Card apps, Health Care App |             |
+| `Lucky Patcher` > `Toolbox` > `Block Ads` > `Turn off Google Ads services`                     |             |
+| `Lucky Patcher` > `Toolbox` > `Block Ads` > `Block ads on Device`                              |             |
+| Disable USB Debugging                                                                          |             |
 
-- Install previously uninstalled package:
+## Update Custom ROM
 
-```bash
-adb shell cmd package install-existing [PACKAGE]
-```
+### Prerequisites to Update Custom ROM
 
-- List all packages on the device:
-
-```bash
-adb shell pm list packages
-```
-
-- Get the path of an app:
-
-```bash
-adb shell pm path [PACKAGE]
-```
-
-- Reset all app permissions:
-
-```bash
-adb shell pm reset-permissions
-```
-
-- Force uninstall app:
-
-```bash
-adb shell pm uninstall [PACKAGE]
-```
-
-## Backup
-
-- Google: Apps, Photos & videos, SMS & MMS messages, Call history, Device settings, Google Account data
-- App Data: aRDP, HeliBoard, Instagram Mod, Nova Launcher, Seasame (Clean the file: `linkData.json`), Wake on Lan, GCAM
-- WhatsApp (Chats: `msgstore.db.crypt14`), Files, Ringtones
-
-## Install LineageOS + Magisk (ROOT) + Lucky Patcher + Basic Call Recorder + Google Play Store
-
-> This process will wipe the data of your device so make sure to back up.
-
-1. Charge phone.
-1. Enable OEM Unlock in Developer Options.
-1. Connect USB Cable from the device to the PC.
-1. Enable USB Debugging in Developer Options.
-1. Download latest `.zip` and `.img` files for [LineageOS](https://download.lineageos.org/devices) (Select your device and follow their wiki of installation).
-1. Download [Google Apps](https://wiki.lineageos.org/gapps/#mobile) (Select `ARM64`).
-1. Download [Magisk](https://github.com/topjohnwu/Magisk/releases/latest).
-1. Download [Basic Call Recorder](https://github.com/chenxiaolong/BCR/releases/latest).
-1. Download [Lucky Patcher](https://chelpus.com/download/LP_Downloader.apk).
-1. Connect to the device using USB:
-
-> ADB is required to be in PATH.
-
-```bash
-adb devices
-```
-
-1. `Always allow from this computer` > `Allow`.
-1. Install Magisk App to the device:
-
-```bash
-adb install Magisk-v28.1.apk
-```
-
-1. Copy `boot.img` from the PC to the device:
-
-```bash
-adb push boot.img /storage/emulated/0/Download
-```
-
-1. `Magisk` > `Install` > `Select and Patch a File` > `boot.img` > `Let's Go`.
-1. Copy the patched `boot.img` file from the device to the PC:
-
-```bash
-adb pull /storage/emulated/0/Download/magisk_patched.img
-```
-
-1. Reboot to `bootloader`:
-
-```bash
-adb reboot bootloader
-```
-
-1. Connect to the device:
-
-```bash
-fastboot devices
-```
-
-1. if device is not found - Powershell (Admin):
-
-```powershell
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/USB_Driver/Download.ps1')
-
-```
-
-1. Check for Windows Update for drivers.
-1. Unlock OEM Bootloader:
-
-```bash
-fastboot oem unlock
-```
-
-1. Select `UNLOCK THE BOOTLOADER` (WARNING: This will wipe the data on the device)
-1. Reboot to Android OS:
-
-```bash
-fastboot reboot
-```
-
-1. Enable USB Debugging in Developer Options.
-1. Install the latest android updates if available.
-1. Reboot to `bootloader`:
-
-```bash
-adb reboot bootloader
-```
-
-1. Flash new ROM:
-
-```bash
-fastboot flash dtbo dtbo.img
-fastboot flash vbmeta vbmeta.img
-fastboot flash boot boot.img
-fastboot flash boot magisk_patched.img
-```
-
-1. Reboot to recovery:
-
-```bash
-fastboot reboot recovery
-```
-
-1. `Factory Reset` > `Format data / factory reset` > `Format data`
-1. `Main menu` > `Apply Update` > `Apply from ADB`
-1. Sideload LineageOS zip file:
-
-```bash
-adb sideload lineage-22.1-20250105-nightly-guacamoleb-signed.zip
-```
-
-1. `Reboot to recovery` > `Yes`
-1. `Enable ADB`.
-1. `Apply Update` > `Apply from ADB`
-1. Sideload Google Apps zip file:
-
-```bash
-adb sideload MindTheGapps-15.0.0-arm64-20240928_150548.zip
-```
-
-1. `Signature verification failed, install anyway?` > `Yes`
-1. `Reboot system now`
-1. Copy `BCR-1.76-release.zip` to the device:
-
-```bash
-adb push BCR-1.76-release.zip /storage/emulated/0/Download
-```
-
-1. `Magisk` > `Modules` > `Install from storage` > `BCR-1.76-release.zip` > `Reboot Now`
-1. `BCR` > `Output format`: `FLAC`
-1. `Magisk` > `Settings` > `Systemless hosts`
-1. `Magisk` > `Settings` > `Zygisk`
-1. `Magisk` > `Settings` > `Enforce DenyList`
-1. `Magisk` > `Settings` > `Configure DenyList` > Add Bank App, Credit Card apps, Health Care App.
-1. Install `Lucky Patcher`:
-
-```bash
-adb install LP_Downloader.apk
-```
-
-1. `Lucky Patcher` > `Toolbox` > `Block Ads` > `Turn off Google Ads services`
-1. `Lucky Patcher` > `Toolbox` > `Block Ads` > `Block ads on Device`
-1. Disable USB Debugging.
-
-## Update LineageOS + Google Play Store + Magisk (ROOT)
-
-> Everytime LineageOS updates we need to reinstall Magisk (ROOT).
-
-1. Download latest `LineageOS.zip` and `boot.img` files for [LineageOS](https://download.lineageos.org/devices) (Select your device)
-1. Download [Google Apps](https://wiki.lineageos.org/gapps/#mobile) (Select `ARM64`).
-1. Connect USB Cable from the device to the PC.
-1. Enable USB Debugging in Developer Options.
+| To do                                                                                  |
+| -------------------------------------------------------------------------------------- |
+| `Settings` > `System` > `Developer options` > `USB debugging` > Enable                 |
+| Connect USB Cable from the device to the PC                                            |
+| Download [LineageOS](https://download.lineageos.org/devices)                           |
+| Download [Google Apps](https://wiki.lineageos.org/gapps) matching `Mobile` and `ARM64` |
 
 1. PowerShell (Admin):
 
@@ -286,9 +174,60 @@ adb install LP_Downloader.apk
 
    ```
 
+## Factory Reset Custom ROM
+
+### Prerequisites to Factory Reset Custom ROM
+
+| To do                                                                                       |
+| ------------------------------------------------------------------------------------------- |
+| [Backup](#what-to-backup)                                                                   |
+| Charge device's battery                                                                     |
+| `Settings` > `Security` > `Screen lock` > `None`                                            |
+| `Settings` > `System` > `Developer options` > `USB debugging` > Enable                      |
+| Connect USB Cable from the device to the PC                                                 |
+| Download [LineageOS](https://download.lineageos.org/devices)                                |
+| Download [Google Apps](https://wiki.lineageos.org/gapps) matching `Mobile` and `ARM64`      |
+| Download [Magisk](https://github.com/topjohnwu/Magisk/releases/latest)                      |
+| Download [Lucky Patcher](https://chelpus.com/download/LP_Downloader.apk)                    |
+| Download [Basic Call Recorder](https://github.com/chenxiaolong/BCR/releases/latest)         |
+| Download [PlayIntegrityFix](https://github.com/chiteroman/PlayIntegrityFix/releases/latest) |
+
+### Process of Factory Reset Custom ROM
+
+| Command / Action                                                                            | Description                                                            |
+| ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | --- | --- |
+| `adb devices`                                                                               | Make sure the device is detected by the PC                             |
+| `Always allow from this computer` > `Allow`                                                 | Allow access on the device                                             |
+| `adb install Magisk-v28.1.apk`                                                              | Install `Magisk` app to the device                                     |
+| `adb push boot.img /storage/emulated/0/Download`                                            | Copy `boot.img` from the PC to `Downloads` folder on the device        |
+| `Magisk` > `Install` > `Select and Patch a File` > `boot.img` > `Let's Go`                  | Patch `boot.img` using `Magisk` app                                    |
+| `adb pull /storage/emulated/0/Download/magisk_patched.img`                                  | Copy patched `boot.img` from the device to the PC                      |
+| `adb reboot recovery`                                                                       | Reboot to recovery                                                     |
+| `Factory Reset` > `Format data / factory reset` > `Format data`                             | Factory reset                                                          |
+| `Advanced` > `Enable ADB` > `Apply Update` > `Apply from ADB`                               | Enable ADB and Use ADB to Sideload                                     |
+| `adb sideload lineage-22.1-20250105-nightly-signed.zip`                                     | Sideload Custom ROM                                                    |
+| `Reboot to recovery` > `Yes`                                                                | Reboot to recovery                                                     |
+| `Advanced` > `Enable ADB` > `Apply Update` > `Apply from ADB`                               | Enable ADB and Use ADB to Sideload                                     |     |     |
+| `adb sideload MindTheGapps-15.0.0-arm64-20240928_150548.zip`                                | Sideload Google Apps                                                   |
+| `Signature verification failed, install anyway?` > `Yes`                                    | Install anyway                                                         |
+| `adb reboot bootloader`                                                                     | Reboot to bootloader                                                   |
+| `fastboot flash boot magisk_patched.img`                                                    | Flash rooted recovery image of Custom ROM                              |
+| `fastboot reboot`                                                                           | Reboot to system                                                       |
+| `adb push BCR-1.77-release.zip /storage/emulated/0/Download`                                | Copy `Basic Call Recorder` from PC to `Downloads` folder on the device |
+| `Magisk` > `Modules` > `Install from storage` > `BCR-1.77-release.zip` > `Reboot Now`       | Install `Basic Call Recorder` app                                      |
+| `adb push PlayIntegrityFix_v18.8.zip /storage/emulated/0/Download`                          | Copy `Play Integrity Fix` from PC to `Downloads` folder on the device  |
+| `Magisk` > `Modules` > `Install from storage` > `PlayIntegrityFix_v18.8.zip` > `Reboot Now` | Install `Play Integrity Fix` on the device                             |
+| `adb install LP_Downloader.apk`                                                             | Install `Lucky Patcher`                                                |
+
 ## Transfer data from existing non-functional phone to existing old functional phone
 
-1. On the non-functional phone: Remove the existing SIM
-1. On the old functional phone: Backup Google Photos, etc.
-1. On the old functional phone: Factory reset and if requires a password use the saved password.
-   > Do NOT factory reset using Recovery (Volume Up + Power).
+### Prerequisites to Transfer data
+
+| To do                                                                                        | Notes                                                   |
+| -------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| [Backup](#what-to-backup)                                                                    |                                                         |
+| Charge device's battery                                                                      |                                                         |
+| `Settings` > `Security` > `Screen lock` > `None`                                             |                                                         |
+| On the non-functional phone: Remove the existing SIM                                         |                                                         |
+| On the old functional phone: Backup Google One, Photos, etc                                  |                                                         |
+| On the old functional phone: Factory reset and if requires a password use the saved password | Do NOT factory reset using Recovery (Volume Up + Power) |
