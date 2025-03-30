@@ -110,7 +110,7 @@ Everything about Android apps.
 ### Process of Switching from Official ROM to Custom ROM
 
 | Command / Action                                                                            | Description                                                                                                       |
-| ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | --- | --- |
+| ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | `adb devices`                                                                               | Make sure the device is detected by the PC                                                                        |
 | `Always allow from this computer` > `Allow`                                                 | Allow access on the device                                                                                        |
 | `adb install Magisk-v28.1.apk`                                                              | Install `Magisk` app to the device                                                                                |
@@ -133,7 +133,7 @@ Everything about Android apps.
 | `Advanced` > `Enable ADB` > `Apply Update` > `Apply from ADB`                               | Enable ADB and Use ADB to Sideload                                                                                |
 | `adb sideload lineage-22.1-20250105-nightly-signed.zip`                                     | Sideload Custom ROM                                                                                               |
 | `Reboot to recovery` > `Yes`                                                                | Reboot to recovery                                                                                                |
-| `Advanced` > `Enable ADB` > `Apply Update` > `Apply from ADB`                               | Enable ADB and Use ADB to Sideload                                                                                |     |     |
+| `Advanced` > `Enable ADB` > `Apply Update` > `Apply from ADB`                               | Enable ADB and Use ADB to Sideload                                                                                |
 | `adb sideload MindTheGapps-15.0.0-arm64-20240928_150548.zip`                                | Sideload Google Apps                                                                                              |
 | `Signature verification failed, install anyway?` > `Yes`                                    | Install anyway                                                                                                    |
 | `Reboot system now`                                                                         | Reboot to system                                                                                                  |
