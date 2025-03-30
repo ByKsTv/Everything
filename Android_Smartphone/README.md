@@ -143,7 +143,7 @@ Everything about Android apps.
 | `Magisk` > `Modules` > `Install from storage` > `PlayIntegrityFix_v18.8.zip` > `Reboot Now` | Install `Play Integrity Fix` on the device                                                                        |
 | `adb install LP_Downloader.apk`                                                             | Install `Lucky Patcher`                                                                                           |
 
-### Finish Setting Up
+### Finish Setting Up Custom ROM
 
 | Action                                                                                         | Description |
 | ---------------------------------------------------------------------------------------------- | ----------- |
@@ -220,6 +220,8 @@ Everything about Android apps.
 | `adb push PlayIntegrityFix_v18.8.zip /storage/emulated/0/Download`                          | Copy `Play Integrity Fix` from PC to `Downloads` folder on the device  |
 | `Magisk` > `Modules` > `Install from storage` > `PlayIntegrityFix_v18.8.zip` > `Reboot Now` | Install `Play Integrity Fix` on the device                             |
 | `adb install LP_Downloader.apk`                                                             | Install `Lucky Patcher`                                                |
+
+[Finish Setting Up Custom ROM](#finish-setting-up-custom-rom)
 
 ## Transfer data from existing non-functional phone to existing old functional phone
 
