@@ -167,6 +167,8 @@ Everything about Android apps.
 | Download [LineageOS](https://download.lineageos.org/devices)                           |
 | Download [Google Apps](https://wiki.lineageos.org/gapps) matching `Mobile` and `ARM64` |
 
+### Process of Update Custom ROM
+
 1. PowerShell (Admin):
 
    ```powershell
