@@ -51,7 +51,7 @@ Everything about Android apps.
 | `Address bar location`                                                                           | `Down`                                                                                                |
 | `Settings` > `Search` > `Default search engine`                                                  | Disable all > Add `Google` with `https://www.google.com/search?q=%s`                                  |
 | `Settings` > `Search` > `Manage alternative search engines`                                      | Disable all                                                                                           |
-| `Settings` > `Search`                                                                            | Disable all except `Search browsing history` + `Search bookmarks`                                     |
+| `Settings` > `Search`                                                                            | Disable all except `Search browsing history`,`Search bookmarks`                                       |
 | `Settings` > `Tabs`                                                                              | `List`                                                                                                |
 | `Settings` > `Tabs` > `Tabs you haven't viewed for two weeks get moved to the inactive section.` | Disable                                                                                               |
 | `Settings` > `Homepage`                                                                          | Disable all                                                                                           |
