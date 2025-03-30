@@ -245,3 +245,11 @@ Disable USB debugging.
 | On the non-functional phone: Remove the existing SIM                                         |                                                         |
 | On the old functional phone: Backup Google One, Photos, etc                                  |                                                         |
 | On the old functional phone: Factory reset and if requires a password use the saved password | Do NOT factory reset using Recovery (Volume Up + Power) |
+
+## Install all APKs from Downloads folder
+
+```powershell
+Get-ChildItem "$env:USERPROFILE\Downloads" -Filter *.apk | ForEach-Object {
+    & adb.exe install $_.FullName
+}
+```
