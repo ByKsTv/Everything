@@ -654,3 +654,15 @@ $NotepadDefaultExts = @('.lua', '.conf', '.json', '.glsl', '.xml')
 foreach ($NotepadDefaultExt in $NotepadDefaultExts) {
 	New-Item "HKCU:\Software\Classes\$NotepadDefaultExt\shell\open\command" -Force | Set-ItemProperty -Name '(default)' -Value 'notepad.exe %1' 
 }
+
+# Narrator: Do not show again
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Narrator' -Name 'ShortcutKeysDialogState' -Value 1 -PropertyType DWord -Force
+
+# Settings: Accessibility: Narrator: Keyboard shortcut for Narrator: Off
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Narrator\NoRoam' -Name 'WinEnterLaunchEnabled' -Value 0 -PropertyType DWord -Force
+
+# Settings: Accessibility: Narrator: Volume: 1
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Narrator\NoRoam' -Name 'SpeechVolume' -Value 1 -PropertyType DWord -Force
+
+# Settings: Accessibility: Narrator: Enable Narrator extenstions: Off
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Narrator\NoRoam' -Name 'ScriptingEnabled' -Value 0 -PropertyType DWord -Force
