@@ -160,21 +160,30 @@ Everything about Android apps.
 
 ### Prerequisites to Update Custom ROM
 
-| To do                                                                                  |
-| -------------------------------------------------------------------------------------- |
-| `Settings` > `System` > `Developer options` > `USB debugging` > Enable                 |
-| Connect USB Cable from the device to the PC                                            |
-| Download [LineageOS](https://download.lineageos.org/devices)                           |
-| Download [Google Apps](https://wiki.lineageos.org/gapps) matching `Mobile` and `ARM64` |
+| To do                                                                             |
+| --------------------------------------------------------------------------------- |
+| `Settings` > `System` > `Developer options` > `USB debugging` > Enable            |
+| Connect USB Cable from the device to the PC                                       |
+| Download [LineageOS](https://download.lineageos.org/devices) `zip` and `boot.img` |
+| Download [Google Apps](https://wiki.lineageos.org/gapps) `Mobile` and `ARM64`     |
 
 ### Process of Update Custom ROM
 
-1. PowerShell (Admin):
-
-   ```powershell
-   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Android_Smartphone/LineageOS_Update_with_Magisk.ps1')
-
-   ```
+| Command / Action                                                           | Description                                                     |
+| -------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| `adb push boot.img /storage/emulated/0/Download`                           | Copy `boot.img` from the PC to `Downloads` folder on the device |
+| `Magisk` > `Install` > `Select and Patch a File` > `boot.img` > `Let's Go` | Patch `boot.img` using `Magisk` app                             |
+| `adb pull /storage/emulated/0/Download/magisk_patched.img`                 | Copy patched `boot.img` from the device to the PC               |
+| `adb reboot sideload`                                                      | Reboot to sideload                                              |
+| `adb sideload lineage-22.1-20250105-nightly-signed.zip`                    | Sideload Custom ROM                                             |
+| `Reboot to recovery` > `Yes`                                               | Reboot to recovery                                              |
+| `Advanced` > `Enable ADB` > `Apply Update` > `Apply from ADB`              | Enable ADB and Use ADB to Sideload                              |
+| `adb sideload MindTheGapps-15.0.0-arm64-20240928_150548.zip`               | Sideload Google Apps                                            |
+| `Signature verification failed, install anyway?` > `Yes`                   | Install anyway                                                  |
+| `Advanced` > `Enable ADB`                                                  | Enable ADB                                                      |
+| `adb reboot bootloader`                                                    | Reboot to bootloader                                            |
+| `fastboot flash boot magisk_patched.img`                                   | Flash rooted recovery image of Custom ROM                       |
+| `fastboot reboot`                                                          | Reboot to system                                                |
 
 ## Factory Reset Custom ROM
 
