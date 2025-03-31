@@ -1,17 +1,12 @@
 # TV Time Stats
 stats.tvtime.com
-
 # Kan11 Loading Fix
 smartplugin.youbora.com
-
 # N12 Android TV App Full Screen
 pubads.g.doubleclick.net
-
 # N12 Ad Blocker Warning
 imasdk.googleapis.com
-
 # YouTube Mark Watched
 s.youtube.com
-
 # Wheres my droid
 wmdcommander.appspot.com
