@@ -60,6 +60,7 @@ Everything about Android apps.
 | `Settings` > `Passwords` > `Save passwords`                                                      | `Ask to save`                                                                                         |
 | `Settings` > `Passwords` > `Autofill in IronFox`                                                 | Enable                                                                                                |
 | `Settings` > `Passwords` > `Autofill in other apps`                                              | Enable                                                                                                |
+| `Settings` > `DNS Over HTTPS`                                                                    | Off                                                                                                   |
 | `Settings` > `Delete browsing data`                                                              | Disable: `Open tabs`, `Browsing history`, `Cookies and site data`                                     |
 | `Settings` > `Delete browsing data on quit`                                                      | Disable: `Open tabs`, `Browsing history`, `Cookies and site data`                                     |
 | `Settings` > `Add-ons` > `uBlock Origin` > `Settings`                                            | [Restore from file](https://github.com/ByKsTv/Everything/blob/main/Windows/uBlock_Origin/Backup.json) |
