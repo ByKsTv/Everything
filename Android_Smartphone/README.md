@@ -93,56 +93,64 @@ Everything about Android apps.
 
 ### Prerequisites to Switching to Custom ROM
 
-| To do                                                                                       |
-| ------------------------------------------------------------------------------------------- |
-| [Backup](#what-to-backup)                                                                   |
-| Charge device's battery                                                                     |
-| `Settings` > `Security` > `Screen lock` > `None`                                            |
-| `Settings` > `System` > `Developer options` > `OEM Unlock` > Enable                         |
-| `Settings` > `System` > `Developer options` > `USB debugging` > Enable                      |
-| Connect USB Cable from the device to the PC                                                 |
-| Download [LineageOS](https://download.lineageos.org/devices)                                |
-| Download [Google Apps](https://wiki.lineageos.org/gapps) matching `Mobile` and `ARM64`      |
-| Download [Magisk](https://github.com/topjohnwu/Magisk/releases/latest)                      |
-| Download [Lucky Patcher](https://chelpus.com/download/LP_Downloader.apk)                    |
-| Download [Basic Call Recorder](https://github.com/chenxiaolong/BCR/releases/latest)         |
-| Download [PlayIntegrityFix](https://github.com/chiteroman/PlayIntegrityFix/releases/latest) |
+| To do                                                                                                                  |
+| ---------------------------------------------------------------------------------------------------------------------- |
+| [Backup](#what-to-backup)                                                                                              |
+| Charge device's battery                                                                                                |
+| `Settings` > `Security` > `Screen lock` > `None`                                                                       |
+| `Settings` > `System` > `Developer options` > `OEM Unlock` > Enable                                                    |
+| `Settings` > `System` > `Developer options` > `USB debugging` > Enable                                                 |
+| Connect USB Cable from the device to the PC                                                                            |
+| Download [LineageOS](https://download.lineageos.org/devices)                                                           |
+| Download [Google Apps](https://wiki.lineageos.org/gapps) matching `Mobile` and `ARM64`                                 |
+| Download [Magisk](https://github.com/topjohnwu/Magisk/releases/latest)                                                 |
+| Download [Basic Call Recorder](https://github.com/chenxiaolong/BCR/releases/latest)                                    |
+| Download [PlayIntegrityFix](https://github.com/chiteroman/PlayIntegrityFix/releases/latest)                            |
+| Download [LSPosed](https://github.com/JingMatrix/LSPosed/releases/latest)                                              |
+| Download [Zygisk-Assistant](https://github.com/snake-4/Zygisk-Assistant/releases/latest)                               |
+| Download [TrickyStore](https://github.com/5ec1cff/TrickyStore/releases/latest)                                         |
+| Download [Tricky-Addon-Update-Target-List](https://github.com/KOWX712/Tricky-Addon-Update-Target-List/releases/latest) |
+| Download [WaEnhancer](https://github.com/Dev4Mod/WaEnhancer/releases/latest)                                           |
+| Download [Lucky Patcher](https://chelpus.com/download/LP_Downloader.apk)                                               |
 
 ### Process of Switching from Official ROM to Custom ROM
 
-| Command / Action                                                                            | Description                                                                                                       |
-| ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `adb devices`                                                                               | Make sure the device is detected by the PC                                                                        |
-| `Always allow from this computer` > `Allow`                                                 | Allow access on the device                                                                                        |
-| `adb install Magisk-v28.1.apk`                                                              | Install `Magisk` app to the device                                                                                |
-| `adb push boot.img /storage/emulated/0/Download`                                            | Copy `boot.img` from the PC to `Downloads` folder on the device                                                   |
-| `Magisk` > `Install` > `Select and Patch a File` > `boot.img` > `Let's Go`                  | Patch `boot.img` using `Magisk` app                                                                               |
-| `adb pull /storage/emulated/0/Download/magisk_patched.img`                                  | Copy patched `boot.img` from the device to the PC                                                                 |
-| `adb reboot bootloader`                                                                     | Reboot to bootloader                                                                                              |
-| `fastboot devices`                                                                          | If no devices detected - check Windows Update for drivers / `Device Manager` and manually select to update driver |
-| `fastboot oem unlock` > `UNLOCK THE BOOTLOADER`                                             | Unlock OEM Bootloader - This will wipe the data on the device                                                     |
-| `fastboot reboot`                                                                           | Reboot to system                                                                                                  |
-| `Settings` > `System` > `Developer options` > `USB debugging` > Enable                      | Enable `USB debugging`                                                                                            |
-| `Settings` > `System` > `System updates` > `Update`                                         | Update to latest android version                                                                                  |
-| `adb reboot bootloader`                                                                     | Reboot to bootloader                                                                                              |
-| `fastboot flash dtbo dtbo.img`                                                              | Flash `dtbo.img`                                                                                                  |
-| `fastboot flash vbmeta vbmeta.img`                                                          | Flash `vbmeta.img`                                                                                                |
-| `fastboot flash boot boot.img`                                                              | Flash original recovery image of Custom ROM                                                                       |
-| `fastboot flash boot magisk_patched.img`                                                    | Flash rooted recovery image of Custom ROM                                                                         |
-| `fastboot reboot recovery`                                                                  | Reboot to recovery                                                                                                |
-| `Factory Reset` > `Format data / factory reset` > `Format data`                             | Factory reset                                                                                                     |
-| `Advanced` > `Enable ADB` > `Apply Update` > `Apply from ADB`                               | Enable ADB and Use ADB to Sideload                                                                                |
-| `adb sideload lineage-22.1-20250105-nightly-signed.zip`                                     | Sideload Custom ROM                                                                                               |
-| `Reboot to recovery` > `Yes`                                                                | Reboot to recovery                                                                                                |
-| `Advanced` > `Enable ADB` > `Apply Update` > `Apply from ADB`                               | Enable ADB and Use ADB to Sideload                                                                                |
-| `adb sideload MindTheGapps-15.0.0-arm64-20240928_150548.zip`                                | Sideload Google Apps                                                                                              |
-| `Signature verification failed, install anyway?` > `Yes`                                    | Install anyway                                                                                                    |
-| `Reboot system now`                                                                         | Reboot to system                                                                                                  |
-| `adb push BCR-1.77-release.zip /storage/emulated/0/Download`                                | Copy `Basic Call Recorder` from PC to `Downloads` folder on the device                                            |
-| `Magisk` > `Modules` > `Install from storage` > `BCR-1.77-release.zip` > `Reboot Now`       | Install `Basic Call Recorder` app                                                                                 |
-| `adb push PlayIntegrityFix_v18.8.zip /storage/emulated/0/Download`                          | Copy `Play Integrity Fix` from PC to `Downloads` folder on the device                                             |
-| `Magisk` > `Modules` > `Install from storage` > `PlayIntegrityFix_v18.8.zip` > `Reboot Now` | Install `Play Integrity Fix` on the device                                                                        |
-| `adb install LP_Downloader.apk`                                                             | Install `Lucky Patcher`                                                                                           |
+| Command / Action                                                                                         | Description                                                                                                       |
+| -------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `adb devices`                                                                                            | Make sure the device is detected by the PC                                                                        |
+| `Always allow from this computer` > `Allow`                                                              | Allow access on the device                                                                                        |
+| `adb install Magisk-v28.1.apk`                                                                           | Install `Magisk` app to the device                                                                                |
+| `adb push boot.img /storage/emulated/0/Download`                                                         | Copy `boot.img` from the PC to `Downloads` folder on the device                                                   |
+| `Magisk` > `Install` > `Select and Patch a File` > `boot.img` > `Let's Go`                               | Patch `boot.img` using `Magisk` app                                                                               |
+| `adb pull /storage/emulated/0/Download/magisk_patched.img`                                               | Copy patched `boot.img` from the device to the PC                                                                 |
+| `adb reboot bootloader`                                                                                  | Reboot to bootloader                                                                                              |
+| `fastboot devices`                                                                                       | If no devices detected - check Windows Update for drivers / `Device Manager` and manually select to update driver |
+| `fastboot oem unlock` > `UNLOCK THE BOOTLOADER`                                                          | Unlock OEM Bootloader - This will wipe the data on the device                                                     |
+| `fastboot reboot`                                                                                        | Reboot to system                                                                                                  |
+| `Settings` > `System` > `Developer options` > `USB debugging` > Enable                                   | Enable `USB debugging`                                                                                            |
+| `Settings` > `System` > `System updates` > `Update`                                                      | Update to latest android version                                                                                  |
+| `adb reboot bootloader`                                                                                  | Reboot to bootloader                                                                                              |
+| `fastboot flash dtbo dtbo.img`                                                                           | Flash `dtbo.img`                                                                                                  |
+| `fastboot flash vbmeta vbmeta.img`                                                                       | Flash `vbmeta.img`                                                                                                |
+| `fastboot flash boot boot.img`                                                                           | Flash original recovery image of Custom ROM                                                                       |
+| `fastboot flash boot magisk_patched.img`                                                                 | Flash rooted recovery image of Custom ROM                                                                         |
+| `fastboot reboot recovery`                                                                               | Reboot to recovery                                                                                                |
+| `Factory Reset` > `Format data / factory reset` > `Format data`                                          | Factory reset                                                                                                     |
+| `Advanced` > `Enable ADB` > `Apply Update` > `Apply from ADB`                                            | Enable ADB and Use ADB to Sideload                                                                                |
+| `adb sideload lineage-22.1-20250105-nightly-signed.zip`                                                  | Sideload Custom ROM                                                                                               |
+| `Reboot to recovery` > `Yes`                                                                             | Reboot to recovery                                                                                                |
+| `Advanced` > `Enable ADB` > `Apply Update` > `Apply from ADB`                                            | Enable ADB and Use ADB to Sideload                                                                                |
+| `adb sideload MindTheGapps-15.0.0-arm64-20240928_150548.zip`                                             | Sideload Google Apps                                                                                              |
+| `Signature verification failed, install anyway?` > `Yes`                                                 | Install anyway                                                                                                    |
+| `Reboot system now`                                                                                      | Reboot to system                                                                                                  |
+| `adb push BCR-1.77-release.zip /storage/emulated/0/Download`                                             | Copy `Basic Call Recorder` from PC to `Downloads` folder on the device                                            |
+| `Magisk` > `Modules` > `Install from storage` > `BCR-1.77-release.zip` > `Reboot Now`                    | Install `Basic Call Recorder` app                                                                                 |
+| `adb push PlayIntegrityFix_v18.8.zip /storage/emulated/0/Download`                                       | Copy `Play Integrity Fix` from PC to `Downloads` folder on the device                                             |
+| `Magisk` > `Modules` > `Install from storage` > `PlayIntegrityFix_v18.8.zip` > `Reboot Now`              | Install `Play Integrity Fix` on the device                                                                        |
+| `adb push LSPosed-v1.10.1-7115-zygisk-release.zip /storage/emulated/0/Download`                          | Copy `LSPosed` from PC to `Downloads` folder on the device                                                        |
+| `Magisk` > `Modules` > `Install from storage` > `LSPosed-v1.10.1-7115-zygisk-release.zip` > `Reboot Now` | Install `LSPosed` on the device                                                                                   |
+| `adb install LP_Downloader.apk`                                                                          | Install `Lucky Patcher`                                                                                           |
+| `adb install app-business-debug.apk`                                                                     | Install `WaEnhancer`                                                                                              |
 
 ### Finish Setting Up Custom ROM
 
@@ -150,8 +158,6 @@ Everything about Android apps.
 | ---------------------------------------------------------------------------------------------- | ----------- |
 | `BCR` > `Output format` > `FLAC`                                                               |             |
 | `Magisk` > `Settings` > `Systemless hosts`                                                     |             |
-| `Magisk` > `Settings` > `Zygisk`                                                               |             |
-| `Magisk` > `Settings` > `Enforce DenyList`                                                     |             |
 | `Magisk` > `Settings` > `Configure DenyList` > Add Bank App, Credit Card apps, Health Care App |             |
 | `Lucky Patcher` > `Toolbox` > `Block Ads` > `Turn off Google Ads services`                     |             |
 | `Lucky Patcher` > `Toolbox` > `Block Ads` > `Block ads on Device`                              |             |
