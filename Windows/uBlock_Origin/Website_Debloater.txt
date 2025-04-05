@@ -39,7 +39,6 @@ www.pornhub.com##.relatedSearchTermsBottom.sectionWrapper
 www.xvideos.com##.slogan
 www.ynet.co.il##.articleShareButtons
 www.youtube.com###attached-survey
-www.youtube.com##tp-yt-paper-dialog.ytd-popup-container.style-scope > .ytd-popup-container.style-scope
 xxxclub.to##[href="/c/donate/"]
 youtube.com##[page-subtype="home"] ytd-thumbnail-overlay-resume-playback-renderer:upward(ytd-rich-item-renderer)
 ||bringthemhomenow.net^
