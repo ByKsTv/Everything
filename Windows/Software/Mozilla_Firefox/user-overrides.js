@@ -61,6 +61,13 @@ user_pref("privacy.clearOnShutdown_v2.browsingHistoryAndDownloads", false);
 // about:preferences#privacy > Privacy & Security > History > Clear history when Firefox closes > Settings > Cookies and site data > Off
 user_pref("privacy.clearOnShutdown_v2.cookiesAndStorage", false);
 
+// about:preferences#privacy > Privacy & Security > Firefox Data Collection and Use > Send daily usage ping to Mozilla > Off
+user_pref("datareporting.usage.uploadEnabled", false);
+
+// about:preferences#privacy > Privacy & Security > DNS over HTTPS > Off
+user_pref("doh-rollout.disable-heuristics", true);
+user_pref("network.trr.mode", 5);
+
 // Disable Recommended by Pocket
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
 
