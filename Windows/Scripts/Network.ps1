@@ -114,7 +114,7 @@ $SettingsToChange = @(
 	@{ DisplayName = 'Shutdown Wake Up'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'Shutdown Wake-On-Lan'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'Software Timestamp'; DisplayValues = @('Disabled') },
-	@{ DisplayName = 'Speed & Duplex'; DisplayValues = @('1.0 Gbps Full Duplex') },
+	@{ DisplayName = 'Speed & Duplex'; DisplayValues = @('1.0 Gbps Full Duplex', '2.5 Gbps Full Duplex') },
 	@{ DisplayName = 'System Idle Power Saver'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'TCP Checksum Offload (IPv4)'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'TCP Checksum Offload (IPv6)'; DisplayValues = @('Disabled') },
