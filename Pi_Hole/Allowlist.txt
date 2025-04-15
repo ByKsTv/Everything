@@ -1,17 +1,26 @@
-# TV Time Stats
+# https://play.google.com/store/apps/details?id=com.tozelabs.tvshowtime
+# Profile > Stats
 stats.tvtime.com
 
-# Kan11 Loading Fix
+# https://www.kan.org.il/lobby/kan-box/
+# Infinite loading screen
 smartplugin.youbora.com
 
-# N12 Android TV App Full Screen
+# https://play.google.com/store/apps/details?id=com.channel2.mobile.ui
+# Android TV app infinite loading screen while in full screen
 pubads.g.doubleclick.net
 
-# N12 Ad Blocker Warning
+# https://www.mako.co.il/mako-vod
+# Ad Blocker Warning
 imasdk.googleapis.com
 
-# YouTube Mark Watched
+# https://www.youtube.com/feed/history
+# Mark YouTube videos as watched
 s.youtube.com
 
-# Wheres my droid
+# https://play.google.com/store/apps/details?id=com.alienmanfc6.wheresmyandroid
 wmdcommander.appspot.com
+
+# https://github.com/Dev4Mod/WaEnhancer
+# Privacy > Calls > Additional call information
+ip-api.com
