@@ -38,6 +38,8 @@ Change country to United States for better WiFi signal
 
 > Each year you'll have to renew the plan.
 
+Apperently some users report ISP disconnections and it was solved by reset the ISP password (can be done using the ISP website)
+
 ### Underground infrastructure
 
 1. Contact Ministery of communications, request an underground infrastructure (some require payment).
