@@ -34,7 +34,6 @@ Everything about Websites.
 | Name          | Links                                                                                              | Notes                                                                            |
 | ------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | RuTracker.org | [BDRemux](https://rutracker.org/forum/tracker.php?nm=BDRemux)                                      | [Requires an account](https://rutracker.org/forum/profile.php?mode=register)     |
-| TorrentGalaxy | [REMUX 2160p](https://torrentgalaxy.to/torrents.php?search=REMUX+2160p&sort=id&sort=id&order=desc) |                                                                                  |
 | 1337x         | [REMUX 2160p](https://1337x.to/sort-search/REMUX%202160p/time/desc/1/)                             |                                                                                  |
 | RUTOR         | [BDREMUX 2160p](https://rutor.info/search/0/0/000/0/BDRemux%202160p)                               |                                                                                  |
 | OpenSubtitles | [Website](https://www.opensubtitles.org/en/search/subs)                                            | Subtitles                                                                        |
