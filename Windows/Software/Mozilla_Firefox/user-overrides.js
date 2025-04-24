@@ -68,6 +68,9 @@ user_pref("datareporting.usage.uploadEnabled", false);
 user_pref("doh-rollout.disable-heuristics", true);
 user_pref("network.trr.mode", 5);
 
+// Vertical tabs > Firefox tools > Tabs from other devices + History
+user_pref("sidebar.main.tools", "syncedtabs,history");
+
 // Disable Recommended by Pocket
 user_pref("browser.newtabpage.activity-stream.feeds.section.topstories", false);
 
