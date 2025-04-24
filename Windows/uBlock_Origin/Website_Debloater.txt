@@ -8,7 +8,18 @@
 9gag.com##.post-award-users
 9gag.com##.text-center.inline-banner
 account.xiaomi.com##._-src-components-CookieBanner-wrapper
+filespayouts.com##.paybox.row
+fitgirl-repacks.site###block-2 > .jetpack_top_posts_widget
+fitgirl-repacks.site###custom_html-4
+fitgirl-repacks.site###lbjoin2
+fitgirl-repacks.site##.donatebutton
+fitgirl-repacks.site##.masonry.widget-area.footer-sidebar
+fitgirl-repacks.site##.post-navigation.navigation
+fitgirl-repacks.site##.site-info
+fitgirl-repacks.site##.widget_archive.widget
+fitgirl-repacks.site##[href="https://fitgirl-repacks.site/donations/"]
 forum.mobilism.me##.welcome-bar
+github.com##.color-fg-muted.text-center.mt-3
 github.com##.mb-2.mt-md-2.mt-3.color-fg-muted.text-small
 github.com##.protip
 ksp.co.il##.null[class*="root-0-3-"]
