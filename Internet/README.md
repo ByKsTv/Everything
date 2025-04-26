@@ -40,6 +40,8 @@ Change country to United States for better WiFi signal
 
 Apperently some users report ISP disconnections and it was solved by reset the ISP password (can be done using the ISP website)
 
+When trying to help a user with ISP router - first contact the ISP technical support
+
 ### Underground infrastructure
 
 1. Contact Ministery of communications, request an underground infrastructure (some require payment).
