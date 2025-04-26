@@ -9,6 +9,7 @@ user_pref("sidebar.verticalTabs", true);
 
 // about:preferences > General > Browser Layout > Show sidebar > On
 user_pref("sidebar.revamp", true);
+user_pref("sidebar.visibility", "always-show");
 
 // about:preferences > General > Files and Applications > Downloads > Always ask you where to save files > Off
 user_pref("browser.download.useDownloadDir", true);
