@@ -4,6 +4,12 @@ user_pref("browser.shell.checkDefaultBrowser", false);
 // about:preferences > General > Tabs > Enable Container Tabs > Off
 user_pref("privacy.userContext.enabled", false);
 
+// about:preferences > General > Browser Layout > Vertical tabs
+user_pref("sidebar.verticalTabs", true);
+
+// about:preferences > General > Browser Layout > Show sidebar > On
+user_pref("sidebar.revamp", true);
+
 // about:preferences > General > Files and Applications > Downloads > Always ask you where to save files > Off
 user_pref("browser.download.useDownloadDir", true);
 
@@ -137,4 +143,4 @@ user_pref("browser.download.alwaysOpenPanel", true);
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 
 // Custom UI
-user_pref("browser.uiCustomization.state", "{\"placements\":{\"widget-overflow-fixed-list\":[],\"unified-extensions-area\":[],\"nav-bar\":[\"back-button\",\"forward-button\",\"stop-reload-button\",\"urlbar-container\",\"save-to-pocket-button\",\"downloads-button\",\"unified-extensions-button\",\"fxa-toolbar-menu-button\"],\"toolbar-menubar\":[\"menubar-items\"],\"TabsToolbar\":[\"tabbrowser-tabs\",\"new-tab-button\",\"alltabs-button\"],\"PersonalToolbar\":[\"personal-bookmarks\"]},\"seen\":[\"save-to-pocket-button\",\"developer-button\"],\"dirtyAreaCache\":[\"nav-bar\",\"PersonalToolbar\",\"toolbar-menubar\",\"TabsToolbar\"],\"currentVersion\":20,\"newElementCount\":5}");
+user_pref("browser.uiCustomization.state", "{\"placements\":{\"widget-overflow-fixed-list\":[],\"unified-extensions-area\":[],\"nav-bar\":[\"back-button\",\"stop-reload-button\",\"forward-button\",\"customizableui-special-spring7\",\"urlbar-container\",\"vertical-spacer\",\"downloads-button\",\"unified-extensions-button\",\"fxa-toolbar-menu-button\",\"alltabs-button\",\"ublock0_raymondhill_net-browser-action\"],\"toolbar-menubar\":[\"menubar-items\"],\"TabsToolbar\":[\"tabbrowser-tabs\"],\"vertical-tabs\":[],\"PersonalToolbar\":[\"personal-bookmarks\"]},\"seen\":[\"developer-button\",\"ublock0_raymondhill_net-browser-action\"],\"dirtyAreaCache\":[\"nav-bar\",\"PersonalToolbar\",\"toolbar-menubar\",\"TabsToolbar\",\"unified-extensions-area\",\"vertical-tabs\"],\"currentVersion\":21,\"newElementCount\":9}");
