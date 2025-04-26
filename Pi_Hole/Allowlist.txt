@@ -24,3 +24,6 @@ wmdcommander.appspot.com
 # https://github.com/Dev4Mod/WaEnhancer
 # Privacy > Calls > Additional call information
 ip-api.com
+
+# https://account.ui.com/
+static.ada.support
