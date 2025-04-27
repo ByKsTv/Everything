@@ -16,7 +16,7 @@ if (-not (Test-Path $BattleNET_AppData_Dir)) {
 }
 
 $BattleNET_AppData_DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Battle.net/Battle.net.json'
-$BattleNET_AppData_Filename = "Battle.net.config"
+$BattleNET_AppData_Filename = 'Battle.net.config'
 $BattleNET_AppData_SavePath = [IO.Path]::Combine($BattleNET_AppData_Dir, $BattleNET_AppData_Filename)
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Battle.net'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' settings from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BattleNET_AppData_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BattleNET_AppData_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
 (New-Object System.Net.WebClient).DownloadFile($BattleNET_AppData_DDL, $BattleNET_AppData_SavePath)
