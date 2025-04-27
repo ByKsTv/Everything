@@ -31,13 +31,13 @@ Everything about Websites.
 
 ## TV Shows & Movies
 
-| Name          | Links                                                                                              | Notes                                                                            |
-| ------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| RuTracker.org | [BDRemux](https://rutracker.org/forum/tracker.php?nm=BDRemux)                                      | [Requires an account](https://rutracker.org/forum/profile.php?mode=register)     |
-| 1337x         | [REMUX 2160p](https://1337x.to/sort-search/REMUX%202160p/time/desc/1/)                             |                                                                                  |
-| RUTOR         | [BDREMUX 2160p](https://rutor.info/search/0/0/000/0/BDRemux%202160p)                               |                                                                                  |
-| OpenSubtitles | [Website](https://www.opensubtitles.org/en/search/subs)                                            | Subtitles                                                                        |
-| Ktuvit        | [Website](https://www.ktuvit.me)                                                                   | Hebrew Subtitles, [Requires an account](https://www.ktuvit.me/Registration.aspx) |
+| Name          | Links                                                                  | Notes                                                                            |
+| ------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| RuTracker.org | [BDRemux](https://rutracker.org/forum/tracker.php?nm=BDRemux)          | [Requires an account](https://rutracker.org/forum/profile.php?mode=register)     |
+| 1337x         | [REMUX 2160p](https://1337x.to/sort-search/REMUX%202160p/time/desc/1/) |                                                                                  |
+| RUTOR         | [BDREMUX 2160p](https://rutor.info/search/0/0/000/0/BDRemux%202160p)   |                                                                                  |
+| OpenSubtitles | [Website](https://www.opensubtitles.org/en/search/subs)                | Subtitles                                                                        |
+| Ktuvit        | [Website](https://www.ktuvit.me)                                       | Hebrew Subtitles, [Requires an account](https://www.ktuvit.me/Registration.aspx) |
 
 ## Games
 
