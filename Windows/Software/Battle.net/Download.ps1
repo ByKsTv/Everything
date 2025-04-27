@@ -35,3 +35,7 @@ Start-Process $BattleNET_SavePath -ArgumentList $BattleNET_Argument -Wait
 if ($null -ne (Get-Item -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run').GetValue('Battle.net')) {
     Remove-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'Battle.net'
 }
+
+Start-Job {
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Battle.net/User.ps1') 
+}
