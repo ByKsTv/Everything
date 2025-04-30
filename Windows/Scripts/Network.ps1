@@ -50,7 +50,7 @@ Set-NetOffloadGlobalSetting -ReceiveSegmentCoalescing Disabled
 Set-NetOffloadGlobalSetting -ReceiveSideScaling Enabled
 Set-NetTCPSetting -AutoTuningLevelLocal Normal
 Set-NetTCPSetting -EcnCapability Disabled
-Set-NetTCPSetting -InitialRtoMs 300
+Set-NetTCPSetting -InitialRtoMs 3000
 Set-NetTCPSetting -MaxSynRetransmissions 2
 Set-NetTCPSetting -NonSackRttResiliency Disabled
 Set-NetTCPSetting -ScalingHeuristics Disabled
@@ -69,6 +69,21 @@ netsh int tcp set global timestamps=disabled
 netsh int tcp set heuristics disabled
 netsh int tcp set supplemental internet congestionprovider=ctcp
 netsh interface teredo set state disabled
+
+$MTU_URL = 'google.com'
+$MTU_Initial = 1472
+while ($true) {
+	if ((ping -f -l $MTU_Initial $MTU_URL -n 1 | Out-String) -match 'Packet needs to be fragmented') {
+		$MTU_Initial--
+	}
+	else {
+		break
+	}
+}
+$MTU_Final = $MTU_Initial + 28
+$MTU_Interface = (Get-NetIPConfiguration | Where-Object { $_.IPv4DefaultGateway }).InterfaceAlias
+Write-Host "Setting MTU to $MTU_Final"
+netsh interface ipv4 set subinterface "$MTU_Interface" mtu=$MTU_Final store=persistent
 
 $SettingsToChange = @(
 	@{ DisplayName = 'ARP Offload'; DisplayValues = @('Disabled') },
