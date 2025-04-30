@@ -46,28 +46,28 @@ Disable-NetAdapterChecksumOffload -Name *
 Disable-NetAdapterLso -Name *
 Set-NetOffloadGlobalSetting -Chimney Disabled
 Set-NetOffloadGlobalSetting -PacketCoalescingFilter Disabled
-Set-NetOffloadGlobalSetting -ReceiveSegmentCoalescing Disabled
+Set-NetOffloadGlobalSetting -ReceiveSegmentCoalescing Enabled
 Set-NetOffloadGlobalSetting -ReceiveSideScaling Enabled
-Set-NetTCPSetting -AutoTuningLevelLocal Normal
-Set-NetTCPSetting -EcnCapability Disabled
+Set-NetTCPSetting -AutoTuningLevelLocal experimental
+Set-NetTCPSetting -EcnCapability Enabled
 Set-NetTCPSetting -InitialRtoMs 3000
 Set-NetTCPSetting -MaxSynRetransmissions 2
-Set-NetTCPSetting -NonSackRttResiliency Disabled
+Set-NetTCPSetting -NonSackRttResiliency Enabled
 Set-NetTCPSetting -ScalingHeuristics Disabled
-Set-NetTCPSetting -Timestamps Disabled
-netsh int tcp set global autotuninglevel=normal
+Set-NetTCPSetting -Timestamps Enabled
+netsh int tcp set global autotuninglevel=experimental
 netsh int tcp set global dca=disabled
-netsh int tcp set global ecncapability=disabled
+netsh int tcp set global ecncapability=enabled
 netsh int tcp set global fastopen=enabled
 netsh int tcp set global maxsynretransmissions=2
 netsh int tcp set global netdma=disabled
-netsh int tcp set global nonsackrttresiliency=disabled
+netsh int tcp set global nonsackrttresiliency=enabled
 netsh int tcp set global pacingprofile=off
-netsh int tcp set global rsc=disabled
+netsh int tcp set global rsc=enabled
 netsh int tcp set global rss=enabled
-netsh int tcp set global timestamps=disabled
+netsh int tcp set global timestamps=Enabled
 netsh int tcp set heuristics disabled
-netsh int tcp set supplemental internet congestionprovider=ctcp
+netsh int tcp set supplemental template=internet congestionprovider=ctcp
 netsh interface teredo set state disabled
 
 $MTU_URL = 'google.com'
