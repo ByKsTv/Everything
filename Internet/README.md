@@ -42,6 +42,9 @@ Apperently some users report ISP disconnections and it was solved by reset the I
 
 When trying to help a user with ISP router - first contact the ISP technical support
 
+When using PPPOE and adding Fixed IP - It will disconnect you for 12 seconds.
+When using PPPOE and removing Fixed IP - It will disconnect you for 10 seconds.
+
 ### Underground infrastructure
 
 1. Contact Ministery of communications, request an underground infrastructure (some require payment).
@@ -82,3 +85,5 @@ When trying to help a user with ISP router - first contact the ISP technical sup
 1. When first joining a mobile SIM company, request discounts.
 1. Each year you'll have to renew the plan, when doing so use the Public Inquiry page, don't comminicate with the Customer Service via Whatsapp or phone call.
    > Remove all the extra charges such as `5G`, `Cyber Security` and bundled `TV` plans, all you actually need is phone calls + data plan.
+
+Cancel unnecessary services, also voicemail
