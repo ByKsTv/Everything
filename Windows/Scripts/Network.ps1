@@ -35,7 +35,7 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
 New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters' -Name 'TcpMaxDupAcks' -PropertyType DWord -Value 1 -Force
 New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'FastSendDatagramThreshold' -PropertyType DWord -Value 0x10000 -Force
 New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Ndis\Parameters' -Name 'RssBaseCpu' -PropertyType DWord -Value 1 -Force
-New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\Parameters' -Name 'Tcp1323Opts' -PropertyType DWord -Value 1 -Force
+New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\Parameters' -Name 'Tcp1323Opts' -PropertyType DWord -Value 3 -Force
 
 Get-ChildItem 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces' | ForEach-Object {
 	New-ItemProperty -Path $_.PsPath -Name 'TcpAckFrequency' -PropertyType DWord -Value 1 -Force
