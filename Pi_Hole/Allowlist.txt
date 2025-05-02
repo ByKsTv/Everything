@@ -27,3 +27,6 @@ ip-api.com
 
 # https://account.ui.com/
 static.ada.support
+
+# Facebook
+graph.facebook.com
