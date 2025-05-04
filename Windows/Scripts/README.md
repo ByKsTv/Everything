@@ -82,3 +82,14 @@ yt-dlp --extract-audio --audio-quality=0 -o input URL
 ```bash
 ffmpeg -ss 00:00 -to 00:00 -y -i input.opus -c copy output.opus
 ```
+
+## Python: SSID QR Code
+
+1. Open CMD:
+
+```cmd
+pip install qrcode[pil]
+```
+
+1. Use [WiFi_QR_Code](WiFi_QR_Code.py)
+1. Edit `WiFi_Name` and `WiFi_Password`.
