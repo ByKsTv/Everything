@@ -19,10 +19,10 @@ Start-Service -Name 'SSDPSRV'
 Set-Service -Name 'upnphost' -StartupType Automatic
 Start-Service -Name 'upnphost'
 
-New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\ServiceProvider' -Name 'LocalPriority' -Value 4 -PropertyType DWord -Force
-New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\ServiceProvider' -Name 'HostsPriority' -Value 5 -PropertyType DWord -Force
-New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\ServiceProvider' -Name 'DnsPriority' -Value 6 -PropertyType DWord -Force
-New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\ServiceProvider' -Name 'NetbtPriority' -Value 7 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\ServiceProvider' -Name 'LocalPriority' -Value 2 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\ServiceProvider' -Name 'HostsPriority' -Value 3 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\ServiceProvider' -Name 'DnsPriority' -Value 4 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\ServiceProvider' -Name 'NetbtPriority' -Value 8 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile' -Name 'NetworkThrottlingIndex' -Value -1 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile' -Name 'SystemResponsiveness' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\LanmanServer\Parameters' -Name 'Size' -Value 3 -PropertyType DWord -Force
@@ -46,16 +46,16 @@ Disable-NetAdapterChecksumOffload -Name *
 Disable-NetAdapterLso -Name *
 Set-NetOffloadGlobalSetting -Chimney Disabled
 Set-NetOffloadGlobalSetting -PacketCoalescingFilter Disabled
-Set-NetOffloadGlobalSetting -ReceiveSegmentCoalescing Enabled
+Set-NetOffloadGlobalSetting -ReceiveSegmentCoalescing Disabled
 Set-NetOffloadGlobalSetting -ReceiveSideScaling Enabled
-Set-NetTCPSetting -AutoTuningLevelLocal experimental
+Set-NetTCPSetting -AutoTuningLevelLocal normal
 Set-NetTCPSetting -EcnCapability Enabled
 Set-NetTCPSetting -InitialRtoMs 3000
 Set-NetTCPSetting -MaxSynRetransmissions 2
 Set-NetTCPSetting -NonSackRttResiliency Enabled
 Set-NetTCPSetting -ScalingHeuristics Disabled
-Set-NetTCPSetting -Timestamps Enabled
-netsh int tcp set global autotuninglevel=experimental
+Set-NetTCPSetting -Timestamps Disabled
+netsh int tcp set global autotuninglevel=normal
 netsh int tcp set global dca=disabled
 netsh int tcp set global ecncapability=enabled
 netsh int tcp set global fastopen=enabled
@@ -63,9 +63,9 @@ netsh int tcp set global maxsynretransmissions=2
 netsh int tcp set global netdma=disabled
 netsh int tcp set global nonsackrttresiliency=enabled
 netsh int tcp set global pacingprofile=off
-netsh int tcp set global rsc=enabled
+netsh int tcp set global rsc=disabled
 netsh int tcp set global rss=enabled
-netsh int tcp set global timestamps=Enabled
+netsh int tcp set global timestamps=disabled
 netsh int tcp set heuristics disabled
 netsh int tcp set supplemental template=internet congestionprovider=ctcp
 netsh interface teredo set state disabled
