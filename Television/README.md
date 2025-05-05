@@ -7,6 +7,7 @@
   - [Notes](#android-tv---notes)
 - [Samsung](#samsung)
   - [Setup](#samsung-tv---setup)
+  - [Notes](#samsung-tv---notes)
 - [LG](#lg)
   - [Setup](#lg-tv---setup)
   - [Notes](#lg-tv---notes)
