@@ -72,8 +72,9 @@ Everything about Websites.
 | monkrus       | [Website](http://www.monkrus.ws) / [VK](https://vk.com/monkrus) / [Telegram](https://t.me/real_monkrus) / [RSS](https://w16.monkrus.ws/atom.xml) | Adobe & Autodesk                                                             |
 | Ratiborus     | [Website](https://msfree.su/index.php)                                                                                                           |                                                                              |
 
-## Other
+## Reviews
 
-| Name   | Links                             | Notes   |
-| ------ | --------------------------------- | ------- |
-| RTINGS | [Website](https://www.rtings.com) | Reviews |
+| Name     | Links                                        | Notes            |
+| -------- | -------------------------------------------- | ---------------- |
+| RTINGS   | [Website](https://www.rtings.com)            | Hardware Reviews |
+| HDTVTest | [Website](https://www.youtube.com/@hdtvtest) | TV Reviews       |

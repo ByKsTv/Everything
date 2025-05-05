@@ -24,3 +24,11 @@ Everything about Online Shopping.
 
 - Amazon - [Honey](https://www.joinhoney.com/shop/amazon) / [CouponFollow](https://couponfollow.com/site/amazon.com)
 - AliExpress - [Honey](https://www.joinhoney.com/shop/aliexpress) / [CouponFollow](https://couponfollow.com/site/aliexpress.com)
+
+## Personal Opinion on Products
+
+[3M™ PELTOR™ X5 Earmuffs](https://www.3m.com/3M/en_US/p/d/b00037368/) from [Amazon](https://www.amazon.com/dp/B00CPCHBCQ)
+
+[Mounting Dream Full Motion TV Wall Mount for 32''-65'' TVs MD2380](https://mountingdreamonline.com/products/full-motion-tv-wall-mount-for-32-65-tvs-mounting-dream-md2380) from [Amazon](https://www.amazon.com/dp/B00SFSU53G)
+
+[SERMAN BRANDS Elite Jet Black](https://www.sermanbrands.com/products/elite?variant=31739503247431) from [Amazon](https://www.amazon.com/dp/B07WRMXNYG)

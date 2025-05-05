@@ -1,5 +1,6 @@
 # Settings: Network & Internet: All networks: Network discovery: Off
 Set-NetFirewallRule -Profile Any -Group '@FirewallAPI.dll,-28502' -Enabled False
+
 # Settings: Network & Internet: All networks: File and printer sharing: Off
 Set-NetFirewallRule -Profile Any -Group '@FirewallAPI.dll,-32752' -Enabled False
 Set-NetFirewallRule -Profile Any -Name 'FPS-SMB-In-TCP' -Enabled False
@@ -9,6 +10,7 @@ Set-NetConnectionProfile -NetworkCategory Private
 
 # Settings: Network & Internet: Private networks: Network discovery: On
 Set-NetFirewallRule -Profile Private -Group '@FirewallAPI.dll,-28502' -Enabled True
+
 # Settings: Network & Internet: Private networks: File and printer sharing: On
 Set-NetFirewallRule -Profile Private -Group '@FirewallAPI.dll,-32752' -Enabled True
 Set-NetFirewallRule -Profile Private -Name 'FPS-SMB-In-TCP' -Enabled True
@@ -19,28 +21,93 @@ Start-Service -Name 'SSDPSRV'
 Set-Service -Name 'upnphost' -StartupType Automatic
 Start-Service -Name 'upnphost'
 
-New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\ServiceProvider' -Name 'LocalPriority' -Value 2 -PropertyType DWord -Force
-New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\ServiceProvider' -Name 'HostsPriority' -Value 3 -PropertyType DWord -Force
-New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\ServiceProvider' -Name 'DnsPriority' -Value 4 -PropertyType DWord -Force
-New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\ServiceProvider' -Name 'NetbtPriority' -Value 8 -PropertyType DWord -Force
-New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile' -Name 'NetworkThrottlingIndex' -Value -1 -PropertyType DWord -Force
+Get-ChildItem 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces' | ForEach-Object {
+	# TcpAckFrequency=1 makes the ACKs get sent immediately instead of waiting to piggy-back, shaving off a round-trip in small-packet flows.
+	New-ItemProperty -Path $_.PSPath -Name 'TcpAckFrequency' -Value 1 -PropertyType DWord -Force
+
+	# TCPNoDelay=1 disables Nagle’s algorithm entirely, reducing latency in interactive/gaming traffic.
+	New-ItemProperty -Path $_.PSPath -Name 'TCPNoDelay' -Value 1 -PropertyType DWord -Force
+}
+
+# LocalPriority, HostsPriority, DnsPriority, NetbtPriority: modern Windows ignores these in favor of built-in address-sorting rules; explicitly setting them is redundant on up-to-date systems.
+# Here are the official Microsoft Knowledge Base references showing that those ServiceProvider priority values are not applied by Windows:
+#
+#     KB Q171567 “Windows NT 4.0 ServiceProvider Priority Values Not Applied”
+#     This article explicitly states that changing LocalPriority, HostsPriority, DnsPriority or NetbtPriority has no effect on Windows NT 4.0 (and by extension the mechanism was never re-enabled in later releases)
+#     https://jeffpar.github.io/kbarchive/kb/171/Q171567/
+#
+#     KB Q139270 “How to Change Name Resolution Order on Windows 95 and Windows NT”
+#     Under “More Information,” it cross-references Q171567 and makes clear these registry-based priority settings applied only to the very earliest Microsoft TCP/IP stacks (Win 95/NT 4.0)
+#     https://support.microsoft.com/en-us/topic/microsoft-tcp-ip-host-name-resolution-order-dae00cc9-7e9c-c0cc-8360-477b99cb978a
+#
+# Taken together, Microsoft’s own documentation shows that these ServiceProvider priority keys were never supported beyond Windows NT 4.0, and modern Windows editions use the built-in RFC 3484/6724 address-sorting rules instead.
+#
+# New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\ServiceProvider' -Name 'LocalPriority' -Value 2 -PropertyType DWord -Force
+# New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\ServiceProvider' -Name 'HostsPriority' -Value 3 -PropertyType DWord -Force
+# New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\ServiceProvider' -Name 'DnsPriority' -Value 4 -PropertyType DWord -Force
+# New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\ServiceProvider' -Name 'NetbtPriority' -Value 8 -PropertyType DWord -Force
+
+# disable all multimedia throttling on gigabit links.
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile' -Name 'NetworkThrottlingIndex' -Value 0xFFFFFFFF -PropertyType DWord -Force
+
+# used by the Windows Multimedia Class Scheduler Service (MMCSS) to reserve a slice of CPU for background (low-priority) tasks.
+# It’s a DWORD whose value is the percentage of CPU time guaranteed to low-priority threads.
+# For example, if you set SystemResponsiveness = 20, then 20% of CPU cycles are held back for background work; the other 80% is available to foreground multimedia tasks (e.g. games, audio) 
+# https://learn.microsoft.com/en-us/windows/win32/procthread/multimedia-class-scheduler-service
+# Values not evenly divisible by 10 are rounded up to the next multiple of 10.
+# A value of 0 is treated as 10 (i.e. 10% reserved).
+# So by setting SystemResponsiveness = 0, you’re effectively telling MMCSS: “Don’t reserve more than 10% for background tasks,” which maximizes CPU allocation for your games and other time-sensitive applications.
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile' -Name 'SystemResponsiveness' -Value 0 -PropertyType DWord -Force
+
+# SMB server settings—meant for optimizing Windows when it’s acting as a file server
+# Size controls how many pending file-share requests the Server service will queue
+# 1 (minimal memory), 2 (balanced), 3 (max for file-sharing)
+# 3 tells the Server service to allocate the most IRP resources for concurrent file requests, improving throughput when you’re sharing or serving files over the network
+# https://www.speedguide.net/articles/lan-tweaks-for-windows-7-8-10-5819
 New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\LanmanServer\Parameters' -Name 'Size' -Value 3 -PropertyType DWord -Force
+
+# IRPStackSize increases the number of stacked I/O requests the Server service can handle.
+# Default when absent: 15.
+# Range: 11 to 50, but values above 33–38 have been reported to cause instability.
+# 32 is the most widely recommended “sweet spot” that maximizes the stack without risking hangs 
+# https://www.speedguide.net/faq/how-to-increase-irp-stack-size-to-improve-network-524
 New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\LanmanServer\Parameters' -Name 'IRPStackSize' -Value 32 -PropertyType DWord -Force
-New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Session Manager\Memory Management' -Name 'LargeSystemCache' -Value 0 -PropertyType DWord -Force
-New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\Parameters' -Name 'MaxUserPort' -Value 65534 -PropertyType DWord -Force
-New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\Parameters' -Name 'TcpTimedWaitDelay' -Value 30 -PropertyType DWord -Force
+
+# disables caching as a file-server to keep RAM free for applications.
+New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management' -Name 'LargeSystemCache' -Value 0 -PropertyType DWord -Force
+
+New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters' -Name 'MaxUserPort' -Value 65534 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters' -Name 'TcpTimedWaitDelay' -Value 30 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\Parameters' -Name 'DefaultTTL' -Value 64 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters' -Name 'SackOpts' -PropertyType DWord -Value 1 -Force
-New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters' -Name 'TcpMaxDupAcks' -PropertyType DWord -Value 1 -Force
-New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'FastSendDatagramThreshold' -PropertyType DWord -Value 0x10000 -Force
-New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Ndis\Parameters' -Name 'RssBaseCpu' -PropertyType DWord -Value 1 -Force
-New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\Parameters' -Name 'Tcp1323Opts' -PropertyType DWord -Value 3 -Force
+New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters' -Name 'TcpMaxDupAcks' -PropertyType DWord -Value 2 -Force
 
-Get-ChildItem 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces' | ForEach-Object {
-	New-ItemProperty -Path $_.PsPath -Name 'TcpAckFrequency' -PropertyType DWord -Value 1 -Force
-	New-ItemProperty -Path $_.PsPath -Name 'TCPNoDelay' -PropertyType DWord -Value 1 -Force
-}
+# controls the maximum UDP datagram size (in bytes) that will be sent via the AFD “fast‐send” path. Any UDP send below this threshold is handed off directly to the AFD fast‐I/O routine, bypassing some of the usual buffering and offload logic.
+# When no registry value is present, AFD uses its built-in default threshold of 1024 bytes (0x400).
+# This is the point at which Windows switches from the ordinary send path into its optimized “small‐datagram” fast path.
+# Source: Oracle’s Coherence documentation (quoting Microsoft’s behavior) states, “The default setting for what is considered a small datagram is 1024 bytes; increasing this value … can significantly improve network performance”
+# https://docs.oracle.com/cd/E14039_01/coh.320/coh32ug/performance_tuning.htm
+# Additionally, the open-source afd/registry.txt on GitHub notes that if you examine the AFD driver defaults, FastSendDatagramThreshold is 1024 by default
+# https://github.com/DeDf/afd/blob/master/registry.txt
+New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'FastSendDatagramThreshold' -PropertyType DWord -Value 65536 -Force
+
+# Some drivers (e.g., Intel’s 82598/82599 series) will actually drop traffic or go unstable if RssBaseCpu isn’t left at its default of 0 or a valid physical-core number. Intel explicitly warns that changing it “may not pass traffic” and recommends resetting it to 0x0 to resolve such issues
+# https://www.intel.com/content/www/us/en/support/articles/000006703/ethernet-products.html
+# Modern NIC drivers and NDIS dynamically spread RSS queues over multiple cores to maximize parallel packet processing. Pinning them to one CPU limits the number of hardware queues that can be used and creates a bottleneck on high-speed links
+# https://learn.microsoft.com/en-us/windows-hardware/drivers/network/reserving-processors-for-applications
+New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Ndis\Parameters' -Name 'RssBaseCpu' -PropertyType DWord -Value 0 -Force
+
+# Tcp1323Opts=1 turns only Window Scaling on. Timestamps introduce extra per-packet overhead (they add 12 bytes of header data) which can hurt throughput on high-speed, low-latency fiber links, so we disable them while keeping window scaling for large BDPs.
+New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters' -Name 'Tcp1323Opts' -Value 1 -PropertyType DWord -Force
+
+# elevate actual game-process scheduling in the multimedia scheduler
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games' -Name 'GPU Priority' -Value 8 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games' -Name 'Priority' -Value 6 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games' -Name 'Scheduling Category' -Value 'High' -PropertyType String -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games' -Name 'SFIO Priority' -Value 'High' -PropertyType String -Force
+
+# it speeds up Message Queuing traffic if you ever use it, but errors are silenced so it won’t break anything if MSMQ isn’t installed.
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\MSMQ\Parameters' -Name 'TCPNoDelay' -Value 1 -PropertyType DWord -Force -ErrorAction SilentlyContinue
 
 Disable-NetAdapterChecksumOffload -Name *
 Disable-NetAdapterLso -Name *
@@ -55,19 +122,19 @@ Set-NetTCPSetting -MaxSynRetransmissions 2
 Set-NetTCPSetting -NonSackRttResiliency Enabled
 Set-NetTCPSetting -ScalingHeuristics Disabled
 Set-NetTCPSetting -Timestamps Disabled
-netsh int tcp set global autotuninglevel=normal
-netsh int tcp set global dca=disabled
-netsh int tcp set global ecncapability=enabled
-netsh int tcp set global fastopen=enabled
-netsh int tcp set global maxsynretransmissions=2
-netsh int tcp set global netdma=disabled
-netsh int tcp set global nonsackrttresiliency=enabled
-netsh int tcp set global pacingprofile=off
-netsh int tcp set global rsc=disabled
-netsh int tcp set global rss=enabled
-netsh int tcp set global timestamps=disabled
-netsh int tcp set heuristics disabled
-netsh int tcp set supplemental template=internet congestionprovider=ctcp
+netsh interface tcp set global autotuninglevel=normal
+netsh interface tcp set supplemental template=internet congestionprovider=ctcp
+netsh interface tcp set global ecncapability=enabled
+netsh interface tcp set global rsc=disabled
+netsh interface tcp set global rss=enabled
+netsh interface tcp set global dca=disabled
+netsh interface tcp set global fastopen=enabled
+netsh interface tcp set global maxsynretransmissions=2
+netsh interface tcp set global netdma=disabled
+netsh interface tcp set global nonsackrttresiliency=enabled
+netsh interface tcp set global pacingprofile=off
+netsh interface tcp set global timestamps=disabled
+netsh interface tcp set heuristics disabled
 netsh interface teredo set state disabled
 
 $MTU_URL = 'google.com'
@@ -84,6 +151,7 @@ $MTU_Final = $MTU_Initial + 28
 $MTU_Interface = (Get-NetIPConfiguration | Where-Object { $_.IPv4DefaultGateway }).InterfaceAlias
 Write-Host "Setting MTU to $MTU_Final"
 netsh interface ipv4 set subinterface "$MTU_Interface" mtu=$MTU_Final store=persistent
+netsh interface ipv6 set subinterface "$MTU_Interface" mtu=$MTU_Final store=persistent
 
 $SettingsToChange = @(
 	@{ DisplayName = 'ARP Offload'; DisplayValues = @('Disabled') },
@@ -119,7 +187,10 @@ $SettingsToChange = @(
 	@{ DisplayName = 'Priority / VLAN tag'; DisplayValues = @('Priority & VLAN Disabled') },
 	@{ DisplayName = 'Protocol ARP Offload'; DisplayValues = @('Disabled') },
 	@{ DisplayName = 'Protocol NS Offload'; DisplayValues = @('Disabled') },
-	@{ DisplayName = 'RSS load balancing profile'; DisplayValues = @('ClosestProcessor') },
+
+	# https://www.intel.com/content/www/us/en/support/articles/000006703/ethernet-products.html
+	@{ DisplayName = 'RSS load balancing profile'; DisplayValues = @('NUMAScalingStatic') },
+
 	@{ DisplayName = 'Receive Buffers'; DisplayValues = @('2048') },
 	@{ DisplayName = 'Receive Side Scaling'; DisplayValues = @('Enabled') },
 	@{ DisplayName = 'Reduce Speed On Power Down'; DisplayValues = @('Disabled') },

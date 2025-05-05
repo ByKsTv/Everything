@@ -12,6 +12,7 @@ TODO
 
 Network rack 6U
 Ubiquity
+https://help.ui.com/hc/en-us/articles/115005212927-AP-Antenna-Radiation-Patterns
 Change country to United States for better WiFi signal
 
 ### Cable equipment
