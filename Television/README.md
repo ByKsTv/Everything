@@ -11,6 +11,7 @@
 - [LG](#lg)
   - [Setup](#lg-tv---setup)
   - [Notes](#lg-tv---notes)
+- [More](#more)
 
 ## Android TV
 
@@ -141,3 +142,20 @@ Source: [𝗟𝗚 𝗢𝗟𝗘𝗗 𝗧𝗩 𝗦𝗲𝘁𝘁𝗶𝗻𝗴𝘀 �
 ### LG TV - Notes
 
 - Uses webOS instead of Android, so you can't sideload APKs.
+
+## More
+
+- Most TVs have a network (RJ45) port limited to 100Mbps. To get faster speeds, you can use a USB-to-Ethernet adapter:
+
+  - If your TV has a USB 3.0 port - Buy a USB 3.0 to RJ45 adapter.
+  - If your TV has a USB 2.0 port - Buy a USB 2.0 to RJ45 adapter.
+
+- Most TVs are not Android-based (LG / Samsung / older TVs). To get Android apps and features, you can use a Android streaming device like:
+
+  - Chromecast / Fire Stick / Android TV box
+
+- Cable TV is outdated. Providers now sell a bundle that includes:
+
+  - Router (Internet + WiFi) – rented monthly. Instead, buy your own (Recommended: Ubiquiti).
+  - Android TV box (with their app) – rented monthly. Instead, buy your own (Recommended: Google TV Streamer 4K).
+  - Access to channels via their app – monthly fee. Instead, subscribe directly (same as Netflix).
