@@ -62,8 +62,8 @@
 - When using `UAD-ng` - Don't uninstall the following:
   - `com.google.android.tv.remote.service` - Android TV Remote Service
   - `com.netflix.ninja` - Netflix
-    Some random package on the `Recommended` list once removed it disconnects the WiFi
-    Also another package when removed doesn't show up the TV on Google Home anymore
+  - Some random package on the `Recommended` list once removed it disconnects the WiFi
+  - Another package when removed doesn't show up the TV on Google Home anymore
 - When using `Pi-Hole` and `Kan11` Android TV app - a pop-up will say "No Connection" when first watching live.
 
 ## Samsung
