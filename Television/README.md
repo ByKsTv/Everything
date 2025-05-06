@@ -150,12 +150,16 @@ Source: [𝗟𝗚 𝗢𝗟𝗘𝗗 𝗧𝗩 𝗦𝗲𝘁𝘁𝗶𝗻𝗴𝘀 �
   - If your TV has a USB 3.0 port - Buy a USB 3.0 to RJ45 adapter.
   - If your TV has a USB 2.0 port - Buy a USB 2.0 to RJ45 adapter.
 
-- Most TVs are not Android-based (LG / Samsung / older TVs). To get Android apps and features, you can use a Android streaming device like:
+- Most TVs are not Android-based (LG / Samsung / older TVs). To get Android apps, you can use a Android streaming device:
 
-  - Chromecast / Fire Stick / Android TV box
+  - Google TV Streamer 4K
+  - Xiaomi TV Box S 3rd Gen 4K
 
 - Cable TV is outdated. Providers now sell a bundle that includes:
 
-  - Router (Internet + WiFi) – rented monthly. Instead, buy your own (Recommended: Ubiquiti).
-  - Android TV box (with their app) – rented monthly. Instead, buy your own (Recommended: Google TV Streamer 4K).
-  - Access to channels via their app – monthly fee. Instead, subscribe directly (same as Netflix).
+  - Router (Internet + WiFi) – rented monthly.
+    - Instead - Buy your own (Recommended: Ubiquiti).
+  - Android TV box (with their app) – rented monthly
+    - Instead - Buy your own (Recommended: Google TV Streamer 4K).
+  - Access to channels via their app – monthly fee.
+    - Instead - Subscribe directly (same as Netflix).
