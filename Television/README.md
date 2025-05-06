@@ -159,7 +159,7 @@ Source: [𝗟𝗚 𝗢𝗟𝗘𝗗 𝗧𝗩 𝗦𝗲𝘁𝘁𝗶𝗻𝗴𝘀 �
 
   - Router (Internet + WiFi) – rented monthly.
     - Instead - Buy your own (Recommended: Ubiquiti).
-  - Android TV box (with their app) – rented monthly
+  - Android TV box (with their app) – rented monthly.
     - Instead - Buy your own (Recommended: Google TV Streamer 4K).
   - Access to channels via their app – monthly fee.
     - Instead - Subscribe directly (same as Netflix).
