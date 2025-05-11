@@ -1,6 +1,12 @@
 # Information
 
-Everything about Websites.
+- [Anime](#anime)
+- [Manga & Manwa](#manga--manwa)
+- [TV Shows & Movies](#tv-shows--movies)
+- [Games](#games)
+- [Android Apps Sources](#android-apps-sources)
+- [Software](#software)
+- [Reviews](#reviews)
 
 ## Anime
 

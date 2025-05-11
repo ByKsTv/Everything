@@ -1,6 +1,16 @@
 # Information
 
-Everything about Flights.
+- [Tickets](#tickets)
+- [Hotels](#hotels)
+- [Travel](#travel)
+- [Exchange](#exchange)
+- [Credit Card](#credit-card)
+- [SIM](#sim)
+- [Portable charger](#portable-charger)
+- [Check in](#check-in)
+- [Health Insurance](#health-insurance)
+- [Luggage](#luggage)
+- [Terminal](#terminal)
 
 ## Tickets
 

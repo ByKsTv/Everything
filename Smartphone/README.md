@@ -1,6 +1,22 @@
 # Information
 
-Everything about Android apps.
+- [APKs](#apks)
+  - [IronFox Settings](#ironfox-settings)
+- [Useful ADB Commands](#useful-adb-commands)
+- [What to backup](#what-to-backup)
+- [Switch from Official ROM to Custom ROM](#switch-from-official-rom-to-custom-rom)
+  - [Prerequisites to Switching to Custom ROM](#prerequisites-to-switching-to-custom-rom)
+  - [Process of Switching from Official ROM to Custom ROM](#process-of-switching-from-official-rom-to-custom-rom)
+  - [Finish Setting Up Custom ROM](#finish-setting-up-custom-rom)
+- [Update Custom ROM](#update-custom-rom)
+  - [Prerequisites to Update Custom ROM](#prerequisites-to-update-custom-rom)
+  - [Process of Update Custom ROM](#process-of-update-custom-rom)
+- [Factory Reset Custom ROM](#factory-reset-custom-rom)
+  - [Prerequisites to Factory Reset Custom ROM](#prerequisites-to-factory-reset-custom-rom)
+  - [Process of Factory Reset Custom ROM](#process-of-factory-reset-custom-rom)
+- [Transfer data from existing non-functional phone to existing old functional phone](#transfer-data-from-existing-non-functional-phone-to-existing-old-functional-phone)
+  - [Prerequisites to Transfer data](#prerequisites-to-transfer-data)
+- [Install all APKs from Downloads folder](#install-all-apks-from-downloads-folder)
 
 ## APKs
 
@@ -39,7 +55,7 @@ Everything about Android apps.
 | YouTube ReVanced + GmsCore     | [4pda](https://4pda.to/forum/index.php?showtopic=1050118&view=findpost&p=115638129) + [GitHub](https://github.com/ReVanced/GmsCore/releases/latest)                 | ReVanced patches + `Default`                                                               |
 | aRDP                           | [4pda](https://4pda.to/forum/index.php?showtopic=658880#entry39545784)                                                                                              | Paid                                                                                       |
 
-## IronFox Settings
+### IronFox Settings
 
 | Location                                                                                         | Action                                                                                                |
 | ------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |

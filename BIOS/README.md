@@ -1,6 +1,8 @@
 # Information
 
-Everything about BIOS.
+- [BIOS Update](#bios-update)
+- [BIOS Settings](#bios-settings)
+  - [Asus Motherboard](#asus-motherboard)
 
 ## BIOS Update
 

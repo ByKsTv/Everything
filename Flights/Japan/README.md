@@ -1,6 +1,7 @@
 # Information
 
-Everything about Japan.
+- [Immigration](#immigration)
+- [Android Apps](#android-apps)
 
 ## Immigration
 

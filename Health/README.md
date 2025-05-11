@@ -1,6 +1,11 @@
 # Information
 
-Everything about Health.
+- [Arriving](#arriving)
+- [Cleaning Dentist](#cleaning-dentist)
+- [ENT Doctor](#ent-doctor)
+- [Prescriptions at a pharmacy](#prescriptions-at-a-pharmacy)
+- [Call Center](#call-center)
+- [Nails](#nails)
 
 ## Arriving
 
