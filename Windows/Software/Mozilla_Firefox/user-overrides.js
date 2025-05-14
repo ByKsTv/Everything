@@ -4,6 +4,13 @@ user_pref("browser.shell.checkDefaultBrowser", false);
 // about:preferences > General > Tabs > Enable Container Tabs > Off
 user_pref("privacy.userContext.enabled", false);
 
+// about:preferences > General > Browser Layout > Horizontal tabs
+user_pref("sidebar.verticalTabs", false);
+
+// about:preferences > General > Browser Layout > Show sidebar > off
+user_pref("sidebar.revamp", false);
+user_pref("sidebar.visibility", "hide-sidebar");
+
 // about:preferences > General > Files and Applications > Downloads > Always ask you where to save files > Off
 user_pref("browser.download.useDownloadDir", true);
 
