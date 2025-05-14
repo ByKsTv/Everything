@@ -25,6 +25,7 @@ github.com##.protip
 ksp.co.il##.null[class*="root-0-3-"]
 ksp.co.il##[class*="banner-0-3-"]
 ksp.co.il##[class*="muirtl-"][class*="banner-0-3-"].MuiContainer-maxWidthLg.MuiContainer-root
+missav.ws##.mb-5.space-y-5
 myanimelist.net##.mal-tooltip-layer
 pi.hole##[href="https://pi-hole.net/donate/"]
 pornolab.net###logo
@@ -36,9 +37,19 @@ www.aliexpress.com##.product-recommend-pc.product-recommend
 www.aliexpress.com##[class*="cross-link--crossLink"]
 www.aliexpress.com##[class*="fusion-page-card--fusionPageCard"]
 www.aliexpress.com##[class*="recommend-platform--wrap"]
+www.amazon.com###nav-subnav-toaster
+www.amazon.com###nile-inline-btf_feature_div
 www.amazon.com###nile-inline_feature_div
+www.amazon.com###tellAmazon_feature_div
+www.amazon.com##.a-divider-normal
+www.amazon.com##.aplus-premium.premium-module-5-comparison-table-scroller.aplus-module.celwidget
+www.amazon.com##.bia-content.a-box
 www.amazon.com##.copilot-secure-display
+www.amazon.com##.detailPageWidgetBlock
+www.amazon.com##.gridgetContainer.leftCol
+www.amazon.com##.sw-atf-recommendations-container
 www.amazon.com##div#similarities_feature_div.celwidget
+www.amazon.com##div.celwidget.sw-card-container.sw-recommendations-row.a-section
 www.ebay.com##.x-atf-left-bottom-river.vim
 www.ebay.com##.x-evo-btf-river.vi-grid.vim
 www.ebay.com##.x-vi-evo-main-container__top-panel
@@ -47,6 +58,9 @@ www.pornhub.com##.extraMargin.languages.pornInLangWrapper.sectionWrapper
 www.pornhub.com##.latestThumbDesign.extraRelatedVid
 www.pornhub.com##.original.video-wrapper.hd-videos_wrapper.hd-smallerWidth.sectionWrapper
 www.pornhub.com##.relatedSearchTermsBottom.sectionWrapper
+www.pornhub.com##.tagsForWomen
+www.pornhub.com##.trendingPillsContainer
+www.senetic.co.il###ubiquiti-network-popup
 www.xvideos.com##.slogan
 www.ynet.co.il##.articleShareButtons
 www.youtube.com###attached-survey
