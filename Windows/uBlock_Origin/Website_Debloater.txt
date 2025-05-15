@@ -57,7 +57,9 @@ www.aliexpress.com##[class^="recommend-store--title--"][class*="title--wrap--"]
 www.aliexpress.com##[class^="survey--wrap--"]
 www.aliexpress.com##[class^="title--wrap--"]
 www.aliexpress.com##div[class^="filter--impression--"][class*="filter--filterItem--"]
+www.aliexpress.com##div[class^="notranslate navigation--wrap--"].comet-v2-anchor
 www.aliexpress.com##div[class^="split-line--wrap--"]
+www.aliexpress.com##div[class^="structure-label--wrap--"]
 www.amazon.com###ask_feature_div
 www.amazon.com###compatibilityContainerDesktop
 www.amazon.com###feature-bullets > .a-section
