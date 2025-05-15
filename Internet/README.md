@@ -430,6 +430,7 @@ Cancel unnecessary services, also voicemail
 
 - Uses TizenOS instead of Android, so you can't sideload APKs.
 - Panning shot issue where the first frame of the panning shot will be stuck.
+- Can't turn off the bluethooth even if the TV is only used as a monitor.
 
 ### LG
 
