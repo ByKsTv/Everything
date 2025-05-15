@@ -37,6 +37,7 @@ www.aliexpress.com##._il_c_.y2023.site-footer
 www.aliexpress.com##.cart-recommend
 www.aliexpress.com##.cart-summary-suggestion
 www.aliexpress.com##.comet-icon-overflowmenuhorizontal.comet-icon
+www.aliexpress.com##.comet-v2-back-top-content
 www.aliexpress.com##.comet-v2-divider-small.comet-v2-divider
 www.aliexpress.com##.group-promotion-wrap
 www.aliexpress.com##.order-block.order-recommend
