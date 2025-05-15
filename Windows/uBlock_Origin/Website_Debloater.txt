@@ -35,7 +35,9 @@ www.aliexpress.com###nav-store
 www.aliexpress.com##._32_es._1wVX7
 www.aliexpress.com##._il_c_.y2023.site-footer
 www.aliexpress.com##.cart-recommend
+www.aliexpress.com##.cart-service-wrap
 www.aliexpress.com##.cart-summary-suggestion
+www.aliexpress.com##.comet-back-top
 www.aliexpress.com##.comet-icon-overflowmenuhorizontal.comet-icon
 www.aliexpress.com##.comet-v2-back-top-content
 www.aliexpress.com##.comet-v2-divider-small.comet-v2-divider
@@ -48,6 +50,8 @@ www.aliexpress.com##.slick-initialized[class*="slick-slider"]
 www.aliexpress.com##.survey-link
 www.aliexpress.com##.y2023.footer-copywrite
 www.aliexpress.com##[class*="cross-link--crossLink"]
+www.aliexpress.com##[class*="down-load-app--newMenuItem--"][class*="down-load-app--menuItem--"]
+www.aliexpress.com##[class*="down-load-app--simpleMenuItem--"]
 www.aliexpress.com##[class*="fusion-page-card--fusionPageCard"]
 www.aliexpress.com##[class*="recommend-platform--wrap"]
 www.aliexpress.com##[class*="structure-label--wrap--"]
@@ -59,11 +63,12 @@ www.aliexpress.com##[class^="notranslate navigation--wrap--"].comet-v2-anchor
 www.aliexpress.com##[class^="recommend-store--title--"][class*="title--wrap--"]
 www.aliexpress.com##[class^="survey--wrap--"]
 www.aliexpress.com##[class^="title--wrap--"]
+www.aliexpress.com##div.has-underline
 www.aliexpress.com##div[class*="filter--impression--"][class*="filter--filterItem--"]
-www.aliexpress.com##div[class^="filter--impression--"][class*="filter--filterItem--"]
 www.aliexpress.com##div[class^="notranslate navigation--wrap--"].comet-v2-anchor
 www.aliexpress.com##div[class^="split-line--wrap--"]
 www.aliexpress.com##div[class^="structure-label--wrap--"]
+www.aliexpress.com##span[class*="pc-header--line--"]
 www.amazon.com###ask_feature_div
 www.amazon.com###compatibilityContainerDesktop
 www.amazon.com###feature-bullets > .a-section
