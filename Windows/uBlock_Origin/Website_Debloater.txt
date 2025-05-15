@@ -32,11 +32,18 @@ pornolab.net###logo
 pornolab.net##tr.tCenter.row3 > .med
 rutracker.org###logo
 www.aliexpress.com##.cart-recommend
+www.aliexpress.com##.cart-summary-suggestion
+www.aliexpress.com##.comet-v2-divider-small.comet-v2-divider
 www.aliexpress.com##.order-block.order-recommend
 www.aliexpress.com##.product-recommend-pc.product-recommend
+www.aliexpress.com##.root-sidecart
+www.aliexpress.com##.slick-initialized[class*="slick-slider"]
+www.aliexpress.com##.survey-link
 www.aliexpress.com##[class*="cross-link--crossLink"]
 www.aliexpress.com##[class*="fusion-page-card--fusionPageCard"]
 www.aliexpress.com##[class*="recommend-platform--wrap"]
+www.aliexpress.com##[class^="survey--wrap--"]
+www.aliexpress.com##div[class^="split-line--wrap--"]
 www.amazon.com###nav-subnav-toaster
 www.amazon.com###nile-inline-btf_feature_div
 www.amazon.com###nile-inline_feature_div
