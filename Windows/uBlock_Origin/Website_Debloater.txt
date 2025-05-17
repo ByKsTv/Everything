@@ -29,11 +29,35 @@ missav.ws##.mb-5.space-y-5
 myanimelist.net##.mal-tooltip-layer
 pi.hole##[href="https://pi-hole.net/donate/"]
 pornolab.net###logo
+pornolab.net###moderators
+pornolab.net###page_footer
+pornolab.net##.btn-reply
+pornolab.net##.copyright
+pornolab.net##.jumpbox
+pornolab.net##.med.tRight
+pornolab.net##.signature
+pornolab.net##.spacer_6
+pornolab.net##.thx-form
+pornolab.net##.w100.nav
+pornolab.net##div.spacer_10
 pornolab.net##tr.tCenter.row3 > .med
+rutracker.org###footer-info-links
 rutracker.org###logo
+rutracker.org###post-msg-form
+rutracker.org###thx-btn-div
+rutracker.org##.footer-bottom-links
+rutracker.org##.hide-for-print.bottom_info
+rutracker.org##.hide-for-print.w100 .w100.nav
+rutracker.org##.med.catBottom
+rutracker.org##.spacer_12
+rutracker.org##.thHead
+rutracker.org##.wide
+rutracker.org##[href^="posting.php"]
+rutracker.org##tr.tCenter.row3 > td
 www.aliexpress.com###nav-store
 www.aliexpress.com##._32_es._1wVX7
 www.aliexpress.com##._il_c_.y2023.site-footer
+www.aliexpress.com##.account-recommend
 www.aliexpress.com##.cart-recommend
 www.aliexpress.com##.cart-service-wrap
 www.aliexpress.com##.cart-summary-suggestion
@@ -103,6 +127,8 @@ www.ebay.com##.x-evo-btf-river.vi-grid.vim
 www.ebay.com##.x-vi-evo-main-container__top-panel
 www.iec.co.il##.ng-star-inserted.sticky-banner--container.bottom
 www.pornhub.com##.extraMargin.languages.pornInLangWrapper.sectionWrapper
+www.pornhub.com##.footer
+www.pornhub.com##.homePageFooter.logoFooterWrapper
 www.pornhub.com##.latestThumbDesign.extraRelatedVid
 www.pornhub.com##.original.video-wrapper.hd-videos_wrapper.hd-smallerWidth.sectionWrapper
 www.pornhub.com##.relatedSearchTermsBottom.sectionWrapper
@@ -112,6 +138,9 @@ www.senetic.co.il###ubiquiti-network-popup
 www.xvideos.com##.slogan
 www.ynet.co.il##.articleShareButtons
 www.youtube.com###attached-survey
+xxxclub.to##.footer-bottom
+xxxclub.to##.myBtn
+xxxclub.to##.page-footer
 xxxclub.to##[href="/c/donate/"]
 youtube.com##[page-subtype="home"] ytd-thumbnail-overlay-resume-playback-renderer:upward(ytd-rich-item-renderer)
 ||bringthemhomenow.net^
