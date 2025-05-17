@@ -65,6 +65,8 @@ www.aliexpress.com##.comet-back-top
 www.aliexpress.com##.comet-icon-overflowmenuhorizontal.comet-icon
 www.aliexpress.com##.comet-v2-back-top-content
 www.aliexpress.com##.comet-v2-divider-small.comet-v2-divider
+www.aliexpress.com##.e4_g
+www.aliexpress.com##.go_gp
 www.aliexpress.com##.group-promotion-wrap
 www.aliexpress.com##.notranslate[class*="navigation--wrap--"].comet-v2-anchor
 www.aliexpress.com##.order-block.order-recommend
@@ -86,7 +88,6 @@ www.aliexpress.com##[class^="list--itemHelp--"]
 www.aliexpress.com##[class^="notranslate navigation--wrap--"].comet-v2-anchor
 www.aliexpress.com##[class^="recommend-store--title--"][class*="title--wrap--"]
 www.aliexpress.com##[class^="survey--wrap--"]
-www.aliexpress.com##[class^="title--wrap--"]
 www.aliexpress.com##div.has-underline
 www.aliexpress.com##div[class*="filter--impression--"][class*="filter--filterItem--"]
 www.aliexpress.com##div[class^="notranslate navigation--wrap--"].comet-v2-anchor
@@ -100,6 +101,7 @@ www.amazon.com###followTheAuthor_feature_div
 www.amazon.com###hover-zoom-end
 www.amazon.com###image-canvas-caption
 www.amazon.com###miraiBTFShopByLook_feature_div
+www.amazon.com###nav-flyout-anchor
 www.amazon.com###nav-subnav-toaster
 www.amazon.com###newerVersion_feature_div
 www.amazon.com###nile-inline-btf_feature_div
@@ -134,7 +136,15 @@ www.pornhub.com##.original.video-wrapper.hd-videos_wrapper.hd-smallerWidth.secti
 www.pornhub.com##.relatedSearchTermsBottom.sectionWrapper
 www.pornhub.com##.tagsForWomen
 www.pornhub.com##.trendingPillsContainer
+www.senetic.co.il###footer_copyrights
+www.senetic.co.il###top-brands
 www.senetic.co.il###ubiquiti-network-popup
+www.senetic.co.il##.contentWrap > .logo
+www.senetic.co.il##.nwsBlock--redesign.nwsBlock
+www.senetic.co.il##.product-cross-selling
+www.senetic.co.il##.product__row--associations.product__row
+www.senetic.co.il##.section-with-slider--footer-recommended-products.section-with-slider
+www.senetic.co.il##.tabs-headings
 www.xvideos.com##.slogan
 www.ynet.co.il##.articleShareButtons
 www.youtube.com###attached-survey
