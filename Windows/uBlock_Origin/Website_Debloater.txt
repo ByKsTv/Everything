@@ -55,6 +55,7 @@ rutracker.org##.wide
 rutracker.org##[href^="posting.php"]
 rutracker.org##tr.tCenter.row3 > td
 www.aliexpress.com###nav-store
+www.aliexpress.com##*[class*="recommend-store--title--"][class*="title--wrap--"]
 www.aliexpress.com##._32_es._1wVX7
 www.aliexpress.com##._il_c_.y2023.site-footer
 www.aliexpress.com##.account-recommend
