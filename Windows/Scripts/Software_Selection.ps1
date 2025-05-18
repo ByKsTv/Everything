@@ -491,6 +491,7 @@ if ($InstalledSoftware -match 'Jellyfin') {
     $SoftwareSelection_CheckBoxes['Jellyfin'].Text += ' (Installed)'
 }
 if ($InstalledSoftware -match 'Internet Download Manager') {
+    $SoftwareSelection_CheckBoxes['Internet Download Manager'].Enabled = $false
     $SoftwareSelection_CheckBoxes['Internet Download Manager'].Text += ' (Installed)'
 }
 if ($InstalledSoftware -match 'Macro Recorder') {
