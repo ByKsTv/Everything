@@ -20,7 +20,7 @@ $DotNET_Versions = @('8', '9')
 foreach ($DotNET_Version in $DotNET_Versions) {
 	$DotNET_VersionPattern = "$DotNET_Version*"
 	$DotNET_SDK = "Microsoft .NET SDK $DotNET_VersionPattern"
-	$DotNET_SDKInstalled = (Get-Package $DotNET_SDK -ErrorAction SilentlyContinue | Where-Object ProviderName -EQ 'Programs').Name -replace '.*?(\d+\.\d+\.\d+).*', '$1' | Select-Object -First 1
+	$DotNET_SDKInstalled = (Get-Package $DotNET_SDK -ErrorAction SilentlyContinue | Where-Object ProviderName -EQ 'Programs').Name -replace '.*?(\d+\.\d+\.\d+).*', '$1' | Sort-Object -Descending | Select-Object -First 1
 	$DotNET_FullVersion = "$DotNET_Version.0"
 	$DotNET_ReleasesJsonURL = "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/$DotNET_FullVersion/releases.json"
 	$DotNET_ReleasesJson = Invoke-RestMethod $DotNET_ReleasesJsonURL
