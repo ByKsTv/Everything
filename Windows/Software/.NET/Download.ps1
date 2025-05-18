@@ -20,7 +20,7 @@ $DotNET_Versions = @('8', '9')
 foreach ($DotNET_Version in $DotNET_Versions) {
 	$DotNET_VersionPattern = "$DotNET_Version*"
 	$DotNET_SDK = "Microsoft .NET SDK $DotNET_VersionPattern"
-	$DotNET_SDKInstalled = (Get-Package $DotNET_SDK -ErrorAction SilentlyContinue | Where-Object ProviderName -EQ 'Programs').Name -replace '.*?(\d+\.\d+\.\d+).*', '$1'
+	$DotNET_SDKInstalled = (Get-Package $DotNET_SDK -ErrorAction SilentlyContinue | Where-Object ProviderName -EQ 'Programs').Name -replace '.*?(\d+\.\d+\.\d+).*', '$1' | Select-Object -First 1
 	$DotNET_FullVersion = "$DotNET_Version.0"
 	$DotNET_ReleasesJsonURL = "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/$DotNET_FullVersion/releases.json"
 	$DotNET_ReleasesJson = Invoke-RestMethod $DotNET_ReleasesJsonURL
@@ -29,7 +29,7 @@ foreach ($DotNET_Version in $DotNET_Versions) {
 	$DotNET_SupportPhaseDate = [DateTime]${DotNET_SupportPhase}
 	$DotNET_Today = Get-Date
 
-	if (($null -eq $DotNET_SDKInstalled -or $DotNET_SDKInstalled -ne $DotNET_SDKLatest) -and $DotNET_SupportPhaseDate -gt $DotNET_Today) {
+	if (($null -eq $DotNET_SDKInstalled) -or ($DotNET_SDKInstalled -ne $DotNET_SDKLatest) -and ($DotNET_SupportPhaseDate -gt $DotNET_Today)) {
 		$DotNET_DDL = (((($DotNET_ReleasesJson).Releases | Select-Object -First 1).sdk).files | Where-Object -Property 'name' -Match 'win-x64.exe').url
 		$DotNET_Filename = [IO.Path]::GetFileName(([URI]$DotNET_DDL).AbsolutePath)
 		$DotNET_SavePath = [IO.Path]::Combine($env:TEMP, $DotNET_Filename)
@@ -38,7 +38,7 @@ foreach ($DotNET_Version in $DotNET_Versions) {
 
 		$DotNET_Argument = '/install /quiet /norestart'
 		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft .NET SDK'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_SDKLatest'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-		Start-Process $DotNET_SavePath -ArgumentList $DotNET_Argument
+		Start-Process $DotNET_SavePath -ArgumentList $DotNET_Argument -Wait
 	}
 
 	if ($DotNET_SupportPhaseDate -lt $DotNET_Today -and $DotNET_SDKInstalled) {
