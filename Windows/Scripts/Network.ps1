@@ -564,7 +564,7 @@ netsh interface tcp set global nonsackrttresiliency=enabled
 	Disabling scaling heuristics ensures full use of window scaling, which improves performance on high-latency or high-bandwidth networks. Recommended for modern networks where compatibility issues are rare.
 #>
 Set-NetTCPSetting -ScalingHeuristics Disabled
-
+netsh interface tcp set heuristics disabled
 <#
 	Setting:
 	Timestamps
@@ -650,21 +650,7 @@ netsh interface tcp set global fastopen=enabled
 #>
 netsh interface tcp set global pacingprofile=off
 
-<#
-	Setting:
-	TCP Window Auto-Tuning Heuristics
 
-	Description:
-	Controls whether Windows uses heuristics to automatically adjust TCP window scaling behavior based on network conditions and past connections.
-
-	Values:
-	enabled - Windows may disable window scaling if it detects compatibility issues.
-	disabled - Disables heuristics; window scaling stays enabled as configured.
-
-	Note:
-	Disabling heuristics ensures consistent performance by preventing Windows from automatically turning off window scaling. Recommended for stable, modern networks to maintain optimal throughput.
-#>
-netsh interface tcp set heuristics disabled
 
 <#
 	Setting:
