@@ -565,6 +565,7 @@ netsh interface tcp set global nonsackrttresiliency=enabled
 #>
 Set-NetTCPSetting -ScalingHeuristics Disabled
 netsh interface tcp set heuristics disabled
+
 <#
 	Setting:
 	Timestamps
