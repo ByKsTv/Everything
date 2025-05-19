@@ -67,6 +67,10 @@ if (-not (Test-Path -Path 'C:\Program Files (x86)\Internet Download Manager\Unin
     # Hide warning window when running as admin
     New-ItemProperty -Path 'HKCU:\SOFTWARE\DownloadManager' -Name 'bShVistaAsAdmWarn' -PropertyType DWord -Value 1 -Force
 
+    # Options > General > Customize IDM Download panels in browsers > Panel view > Mini mode
+    New-ItemProperty -Path 'HKCU:\SOFTWARE\DownloadManager\DwnlPanel' -Name 'PanelView' -PropertyType DWord -Value 2 -Force
+    New-ItemProperty -Path 'HKCU:\SOFTWARE\DownloadManager\DwnlSelPanel' -Name 'PanelView' -PropertyType DWord -Value 2 -Force
+
     $InternetDownloadManager_Label = 'https://rutracker.org/forum/viewtopic.php?t=5913474'
 
     $InternetDownloadManager_Title = (
