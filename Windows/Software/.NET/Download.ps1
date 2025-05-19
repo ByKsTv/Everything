@@ -10,7 +10,7 @@ if (-not (Get-ScheduledTask -TaskName $DotNET_TaskName -ErrorAction SilentlyCont
 
 if (-not (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NET' -Name 'AllowAUOnServerOS' -ErrorAction SilentlyContinue)) {
 	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('.NET: Auto-Updates: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
-	if ((Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\.NET') -ne $true) {
+	if (-not (Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\.NET')) {
 		New-Item 'HKLM:\SOFTWARE\Microsoft\.NET' -Force 
 	}
 	New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NET' -Name 'AllowAUOnServerOS' -Value 1 -PropertyType DWord -Force

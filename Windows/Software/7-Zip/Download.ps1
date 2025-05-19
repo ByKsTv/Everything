@@ -33,7 +33,7 @@ if ($7Zip_OLD_PATH -notlike "*$7Zip_Destination*") {
 }
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('7-Zip: Tools: Options: 7-Zip: Icons in context menus: On'); [Console]::ResetColor(); [Console]::WriteLine()
-if ((Test-Path -Path 'HKCU:\SOFTWARE\7-Zip\Options') -ne $true) {
+if (-not (Test-Path -Path 'HKCU:\SOFTWARE\7-Zip\Options')) {
     New-Item 'HKCU:\SOFTWARE\7-Zip\Options' -Force
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\7-Zip\Options' -Name 'MenuIcons' -Value 1 -PropertyType DWord -Force

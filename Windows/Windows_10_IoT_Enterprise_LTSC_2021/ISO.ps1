@@ -1,5 +1,5 @@
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Rufus: Show application settings: Check for updates: Disabled'); [Console]::ResetColor(); [Console]::WriteLine()
-if ((Test-Path -Path 'HKCU:\SOFTWARE\Akeo Consulting\Rufus') -ne $true) {
+if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Akeo Consulting\Rufus')) {
     New-Item 'HKCU:\SOFTWARE\Akeo Consulting\Rufus' -Force
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Akeo Consulting\Rufus' -Name 'UpdateCheckInterval' -Value -1 -PropertyType DWord -Force

@@ -1,5 +1,5 @@
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Jitbit Macro Recorder: Settings: General: Disable the welcome screen: On'); [Console]::ResetColor(); [Console]::WriteLine()
-if ((Test-Path -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder') -ne $true) {
+if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder')) {
     New-Item 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Force 
 }
         

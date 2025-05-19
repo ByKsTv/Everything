@@ -1,7 +1,7 @@
 # if already installed - manually uninstall and restart pc
 if (-not (Test-Path -Path 'C:\Program Files (x86)\Internet Download Manager\Uninstall.exe')) {
 
-    if ((Test-Path -Path 'HKCU:\SOFTWARE\DownloadManager') -ne $true) {
+    if (-not (Test-Path -Path 'HKCU:\SOFTWARE\DownloadManager')) {
         New-Item 'HKCU:\SOFTWARE\DownloadManager' -Force
         New-Item 'HKCU:\SOFTWARE\DownloadManager\FoldersTree\Compressed' -Force
         New-Item 'HKCU:\SOFTWARE\DownloadManager\FoldersTree\Documents' -Force

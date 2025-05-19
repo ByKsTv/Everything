@@ -17,7 +17,7 @@ if ($null -eq $NVCleanstall_InstalledVersion -or $NVCleanstall_InstalledVersion 
     $NVCleanstall_Settings_Reg = 'HKCU:\SOFTWARE\techPowerUp\NVCleanstall'
     $NVCleanstall_Settings_RegTweak = [IO.Path]::Combine($NVCleanstall_Settings_Reg, 'PreviousTweaks')
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'NVCleanstall'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' custom settings from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$NVCleanstall_Settings_URL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$NVCleanstall_Settings_RegTweak'"); [Console]::ResetColor(); [Console]::WriteLine()
-    if ((Test-Path -Path $NVCleanstall_Settings_Reg) -ne $true) {
+    if (-not (Test-Path -Path $NVCleanstall_Settings_Reg)) {
         New-Item $NVCleanstall_Settings_Reg -Force
     }
     $NVCleanstall_Settings = (New-Object System.Net.WebClient).DownloadString($NVCleanstall_Settings_URL)

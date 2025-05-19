@@ -236,7 +236,7 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'RestartApps' -PropertyType DWord -Value 0 -Force
 
 # Remote Desktop Connection: Never show pop-up upon ending session
-if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client') -ne $true) {
+if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client')) {
 	New-Item 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client' -Force 
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client' -Name 'ShowShutdownDialog' -Value 0 -PropertyType DWord -Force

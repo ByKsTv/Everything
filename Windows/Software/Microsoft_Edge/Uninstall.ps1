@@ -23,13 +23,13 @@ if ($InstalledSoftware -match 'Microsoft Edge') {
     }
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Disabling '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Edge'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' updates'); [Console]::ResetColor(); [Console]::WriteLine()
-    if ((Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\EdgeUpdate') -ne $true) {
+    if (-not (Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\EdgeUpdate')) {
         New-Item -Path 'HKLM:\SOFTWARE\Microsoft\EdgeUpdate' -Force
     }
     New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\EdgeUpdate' -Name 'DoNotUpdateToEdgeWithChromium' -PropertyType DWord -Value 1 -Force
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Allowing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Edge'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to uninstall'); [Console]::ResetColor(); [Console]::WriteLine()
-    if ((Test-Path -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdateDev') -ne $true) {
+    if (-not (Test-Path -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdateDev')) {
         New-Item 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdateDev' -Force
     }
     New-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdateDev' -Name 'AllowUninstall' -Value '' -PropertyType String -Force
