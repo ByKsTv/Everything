@@ -361,6 +361,22 @@ New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multi
 #>
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\MSMQ\Parameters' -Name 'TCPNoDelay' -Value 1 -PropertyType DWord -Force -ErrorAction SilentlyContinue
 
+$MTU_URL = 'google.com'
+$MTU_Initial = 1472
+while ($true) {
+	if ((ping -f -l $MTU_Initial $MTU_URL -n 1 | Out-String) -match 'Packet needs to be fragmented') {
+		$MTU_Initial--
+	}
+	else {
+		break
+	}
+}
+$MTU_Final = $MTU_Initial + 28
+$MTU_Interface = (Get-NetIPConfiguration | Where-Object { $_.IPv4DefaultGateway }).InterfaceAlias
+Write-Host "Setting MTU to $MTU_Final"
+netsh interface ipv4 set subinterface "$MTU_Interface" mtu=$MTU_Final store=persistent
+netsh interface ipv6 set subinterface "$MTU_Interface" mtu=$MTU_Final store=persistent
+
 <#
 	Setting:
 	Checksum Offload
@@ -374,6 +390,7 @@ New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\MSMQ\Parameters' -Name 'TCPNoDe
 
 	Note:
 	Disabling checksum offload can help troubleshoot network issues such as packet corruption, latency, or compatibility problems with older network hardware or drivers. It may slightly increase CPU usage.
+	Controlling the following settings: IPv4 Checksum Offload, TCP Checksum Offload (IPv4), TCP Checksum Offload (IPv6), UDP Checksum Offload (IPv4), UDP Checksum Offload (IPv6)
 #>
 Disable-NetAdapterChecksumOffload -Name *
 
@@ -390,6 +407,7 @@ Disable-NetAdapterChecksumOffload -Name *
 
 	Note:
 	Disabling LSO can reduce latency or fix compatibility issues with certain games, apps, or older hardware. However, it may increase CPU usage during high network throughput.
+	Controlling the following settings: Large Send Offload (IPv4), Large Send Offload v2 (IPv4), Large Send Offload v2 (IPv6)
 #>
 Disable-NetAdapterLso -Name *
 
@@ -651,8 +669,6 @@ netsh interface tcp set global fastopen=enabled
 #>
 netsh interface tcp set global pacingprofile=off
 
-
-
 <#
 	Setting:
 	Teredo State
@@ -671,83 +687,876 @@ netsh interface tcp set global pacingprofile=off
 #>
 netsh interface teredo set state disabled
 
-$MTU_URL = 'google.com'
-$MTU_Initial = 1472
-while ($true) {
-	if ((ping -f -l $MTU_Initial $MTU_URL -n 1 | Out-String) -match 'Packet needs to be fragmented') {
-		$MTU_Initial--
-	}
-	else {
-		break
-	}
-}
-$MTU_Final = $MTU_Initial + 28
-$MTU_Interface = (Get-NetIPConfiguration | Where-Object { $_.IPv4DefaultGateway }).InterfaceAlias
-Write-Host "Setting MTU to $MTU_Final"
-netsh interface ipv4 set subinterface "$MTU_Interface" mtu=$MTU_Final store=persistent
-netsh interface ipv6 set subinterface "$MTU_Interface" mtu=$MTU_Final store=persistent
-
 $SettingsToChange = @(
+	<#
+	Setting:
+	ARP Offload
+	
+	Description:
+	Allows the network adapter to handle Address Resolution Protocol (ARP) requests without waking the computer.
+	
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Can save power when enabled.
+#>
 	@{ DisplayName = 'ARP Offload'; DisplayValues = @('Disabled') },
+
+	<#
+	Setting:
+	Adaptive Inter-Frame Spacing
+	
+	Description:
+	Dynamically adjusts the spacing between transmitted frames to reduce collisions and improve performance.
+	
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Useful in environments with high network traffic.
+#>
 	@{ DisplayName = 'Adaptive Inter-Frame Spacing'; DisplayValues = @('Disabled') },
+
+	<#
+	Setting:
+	DMA Coalescing
+	
+	Description:
+	Reduces power consumption by grouping DMA (Direct Memory Access) operations.
+	
+	Values:
+	Enabled, Disabled
+
+	Note:
+	May lower performance for power savings.
+#>
 	@{ DisplayName = 'DMA Coalescing'; DisplayValues = @('Disabled') },
-	@{ DisplayName = 'ECMA'; DisplayValues = @('Enabled') },
+
+	<#
+	Setting:
+	ECMA
+	
+	Description:
+	Enables Energy Efficient Ethernet (EEE) as specified by the ECMA standard for lower power usage.
+	
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Related to energy savings.
+#>
+	@{ DisplayName = 'ECMA'; DisplayValues = @('Disabled') },
+
+	<#
+	Setting:
+	Enable PME
+	
+	Description:
+	Allows the network adapter to generate a Power Management Event (PME) to wake the computer.
+	
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Needed for wake-on-LAN.
+#>
 	@{ DisplayName = 'Enable PME'; DisplayValues = @('Disabled') },
+
+	<#
+	Setting:
+	Energy Efficient Ethernet
+	
+	Description:
+	Reduces power consumption when network traffic is low using IEEE 802.3az standard.
+	
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Can slightly affect network performance.
+#>
 	@{ DisplayName = 'Energy Efficient Ethernet'; DisplayValues = @('Disabled', 'Off') },
+
+	<#
+	Setting:
+	Flow Control
+	
+	Description:
+	Manages data flow between computers to prevent packet loss during congestion.
+	
+	Values:
+	Enabled, Disabled, Rx & Tx Enabled, Rx Enabled, Tx Enabled
+
+	Note:
+	Can help with network stability.
+#>
 	@{ DisplayName = 'Flow Control'; DisplayValues = @('Disabled') },
+
+	<#
+	Setting:
+	Gigabit Lite
+	
+	Description:
+	Allows the adapter to operate in a lower-power gigabit mode.
+	
+	Values:
+	Enabled, Disabled
+
+	Note:
+	May reduce speed for energy savings.
+#>
 	@{ DisplayName = 'Gigabit Lite'; DisplayValues = @('Disabled') },
+
+	<#
+	Setting:
+	Gigabit Master Slave Mode
+	
+	Description:
+	Manually sets the adapter as master or slave for gigabit connections.
+	
+	Values:
+	Auto, Master, Slave
+
+	Note:
+	Usually best to leave on Auto.
+#>
 	@{ DisplayName = 'Gigabit Master Slave Mode'; DisplayValues = @('Auto Detect') },
+
+	<#
+	Setting:
+	Green Ethernet
+	
+	Description:
+	Adjusts power usage based on cable length and network activity.
+	
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Energy saving feature.
+#>
 	@{ DisplayName = 'Green Ethernet'; DisplayValues = @('Disabled') },
-	@{ DisplayName = 'IPv4 Checksum Offload'; DisplayValues = @('Disabled') },
-	@{ DisplayName = 'Interrupt Moderation Rate'; DisplayValues = @('Off') },
-	@{ DisplayName = 'Interrupt Moderation'; DisplayValues = @('Disabled') },
+
+	<#
+	Setting:
+	IPv4 Checksum Offload
+
+	Description:
+	Allows the network adapter to compute IPv4 checksums, offloading the task from the CPU.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Can improve system performance.
+#>
+	# @{ DisplayName = 'IPv4 Checksum Offload'; DisplayValues = @('Enabled') },
+
+	<#
+	Setting:
+	Interrupt Moderation Rate
+
+	Description:
+	Controls how often the network adapter generates interrupts to the CPU.
+
+	Values:
+	Adaptive, High, Medium, Low, Off
+
+	Note:
+	Lower rates reduce CPU usage but may add latency.
+#>
+	@{ DisplayName = 'Interrupt Moderation Rate'; DisplayValues = @('Extreme') },
+
+	<#
+	Setting:
+	Interrupt Moderation
+
+	Description:
+	Enables or disables grouping of interrupts to reduce CPU load.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Useful for reducing CPU overhead on busy networks.
+#>
+	@{ DisplayName = 'Interrupt Moderation'; DisplayValues = @('Enabled') },
+
+	<#
+	Setting:
+	Jumbo Frame
+
+	Description:
+	Allows larger-than-standard Ethernet frames for more efficient data transfer.
+
+	Values:
+	Disabled, 4088, 9014, 9216 Bytes (actual options vary by adapter)
+
+	Note:
+	All devices in the network must support it.
+#>
 	@{ DisplayName = 'Jumbo Frame'; DisplayValues = @('Disabled') },
+
+	<#
+	Setting:
+	Jumbo Packet
+
+	Description:
+	Alternate name for Jumbo Frame; allows setting maximum frame size.
+
+	Values:
+	Standard MTU, 4088, 9014, 9216 Bytes
+
+	Note:
+	Improves throughput on compatible networks.
+#>
 	@{ DisplayName = 'Jumbo Packet'; DisplayValues = @('1514', 'Disabled') },
-	@{ DisplayName = 'Large Send Offload (IPv4)'; DisplayValues = @('Disabled') },
-	@{ DisplayName = 'Large Send Offload v2 (IPv4)'; DisplayValues = @('Disabled') },
-	@{ DisplayName = 'Large Send Offload v2 (IPv6)'; DisplayValues = @('Disabled') },
+
+	<#
+	Setting:
+	Large Send Offload (IPv4)
+
+	Description:
+	Allows the adapter to offload segmentation of large IPv4 packets.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Reduces CPU load.
+#>
+	# @{ DisplayName = 'Large Send Offload (IPv4)'; DisplayValues = @('Enabled') },
+
+	<#
+	Setting:
+	Large Send Offload v2 (IPv4)
+
+	Description:
+	Improved version of Large Send Offload for IPv4.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Better efficiency for modern networks.
+#>
+	# @{ DisplayName = 'Large Send Offload v2 (IPv4)'; DisplayValues = @('Enabled') },
+
+	<#
+	Setting:
+	Large Send Offload v2 (IPv6)
+
+	Description:
+	Same as above but for IPv6 packets.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Reduces CPU load on IPv6 networks.
+#>
+	# @{ DisplayName = 'Large Send Offload v2 (IPv6)'; DisplayValues = @('Enabled') },
+
+	<#
+	Setting:
+	Legacy Switch Compatibility Mode
+
+	Description:
+	Enables compatibility with older network switch hardware.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Only enable if you have issues with legacy switches.
+#>
 	@{ DisplayName = 'Legacy Switch Compatibility Mode'; DisplayValues = @('Disabled') },
+
+	<#
+	Setting:
+	Log Link State Event
+
+	Description:
+	Logs changes in the network connection status.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Helps in troubleshooting connection problems.
+#>
 	@{ DisplayName = 'Log Link State Event'; DisplayValues = @('Disabled') },
+
+	<#
+	Setting:
+	Max IRQ per Second
+
+	Description:
+	Sets the maximum number of interrupts per second for the adapter.
+
+	Values:
+	Numeric (varies by adapter)
+
+	Note:
+	Lower values can reduce CPU usage.
+#>
 	@{ DisplayName = 'Max IRQ per Second'; DisplayValues = @('30000') },
+
+	<#
+	Setting:
+	Maximum Number of RSS Queues
+
+	Description:
+	Specifies how many Receive Side Scaling queues are used.
+
+	Values:
+	1, 2, 4, 8, etc. (varies by adapter)
+
+	Note:
+	Higher values help on multi-core systems.
+#>
 	@{ DisplayName = 'Maximum Number of RSS Queues'; DisplayValues = @('1 RSS Queues', '2 RSS Queues', '4 RSS Queues', '1 Queue', '2 Queue', '4 Queue') },
+
+	<#
+	Setting:
+	Maximum number of RSS Processors
+
+	Description:
+	Limits how many processors RSS can use for network traffic.
+
+	Values:
+	1, 2, 4, 8, etc. (varies by adapter)
+
+	Note:
+	Matches or is less than total logical processors.
+#>
 	@{ DisplayName = 'Maximum number of RSS Processors'; DisplayValues = @('1', '2', '4', '8') },
+
+	<#
+	Setting:
+	Media Status
+
+	Description:
+	Shows the current status of the network connection.
+
+	Values:
+	Always Connected, Normal
+
+	Note:
+	Usually for diagnostic use.
+#>
 	@{ DisplayName = 'Media Status'; DisplayValues = @('Always Connected') },
+
+	<#
+	Setting:
+	NS Offload
+
+	Description:
+	Allows the adapter to respond to Neighbor Solicitation (NS) requests without waking the system.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Helps with power savings for IPv6.
+#>
 	@{ DisplayName = 'NS Offload'; DisplayValues = @('Disabled') },
+
+	<#
+	Setting:
+	Non-Admin Access
+
+	Description:
+	Allows non-administrator users to access adapter settings.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Can be a security risk if enabled.
+#>
 	@{ DisplayName = 'Non-Admin Access'; DisplayValues = @('Not Allowed') },
+
+	<#
+	Setting:
+	PTP Hardware Timestamp
+
+	Description:
+	Enables hardware-based Precision Time Protocol timestamps for network traffic.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Used for highly accurate network timing.
+#>
 	@{ DisplayName = 'PTP Hardware Timestamp'; DisplayValues = @('Disabled') },
+
+	<#
+	Setting:
+	Packet Priority & VLAN
+
+	Description:
+	Enables support for 802.1p (priority tagging) and 802.1Q (VLAN tagging).
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	For networks using Quality of Service (QoS) and VLANs.
+#>
 	@{ DisplayName = 'Packet Priority & VLAN'; DisplayValues = @('Packet Priority & VLAN Disabled') },
+
+	<#
+	Setting:
+	Power Saving Mode
+
+	Description:
+	Puts the adapter into a low power state when idle.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	May reduce power consumption.
+#>
 	@{ DisplayName = 'Power Saving Mode'; DisplayValues = @('Disabled') },
+
+	<#
+	Setting:
+	Priority & VLAN
+
+	Description:
+	Same as Packet Priority & VLAN; enables VLAN and traffic prioritization.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Improves network management.
+#>
 	@{ DisplayName = 'Priority & VLAN'; DisplayValues = @('Priority & VLAN Disabled') },
+
+	<#
+	Setting:
+	Priority / VLAN tag
+
+	Description:
+	Enables tagging of packets with priority or VLAN information.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Required for some managed networks.
+#>
 	@{ DisplayName = 'Priority / VLAN tag'; DisplayValues = @('Priority & VLAN Disabled') },
+
+	<#
+	Setting:
+	Protocol ARP Offload
+
+	Description:
+	Same as ARP Offload; adapter handles ARP requests when system sleeps.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Helps with network presence while asleep.
+#>
 	@{ DisplayName = 'Protocol ARP Offload'; DisplayValues = @('Disabled') },
+
+	<#
+	Setting:
+	Protocol NS Offload
+
+	Description:
+	Same as NS Offload; handles IPv6 NS requests when sleeping.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Improves IPv6 power efficiency.
+#>
 	@{ DisplayName = 'Protocol NS Offload'; DisplayValues = @('Disabled') },
 
-	# https://www.intel.com/content/www/us/en/support/articles/000006703/ethernet-products.html
+	<#
+	Setting:
+	RSS load balancing profile
+
+	Description:
+	Sets how RSS distributes network processing across CPUs.
+
+	Values:
+	ClosestProcessor, ClosestRSSProcessor, NUMAScaling, ConservativeScaling
+
+	Note:
+	Helps tune performance for specific workloads.
+	https://www.intel.com/content/www/us/en/support/articles/000006703/ethernet-products.html
+#>
 	@{ DisplayName = 'RSS load balancing profile'; DisplayValues = @('NUMAScalingStatic') },
 
+	<#
+	Setting:
+	Receive Buffers
+
+	Description:
+	Number of buffers for incoming packets.
+
+	Values:
+	Numeric (varies by adapter)
+
+	Note:
+	Higher values may improve performance.
+#>
 	@{ DisplayName = 'Receive Buffers'; DisplayValues = @('2048') },
+
+	<#
+	Setting:
+	Receive Side Scaling
+
+	Description:
+	Distributes incoming network traffic across multiple processors.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Improves performance on multi-core CPUs.
+#>
 	@{ DisplayName = 'Receive Side Scaling'; DisplayValues = @('Enabled') },
+
+	<#
+	Setting:
+	Reduce Speed On Power Down
+
+	Description:
+	Lowers link speed to save power when the system is idle.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	May affect speed when waking up.
+#>
 	@{ DisplayName = 'Reduce Speed On Power Down'; DisplayValues = @('Disabled') },
-	@{ DisplayName = 'SWOI'; DisplayValues = @('Enabled') },
+
+	<#
+	Setting:
+	SWOI
+
+	Description:
+	Software Wake on Internet; wakes the device on internet activity.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	May not be supported on all adapters.
+#>
+	@{ DisplayName = 'SWOI'; DisplayValues = @('Disabled') },
+
+	<#
+	Setting:
+	Selective Suspend Idle Timeout
+
+	Description:
+	Time in milliseconds before selective suspend activates.
+
+	Values:
+	Numeric (e.g., 100 ms)
+
+	Note:
+	Shorter times mean quicker power saving.
+#>
 	@{ DisplayName = 'Selective Suspend Idle Timeout'; DisplayValues = @('5') },
+
+	<#
+	Setting:
+	Selective Suspend
+
+	Description:
+	Puts the adapter into a low-power state when not in use.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Helps with power saving on USB/Ethernet devices.
+#>
 	@{ DisplayName = 'Selective Suspend'; DisplayValues = @('Disabled') },
+
+	<#
+	Setting:
+	Shutdown Wake Up
+
+	Description:
+	Allows the adapter to wake the system from shutdown on network activity.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Required for some Wake-on-LAN features.
+#>
 	@{ DisplayName = 'Shutdown Wake Up'; DisplayValues = @('Disabled') },
+
+	<#
+	Setting:
+	Shutdown Wake-On-Lan
+
+	Description:
+	Allows system to wake from full shutdown (S5) using Wake-on-LAN.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Not all hardware supports waking from full power off.
+#>
 	@{ DisplayName = 'Shutdown Wake-On-Lan'; DisplayValues = @('Disabled') },
+
+	<#
+	Setting:
+	Software Timestamp
+
+	Description:
+	Enables timestamping of packets using software.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Less accurate than hardware timestamping.
+#>
 	@{ DisplayName = 'Software Timestamp'; DisplayValues = @('Disabled') },
+
+	<#
+	Setting:
+	Speed & Duplex
+
+	Description:
+	Sets the link speed and duplex mode of the network adapter.
+
+	Values:
+	Auto Negotiation, 10Mbps Half/Full, 100Mbps Half/Full, 1Gbps Full, etc.
+
+	Note:
+	Auto Negotiation is best for most users.
+#>
 	@{ DisplayName = 'Speed & Duplex'; DisplayValues = @('1.0 Gbps Full Duplex', '2.5 Gbps Full Duplex') },
+
+	<#
+	Setting:
+	System Idle Power Saver
+
+	Description:
+	Reduces power usage when the system is idle.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Can help laptops save battery.
+#>
 	@{ DisplayName = 'System Idle Power Saver'; DisplayValues = @('Disabled') },
-	@{ DisplayName = 'TCP Checksum Offload (IPv4)'; DisplayValues = @('Disabled') },
-	@{ DisplayName = 'TCP Checksum Offload (IPv6)'; DisplayValues = @('Disabled') },
+
+	<#
+	Setting:
+	TCP Checksum Offload (IPv4)
+
+	Description:
+	Offloads calculation of IPv4 TCP checksums to the adapter.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Frees up CPU resources.
+#>
+	# @{ DisplayName = 'TCP Checksum Offload (IPv4)'; DisplayValues = @('Enabled') },
+
+	<#
+	Setting:
+	TCP Checksum Offload (IPv6)
+
+	Description:
+	Offloads calculation of IPv6 TCP checksums.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Helps with IPv6 network performance.
+#>
+	# @{ DisplayName = 'TCP Checksum Offload (IPv6)'; DisplayValues = @('Enabled') },
+
+	<#
+	Setting:
+	Transmit Buffers
+
+	Description:
+	Number of buffers for outgoing packets.
+
+	Values:
+	Numeric (varies by adapter)
+
+	Note:
+	More buffers may help with heavy network use.
+#>
 	@{ DisplayName = 'Transmit Buffers'; DisplayValues = @('1024', '2048') },
-	@{ DisplayName = 'UDP Checksum Offload (IPv4)'; DisplayValues = @('Disabled') },
-	@{ DisplayName = 'UDP Checksum Offload (IPv6)'; DisplayValues = @('Disabled') },
+
+	<#
+	Setting:
+	UDP Checksum Offload (IPv4)
+
+	Description:
+	Offloads calculation of IPv4 UDP checksums.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Reduces CPU load.
+#>
+	# @{ DisplayName = 'UDP Checksum Offload (IPv4)'; DisplayValues = @('Enabled') },
+
+	<#
+	Setting:
+	UDP Checksum Offload (IPv6)
+
+	Description:
+	Offloads calculation of IPv6 UDP checksums.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Optimizes IPv6 UDP traffic.
+#>
+	# @{ DisplayName = 'UDP Checksum Offload (IPv6)'; DisplayValues = @('Enabled') },
+
+	<#
+	Setting:
+	Ultra Low Power Mode
+
+	Description:
+	Puts the adapter into the lowest possible power state when not in use.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	May delay connection on resume.
+#>
 	@{ DisplayName = 'Ultra Low Power Mode'; DisplayValues = @('Disabled') },
+
+	<#
+	Setting:
+	WOL & Shutdown Link Speed
+
+	Description:
+	Sets link speed for Wake-on-LAN during shutdown.
+
+	Values:
+	Auto, 10Mbps, 100Mbps, 1Gbps
+
+	Note:
+	Lower speeds may use less power.
+#>
 	@{ DisplayName = 'WOL & Shutdown Link Speed'; DisplayValues = @('Not Speed Down') },
-	@{ DisplayName = 'Wait for Link'; DisplayValues = @('Off') },
+
+	<#
+	Setting:
+	Wait for Link
+
+	Description:
+	Delays system boot until network link is established.
+
+	Values:
+	On, Off
+
+	Note:
+	Useful for systems needing network at startup.
+#>
+	@{ DisplayName = 'Wait for Link'; DisplayValues = @('On') },
+
+	<#
+	Setting:
+	Wake from S0ix on Magic Packet
+
+	Description:
+	Wakes device from modern standby (S0ix) on Magic Packet.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Needed for instant-on systems.
+#>
 	@{ DisplayName = 'Wake from S0ix on Magic Packet'; DisplayValues = @('Disabled') },
+
+	<#
+	Setting:
+	Wake on LAN
+
+	Description:
+	Allows the computer to be woken remotely using a special network message.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Requires configuration on both PC and network.
+#>
 	@{ DisplayName = 'Wake on LAN'; DisplayValues = @('Disabled') },
+
+	<#
+	Setting:
+	Wake on Link Settings
+
+	Description:
+	Controls waking the system when network link is detected.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	May not be needed unless using specific network hardware.
+#>
 	@{ DisplayName = 'Wake on Link Settings'; DisplayValues = @('Disabled') },
+
+	<#
+	Setting:
+	Wake on Magic Packet
+
+	Description:
+	Allows waking the device when a Magic Packet is received.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Common Wake-on-LAN trigger.
+#>
 	@{ DisplayName = 'Wake on Magic Packet'; DisplayValues = @('Disabled') },
+
+	<#
+	Setting:
+	Wake on Pattern Match
+
+	Description:
+	Allows waking the device when specific network patterns are detected.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	For advanced Wake-on-LAN scenarios.
+#>
 	@{ DisplayName = 'Wake on Pattern Match'; DisplayValues = @('Disabled') }
 
 	# TODO
