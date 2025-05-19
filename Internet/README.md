@@ -287,9 +287,11 @@ Known Issues:
   - On PPPoE Connection - Adding a fixed IP - 12 Seconds.
   - On PPPoE Connection - Removing a fixed IP - 10 Seconds.
 
-- When trying to help a user with ISP router - first contact the ISP technical support
+- When changing ISP bandwidth plan, brief packet loss will occour but the actual change will occur when you manually reconnect.
 
-- Apperently some users report ISP disconnections and it was solved by reset the ISP password (can be done using the ISP website)
+- When trying to help a user with ISP router - first contact the ISP technical support.
+
+- Apperently some users report ISP disconnections and it was solved by reset the ISP password (can be done using the ISP website).
 
 - Process of moving from aerial infrastructure to underground infrastructure:
 
