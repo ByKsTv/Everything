@@ -88,7 +88,7 @@ if ($InstalledSoftware -match 'Google Chrome') {
     (New-Object -ComObject wscript.shell).SendKeys('^{ENTER}')
     
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Cleaning up'); [Console]::ResetColor(); [Console]::WriteLine()
-    if ((Test-Path -Path HKLM:\SOFTWARE\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy) -eq $true) {
-        Remove-Item HKLM:\SOFTWARE\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy -Force
+    if (Test-Path -Path 'HKLM:\SOFTWARE\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy') {
+        Remove-Item 'HKLM:\SOFTWARE\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy' -Force
     }
 }

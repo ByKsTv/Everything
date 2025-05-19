@@ -94,10 +94,10 @@ if (Test-Path $Firefox_Profiles) {
     (New-Object -ComObject wscript.shell).SendKeys('^{ENTER}')
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Cleaning up'); [Console]::ResetColor(); [Console]::WriteLine()
-    if ((Test-Path -Path HKLM:\SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install) -eq $true) {
-        Remove-Item HKLM:\SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install -Force
+    if (Test-Path -Path 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install') {
+        Remove-Item 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install' -Force
     }
-    if ((Test-Path -Path 'HKLM:\SOFTWARE\Mozilla\ManagedStorage\uBlock0@raymondhill.net') -eq $true) {
+    if (Test-Path -Path 'HKLM:\SOFTWARE\Mozilla\ManagedStorage\uBlock0@raymondhill.net') {
         Remove-Item 'HKLM:\SOFTWARE\Mozilla\ManagedStorage\uBlock0@raymondhill.net' -Force
     }
 }

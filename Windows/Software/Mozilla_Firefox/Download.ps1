@@ -83,7 +83,7 @@ Start-Sleep -Milliseconds 1000
 [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox: Deleting Scheduled Tasks'); [Console]::ResetColor(); [Console]::WriteLine()
-if ((Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree\Mozilla') -eq $true) {
+if (Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree\Mozilla') {
     Unregister-ScheduledTask -TaskName 'Firefox Background Update*' -Confirm:$false
     Unregister-ScheduledTask -TaskName 'Firefox Default Browser Agent*' -Confirm:$false
     $scheduleObject = New-Object -ComObject Schedule.Service

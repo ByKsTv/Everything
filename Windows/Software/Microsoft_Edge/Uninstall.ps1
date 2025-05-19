@@ -85,10 +85,10 @@ if ($InstalledSoftware -match 'Microsoft Edge') {
     }
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Edge Uninstaller: Deleting EdgeWebView'); [Console]::ResetColor(); [Console]::WriteLine()
-    if ((Test-Path -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Microsoft EdgeWebView') -eq $true) {
+    if (Test-Path -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Microsoft EdgeWebView') {
         Remove-Item -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Microsoft EdgeWebView' -Force
     }
-    if ((Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Microsoft EdgeWebView') -eq $true) {
+    if (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Microsoft EdgeWebView') {
         Remove-Item -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Microsoft EdgeWebView' -Force
     }
 
@@ -111,12 +111,12 @@ if ($InstalledSoftware -match 'Microsoft Edge') {
     }
 
     # Microsoft Edge: Deleting Desktop Shortcut
-    if ((Test-Path -Path "$env:PUBLIC\Desktop\Microsoft Edge.lnk") -eq $true) {
+    if (Test-Path -Path "$env:PUBLIC\Desktop\Microsoft Edge.lnk") {
         Remove-Item -Path "$env:PUBLIC\Desktop\Microsoft Edge.lnk"
     }
 
     $DesktopPath = [Environment]::GetFolderPath('Desktop')
-    if ((Test-Path -Path "$DesktopPath\Microsoft Edge.lnk") -eq $true) {
+    if (Test-Path -Path "$DesktopPath\Microsoft Edge.lnk") {
         Remove-Item -Path "$DesktopPath\Microsoft Edge.lnk"
     }
 }
