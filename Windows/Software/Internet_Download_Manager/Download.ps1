@@ -64,6 +64,9 @@ if (-not (Test-Path -Path 'C:\Program Files (x86)\Internet Download Manager\Unin
     # Options > Downloads > Customize "Download progress" dialog > Start view > Show minimized
     New-ItemProperty -Path 'HKCU:\SOFTWARE\DownloadManager' -Name 'PrgrDlgVisiblity' -PropertyType DWord -Value 1 -Force
 
+    # Options > Downloads > If a duplicate download link is added > Add the duplicate with a numbered file name
+    New-ItemProperty -Path 'HKCU:\SOFTWARE\DownloadManager' -Name 'RememberDuplLinksA' -PropertyType DWord -Value 1 -Force
+
     # Hide warning window when running as admin
     New-ItemProperty -Path 'HKCU:\SOFTWARE\DownloadManager' -Name 'bShVistaAsAdmWarn' -PropertyType DWord -Value 1 -Force
 
