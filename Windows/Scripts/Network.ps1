@@ -277,76 +277,6 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
 
 <#
 	Setting:
-	GPU Priority
-
-	Description:
-	Defines the GPU scheduling priority for the specified multimedia task—in this case, for games.
-
-	Values:
-	0–31 (decimal) - Higher values indicate higher GPU scheduling priority.
-	Default - Typically 6 for games.
-	8 - Gives the game task higher priority access to GPU resources.
-
-	Note:
-	This setting affects how the Multimedia Class Scheduler Service (MMCSS) allocates GPU time. Increasing the value can improve responsiveness and performance in games, but excessive values may starve other GPU-using tasks.
-#>
-New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games' -Name 'GPU Priority' -Value 8 -PropertyType DWord -Force
-
-<#
-	Setting:
-	Priority
-
-	Description:
-	Sets the CPU scheduling priority for the specified multimedia task—in this case, games—under the Multimedia Class Scheduler Service (MMCSS).
-
-	Values:
-	1–8 (decimal) - Higher numbers give higher CPU scheduling priority.
-	Default - Typically 6 for games.
-	8 - Maximum priority within MMCSS-managed range.
-
-	Note:
-	This influences how much CPU time is given to games compared to other multimedia tasks. Higher values improve responsiveness but may reduce performance of background tasks or services.
-#>
-New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games' -Name 'Priority' -Value 6 -PropertyType DWord -Force
-
-<#
-	Setting:
-	Scheduling Category
-
-	Description:
-	Defines the type of scheduling behavior applied to the task under the Multimedia Class Scheduler Service (MMCSS), influencing how aggressively it receives CPU time.
-
-	Values:
-	Low - Lowest priority for background tasks.
-	Medium - Balanced CPU access.
-	High - Higher CPU priority; suitable for latency-sensitive tasks like games.
-	Exclusive - Highest priority; reserves CPU time exclusively (used with caution).
-
-	Note:
-	Setting this to "High" ensures games get faster CPU response compared to normal or background tasks. "Exclusive" may impact overall system responsiveness and is generally reserved for critical media tasks.
-#>
-New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games' -Name 'Scheduling Category' -Value 'High' -PropertyType String -Force
-
-<#
-	Setting:
-	SFIO Priority
-
-	Description:
-	Defines the background I/O (Slow File I/O) priority level for the task, affecting how Windows schedules disk operations for that task.
-
-	Values:
-	Idle - Lowest disk I/O priority.
-	Low - Lower than normal I/O.
-	Normal - Default priority for standard tasks.
-	High - Elevated disk I/O priority for performance-critical tasks.
-
-	Note:
-	Setting this to "High" gives games higher priority access to disk resources, reducing I/O latency during gameplay. Useful for minimizing stutters from background disk activity.
-#>
-New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games' -Name 'SFIO Priority' -Value 'High' -PropertyType String -Force
-
-<#
-	Setting:
 	TCPNoDelay
 
 	Description:
@@ -392,7 +322,7 @@ netsh interface ipv6 set subinterface "$MTU_Interface" mtu=$MTU_Final store=pers
 	Disabling checksum offload can help troubleshoot network issues such as packet corruption, latency, or compatibility problems with older network hardware or drivers. It may slightly increase CPU usage.
 	Controlling the following settings: IPv4 Checksum Offload, TCP Checksum Offload (IPv4), TCP Checksum Offload (IPv6), UDP Checksum Offload (IPv4), UDP Checksum Offload (IPv6)
 #>
-Disable-NetAdapterChecksumOffload -Name *
+Enable-NetAdapterChecksumOffload -Name *
 
 <#
 	Setting:
@@ -409,7 +339,7 @@ Disable-NetAdapterChecksumOffload -Name *
 	Disabling LSO can reduce latency or fix compatibility issues with certain games, apps, or older hardware. However, it may increase CPU usage during high network throughput.
 	Controlling the following settings: Large Send Offload (IPv4), Large Send Offload v2 (IPv4), Large Send Offload v2 (IPv6)
 #>
-Disable-NetAdapterLso -Name *
+Enable-NetAdapterLso -Name *
 
 <#
 	Setting:
@@ -427,6 +357,54 @@ Disable-NetAdapterLso -Name *
 	Disabling Chimney Offload can improve compatibility and stability on systems with older or unstable network drivers. It may slightly increase CPU usage but avoids potential connection issues.
 #>
 Set-NetOffloadGlobalSetting -Chimney Disabled
+
+<#
+	Setting:
+	TaskOffload
+
+	Description:
+	Controls whether network task offloading (like checksum or segmentation) is enabled on the system. Offloading moves certain network tasks from the CPU to the network adapter to improve performance.
+
+	Values:
+	Enabled: Allows the network adapter to handle specific tasks instead of the CPU.
+	Disabled: Forces the CPU to handle all network tasks, which can help in troubleshooting or with incompatible hardware.
+
+	Note:
+	Disabling task offloading can reduce performance but may solve certain network issues like slow file transfers or connection drops.
+#>
+Set-NetOffloadGlobalSetting -TaskOffload Enabled
+
+<#
+	Setting:
+	NetworkDirect
+
+	Description:
+	Controls whether Network Direct (a high-performance, low-latency networking technology used mainly in data centers) is enabled on the system.
+
+	Values:
+	Enabled: Allows applications to use Network Direct for fast and efficient communication, typically with RDMA-capable (Remote Direct Memory Access) network adapters.
+	Disabled: Disables Network Direct functionality, preventing use of RDMA for network communications.
+
+	Note:
+	This setting is mostly relevant in server or data center environments. Disabling it has little to no effect on typical home or office setups.
+#>
+Set-NetOffloadGlobalSetting -NetworkDirect Enabled
+
+<#
+	Setting:
+	NetworkDirectAcrossIPSubnets
+
+	Description:
+	Determines whether Network Direct connections (RDMA) are allowed across different IP subnets.
+
+	Values:
+	Enabled: Allows RDMA communication between devices on different IP subnets.
+	Disabled: Restricts RDMA communication to devices within the same IP subnet only.
+
+	Note:
+	Disabling can improve security and reduce complexity in environments where cross-subnet RDMA is not required.
+#>
+Set-NetOffloadGlobalSetting -NetworkDirectAcrossIPSubnets Blocked
 
 <#
 	Setting:
@@ -495,8 +473,8 @@ netsh interface tcp set global rss=enabled
 	Note:
 	Setting this to "normal" allows Windows to dynamically optimize TCP performance for most network environments. Only change this if troubleshooting or testing specific network behaviors.
 #>
-Set-NetTCPSetting -AutoTuningLevelLocal normal
-netsh interface tcp set global autotuninglevel=normal
+Set-NetTCPSetting -AutoTuningLevelLocal experimental
+netsh interface tcp set global autotuninglevel=experimental
 
 <#
 	Setting:
@@ -701,7 +679,7 @@ $SettingsToChange = @(
 	Note:
 	Can save power when enabled.
 #>
-	@{ DisplayName = 'ARP Offload'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'ARP Offload'; DisplayValues = @('Enabled') },
 
 	<#
 	Setting:
@@ -1061,7 +1039,7 @@ $SettingsToChange = @(
 	Note:
 	Helps with power savings for IPv6.
 #>
-	@{ DisplayName = 'NS Offload'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'NS Offload'; DisplayValues = @('Enabled') },
 
 	<#
 	Setting:
@@ -1166,7 +1144,7 @@ $SettingsToChange = @(
 	Note:
 	Helps with network presence while asleep.
 #>
-	@{ DisplayName = 'Protocol ARP Offload'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Protocol ARP Offload'; DisplayValues = @('Enabled') },
 
 	<#
 	Setting:
@@ -1181,7 +1159,7 @@ $SettingsToChange = @(
 	Note:
 	Improves IPv6 power efficiency.
 #>
-	@{ DisplayName = 'Protocol NS Offload'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Protocol NS Offload'; DisplayValues = @('Enabled') },
 
 	<#
 	Setting:
