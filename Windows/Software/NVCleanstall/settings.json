@@ -23,7 +23,7 @@
   "RunBefore": "",
   "RunAfter": "",
   "AddIdTemplate": "",
-  "MSIPolicy": 5,
+  "MSIPolicy": 2,
   "MSIPriority": 3,
   "NvEncPatchVersions": 0
 }
