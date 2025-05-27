@@ -22,12 +22,33 @@ forum.mobilism.me##.welcome-bar
 github.com##.color-fg-muted.text-center.mt-3
 github.com##.mb-2.mt-md-2.mt-3.color-fg-muted.text-small
 github.com##.protip
+javfinder.ai##.br-bottom-10.site-footer
+javfinder.ai##.site-info
+kissjav.com##.footer-desc
 ksp.co.il##.null[class*="root-0-3-"]
 ksp.co.il##[class*="banner-0-3-"]
 ksp.co.il##[class*="muirtl-"][class*="banner-0-3-"].MuiContainer-maxWidthLg.MuiContainer-root
+lrepacks.net###pageuserscroll
+lrepacks.net##.berrors.clr
+lrepacks.net##.copyright
+lrepacks.net##.donat-cont
+lrepacks.net##.donate.large.button
+lrepacks.net##.entry-footer
+lrepacks.net##.footer-bottom
+lrepacks.net##.footer-top
+lrepacks.net##.info
+lrepacks.net##.widget_categories.widget
+lrepacks.net##.widget_recent_posts.widget
+lrepacks.net##div.skiptranslate
+lrepacks.net##div.widget_upcoming_events.widget
+missav.ws##.gap-2.grid-cols-2.grid.text-nord14.list-none.mb-4
+missav.ws##.lg\:mb-10.mb-5
 missav.ws##.mb-5.space-y-5
+missav.ws##footer.px-4.mx-auto.sm\:container
 myanimelist.net##.mal-tooltip-layer
+nhentai.net###related-container
 pi.hole##[href="https://pi-hole.net/donate/"]
+porn-pig.com###protection
 pornolab.net###logo
 pornolab.net###moderators
 pornolab.net###page_footer
@@ -50,10 +71,13 @@ rutracker.org##.hide-for-print.bottom_info
 rutracker.org##.hide-for-print.w100 .w100.nav
 rutracker.org##.med.catBottom
 rutracker.org##.spacer_12
+rutracker.org##.spacer_4
 rutracker.org##.thHead
 rutracker.org##.wide
 rutracker.org##[href^="posting.php"]
 rutracker.org##tr.tCenter.row3 > td
+supjav.com##.copyright
+vjav.com##.footer__text
 www.aliexpress.com###nav-store
 www.aliexpress.com##*[class*="recommend-store--title--"][class*="title--wrap--"]
 www.aliexpress.com##._32_es._1wVX7
@@ -70,6 +94,7 @@ www.aliexpress.com##.e4_g
 www.aliexpress.com##.go_gp
 www.aliexpress.com##.group-promotion-wrap
 www.aliexpress.com##.notranslate[class*="navigation--wrap--"].comet-v2-anchor
+www.aliexpress.com##.order-add-cart-more-tip
 www.aliexpress.com##.order-block.order-recommend
 www.aliexpress.com##.product-recommend-pc.product-recommend
 www.aliexpress.com##.root-sidecart
@@ -155,4 +180,5 @@ xxxclub.to##.page-footer
 xxxclub.to##[href="/c/donate/"]
 youtube.com##[page-subtype="home"] ytd-thumbnail-overlay-resume-playback-renderer:upward(ytd-rich-item-renderer)
 ||bringthemhomenow.net^
+||i114.fastpic.ru/big/2021/0314/5e/f17b7771e137fd5fd677967c660d3d5e.gif$image
 ||senetic.co.il^$removeparam=listingSource
