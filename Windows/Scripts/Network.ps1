@@ -473,8 +473,8 @@ netsh interface tcp set global rss=enabled
 	Note:
 	Setting this to "normal" allows Windows to dynamically optimize TCP performance for most network environments. Only change this if troubleshooting or testing specific network behaviors.
 #>
-Set-NetTCPSetting -AutoTuningLevelLocal experimental
-netsh interface tcp set global autotuninglevel=experimental
+Set-NetTCPSetting -AutoTuningLevelLocal Normal
+netsh interface tcp set global autotuninglevel=Normal
 
 <#
 	Setting:
