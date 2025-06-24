@@ -88,3 +88,9 @@ New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Ex
 
 # Context Menu: Remove 'Add to Favorites'
 [Microsoft.Win32.Registry]::ClassesRoot.DeleteSubKeyTree('*\shell\pintohomefile')
+
+# Settings > Personalization > Dynamic Lighting > Brightness > 0
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Lighting' -Name 'Brightness' -Value 0 -PropertyType DWord -Force
+Get-ChildItem 'HKCU:\Software\Microsoft\Lighting\Devices' | ForEach-Object {
+	New-ItemProperty -Path $_.PSPath -Name 'Brightness' -Value 0 -PropertyType DWord -Force
+}
