@@ -4,6 +4,7 @@
 - [AliExpress](#aliexpress)
 - [Coupons](#coupons)
 - [Personal Opinion on Products](#personal-opinion-on-products)
+- [Recycle](#recycle)
 
 ## Amazon
 
@@ -35,3 +36,16 @@
 [Mounting Dream Full Motion TV Wall Mount for 32''-65'' TVs MD2380](https://mountingdreamonline.com/products/full-motion-tv-wall-mount-for-32-65-tvs-mounting-dream-md2380) from [Amazon](https://www.amazon.com/dp/B00SFSU53G)
 
 [SERMAN BRANDS Elite Jet Black](https://www.sermanbrands.com/products/elite?variant=31739503247431) from [Amazon](https://www.amazon.com/dp/B07WRMXNYG)
+
+## Recycle
+
+- Products and materials that can be bought off the user:
+  - Copper cables
+  - Aluminium
+  - Air conditioner
+  - Gas pipes
+  - Faucets
+
+- Products and materials that can not be bought off the user:
+  - Monitors
+  - TVs
