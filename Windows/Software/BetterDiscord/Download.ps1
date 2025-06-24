@@ -25,7 +25,7 @@ if (Get-ScheduledTask -TaskName $Discord_TaskName -ErrorAction SilentlyContinue)
 
 $Discord_IndexJS = (Get-ChildItem "$env:LOCALAPPDATA\Discord\app*\modules\discord_desktop_core*\discord_desktop_core" -Directory | Sort-Object -Descending | Select-Object -First 1).FullName + '\index.js'
 if (Select-String -Quiet -Path $Discord_IndexJS -Pattern 'betterdiscord') {
-    $BetterDiscord_DDL = ((Invoke-RestMethod 'https://api.github.com/repos/BetterDiscord/BetterDiscord/releases/latest').assets | Where-Object name -EQ 'betterdiscord.asar').browser_download_url
+    $BetterDiscord_DDL = (Invoke-RestMethod 'https://api.github.com/repos/BetterDiscord/BetterDiscord/releases/latest').assets.browser_download_url
     $BetterDiscord_Filename = [IO.Path]::GetFileName(([URI]$BetterDiscord_DDL).AbsolutePath)
     $BetterDiscord_SavePath = [IO.Path]::Combine($env:APPDATA, 'BetterDiscord', 'data', $BetterDiscord_Filename)
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Updating '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
@@ -126,7 +126,7 @@ if (-not (Select-String -Quiet -Path $Discord_IndexJS -Pattern 'betterdiscord'))
         }
     }
 
-    $BetterDiscord_DDL = ((Invoke-RestMethod 'https://api.github.com/repos/BetterDiscord/BetterDiscord/releases/latest').assets | Where-Object name -EQ 'betterdiscord.asar').browser_download_url
+    $BetterDiscord_DDL = (Invoke-RestMethod 'https://api.github.com/repos/BetterDiscord/BetterDiscord/releases/latest').assets.browser_download_url
     $BetterDiscord_Filename = [IO.Path]::GetFileName(([URI]$BetterDiscord_DDL).AbsolutePath)
     $BetterDiscord_SavePath = [IO.Path]::Combine($env:APPDATA, 'BetterDiscord', 'data', $BetterDiscord_Filename)
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
