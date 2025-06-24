@@ -646,9 +646,6 @@ $Urls | ForEach-Object { $Line = '0.0.0.0 ' + $_; if (-not(Select-String -Path $
 		Add-Content -Path $HostsPath -Value $Line
 	} }
 
-# Disabling service
-Get-Service -Name 'dmwappushservice' | Set-Service -StartupType Disabled
-
 # Open as Notepad
 $NotepadDefaultExts = @('.lua', '.conf', '.json', '.glsl', '.xml')
 foreach ($NotepadDefaultExt in $NotepadDefaultExts) {
