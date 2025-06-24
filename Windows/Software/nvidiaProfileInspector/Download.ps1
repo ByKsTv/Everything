@@ -12,8 +12,8 @@ $ExtractPath = Join-Path -Path (Split-Path $SavePath -Parent) -ChildPath ([IO.Pa
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ExtractPath'"); [Console]::ResetColor(); [Console]::WriteLine()
 Expand-Archive -Path $SavePath -DestinationPath $ExtractPath -Force
 
-$nvidiaProfileInspector_FileName = 'nvidiaProfileInspector.exe'
-$nvidiaProfileInspector_FilePath = Get-ChildItem -Path $ExtractPath -Filter $nvidiaProfileInspector_FileName | Select-Object -ExpandProperty FullName
+$FileName = 'nvidiaProfileInspector.exe'
+$FilePath = Get-ChildItem -Path $ExtractPath -Filter $FileName | Select-Object -ExpandProperty FullName
 
 $Settings_DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/nvidiaProfileInspector/Settings.xml'
 $Settings_Extension = '.nip'
@@ -23,6 +23,6 @@ $Settings_FilePath = [IO.Path]::Combine($ExtractPath, $Settings_FileName)
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Settings_FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Settings_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Settings_FilePath'"); [Console]::ResetColor(); [Console]::WriteLine()
 (New-Object System.Net.WebClient).DownloadFile($Settings_DDL, $Settings_FilePath)
 
-$nvidiaProfileInspector_Argument = '-silent'
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Running '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$nvidiaProfileInspector_FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$nvidiaProfileInspector_FilePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Settings_FilePath $nvidiaProfileInspector_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-Start-Process -FilePath $nvidiaProfileInspector_FilePath -ArgumentList $Settings_FilePath, $nvidiaProfileInspector_Argument -Wait
+$Argument = '-silent'
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Running '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FilePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Settings_FilePath $Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+Start-Process -FilePath $FilePath -ArgumentList $Settings_FilePath, $Argument -Wait
