@@ -40,6 +40,7 @@
 ## Recycle
 
 - Products and materials that can be bought off the user:
+
   - Copper cables
   - Aluminium
   - Air conditioner
