@@ -120,7 +120,7 @@
 | Download [Google Apps](https://wiki.lineageos.org/gapps) matching `Mobile` and `ARM64`                                 |
 | Download [Magisk](https://github.com/topjohnwu/Magisk/releases/latest)                                                 |
 | Download [Basic Call Recorder](https://github.com/chenxiaolong/BCR/releases/latest)                                    |
-| Download [PlayIntegrityFork](https://github.com/osm0sis/PlayIntegrityFork/releases/latest)                            |
+| Download [PlayIntegrityFork](https://github.com/osm0sis/PlayIntegrityFork/releases/latest)                             |
 | Download [LSPosed](https://github.com/JingMatrix/LSPosed/releases/latest)                                              |
 | Download [Zygisk-Assistant](https://github.com/snake-4/Zygisk-Assistant/releases/latest)                               |
 | Download [TrickyStore](https://github.com/5ec1cff/TrickyStore/releases/latest)                                         |
@@ -212,18 +212,18 @@ Disable USB debugging.
 
 ### Prerequisites to Factory Reset Custom ROM
 
-| To do                                                                                       |
-| ------------------------------------------------------------------------------------------- |
-| [Backup](#what-to-backup)                                                                   |
-| Charge device's battery                                                                     |
-| `Settings` > `Security` > `Screen lock` > `None`                                            |
-| `Settings` > `System` > `Developer options` > `USB debugging` > Enable                      |
-| Connect USB Cable from the device to the PC                                                 |
-| Download [LineageOS](https://download.lineageos.org/devices)                                |
-| Download [Google Apps](https://wiki.lineageos.org/gapps) matching `Mobile` and `ARM64`      |
-| Download [Magisk](https://github.com/topjohnwu/Magisk/releases/latest)                      |
-| Download [Lucky Patcher](https://chelpus.com/download/LP_Downloader.apk)                    |
-| Download [Basic Call Recorder](https://github.com/chenxiaolong/BCR/releases/latest)         |
+| To do                                                                                      |
+| ------------------------------------------------------------------------------------------ |
+| [Backup](#what-to-backup)                                                                  |
+| Charge device's battery                                                                    |
+| `Settings` > `Security` > `Screen lock` > `None`                                           |
+| `Settings` > `System` > `Developer options` > `USB debugging` > Enable                     |
+| Connect USB Cable from the device to the PC                                                |
+| Download [LineageOS](https://download.lineageos.org/devices)                               |
+| Download [Google Apps](https://wiki.lineageos.org/gapps) matching `Mobile` and `ARM64`     |
+| Download [Magisk](https://github.com/topjohnwu/Magisk/releases/latest)                     |
+| Download [Lucky Patcher](https://chelpus.com/download/LP_Downloader.apk)                   |
+| Download [Basic Call Recorder](https://github.com/chenxiaolong/BCR/releases/latest)        |
 | Download [PlayIntegrityFork](https://github.com/osm0sis/PlayIntegrityFork/releases/latest) |
 
 ### Process of Factory Reset Custom ROM
