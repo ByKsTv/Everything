@@ -53,6 +53,9 @@ user_pref("browser.urlbar.suggest.topsites", false);
 // about:preferences#search > Search > Address Bar > Search engines > Off
 user_pref("browser.urlbar.suggest.engines", false);
 
+// about:preferences#search > Search > Address Bar > Quick actions > Off
+user_pref("browser.urlbar.suggest.quickactions", false);
+
 // about:preferences#privacy > Privacy & Security > Website Privacy Preferences > Tell websites not to sell or share my data > On
 user_pref("privacy.globalprivacycontrol.enabled", true);
 
