@@ -1,24 +1,25 @@
 Add-Type -AssemblyName System.Windows.Forms
 [Windows.Forms.Application]::EnableVisualStyles()
 
-$BuildISO_Form = New-Object System.Windows.Forms.Form -Property @{
-    TopMost = $true
+$Form = New-Object System.Windows.Forms.Form -Property @{
+    TopMost       = $true
+    StartPosition = 'CenterScreen'
 }
-$BuildISO_FileDialog = New-Object System.Windows.Forms.OpenFileDialog -Property @{
+
+$FileDialog = New-Object System.Windows.Forms.OpenFileDialog -Property @{
     FileName        = 'Select Folder'
+    Title           = 'Build ISO'
     Filter          = 'Folders|*.'
     CheckFileExists = $false
 }
 
-if ($BuildISO_FileDialog.ShowDialog($BuildISO_Form) -eq [Windows.Forms.DialogResult]::OK) {
-    $BuildISO_FileSelected = [IO.Path]::GetDirectoryName($BuildISO_FileDialog.FileName)
+if ($FileDialog.ShowDialog($Form) -eq [Windows.Forms.DialogResult]::OK) {
+    $SelectedFolder = [IO.Path]::GetDirectoryName($FileDialog.FileName)
 
-    $InstalledSoftware = (Get-Package).Name
+    $InstalledSoftware = Get-Package | Select-Object -ExpandProperty 'Name'
     if ($InstalledSoftware -notcontains 'Windows System Image Manager') {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Windows_Assessment_and_Deployment_Kit/Deployment_Tools/Download.ps1')
     }
 
-    & 'C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\amd64\Oscdimg\oscdimg.exe' -m -o -u2 -udfver102 $BuildISO_FileSelected "$BuildISO_FileSelected\ISO.iso"
+    Start-Process -FilePath "${env:ProgramFiles(x86)}\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\amd64\Oscdimg\oscdimg.exe" -ArgumentList "-m -o -u2 -udfver102 `"$SelectedFolder`" `"$SelectedFolder\ISO.iso`"" -NoNewWindow -Wait
 }
-
-$BuildISO_Form.Dispose()
