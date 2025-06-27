@@ -1,17 +1,20 @@
 Add-Type -AssemblyName System.Windows.Forms
 [Windows.Forms.Application]::EnableVisualStyles()
 
-$FFmpegForm = New-Object System.Windows.Forms.Form -Property @{
-    TopMost = $true
+$Form = New-Object System.Windows.Forms.Form -Property @{
+    TopMost       = $true
+    StartPosition = 'CenterScreen'
 }
-$FFmpegOpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog -Property @{
+
+$FileDialog = New-Object System.Windows.Forms.OpenFileDialog -Property @{
     FileName        = 'Select file'
+    Title           = 'Convert to FLAC'
     Filter          = 'All Files (*.*)|*.*'
     CheckFileExists = $true
 }
 
-if ($FFmpegOpenFileDialog.ShowDialog($FFmpegForm) -eq [Windows.Forms.DialogResult]::OK) {
-    $SelectedFile = $FFmpegOpenFileDialog.FileName
+if ($FileDialog.ShowDialog($Form) -eq [Windows.Forms.DialogResult]::OK) {
+    $SelectedFile = $FileDialog.FileName
 
     $InputFileName = [IO.Path]::GetFileNameWithoutExtension($SelectedFile)
     $InputDirectory = [IO.Path]::GetDirectoryName($SelectedFile)
@@ -23,5 +26,3 @@ if ($FFmpegOpenFileDialog.ShowDialog($FFmpegForm) -eq [Windows.Forms.DialogResul
 
     Write-Host "Conversion complete: $OutputFile"
 }
-
-$FFmpegForm.Dispose()
