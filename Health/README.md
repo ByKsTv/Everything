@@ -6,6 +6,7 @@
 - [Prescriptions at a pharmacy](#prescriptions-at-a-pharmacy)
 - [Call Center](#call-center)
 - [Nails](#nails)
+- [Haircut](#haircut)
 
 ## Arriving
 
@@ -33,3 +34,7 @@
 
 - Hand: Cut Round.
 - Toenails: Cut Straight.
+
+## Haircut
+
+- Don't wet your hair before a haircut.
