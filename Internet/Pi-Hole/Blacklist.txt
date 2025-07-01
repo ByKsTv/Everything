@@ -1,5 +1,5 @@
 # Ads on N12+ Live on Xiaomi MiBox 4
 mkcf.dxmcdn.com 
 
-# Windows Search - Curently testing if it's affecting windows updates
-# r.bing.comms-appx-web
+# Windows Search
+r.bing.comms-appx-web
