@@ -14,6 +14,7 @@
 - [Plastic](#plastic)
 - [Bloodtest](#bloodtest)
 - [Fiber Optic](#fiber-optic)
+- [Bed](#bed)
 
 ## Arriving
 
@@ -83,3 +84,7 @@
 
 - Use saftey glasses and gloves.
 - Do not look directly at the fiber optic cable ends.
+
+## Bed
+
+- Use 100% cotton sheets.
