@@ -1,45 +1,44 @@
 # Information
 
+- [BIOS Search](#bios-search)
 - [BIOS Update](#bios-update)
 - [BIOS Settings](#bios-settings)
-  - [Asus Motherboard](#asus-motherboard)
+  - [Asus](#asus)
+- [Additional Information](#additional-information)
+
+## BIOS Search
+
+1. PowerShell (Admin):
+
+   ```powershell
+   ($Motherboard = Get-CimInstance -ClassName 'Win32_BaseBoard' | Select-Object -ExpandProperty 'Product') | Set-Clipboard; $Motherboard
+
+   ```
+
+1. Paste from clipboard the motherboard model to Google.
+1. Use the official manufacter website to download the latest BIOS.
 
 ## BIOS Update
 
-1. Search the motherboard model on Google.
+1. Insert a USB drive.
+1. Format the USB drive as `FAT32`.
+1. Move BIOS file to the USB.
+1. Boot to BIOS:
 
-   > Note: Find Motherboard Model - PowerShell (Admin):
-   >
-   > ```powershell
-   > (wmic baseboard get product)
-   >
-   > ```
+   ```powershell
+   shutdown /r /fw /t 00
 
-1. Use the official manufacter site to download the latest BIOS.
-1. Move BIOS to USB.
-   > USB must be formatted as FAT32.
-1. Plug the USB to the motherboard.
-1. Boot to BIOS.
+   ```
 
-   > Note: Restart to BIOS - CMD (Admin):
-   >
-   > ```cmd
-   > shutdown /r /fw /t 00
-   >
-   > ```
-
+1. Prefer to update at night hours to avoid sudden power outage.
+1. BIOS Update estimated completion time is 8 minutes.
 1. Update BIOS Firmware.
-
-   > Update PC BIOS at night hours to avoid power loss.
-   >
-   > BIOS Update can take around 8 minutes.
-
-1. Press F1 to enter BIOS setup
-1. Press F5 to Reset to Defaults
+1. Press `F1` to enter BIOS setup.
+1. Press `F5` to `Reset to Defaults`.
 
 ## BIOS Settings
 
-### Asus Motherboard
+### Asus
 
 1. `Advanced` > `Platform Misc Configuration` > `PCI Express Native Power Management` > `Enabled` (Wake-On-Lan). (default)
 1. `Advanced` > `Platform Misc Configuration` > `ASPM` > `Disabled`.
@@ -62,10 +61,10 @@
 1. `Boot` > `Boot Configuration` > `Boot Logo Display` > `Disabled`.
 1. `Boot` > `Boot Configuration` > `POST Report` > `1 sec`.
 1. `Tool` > `ASUS Armoury Crate` > `Download & Install ARMOURY CRATE app` > `Disabled`.
-1. Press F10 to Save Changes
+1. Press `F10` to `Save Changes`.
 
-> Note: [djdallmann Guide](https://github.com/djdallmann/GamingPCSetup/tree/master/CONTENT/DOCS/BIOS)
->
-> Note: [fujitsu Guide](https://sp.ts.fujitsu.com/dmsp/Publications/public/wp-bios-settings-primergy-ww-en.pdf)
->
-> Note: [congatec Guide](https://www.congatec.com/fileadmin/user_upload/Documents/Application_Notes/AN40_BIOS_Optimization_For_Real-time_Applications.pdf)
+## Additional Information
+
+- [djdallmann Guide](https://github.com/djdallmann/GamingPCSetup/tree/master/CONTENT/DOCS/BIOS)
+- [fujitsu Guide](https://sp.ts.fujitsu.com/dmsp/Publications/public/wp-bios-settings-primergy-ww-en.pdf)
+- [congatec Guide](https://www.congatec.com/fileadmin/user_upload/Documents/Application_Notes/AN40_BIOS_Optimization_For_Real-time_Applications.pdf)
