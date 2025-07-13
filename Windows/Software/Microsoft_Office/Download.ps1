@@ -1,38 +1,37 @@
 Add-Type -AssemblyName System.Windows.Forms
+Add-Type -AssemblyName System.Drawing
 [Windows.Forms.Application]::EnableVisualStyles()
 
-$OfficeSelection_GraveSoft = (Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/gravesoft/gravesoft.dev/main/docs/office_c2r_links.md' -UseBasicParsing).Content
+$GraveSoft = Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/gravesoft/gravesoft.dev/main/docs/office_c2r_links.md' -UseBasicParsing | Select-Object -ExpandProperty 'Content'
 
-$OfficeSelection_Scrubber_Regex = '\[\*\*download Office Scrubber\*\*\]\((.*?)\)'
-$OfficeSelection_Scrubber_Match = [regex]::Match($OfficeSelection_GraveSoft, $OfficeSelection_Scrubber_Regex)
-$OfficeSelection_Scrubber_DDL = $OfficeSelection_Scrubber_Match.Groups[1].Value
+$Scrubber_Regex = '\[Download Office Scrubber\]\((.*?)\)'
+$Scrubber_Match = [regex]::Match($GraveSoft, $Scrubber_Regex)
+$Scrubber_DDL = $Scrubber_Match.Groups[1].Value
 
-# Parse languages from the HTML content
-$OfficeSelection_LanguagePattern = '## (.+?)\s*\[([^\]]+)\]'
-$OfficeSelection_LanguageMatches = [regex]::Matches($OfficeSelection_GraveSoft, $OfficeSelection_LanguagePattern)
-$OfficeSelection_LanguageSections = @{}
-
-for ($i = 0; $i -lt $OfficeSelection_LanguageMatches.Count; $i++) {
-    $match = $OfficeSelection_LanguageMatches[$i]
+$Language_Regex = '## (.+?)\s*\[([^\]]+)\]'
+$Language_Match = [regex]::Matches($GraveSoft, $Language_Regex)
+$Language_Sections = @{}
+for ($i = 0; $i -lt $Language_Match.Count; $i++) {
+    $match = $Language_Match[$i]
     $languageName = $match.Groups[1].Value.Trim()
     $languageCode = $match.Groups[2].Value.Trim()
     $startIndex = $match.Index + $match.Length
-    if ($i + 1 -lt $OfficeSelection_LanguageMatches.Count) {
-        $endIndex = $OfficeSelection_LanguageMatches[$i + 1].Index
+    if ($i + 1 -lt $Language_Match.Count) {
+        $endIndex = $Language_Match[$i + 1].Index
     }
     else {
-        $endIndex = $OfficeSelection_GraveSoft.Length
+        $endIndex = $GraveSoft.Length
     }
-    $languageContent = $OfficeSelection_GraveSoft.Substring($startIndex, $endIndex - $startIndex)
-    $OfficeSelection_LanguageSections[$languageName] = @{
+    $languageContent = $GraveSoft.Substring($startIndex, $endIndex - $startIndex)
+    $Language_Sections[$languageName] = @{
         Code    = $languageCode
         Content = $languageContent
     }
 }
 
 # Process each language to extract tabs and products
-foreach ($language in $OfficeSelection_LanguageSections.Keys) {
-    $content = $OfficeSelection_LanguageSections[$language]['Content']
+foreach ($language in $Language_Sections.Keys) {
+    $content = $Language_Sections[$language]['Content']
     # Extract content inside <Tabs> ... </Tabs>
     $tabsPattern = '<Tabs>(.*?)</Tabs>'
     $tabsMatch = [regex]::Match($content, $tabsPattern, [Text.RegularExpressions.RegexOptions]::Singleline)
@@ -96,73 +95,82 @@ foreach ($language in $OfficeSelection_LanguageSections.Keys) {
                 }
             }
         }
-        $OfficeSelection_LanguageSections[$language]['Tabs'] = $tabs
+        $Language_Sections[$language]['Tabs'] = $tabs
     }
 }
 
-# Create the form
-$OfficeSelection_Form = New-Object System.Windows.Forms.Form
-$OfficeSelection_Form.Text = 'Office Selection'
-$OfficeSelection_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
-$OfficeSelection_Form.Size = New-Object System.Drawing.Size(800, 500)
-$OfficeSelection_Form.StartPosition = 'CenterScreen'
-$OfficeSelection_Form.Topmost = $true
-$OfficeSelection_Form.MaximizeBox = $false
-$OfficeSelection_Form.MinimizeBox = $false
-$OfficeSelection_Form.FormBorderStyle = [Windows.Forms.FormBorderStyle]::FixedDialog
+$Form = New-Object System.Windows.Forms.Form -Property @{
+    Text            = 'Office Selection'
+    Font            = [Drawing.Font]::new('Tahoma', 11)
+    Height          = 500
+    StartPosition   = 'CenterScreen'
+    FormBorderStyle = 'FixedDialog'
+    Topmost         = $true
+    MaximizeBox     = $false
+    MinimizeBox     = $false
+    ControlBox      = $false
+}
 
-# Add 3 additional checkboxes below the TabControl
-$OfficeSelection_ActivateOffice = New-Object System.Windows.Forms.CheckBox
-$OfficeSelection_ActivateOffice.Text = 'Activate Office'
-$OfficeSelection_ActivateOffice.Location = New-Object System.Drawing.Point(5, 330)
-$OfficeSelection_ActivateOffice.Size = New-Object System.Drawing.Size(300, 20)
-$OfficeSelection_ActivateOffice.Checked = $true
-$OfficeSelection_Form.Controls.Add($OfficeSelection_ActivateOffice)
+$Activate = New-Object System.Windows.Forms.CheckBox -Property @{
+    Text     = 'Activate Office'
+    Width    = 300
+    Height   = 20
+    Location = [Drawing.Point]::new(5, 330)
+    Checked  = $true
+}
 
-$OfficeSelection_DisableTelemetry = New-Object System.Windows.Forms.CheckBox
-$OfficeSelection_DisableTelemetry.Text = 'Disable Telemetry'
-$OfficeSelection_DisableTelemetry.Checked = $true
-$OfficeSelection_DisableTelemetry.Location = New-Object System.Drawing.Point(5, 350)
-$OfficeSelection_DisableTelemetry.Size = New-Object System.Drawing.Size(300, 20)
-$OfficeSelection_Form.Controls.Add($OfficeSelection_DisableTelemetry)
+$DisableTelemetry = New-Object System.Windows.Forms.CheckBox -Property @{
+    Text     = 'Disable Telemetry'
+    Width    = 300
+    Height   = 20
+    Location = [Drawing.Point]::new(5, 350)
+    Checked  = $true
+}
 
-$OfficeSelection_Scrubber = New-Object System.Windows.Forms.CheckBox
-$OfficeSelection_Scrubber.Text = 'Office Scrubber (Uninstall Office)'
-$OfficeSelection_Scrubber.Location = New-Object System.Drawing.Point(5, 370)
-$OfficeSelection_Scrubber.Size = New-Object System.Drawing.Size(300, 20)
-$OfficeSelection_Form.Controls.Add($OfficeSelection_Scrubber)
+$Scrubber = New-Object System.Windows.Forms.CheckBox -Property @{
+    Text     = 'Office Scrubber (Uninstall Office)'
+    Width    = 300
+    Height   = 20
+    Location = [Drawing.Point]::new(5, 370)
+}
 
-$OfficeSelection_LanguageSelector = New-Object System.Windows.Forms.ComboBox
-$OfficeSelection_LanguageSelector.Location = New-Object System.Drawing.Point(5, 0)
-$OfficeSelection_LanguageSelector.Width = 200
-$OfficeSelection_LanguageSelector.DropDownStyle = 'DropDownList'
+$Language_Selection = New-Object System.Windows.Forms.ComboBox -Property @{
+    Width         = 200
+    Height        = 20
+    Location      = [Drawing.Point]::new(5, 0)
+    DropDownStyle = 'DropDownList'
+}
+
+$Form.Controls.AddRange(@($Activate, $DisableTelemetry, $Scrubber))
 
 # Add languages to the combobox, sorted alphabetically
-foreach ($language in ($OfficeSelection_LanguageSections.Keys | Sort-Object)) {
-    $null = $OfficeSelection_LanguageSelector.Items.Add($language)
+foreach ($language in ($Language_Sections.Keys | Sort-Object)) {
+    $Language_Selection.Items.Add($language) | Out-Null
 }
 
 # Set default language to English
-$defaultLanguageIndex = $OfficeSelection_LanguageSelector.Items.IndexOf('English')
+$defaultLanguageIndex = $Language_Selection.Items.IndexOf('English')
 if ($defaultLanguageIndex -ge 0) {
-    $OfficeSelection_LanguageSelector.SelectedIndex = $defaultLanguageIndex
+    $Language_Selection.SelectedIndex = $defaultLanguageIndex
 }
 
 # Create a TabControl
-$OfficeSelection_Tabs = New-Object System.Windows.Forms.TabControl
-$OfficeSelection_Tabs.Location = New-Object System.Drawing.Point(5, 30)
-# Initial size; will adjust later
-$OfficeSelection_Tabs.Size = New-Object System.Drawing.Size(300, 300)
-$OfficeSelection_Form.Controls.Add($OfficeSelection_Tabs)
+$OfficeSelection_Tabs = New-Object System.Windows.Forms.TabControl -Property @{
+    # Initial size; will adjust later
+    Width    = 300
+    Height   = 300
+    Location = [Drawing.Point]::new(5, 30)
+}
+$Form.Controls.Add($OfficeSelection_Tabs)
 
 # Function to populate tabs based on selected language
 $populateTabs = {
-    $selectedLanguage = $OfficeSelection_LanguageSelector.SelectedItem
+    $selectedLanguage = $Language_Selection.SelectedItem
     # Clear existing tabs
     $OfficeSelection_Tabs.TabPages.Clear()
 
     # Get the tabs for the selected language
-    $tabs = $OfficeSelection_LanguageSections[$selectedLanguage]['Tabs']
+    $tabs = $Language_Sections[$selectedLanguage]['Tabs']
 
     # Create a Graphics object for measuring text
     $graphics = $OfficeSelection_Tabs.CreateGraphics()
@@ -217,11 +225,11 @@ $populateTabs = {
     # Ensure the TabControl does not exceed the screen width
     if ($newTabControlWidth + 40 -lt $screenWidth) {
         $OfficeSelection_Tabs.Width = $newTabControlWidth
-        $OfficeSelection_Form.Width = $OfficeSelection_Tabs.Width + 40  # Adjust form width accordingly
+        $Form.Width = $OfficeSelection_Tabs.Width + 40  # Adjust form width accordingly
     }
     else {
         $OfficeSelection_Tabs.Width = $screenWidth - 40
-        $OfficeSelection_Form.Width = $screenWidth
+        $Form.Width = $screenWidth
     }
 }
 
@@ -230,7 +238,7 @@ $populateTabs.Invoke()
 
 
 # Event handler for language selection
-$OfficeSelection_LanguageSelector.add_SelectedIndexChanged({
+$Language_Selection.add_SelectedIndexChanged({
         $populateTabs.Invoke()
     })
 
@@ -250,87 +258,90 @@ $OfficeSelection_Tabs.add_SelectedIndexChanged({
         }
     })
 
-# OK Button
-$OfficeSelection_OK = New-Object System.Windows.Forms.Button
-$OfficeSelection_OK.Text = 'OK'
-$OfficeSelection_OK.Location = New-Object System.Drawing.Size((($OfficeSelection_Form.Width) / 3 ), (($OfficeSelection_Form.height) - 65))
-$OfficeSelection_OK.Size = New-Object System.Drawing.Size(57, 20)
-$OfficeSelection_OK.Add_Click({
-        $OfficeSelection_Form.Topmost = $false
 
-        if ($OfficeSelection_Scrubber.Checked) {
-            $OfficeSelection_Scrubber_FileName = [IO.Path]::GetFileName(([URI]$OfficeSelection_Scrubber_DDL).AbsolutePath)
-            $OfficeSelection_Scrubber_SavePath = [IO.Path]::Combine($env:TEMP, $OfficeSelection_Scrubber_FileName)
-            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$OfficeSelection_Scrubber_FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$OfficeSelection_Scrubber_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$OfficeSelection_Scrubber_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-            (New-Object System.Net.WebClient).DownloadFile($OfficeSelection_Scrubber_DDL, $OfficeSelection_Scrubber_SavePath)
+$ButtonWidth = 57
+$ButtonSpacer = 15
+$ButtonY = $Form.Height - 60
+$ButtonX = [math]::Round(($Form.ClientSize.Width - (2 * $ButtonWidth + $ButtonSpacer)) / 2)
 
-            $OfficeSelection_Scrubber_Dir = Join-Path -Path (Split-Path $OfficeSelection_Scrubber_SavePath -Parent) -ChildPath ([IO.Path]::GetFileNameWithoutExtension($OfficeSelection_Scrubber_SavePath))
-            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$OfficeSelection_Scrubber_FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$OfficeSelection_Scrubber_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$OfficeSelection_Scrubber_Dir'"); [Console]::ResetColor(); [Console]::WriteLine()
-            Expand-Archive -Path $OfficeSelection_Scrubber_SavePath -DestinationPath $OfficeSelection_Scrubber_Dir -Force
+$Ok = New-Object System.Windows.Forms.Button -Property @{
+    Text         = 'OK'
+    DialogResult = [Windows.Forms.DialogResult]::OK
+    Width        = $ButtonWidth
+    Height       = 20
+    Location     = [Drawing.Point]::new($ButtonX, $ButtonY)
+    Add_Click    = { $Form.Close() }
+}
 
-            $OfficeSelection_Scrubber_CMD = [IO.Path]::Combine($OfficeSelection_Scrubber_Dir, 'OfficeScrubber.cmd')
-            $OfficeSelection_Scrubber_Argument = '/A'
-            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Uninstalling '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Office'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$OfficeSelection_Scrubber_CMD'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$OfficeSelection_Scrubber_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-            Start-Process $OfficeSelection_Scrubber_CMD -ArgumentList $OfficeSelection_Scrubber_Argument -Wait
-        }
+$Cancel = New-Object System.Windows.Forms.Button -Property @{
+    Text      = 'Cancel'
+    Width     = $ButtonWidth
+    Height    = 20
+    Location  = [Drawing.Point]::new($ButtonX + $ButtonWidth + $ButtonSpacer, $ButtonY)
+    Add_Click = { $Form.Close() }
+}
 
-        # Collect selected products from the active tab only
-        $selectedProducts = @()
-        $tabPage = $OfficeSelection_Tabs.SelectedTab
-        foreach ($control in $tabPage.Controls[0].Controls) {
-            if ($control -is [Windows.Forms.CheckBox] -and $control.Checked) {
-                $productID = $control.Text
-                # Find the product in languageSections
-                $selectedLanguage = $OfficeSelection_LanguageSelector.SelectedItem
-                $product = ($OfficeSelection_LanguageSections[$selectedLanguage]['Tabs'] | Where-Object { $_['Label'] -eq $tabPage.Text }).Products | Where-Object { $_['ProductID'] -eq $productID }
-                if ($product) {
-                    $selectedProducts += $product
-                }
+$Form.Controls.AddRange(@($Language_Selection, $Ok, $Cancel))
+if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
+    if ($Scrubber.Checked) {
+        New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings' -Name 'Enabled' -PropertyType DWord -Value 1 -Force
+
+        $Scrubber_FileName = [IO.Path]::GetFileName(([URI]$Scrubber_DDL).AbsolutePath)
+        $Scrubber_SavePath = [IO.Path]::Combine($env:TEMP, $Scrubber_FileName)
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+        (New-Object System.Net.WebClient).DownloadFile($Scrubber_DDL, $Scrubber_SavePath)
+
+        $Scrubber_Dir = Join-Path -Path (Split-Path $Scrubber_SavePath -Parent) -ChildPath ([IO.Path]::GetFileNameWithoutExtension($Scrubber_SavePath))
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_Dir'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Expand-Archive -Path $Scrubber_SavePath -DestinationPath $Scrubber_Dir -Force
+
+        $Scrubber_CMD = [IO.Path]::Combine($Scrubber_Dir, 'OfficeScrubber.cmd')
+        $Scrubber_Argument = '/P /C /M6 /M5 /M4 /M2 /M1 /A'
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Uninstalling '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Office'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_CMD'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process $Scrubber_CMD -ArgumentList $Scrubber_Argument -Wait
+
+        New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings' -Name 'Enabled' -PropertyType DWord -Value 0 -Force
+    }
+
+    # Collect selected products from the active tab only
+    $selectedProducts = @()
+    $tabPage = $OfficeSelection_Tabs.SelectedTab
+    foreach ($control in $tabPage.Controls[0].Controls) {
+        if ($control -is [Windows.Forms.CheckBox] -and $control.Checked) {
+            $productID = $control.Text
+            # Find the product in languageSections
+            $selectedLanguage = $Language_Selection.SelectedItem
+            $product = ($Language_Sections[$selectedLanguage]['Tabs'] | Where-Object { $_['Label'] -eq $tabPage.Text }).Products | Where-Object { $_['ProductID'] -eq $productID }
+            if ($product) {
+                $selectedProducts += $product
             }
         }
-        # Extract Online x64 Links for selected products
-        foreach ($product in $selectedProducts) {
-            $Office_Selected_ID = $($product['ProductID'])
-            $Office_Selected_ID_URL = $($product['OnlineX64Link'])
-            $Office_Selected_ID_Includes = $($product['IncludedApps'])
+    }
+    # Extract Online x64 Links for selected products
+    foreach ($product in $selectedProducts) {
+        $Office_Selected_ID = $($product['ProductID'])
+        $Office_Selected_ID_URL = $($product['OnlineX64Link'])
+        $Office_Selected_ID_Includes = $($product['IncludedApps'])
 
-            $Office_Selected_SavePath = [IO.Path]::Combine($env:TEMP, "$Office_Selected_ID.exe")
+        $Office_Selected_SavePath = [IO.Path]::Combine($env:TEMP, "$Office_Selected_ID.exe")
 
-            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Office_Selected_ID'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' which includes '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Office_Selected_ID_Includes'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Office_Selected_ID_URL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Office_Selected_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-            (New-Object System.Net.WebClient).DownloadFile($Office_Selected_ID_URL, $Office_Selected_SavePath)
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Office_Selected_ID'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' which includes '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Office_Selected_ID_Includes'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Office_Selected_ID_URL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Office_Selected_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+        (New-Object System.Net.WebClient).DownloadFile($Office_Selected_ID_URL, $Office_Selected_SavePath)
             
-            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Office_Selected_ID'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' which includes '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Office_Selected_ID_Includes'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Office_Selected_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-            Start-Process $Office_Selected_SavePath -Wait
-        }
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Office_Selected_ID'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' which includes '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Office_Selected_ID_Includes'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Office_Selected_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process $Office_Selected_SavePath -Wait
+    }
 
-        if ($OfficeSelection_ActivateOffice.Checked) {
-            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office: Activating'); [Console]::ResetColor(); [Console]::WriteLine()
-            & ([ScriptBlock]::Create(((New-Object Net.WebClient).DownloadString('https://get.activated.win/')))) /Ohook
-        }
+    if ($Activate.Checked) {
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office: Activating'); [Console]::ResetColor(); [Console]::WriteLine()
+        & ([ScriptBlock]::Create(((New-Object Net.WebClient).DownloadString('https://get.activated.win/')))) /Ohook
+    }
 
-        if ($OfficeSelection_DisableTelemetry.Checked) {
-            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office: Disable Telemetry'); [Console]::ResetColor(); [Console]::WriteLine()
+    if ($DisableTelemetry.Checked) {
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office: Disable Telemetry'); [Console]::ResetColor(); [Console]::WriteLine()
 
-            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Group_Policy/Pre.ps1')
-            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Office/Group_Policy.ps1')
-            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Group_Policy/Post.ps1')
-        }
-
-        $OfficeSelection_Form.Close()
-    })
-
-# Cancel Button
-$OfficeSelection_Cancel = New-Object System.Windows.Forms.Button
-$OfficeSelection_Cancel.Text = 'Cancel'
-$OfficeSelection_Cancel.Location = New-Object System.Drawing.Size((($OfficeSelection_Form.Width) / 2 ), (($OfficeSelection_Form.height) - 65))
-$OfficeSelection_Cancel.Size = New-Object System.Drawing.Size(57, 20)
-$OfficeSelection_Cancel.Add_Click({
-        $OfficeSelection_Form.Close()
-    })
-
-$OfficeSelection_Form.Controls.Add($OfficeSelection_LanguageSelector)
-$OfficeSelection_Form.Controls.Add($OfficeSelection_OK)
-$OfficeSelection_Form.Controls.Add($OfficeSelection_Cancel)
-
-# Show the form
-[void]$OfficeSelection_Form.ShowDialog()
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Group_Policy/Pre.ps1')
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Office/Group_Policy.ps1')
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Group_Policy/Post.ps1')
+    }
+}
