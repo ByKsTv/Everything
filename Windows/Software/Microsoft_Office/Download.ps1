@@ -296,7 +296,7 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
         Expand-Archive -Path $Scrubber_SavePath -DestinationPath $Scrubber_Dir -Force
 
         $Scrubber_CMD = [IO.Path]::Combine($Scrubber_Dir, 'OfficeScrubber.cmd')
-        $Scrubber_Argument = '/P /C /M6 /M5 /M4 /M2 /M1 /A'
+        $Scrubber_Argument = '/P /C /A'
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Uninstalling '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Office'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_CMD'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process $Scrubber_CMD -ArgumentList $Scrubber_Argument -Wait
 
