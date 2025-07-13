@@ -67,10 +67,10 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     $Title = $DropDownList.SelectedItem
     $TitleHREF = $Array[$DropDownList.SelectedItem]
 
-    $ForumPost = Invoke-WebRequest -UseBasicParsing -Uri $TitleHref | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -match 'pb.wtf' } | Select-Object -ExpandProperty 'href' | Select-Object -First 1
+    $ForumPost = Invoke-WebRequest -UseBasicParsing -Uri $TitleHREF | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -match 'pb.wtf' } | Select-Object -ExpandProperty 'href' | Select-Object -First 1
 
     if (-not ($ForumPost)) {
-        $ForumPost = Invoke-WebRequest -UseBasicParsing -Uri $TitleHref | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -match 'uniondht.org' } | Select-Object -ExpandProperty 'href' | Select-Object -First 1
+        $ForumPost = Invoke-WebRequest -UseBasicParsing -Uri $TitleHREF | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -match 'uniondht.org' } | Select-Object -ExpandProperty 'href' | Select-Object -First 1
     }
 
     $Magnet = [Uri]::UnescapeDataString((Invoke-WebRequest -UseBasicParsing -Uri $ForumPost | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -ExpandProperty 'href' | Select-Object -First 1))
