@@ -14,17 +14,17 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 $Chrome_MSI_Dir = Join-Path -Path (Split-Path $Chrome_MSI_SavePath -Parent) -ChildPath ([IO.Path]::GetFileNameWithoutExtension($Chrome_MSI_SavePath))
 $Chrome_MSI_Dir_SavePath = [IO.Path]::Combine($env:TEMP, $Chrome_MSI_Dir)
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Chrome_MSI_FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Chrome_MSI_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Chrome_MSI_Dir_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-7z.exe x $Chrome_MSI_SavePath -o"$Chrome_MSI_Dir_SavePath" -y
+& 7z.exe x $Chrome_MSI_SavePath -o"$Chrome_MSI_Dir_SavePath" -y
 
 $Chrome_Installer_SavePath = Get-ChildItem -Path $Chrome_MSI_Dir_SavePath -Recurse -Filter '*GoogleChromeInstaller*' | Select-Object -First 1 | Select-Object -ExpandProperty 'FullName'
 $Chrome_Installer_FileName = [IO.Path]::GetFileName(([URI]$Chrome_Installer_SavePath).AbsolutePath)
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Chrome_Installer_FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Chrome_Installer_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Chrome_MSI_Dir_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-7z.exe x $Chrome_Installer_SavePath -o"$Chrome_MSI_Dir_SavePath" -y
+& 7z.exe x $Chrome_Installer_SavePath -o"$Chrome_MSI_Dir_SavePath" -y
 
 $Chrome_7Zip_SavePath = Get-ChildItem -Path $Chrome_MSI_Dir_SavePath -Recurse -Filter '*.7z*' | Select-Object -First 1 | Select-Object -ExpandProperty 'FullName'
 $Chrome_7Zip_FileName = [IO.Path]::GetFileName(([URI]$Chrome_7Zip_SavePath).AbsolutePath)
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Chrome_7Zip_FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Chrome_7Zip_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Chrome_MSI_Dir_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-7z.exe x $Chrome_7Zip_SavePath -o"$Chrome_MSI_Dir_SavePath" -y
+& 7z.exe x $Chrome_7Zip_SavePath -o"$Chrome_MSI_Dir_SavePath" -y
 
 $Chrome_Installer_SavePath = Get-ChildItem -Path $Chrome_MSI_Dir_SavePath -Recurse -Filter '*chrome_installer*' | Select-Object -First 1 | Select-Object -ExpandProperty 'FullName'
 $Chrome_Installer_FileName = [IO.Path]::GetFileName(([URI]$Chrome_Installer_SavePath).AbsolutePath)

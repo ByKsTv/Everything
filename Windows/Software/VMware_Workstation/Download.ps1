@@ -64,6 +64,7 @@ $Cancel = New-Object System.Windows.Forms.Button -Property @{
 
 $Form.Controls.AddRange(@($DropDownList, $Ok, $Cancel))
 if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
+    $Title = $DropDownList.SelectedItem
     $TitleHREF = $Array[$DropDownList.SelectedItem]
 
     $Magnet = Invoke-WebRequest -UseBasicParsing -Uri $TitleHREF | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1 | Select-Object -ExpandProperty 'href'

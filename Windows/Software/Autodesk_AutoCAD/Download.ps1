@@ -64,6 +64,7 @@ $Cancel = New-Object System.Windows.Forms.Button -Property @{
 
 $Form.Controls.AddRange(@($DropDownList, $Ok, $Cancel))
 if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
+    $Title = $DropDownList.SelectedItem
     $TitleHREF = $Array[$DropDownList.SelectedItem]
 
     $ForumPost = Invoke-WebRequest -UseBasicParsing -Uri $TitleHref | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -match 'pb.wtf' } | Select-Object -ExpandProperty 'href' | Select-Object -First 1
@@ -105,7 +106,7 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     } until ((Get-Content $Log -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*AutoCAD*')
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Directory'"); [Console]::ResetColor(); [Console]::WriteLine()
-    7z.exe x $ISO -o"$Directory" -y
+    & 7z.exe x $ISO -o"$Directory" -y
     
     $SetupEXE = Get-ChildItem -Path $Directory -Recurse -Filter 'setup.exe' | Select-Object -ExpandProperty 'FullName'
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SetupEXE'"); [Console]::ResetColor(); [Console]::WriteLine()

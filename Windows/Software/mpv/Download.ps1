@@ -7,7 +7,7 @@ $SavePath = [IO.Path]::Combine($env:TEMP, $FileName)
 $Destination = [IO.Path]::Combine($env:USERPROFILE, 'mpv')
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/7-Zip/Download.ps1')
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Destination'"); [Console]::ResetColor(); [Console]::WriteLine()
-7z.exe x $SavePath -o"$Destination" -y
+& 7z.exe x $SavePath -o"$Destination" -y
 
 $Installer = [IO.Path]::Combine($Destination, 'installer', 'mpv-install.bat')
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Installer'"); [Console]::ResetColor(); [Console]::WriteLine()
