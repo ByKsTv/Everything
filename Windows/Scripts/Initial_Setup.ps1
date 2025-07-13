@@ -2,7 +2,7 @@ Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 [Windows.Forms.Application]::EnableVisualStyles()
 
-$InitialSetup_Form = New-Object System.Windows.Forms.Form -Property @{
+$Form = New-Object System.Windows.Forms.Form -Property @{
 	Text            = 'Initial Setup'
 	Font            = [Drawing.Font]::new('Tahoma', 11)
 	Width           = 350
@@ -15,57 +15,55 @@ $InitialSetup_Form = New-Object System.Windows.Forms.Form -Property @{
 	ControlBox      = $false
 }
 
-$InitialSetup_ButtonSpacer = 15
-$InitialSetup_ButtonWidth = 57
-$InitialSetup_TotalButtonWidth = $InitialSetup_ButtonSpacer + $InitialSetup_ButtonWidth + $InitialSetup_ButtonWidth
-$InitialSetup_FormCenterX = [math]::Round(($InitialSetup_Form.ClientSize.Width - $InitialSetup_TotalButtonWidth) / 2)
-$InitialSetup_ButtonHeight = 20
-$InitialSetup_ButtonYLocation = $InitialSetup_Form.Height - 60
+$ButtonWidth = 57
+$ButtonSpacer = 15
+$ButtonY = $Form.Height - 60
+$ButtonX = [math]::Round(($Form.ClientSize.Width - (2 * $ButtonWidth + $ButtonSpacer)) / 2)
 
-$InitialSetup_OK = New-Object System.Windows.Forms.Button -Property @{
-	Text      = 'OK'
-	Width     = $InitialSetup_ButtonWidth
-	Height    = $InitialSetup_ButtonHeight
-	Location  = [Drawing.Point]::new($InitialSetup_FormCenterX, $InitialSetup_ButtonYLocation)
-	Add_Click = ({ $InitialSetup_Form.Close() })
+$Ok = New-Object System.Windows.Forms.Button -Property @{
+	Text         = 'OK'
+	DialogResult = [Windows.Forms.DialogResult]::OK
+	Width        = $ButtonWidth
+	Height       = 20
+	Location     = [Drawing.Point]::new($ButtonX, $ButtonY)
+	Add_Click    = { $Form.Close() }
 }
 
-$InitialSetup_CancelX = $InitialSetup_FormCenterX + $InitialSetup_ButtonWidth + $InitialSetup_ButtonSpacer
-$InitialSetup_Cancel = New-Object System.Windows.Forms.Button -Property @{
+$Cancel = New-Object System.Windows.Forms.Button -Property @{
 	Text      = 'Cancel'
-	Width     = $InitialSetup_ButtonWidth
-	Height    = $InitialSetup_ButtonHeight
-	Location  = [Drawing.Point]::new($InitialSetup_CancelX, $InitialSetup_ButtonYLocation)
-	Add_Click = ({ $InitialSetup_Form.Close() })
+	Width     = $ButtonWidth
+	Height    = 20
+	Location  = [Drawing.Point]::new($ButtonX + $ButtonWidth + $ButtonSpacer, $ButtonY)
+	Add_Click = { $Form.Close() }
 }
 
-$InitialSetup_LocX = 5
-$InitialSetup_LocY = 0
-$InitialSetup_SizeX = $InitialSetup_Form.Width - 25
-$InitialSetup_SizeY = 26
-$InitialSetup__LocAdd = 30
+$LocX = 5
+$LocY = 0
+$SizeX = $Form.Width - 25
+$SizeY = 26
+$_LocAdd = 30
 
-$InitialSetup_TimeZoneSelection = New-Object System.Windows.Forms.ComboBox -Property @{
-	Width         = $InitialSetup_SizeX
-	Height        = $InitialSetup_SizeY
-	Location      = [Drawing.Point]::new($InitialSetup_LocX, $InitialSetup_LocY)
+$TimeZoneSelection = New-Object System.Windows.Forms.ComboBox -Property @{
+	Width         = $SizeX
+	Height        = $SizeY
+	Location      = [Drawing.Point]::new($LocX, $LocY)
 	DropDownStyle = 'DropDownList'
 }
-[void] $InitialSetup_TimeZoneSelection.Items.Add('Select Time Zone')
-$InitialSetup_TimeZoneSelection.SelectedIndex = 0
+[void] $TimeZoneSelection.Items.Add('Select Time Zone')
+$TimeZoneSelection.SelectedIndex = 0
 $TimeZones = [TimeZoneInfo]::GetSystemTimeZones() | Sort-Object -Property Id
-[void] $TimeZones.ForEach({ $InitialSetup_TimeZoneSelection.Items.Add($_.Id) })
+[void] $TimeZones.ForEach({ $TimeZoneSelection.Items.Add($_.Id) })
 
-$InitialSetup_LocY += $InitialSetup__LocAdd
+$LocY += $_LocAdd
 
-$InitialSetup_KeyboardSelection = New-Object System.Windows.Forms.ComboBox -Property @{
-	Width         = $InitialSetup_SizeX
-	Height        = $InitialSetup_SizeY
-	Location      = [Drawing.Point]::new($InitialSetup_LocX, $InitialSetup_LocY)
+$KeyboardSelection = New-Object System.Windows.Forms.ComboBox -Property @{
+	Width         = $SizeX
+	Height        = $SizeY
+	Location      = [Drawing.Point]::new($LocX, $LocY)
 	DropDownStyle = 'DropDownList'
 }
-[void] $InitialSetup_KeyboardSelection.Items.Add('Select Keyboard')
-$InitialSetup_KeyboardSelection.SelectedIndex = 0
+[void] $KeyboardSelection.Items.Add('Select Keyboard')
+$KeyboardSelection.SelectedIndex = 0
 $Keyboard_Tags = @('af-ZA', 'am-ET', 'ar-SA', 'az-Latn-AZ', 'bg-BG', 'bn-IN', 'bs-Latn-BA', 'ca-ES', 'cs-CZ', 'cy-GB', 'da-DK', 'de-DE', 'el-GR', 'en-GB', 'en-US', 'es-ES', 'es-MX', 'et-EE', 'eu-ES', 'fa-IR', 'fi-FI', 'fil-PH', 'fr-CA', 'fr-FR', 'ga-IE', 'gl-ES', 'gu-IN', 'he-IL', 'hi-IN', 'hr-HR', 'hu-HU', 'hy-AM', 'id-ID', 'is-IS', 'it-IT', 'ja-JP', 'ka-GE', 'kk-KZ', 'km-KH', 'kn-IN', 'ko-KR', 'ky-KG', 'lt-LT', 'lv-LV', 'mk-MK', 'ml-IN', 'mn-MN', 'mr-IN', 'ms-MY', 'mt-MT', 'nb-NO', 'nl-NL', 'pl-PL', 'pt-BR', 'pt-PT', 'ro-RO', 'ru-RU', 'si-LK', 'sk-SK', 'sl-SI', 'sq-AL', 'sr-Cyrl-RS', 'sv-SE', 'sw-KE', 'ta-IN', 'te-IN', 'th-TH', 'tr-TR', 'uk-UA', 'ur-PK', 'uz-Latn-UZ', 'vi-VN', 'zh-CN', 'zh-TW')
 $Keyboard_Map = @{}
 foreach ($Keyboard_Tag in $Keyboard_Tags) {
@@ -76,89 +74,89 @@ foreach ($Keyboard_Tag in $Keyboard_Tags) {
 		$Keyboard_Map[$Keyboard_Tag] = $Keyboard_Tag 
 	}
 }
-$Keyboard_Map.Keys | Sort-Object | ForEach-Object { $InitialSetup_KeyboardSelection.Items.Add($_) | Out-Null }
+$Keyboard_Map.Keys | Sort-Object | ForEach-Object { $KeyboardSelection.Items.Add($_) | Out-Null }
 
-$InitialSetup_LocY += $InitialSetup__LocAdd
+$LocY += $_LocAdd
 
-$InitialSetup_RegionalFormatSelection = New-Object System.Windows.Forms.ComboBox -Property @{
-	Width         = $InitialSetup_SizeX
-	Height        = $InitialSetup_SizeY
-	Location      = [Drawing.Point]::new($InitialSetup_LocX, $InitialSetup_LocY)
+$RegionalFormatSelection = New-Object System.Windows.Forms.ComboBox -Property @{
+	Width         = $SizeX
+	Height        = $SizeY
+	Location      = [Drawing.Point]::new($LocX, $LocY)
 	DropDownStyle = 'DropDownList'
 }
-[void] $InitialSetup_RegionalFormatSelection.Items.Add('Select Regional Format')
-$InitialSetup_RegionalFormatSelection.SelectedIndex = 0
+[void] $RegionalFormatSelection.Items.Add('Select Regional Format')
+$RegionalFormatSelection.SelectedIndex = 0
 $availableCultures = [Globalization.CultureInfo]::GetCultures([Globalization.CultureTypes]::SpecificCultures)
 $regionalFormatMapping = $availableCultures | Where-Object {
-	$_.Name -like 'en-*'
-} | Sort-Object -Property DisplayName | ForEach-Object {
+	$_.Name -match 'en-'
+} | Sort-Object -Property 'DisplayName' | ForEach-Object {
 	@{ DisplayName = $_.DisplayName.Split('(')[-1].TrimEnd(')'); CultureCode = $_.Name }
 }
-$InitialSetup_RegionalFormatSelection.Items.AddRange($regionalFormatMapping.DisplayName)
+$RegionalFormatSelection.Items.AddRange($regionalFormatMapping.DisplayName)
 
-$InitialSetup_LocY += $InitialSetup__LocAdd
+$LocY += $_LocAdd
 
-$InitialSetup_PreComputerName = 'Enter Computer Name'
-$InitialSetup_ComputerName = New-Object System.Windows.Forms.TextBox -Property @{
-	Text     = $InitialSetup_PreComputerName
-	Width    = $InitialSetup_SizeX
-	Height   = $InitialSetup_SizeY
-	Location = [Drawing.Point]::new($InitialSetup_LocX, $InitialSetup_LocY)
+$PreComputerName = 'Enter Computer Name'
+$ComputerName = New-Object System.Windows.Forms.TextBox -Property @{
+	Text     = $PreComputerName
+	Width    = $SizeX
+	Height   = $SizeY
+	Location = [Drawing.Point]::new($LocX, $LocY)
 }
-$InitialSetup_ComputerName.Add_GotFocus{ if ($InitialSetup_ComputerName.Text -eq $InitialSetup_PreComputerName) {
-		$InitialSetup_ComputerName.Text = ''
+$ComputerName.Add_GotFocus{ if ($ComputerName.Text -eq $PreComputerName) {
+		$ComputerName.Text = ''
 	}
 }
-$InitialSetup_ComputerName.Add_LostFocus({ if ($InitialSetup_ComputerName.Text -eq '') {
-			$InitialSetup_ComputerName.Text = $InitialSetup_PreComputerName
+$ComputerName.Add_LostFocus({ if ($ComputerName.Text -eq '') {
+			$ComputerName.Text = $PreComputerName
 		}
 	}
 )
 
-$InitialSetup_LocY += $InitialSetup__LocAdd
+$LocY += $_LocAdd
 
-$InitialSetup_ComputerPasswordCheckBox = New-Object System.Windows.Forms.CheckBox -Property @{
+$ComputerPasswordCheckBox = New-Object System.Windows.Forms.CheckBox -Property @{
 	Text     = 'Computer Password'
-	Width    = $InitialSetup_SizeX
-	Height   = $InitialSetup_SizeY
-	Location = [Drawing.Point]::new($InitialSetup_LocX, $InitialSetup_LocY)
+	Width    = $SizeX
+	Height   = $SizeY
+	Location = [Drawing.Point]::new($LocX, $LocY)
 }
 
-$InitialSetup_LocY += $InitialSetup__LocAdd
+$LocY += $_LocAdd
 
-$InitialSetup_PreComputerPassword = 'Enter Computer Password'
-$InitialSetup_ComputerPasswordTextBox = New-Object System.Windows.Forms.TextBox -Property @{
-	Text     = $InitialSetup_PreComputerPassword
+$PreComputerPassword = 'Enter Computer Password'
+$ComputerPasswordTextBox = New-Object System.Windows.Forms.TextBox -Property @{
+	Text     = $PreComputerPassword
 	Enabled  = $false
-	Width    = $InitialSetup_SizeX
-	Height   = $InitialSetup_SizeY
-	Location = [Drawing.Point]::new($InitialSetup_LocX, $InitialSetup_LocY)
+	Width    = $SizeX
+	Height   = $SizeY
+	Location = [Drawing.Point]::new($LocX, $LocY)
 }
-$InitialSetup_ComputerPasswordTextBox.Add_GotFocus{ if ($InitialSetup_ComputerPasswordTextBox.Text -eq $InitialSetup_PreComputerPassword) {
-		$InitialSetup_ComputerPasswordTextBox.Text = ''
+$ComputerPasswordTextBox.Add_GotFocus{ if ($ComputerPasswordTextBox.Text -eq $PreComputerPassword) {
+		$ComputerPasswordTextBox.Text = ''
 	}
 }
-$InitialSetup_ComputerPasswordTextBox.Add_LostFocus({ if ($InitialSetup_ComputerPasswordTextBox.Text -eq '') {
-			$InitialSetup_ComputerPasswordTextBox.Text = $InitialSetup_PreComputerPassword
+$ComputerPasswordTextBox.Add_LostFocus({ if ($ComputerPasswordTextBox.Text -eq '') {
+			$ComputerPasswordTextBox.Text = $PreComputerPassword
 		}
 	}
 )
 
-$InitialSetup_LocY += $InitialSetup__LocAdd
+$LocY += $_LocAdd
 
-$InitialSetup_AutoLogonCheckBox = New-Object System.Windows.Forms.CheckBox -Property @{
+$AutoLogonCheckBox = New-Object System.Windows.Forms.CheckBox -Property @{
 	Text     = 'Autologon'
 	Enabled  = $false
-	Width    = $InitialSetup_SizeX
-	Height   = $InitialSetup_SizeY
-	Location = [Drawing.Point]::new($InitialSetup_LocX, $InitialSetup_LocY)
+	Width    = $SizeX
+	Height   = $SizeY
+	Location = [Drawing.Point]::new($LocX, $LocY)
 }
 
-$InitialSetup_ComputerPasswordCheckBox.Add_Click(
+$ComputerPasswordCheckBox.Add_Click(
 	{
-		$ComputerPasswordEnabled = $InitialSetup_ComputerPasswordCheckBox.Checked
-		$InitialSetup_ComputerPasswordTextBox.Enabled = $InitialSetup_AutoLogonCheckBox.Enabled = $ComputerPasswordEnabled
-		$InitialSetup_ComputerPasswordTextBox.Text = if ($ComputerPasswordEnabled) {
+		$ComputerPasswordEnabled = $ComputerPasswordCheckBox.Checked
+		$ComputerPasswordTextBox.Enabled = $AutoLogonCheckBox.Enabled = $ComputerPasswordEnabled
+		$ComputerPasswordTextBox.Text = if ($ComputerPasswordEnabled) {
 			'' 
 		}
 		else {
@@ -167,39 +165,39 @@ $InitialSetup_ComputerPasswordCheckBox.Add_Click(
 	}
 )
 
-$InitialSetup_LocY += $InitialSetup__LocAdd
+$LocY += $_LocAdd
 
-$InitialSetup_RemoteDesktop = New-Object System.Windows.Forms.CheckBox -Property @{
+$RemoteDesktop = New-Object System.Windows.Forms.CheckBox -Property @{
 	Text     = 'Remote Desktop'
-	Width    = $InitialSetup_SizeX
-	Height   = $InitialSetup_SizeY
-	Location = [Drawing.Point]::new($InitialSetup_LocX, $InitialSetup_LocY)
+	Width    = $SizeX
+	Height   = $SizeY
+	Location = [Drawing.Point]::new($LocX, $LocY)
 }
 
-$InitialSetup_LocY += $InitialSetup__LocAdd
+$LocY += $_LocAdd
 
-$InitialSetup_RemotePowershell = New-Object System.Windows.Forms.CheckBox -Property @{
+$RemotePowershell = New-Object System.Windows.Forms.CheckBox -Property @{
 	Text     = 'Remote Powershell'
-	Width    = $InitialSetup_SizeX
-	Height   = $InitialSetup_SizeY
-	Location = [Drawing.Point]::new($InitialSetup_LocX, $InitialSetup_LocY)
+	Width    = $SizeX
+	Height   = $SizeY
+	Location = [Drawing.Point]::new($LocX, $LocY)
 }
 
-$InitialSetup_LocY += $InitialSetup__LocAdd
+$LocY += $_LocAdd
 
-$InitialSetup_RemotePowershellIP = New-Object System.Windows.Forms.TextBox -Property @{
+$RemotePowershellIP = New-Object System.Windows.Forms.TextBox -Property @{
 	Text     = 'Remote Powershell Trusted IP'
 	Enabled  = $false
-	Width    = $InitialSetup_SizeX
-	Height   = $InitialSetup_SizeY
-	Location = [Drawing.Point]::new($InitialSetup_LocX, $InitialSetup_LocY)
+	Width    = $SizeX
+	Height   = $SizeY
+	Location = [Drawing.Point]::new($LocX, $LocY)
 }
 
-$InitialSetup_RemotePowershell.Add_Click(
+$RemotePowershell.Add_Click(
 	{
-		$RemotePowershellEnabled = $InitialSetup_RemotePowershell.Checked
-		$InitialSetup_RemotePowershellIP.Enabled = $RemotePowershellEnabled
-		$InitialSetup_RemotePowershellIP.Text = if ($RemotePowershellEnabled) {
+		$RemotePowershellEnabled = $RemotePowershell.Checked
+		$RemotePowershellIP.Enabled = $RemotePowershellEnabled
+		$RemotePowershellIP.Text = if ($RemotePowershellEnabled) {
 			''
 		}
 		else {
@@ -208,127 +206,108 @@ $InitialSetup_RemotePowershell.Add_Click(
 	}
 )
 
-$InitialSetup_LocY += $InitialSetup__LocAdd
+$LocY += $_LocAdd
 
-$InitialSetup_MozillaFirefox = New-Object System.Windows.Forms.CheckBox -Property @{
+$MozillaFirefox = New-Object System.Windows.Forms.CheckBox -Property @{
 	Text     = 'Mozilla Firefox'
-	Width    = $InitialSetup_SizeX
-	Height   = $InitialSetup_SizeY
-	Location = [Drawing.Point]::new($InitialSetup_LocX, $InitialSetup_LocY)
+	Width    = $SizeX
+	Height   = $SizeY
+	Location = [Drawing.Point]::new($LocX, $LocY)
 }
 
-$InitialSetup_LocY += $InitialSetup__LocAdd
+$LocY += $_LocAdd
 
-$InitialSetup_GoogleChrome = New-Object System.Windows.Forms.CheckBox -Property @{
+$GoogleChrome = New-Object System.Windows.Forms.CheckBox -Property @{
 	Text     = 'Google Chrome'
-	Width    = $InitialSetup_SizeX
-	Height   = $InitialSetup_SizeY
-	Location = [Drawing.Point]::new($InitialSetup_LocX, $InitialSetup_LocY)
+	Width    = $SizeX
+	Height   = $SizeY
+	Location = [Drawing.Point]::new($LocX, $LocY)
 }
 
-$InitialSetup_LocY += $InitialSetup__LocAdd
+$LocY += $_LocAdd
 
-$InitialSetup_OK.Add_Click(
-	{
-		$InitialSetup_Form.Topmost = $false
+$Form.Controls.AddRange(@($Ok, $Cancel, $TimeZoneSelection, $KeyboardSelection, $RegionalFormatSelection, $ComputerName, $ComputerPasswordCheckBox, $ComputerPasswordTextBox, $AutoLogonCheckBox, $RemoteDesktop, $RemotePowershell, $RemotePowershellIP, $MozillaFirefox, $GoogleChrome))
 
-		if ($InitialSetup_TimeZoneSelection.SelectedItem -and $InitialSetup_TimeZoneSelection.Text -ne 'Select Time Zone') {
-			[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Time Zone: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write($InitialSetup_TimeZoneSelection.SelectedItem); [Console]::ResetColor(); [Console]::WriteLine()
-			tzutil.exe /s $InitialSetup_TimeZoneSelection.SelectedItem
-		}
-		
-		if ($InitialSetup_KeyboardSelection.SelectedItem -and $InitialSetup_KeyboardSelection.Text -ne 'Select Keyboard') {
-			[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Keyboard: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write($InitialSetup_KeyboardSelection.SelectedItem); [Console]::ResetColor(); [Console]::WriteLine()
-			$LanguageList = Get-WinUserLanguageList
-			$LanguageList.Add($Keyboard_Map[$InitialSetup_KeyboardSelection.SelectedItem])
-			Set-WinUserLanguageList -LanguageList $LanguageList -Force
-		}
-		
-		if ($InitialSetup_RegionalFormatSelection.SelectedItem -and $InitialSetup_RegionalFormatSelection.Text -ne 'Select Regional Format') {
-			$selectedDisplayName = $InitialSetup_RegionalFormatSelection.SelectedItem
-			$RegionalFormatSelected = ($regionalFormatMapping | Where-Object { $_.DisplayName -eq $selectedDisplayName }).CultureCode
-			[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Regional Format: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write($RegionalFormatSelected); [Console]::ResetColor(); [Console]::WriteLine()
-			Set-Culture -CultureInfo $RegionalFormatSelected
-		}
-
-		if ($InitialSetup_ComputerName.Text -ne $InitialSetup_PreComputerName) {
-			[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Computer name: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write($InitialSetup_ComputerName.Text); [Console]::ResetColor(); [Console]::WriteLine()
-			Rename-Computer -NewName $InitialSetup_ComputerName.Text -Force
-		}
-
-		if ($InitialSetup_ComputerPasswordCheckBox.Checked -eq $true) {
-			[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('PC Password: Adding'); [Console]::ResetColor(); [Console]::WriteLine()
-			Set-LocalUser -Name $env:USERNAME -Password (ConvertTo-SecureString $InitialSetup_ComputerPasswordTextBox.Text -AsPlainText -Force)
-			New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'DefaultPassword' -Value $InitialSetup_ComputerPasswordTextBox.Text -PropertyType String -Force
-		}
-		elseif ($InitialSetup_ComputerPasswordCheckBox.Checked -eq $false) {
-			[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('PC Password: Removing'); [Console]::ResetColor(); [Console]::WriteLine()
-			Set-LocalUser -Name $env:username -Password ([securestring]::new())
-			New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'AutoAdminLogon' -Value '0' -PropertyType String -Force
-		}
-	
-		if ($InitialSetup_AutoLogonCheckBox.Checked -eq $true) {
-			[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Autologon: Enabling'); [Console]::ResetColor(); [Console]::WriteLine()
-			New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'AutoAdminLogon' -Value '1' -PropertyType String -Force
-		}
-		elseif ($InitialSetup_AutoLogonCheckBox.Checked -eq $false) {
-			[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Autologon: Disabling'); [Console]::ResetColor(); [Console]::WriteLine()
-			New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'AutoAdminLogon' -Value '0' -PropertyType String -Force
-		}
-
-		if ($InitialSetup_RemoteDesktop.Checked -eq $true) {
-			[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Remote Desktop: Enabling'); [Console]::ResetColor(); [Console]::WriteLine()
-			Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name 'fDenyTSConnections' -Value 0
-			Enable-NetFirewallRule -DisplayGroup 'Remote Desktop'
-		}
-		elseif ($InitialSetup_RemoteDesktop.Checked -eq $false) {
-			[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Remote Desktop: Disabling'); [Console]::ResetColor(); [Console]::WriteLine()
-			Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name 'fDenyTSConnections' -Value 1
-			Disable-NetFirewallRule -DisplayGroup 'Remote Desktop'
-		}
-
-		if ($InitialSetup_RemotePowershell.Checked -eq $true) {
-			[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Remote PowerShell: Enabling'); [Console]::ResetColor(); [Console]::WriteLine()
-			Set-NetConnectionProfile -NetworkCategory Private
-			Enable-PSRemoting -Force
-			[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Remote PowerShell: Adding IP'); [Console]::ResetColor(); [Console]::WriteLine()
-			Set-Item wsman:\localhost\Client\TrustedHosts -Value $InitialSetup_RemotePowershellIP.Text -Force
-		}
-		elseif ($InitialSetup_RemotePowershell.Checked -eq $false) {
-			[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Remote PowerShell: Disabling'); [Console]::ResetColor(); [Console]::WriteLine()
-			Disable-PSRemoting -Force
-			Remove-Item -Path WSMan:\Localhost\listener\listener* -Recurse
-			Clear-Item wsman:\localhost\client\trustedhosts -Force
-			Set-NetFirewallRule -DisplayName 'Windows Remote Management (HTTP-In)' -Enabled False | Select-Object -Property DisplayName, Profile, Enabled
-			Set-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\policies\system -Name LocalAccountTokenFilterPolicy -Value 0
-			Stop-Service WinRM
-			Set-Service WinRM -StartupType Manual
-		}
-
-		if ($InitialSetup_MozillaFirefox.Checked -eq $true) {
-			Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/Download.ps1')
-		}
-	
-		if ($InitialSetup_GoogleChrome.Checked -eq $true) {
-			Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Google_Chrome/Download.ps1')
-		}
+if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
+	$Form.TopMost = $false
+	if ($TimeZoneSelection.SelectedItem -and $TimeZoneSelection.Text -ne 'Select Time Zone') {
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Time Zone: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write($TimeZoneSelection.SelectedItem); [Console]::ResetColor(); [Console]::WriteLine()
+		tzutil.exe /s $TimeZoneSelection.SelectedItem
 	}
-)
+		
+	if ($KeyboardSelection.SelectedItem -and $KeyboardSelection.Text -ne 'Select Keyboard') {
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Keyboard: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write($KeyboardSelection.SelectedItem); [Console]::ResetColor(); [Console]::WriteLine()
+		$LanguageList = Get-WinUserLanguageList
+		$LanguageList.Add($Keyboard_Map[$KeyboardSelection.SelectedItem])
+		Set-WinUserLanguageList -LanguageList $LanguageList -Force
+	}
+		
+	if ($RegionalFormatSelection.SelectedItem -and $RegionalFormatSelection.Text -ne 'Select Regional Format') {
+		$selectedDisplayName = $RegionalFormatSelection.SelectedItem
+		$RegionalFormatSelected = ($regionalFormatMapping | Where-Object { $_.DisplayName -eq $selectedDisplayName }).CultureCode
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Regional Format: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write($RegionalFormatSelected); [Console]::ResetColor(); [Console]::WriteLine()
+		Set-Culture -CultureInfo $RegionalFormatSelected
+	}
 
-$InitialSetup_Form.Controls.Add($InitialSetup_OK)
-$InitialSetup_Form.Controls.Add($InitialSetup_Cancel)
+	if ($ComputerName.Text -ne $PreComputerName) {
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Computer name: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write($ComputerName.Text); [Console]::ResetColor(); [Console]::WriteLine()
+		Rename-Computer -NewName $ComputerName.Text -Force
+	}
 
-$InitialSetup_Form.Controls.Add($InitialSetup_TimeZoneSelection)
-$InitialSetup_Form.Controls.Add($InitialSetup_KeyboardSelection)
-$InitialSetup_Form.Controls.Add($InitialSetup_RegionalFormatSelection)
-$InitialSetup_Form.Controls.Add($InitialSetup_ComputerName)
-$InitialSetup_Form.Controls.Add($InitialSetup_ComputerPasswordCheckBox)
-$InitialSetup_Form.Controls.Add($InitialSetup_ComputerPasswordTextBox)
-$InitialSetup_Form.Controls.Add($InitialSetup_AutoLogonCheckBox)
-$InitialSetup_Form.Controls.Add($InitialSetup_RemoteDesktop)
-$InitialSetup_Form.Controls.Add($InitialSetup_RemotePowershell)
-$InitialSetup_Form.Controls.Add($InitialSetup_RemotePowershellIP)
-$InitialSetup_Form.Controls.Add($InitialSetup_MozillaFirefox)
-$InitialSetup_Form.Controls.Add($InitialSetup_GoogleChrome)
+	if ($ComputerPasswordCheckBox.Checked -eq $true) {
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('PC Password: Adding'); [Console]::ResetColor(); [Console]::WriteLine()
+		Set-LocalUser -Name $env:USERNAME -Password (ConvertTo-SecureString $ComputerPasswordTextBox.Text -AsPlainText -Force)
+		New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'DefaultPassword' -Value $ComputerPasswordTextBox.Text -PropertyType String -Force
+	}
+	elseif ($ComputerPasswordCheckBox.Checked -eq $false) {
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('PC Password: Removing'); [Console]::ResetColor(); [Console]::WriteLine()
+		Set-LocalUser -Name $env:username -Password ([securestring]::new())
+		New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'AutoAdminLogon' -Value '0' -PropertyType String -Force
+	}
+	
+	if ($AutoLogonCheckBox.Checked -eq $true) {
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Autologon: Enabling'); [Console]::ResetColor(); [Console]::WriteLine()
+		New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'AutoAdminLogon' -Value '1' -PropertyType String -Force
+	}
+	elseif ($AutoLogonCheckBox.Checked -eq $false) {
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Autologon: Disabling'); [Console]::ResetColor(); [Console]::WriteLine()
+		New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'AutoAdminLogon' -Value '0' -PropertyType String -Force
+	}
 
-[void] $InitialSetup_Form.ShowDialog()
+	if ($RemoteDesktop.Checked -eq $true) {
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Remote Desktop: Enabling'); [Console]::ResetColor(); [Console]::WriteLine()
+		Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name 'fDenyTSConnections' -Value 0
+		Enable-NetFirewallRule -DisplayGroup 'Remote Desktop'
+	}
+	elseif ($RemoteDesktop.Checked -eq $false) {
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Remote Desktop: Disabling'); [Console]::ResetColor(); [Console]::WriteLine()
+		Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name 'fDenyTSConnections' -Value 1
+		Disable-NetFirewallRule -DisplayGroup 'Remote Desktop'
+	}
+
+	if ($RemotePowershell.Checked -eq $true) {
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Remote PowerShell: Enabling'); [Console]::ResetColor(); [Console]::WriteLine()
+		Set-NetConnectionProfile -NetworkCategory Private
+		Enable-PSRemoting -Force
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Remote PowerShell: Adding IP'); [Console]::ResetColor(); [Console]::WriteLine()
+		Set-Item 'wsman:\localhost\Client\TrustedHosts' -Value $RemotePowershellIP.Text -Force
+	}
+	elseif ($RemotePowershell.Checked -eq $false) {
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Remote PowerShell: Disabling'); [Console]::ResetColor(); [Console]::WriteLine()
+		Disable-PSRemoting -Force
+		Remove-Item -Path 'WSMan:\Localhost\listener\listener*' -Recurse
+		Clear-Item 'wsman:\localhost\client\trustedhosts' -Force
+		Set-NetFirewallRule -DisplayName 'Windows Remote Management (HTTP-In)' -Enabled False | Select-Object -Property DisplayName, Profile, Enabled
+		Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\policies\system' -Name 'LocalAccountTokenFilterPolicy' -Value 0
+		Stop-Service 'WinRM'
+		Set-Service 'WinRM' -StartupType Manual
+	}
+
+	if ($MozillaFirefox.Checked -eq $true) {
+		Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/Download.ps1')
+	}
+	
+	if ($GoogleChrome.Checked -eq $true) {
+		Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Google_Chrome/Download.ps1')
+	}
+}

@@ -18,6 +18,8 @@
   - [Prerequisites to Transfer data](#prerequisites-to-transfer-data)
 - [Install all APKs from Downloads folder](#install-all-apks-from-downloads-folder)
 
+Buy eSIM, 5G, VoLTE, WiFi-Calling phone.
+
 ## APKs
 
 | Name                           | Links                                                                                                                                                               | Mod to download                                                                            |

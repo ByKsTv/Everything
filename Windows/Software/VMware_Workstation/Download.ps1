@@ -1,84 +1,104 @@
-$VMWare_Form = New-Object System.Windows.Forms.Form
-$VMWare_Form.Text = 'VMWare Workstation Pro Selection'
-$VMWare_Form.StartPosition = 'CenterScreen'
-$VMWare_Form.Font = New-Object System.Drawing.Font('Tahoma', 11)
-$VMWare_Form.Topmost = $true
-$VMWare_Form.MaximizeBox = $false
-$VMWare_Form.MinimizeBox = $false
-$VMWare_Form.FormBorderStyle = [Windows.Forms.FormBorderStyle]::FixedDialog
+Add-Type -AssemblyName System.Windows.Forms
+Add-Type -AssemblyName System.Drawing
+[Windows.Forms.Application]::EnableVisualStyles()
 
-$VMWare_DropDown = New-Object System.Windows.Forms.ComboBox
-$VMWare_DropDown.Location = New-Object System.Drawing.Point(5, 0)
-$VMWare_DropDown.DropDownStyle = 'DropDownList'
+$Form = New-Object System.Windows.Forms.Form -Property @{
+    Text            = 'VMWare Workstation Pro Selection'
+    Font            = [Drawing.Font]::new('Tahoma', 11)
+    Height          = 90
+    StartPosition   = 'CenterScreen'
+    FormBorderStyle = 'FixedDialog'
+    Topmost         = $true
+    MaximizeBox     = $false
+    MinimizeBox     = $false
+    ControlBox      = $false
+}
 
-$VMWare_nnmclub_search = (Invoke-WebRequest -UseBasicParsing -Uri 'https://nnmclub.to/forum/tracker.php?nm=VMware%20KpoJIuK').Links | Where-Object { $_.class -match 'genmed topictitle' }
+$DropDownList = New-Object System.Windows.Forms.ComboBox -Property @{
+    DropDownStyle = 'DropDownList'
+    Location      = [Drawing.Point]::new(5, 0)
+}
 
-$VMWare_nnmclub_Array = @{}
-$VMWare_graphics = [Drawing.Graphics]::FromHwnd($VMWare_Form.Handle)
-$VMWare_maxWidth = 0
-foreach ($VMWare_nnmclub_post in $VMWare_nnmclub_search) {
-    $VMWare_nnmclub_title = ($VMWare_nnmclub_post.outerHTML -replace '.*?<b>(.*?)</b></a>', '$1')
-    $VMWare_nnmclub_url = 'https://nnmclub.to/forum/' + $VMWare_nnmclub_post.href
-    $VMWare_nnmclub_Array[$VMWare_nnmclub_title] = $VMWare_nnmclub_url
-    $null = $VMWare_DropDown.Items.Add($VMWare_nnmclub_title)
-    $VMWare_Width = [int]$VMWare_graphics.MeasureString($VMWare_nnmclub_title, $VMWare_Form.Font).Width
-    if ($VMWare_Width -gt $VMWare_maxWidth) {
-        $VMWare_maxWidth = $VMWare_Width 
+$Source = Invoke-WebRequest -UseBasicParsing -Uri 'https://nnmclub.to/forum/tracker.php?nm=VMware%20KpoJIuK' | Select-Object -ExpandProperty 'Links' | Where-Object { $_.class -match 'genmed topictitle' }
+
+$Array = @{}
+$GFX = [Drawing.Graphics]::FromHwnd($Form.Handle)
+$TitleWidth = 0
+
+$Source | ForEach-Object {
+    $Title = $_.outerHTML -replace '.*?<b>(.*?)</b></a>', '$1'
+    if (-not $Array.ContainsKey($Title)) {
+        $Array[$Title] = $_.href
+        $DropDownList.Items.Add($Title) | Out-Null
+
+        $Width = [int]$GFX.MeasureString($Title, $Form.Font).Width
+        $TitleWidth = [math]::Max($TitleWidth, $Width)
     }
 }
-$VMWare_DropDown.Width = $VMWare_maxWidth + 10
-$VMWare_FormWidth = $VMWare_DropDown.Width + 25
-$VMWare_Form.Size = New-Object System.Drawing.Size($VMWare_FormWidth, 90)
 
-$VMWare_Form.Controls.Add($VMWare_DropDown)
+$DropDownList.SelectedIndex = 0
+$DropDownList.Width = $TitleWidth + 10
+$Form.Width = $DropDownList.Width + 25
 
-$VMWare_Form_OK = New-Object System.Windows.Forms.Button
-$VMWare_Form_OK.Text = 'OK'
-$VMWare_Form_OK.Location = New-Object System.Drawing.Size((($VMWare_Form.Width) / 3 ), (($VMWare_Form.height) - 60))
-$VMWare_Form_OK.Size = New-Object System.Drawing.Size(57, 20)
-$VMWare_Form_OK.DialogResult = [Windows.Forms.DialogResult]::OK
-$VMWare_Form.Controls.Add($VMWare_Form_OK)
-$VMWare_Form.AcceptButton = $VMWare_Form_OK
+$ButtonWidth = 57
+$ButtonSpacer = 15
+$ButtonY = $Form.Height - 60
+$ButtonX = [math]::Round(($Form.ClientSize.Width - (2 * $ButtonWidth + $ButtonSpacer)) / 2)
 
-$VMWare_Form_Cancel = New-Object System.Windows.Forms.Button
-$VMWare_Form_Cancel.Location = New-Object System.Drawing.Size((($VMWare_Form.Width) / 2 ), (($VMWare_Form.height) - 60))
-$VMWare_Form_Cancel.Size = New-Object System.Drawing.Size(57, 20)
-$VMWare_Form_Cancel.Text = 'Cancel'
-$VMWare_Form_Cancel.Add_Click({ $VMWare_Form.Close() })
-$VMWare_Form.Controls.Add($VMWare_Form_Cancel)
+$Ok = New-Object System.Windows.Forms.Button -Property @{
+    Text         = 'OK'
+    DialogResult = [Windows.Forms.DialogResult]::OK
+    Width        = $ButtonWidth
+    Height       = 20
+    Location     = [Drawing.Point]::new($ButtonX, $ButtonY)
+    Add_Click    = { $Form.Close() }
+}
 
-if ($VMWare_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
-    $VMWare_SelectedVersion = $VMWare_DropDown.SelectedItem
-    $VMWare_SelectedHREF = $VMWare_nnmclub_Array[$VMWare_SelectedVersion]
+$Cancel = New-Object System.Windows.Forms.Button -Property @{
+    Text      = 'Cancel'
+    Width     = $ButtonWidth
+    Height    = 20
+    Location  = [Drawing.Point]::new($ButtonX + $ButtonWidth + $ButtonSpacer, $ButtonY)
+    Add_Click = { $Form.Close() }
+}
 
-    $VMware_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $VMWare_SelectedHREF).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
+$Form.Controls.AddRange(@($DropDownList, $Ok, $Cancel))
+if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
+    $TitleHREF = $Array[$DropDownList.SelectedItem]
+
+    $Magnet = Invoke-WebRequest -UseBasicParsing -Uri $TitleHREF | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1 | Select-Object -ExpandProperty 'href'
+
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/qBittorrent/Download.ps1')
-    $VMware_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
-    if (Test-Path $VMware_qBittorrent_LOG) {
-        Remove-Item $VMware_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
+
+    $Log = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
+    if (Test-Path $Log) {
+        Remove-Item $Log -Force -ErrorAction SilentlyContinue
     }
+
     Remove-Item -Path "$env:TEMP\*VMware*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
-    $VMware_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($VMware_Magnet)"""
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VMWare_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VMware_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-    Start-Process qBittorrent.exe -ArgumentList $VMware_qBittorrent_Argument
-    while (-not ($VMware_TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*VMware*' | Select-Object -First 1).FullName)) {
+
+    $Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($Magnet)"""
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+    Start-Process qBittorrent.exe -ArgumentList $Argument
+    
+    while (-not ($TempDir = Get-ChildItem $env:TEMP -Directory -Filter '*VMware*' | Select-Object -First 1 | Select-Object -ExpandProperty 'FullName')) {
         Start-Sleep -Milliseconds 1000
     }
     
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$env:TEMP'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
     Add-MpPreference -ExclusionPath $env:TEMP
     
-    while (-not ($VMware_TempEXE = (Get-ChildItem $VMware_TempDir -Filter '*.exe' | Select-Object -First 1).FullName)) {
+    while (-not ($TempEXE = Get-ChildItem $TempDir -Filter '*.exe' | Select-Object -First 1 | Select-Object -ExpandProperty 'FullName')) {
         Start-Sleep -Milliseconds 1000
     }
     do {
         Start-Sleep -Milliseconds 1000
-    } until ((Get-Content $VMware_qBittorrent_LOG -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*VMware*')
+    } until ((Get-Content $Log -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*VMware*')
     
-    $VMware_Argument = '/S /QE'
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VMWare_SelectedVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VMware_TempEXE'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$VMware_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-    Unblock-File $VMware_TempEXE
-    Start-Process $VMware_TempEXE -ArgumentList $VMware_Argument -Wait
+    $Argument = '/S /QE'
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$TempEXE'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+    Unblock-File $TempEXE
+    Start-Process $TempEXE -ArgumentList $Argument -Wait
     
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$env:TEMP'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
     Remove-MpPreference -ExclusionPath $env:TEMP

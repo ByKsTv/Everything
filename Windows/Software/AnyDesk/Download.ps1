@@ -15,15 +15,15 @@ if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Google\No Chrome Offer Until')) {
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Google\No Chrome Offer Until' -Name 'AnyDesk Software GmbH' -Value 30241008 -PropertyType DWord -Force
 
-$AnyDesk_DDL = 'https://download.anydesk.com/AnyDesk.exe'
-$AnyDesk_Filename = [IO.Path]::GetFileName(([URI]$AnyDesk_DDL).AbsolutePath)
-$AnyDesk_SavePath = [IO.Path]::Combine($env:TEMP, $AnyDesk_Filename)
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'AnyDesk'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AnyDesk_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AnyDesk_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-(New-Object System.Net.WebClient).DownloadFile($AnyDesk_DDL, $AnyDesk_SavePath)
+$DDL = 'https://download.anydesk.com/AnyDesk.exe'
+$FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
+$SavePath = [IO.Path]::Combine($env:TEMP, $FileName)
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'AnyDesk'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+(New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
 
-$AnyDesk_Argument = '--install "C:\Program Files (x86)\AnyDesk" --create-shortcuts --silent'
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'AnyDesk'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AnyDesk_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AnyDesk_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-Start-Process $AnyDesk_SavePath -ArgumentList $AnyDesk_Argument -Wait
+$Argument = "--install `"${env:ProgramFiles(x86)}\AnyDesk`" --create-shortcuts --silent"
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'AnyDesk'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+Start-Process $SavePath -ArgumentList $Argument -Wait
 
 Stop-Service -Name 'AnyDesk' -Force
 Set-Service -Name 'AnyDesk' -StartupType Manual

@@ -93,3 +93,9 @@ pip install qrcode[pil]
 
 1. Use [WiFi_QR_Code](WiFi_QR_Code.py)
 1. Edit `WiFi_Name` and `WiFi_Password`.
+
+## Extract .WIM
+
+```bash
+dism /Get-WimInfo /WimFile:"path\install.wim"
+```

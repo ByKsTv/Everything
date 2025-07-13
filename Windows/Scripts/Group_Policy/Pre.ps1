@@ -1,11 +1,11 @@
 Get-ChildItem -Path "$env:TEMP\Computer.txt", "$env:TEMP\User.txt" -Force -ErrorAction Ignore | Remove-Item -Force -ErrorAction Ignore
 
-$LGPO_DDL = 'https://download.microsoft.com/download/8/5/C/85C25433-A1B0-4FFA-9429-7E023E7DA8D8/LGPO.zip'
-$LGPO_Filename = [IO.Path]::GetFileName(([URI]$LGPO_DDL).AbsolutePath)
-$LGPO_SavePath = [IO.Path]::Combine($env:TEMP, $LGPO_Filename)
-(New-Object System.Net.WebClient).DownloadFile($LGPO_DDL, $LGPO_SavePath)
+$DDL = 'https://download.microsoft.com/download/8/5/C/85C25433-A1B0-4FFA-9429-7E023E7DA8D8/LGPO.zip'
+$FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
+$SavePath = [IO.Path]::Combine($env:TEMP, $FileName)
+(New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
 
-Expand-Archive -Path $LGPO_SavePath -DestinationPath $env:TEMP -Force
+Expand-Archive -Path $SavePath -DestinationPath $env:TEMP -Force
 
 Move-Item -Path "$env:TEMP\LGPO_30\LGPO.exe" -Destination $env:TEMP -Force
 

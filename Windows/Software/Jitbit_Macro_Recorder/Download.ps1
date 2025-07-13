@@ -30,35 +30,35 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'RecordKey' 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Jitbit Macro Recorder: Settings: Keyboard shortcuts (hotkeys): Abort recording: F12'); [Console]::ResetColor(); [Console]::WriteLine()
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'AbortRecKey' -Value 123 -PropertyType DWord -Force
               
-$JitbitMacro_Label = 'https://rutracker.org/forum/viewtopic.php?t=6357418'
-$JitbitMacro_Title = ((Invoke-WebRequest -UseBasicParsing -Uri $JitbitMacro_Label).Links | Where-Object { $_.outerHTML -match 'Jitbit' } | Select-Object -First 1).outerHTML -replace '.*?>(.*?)</a>', '$1'
-$JitBitMacro_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $JitbitMacro_Label).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
+$Label = 'https://rutracker.org/forum/viewtopic.php?t=6357418'
+$Title = (Invoke-WebRequest -UseBasicParsing -Uri $Label | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -match 'Jitbit' } | Select-Object -First 1).outerHTML -replace '.*?>(.*?)</a>', '$1'
+$Magnet = Invoke-WebRequest -UseBasicParsing -Uri $Label | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1 | Select-Object -ExpandProperty 'href'
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/qBittorrent/Download.ps1')
-$JitbitMacro_qBittorrent_LOG = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
-if (Test-Path $JitbitMacro_qBittorrent_LOG) {
-    Remove-Item $JitbitMacro_qBittorrent_LOG -Force -ErrorAction SilentlyContinue
+$Log = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
+if (Test-Path $Log) {
+    Remove-Item $Log -Force -ErrorAction SilentlyContinue
 }
 Remove-Item -Path "$env:TEMP\*Jitbit*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
-$JitbitMacro_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($JitbitMacro_Magnet)"""
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$JitbitMacro_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$JitbitMacro_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-Start-Process qBittorrent.exe -ArgumentList $JitbitMacro_qBittorrent_Argument
-while (-not ($JitbitMacro_TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*Jitbit*' | Select-Object -First 1).FullName)) {
+$Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($Magnet)"""
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+Start-Process qBittorrent.exe -ArgumentList $Argument
+while (-not ($TempDir = Get-ChildItem $env:TEMP -Directory -Filter '*Jitbit*' | Select-Object -First 1 | Select-Object -ExpandProperty 'FullName')) {
     Start-Sleep -Milliseconds 1000
 }
         
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$JitbitMacro_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
-Add-MpPreference -ExclusionPath $JitbitMacro_TempDir
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+Add-MpPreference -ExclusionPath $TempDir
         
-while (-not ($JitbitMacro_TempEXE = (Get-ChildItem $JitbitMacro_TempDir -Filter '*.exe' | Select-Object -First 1).FullName)) {
+while (-not ($TempEXE = Get-ChildItem $TempDir -Filter '*.exe' | Select-Object -First 1 | Select-Object -ExpandProperty 'FullName')) {
     Start-Sleep -Milliseconds 1000
 }
 do {
     Start-Sleep -Milliseconds 1000
-} until ((Get-Content $JitbitMacro_qBittorrent_LOG -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*Jitbit*')
+} until ((Get-Content $Log -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*Jitbit*')
         
-$JitbitMacro_Argument = '/verysilent /Tasks=create_start_menu_entry'
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$JitbitMacro_Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$JitbitMacro_TempEXE'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$JitbitMacro_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-Start-Process $JitbitMacro_TempEXE -ArgumentList $JitbitMacro_Argument -Wait
+$Argument = '/verysilent /Tasks=create_start_menu_entry'
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$TempEXE'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+Start-Process $TempEXE -ArgumentList $Argument -Wait
         
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$JitbitMacro_TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
-Remove-MpPreference -ExclusionPath $JitbitMacro_TempDir
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+Remove-MpPreference -ExclusionPath $TempDir

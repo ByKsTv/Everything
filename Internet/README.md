@@ -4,10 +4,10 @@
   - [Equipment](#lan---equipment)
   - [Pi-Hole Setup](#lan---pi-hole---setup)
   - [Router Setup](#lan---router---setup)
-  - [More](#lan---more)
+  - [More - LAN](#lan---more)
 - [WAN](#wan)
   - [Equipment](#wan---equipment)
-  - [More](#wan---more)
+  - [More - WAN](#wan---more)
 - [Mobile](#mobile)
 - [Television](#television)
   - [Android TV](#android-tv)
@@ -21,7 +21,7 @@
   - [LG](#lg)
     - [Setup](#lg-tv---setup)
     - [Notes](#lg-tv---notes)
-  - [More](#more)
+  - [More - TV](#more)
 - [Cancel](#cancel)
 
 ## LAN
@@ -291,8 +291,6 @@ Known Issues:
 
 - When trying to help a user with ISP router - first contact the ISP technical support.
 
-- Apperently some users report ISP disconnections and it was solved by reset the ISP password (can be done using the ISP website).
-
 - Process of moving from aerial infrastructure to underground infrastructure:
 
   - Contact Ministery of communications, request an underground infrastructure (some require payment).
@@ -388,6 +386,8 @@ Cancel unnecessary services, also voicemail
   - `com.netflix.ninja` - Netflix.
   - A Package on the `Recommended` list - Disconnects the WiFi.
   - A Package on the `Recommended` list - Can't control TV from Google Home.
+
+- TCL has issues playing Next TV channels, zoom-in when selecting a channel, temporary fix is the toggle overscan picture settings, but when chagning to different channel this fix needs to be re-applaied.
 
 ### Samsung
 

@@ -1,5 +1,5 @@
 # Uninstall Windows Backup app
-Get-WindowsPackage -Online | Where-Object { $_.PackageName -like '*Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35*' } | ForEach-Object {
+Get-WindowsPackage -Online | Where-Object { $_.PackageName -match 'Microsoft-Windows-UserExperience-Desktop-Package~31bf3856ad364e35' } | ForEach-Object {
 	Remove-WindowsPackage -PackageName $_.PackageName -Online -NoRestart -ErrorAction SilentlyContinue
 }
 
@@ -28,8 +28,8 @@ New-ItemProperty -Path (New-Item (New-Item "$BagMRU_RegPath\Bags\AllFolders" -Fo
 # Settings: Personalization: Start: Choose which folders appears on Start: Settings + Explorer
 $itemsToDisplay = @('explorer', 'settings')
 $key = Get-ItemProperty 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CloudStore\Store\Cache\DefaultAccount\*windows.data.unifiedtile.startglobalproperties\Current'
-$data = $key.Data[0..19] -Join ','
-If ($itemsToDisplay.Length -gt 0) {
+$data = $key.Data[0..19] -join ','
+if ($itemsToDisplay.Length -gt 0) {
 	$data += ",203,50,10,$($itemsToDisplay.Length)"
 	$data += $itemsToDisplay | ForEach-Object {
 		switch ($_) {

@@ -12,9 +12,3 @@ Everything about Windows Server 2025 Datacenter.
 ## Key
 
 - [Official key](https://learn.microsoft.com/en-us/windows-server/get-started/kms-client-activation-keys?tabs=server2025%2Cwindows1110ltsc%2Cversion1803%2Cwindows81#tabpanel_1_server2025)
-
-## Extract .WIM
-
-```bash
-dism /Get-WimInfo /WimFile:"path\install.wim"
-```

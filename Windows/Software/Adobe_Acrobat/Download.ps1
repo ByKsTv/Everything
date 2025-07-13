@@ -1,16 +1,8 @@
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Acrobat/Group_Policy_Templates.ps1')
-
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Group_Policy/Pre.ps1')
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Acrobat/Group_Policy.ps1')
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Group_Policy/Post.ps1')
-
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Acrobat/Settings.ps1')
-
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 [Windows.Forms.Application]::EnableVisualStyles()
 
-$Adobe_Acrobat_Form = New-Object System.Windows.Forms.Form -Property @{
+$Form = New-Object System.Windows.Forms.Form -Property @{
     Text            = 'Adobe Acrobat Pro Selection'
     Font            = [Drawing.Font]::new('Tahoma', 11)
     Height          = 90
@@ -22,121 +14,108 @@ $Adobe_Acrobat_Form = New-Object System.Windows.Forms.Form -Property @{
     ControlBox      = $false
 }
 
-$Adobe_Acrobat_Form_DropDownList = New-Object System.Windows.Forms.ComboBox -Property @{
+$DropDownList = New-Object System.Windows.Forms.ComboBox -Property @{
     DropDownStyle = 'DropDownList'
     Location      = [Drawing.Point]::new(5, 0)
 }
 
-$Adobe_Acrobat_Source = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w16.monkrus.ws/search/label/Acrobat').Links | Where-Object {
-    $_.outerHTML -notmatch '#more' -and
-    $_.outerHTML -match 'x64'
-}
+$Source = Invoke-WebRequest -UseBasicParsing -Uri 'https://w16.monkrus.ws/search/label/Acrobat' | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -notmatch '#more' -and $_.outerHTML -match 'x64' }
 
-$Adobe_Acrobat_Source_Array = @{}
+$Array = @{}
+$GFX = [Drawing.Graphics]::FromHwnd($Form.Handle)
+$TitleWidth = 0
 
-$Adobe_Acrobat_Form_Graphics = [Drawing.Graphics]::FromHwnd($Adobe_Acrobat_Form.Handle)
-$Adobe_Acrobat_Form_DropDownList_MaxWidth = 0
+$Source | ForEach-Object {
+    $Title = $_.outerHTML -replace '.*?>(.*?)</a>', '$1'
+    if (-not $Array.ContainsKey($Title)) {
+        $Array[$Title] = $_.href
+        $DropDownList.Items.Add($Title) | Out-Null
 
-foreach ($Adobe_Acrobat_Source_Post in $Adobe_Acrobat_Source) {
-    $Adobe_Acrobat_Source_PostTitle = ($Adobe_Acrobat_Source_Post.outerHTML -replace '.*?>(.*?)</a>', '$1')
-    $Adobe_Acrobat_Source_PostHREF = $Adobe_Acrobat_Source_Post.href
-    $Adobe_Acrobat_Source_Array[$Adobe_Acrobat_Source_PostTitle] = $Adobe_Acrobat_Source_PostHREF
-
-    $Adobe_Acrobat_Form_DropDownList.Items.Add($Adobe_Acrobat_Source_PostTitle) | Out-Null
-    
-    $Adobe_Acrobat_Form_Source_Post_Width = [int]$Adobe_Acrobat_Form_Graphics.MeasureString($Adobe_Acrobat_Source_PostTitle, $Adobe_Acrobat_Form.Font).Width
-    if ($Adobe_Acrobat_Form_Source_Post_Width -gt $Adobe_Acrobat_Form_DropDownList_MaxWidth) {
-        $Adobe_Acrobat_Form_DropDownList_MaxWidth = $Adobe_Acrobat_Form_Source_Post_Width 
+        $Width = [int]$GFX.MeasureString($Title, $Form.Font).Width
+        $TitleWidth = [math]::Max($TitleWidth, $Width)
     }
 }
 
-$Adobe_Acrobat_Form_DropDownList.Width = $Adobe_Acrobat_Form_DropDownList_MaxWidth + 10
-$Adobe_Acrobat_Form.Width = $Adobe_Acrobat_Form_DropDownList.Width + 25
+$DropDownList.SelectedIndex = 0
+$DropDownList.Width = $TitleWidth + 10
+$Form.Width = $DropDownList.Width + 25
 
-$Adobe_Acrobat_Form.Controls.Add($Adobe_Acrobat_Form_DropDownList)
+$ButtonWidth = 57
+$ButtonSpacer = 15
+$ButtonY = $Form.Height - 60
+$ButtonX = [math]::Round(($Form.ClientSize.Width - (2 * $ButtonWidth + $ButtonSpacer)) / 2)
 
-$Adobe_Acrobat_Form_ButtonSpacer = 15
-$Adobe_Acrobat_Form_ButtonWidth = 57
-$Adobe_Acrobat_Form_ButtonWidthTotal = $Adobe_Acrobat_Form_ButtonSpacer + $Adobe_Acrobat_Form_ButtonWidth + $Adobe_Acrobat_Form_ButtonWidth
-$Adobe_Acrobat_Form_ButtonCenterX = [math]::Round(($Adobe_Acrobat_Form.ClientSize.Width - $Adobe_Acrobat_Form_ButtonWidthTotal) / 2)
-$Adobe_Acrobat_Form_ButtonHeight = 20
-$Adobe_Acrobat_Form_ButtonYLocation = $Adobe_Acrobat_Form.Height - 60
-
-$Adobe_Acrobat_Form_OK = New-Object System.Windows.Forms.Button -Property @{
+$Ok = New-Object System.Windows.Forms.Button -Property @{
     Text         = 'OK'
     DialogResult = [Windows.Forms.DialogResult]::OK
-    Width        = $Adobe_Acrobat_Form_ButtonWidth
-    Height       = $Adobe_Acrobat_Form_ButtonHeight
-    Location     = [Drawing.Point]::new($Adobe_Acrobat_Form_ButtonCenterX, $Adobe_Acrobat_Form_ButtonYLocation)
-    Add_Click    = ({ $Adobe_Acrobat_Form.Close() })
+    Width        = $ButtonWidth
+    Height       = 20
+    Location     = [Drawing.Point]::new($ButtonX, $ButtonY)
+    Add_Click    = { $Form.Close() }
 }
 
-$Adobe_Acrobat_Form_Cancel_ButtonXLocation = $Adobe_Acrobat_Form_ButtonCenterX + $Adobe_Acrobat_Form_ButtonWidth + $Adobe_Acrobat_Form_ButtonSpacer
-$Adobe_Acrobat_Form_Cancel = New-Object System.Windows.Forms.Button -Property @{
+$Cancel = New-Object System.Windows.Forms.Button -Property @{
     Text      = 'Cancel'
-    Width     = $Adobe_Acrobat_Form_ButtonWidth
-    Height    = $Adobe_Acrobat_Form_ButtonHeight
-    Location  = [Drawing.Point]::new($Adobe_Acrobat_Form_Cancel_ButtonXLocation, $Adobe_Acrobat_Form_ButtonYLocation)
-    Add_Click = ({ $Adobe_Acrobat_Form.Close() })
+    Width     = $ButtonWidth
+    Height    = 20
+    Location  = [Drawing.Point]::new($ButtonX + $ButtonWidth + $ButtonSpacer, $ButtonY)
+    Add_Click = { $Form.Close() }
 }
 
-$Adobe_Acrobat_Form.Controls.Add($Adobe_Acrobat_Form_OK)
-$Adobe_Acrobat_Form.Controls.Add($Adobe_Acrobat_Form_Cancel)
+$Form.Controls.AddRange(@($DropDownList, $Ok, $Cancel))
+if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
+    $TitleHREF = $Array[$DropDownList.SelectedItem]
 
-if ($Adobe_Acrobat_Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
-    $Adobe_Acrobat_Form_DropDownList_SelectedItem = $Adobe_Acrobat_Form_DropDownList.SelectedItem
-    $Adobe_Acrobat_Form_DropDownList_SelectedItemHREF = $Adobe_Acrobat_Source_Array[$Adobe_Acrobat_Form_DropDownList_SelectedItem]
+    $ForumPost = Invoke-WebRequest -UseBasicParsing -Uri $TitleHref | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -match 'pb.wtf' } | Select-Object -ExpandProperty 'href' | Select-Object -First 1
 
-    $Adobe_Acrobat_Source_Forum_Post = ((Invoke-WebRequest -UseBasicParsing -Uri $Adobe_Acrobat_Form_DropDownList_SelectedItemHREF).Links | Where-Object {
-            $_.outerHTML -match 'pb.wtf'
-        }).href | Select-Object -First 1
-
-    if ($null -eq $Adobe_Acrobat_Source_Forum_Post) {
-        $Adobe_Acrobat_Source_Forum_Post = ((Invoke-WebRequest -UseBasicParsing -Uri $Adobe_Acrobat_Form_DropDownList_SelectedItemHREF).Links | Where-Object {
-                $_.outerHTML -match 'uniondht.org'
-            }).href | Select-Object -First 1
+    if (-not ($ForumPost)) {
+        $ForumPost = Invoke-WebRequest -UseBasicParsing -Uri $TitleHref | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -match 'uniondht.org' } | Select-Object -ExpandProperty 'href' | Select-Object -First 1
     }
 
-    $Adobe_Acrobat_Source_Forum_Post_Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $Adobe_Acrobat_Source_Forum_Post).Links | Where-Object {
-            $_.outerHTML -match 'magnet'
-        }).href | Select-Object -First 1
+    $Magnet = [Uri]::UnescapeDataString((Invoke-WebRequest -UseBasicParsing -Uri $ForumPost | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -ExpandProperty 'href' | Select-Object -First 1))
     
-    $Adobe_Acrobat_Source_Forum_Post_Magnet_UnEscape = [Uri]::UnescapeDataString($Adobe_Acrobat_Source_Forum_Post_Magnet)
-
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/7-Zip/Download.ps1')
 
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/qBittorrent/Download.ps1')
 
-    $Adobe_Acrobat_qBittorrent_Log = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
-    if (Test-Path $Adobe_Acrobat_qBittorrent_Log) {
-        Remove-Item $Adobe_Acrobat_qBittorrent_Log -Force -ErrorAction SilentlyContinue
+    $Log = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
+    if (Test-Path $Log) {
+        Remove-Item $Log -Force -ErrorAction SilentlyContinue
     }
 
     Remove-Item -Path "$env:TEMP\*Acrobat*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
 
-    $Adobe_Acrobat_qBittorrent_Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($Adobe_Acrobat_Source_Forum_Post_Magnet_UnEscape)"""
+    $Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($Magnet)"""
 
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Adobe_Acrobat_Form_DropDownList_SelectedItem'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Adobe_Acrobat_qBittorrent_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-    Start-Process qBittorrent.exe -ArgumentList $Adobe_Acrobat_qBittorrent_Argument
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+    Start-Process qBittorrent.exe -ArgumentList $Argument
 
-    while (-not ($Adobe_Acrobat_Temporary_Directory = (Get-ChildItem $env:TEMP -Directory -Filter '*Acrobat*' | Select-Object -First 1).FullName)) {
+    while (-not ($Directory = Get-ChildItem $env:TEMP -Directory -Filter '*Acrobat*' | Select-Object -First 1 | Select-Object -ExpandProperty 'FullName')) {
         Start-Sleep -Milliseconds 1000
     }
 
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Adobe_Acrobat_Temporary_Directory'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
-    Add-MpPreference -ExclusionPath $Adobe_Acrobat_Temporary_Directory
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Directory'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
+    Add-MpPreference -ExclusionPath $Directory
 
-    while (-not ($Adobe_Acrobat_Temporary_ISO = (Get-ChildItem $Adobe_Acrobat_Temporary_Directory -Filter '*.iso' | Select-Object -First 1).FullName)) {
+    while (-not ($ISO = Get-ChildItem $Directory -Filter '*.iso' | Select-Object -First 1 | Select-Object -ExpandProperty 'FullName')) {
         Start-Sleep -Milliseconds 1000
     }
     do {
         Start-Sleep -Milliseconds 1000
-    } until ((Get-Content $Adobe_Acrobat_qBittorrent_Log -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*Acrobat*')
+    } until ((Get-Content $Log -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*Acrobat*')
 
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Adobe_Acrobat_Form_DropDownList_SelectedItem'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Adobe_Acrobat_Temporary_ISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Adobe_Acrobat_Temporary_Directory'"); [Console]::ResetColor(); [Console]::WriteLine()
-    7z.exe x $Adobe_Acrobat_Temporary_ISO -o"$Adobe_Acrobat_Temporary_Directory" -y
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Directory'"); [Console]::ResetColor(); [Console]::WriteLine()
+    7z.exe x $ISO -o"$Directory" -y
     
-    $Adobe_Acrobat_Temporary_AutoPlayEXE = (Get-ChildItem -Path $Adobe_Acrobat_Temporary_Directory -Recurse -Filter 'autoplay.exe').FullName
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Adobe_Acrobat_Form_DropDownList_SelectedItem'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Adobe_Acrobat_Temporary_AutoPlayEXE'"); [Console]::ResetColor(); [Console]::WriteLine()
-    Start-Process $Adobe_Acrobat_Temporary_AutoPlayEXE
+    $AutoPlayEXE = Get-ChildItem -Path $Directory -Recurse -Filter 'autoplay.exe' | Select-Object -ExpandProperty 'FullName'
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutoPlayEXE'"); [Console]::ResetColor(); [Console]::WriteLine()
+    Start-Process $AutoPlayEXE
+
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Acrobat/Group_Policy_Templates.ps1')
+
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Group_Policy/Pre.ps1')
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Acrobat/Group_Policy.ps1')
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Group_Policy/Post.ps1')
+
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Acrobat/Settings.ps1')
 }

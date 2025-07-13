@@ -1,24 +1,24 @@
-$Telegram_TaskName = 'Telegram Updater'
-if (-not (Get-ScheduledTask -TaskName $Telegram_TaskName -ErrorAction SilentlyContinue)) {
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Telegram_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
-    $Telegram_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized -Command `"`$Host.UI.RawUI.WindowTitle = '$Telegram_TaskName'; while (!(Resolve-DnsName google.com -ErrorAction SilentlyContinue)) { Start-Sleep -Seconds 1 }; Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Telegram/Download.ps1')`""
-    $Telegram_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
-    $Telegram_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-    $Telegram_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
-    Register-ScheduledTask -TaskName $Telegram_TaskName -Action $Telegram_TaskAction -Trigger $Telegram_TaskTrigger -Principal $Telegram_TaskPrincipal -Settings $Telegram_TaskSettings -Force
+$TaskName = 'Telegram Updater'
+if (-not (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue)) {
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
+    $TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized -Command `"`$Host.UI.RawUI.WindowTitle = '$TaskName'; while (!(Resolve-DnsName google.com -ErrorAction SilentlyContinue)) { Start-Sleep -Seconds 1 }; Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Telegram/Download.ps1')`""
+    $TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
+    $TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
+    $TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
+    Register-ScheduledTask -TaskName $TaskName -Action $TaskAction -Trigger $TaskTrigger -Principal $TaskPrincipal -Settings $TaskSettings -Force
 }
 
-$Telegram_InstalledVersion = (Get-Package -Name 'Telegram Desktop' -ErrorAction SilentlyContinue).Version
-$Telegram_LatestVersion = ((Invoke-RestMethod 'https://api.github.com/repos/telegramdesktop/tdesktop/releases/latest').tag_name).Replace('v', '')
+$InstalledVersion = Get-Package -Name 'Telegram Desktop' -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'Version'
+$LatestVersion = (Invoke-RestMethod -Uri 'https://api.github.com/repos/telegramdesktop/tdesktop/releases/latest' | Select-Object -ExpandProperty 'tag_name').Replace('v', '')
 
-if ($null -eq $Telegram_InstalledVersion -or $Telegram_InstalledVersion -notmatch $Telegram_LatestVersion) {
-    $Telegram_DDL = ((Invoke-RestMethod 'https://api.github.com/repos/telegramdesktop/tdesktop/releases/latest').assets | Where-Object { $_.label -match '64' -and $_.label -match 'Installer' } ).browser_download_url
-    $Telegram_Filename = [IO.Path]::GetFileName(([URI]$Telegram_DDL).AbsolutePath)
-    $Telegram_SavePath = [IO.Path]::Combine($env:TEMP, $Telegram_Filename)
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Telegram'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Telegram_LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Telegram_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Telegram_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-    (New-Object System.Net.WebClient).DownloadFile($Telegram_DDL, $Telegram_SavePath)
+if (($null -eq $InstalledVersion) -or ($InstalledVersion -notmatch $LatestVersion)) {
+    $DDL = Invoke-RestMethod -Uri 'https://api.github.com/repos/telegramdesktop/tdesktop/releases/latest' | Select-Object -ExpandProperty 'assets' | Where-Object { $_.label -match '64' -and $_.label -match 'Installer' } | Select-Object -ExpandProperty 'browser_download_url'
+    $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
+    $SavePath = [IO.Path]::Combine($env:TEMP, $FileName)
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Telegram'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+    (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
     
-    $Telegram_Argument = '/verysilent'
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Telegram'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Telegram_LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Telegram_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Telegram_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-    Start-Process $Telegram_SavePath -ArgumentList $Telegram_Argument
+    $Argument = '/verysilent'
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Telegram'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+    Start-Process $SavePath -ArgumentList $Argument
 }

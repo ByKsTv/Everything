@@ -7,6 +7,13 @@
 - [Call Center](#call-center)
 - [Nails](#nails)
 - [Haircut](#haircut)
+- [Eyes](#eyes)
+- [Cookware](#cookware)
+- [Boiler](#boiler)
+- [Asbestos Roof Removal](#asbestos-roof-removal)
+- [Plastic](#plastic)
+- [Bloodtest](#bloodtest)
+- [Fiber Optic](#fiber-optic)
 
 ## Arriving
 
@@ -20,7 +27,9 @@
 
 ## ENT Doctor
 
-- When cleaning ear wax do not get close to the ear drum.
+- Ears are self cleaning.
+- When doctor cleaning ear wax do not get close to the ear drum.
+- Dont use Q-Tips.
 
 ## Prescriptions at a pharmacy
 
@@ -35,6 +44,42 @@
 - Hand: Cut Round.
 - Toenails: Cut Straight.
 
+## Eyes
+
+- Do not rub your eyes.
+- Do not look directly at the fiber optic cable ends.
+
 ## Haircut
 
 - Don't wet your hair before a haircut.
+
+## Cookware
+
+- Do not use teflon (anti-stick coating).
+- Use glass cutting board.
+- Don't put oil in the kitchen drain.
+
+## Boiler
+
+- Do not turn on the boiler and shower at the same time.
+- Set thermostat in range of 60C to 70C.
+- Once per month turn on the boiler.
+
+## Asbestos Roof Removal
+
+- Call a company/contractor with the appropriate permits in order to remove the roof.
+- Prices ranges from 50ILS to 60ILS per square meter (before tax).
+
+## Plastic
+
+- Do not combine hear and plastic.
+- Do not buy water bottles from gas stations where the plastic battle stood for unknown amount of time in the sun.
+
+## Bloodtest
+
+- (Unconfirmed) Also tell the nurse to test for magnezium.
+
+## Fiber Optic
+
+- Use saftey glasses and gloves.
+- Do not look directly at the fiber optic cable ends.

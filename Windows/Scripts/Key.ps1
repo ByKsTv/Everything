@@ -1,4 +1,4 @@
-$SvcRestartTask = Get-ScheduledTask | Where-Object TaskName -EQ 'SvcRestartTask'
+$SvcRestartTask = Get-ScheduledTask | Where-Object { $_.TaskName -eq 'SvcRestartTask' }
 if ($SvcRestartTask -and $SvcRestartTask.State -eq 'Disabled') {
     Enable-ScheduledTask -TaskPath $SvcRestartTask.TaskPath -TaskName $SvcRestartTask.TaskName
 }

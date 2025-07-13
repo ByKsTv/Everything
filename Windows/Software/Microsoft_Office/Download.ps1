@@ -259,13 +259,13 @@ $OfficeSelection_OK.Add_Click({
         $OfficeSelection_Form.Topmost = $false
 
         if ($OfficeSelection_Scrubber.Checked) {
-            $OfficeSelection_Scrubber_Filename = [IO.Path]::GetFileName(([URI]$OfficeSelection_Scrubber_DDL).AbsolutePath)
-            $OfficeSelection_Scrubber_SavePath = [IO.Path]::Combine($env:TEMP, $OfficeSelection_Scrubber_Filename)
-            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$OfficeSelection_Scrubber_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$OfficeSelection_Scrubber_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$OfficeSelection_Scrubber_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+            $OfficeSelection_Scrubber_FileName = [IO.Path]::GetFileName(([URI]$OfficeSelection_Scrubber_DDL).AbsolutePath)
+            $OfficeSelection_Scrubber_SavePath = [IO.Path]::Combine($env:TEMP, $OfficeSelection_Scrubber_FileName)
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$OfficeSelection_Scrubber_FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$OfficeSelection_Scrubber_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$OfficeSelection_Scrubber_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
             (New-Object System.Net.WebClient).DownloadFile($OfficeSelection_Scrubber_DDL, $OfficeSelection_Scrubber_SavePath)
 
-            $OfficeSelection_Scrubber_Dir = $OfficeSelection_Scrubber_SavePath.TrimEnd('.zip')
-            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$OfficeSelection_Scrubber_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$OfficeSelection_Scrubber_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$OfficeSelection_Scrubber_Dir'"); [Console]::ResetColor(); [Console]::WriteLine()
+            $OfficeSelection_Scrubber_Dir = Join-Path -Path (Split-Path $OfficeSelection_Scrubber_SavePath -Parent) -ChildPath ([IO.Path]::GetFileNameWithoutExtension($OfficeSelection_Scrubber_SavePath))
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$OfficeSelection_Scrubber_FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$OfficeSelection_Scrubber_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$OfficeSelection_Scrubber_Dir'"); [Console]::ResetColor(); [Console]::WriteLine()
             Expand-Archive -Path $OfficeSelection_Scrubber_SavePath -DestinationPath $OfficeSelection_Scrubber_Dir -Force
 
             $OfficeSelection_Scrubber_CMD = [IO.Path]::Combine($OfficeSelection_Scrubber_Dir, 'OfficeScrubber.cmd')

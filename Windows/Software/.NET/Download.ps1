@@ -1,11 +1,11 @@
-$DotNET_TaskName = '.NET Updater'
-if (-not (Get-ScheduledTask -TaskName $DotNET_TaskName -ErrorAction SilentlyContinue)) {
-	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
-	$DotNET_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized -Command `"`$Host.UI.RawUI.WindowTitle = '$DotNET_TaskName'; while (!(Resolve-DnsName google.com -ErrorAction SilentlyContinue)) { Start-Sleep -Seconds 1 }; Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/.NET/Download.ps1')`""
-	$DotNET_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
-	$DotNET_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-	$DotNET_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
-	Register-ScheduledTask -TaskName $DotNET_TaskName -Action $DotNET_TaskAction -Trigger $DotNET_TaskTrigger -Principal $DotNET_TaskPrincipal -Settings $DotNET_TaskSettings -Force
+$TaskName = '.NET Updater'
+if (-not (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue)) {
+	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
+	$TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized -Command `"`$Host.UI.RawUI.WindowTitle = '$TaskName'; while (!(Resolve-DnsName google.com -ErrorAction SilentlyContinue)) { Start-Sleep -Seconds 1 }; Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/.NET/Download.ps1')`""
+	$TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
+	$TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
+	$TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
+	Register-ScheduledTask -TaskName $TaskName -Action $TaskAction -Trigger $TaskTrigger -Principal $TaskPrincipal -Settings $TaskSettings -Force
 }
 
 if (-not (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NET' -Name 'AllowAUOnServerOS' -ErrorAction SilentlyContinue)) {
@@ -16,49 +16,49 @@ if (-not (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NET' -Name 'AllowAUO
 	New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NET' -Name 'AllowAUOnServerOS' -Value 1 -PropertyType DWord -Force
 }
 
-$DotNET_Versions = @('8', '9')
-foreach ($DotNET_Version in $DotNET_Versions) {
-	$DotNET_VersionPattern = "$DotNET_Version*"
-	$DotNET_SDK = "Microsoft .NET SDK $DotNET_VersionPattern"
-	$DotNET_SDKInstalled = (Get-Package $DotNET_SDK -ErrorAction SilentlyContinue | Where-Object ProviderName -EQ 'Programs').Name -replace '.*?(\d+\.\d+\.\d+).*', '$1' | Sort-Object -Descending | Select-Object -First 1
-	$DotNET_FullVersion = "$DotNET_Version.0"
-	$DotNET_ReleasesJsonURL = "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/$DotNET_FullVersion/releases.json"
-	$DotNET_ReleasesJson = Invoke-RestMethod $DotNET_ReleasesJsonURL
-	$DotNET_SDKLatest = $DotNET_ReleasesJson.'latest-sdk'
-	$DotNET_SupportPhase = $DotNET_ReleasesJson.'eol-date'
-	$DotNET_SupportPhaseDate = [DateTime]${DotNET_SupportPhase}
-	$DotNET_Today = Get-Date
+$Versions = @('8', '9', '10')
+foreach ($Version in $Versions) {
+	$VersionPattern = "$Version*"
+	$SDK = "Microsoft .NET SDK $VersionPattern"
+	$SDKInstalled = (Get-Package $SDK -ErrorAction SilentlyContinue | Where-Object { $_.ProviderName -eq 'Programs' }).Name -replace '.*?(\d+\.\d+\.\d+).*', '$1' | Sort-Object -Descending | Select-Object -First 1
+	$FullVersion = "$Version.0"
+	$ReleasesJsonURL = "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/$FullVersion/releases.json"
+	$ReleasesJson = Invoke-RestMethod $ReleasesJsonURL
+	$SDKLatest = $ReleasesJson | Select-Object -ExpandProperty 'latest-sdk'
+	$SupportPhase = $ReleasesJson | Select-Object -ExpandProperty 'eol-date'
+	$SupportPhaseDate = [DateTime]${SupportPhase}
+	$Today = Get-Date
 
-	if (($null -eq $DotNET_SDKInstalled) -or ($DotNET_SDKInstalled -ne $DotNET_SDKLatest) -and ($DotNET_SupportPhaseDate -gt $DotNET_Today)) {
-		$DotNET_DDL = (((($DotNET_ReleasesJson).Releases | Select-Object -First 1).sdk).files | Where-Object -Property 'name' -Match 'win-x64.exe').url
-		$DotNET_Filename = [IO.Path]::GetFileName(([URI]$DotNET_DDL).AbsolutePath)
-		$DotNET_SavePath = [IO.Path]::Combine($env:TEMP, $DotNET_Filename)
-		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft .NET SDK'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_SDKLatest'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-		(New-Object System.Net.WebClient).DownloadFile($DotNET_DDL, $DotNET_SavePath)
+	if (($null -eq $SDKInstalled) -or ($SDKInstalled -ne $SDKLatest) -and ($SupportPhaseDate -gt $Today)) {
+		$DDL = $ReleasesJson | Select-Object -ExpandProperty 'Releases' | Select-Object -First 1 | Select-Object -ExpandProperty 'sdk' | Select-Object -ExpandProperty 'files' | Where-Object { $_.name -match 'win-x64.exe' } | Select-Object -ExpandProperty 'url'
+		$FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
+		$SavePath = [IO.Path]::Combine($env:TEMP, $FileName)
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft .NET SDK'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SDKLatest'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+		(New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
 
-		$DotNET_Argument = '/install /quiet /norestart'
-		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft .NET SDK'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_SDKLatest'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-		Start-Process $DotNET_SavePath -ArgumentList $DotNET_Argument -Wait
+		$Argument = '/install /quiet /norestart'
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft .NET SDK'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SDKLatest'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+		Start-Process $SavePath -ArgumentList $Argument -Wait
 	}
 
-	if ($DotNET_SupportPhaseDate -lt $DotNET_Today -and $DotNET_SDKInstalled) {
-		$DotNET_UninstallDDL = ((Invoke-RestMethod 'https://api.github.com/repos/dotnet/cli-lab/releases/latest').assets | Where-Object name -Like '*.msi*' | Select-Object -First 1).browser_download_url
-		$DotNET_UninstallFilename = [IO.Path]::GetFileName(([URI]$DotNET_UninstallDDL).AbsolutePath)
-		$DotNET_UninstallSavePath = [IO.Path]::Combine($env:TEMP, $DotNET_UninstallFilename)
-		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'dotnet-core-uninstall'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_UninstallDDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_UninstallSavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-        (New-Object System.Net.WebClient).DownloadFile($DotNET_UninstallDDL, $DotNET_UninstallSavePath)
+	if (($SupportPhaseDate -lt $Today) -and ($SDKInstalled)) {
+		$UninstallDDL = Invoke-RestMethod -Uri 'https://api.github.com/repos/dotnet/cli-lab/releases/latest' | Select-Object -ExpandProperty 'assets' | Where-Object { $_.name -match '.msi' } | Select-Object -ExpandProperty 'browser_download_url'
+		$UninstallFileName = [IO.Path]::GetFileName(([URI]$UninstallDDL).AbsolutePath)
+		$UninstallSavePath = [IO.Path]::Combine($env:TEMP, $UninstallFileName)
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'dotnet-core-uninstall'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$UninstallDDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$UninstallSavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+		(New-Object System.Net.WebClient).DownloadFile($UninstallDDL, $UninstallSavePath)
 
-		$DotNET_UninstallArgument = '/quiet /norestart'
-		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'dotnet-core-uninstall'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_UninstallSavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_UninstallArgument'"); [Console]::ResetColor(); [Console]::WriteLine()
-		Start-Process $DotNET_UninstallSavePath -ArgumentList $DotNET_UninstallArgument -Wait
+		$UninstallArgument = '/quiet /norestart'
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'dotnet-core-uninstall'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$UninstallSavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$UninstallArgument'"); [Console]::ResetColor(); [Console]::WriteLine()
+		Start-Process $UninstallSavePath -ArgumentList $UninstallArgument -Wait
 
-		$DotNET_UninstallToolArgument = "/quiet /uninstall $DotNET_UninstallSavePath"
-		$DotNET_UninstallToolLocation = "${env:ProgramFiles(x86)}\dotnet-core-uninstall\dotnet-core-uninstall.exe"
-		$DotNET_UninstallNETToolArgument = "dotnet-core-uninstall remove $DotNET_SDKInstalled --sdk --yes"
-		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Uninstalling '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft .NET SDK'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_SDKInstalled'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_UninstallToolLocation'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_UninstallNETToolArgument'"); [Console]::ResetColor(); [Console]::WriteLine()
-		Start-Process $DotNET_UninstallToolLocation -ArgumentList $DotNET_UninstallNETToolArgument -Wait
+		$UninstallToolArgument = "/quiet /uninstall $UninstallSavePath"
+		$UninstallToolLocation = "${env:ProgramFiles(x86)}\dotnet-core-uninstall\dotnet-core-uninstall.exe"
+		$UninstallNETToolArgument = "dotnet-core-uninstall remove $SDKInstalled --sdk --yes"
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Uninstalling '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft .NET SDK'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SDKInstalled'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$UninstallToolLocation'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$UninstallNETToolArgument'"); [Console]::ResetColor(); [Console]::WriteLine()
+		Start-Process $UninstallToolLocation -ArgumentList $UninstallNETToolArgument -Wait
 		
-		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Uninstalling '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'dotnet-core-uninstall'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'msiexec.exe'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DotNET_UninstallToolArgument'"); [Console]::ResetColor(); [Console]::WriteLine()
-		Start-Process msiexec.exe -ArgumentList $DotNET_UninstallToolArgument -Wait
+		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Uninstalling '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'dotnet-core-uninstall'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'msiexec.exe'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$UninstallToolArgument'"); [Console]::ResetColor(); [Console]::WriteLine()
+		Start-Process msiexec.exe -ArgumentList $UninstallToolArgument -Wait
 	}
 }

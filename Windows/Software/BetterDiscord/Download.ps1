@@ -1,68 +1,68 @@
-$BetterDiscord_TaskName = 'BetterDiscord Updater'
-if (-not (Get-ScheduledTask -TaskName $BetterDiscord_TaskName -ErrorAction SilentlyContinue)) {
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
-    $BetterDiscord_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized -Command `"`$Host.UI.RawUI.WindowTitle = '$BetterDiscord_TaskName'; while (!(Resolve-DnsName google.com -ErrorAction SilentlyContinue)) { Start-Sleep -Seconds 1 }; Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/BetterDiscord/Download.ps1')`""
-    $BetterDiscord_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
-    $BetterDiscord_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-    $BetterDiscord_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
-    Register-ScheduledTask -TaskName $BetterDiscord_TaskName -Action $BetterDiscord_TaskAction -Trigger $BetterDiscord_TaskTrigger -Principal $BetterDiscord_TaskPrincipal -Settings $BetterDiscord_TaskSettings -Force
+$TaskName = 'BetterDiscord Updater'
+if (-not (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue)) {
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
+    $TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized -Command `"`$Host.UI.RawUI.WindowTitle = '$TaskName'; while (!(Resolve-DnsName google.com -ErrorAction SilentlyContinue)) { Start-Sleep -Seconds 1 }; Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/BetterDiscord/Download.ps1')`""
+    $TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
+    $TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
+    $TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
+    Register-ScheduledTask -TaskName $TaskName -Action $TaskAction -Trigger $TaskTrigger -Principal $TaskPrincipal -Settings $TaskSettings -Force
 }
 
-$Discord_TaskName = 'Discord Client Updater'
-if (-not (Get-ScheduledTask -TaskName $Discord_TaskName -ErrorAction SilentlyContinue)) {
+$TaskName = 'Discord Client Updater'
+if (-not (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue)) {
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Discord/Download.ps1')
 }
-if (Get-ScheduledTask -TaskName $Discord_TaskName -ErrorAction SilentlyContinue) {
+if (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue) {
     Start-Sleep -Milliseconds 3000
-    while ((Get-ScheduledTask -TaskName $Discord_TaskName).State -eq 'Running') {
+    while ((Get-ScheduledTask -TaskName $TaskName).State -eq 'Running') {
         Start-Sleep -Milliseconds 1000
     }
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Waiting for window '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_TaskName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to close '); [Console]::ResetColor(); [Console]::WriteLine()
-    while ((Get-Process | Where-Object { $_.MainWindowTitle -eq $Discord_TaskName } )) {
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Waiting for window '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$TaskName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to close '); [Console]::ResetColor(); [Console]::WriteLine()
+    while ((Get-Process | Where-Object { $_.MainWindowTitle -eq $TaskName } )) {
         Start-Sleep -Milliseconds 1000
     }
 }
 
-$Discord_IndexJS = (Get-ChildItem "$env:LOCALAPPDATA\Discord\app*\modules\discord_desktop_core*\discord_desktop_core" -Directory | Sort-Object -Descending | Select-Object -First 1).FullName + '\index.js'
-if (Select-String -Quiet -Path $Discord_IndexJS -Pattern 'betterdiscord') {
-    $BetterDiscord_DDL = (Invoke-RestMethod 'https://api.github.com/repos/BetterDiscord/BetterDiscord/releases/latest').assets.browser_download_url
-    $BetterDiscord_Filename = [IO.Path]::GetFileName(([URI]$BetterDiscord_DDL).AbsolutePath)
-    $BetterDiscord_SavePath = [IO.Path]::Combine($env:APPDATA, 'BetterDiscord', 'data', $BetterDiscord_Filename)
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Updating '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-    (New-Object System.Net.WebClient).DownloadFile($BetterDiscord_DDL, $BetterDiscord_SavePath)
+$IndexJS = Get-ChildItem -Path "$env:LOCALAPPDATA\Discord\app*\modules\discord_desktop_core*\discord_desktop_core" -Directory | Sort-Object -Descending | Select-Object -First 1 | Get-ChildItem -Filter 'index.js' -File | Select-Object -ExpandProperty 'FullName'
+if (Select-String -Quiet -Path $IndexJS -Pattern 'betterdiscord') {
+    $DDL = Invoke-RestMethod -Uri 'https://api.github.com/repos/BetterDiscord/BetterDiscord/releases/latest' | Select-Object -ExpandProperty 'assets' | Select-Object -ExpandProperty 'browser_download_url'
+    $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
+    $SavePath = [IO.Path]::Combine($env:APPDATA, 'BetterDiscord', 'data', $FileName)
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Updating '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+    (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
 
-    $BetterDiscord_ThemesDir = [IO.Path]::Combine($env:APPDATA, 'BetterDiscord', 'themes')
-    $BetterDiscord_ThemesURLs = @(
+    $ThemesDir = [IO.Path]::Combine($env:APPDATA, 'BetterDiscord', 'themes')
+    $ThemesURLs = @(
         'https://raw.githubusercontent.com/LuckFire/amoled-cord/main/clients/amoled-cord.theme.css'
     )
-    foreach ($BetterDiscord_ThemeURL in $BetterDiscord_ThemesURLs) {
-        $BetterDiscord_ThemeFilename = [IO.Path]::GetFileName(([URI]$BetterDiscord_ThemeURL).AbsolutePath)
-        $BetterDiscord_ThemeSavePath = [IO.Path]::Combine($BetterDiscord_ThemesDir, $BetterDiscord_ThemeFilename)
-        if (Test-Path $BetterDiscord_ThemeSavePath) {
-            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Updating '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_ThemeFilename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_ThemeURL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_ThemeSavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-            (New-Object Net.WebClient).DownloadFile($BetterDiscord_ThemeURL, $BetterDiscord_ThemeSavePath)
+    foreach ($ThemeURL in $ThemesURLs) {
+        $ThemeFileName = [IO.Path]::GetFileName(([URI]$ThemeURL).AbsolutePath)
+        $ThemeSavePath = [IO.Path]::Combine($ThemesDir, $ThemeFileName)
+        if (Test-Path $ThemeSavePath) {
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Updating '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ThemeFileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ThemeURL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ThemeSavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+            (New-Object Net.WebClient).DownloadFile($ThemeURL, $ThemeSavePath)
         }
     }
 
-    $BetterDiscord_PluginsDir = [IO.Path]::Combine($env:APPDATA, 'BetterDiscord', 'plugins')
-    $BetterDiscord_PluginsURLs = @(
+    $PluginsDir = [IO.Path]::Combine($env:APPDATA, 'BetterDiscord', 'plugins')
+    $PluginsURLs = @(
         'https://raw.githubusercontent.com/rauenzi/BetterDiscordAddons/master/Plugins/DoNotTrack/DoNotTrack.plugin.js',
         'https://raw.githubusercontent.com/riolubruh/YABDP4Nitro/main/YABDP4Nitro.plugin.js',
         'https://raw.githubusercontent.com/Knewest/uncompressed-discord-images/main/UncompressedImages.plugin.js'
     )
-    foreach ($BetterDiscord_PluginURL in $BetterDiscord_PluginsURLs) {
-        $BetterDiscord_PluginFilename = [IO.Path]::GetFileName(([URI]$BetterDiscord_PluginURL).AbsolutePath)
-        $BetterDiscord_PluginSavePath = [IO.Path]::Combine($BetterDiscord_PluginsDir, $BetterDiscord_PluginFilename)
-        if (Test-Path $BetterDiscord_PluginSavePath) {
-            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Updating '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_PluginFilename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_PluginURL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_PluginSavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-            (New-Object Net.WebClient).DownloadFile($BetterDiscord_PluginURL, $BetterDiscord_PluginSavePath)
+    foreach ($PluginURL in $PluginsURLs) {
+        $PluginFileName = [IO.Path]::GetFileName(([URI]$PluginURL).AbsolutePath)
+        $PluginSavePath = [IO.Path]::Combine($PluginsDir, $PluginFileName)
+        if (Test-Path $PluginSavePath) {
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Updating '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$PluginFileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$PluginURL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$PluginSavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+            (New-Object Net.WebClient).DownloadFile($PluginURL, $PluginSavePath)
         }
     }
 }
 
-if (-not (Select-String -Quiet -Path $Discord_IndexJS -Pattern 'betterdiscord')) {
-    if (-not (Test-Path -Path $env:APPDATA\BetterDiscord)) {
-        $BetterDiscord_Folders = @(
+if (-not (Select-String -Quiet -Path $IndexJS -Pattern 'betterdiscord')) {
+    if (-not (Test-Path -Path "$env:APPDATA\BetterDiscord")) {
+        $Folders = @(
             "$env:APPDATA\BetterDiscord",
             "$env:APPDATA\BetterDiscord\plugins",
             "$env:APPDATA\BetterDiscord\themes",
@@ -70,47 +70,47 @@ if (-not (Select-String -Quiet -Path $Discord_IndexJS -Pattern 'betterdiscord'))
             "$env:APPDATA\BetterDiscord\data\stable"
         )
         
-        foreach ($BetterDiscord_Folder in $BetterDiscord_Folders) {
-            if (-not (Test-Path $BetterDiscord_Folder)) {
-                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Creating folder '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_Folder'"); [Console]::ResetColor(); [Console]::WriteLine()
-                New-Item -ItemType Directory -Path $BetterDiscord_Folder -Force
+        foreach ($Folder in $Folders) {
+            if (-not (Test-Path $Folder)) {
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Creating folder '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Folder'"); [Console]::ResetColor(); [Console]::WriteLine()
+                New-Item -ItemType Directory -Path $Folder -Force
             }
         }
 
-        $BetterDiscord_ThemesDir = [IO.Path]::Combine($env:APPDATA, 'BetterDiscord', 'themes')
-        $BetterDiscord_ThemesURLs = @(
+        $ThemesDir = [IO.Path]::Combine($env:APPDATA, 'BetterDiscord', 'themes')
+        $ThemesURLs = @(
             'https://raw.githubusercontent.com/LuckFire/amoled-cord/main/clients/amoled-cord.theme.css'
         )
-        foreach ($BetterDiscord_ThemeURL in $BetterDiscord_ThemesURLs) {
-            $BetterDiscord_ThemeFilename = [IO.Path]::GetFileName(([URI]$BetterDiscord_ThemeURL).AbsolutePath)
-            $BetterDiscord_ThemeSavePath = [IO.Path]::Combine($BetterDiscord_ThemesDir, $BetterDiscord_ThemeFilename)
-            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_ThemeFilename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_ThemeURL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_ThemeSavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-            (New-Object Net.WebClient).DownloadFile($BetterDiscord_ThemeURL, $BetterDiscord_ThemeSavePath)
+        foreach ($ThemeURL in $ThemesURLs) {
+            $ThemeFileName = [IO.Path]::GetFileName(([URI]$ThemeURL).AbsolutePath)
+            $ThemeSavePath = [IO.Path]::Combine($ThemesDir, $ThemeFileName)
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ThemeFileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ThemeURL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ThemeSavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+            (New-Object Net.WebClient).DownloadFile($ThemeURL, $ThemeSavePath)
         }
         
-        $BetterDiscord_PluginsDir = [IO.Path]::Combine($env:APPDATA, 'BetterDiscord', 'plugins')
-        $BetterDiscord_PluginsURLs = @(
+        $PluginsDir = [IO.Path]::Combine($env:APPDATA, 'BetterDiscord', 'plugins')
+        $PluginsURLs = @(
             'https://raw.githubusercontent.com/rauenzi/BetterDiscordAddons/master/Plugins/DoNotTrack/DoNotTrack.plugin.js',
             'https://raw.githubusercontent.com/riolubruh/YABDP4Nitro/main/YABDP4Nitro.plugin.js',
             'https://raw.githubusercontent.com/Knewest/uncompressed-discord-images/main/UncompressedImages.plugin.js'
         )
-        foreach ($BetterDiscord_PluginURL in $BetterDiscord_PluginsURLs) {
-            $BetterDiscord_PluginFilename = [IO.Path]::GetFileName(([URI]$BetterDiscord_PluginURL).AbsolutePath)
-            $BetterDiscord_PluginSavePath = [IO.Path]::Combine($BetterDiscord_PluginsDir, $BetterDiscord_PluginFilename)
-            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_PluginFilename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_PluginURL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_PluginSavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-            (New-Object Net.WebClient).DownloadFile($BetterDiscord_PluginURL, $BetterDiscord_PluginSavePath)
+        foreach ($PluginURL in $PluginsURLs) {
+            $PluginFileName = [IO.Path]::GetFileName(([URI]$PluginURL).AbsolutePath)
+            $PluginSavePath = [IO.Path]::Combine($PluginsDir, $PluginFileName)
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$PluginFileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$PluginURL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$PluginSavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+            (New-Object Net.WebClient).DownloadFile($PluginURL, $PluginSavePath)
         }
 
-        $BetterDiscord_SettingsDir = [IO.Path]::Combine($env:APPDATA, 'BetterDiscord', 'data', 'stable')
-        $BetterDiscord_SettingsURLs = @(
+        $SettingsDir = [IO.Path]::Combine($env:APPDATA, 'BetterDiscord', 'data', 'stable')
+        $SettingsURLs = @(
             'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/BetterDiscord/plugins.json',
             'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/BetterDiscord/themes.json'
         )
-        foreach ($BetterDiscord_SettingsURL in $BetterDiscord_SettingsURLs) {
-            $BetterDiscord_SettingFilename = [IO.Path]::GetFileName(([URI]$BetterDiscord_SettingsURL).AbsolutePath)
-            $BetterDiscord_SettingSavePath = [IO.Path]::Combine($BetterDiscord_SettingsDir, $BetterDiscord_SettingFilename)
-            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_SettingFilename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_SettingsURL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_SettingSavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-            (New-Object Net.WebClient).DownloadFile($BetterDiscord_SettingsURL, $BetterDiscord_SettingSavePath)
+        foreach ($SettingsURL in $SettingsURLs) {
+            $SettingFileName = [IO.Path]::GetFileName(([URI]$SettingsURL).AbsolutePath)
+            $SettingSavePath = [IO.Path]::Combine($SettingsDir, $SettingFileName)
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SettingFileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SettingsURL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SettingSavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+            (New-Object Net.WebClient).DownloadFile($SettingsURL, $SettingSavePath)
         }
 
         $RepoConfigJsons = @(
@@ -118,7 +118,7 @@ if (-not (Select-String -Quiet -Path $Discord_IndexJS -Pattern 'betterdiscord'))
             "$env:AppData\BetterDiscord\plugins\ThemeRepo.config.json"
         )
         foreach ($RepoConfigJson in $RepoConfigJsons) {
-            if (-Not (Test-Path $RepoConfigJson)) {
+            if (-not (Test-Path $RepoConfigJson)) {
                 New-Item -ItemType Directory -Path (Split-Path -Path $RepoConfigJson) -Force
                 $RepoJsonSettings = @{ all = @{ general = @{ notifyNewEntries = $false } } } | ConvertTo-Json -Depth 10
                 $RepoJsonSettings | Set-Content -Path $RepoConfigJson
@@ -126,11 +126,11 @@ if (-not (Select-String -Quiet -Path $Discord_IndexJS -Pattern 'betterdiscord'))
         }
     }
 
-    $BetterDiscord_DDL = (Invoke-RestMethod 'https://api.github.com/repos/BetterDiscord/BetterDiscord/releases/latest').assets.browser_download_url
-    $BetterDiscord_Filename = [IO.Path]::GetFileName(([URI]$BetterDiscord_DDL).AbsolutePath)
-    $BetterDiscord_SavePath = [IO.Path]::Combine($env:APPDATA, 'BetterDiscord', 'data', $BetterDiscord_Filename)
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-    (New-Object System.Net.WebClient).DownloadFile($BetterDiscord_DDL, $BetterDiscord_SavePath)
+    $DDL = Invoke-RestMethod -Uri 'https://api.github.com/repos/BetterDiscord/BetterDiscord/releases/latest' | Select-Object -ExpandProperty 'assets' | Select-Object -ExpandProperty 'browser_download_url'
+    $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
+    $SavePath = [IO.Path]::Combine($env:APPDATA, 'BetterDiscord', 'data', $FileName)
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+    (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
 
     if (Get-Process -Name 'Discord' -ErrorAction SilentlyContinue) {
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Closing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Discord'"); [Console]::ResetColor(); [Console]::WriteLine()
@@ -139,8 +139,9 @@ if (-not (Select-String -Quiet -Path $Discord_IndexJS -Pattern 'betterdiscord'))
         }
         Start-Sleep -Milliseconds 1000
         Get-Process -Name 'Discord' -ErrorAction SilentlyContinue | Stop-Process -Force
+        Start-Sleep -Milliseconds 1000
     }
 
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_Filename'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$BetterDiscord_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Discord_IndexJS'"); [Console]::ResetColor(); [Console]::WriteLine()
-    Set-Content $Discord_IndexJS -Value "require('$($env:APPDATA -replace '\\','/')/BetterDiscord/data/betterdiscord.asar');`nmodule.exports = require('./core.asar');" -Force
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$IndexJS'"); [Console]::ResetColor(); [Console]::WriteLine()
+    Set-Content $IndexJS -Value "require('$($env:APPDATA -replace '\\','/')/BetterDiscord/data/betterdiscord.asar');`nmodule.exports = require('./core.asar');" -Force
 }

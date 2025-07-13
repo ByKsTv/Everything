@@ -1,35 +1,35 @@
-$7Zip_TaskName = '7-Zip Updater'
-if (-not (Get-ScheduledTask -TaskName $7Zip_TaskName -ErrorAction SilentlyContinue)) {
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$7Zip_TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
-    $7Zip_TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized -Command `"`$Host.UI.RawUI.WindowTitle = '$7Zip_TaskName'; while (!(Resolve-DnsName google.com -ErrorAction SilentlyContinue)) { Start-Sleep -Seconds 1 }; Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/7-Zip/Download.ps1')`""
-    $7Zip_TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
-    $7Zip_TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
-    $7Zip_TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
-    Register-ScheduledTask -TaskName $7Zip_TaskName -Action $7Zip_TaskAction -Trigger $7Zip_TaskTrigger -Principal $7Zip_TaskPrincipal -Settings $7Zip_TaskSettings -Force
+$TaskName = '7-Zip Updater'
+if (-not (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue)) {
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Task Scheduler: Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$TaskName'"); [Console]::ResetColor(); [Console]::WriteLine()
+    $TaskAction = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument "/C start /MIN powershell -WindowStyle Minimized -Command `"`$Host.UI.RawUI.WindowTitle = '$TaskName'; while (!(Resolve-DnsName google.com -ErrorAction SilentlyContinue)) { Start-Sleep -Seconds 1 }; Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/7-Zip/Download.ps1')`""
+    $TaskTrigger = New-ScheduledTaskTrigger -AtLogOn
+    $TaskPrincipal = New-ScheduledTaskPrincipal -UserId "$env:computername\$env:USERNAME" -RunLevel Highest
+    $TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
+    Register-ScheduledTask -TaskName $TaskName -Action $TaskAction -Trigger $TaskTrigger -Principal $TaskPrincipal -Settings $TaskSettings -Force
 }
 
-$7Zip_InstalledVersion = (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\7-Zip' -ErrorAction SilentlyContinue).DisplayVersion
-$7Zip_LatestVersion = (Invoke-RestMethod -Uri 'https://api.github.com/repos/ip7z/7zip/releases/latest').tag_name
+$InstalledVersion = Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\7-Zip' -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'DisplayVersion'
+$LatestVersion = Invoke-RestMethod -Uri 'https://api.github.com/repos/ip7z/7zip/releases/latest' | Select-Object -ExpandProperty 'tag_name'
 
-if ($null -eq $7Zip_InstalledVersion -or $7Zip_InstalledVersion -notmatch $7Zip_LatestVersion) {
-    $7Zip_DDL = ((Invoke-RestMethod -Uri 'https://api.github.com/repos/ip7z/7zip/releases/latest').assets | Where-Object name -Like '*-x64.exe*').browser_download_url
-    $7Zip_Filename = [IO.Path]::GetFileName(([URI]$7Zip_DDL).AbsolutePath)
-    $7Zip_SavePath = [IO.Path]::Combine($env:TEMP, $7Zip_Filename)
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'7-Zip'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$7Zip_LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$7Zip_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$7Zip_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-	(New-Object System.Net.WebClient).DownloadFile($7Zip_DDL, $7Zip_SavePath)
+if (($null -eq $InstalledVersion) -or ($InstalledVersion -notmatch $LatestVersion)) {
+    $DDL = Invoke-RestMethod -Uri 'https://api.github.com/repos/ip7z/7zip/releases/latest' | Select-Object -ExpandProperty 'assets' | Where-Object { $_.name -match 'x64.exe' } | Select-Object -ExpandProperty 'browser_download_url'
+    $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
+    $SavePath = [IO.Path]::Combine($env:TEMP, $FileName)
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'7-Zip'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+    (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
 
-    $7Zip_Argument = '/S'
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'7-Zip'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$7Zip_LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$7Zip_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$7Zip_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-    Start-Process $7Zip_SavePath -ArgumentList $7Zip_Argument -Wait
+    $Argument = '/S'
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'7-Zip'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+    Start-Process $SavePath -ArgumentList $Argument -Wait
 }
 
-$7Zip_Destination = (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*', 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*' -ErrorAction SilentlyContinue | Where-Object { $_.DisplayName -like '7-Zip*' }).InstallLocation
-$7Zip_OLD_PATH = [Environment]::GetEnvironmentVariable('Path', [EnvironmentVariableTarget]::User)
-if ($7Zip_OLD_PATH -notlike "*$7Zip_Destination*") {
-    $7Zip_NEW_PATH = "$7Zip_OLD_PATH;$7Zip_Destination"
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'7-Zip'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$7Zip_Destination'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'PATH'"); [Console]::ResetColor(); [Console]::WriteLine()
-    [Environment]::SetEnvironmentVariable('Path', $7Zip_NEW_PATH, [EnvironmentVariableTarget]::User)
-    $env:Path = [Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [Environment]::GetEnvironmentVariable('Path', 'User')
+$Destination = Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*', 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*' -ErrorAction SilentlyContinue | Where-Object { $_.DisplayName -match '7-Zip' } | Select-Object -ExpandProperty 'InstallLocation'
+$OLD_PATH = [Environment]::GetEnvironmentVariable('Path', [EnvironmentVariableTarget]::User)
+if (-not ($OLD_PATH.Contains($Destination))) {
+    $NEW_PATH = "$OLD_PATH;$Destination"
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'7-Zip'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Destination'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'PATH'"); [Console]::ResetColor(); [Console]::WriteLine()
+    [Environment]::SetEnvironmentVariable('Path', $NEW_PATH, [EnvironmentVariableTarget]::User)
+    $env:Path = [Environment]::GetEnvironmentVariable('Path', 'Machine') + '; ' + [Environment]::GetEnvironmentVariable('Path', 'User')
 }
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('7-Zip: Tools: Options: 7-Zip: Icons in context menus: On'); [Console]::ResetColor(); [Console]::WriteLine()
@@ -45,9 +45,9 @@ if (-not (Test-Path -Path 'HKCU:\SOFTWARE\7-Zip\FM')) {
 if (-not (Test-Path -Path 'HKCU:\SOFTWARE\7-Zip\FM\Columns')) {
     New-Item -Path 'HKCU:\SOFTWARE\7-Zip\FM\Columns' -Force
 }
-New-ItemProperty -Path 'HKCU:\SOFTWARE\7-Zip\FM\Columns' -Name 'RootFolder' -Value 'hex(3):01,00,00,00,00,00,00,00,01,00,00,00,04,00,00,00,01,00,00,00,A0,00,00,00' -PropertyType String -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\7-Zip\FM\Columns' -Name 'RootFolder' -Value 'hex(3):01, 00, 00, 00, 00, 00, 00, 00, 01, 00, 00, 00, 04, 00, 00, 00, 01, 00, 00, 00, A0, 00, 00, 00' -PropertyType String -Force
 
-$7Zip_Extensions = @(
+$Extensions = @(
     @{Extension = '.001'; IconIndex = 9; Description = '001 Archive' },
     @{Extension = '.7z'; IconIndex = 0; Description = '7z Archive' },
     @{Extension = '.apfs'; IconIndex = 25; Description = 'apfs Archive' },
@@ -90,48 +90,48 @@ $7Zip_Extensions = @(
     @{Extension = '.zst'; IconIndex = 26; Description = 'zst Archive' }
 )
 
-$7Zip_RegKey = 'HKCU:\SOFTWARE\Classes'
-$7Zip_Path = $7Zip_Destination.TrimEnd('\')
+$RegKey = 'HKCU:\SOFTWARE\Classes'
+$Path = $Destination.TrimEnd('\')
 
-foreach ($7Zip_Extension in $7Zip_Extensions) {
-    $7Zip_ExtensionName = $7Zip_Extension.Extension
-    $7Zip_IconIndex = $7Zip_Extension.IconIndex
-    $7Zip_ExtensionDescription = $7Zip_Extension.Description
+foreach ($Extension in $Extensions) {
+    $ExtensionName = $Extension.Extension
+    $IconIndex = $Extension.IconIndex
+    $ExtensionDescription = $Extension.Description
 
-    $7Zip_DotExtensionName = Join-Path $7Zip_RegKey $7Zip_ExtensionName
-    if (-not (Test-Path -Path $7Zip_DotExtensionName)) {
-        New-Item -Path $7Zip_RegKey -Name $7Zip_ExtensionName -Force
+    $DotExtensionName = Join-Path $RegKey $ExtensionName
+    if (-not (Test-Path -Path $DotExtensionName)) {
+        New-Item -Path $RegKey -Name $ExtensionName -Force
     }
-    New-ItemProperty -Path $7Zip_DotExtensionName -Name '(default)' -Value "7-Zip$7Zip_ExtensionName" -PropertyType String -Force
+    New-ItemProperty -Path $DotExtensionName -Name '(default)' -Value "7-Zip$ExtensionName" -PropertyType String -Force
 
-    $7Zip_ExtInd = "7-Zip$7Zip_ExtensionName"
-    $7Zip_ExtReg = Join-Path $7Zip_RegKey $7Zip_ExtInd
-    if (-not (Test-Path -Path $7Zip_ExtReg)) {
-        New-Item -Path $7Zip_RegKey -Name $7Zip_ExtInd -Force
+    $ExtInd = "7-Zip$ExtensionName"
+    $ExtReg = Join-Path $RegKey $ExtInd
+    if (-not (Test-Path -Path $ExtReg)) {
+        New-Item -Path $RegKey -Name $ExtInd -Force
     }
 
-    $7Zip_DefaultIconKey = Join-Path $7Zip_ExtReg 'DefaultIcon'
-    $7Zip_ShellKey = Join-Path $7Zip_ExtReg 'shell'
-    $7Zip_OpenKey = Join-Path $7Zip_ShellKey 'open'
-    $7Zip_CommandKey = Join-Path $7Zip_OpenKey 'command'
+    $DefaultIconKey = Join-Path $ExtReg 'DefaultIcon'
+    $ShellKey = Join-Path $ExtReg 'shell'
+    $OpenKey = Join-Path $ShellKey 'open'
+    $CommandKey = Join-Path $OpenKey 'command'
 
-    foreach ($7Zip_Key in @($7Zip_DefaultIconKey, $7Zip_ShellKey, $7Zip_OpenKey, $7Zip_CommandKey)) {
-        if (-not (Test-Path -Path $7Zip_Key)) {
-            $7Zip_ParentKey = Split-Path -Parent $7Zip_Key
-            $7Zip_NameKey = Split-Path -Leaf $7Zip_Key
-            New-Item -Path $7Zip_ParentKey -Name $7Zip_NameKey -Force
+    foreach ($Key in @($DefaultIconKey, $ShellKey, $OpenKey, $CommandKey)) {
+        if (-not (Test-Path -Path $Key)) {
+            $ParentKey = Split-Path -Parent $Key
+            $NameKey = Split-Path -Leaf $Key
+            New-Item -Path $ParentKey -Name $NameKey -Force
         }
     }
 
-    New-ItemProperty -Path $7Zip_ExtReg -Name '(default)' -Value $7Zip_ExtensionDescription -PropertyType String -Force
+    New-ItemProperty -Path $ExtReg -Name '(default)' -Value $ExtensionDescription -PropertyType String -Force
 
-    $7Zip_IconPath = "$7Zip_Path\7z.dll,$7Zip_IconIndex"
-    New-ItemProperty -Path $7Zip_DefaultIconKey -Name '(default)' -Value $7Zip_IconPath -PropertyType String -Force
+    $IconPath = "$Path\7z.dll,$IconIndex"
+    New-ItemProperty -Path $DefaultIconKey -Name '(default)' -Value $IconPath -PropertyType String -Force
 
-    New-ItemProperty -Path $7Zip_ShellKey -Name '(default)' -Value '' -PropertyType String -Force
-    New-ItemProperty -Path $7Zip_OpenKey -Name '(default)' -Value '' -PropertyType String -Force
+    New-ItemProperty -Path $ShellKey -Name '(default)' -Value '' -PropertyType String -Force
+    New-ItemProperty -Path $OpenKey -Name '(default)' -Value '' -PropertyType String -Force
 
-    $7Zip_CommandPath = "$7Zip_Path\7zFM.exe"
-    $7Zip_CommandValue = "`"$7Zip_CommandPath`" `"%1`""
-    New-ItemProperty -Path $7Zip_CommandKey -Name '(default)' -Value $7Zip_CommandValue -PropertyType String -Force
+    $CommandPath = "$Path\7zFM.exe"
+    $CommandValue = "`"$CommandPath`" `"%1`""
+    New-ItemProperty -Path $CommandKey -Name '(default)' -Value $CommandValue -PropertyType String -Force
 }

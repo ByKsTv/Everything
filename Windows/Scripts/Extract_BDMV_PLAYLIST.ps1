@@ -1,22 +1,25 @@
 Add-Type -AssemblyName System.Windows.Forms
+Add-Type -AssemblyName System.Drawing
 [Windows.Forms.Application]::EnableVisualStyles()
 
-$BDMV_PLAYLIST_Form = New-Object System.Windows.Forms.Form -Property @{
-    TopMost = $true
+$Form = New-Object System.Windows.Forms.Form -Property @{
+    TopMost       = $true
+    StartPosition = 'CenterScreen'
 }
-$BDMV_PLAYLIST_FileDialog = New-Object System.Windows.Forms.OpenFileDialog -Property @{
+
+$FileDialog = New-Object System.Windows.Forms.OpenFileDialog -Property @{
     FileName        = 'Select PLAYLIST Folder'
+    Title           = 'Extract BDMV Playlist'
     Filter          = 'Folders|*.'
     CheckFileExists = $false
 }
 
-if ($BDMV_PLAYLIST_FileDialog.ShowDialog($BDMV_PLAYLIST_Form) -eq [Windows.Forms.DialogResult]::OK) {
-    $BDMV_PLAYLIST_FolderSelected = [IO.Path]::GetDirectoryName($BDMV_PLAYLIST_FileDialog.FileName)
+if ($FileDialog.ShowDialog($Form) -eq [Windows.Forms.DialogResult]::OK) {
+    $SelectedFolder = [IO.Path]::GetDirectoryName($FileDialog.FileName)
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Selected folder '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SelectedFolder'"); [Console]::ResetColor(); [Console]::WriteLine()
 
-    Write-Output "Selected Folder: $BDMV_PLAYLIST_FolderSelected"
-
-    $BDMV_Episode_Form = New-Object System.Windows.Forms.Form -Property @{
-        Text            = 'Select Episode'
+    $Form = New-Object System.Windows.Forms.Form -Property @{
+        Text            = 'Starts From Episode'
         Font            = [Drawing.Font]::new('Tahoma', 11)
         Width           = 300
         Height          = 120
@@ -27,113 +30,82 @@ if ($BDMV_PLAYLIST_FileDialog.ShowDialog($BDMV_PLAYLIST_Form) -eq [Windows.Forms
         MinimizeBox     = $false
         ControlBox      = $false
     }
-    
-    $BDMV_Episode_Form_ButtonSpacer = 15
-    $BDMV_Episode_Form_ButtonWidth = 57
-    $BDMV_Episode_Form_TotalButtonWidth = $BDMV_Episode_Form_ButtonSpacer + $BDMV_Episode_Form_ButtonWidth + $BDMV_Episode_Form_ButtonWidth
-    $BDMV_Episode_FormCenterX = [math]::Round(($BDMV_Episode_Form.ClientSize.Width - $BDMV_Episode_Form_TotalButtonWidth) / 2)
-    $BDMV_Episode_Form_ButtonHeight = 20
-    $BDMV_Episode_Form_ButtonYLocation = $BDMV_Episode_Form.Height - 60
-    
-    $BDMV_Episode_OK_Click = $false
-    $BDMV_Episode_Form_OK = New-Object System.Windows.Forms.Button -Property @{
-        Text      = 'OK'
-        Width     = $BDMV_Episode_Form_ButtonWidth
-        Height    = $BDMV_Episode_Form_ButtonHeight
-        Location  = [Drawing.Point]::new($BDMV_Episode_FormCenterX, $BDMV_Episode_Form_ButtonYLocation)
-        Add_Click = ({ $BDMV_Episode_Form.Close()
-                $global:BDMV_Episode_OK_Click = $true })
+
+    $ButtonWidth = 57
+    $ButtonSpacer = 15
+    $ButtonY = $Form.Height - 60
+    $ButtonX = [math]::Round(($Form.ClientSize.Width - (2 * $ButtonWidth + $ButtonSpacer)) / 2)
+
+    $Ok = New-Object System.Windows.Forms.Button -Property @{
+        Text         = 'OK'
+        DialogResult = [Windows.Forms.DialogResult]::OK
+        Width        = $ButtonWidth
+        Height       = 20
+        Location     = [Drawing.Point]::new($ButtonX, $ButtonY)
+        Add_Click    = { $Form.Close() }
     }
 
-    $BDMV_Episode_Form_CancelX = $BDMV_Episode_FormCenterX + $BDMV_Episode_Form_ButtonWidth + $BDMV_Episode_Form_ButtonSpacer
-    $BDMV_Episode_Form_Cancel = New-Object System.Windows.Forms.Button -Property @{
+    $Cancel = New-Object System.Windows.Forms.Button -Property @{
         Text      = 'Cancel'
-        Width     = $BDMV_Episode_Form_ButtonWidth
-        Height    = $BDMV_Episode_Form_ButtonHeight
-        Location  = [Drawing.Point]::new($BDMV_Episode_Form_CancelX, $BDMV_Episode_Form_ButtonYLocation)
-        Add_Click = ({ $BDMV_Episode_Form.Close() })
+        Width     = $ButtonWidth
+        Height    = 20
+        Location  = [Drawing.Point]::new($ButtonX + $ButtonWidth + $ButtonSpacer, $ButtonY)
+        Add_Click = { $Form.Close() }
     }
+
+    $LocX = 5
+    $LocY = 0
+    $SizeX = $Form.Width - 25
+    $SizeY = 26
+    $_LocAdd = 30
         
-    $BDMV_Episode_Form_LocX = 5
-    $BDMV_Episode_Form_LocY = 0
-    $BDMV_Episode_Form_SizeX = $BDMV_Episode_Form.Width - 25
-    $BDMV_Episode_Form_SizeY = 26
-    $BDMV_Episode_Form__LocAdd = 30
-        
-    $BDMV_Episode_Form_Label = New-Object System.Windows.Forms.Label -Property @{
-        Text     = 'Starts from episode:'
+    $Label = New-Object System.Windows.Forms.Label -Property @{
+        Text     = 'Starts From Episode:'
         AutoSize = $true
-        Width    = $BDMV_Episode_Form_SizeX
-        Height   = $BDMV_Episode_Form_SizeY
-        Location = [Drawing.Point]::new($BDMV_Episode_Form_LocX, $BDMV_Episode_Form_LocY)
+        Width    = $SizeX
+        Height   = $SizeY
+        Location = [Drawing.Point]::new($LocX, $LocY)
     }
     
-    $BDMV_Episode_Form_LocY += $BDMV_Episode_Form__LocAdd
+    $LocY += $_LocAdd
     
-    $BDMV_Episode_Form_TextBox = New-Object System.Windows.Forms.TextBox -Property @{
-        Width    = $BDMV_Episode_Form_SizeX
-        Height   = $BDMV_Episode_Form_SizeY
-        Location = [Drawing.Point]::new($BDMV_Episode_Form_LocX, $BDMV_Episode_Form_LocY)
+    $TextBox = New-Object System.Windows.Forms.TextBox -Property @{
+        Width    = $SizeX
+        Height   = $SizeY
+        Location = [Drawing.Point]::new($LocX, $LocY)
     }
-    
-    $BDMV_Episode_Form.Controls.Add($BDMV_Episode_Form_OK)
-    $BDMV_Episode_Form.Controls.Add($BDMV_Episode_Form_Cancel)
-    
-    $BDMV_Episode_Form.Controls.Add($BDMV_Episode_Form_Label)
-    $BDMV_Episode_Form.Controls.Add($BDMV_Episode_Form_TextBox)
+    $Form.Add_Shown({ $TextBox.Focus() })
 
-    [void] $BDMV_Episode_Form.ShowDialog()
+    $Form.Controls.AddRange(@($Ok, $Cancel, $Label, $TextBox))
+    if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
+        $ChosenNumber = [int]$TextBox.Text
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Starts from episode '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ChosenNumber'"); [Console]::ResetColor(); [Console]::WriteLine()
 
-    if ($true -eq $BDMV_Episode_OK_Click) {
-
-        $BDMV_Episode_Form.Topmost = $false
-
-        $ChosenNumber = $BDMV_Episode_Form_TextBox.Text
-
-        $ChosenNumber = [int]$ChosenNumber
-        Write-Output "Starts from episode: $ChosenNumber"
-
-        Write-Output "Searching for .mpls files in directory: $BDMV_PLAYLIST_FolderSelected"
-
-        # Get all .mpls files in the specified directory and subdirectories
-        $mplsFiles = Get-ChildItem -Path $BDMV_PLAYLIST_FolderSelected -Recurse -Include *.mpls
-
-        # Check if any .mpls files were found
+        $mplsFiles = Get-ChildItem -Path $SelectedFolder -Recurse -Include '*.mpls'
         if ($mplsFiles.Count -eq 0) {
-            Write-Output "No .mpls files found in the specified directory: $BDMV_PLAYLIST_FolderSelected"
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('No playlist files found in '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SelectedFolder'"); [Console]::ResetColor(); [Console]::WriteLine()
             exit
         }
 
-        Write-Output "Found $($mplsFiles.Count) .mpls files in the directory: $BDMV_PLAYLIST_FolderSelected"
-
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Found '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$($mplsFiles.Count)'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' playlist files in '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SelectedFolder'"); [Console]::ResetColor(); [Console]::WriteLine()
         $processed = $false
-
         foreach ($mplsFile in $mplsFiles) {
             if ($processed) {
                 break
             }
 
-            Write-Output "Processing file: $($mplsFile.FullName)"
-
-            # Remove the \\?\ prefix for MediaInfo processing
             $mplsFilePath = $mplsFile.FullName
 
             Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/MediaInfo/Download.ps1')
             
-            # Run MediaInfo with JSON output and capture the output
             $mediaInfoOutput = & MediaInfo.exe --Output=JSON "$mplsFilePath"
-
-            # Check if the output is empty or invalid
             if (-not $mediaInfoOutput) {
-                Write-Output "No output from MediaInfo for file $($mplsFile.FullName). Please check the file path and MediaInfo executable path."
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('No output from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'MediaInfo'"); [Console]::WriteLine()
                 continue
             }
 
             try {
-                # Convert the MediaInfo output to JSON
                 $mediaInfoJson = $mediaInfoOutput | ConvertFrom-Json
-
-                # Filter results and search for entries with @type as Video and Duration more than 600
                 $filteredResults = @()
                 foreach ($track in $mediaInfoJson.media.track) {
                     if ($track.'@type' -eq 'Video' -and [int]$track.Duration -gt 600) {
@@ -141,67 +113,48 @@ if ($BDMV_PLAYLIST_FileDialog.ShowDialog($BDMV_PLAYLIST_Form) -eq [Windows.Forms
                     }
                 }
 
-                # Initialize an array to hold the file names
-                $fileNames = @()
-
-                # Extract the name of the file from each filtered result
+                $FileNames = @()
                 foreach ($result in $filteredResults) {
                     if ($result.extra -and $result.extra.source) {
-                        $fileNames += $result.extra.source
+                        $FileNames += $result.extra.source
                     }
                 }
 
-                # Output the file names
-                $fileNames | ForEach-Object { Write-Output $_ }
-
-                # Navigate to the STREAM folder based on the file paths
-                foreach ($fileName in $fileNames) {
-                    $filePath = [IO.Path]::GetFullPath((Join-Path -Path (Split-Path -Path $mplsFile.FullName -Parent) -ChildPath $fileName))
+                foreach ($FileName in $FileNames) {
+                    $filePath = [IO.Path]::GetFullPath((Join-Path -Path (Split-Path -Path $mplsFile.FullName -Parent) -ChildPath $FileName))
                     $parentFolderPath = (Get-Item -Path (Split-Path -Path $filePath -Parent)).Parent.FullName
                     $streamFolderPath = Join-Path -Path $parentFolderPath -ChildPath 'STREAM'
 
                     if (-not (Test-Path -Path $streamFolderPath)) {
-                        Write-Output "STREAM folder not found: $streamFolderPath"
+                        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('STEAM folder not found in '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$streamFolderPath'"); [Console]::WriteLine()
                         continue
                     }
 
-                    Write-Output "STREAM folder found: $streamFolderPath"
-
-                    # Get the file in the STREAM folder
-                    $streamFile = Get-ChildItem -Path $streamFolderPath -Filter $fileName
-
+                    $streamFile = Get-ChildItem -Path $streamFolderPath -Filter $FileName
                     if ($streamFile) {
                         $fileExtension = $streamFile.Extension
                         $newFileName = '{0:D3}{1}' -f $ChosenNumber, $fileExtension
                         $newFilePath = Join-Path -Path $streamFolderPath -ChildPath $newFileName
-
-                        Write-Output "Renaming file from $($streamFile.FullName) to $newFilePath"
-
-                        # Rename the file
+                        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Renaming '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$($streamFile.FullName)'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$newFileName'"); [Console]::ResetColor(); [Console]::WriteLine()
                         Rename-Item -Path $streamFile.FullName -NewName $newFileName -Force
-                        Write-Output "Renamed file to $newFilePath"
 
-                        # Move the file to the main folder four levels up
                         $mainFolderPath = (Get-Item -Path $streamFolderPath).Parent.Parent.Parent.Parent.FullName
+                        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Moving '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$newFileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$mainFolderPath'"); [Console]::ResetColor(); [Console]::WriteLine()
                         Move-Item -Path $newFilePath -Destination (Join-Path -Path $mainFolderPath -ChildPath $newFileName) -Force
-                        Write-Output "Moved file $newFileName to $mainFolderPath"
 
-                        # Increment the start number for the next file
                         $ChosenNumber++
                         $processed = $true
                     }
                     else {
-                        Write-Output "File not found in STREAM folder: $fileName"
+                        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Files not found in '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ResetColor(); [Console]::WriteLine()
                     }
                 }
             }
             catch {
-                Write-Output "Failed to convert MediaInfo output to JSON or process the results for file $($mplsFile.FullName). Output: $mediaInfoOutput"
-                Write-Output "Error: $_"
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Failed to convert MediaInfo output to JSON or process the results for file '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$($mplsFile.FullName)'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' Output '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$mediaInfoOutput'"); [Console]::ResetColor(); [Console]::WriteLine()
+
+                [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Error '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$_'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' Output '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$mediaInfoOutput'"); [Console]::ResetColor(); [Console]::WriteLine()
             }
         }
-        Write-Output 'Processing completed.'
     }
 }
-
-$BDMV_PLAYLIST_Form.Dispose()

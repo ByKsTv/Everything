@@ -1,7 +1,7 @@
 Add-Type -AssemblyName System.Windows.Forms
 [Windows.Forms.Application]::EnableVisualStyles()
 
-$SearchPolicy_Form = New-Object System.Windows.Forms.Form -Property @{
+$Form = New-Object System.Windows.Forms.Form -Property @{
 	Text            = 'Search Policy'
 	Font            = [Drawing.Font]::new('Tahoma', 11)
 	Width           = 200
@@ -14,60 +14,60 @@ $SearchPolicy_Form = New-Object System.Windows.Forms.Form -Property @{
 	ControlBox      = $false
 }
 
-$SearchPolicy_ButtonSpacer = 15
-$SearchPolicy_ButtonWidth = 57
-$SearchPolicy_TotalButtonWidth = $SearchPolicy_ButtonSpacer + $SearchPolicy_ButtonWidth + $SearchPolicy_ButtonWidth
-$SearchPolicy_FormCenterX = [math]::Round(($SearchPolicy_Form.ClientSize.Width - $SearchPolicy_TotalButtonWidth) / 2)
-$SearchPolicy_ButtonHeight = 20
-$SearchPolicy_ButtonYLocation = $SearchPolicy_Form.Height - 60
+$ButtonSpacer = 15
+$ButtonWidth = 57
+$TotalButtonWidth = $ButtonSpacer + $ButtonWidth + $ButtonWidth
+$FormCenterX = [math]::Round(($Form.ClientSize.Width - $TotalButtonWidth) / 2)
+$ButtonHeight = 20
+$ButtonYLocation = $Form.Height - 60
 
-$SearchPolicy_OK = New-Object System.Windows.Forms.Button -Property @{
+$OK = New-Object System.Windows.Forms.Button -Property @{
 	Text      = 'OK'
-	Width     = $SearchPolicy_ButtonWidth
-	Height    = $SearchPolicy_ButtonHeight
-	Location  = [Drawing.Point]::new($SearchPolicy_FormCenterX, $SearchPolicy_ButtonYLocation)
-	Add_Click = ({ $SearchPolicy_Form.Close() })
+	Width     = $ButtonWidth
+	Height    = $ButtonHeight
+	Location  = [Drawing.Point]::new($FormCenterX, $ButtonYLocation)
+	Add_Click = ({ $Form.Close() })
 }
 
-$SearchPolicy_CancelX = $SearchPolicy_FormCenterX + $SearchPolicy_ButtonWidth + $SearchPolicy_ButtonSpacer
-$SearchPolicy_Cancel = New-Object System.Windows.Forms.Button -Property @{
+$CancelX = $FormCenterX + $ButtonWidth + $ButtonSpacer
+$Cancel = New-Object System.Windows.Forms.Button -Property @{
 	Text      = 'Cancel'
-	Width     = $SearchPolicy_ButtonWidth
-	Height    = $SearchPolicy_ButtonHeight
-	Location  = [Drawing.Point]::new($SearchPolicy_CancelX, $SearchPolicy_ButtonYLocation)
-	Add_Click = ({ $SearchPolicy_Form.Close() })
+	Width     = $ButtonWidth
+	Height    = $ButtonHeight
+	Location  = [Drawing.Point]::new($CancelX, $ButtonYLocation)
+	Add_Click = ({ $Form.Close() })
 }
 
-$SearchPolicy_LocX = 5
-$SearchPolicy_LocY = 0
-$SearchPolicy_SizeX = $SearchPolicy_Form.Width - 25
-$SearchPolicy_SizeY = 26
+$LocX = 5
+$LocY = 0
+$SizeX = $Form.Width - 25
+$SizeY = 26
 
-$SearchPolicy_TextBox = New-Object System.Windows.Forms.TextBox -Property @{
-	Width    = $SearchPolicy_SizeX
-	Height   = $SearchPolicy_SizeY
-	Location = [Drawing.Point]::new($SearchPolicy_LocX, $SearchPolicy_LocY)
+$TextBox = New-Object System.Windows.Forms.TextBox -Property @{
+	Width    = $SizeX
+	Height   = $SizeY
+	Location = [Drawing.Point]::new($LocX, $LocY)
 }
 
-$SearchPolicy_Form.Controls.Add($SearchPolicy_OK)
-$SearchPolicy_Form.Controls.Add($SearchPolicy_Cancel)
+$Form.Controls.Add($OK)
+$Form.Controls.Add($Cancel)
 
-$SearchPolicy_Form.Controls.Add($SearchPolicy_TextBox)
+$Form.Controls.Add($TextBox)
 
-[void] $SearchPolicy_Form.ShowDialog()
+[void] $Form.ShowDialog()
 
-$SearchPolicy_UserDefined = $SearchPolicy_TextBox.Text
-if ($SearchPolicy_UserDefined) {
-	$SearchPolicy_UserDefined = "*$SearchPolicy_UserDefined*"
-	$SearchPolicy_Dir = Get-ChildItem -Path "$env:windir\PolicyDefinitions" -Recurse -File
-	foreach ($SearchPolicy_File in $SearchPolicy_Dir) {
+$UserDefined = $TextBox.Text
+if ($UserDefined) {
+	$UserDefined = "$UserDefined"
+	$Dir = Get-ChildItem -Path "$env:windir\PolicyDefinitions" -Recurse -File
+	foreach ($File in $Dir) {
 		try {
-			if ((Get-Content $SearchPolicy_File.FullName -ErrorAction Stop) -like $SearchPolicy_UserDefined) {
-				Write-Host "Found '$SearchPolicy_UserDefined' in: $($SearchPolicy_File.FullName)" -ForegroundColor Green
+			if ((Get-Content $File.FullName -ErrorAction Stop) -match $UserDefined) {
+				Write-Host "Found '$UserDefined' in: $($File.FullName)" -ForegroundColor Green
 			}
 		}
 		catch {
-			Write-Host "Error reading: $($SearchPolicy_File.FullName)" -ForegroundColor Red
+			Write-Host "Error reading: $($File.FullName)" -ForegroundColor Red
 		}
 	}
 }

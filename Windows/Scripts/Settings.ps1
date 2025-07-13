@@ -375,7 +375,7 @@ $FeaturesToDisable = @(
 foreach ($Feature in $FeaturesToDisable) {
 	$EnabledFeatures = Get-WindowsOptionalFeature -Online | Where-Object {
 		$_.State -eq 'Enabled' -and
-		$_.FeatureName -like "*$Feature*"
+		$_.FeatureName -match $Feature
 	}
 
 	foreach ($EnabledFeature in $EnabledFeatures) {
@@ -401,7 +401,7 @@ foreach ($Feature in $FeaturesToDisable) {
 # foreach ($App in $AppsToRemove) {
 # 	$Capabilities = Get-WindowsCapability -Online | Where-Object {
 # 		$_.State -eq 'Installed' -and
-# 		$_.Name -like "*$App*"
+# 		$_.Name -match $App
 # 	}
 
 # 	foreach ($Capability in $Capabilities) {
@@ -418,10 +418,7 @@ $AppsToInstall = @(
 )
 
 foreach ($AppInstall in $AppsToInstall) {
-	$CapabilitiesInstall = Get-WindowsCapability -Online | Where-Object {
-		$_.State -ne 'Installed' -and
-		$_.Name -like "*$AppInstall*"
-	}
+	$CapabilitiesInstall = Get-WindowsCapability -Online | Where-Object { $_.State -ne 'Installed' -and $_.Name -match $AppInstall }
 
 	foreach ($CapabilityInstall in $CapabilitiesInstall) {
 		Add-WindowsCapability -Online -Name $CapabilityInstall.Name
@@ -642,7 +639,9 @@ Stop-Process -Name explorer -Force
 
 $HostsPath = "$env:WINDIR\System32\drivers\etc\hosts"
 $Urls = 'mobile.events.data.microsoft.com', 'r.bing.comms-appx-web'
-$Urls | ForEach-Object { $Line = '0.0.0.0 ' + $_; if (-not(Select-String -Path $HostsPath -Pattern $Line)) {
+$Urls | ForEach-Object {
+	$Line = '0.0.0.0 ' + $_
+	if (-not (Select-String -Path $HostsPath -Pattern $Line)) {
 		Add-Content -Path $HostsPath -Value $Line
 	} }
 
