@@ -44,7 +44,7 @@ WD brand from AliExpress is sus because sticker is the same but the shape of the
 | Club3D         | [USB 3.1 Type-C to Type-A Cable 10Gbps PD 60W M/M 1m/3.28ft](https://www.club-3d.com/en/detail/2354/usb_3.1_type_c_to_type_a_cable_10gbps_pd_60w_m-m_1m-3.28ft/) |                                                                  |
 | Club3D         | [Premium High Speed HDMI 4K60Hz UHD Cable 3m/9.84 ft](https://www.club-3d.com/en/detail/2336/premium_high_speed_hdmi_2.0_4k60hz_uhd_cable_3m-9.84_ft/)           |                                                                  |
 | MOES           | WiFi Touch Light Switch                                                                                                                                          | [AliExpress](https://www.aliexpress.com/item/4001103136550.html) |
-|                | WiFi Boiler Switch                                                                                                                                               | [AliExpress](https://www.aliexpress.com/item/33020659733.html)   |
+| LoraTap        | WiFi Boiler Switch                                                                                                                                               | [AliExpress](https://www.aliexpress.com/item/33020659733.html)   |
 
 speaker cable dont buy cca, buy ofc oxygen free
 
