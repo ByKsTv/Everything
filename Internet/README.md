@@ -492,3 +492,5 @@ Source: [𝗟𝗚 𝗢𝗟𝗘𝗗 𝗧𝗩 𝗦𝗲𝘁𝘁𝗶𝗻𝗴𝘀 �
 ## Cancel
 
 - Use [Netek](https://www.netek.co.il/)
+
+- Next TV - you will have to contact their WhatsApp support team (3), and request to cancel, they will call you back within 2 working days.
