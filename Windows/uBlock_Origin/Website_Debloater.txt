@@ -8,6 +8,8 @@
 9gag.com##.post-award-users
 9gag.com##.text-center.inline-banner
 account.xiaomi.com##._-src-components-CookieBanner-wrapper
+cosplay-xxx.com###protection
+fc2ppv.stream###load-modal > .modal-dialog
 filespayouts.com##.paybox.row
 fitgirl-repacks.site###block-2 > .jetpack_top_posts_widget
 fitgirl-repacks.site###custom_html-4
@@ -22,8 +24,13 @@ forum.mobilism.me##.welcome-bar
 github.com##.color-fg-muted.text-center.mt-3
 github.com##.mb-2.mt-md-2.mt-3.color-fg-muted.text-small
 github.com##.protip
+gofile.download###protection
+gofile.download##.popup-box-ads
+hentaicovid.org###protection
+hentaicovid.org##.popup-box-ads
 javfinder.ai##.br-bottom-10.site-footer
 javfinder.ai##.site-info
+kin8-jav.com###protection
 kissjav.com##.footer-desc
 ksp.co.il##.null[class*="root-0-3-"]
 ksp.co.il##[class*="banner-0-3-"]
@@ -91,6 +98,8 @@ www.aliexpress.com##.comet-icon-overflowmenuhorizontal.comet-icon
 www.aliexpress.com##.comet-v2-back-top-content
 www.aliexpress.com##.comet-v2-divider-small.comet-v2-divider
 www.aliexpress.com##.e4_g
+www.aliexpress.com##.footer-copywrite
+www.aliexpress.com##.fusion-filter
 www.aliexpress.com##.go_gp
 www.aliexpress.com##.group-promotion-wrap
 www.aliexpress.com##.notranslate[class*="navigation--wrap--"].comet-v2-anchor
@@ -98,6 +107,7 @@ www.aliexpress.com##.order-add-cart-more-tip
 www.aliexpress.com##.order-block.order-recommend
 www.aliexpress.com##.product-recommend-pc.product-recommend
 www.aliexpress.com##.root-sidecart
+www.aliexpress.com##.site-footer
 www.aliexpress.com##.slick-initialized[class*="slick-slider"]
 www.aliexpress.com##.survey-link
 www.aliexpress.com##.y2023.footer-copywrite
@@ -115,25 +125,36 @@ www.aliexpress.com##[class^="notranslate navigation--wrap--"].comet-v2-anchor
 www.aliexpress.com##[class^="recommend-store--title--"][class*="title--wrap--"]
 www.aliexpress.com##[class^="survey--wrap--"]
 www.aliexpress.com##div.has-underline
+www.aliexpress.com##div.large.pl-block-container[class*="checkout-collect--wrapper"]
 www.aliexpress.com##div[class*="filter--impression--"][class*="filter--filterItem--"]
+www.aliexpress.com##div[class^="InfiniteScroll--infiniteScrollWrap"]
+www.aliexpress.com##div[class^="more-to-love-v2--wrap"]
 www.aliexpress.com##div[class^="notranslate navigation--wrap--"].comet-v2-anchor
+www.aliexpress.com##div[class^="result-download-app--container"]
+www.aliexpress.com##div[class^="result-messenger--messenger-container"]
 www.aliexpress.com##div[class^="split-line--wrap--"]
 www.aliexpress.com##div[class^="structure-label--wrap--"]
 www.aliexpress.com##span[class*="pc-header--line--"]
 www.amazon.com###ask_feature_div
 www.amazon.com###compatibilityContainerDesktop
+www.amazon.com###detail-related-products-narrow
 www.amazon.com###feature-bullets > .a-section
 www.amazon.com###followTheAuthor_feature_div
 www.amazon.com###hover-zoom-end
 www.amazon.com###image-canvas-caption
 www.amazon.com###miraiBTFShopByLook_feature_div
 www.amazon.com###nav-flyout-anchor
+www.amazon.com###nav-global-location-toaster-script-container
 www.amazon.com###nav-subnav-toaster
 www.amazon.com###newerVersion_feature_div
 www.amazon.com###nile-inline-btf_feature_div
 www.amazon.com###nile-inline_feature_div
 www.amazon.com###organic-substitutes_feature_div
 www.amazon.com###product-comparison_feature_div
+www.amazon.com###sims-comparisonContainer_feature_div_01
+www.amazon.com###sims-productBundle_feature_div_01
+www.amazon.com###sims-simsContainer_feature_div_01
+www.amazon.com###sims-simsContainer_feature_div_11
 www.amazon.com###tellAmazon_feature_div
 www.amazon.com###valuePick_feature_div
 www.amazon.com##.a-divider-normal
@@ -154,11 +175,17 @@ www.ebay.com##.x-atf-left-bottom-river.vim
 www.ebay.com##.x-evo-btf-river.vi-grid.vim
 www.ebay.com##.x-vi-evo-main-container__top-panel
 www.iec.co.il##.ng-star-inserted.sticky-banner--container.bottom
+www.pornhub.com##.clearfix.premium-videos.search-video-thumbs.row-5-thumbs.videos
 www.pornhub.com##.extraMargin.languages.pornInLangWrapper.sectionWrapper
 www.pornhub.com##.footer
+www.pornhub.com##.footer-title
+www.pornhub.com##.footerContent
+www.pornhub.com##.footerContentWrapper
 www.pornhub.com##.homePageFooter.logoFooterWrapper
 www.pornhub.com##.latestThumbDesign.extraRelatedVid
 www.pornhub.com##.original.video-wrapper.hd-videos_wrapper.hd-smallerWidth.sectionWrapper
+www.pornhub.com##.pornstarsLang.sectionWrapper.sectionRelatedStars
+www.pornhub.com##.pre-footer
 www.pornhub.com##.relatedSearchTermsBottom.sectionWrapper
 www.pornhub.com##.tagsForWomen
 www.pornhub.com##.trendingPillsContainer
@@ -174,6 +201,9 @@ www.senetic.co.il##.tabs-headings
 www.xvideos.com##.slogan
 www.ynet.co.il##.articleShareButtons
 www.youtube.com###attached-survey
+xcamcovid.com##.modal-dialog
+xcamcovid.com##.show.fade.modal
+xcamcovid.com##.show.fade.modal-backdrop
 xxxclub.to##.footer-bottom
 xxxclub.to##.myBtn
 xxxclub.to##.page-footer
