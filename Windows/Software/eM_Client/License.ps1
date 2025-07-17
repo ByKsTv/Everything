@@ -8,4 +8,4 @@ if (-not (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue)) 
     Register-ScheduledTask -TaskName $TaskName -Action $TaskAction -Trigger $TaskTrigger -Principal $TaskPrincipal -Settings $TaskSettings -Force
 }
 
-Remove-Item -Path "$env:APPDATA\eM Client\Local Folders\folders.dat"
+Remove-Item -Path "$env:APPDATA\eM Client\Local Folders\folders.dat" -ErrorAction SilentlyContinue
