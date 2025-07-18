@@ -75,13 +75,13 @@ if ($InstalledSoftware -match 'Microsoft Edge') {
         }
         do {
             Start-Sleep 3 
-        } while ((Get-Process -Name 'setup', 'MicrosoftEdge*' -ErrorAction SilentlyContinue).Path -match '\Microsoft\Edge')
+        } while ((Get-Process -Name 'setup', 'MicrosoftEdge*' -ErrorAction SilentlyContinue).Path -like '\Microsoft\Edge')
         if (Test-Path $path) {
             Start-Process -Wait $path -Args '/uninstall' | Out-Null 
         }
         do {
             Start-Sleep 3 
-        } while ((Get-Process -Name 'setup', 'MicrosoftEdge*' -ErrorAction SilentlyContinue).Path -match '\Microsoft\Edge')
+        } while ((Get-Process -Name 'setup', 'MicrosoftEdge*' -ErrorAction SilentlyContinue).Path -like '\Microsoft\Edge')
     }
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Edge Uninstaller: Deleting EdgeWebView'); [Console]::ResetColor(); [Console]::WriteLine()
@@ -95,6 +95,8 @@ if ($InstalledSoftware -match 'Microsoft Edge') {
     $ProgramFilesFolder = [IO.Path]::Combine(${env:ProgramFiles(x86)}, 'Microsoft')
     if (Test-Path $ProgramFilesFolder) {
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Deleting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Edge'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' folder from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ProgramFilesFolder'"); [Console]::ResetColor(); [Console]::WriteLine()
+        takeown.exe /F $ProgramFilesFolder /R /D Y
+        icacls.exe $ProgramFilesFolder /grant 'Everyone:F' /T
         Remove-Item $ProgramFilesFolder -Recurse -Force
     }
 
