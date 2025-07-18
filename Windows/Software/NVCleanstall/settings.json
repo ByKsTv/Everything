@@ -1,7 +1,7 @@
 {
   "DisableInstallerTelemetry": true,
   "Unattended": true,
-  "UnattendedReboot": false,
+  "UnattendedReboot": true,
   "CleanInstall": false,
   "InstallDCHControlPanel": false,
   "AddHardwareId": false,
@@ -20,7 +20,7 @@
   "SkipUnsignedDriverWarning": false,
   "AddIdId": "",
   "AddIdName": "NVIDIA Graphics Device",
-  "RunBefore": "powershell.exe -NoProfile -ExecutionPolicy Bypass -Command \"Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/nvidiaProfileInspector/Download.ps1')\"",
+  "RunBefore": "",
   "RunAfter": "powershell.exe -NoProfile -ExecutionPolicy Bypass -Command \"Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/nvidiaProfileInspector/Download.ps1')\"",
   "AddIdTemplate": "",
   "MSIPolicy": 2,
