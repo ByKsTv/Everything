@@ -1,65 +1,65 @@
-$DDL = Invoke-RestMethod -Uri 'https://api.github.com/repos/zhongfly/mpv-winbuild/releases/latest' | Select-Object -ExpandProperty 'assets' | Where-Object { $_.name -match 'mpv-x86_64-v3' } | Select-Object -ExpandProperty 'browser_download_url'
-$FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
-$SavePath = [IO.Path]::Combine($env:TEMP, $FileName)
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-(New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
+$MPV_DDL = Invoke-RestMethod -Uri 'https://api.github.com/repos/zhongfly/mpv-winbuild/releases/latest' | Select-Object -ExpandProperty 'assets' | Where-Object { $_.name -match 'mpv-x86_64-v3' } | Select-Object -ExpandProperty 'browser_download_url'
+$MPV_FileName = [IO.Path]::GetFileName(([URI]$MPV_DDL).AbsolutePath)
+$MPV_SavePath = [IO.Path]::Combine($env:TEMP, $MPV_FileName)
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+(New-Object System.Net.WebClient).DownloadFile($MPV_DDL, $MPV_SavePath)
 
-$Destination = [IO.Path]::Combine($env:USERPROFILE, 'mpv')
+$MPV_Destination = [IO.Path]::Combine($env:USERPROFILE, 'mpv')
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/7-Zip/Download.ps1')
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Destination'"); [Console]::ResetColor(); [Console]::WriteLine()
-& 7z.exe x $SavePath -o"$Destination" -y
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Destination'"); [Console]::ResetColor(); [Console]::WriteLine()
+& 7z.exe x $MPV_SavePath -o"$MPV_Destination" -y
 
-$Installer = [IO.Path]::Combine($Destination, 'installer', 'mpv-install.bat')
+$Installer = [IO.Path]::Combine($MPV_Destination, 'installer', 'mpv-install.bat')
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Installer'"); [Console]::ResetColor(); [Console]::WriteLine()
 Start-Process cmd.exe -ArgumentList "/C start /MIN $Installer /u ^&exit"
 
 $DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/settings.xml'
 $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
-$SavePath = [IO.Path]::Combine($Destination, $FileName)
+$SavePath = [IO.Path]::Combine($MPV_Destination, $FileName)
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' settings '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
 (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
 
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/Updater.ps1')
 
 $OLD_PATH = [Environment]::GetEnvironmentVariable('Path', [EnvironmentVariableTarget]::User)
-if (-not ($OLD_PATH.Contains($Destination))) {
-    $NEW_PATH = "$OLD_PATH;$Destination"
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Destination'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'PATH'"); [Console]::ResetColor(); [Console]::WriteLine()
+if (-not ($OLD_PATH.Contains($MPV_Destination))) {
+    $NEW_PATH = "$OLD_PATH;$MPV_Destination"
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Destination'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'PATH'"); [Console]::ResetColor(); [Console]::WriteLine()
     [Environment]::SetEnvironmentVariable('Path', $NEW_PATH, [EnvironmentVariableTarget]::User)
     $env:Path = [Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [Environment]::GetEnvironmentVariable('Path', 'User')
 }
 
 $DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/input.conf'
 $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
-$SavePath = [IO.Path]::Combine($Destination, $FileName)
+$SavePath = [IO.Path]::Combine($MPV_Destination, $FileName)
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' settings '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
 (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
 
 $DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/mpv.conf'
 $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
-$SavePath = [IO.Path]::Combine($Destination, $FileName)
+$SavePath = [IO.Path]::Combine($MPV_Destination, $FileName)
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' settings '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
 (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
 
 $DDL = Invoke-RestMethod -Uri 'https://api.github.com/repos/igv/FSRCNN-TensorFlow/releases/latest' | Select-Object -ExpandProperty 'assets' | Where-Object { $_.name -match 'FSRCNNX_x2_16' } | Select-Object -ExpandProperty 'browser_download_url'
 $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
-$SavePath = [IO.Path]::Combine($Destination, $FileName)
+$SavePath = [IO.Path]::Combine($MPV_Destination, $FileName)
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
 (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
 
 $DDL = Invoke-RestMethod -Uri 'https://api.github.com/repos/igv/FSRCNN-TensorFlow/releases/latest' | Select-Object -ExpandProperty 'assets' | Where-Object { $_.name -match 'FSRCNNX_x2_8' } | Select-Object -ExpandProperty 'browser_download_url'
 $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
-$SavePath = [IO.Path]::Combine($Destination, $FileName)
+$SavePath = [IO.Path]::Combine($MPV_Destination, $FileName)
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
 (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
 
 $DDL = 'https://gist.githubusercontent.com/igv/a015fc885d5c22e6891820ad89555637/raw/'
 $FileName = 'KrigBilateral.glsl'
-$SavePath = [IO.Path]::Combine($Destination, $FileName)
+$SavePath = [IO.Path]::Combine($MPV_Destination, $FileName)
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
 (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
 
-$ScriptsPath = [IO.Path]::Combine($Destination, 'scripts')
+$ScriptsPath = [IO.Path]::Combine($MPV_Destination, 'scripts')
 if (-not (Test-Path -Path $ScriptsPath)) {
     New-Item $ScriptsPath -ItemType Directory -Force
 }
@@ -88,7 +88,7 @@ if ((Get-Package).Name -match 'Mozilla Firefox') {
     (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
 }
 
-$ScriptOptsPath = [IO.Path]::Combine($Destination, 'script-opts')
+$ScriptOptsPath = [IO.Path]::Combine($MPV_Destination, 'script-opts')
 if (-not (Test-Path -Path $ScriptOptsPath)) {
     New-Item $ScriptOptsPath -ItemType Directory -Force
 }
