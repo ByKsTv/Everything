@@ -34,6 +34,6 @@ if ($USB_Unattend_Drive) {
     if (-not (Test-Path $USB_Driver_SavePath_Drive)) {
         New-Item $USB_Driver_SavePath_Drive -ItemType Directory
     }
-    Copy-Item -Path $USB_Driver_Dir_SavePath -Recurse -Destination $USB_Driver_SavePath_Drive
+    Copy-Item -Path $Dir_SavePath -Recurse -Destination $USB_Driver_SavePath_Drive
     Invoke-Item $USB_Driver_SavePath_Drive
 }
