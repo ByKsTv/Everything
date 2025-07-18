@@ -37,16 +37,12 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 1. `START` > Uncheck every box > `OK` > `OK` > When finished close the program.
 1. A folder called `Drivers` has been opened, download and extract all of your motherboard drivers to this folder.
-   > LAN, WiFi, Serial IO, Chipset, Thunderbolt, Audio, TouchPad, NumberPad, Bluetooth, Rapid Storage Technology, BIOS
-   >
-   > Find Motherboard - PowerShell (Admin):
-   >
-   > ```powershell
-   > (wmic baseboard get product)
-   >
-   > ```
-   >
-   > [Update BIOS](https://github.com/ByKsTv/Everything/tree/main/BIOS).
+1. To find which motherboard is installed - PowerShell (Admin):
+
+   ```powershell
+   ($Motherboard = Get-CimInstance -ClassName 'Win32_BaseBoard' | Select-Object -ExpandProperty 'Product') | Set-Clipboard; $Motherboard
+
+   ```
 
 ## Pre Installation
 
