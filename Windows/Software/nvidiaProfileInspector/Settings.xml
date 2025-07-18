@@ -47,21 +47,9 @@
                 <ValueType>Dword</ValueType>
             </ProfileSetting>
             <ProfileSetting>
-                <SettingNameInfo />
-                <SettingID>12991097</SettingID>
-                <SettingValue>1</SettingValue>
-                <ValueType>Dword</ValueType>
-            </ProfileSetting>
-            <ProfileSetting>
                 <SettingNameInfo>Texture filtering - Quality</SettingNameInfo>
                 <SettingID>13510289</SettingID>
                 <SettingValue>20</SettingValue>
-                <ValueType>Dword</ValueType>
-            </ProfileSetting>
-            <ProfileSetting>
-                <SettingNameInfo />
-                <SettingID>14366808</SettingID>
-                <SettingValue>32</SettingValue>
                 <ValueType>Dword</ValueType>
             </ProfileSetting>
             <ProfileSetting>
@@ -110,18 +98,6 @@
                 <SettingNameInfo />
                 <SettingID>537586684</SettingID>
                 <SettingValue>3</SettingValue>
-                <ValueType>Dword</ValueType>
-            </ProfileSetting>
-            <ProfileSetting>
-                <SettingNameInfo />
-                <SettingID>540508738</SettingID>
-                <SettingValue>128</SettingValue>
-                <ValueType>Dword</ValueType>
-            </ProfileSetting>
-            <ProfileSetting>
-                <SettingNameInfo />
-                <SettingID>543266006</SettingID>
-                <SettingValue>128</SettingValue>
                 <ValueType>Dword</ValueType>
             </ProfileSetting>
             <ProfileSetting>
