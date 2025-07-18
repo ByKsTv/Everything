@@ -18,7 +18,7 @@ else {
 $LatestVersion = (Invoke-RestMethod -Uri 'https://github.com/python/cpython/releases.atom').title -replace '^v' -notmatch '[a-z]' | Sort-Object { [version] $_ } -Descending | Select-Object -First 1
 
 if (($null -eq $InstalledVersion) -or ($InstalledVersion -notmatch $LatestVersion)) {
-    $DDL = "https://www.python.org/ftp/python/${Python_LatestVersion}/python-${Python_LatestVersion}-amd64.exe"
+    $DDL = "https://www.python.org/ftp/python/${LatestVersion}/python-${LatestVersion}-amd64.exe"
     $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
     $SavePath = [IO.Path]::Combine($env:TEMP, $FileName)
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Python'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
