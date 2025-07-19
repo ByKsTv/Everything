@@ -48,6 +48,8 @@
 | Advanced | Onboard Devices Configuration > Wi-Fi Controller                             | Disabled          |             |
 | Advanced | Onboard Devices Configuration > Bluetooth Controller                         | Disabled          |             |
 | Advanced | Onboard Devices Configuration > LED lighting When system is in working state | Stealth Mode      |             |
+| Boot     | Secure Boot > OS Type                                                        | Windows UEFI mode |             |
+| Boot     | Secure Boot > Secure Boot Mode                                               | Standard          |             |
 | Boot     | Boot Configuration > Fast Boot                                               | Disabled          |             |
 | Boot     | Boot Configuration > Boot Logo Display                                       | Disabled          |             |
 | Boot     | Boot Configuration > POST Report                                             | 1 sec             |             |
