@@ -133,9 +133,7 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Please open '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' and select '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Use a network license'"); [Console]::ResetColor(); [Console]::WriteLine()
 
-    $Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{
-        TopMost = $true
-    }
+    $Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{ TopMost = $true }
     $Popup_Text = "Run AutoDesk Revit and Select 'Use a network license'"
     [Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK') | Out-Null
 }

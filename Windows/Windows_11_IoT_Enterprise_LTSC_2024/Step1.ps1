@@ -11,9 +11,7 @@ Register-ScheduledTask -TaskName $NextStep_TaskName -Action $NextStep_TaskAction
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Key.ps1')
 
 Add-Type -AssemblyName System.Windows.Forms
-$Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{
-    TopMost = $true
-}
+$Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{ TopMost = $true }
 $Popup_Text = "Pin 'File Explorer' to taskbar"
 [Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK') | Out-Null
 
@@ -22,9 +20,7 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 Start-Process -FilePath 'ms-settings:windowsupdate'
 UsoClient.exe StartInteractiveScan
 
-$Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{
-    TopMost = $true
-}
+$Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{ TopMost = $true }
 $Popup_Text = "Wait for Windows Updates.
 1. Click on 'Advanced options'
 2. Click on 'Optional updates'
@@ -32,8 +28,6 @@ $Popup_Text = "Wait for Windows Updates.
 4. Click on 'Download & install'"
 [Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK') | Out-Null
 
-$Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{
-    TopMost = $true
-}
+$Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{ TopMost = $true }
 $Popup_Text = 'Please restart PC after installing all Windows Updates'
 [Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK') | Out-Null
