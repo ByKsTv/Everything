@@ -417,6 +417,10 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Poli
 # MappedDrivesAppElevatedAccess -Enable
 Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' -Name 'EnableLinkedConnections' -Type DWORD -Value 1
 
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Hello for Business: Use Windows Hello for Business: Disabled.
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\PassportForWork' -Name 'DisablePostLogonProvisioning' -Type DWORD -Value 0
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\PassportForWork' -Name 'Enabled' -Type DWORD -Value 0
+
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Acrobat/Group_Policy.ps1')
 
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Google_Chrome/Group_Policy.ps1')
