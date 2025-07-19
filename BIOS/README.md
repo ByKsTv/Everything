@@ -40,29 +40,18 @@
 
 ### Asus
 
-| Menu     | Setting                                                                              | Value        | Notes                 |
-| -------- | ------------------------------------------------------------------------------------ | ------------ | --------------------- |
-| Advanced | Platform Misc Configuration > PCI Express Native Power Management                    | Enabled      | Wake-on-Lan (default) |
-| Advanced | Platform Misc Configuration > ASPM                                                   | Disabled     |                       |
-| Advanced | CPU Configuration > Intel (VMX) Virtualization Technology                            | Disabled     |                       |
-| Advanced | System Agent (SA) Configuration > VT-d                                               | Disabled     |                       |
-| Advanced | System Agent (SA) Configuration > PCI Express Configuration > M.2_2 Link Speed       | Gen4         |                       |
-| Advanced | System Agent (SA) Configuration > PCI Express Configuration > PCIEX16(G5)            | Gen5         |                       |
-| Advanced | System Agent (SA) Configuration > PCI Express Configuration > M.2_1 Link Speed       | Gen5         |                       |
-| Advanced | System Agent (SA) Configuration > PCI Express Configuration > PCIEX1(G3) Link Speed  | Gen3         |                       |
-| Advanced | System Agent (SA) Configuration > PCI Express Configuration > PCIEX16(G3) Link Speed | Gen3         |                       |
-| Advanced | System Agent (SA) Configuration > PCI Express Configuration > M.2_3 Link Speed       | Gen4         |                       |
-| Advanced | System Agent (SA) Configuration > PCI Express Configuration > PCIEX16(G4) Link Speed | Gen4         |                       |
-| Advanced | ThunderBolt(TM) Configuration > PCIE Tunneling over USB4                             | Disabled     |                       |
-| Advanced | APM Configuration > Power On By PCI-E                                                | Enabled      | Wake-on-Lan           |
-| Advanced | Onboard Devices Configuration > Wi-Fi Controller                                     | Disabled     |                       |
-| Advanced | Onboard Devices Configuration > Bluetooth Controller                                 | Disabled     |                       |
-| Advanced | Onboard Devices Configuration > LED lighting When system is in working state         | Stealth Mode |                       |
-| Advanced | Onboard Devices Configuration > ASM1061 Configuration > ASMedia Storage Controller   | Disabled     |                       |
-| Boot     | Boot Configuration > Fast Boot                                                       | Disabled     |                       |
-| Boot     | Boot Configuration > Boot Logo Display                                               | Disabled     |                       |
-| Boot     | Boot Configuration > POST Report                                                     | 1 sec        |                       |
-| Tool     | ASUS Armoury Crate > Download & Install ARMOURY CRATE app                            | Disabled     |                       |
+| Menu     | Setting                                                                      | Value             | Notes       |
+| -------- | ---------------------------------------------------------------------------- | ----------------- | ----------- |
+| Advanced | Platform Misc Configuration > PCI Express Native Power Management            | Enabled (default) | Wake-on-Lan |
+| Advanced | Platform Misc Configuration > ASPM                                           | Disabled          |             |
+| Advanced | APM Configuration > Power On By PCI-E                                        | Enabled           | Wake-on-Lan |
+| Advanced | Onboard Devices Configuration > Wi-Fi Controller                             | Disabled          |             |
+| Advanced | Onboard Devices Configuration > Bluetooth Controller                         | Disabled          |             |
+| Advanced | Onboard Devices Configuration > LED lighting When system is in working state | Stealth Mode      |             |
+| Boot     | Boot Configuration > Fast Boot                                               | Disabled          |             |
+| Boot     | Boot Configuration > Boot Logo Display                                       | Disabled          |             |
+| Boot     | Boot Configuration > POST Report                                             | 1 sec             |             |
+| Tool     | ASUS Armoury Crate > Download & Install ARMOURY CRATE app                    | Disabled          |             |
 
 1. Press `F10` to `Save Changes`.
 
