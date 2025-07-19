@@ -95,7 +95,6 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. `Sounds`: `Playback`: Select Device: Set default.
 1. `Sounds`: `Playback`: Select Device: `Configure Speakers`: `5.1 Surround (Side)`.
 1. `Sounds`: `Playback`: Select Device: `Properties`: `Advanced`: Default Format: `24 bit, 192000 Hz (Studio Quality)`.
-1. `Sounds`: `Playback`: Select Device: `Properties`: `Enhancements`: Disable all.
 
 ### Printers
 
