@@ -81,7 +81,13 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 ### NVIDIA Control Panel
 
-1. `3D Settings` > `Manage 3D settings` > `Power managment mode` > `Perfer maximum performance`.
+1. PowerShell (Admin):
+
+   ```powershell
+   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/nvidiaProfileInspector/Download.ps1')
+
+   ```
+
 1. `Display` > `Change resolution` > `Output color format` > `YCbCr444` (TV) / `RGB` (Gaming) > `Output dynamic range` > `Limited` (TV) / `Full` (Gaming) > `Output color depth` > `12bpc`.
 
 ### Sounds
