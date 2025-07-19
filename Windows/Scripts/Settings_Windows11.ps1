@@ -94,3 +94,6 @@ New-ItemProperty -Path 'HKCU:\Software\Microsoft\Lighting' -Name 'Brightness' -V
 Get-ChildItem 'HKCU:\Software\Microsoft\Lighting\Devices' | ForEach-Object {
 	New-ItemProperty -Path $_.PSPath -Name 'Brightness' -Value 0 -PropertyType DWord -Force
 }
+
+# Settings > Apps > Resume > Off
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\CrossDeviceResume\Configuration' -Name 'IsResumeAllowed' -Value 0 -PropertyType DWord -Force
