@@ -421,6 +421,36 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Poli
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\PassportForWork' -Name 'DisablePostLogonProvisioning' -Type DWORD -Value 0
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\PassportForWork' -Name 'Enabled' -Type DWORD -Value 0
 
+# O&O ShutUp10++: Current User: Microsoft Edge (new version based on Chromium): Disable the Microsoft Account Sign-In Button: On
+Set-Policy -Scope User -Path 'Software\Policies\Microsoft\Edge' -Name 'BrowserSignin' -Type DWORD -Value 0
+
+# O&O ShutUp10++: Current User: Microsoft Edge (new version based on Chromium): Disable Enhanced Spell Checking: On
+Set-Policy -Scope User -Path 'Software\Policies\Microsoft\Edge' -Name 'MicrosoftEditorProofingEnabled' -Type DWORD -Value 0
+
+# O&O ShutUp10++: Local Machine: Microsoft Edge (new version based on Chromium): Disable the Microsoft Account Sign-In Button: On
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'BrowserSignin' -Type DWORD -Value 0
+
+# O&O ShutUp10++: Local Machine: Microsoft Edge (new version based on Chromium): Disable Enhanced Spell Checking: On
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'MicrosoftEditorProofingEnabled' -Type DWORD -Value 0
+
+# O&O ShutUp10++: Local Machine: Microsoft Edge (new version based on Chromium): Disable automatic redirection from Internet Explorer to Microsoft Edge: On
+Set-Policy -Scope Computer -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\Ext\CLSID' -Name '{1FD49718-1D00-4B19-AF5F-070AF6D5D54C}' -Type DWORD -Value 0
+
+# O&O ShutUp10++: Local Machine: Windows AI: Disable the provision of recall functionality to all users: On
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsAI' -Name 'AllowRecallEnablement' -Type DWORD -Value 0
+
+# O&O ShutUp10++: Local Machine: Windows AI: Disable the Image Creator in Microsoft Paint: On
+Set-Policy -Scope Computer -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\Paint' -Name 'DisableImageCreator' -Type DWORD -Value 1
+
+# O&O ShutUp10++: Local Machine: Windows AI: Disable Cocreator in Microsoft Paint: On
+Set-Policy -Scope Computer -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\Paint' -Name 'DisableCocreator' -Type DWORD -Value 1
+
+# O&O ShutUp10++: Local Machine: Windows AI: Disable AI-powered image fill in Microsoft Paint: On
+Set-Policy -Scope Computer -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\Paint' -Name 'DisableGenerativeFill' -Type DWORD -Value 1
+
+# O&O ShutUp10++: Local Machine: Taskbar: Disable news and interests in the task bar: On
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Dsh' -Name 'AllowNewsAndInterests' -Type DWORD -Value 0
+
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Acrobat/Group_Policy.ps1')
 
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Google_Chrome/Group_Policy.ps1')
