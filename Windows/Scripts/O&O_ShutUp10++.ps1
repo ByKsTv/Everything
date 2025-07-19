@@ -554,8 +554,9 @@ if (-not (Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\PCHC')) {
 }
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\PCHC' -Name 'PreviousUninstall' -Value 1 -PropertyType DWord -Force
 
-# O&O ShutUp10++: Local Machine: Miscellaneous: Disable Network Connectivity Status indicator: On
-New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\NlaSvc\Parameters\Internet' -Name 'EnableActiveProbing' -Value 0 -PropertyType DWord -Force
+# O&O ShutUp10++: Local Machine: Miscellaneous: Disable Network Connectivity Status indicator: Off
+# Maybe this will fix the windows update issue
+New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\NlaSvc\Parameters\Internet' -Name 'EnableActiveProbing' -Value 1 -PropertyType DWord -Force
 
 # O&O ShutUp10++: Local Machine: Windows Update: Disable automatic Windows Updates: Off
 New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\wuauserv' -Name 'Start' -Value 3 -PropertyType DWord -Force
