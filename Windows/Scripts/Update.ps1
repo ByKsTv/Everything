@@ -88,9 +88,9 @@ for ($i = 0; $i -lt $updatesToInstall.Count; $i++) {
 
 if ($installResult.RebootRequired) {
     Write-Host "`nA reboot is required to complete installation."
-    Write-Host 'Rebooting in 60 seconds... (Close this window to abort)'
+    # Write-Host 'Rebooting in 60 seconds... (Close this window to abort)'
     Start-Sleep 60
-    Restart-Computer -Force
+    # Restart-Computer -Force
 }
 else {
     Write-Host "`nNo reboot required."
