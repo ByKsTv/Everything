@@ -451,6 +451,9 @@ Set-Policy -Scope Computer -Path 'Software\Microsoft\Windows\CurrentVersion\Poli
 # O&O ShutUp10++: Local Machine: Taskbar: Disable news and interests in the task bar: On
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Dsh' -Name 'AllowNewsAndInterests' -Type DWORD -Value 0
 
+# Group Policy: Computer Configuration: Administrative Templates: System: Group Policy: Continue experiences on this device: Disabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\System' -Name 'EnableCdp' -Type DWORD -Value 0
+
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Acrobat/Group_Policy.ps1')
 
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Google_Chrome/Group_Policy.ps1')
