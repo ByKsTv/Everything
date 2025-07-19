@@ -94,3 +94,5 @@ if ($installResult.RebootRequired) {
 else {
     Write-Host "`nNo reboot required."
 }
+
+Start-Sleep 10
