@@ -65,6 +65,7 @@ for ($i = 0; $i -lt $updatesToDownload.Count; $i++) {
 
 if ($updatesToInstall.Count -eq 0) {
     Write-Warning 'No updates downloaded successfully. Exiting.'
+    Start-Sleep 10
     return
 }
 
