@@ -458,6 +458,9 @@ Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\System' -N
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\SettingSync' -Name 'DisableSettingSyncUserOverride' -Type DWORD -Value 1
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\SettingSync' -Name 'DisableSettingSync' -Type DWORD -Value 2
 
+# Group Policy: Computer Configuration > Administrative Templates > Windows Components > Sync your settings > Enable Windows Backup: Disabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\SettingSync' -Name 'EnableWindowsBackup' -Type DWORD -Value 0
+
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Acrobat/Group_Policy.ps1')
 
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Google_Chrome/Group_Policy.ps1')
