@@ -97,3 +97,6 @@ Get-ChildItem 'HKCU:\Software\Microsoft\Lighting\Devices' | ForEach-Object {
 
 # Settings > Apps > Resume > Off
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\CrossDeviceResume\Configuration' -Name 'IsResumeAllowed' -Value 0 -PropertyType DWord -Force
+
+# Settings > Accessibility > Narrator > Get image descriptions, page titles, and popular links > Off
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Narrator\NoRoam' -Name 'OnlineServicesEnabled' -Value 0 -PropertyType DWord -Force
