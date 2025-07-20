@@ -42,7 +42,7 @@
 
 | Menu     | Setting                                                                      | Value             | Notes       |
 | -------- | ---------------------------------------------------------------------------- | ----------------- | ----------- |
-| Advanced | Platform Misc Configuration > PCI Express Native Power Management            | Enabled (default) | Wake-on-Lan |
+| Advanced | Platform Misc Configuration > PCI Express Native Power Management            | Disabled          |             |
 | Advanced | Platform Misc Configuration > ASPM                                           | Disabled          |             |
 | Advanced | APM Configuration > Power On By PCI-E                                        | Enabled           | Wake-on-Lan |
 | Advanced | Onboard Devices Configuration > Wi-Fi Controller                             | Disabled          |             |
