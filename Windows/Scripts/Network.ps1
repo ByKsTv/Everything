@@ -1250,7 +1250,7 @@ $SettingsToChange = @(
 	Note:
 	Shorter times mean quicker power saving.
 #>
-	@{ DisplayName = 'Selective Suspend Idle Timeout'; DisplayValues = @('5') },
+	@{ DisplayName = 'Selective Suspend Idle Timeout'; DisplayValues = @('60') },
 
 	<#
 	Setting:
@@ -1605,55 +1605,54 @@ else {
 }
 
 Add-Type -AssemblyName System.Windows.Forms
-$WakeOnLanAnswer = [Windows.Forms.MessageBox]::Show((New-Object Windows.Forms.Form -Property @{ TopMost = $true }), 'Enable Wake-On-Lan?', 'Wake-On-Lan', 4, 32)
-$PnPValue = if ($WakeOnLanAnswer -eq 'Yes') {
- 256 
+$WakeOnLan_Popup = [Windows.Forms.MessageBox]::Show(
+	(New-Object Windows.Forms.Form -Property @{ TopMost = $true }),
+	'Enable Wake-On-LAN?',
+	'Wake-On-LAN',
+	[Windows.Forms.MessageBoxButtons]::YesNo,
+	[Windows.Forms.MessageBoxIcon]::Question
+)
+if ($WakeOnLan_Popup -eq [Windows.Forms.DialogResult]::Yes) {
+	$PnPValue = 256
+	$pmStatus = 'Enabled'
 }
 else {
- 24 
-}
-$WakeOnLanStatus = if ($WakeOnLanAnswer -eq 'Yes') {
- 'Enabled' 
-}
-else {
- 'Disabled' 
+	$PnPValue = 24
+	$pmStatus = 'Disabled'
 }
 
-$NetworkAdapters | ForEach-Object {
-	Set-NetAdapterPowerManagement -Name $_.Name -WakeOnPattern $WakeOnLanStatus -Confirm:$false
-	Set-NetAdapterPowerManagement -Name $_.Name -WakeOnMagicPacket $WakeOnLanStatus -Confirm:$false
-	Set-NetAdapterPowerManagement -Name $_.Name -DeviceSleepOnDisconnect $WakeOnLanStatus -Confirm:$false
+$NetworkAdapters = Get-NetAdapter -Physical -ErrorAction SilentlyContinue
+$pmAdapters = $NetworkAdapters | Get-NetAdapterPowerManagement -ErrorAction SilentlyContinue
+foreach ($pm in $pmAdapters) {
+	Set-NetAdapterPowerManagement -InputObject $pm -WakeOnPattern $pmStatus -WakeOnMagicPacket $pmStatus -DeviceSleepOnDisconnect Disabled -SelectiveSuspend Disabled -Confirm:$false
 }
 
-$KeyPath = 'HKLM:\SYSTEM\CurrentControlSet\Control\Class\{4D36E972-E325-11CE-BFC1-08002bE10318}\'
-$NetworkAdapters | ForEach-Object {
-	$Adapter = $_
-	foreach ($Entry in (Get-ChildItem $KeyPath -ErrorAction SilentlyContinue).Name) {
-		if ((Get-ItemProperty REGISTRY::$Entry).DriverDesc -eq $Adapter.InterfaceDescription) {
-			$Value = (Get-ItemProperty REGISTRY::$Entry).PnPCapabilities
-			if ($Value -ne $PnPValue) {
-				Set-ItemProperty -Path REGISTRY::$Entry -Name PnPCapabilities -Value $PnPValue -Force
-				Disable-PnpDevice -InstanceId $Adapter.PnPDeviceID -Confirm:$false
-				Enable-PnpDevice -InstanceId $Adapter.PnPDeviceID -Confirm:$false
-				$Value = (Get-ItemProperty REGISTRY::$Entry).PnPCapabilities
+$KeyRoot = 'HKLM:\SYSTEM\CurrentControlSet\Control\Class\{4D36E972-E325-11CE-BFC1-08002bE10318}'
+foreach ($nic in $NetworkAdapters) {
+	$ifGuid = $nic.InterfaceGuid.ToString()
+	Get-ChildItem -Path $KeyRoot -ErrorAction SilentlyContinue | ForEach-Object {
+		$subKeyPath = $_.PSPath
+		$props = Get-ItemProperty -Path $subKeyPath -Name NetCfgInstanceID, PnPCapabilities -ErrorAction SilentlyContinue
+		if ($props.NetCfgInstanceID -and $props.NetCfgInstanceID -eq $ifGuid) {
+			if ($props.PnPCapabilities -ne $PnPValue) {
+				Set-ItemProperty -Path $subKeyPath -Name PnPCapabilities -Value $PnPValue -Force
+				Disable-PnpDevice -InstanceId $nic.PnPDeviceID -Confirm:$false
+				Enable-PnpDevice -InstanceId $nic.PnPDeviceID -Confirm:$false
 			}
-			Write-Host "Wake-On-LAN: $WakeOnLanStatus for adapter $($Adapter.Name)" -ForegroundColor Green
 		}
 	}
 }
 
 $WakeOnLanProperties = @(
 	'Enable PME',
-	'Shutdown Wake Up',
-	'Wake on magic packet'
+	'Shutdown Wake Up'
 )
-
 foreach ($Adapter in $NetworkAdapters) {
 	$AdvancedProperties = Get-NetAdapterAdvancedProperty -Name $Adapter.Name -ErrorAction SilentlyContinue
 	if ($AdvancedProperties) {
 		foreach ($PropertyName in $WakeOnLanProperties) {
 			if ($AdvancedProperties | Where-Object { $_.DisplayName -eq $PropertyName }) {
-				Set-NetAdapterAdvancedProperty -Name $Adapter.Name -DisplayName $PropertyName -DisplayValue $WakeOnLanStatus
+				Set-NetAdapterAdvancedProperty -Name $Adapter.Name -DisplayName $PropertyName -DisplayValue $pmStatus
 			}
 		}
 	}
