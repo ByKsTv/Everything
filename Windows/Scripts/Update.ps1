@@ -96,4 +96,5 @@ else {
     Write-Host "`nNo reboot required."
 }
 
+UsoClient.exe StartInteractiveScan
 Start-Sleep 10
