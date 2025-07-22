@@ -201,6 +201,8 @@ www.senetic.co.il##.tabs-headings
 www.xvideos.com##.slogan
 www.ynet.co.il##.articleShareButtons
 www.youtube.com###attached-survey
+www.youtube.com##ytd-rich-grid-media:has(.ytThumbnailOverlayProgressBarHostWatchedProgressBarSegment[style*="width: 100%"])
+www.youtube.com##ytd-rich-item-renderer:has(.ytThumbnailOverlayProgressBarHostWatchedProgressBarSegment[style*="width: 100%"])
 xcamcovid.com##.modal-dialog
 xcamcovid.com##.show.fade.modal
 xcamcovid.com##.show.fade.modal-backdrop
