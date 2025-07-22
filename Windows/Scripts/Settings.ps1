@@ -1230,6 +1230,9 @@ New-ItemProperty -Path 'HKCU:\Software\Microsoft\Narrator\NoRoam' -Name 'SpeechV
 # Settings: Accessibility: Narrator: Enable Narrator extenstions: Off
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Narrator\NoRoam' -Name 'ScriptingEnabled' -Value 0 -PropertyType DWord -Force
 
+# Microsoft Store: Settings: App Updates: On
+New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\WindowsStore\WindowsUpdate' -Name 'AutoDownload' -Value 4 -PropertyType DWord -Force
+
 <#
 	Setting:
 	GPU Priority
