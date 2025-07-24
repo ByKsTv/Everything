@@ -17,4 +17,6 @@ Get-ChildItem -Path $ExtractPath -Recurse -Include '*.appx', '*.appxbundle' | Fo
     Add-AppxPackage $_.FullName -ErrorAction SilentlyContinue
 }
 
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Store/Download.ps1')
+if (-not (Get-AppxPackage -Name 'Microsoft.WindowsStore')) {
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Store/Download.ps1')
+}
