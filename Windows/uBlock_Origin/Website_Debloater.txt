@@ -28,6 +28,7 @@ gofile.download###protection
 gofile.download##.popup-box-ads
 hentaicovid.org###protection
 hentaicovid.org##.popup-box-ads
+il.shein.com##.new-cart-recommend-list.not-fsp-element.container-fluid-1200.cart-recommend-list.j-recommend-list
 javfinder.ai##.br-bottom-10.site-footer
 javfinder.ai##.site-info
 kin8-jav.com###protection
@@ -202,7 +203,7 @@ www.xvideos.com##.slogan
 www.ynet.co.il##.articleShareButtons
 www.youtube.com###attached-survey
 www.youtube.com##ytd-rich-grid-media:has(.ytThumbnailOverlayProgressBarHostWatchedProgressBarSegment[style*="width: 100%"])
-www.youtube.com##ytd-rich-item-renderer:has(.ytThumbnailOverlayProgressBarHostWatchedProgressBarSegment[style*="width: 100%"])
+www.youtube.com##ytd-rich-item-renderer:has(.ytThumbnailOverlayProgressBarHostWatchedProgressBarSegment)
 xcamcovid.com##.modal-dialog
 xcamcovid.com##.show.fade.modal
 xcamcovid.com##.show.fade.modal-backdrop
