@@ -246,6 +246,7 @@ Domains Regex Blacklist:
 Known Issues:
 
 - When using `Pi-Hole` and `Kan11` app - a pop-up will say "No Connection" when first watching live.
+- When using `Pi-Hole` and `Samsung` TV - can't install new apps.
 
 ### LAN - Router - Setup
 
