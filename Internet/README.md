@@ -489,6 +489,15 @@ Source: [𝗟𝗚 𝗢𝗟𝗘𝗗 𝗧𝗩 𝗦𝗲𝘁𝘁𝗶𝗻𝗴𝘀 �
   - Access to channels via their app – monthly fee.
     - Instead - Subscribe directly (same as Netflix).
 
+### Clean
+
+- Do not use paper towel.
+- Plug off power cable.
+- Buy 2 Microfiber towels.
+- Wet one with a bit of distilled water and ring it.
+- Gently wipe the screen.
+- Dry with the dry microfiber towel.
+
 ## Cancel
 
 - Use [Netek](https://www.netek.co.il/)
