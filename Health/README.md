@@ -73,7 +73,7 @@
 
 ## Plastic
 
-- Do not combine hear and plastic.
+- Do not combine heat and plastic.
 - Do not buy water bottles from gas stations where the plastic battle stood for unknown amount of time in the sun.
 
 ## Bloodtest
