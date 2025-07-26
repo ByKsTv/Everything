@@ -71,11 +71,14 @@ Everything about Scripts.
 
    ```
 
-## YT-DLP: Download Video as Audio Only (Requires YT-DLP in Path)
+## YT-DLP: Download Audio Only (Requires YT-DLP in Path)
 
-```bash
-yt-dlp --extract-audio --audio-quality=0 -o input URL
-```
+1. PowerShell (Admin):
+
+   ```powershell
+   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Audio_Downloader.ps1')
+
+   ```
 
 ## FFmpeg: Cut audio from mm:ss to mm:ss (Requires FFmpeg in Path)
 
