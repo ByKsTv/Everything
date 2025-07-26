@@ -15,6 +15,7 @@
 - [Bloodtest](#bloodtest)
 - [Fiber Optic](#fiber-optic)
 - [Bed](#bed)
+- [Microwave](#microwave)
 
 ## Arriving
 
@@ -88,3 +89,7 @@
 ## Bed
 
 - Use 100% cotton sheets.
+
+## Microwave
+
+- PP5 is typically microwave safe if the container is specifically labeled as such. But for ultimate peace of mind and health, glass or ceramic remains the gold standard for reheating your meals.
