@@ -471,8 +471,8 @@ Source: [𝗟𝗚 𝗢𝗟𝗘𝗗 𝗧𝗩 𝗦𝗲𝘁𝘁𝗶𝗻𝗴𝘀 �
 
 - Most TVs have a network (RJ45) port limited to 100Mbps. To get faster speeds, you can use a USB-to-Ethernet adapter:
 
-  - If your TV has a USB 3.0 port - Buy a USB 3.0 to RJ45 adapter.
-  - If your TV has a USB 2.0 port - Buy a USB 2.0 to RJ45 adapter.
+  - Buy a USB 3.0 to RJ45 adapter (1000Mbps).
+  - Do not buy a USB 2.0 to RJ45 adapter (100Mbps).
   - Disable USB Debugging if enabled to make the adapter work.
 
 - Most TVs are not Android-based (LG / Samsung / older TVs). To get Android apps, you can use a Android streaming device:
