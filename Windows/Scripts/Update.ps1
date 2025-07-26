@@ -8,46 +8,46 @@ if (-not (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue)) 
     Register-ScheduledTask -TaskName $TaskName -Action $TaskAction -Trigger $TaskTrigger -Principal $TaskPrincipal -Settings $TaskSettings -Force
 }
 
-Write-Host 'Searching for updates (software only)...'
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Searching for '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Windows Updates'"); [Console]::ResetColor(); [Console]::WriteLine()
 $session = New-Object -ComObject Microsoft.Update.Session
 $searcher = $session.CreateUpdateSearcher()
-
-# Criteria: Adjust to include drivers: IsInstalled=0 and IsHidden=0
-$criteria = "IsInstalled=0 and Type='Software' and IsHidden=0"
+$criteria = 'IsInstalled=0 and IsHidden=0'
 $searchResult = $searcher.Search($criteria)
 
 if ($searchResult.Updates.Count -eq 0) {
-    Write-Host 'No updates available.'
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('No updates found for '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Windows Updates'"); [Console]::ResetColor(); [Console]::WriteLine()
     return
 }
 
-Write-Host "Found $($searchResult.Updates.Count) updates:"
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Found '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$($searchResult.Updates.Count)'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' updates: '); [Console]::ResetColor(); [Console]::WriteLine()
 for ($i = 0; $i -lt $searchResult.Updates.Count; $i++) {
     $u = $searchResult.Updates.Item($i)
-    Write-Host ('[{0}] {1}' -f $i, $u.Title)
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('[{0}] ' -f $i); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'{0}'" -f $u.Title); [Console]::ResetColor(); [Console]::WriteLine()
 }
 
-# Prepare download collection
 $updatesToDownload = New-Object -ComObject Microsoft.Update.UpdateColl
 for ($i = 0; $i -lt $searchResult.Updates.Count; $i++) {
     $updatesToDownload.Add($searchResult.Updates.Item($i)) | Out-Null
 }
 
-Write-Host "`nDownloading..."
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Windows Updates'"); [Console]::ResetColor(); [Console]::WriteLine()
 $downloader = $session.CreateUpdateDownloader()
 $downloader.Updates = $updatesToDownload
 $dlResult = $downloader.Download()
-
 $rcMap = @{
-    0 = 'NotStarted'; 1 = 'InProgress'; 2 = 'Succeeded'; 3 = 'SucceededWithErrors'; 4 = 'Failed'; 5 = 'Aborted'
+    0 = 'NotStarted'
+    1 = 'InProgress'
+    2 = 'Succeeded'
+    3 = 'SucceededWithErrors'
+    4 = 'Failed'
+    5 = 'Aborted'
 }
 
-Write-Host "Download overall: $($rcMap[$dlResult.ResultCode])  (ResultCode=$($dlResult.ResultCode))"
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Download overall: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$($rcMap[$dlResult.ResultCode])'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' - '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'(ResultCode=$($dlResult.ResultCode))'"); [Console]::ResetColor(); [Console]::WriteLine()
 if ($dlResult.HResult -ne 0) {
-    Write-Warning ('Download HResult: 0x{0:X8}' -f $dlResult.HResult)
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Download HResult: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write(('0x{0:X8}' -f $dlResult.HResult)); [Console]::ResetColor(); [Console]::WriteLine()
 }
 
-# Build collection of successfully downloaded
 $updatesToInstall = New-Object -ComObject Microsoft.Update.UpdateColl
 for ($i = 0; $i -lt $updatesToDownload.Count; $i++) {
     $u = $updatesToDownload.Item($i)
@@ -57,44 +57,40 @@ for ($i = 0; $i -lt $updatesToDownload.Count; $i++) {
     else {
         'NOT DOWNLOADED' 
     }
-    Write-Host ('[{0}] {1} --> {2}' -f $i, $u.Title, $status)
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write(('[{0}] ' -f $i)); [Console]::ForegroundColor = 'Yellow'; [Console]::Write(('{0} ' -f $u.Title)); [Console]::ForegroundColor = 'Cyan'; [Console]::Write(('--> {0}' -f $status)); [Console]::ResetColor(); [Console]::WriteLine()
     if ($u.IsDownloaded) {
         $updatesToInstall.Add($u) | Out-Null 
     }
 }
 
 if ($updatesToInstall.Count -eq 0) {
-    Write-Warning 'No updates downloaded successfully. Exiting.'
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Red'; [Console]::Write('No updates downloaded successfully.'); [Console]::ResetColor(); [Console]::WriteLine()
     Start-Sleep 10
     return
 }
 
-Write-Host "`nInstalling $($updatesToInstall.Count) updates..."
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$($updatesToInstall.Count)'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' updates'); [Console]::ResetColor(); [Console]::WriteLine()
 $installer = $session.CreateUpdateInstaller()
 $installer.Updates = $updatesToInstall
 $installResult = $installer.Install()
 
-Write-Host "Install overall: $($rcMap[$installResult.ResultCode]) (ResultCode=$($installResult.ResultCode))"
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Install overall: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$($rcMap[$installResult.ResultCode])'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' - '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'(ResultCode=$($installResult.ResultCode))'"); [Console]::ResetColor(); [Console]::WriteLine()
 if ($installResult.HResult -ne 0) {
-    Write-Warning ('Install HResult: 0x{0:X8}' -f $installResult.HResult)
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Install HResult: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write(('0x{0:X8}' -f $installResult.HResult)); [Console]::ResetColor(); [Console]::WriteLine()
 }
 
-# Per-update result details
 for ($i = 0; $i -lt $updatesToInstall.Count; $i++) {
     $up = $updatesToInstall.Item($i)
     $ir = $installResult.GetUpdateResult($i)
-    Write-Host ('[{0}] {1} --> {2} (HResult=0x{3:X8})' -f $i, $up.Title, $rcMap[$ir.ResultCode], $ir.HResult)
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('[{0}] ' -f $i); [Console]::ForegroundColor = 'Yellow'; [Console]::Write('{0} --> {1} (HResult=0x{2:X8})' -f $up.Title, $rcMap[$ir.ResultCode], $ir.HResult); [Console]::ResetColor(); [Console]::WriteLine()
 }
 
 if ($installResult.RebootRequired) {
-    Write-Host "`nA reboot is required to complete installation."
-    # Write-Host 'Rebooting in 60 seconds... (Close this window to abort)'
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('A reboot is required to complete installation'); [Console]::ResetColor(); [Console]::WriteLine()
     Start-Sleep 60
-    # Restart-Computer -Force
 }
 else {
-    Write-Host "`nNo reboot required."
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('No reboot required'); [Console]::ResetColor(); [Console]::WriteLine()
 }
 
-UsoClient.exe StartInteractiveScan
 Start-Sleep 10
