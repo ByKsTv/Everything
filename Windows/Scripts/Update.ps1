@@ -82,7 +82,8 @@ if ($installResult.HResult -ne 0) {
 for ($i = 0; $i -lt $updatesToInstall.Count; $i++) {
     $up = $updatesToInstall.Item($i)
     $ir = $installResult.GetUpdateResult($i)
-    Write-Host ('[{0}] {1} --> {2} (HResult=0x{3:X8})' -f $i, $up.Title, $rcMap[$ir.ResultCode], $ir.HResult)
+    # Write-Host ('[{0}] {1} --> {2} (HResult=0x{3:X8})' -f $i, $up.Title, $rcMap[$ir.ResultCode], $ir.HResult)
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write(('[{0}] ' -f $i)); [Console]::ForegroundColor = 'Yellow'; [Console]::Write(('{0} ' -f $up.Title)); [Console]::ForegroundColor = 'Cyan'; [Console]::Write(('--> {0} ' -f $rcMap[$ir.ResultCode])); [Console]::ForegroundColor = 'Magenta'; [Console]::Write(('(HResult=0x{0:X8})' -f $ir.HResult)); [Console]::ResetColor(); [Console]::WriteLine()
 }
 
 if ($installResult.RebootRequired) {
