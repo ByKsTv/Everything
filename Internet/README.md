@@ -22,6 +22,7 @@
     - [Setup](#lg-tv---setup)
     - [Notes](#lg-tv---notes)
   - [More - TV](#more)
+  - [Clean](#clean)
 - [Cancel](#cancel)
 
 ## LAN
