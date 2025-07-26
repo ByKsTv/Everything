@@ -11,6 +11,7 @@
 - [Health Insurance](#health-insurance)
 - [Luggage](#luggage)
 - [Terminal](#terminal)
+- [Withdraw](#withdraw)
 
 ## Tickets
 
@@ -101,4 +102,7 @@ Trolly:
 - Arrive to the airport 4 hours before the flight
 
 1. Check in, this is where you get asked some questions, some of them are regarding to whats your final destination, and some are about the suitcase and where you came from and if you left it somewhere, this is also where you leave the suitcases.
-1.
+
+## Withdraw
+
+- While in another country, withdraw using their local currency to avoid exchange rate.
