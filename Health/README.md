@@ -16,6 +16,7 @@
 - [Fiber Optic](#fiber-optic)
 - [Bed](#bed)
 - [Microwave](#microwave)
+- [Clothes](#clothes)
 
 ## Arriving
 
@@ -93,3 +94,7 @@
 ## Microwave
 
 - PP5 is typically microwave safe if the container is specifically labeled as such. But for ultimate peace of mind and health, glass or ceramic remains the gold standard for reheating your meals.
+
+## Clothes
+
+- When first buying clothes use the washing machine.
