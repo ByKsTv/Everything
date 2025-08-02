@@ -5,6 +5,7 @@
 - [Coupons](#coupons)
 - [Products](#products)
 - [Recycle](#recycle)
+- [Air Condition](#air-condition)
 
 ## Amazon
 
@@ -61,3 +62,8 @@ speaker cable dont buy cca, buy ofc oxygen free
 - Products and materials that can not be bought off the user:
   - Monitors
   - TVs
+
+## Air Condition
+
+- Check the noise rating (dB) for the indoor and outdoor units.
+- Check which app the unit connects to and check if it works with Google Home.
