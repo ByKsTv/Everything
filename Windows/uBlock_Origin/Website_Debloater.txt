@@ -167,6 +167,7 @@ www.amazon.com##.copilot-secure-display
 www.amazon.com##.detailPageWidgetBlock
 www.amazon.com##.export-alternative-trigger-content
 www.amazon.com##.gridgetContainer.leftCol
+www.amazon.com##.rufus-accordion-widget-container.nice-widget-container.a-section
 www.amazon.com##.sw-atf-recommendations-container
 www.amazon.com##div#organic-complements-top_feature_div.celwidget
 www.amazon.com##div#similarities_feature_div.celwidget
