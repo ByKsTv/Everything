@@ -51,7 +51,14 @@ $CheckBox_Y_Location = 0
 $CheckBoxWidth = $Form.Width - 40
 $CheckBoxHeight = 26
 $Spacer = 26
-$ToolTip = New-Object System.Windows.Forms.ToolTip
+$ToolTip = New-Object System.Windows.Forms.ToolTip -Property @{
+    AutoPopDelay = 60000
+    InitialDelay = 0
+    ReshowDelay  = 0
+    ShowAlways   = $true
+    UseAnimation = $false
+    UseFading    = $false
+}
 
 # Format: .ico, Size: 16x16, extract .exe using 7-Zip
 $CheckBoxes = @{}
@@ -125,11 +132,6 @@ $List = @(
         Name    = 'Chrome - Extensions'
         Tooltip = ''
         Icon64  = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQI8gIECPIKA/jx/PPo4e/hysqf8HvfrfB7z6kAi7+0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAjyAQQJEgkECQIP9AkSD/QJEg/0CRIP46lzz/C777/wu++/8Kvvv/C737kBC//xAAAAAAAAAAAAAAAABAjyAQQZMiz0KTIv9CkyP/QpMi/0KTIv9BkiL/QpMi/yWsnf8Pv/z+Dr/7/w6++/8OvvvPEL//EAAAAAAAAAAARJYkj0OWI/5EliT+RJUk/0SVJP9DlSP+Q5Uj/kSVJP89mj7/GLrg/xPA/P8SwPv/Er/7/xLA/Y8AAAAARJcoQEWXJv9GmCb/RZcm/0aYJv9dpEH/xd67//738v/x6Nf/0OXI/0u0kf8Wwfv/FsH8/xXA+/8VwPv/GL//IEeZKY9Hmij/SJoo/0iaKP9epkL/8ejX/++TUP/seSj/7Hko//GbXv/y6Nf/Nsn7/xrB+/8Zwfv/GcL8/xrC/J9JnCrfSZ0q/kmcKf9JnCr/0ebJ//GbX//teir/7Xoq/+16Kv/teiv/8JNS/7js/v8ew/z/HsP8/x3D/P8cw/vPS54s/0ueK/9Lniv/QHxi/u/i4v/ufC3/7Xst/+57Lf/ufC3/7nwt/+57Lf/+9/L/IsT8/yLE/P8hxPz/IcT8/02gLf9MoS3+Spk4/y9DyP/97+X/7n0v/+59L//vfTD/7n0w/+59MP/ufS//7+vk/ybF+/8lxfz+JcX7/yXE+/9Poi/PT6Mw/z1tiP8rOOD/vcH1//GOTP/wfjL/734y/+9+Mv/vfjL/855l/8nw/v8qxvz/Ksb8/ynG/P4pxvzfUKUwn0yXR/8vQdf/LTri/0dT5f/w4+T/9J9n//B/Nf/wfzX/85da//Ds5f9Izvz/Lcf7/y7H/P8tx/z+LMb7kFCnMCA9ZKH/Lzzj/y885P4uO+L/SFTn/8vO+P/w4+T//vfy/7/v/v9Nz/3/Msn8/jLJ/f4xyPz/Mcn9/jDH+0AAAAAAMD7mjzA95f8wPeX/MD3l/zA95f8wPOT/MD3k/zA85P8uO+T+Ljvj/y884/8uO+P/Ljvj/y474o8AAAAAAAAAADBA3xAyQObPMj/n/jJA5/8yQOb/MT/m/zE+5v4xP+b/MD3m/jA95f4wPeX+MD3l/i885M8wQN8QAAAAAAAAAAAAAAAAMEDfEDRA6I8zQej/M0Ho/zNA6P4yQOf/MkDn/zJA5/8yQOf/Mj/m/zI+5o8wQN8QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANEDrQDNB6JAzQunfNELp/zRC6v40QejPM0DonzBA5yAAAAAAAAAAAAAAAAAAAAAA8A8AAMADAACAAQAAgAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAEAAIABAADAAwAA8A8AAA=='
-    },
-    @{
-        Name    = 'Codec'
-        Tooltip = ''
-        Icon64  = 'AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAACBSxkQfUkawHpIG/93Rhz/dUUd/3JDHv9vQh//bEAg/2k/If9mPSL/Yzwj/2A6JP9fOiT/XzokwF86JBD///8Ahk4YwIJMGf9/Shr/fUka/3pHG/93Rhz/dEUd/3FDHv9uQh//a0Ag/2g+If9lPSL/Yjsj/186JP9fOiTA////AItQFv+ITxf/hU0Y/3ZFF/9yQhf/b0IY/21AGf9qPxr/Zz0b/2U8G/9iOh3/YDod/2c+If9kPSL/YTsj/////wCQUxT/jVEV/4pQFv95RhX/76QA/++kAP/vpAD/bkEY/wC5//8Auf//ALn//2Q7HP9sQSD/aT8h/2Y+Iv////8AlVUT/5JUFP+PUhT/fkkU/++kAP/vpAD/76QA/3NDFv8Auf//ALn//wC5//9oPhr/cUMe/25CH/9rQCD/////AJpYEf+XVhL/lFUT/4JLEv/vpAD/76QA/++kAP93RRb/ALn//wC5//8Auf//bkAY/3ZGHP9zRB3/cUMe/////wCfWg//nFkQ/5lXEf+HTRD/hUwR/4FLEv9/SRP/fEgU/3lGFf93RRb/dUQW/3JCF/97SBv/eUcc/3ZFHf////8ApF0O/6FcD/+eWhD/jFAO/yJQ8v8iUPL/IlDy/4FLEv8Aun//ALp//wC6f/93RRb/gUsZ/35JGv97SBv/////AKlgDP+mXg3/pF0O/5FSDf8iUPL/IlDy/yJQ8v+GTBH/ALp//wC6f/8Aun//e0cU/4ZOF/+DTBj/gEsZ/////wCvYgr/rGEL/6lfDP+VVAz/IlDy/yJQ8v8iUPL/ik8P/wC6f/8Aun//ALp//4BKE/+LUBb/iE8X/4VNGP////8AtGUJ/7FjCv+uYgv/m1cL/5dVC/+UVAz/kVMN/49RDf+MUA7/iU4P/4dNEP+FTBH/kFMU/41RFf+KUBb/////ALlnB/+2Zgj/s2QJ/7BjCv+tYQv/qmAM/6deDf+kXQ7/oVsP/55aEP+bWBH/mFcS/5VVEv+SVBP/kFMU/////wC8aQagu2gG/7hnB//hqRP/smQJ/69jCv+sYQv/qWAM/6ZeDf+jXA7/oFsP/9WaC/+aWBH/mFcS/5VVE6D///8A////AP///wD///8A+9Mr/////wD///8A////AP///wD///8A////AP///wDxwyD/////AP///wD///8A////AP///wD///8A////APPWTq3/vCL//7wi//+8Iv//vCL//7wi//+8Iv//vCL//9owoP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8AAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAO/vAADgDwAA//8AAA=='
     },
     @{
         Name    = 'CrystalDiskInfo'
@@ -229,6 +231,11 @@ $List = @(
     @{
         Name    = 'Microsoft Store'
         Tooltip = ''
+        Icon64  = 'AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAACBSxkQfUkawHpIG/93Rhz/dUUd/3JDHv9vQh//bEAg/2k/If9mPSL/Yzwj/2A6JP9fOiT/XzokwF86JBD///8Ahk4YwIJMGf9/Shr/fUka/3pHG/93Rhz/dEUd/3FDHv9uQh//a0Ag/2g+If9lPSL/Yjsj/186JP9fOiTA////AItQFv+ITxf/hU0Y/3ZFF/9yQhf/b0IY/21AGf9qPxr/Zz0b/2U8G/9iOh3/YDod/2c+If9kPSL/YTsj/////wCQUxT/jVEV/4pQFv95RhX/76QA/++kAP/vpAD/bkEY/wC5//8Auf//ALn//2Q7HP9sQSD/aT8h/2Y+Iv////8AlVUT/5JUFP+PUhT/fkkU/++kAP/vpAD/76QA/3NDFv8Auf//ALn//wC5//9oPhr/cUMe/25CH/9rQCD/////AJpYEf+XVhL/lFUT/4JLEv/vpAD/76QA/++kAP93RRb/ALn//wC5//8Auf//bkAY/3ZGHP9zRB3/cUMe/////wCfWg//nFkQ/5lXEf+HTRD/hUwR/4FLEv9/SRP/fEgU/3lGFf93RRb/dUQW/3JCF/97SBv/eUcc/3ZFHf////8ApF0O/6FcD/+eWhD/jFAO/yJQ8v8iUPL/IlDy/4FLEv8Aun//ALp//wC6f/93RRb/gUsZ/35JGv97SBv/////AKlgDP+mXg3/pF0O/5FSDf8iUPL/IlDy/yJQ8v+GTBH/ALp//wC6f/8Aun//e0cU/4ZOF/+DTBj/gEsZ/////wCvYgr/rGEL/6lfDP+VVAz/IlDy/yJQ8v8iUPL/ik8P/wC6f/8Aun//ALp//4BKE/+LUBb/iE8X/4VNGP////8AtGUJ/7FjCv+uYgv/m1cL/5dVC/+UVAz/kVMN/49RDf+MUA7/iU4P/4dNEP+FTBH/kFMU/41RFf+KUBb/////ALlnB/+2Zgj/s2QJ/7BjCv+tYQv/qmAM/6deDf+kXQ7/oVsP/55aEP+bWBH/mFcS/5VVEv+SVBP/kFMU/////wC8aQagu2gG/7hnB//hqRP/smQJ/69jCv+sYQv/qWAM/6ZeDf+jXA7/oFsP/9WaC/+aWBH/mFcS/5VVE6D///8A////AP///wD///8A+9Mr/////wD///8A////AP///wD///8A////AP///wDxwyD/////AP///wD///8A////AP///wD///8A////APPWTq3/vCL//7wi//+8Iv//vCL//7wi//+8Iv//vCL//9owoP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8AAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAO/vAADgDwAA//8AAA=='
+    },
+    @{
+        Name    = 'Microsoft Store - Codec'
+        Tooltip = "Download and Install 'Codec' (HEVC, VP9, AV1, MPEG-2, Web Media, HEIF, WebP, JPEG XL, Raw Image, Dolby Digital Plus, Dolby AC-4) from 'Media Foundation Codecs'.`nRequires 'Microsoft Store'."
         Icon64  = 'AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAACBSxkQfUkawHpIG/93Rhz/dUUd/3JDHv9vQh//bEAg/2k/If9mPSL/Yzwj/2A6JP9fOiT/XzokwF86JBD///8Ahk4YwIJMGf9/Shr/fUka/3pHG/93Rhz/dEUd/3FDHv9uQh//a0Ag/2g+If9lPSL/Yjsj/186JP9fOiTA////AItQFv+ITxf/hU0Y/3ZFF/9yQhf/b0IY/21AGf9qPxr/Zz0b/2U8G/9iOh3/YDod/2c+If9kPSL/YTsj/////wCQUxT/jVEV/4pQFv95RhX/76QA/++kAP/vpAD/bkEY/wC5//8Auf//ALn//2Q7HP9sQSD/aT8h/2Y+Iv////8AlVUT/5JUFP+PUhT/fkkU/++kAP/vpAD/76QA/3NDFv8Auf//ALn//wC5//9oPhr/cUMe/25CH/9rQCD/////AJpYEf+XVhL/lFUT/4JLEv/vpAD/76QA/++kAP93RRb/ALn//wC5//8Auf//bkAY/3ZGHP9zRB3/cUMe/////wCfWg//nFkQ/5lXEf+HTRD/hUwR/4FLEv9/SRP/fEgU/3lGFf93RRb/dUQW/3JCF/97SBv/eUcc/3ZFHf////8ApF0O/6FcD/+eWhD/jFAO/yJQ8v8iUPL/IlDy/4FLEv8Aun//ALp//wC6f/93RRb/gUsZ/35JGv97SBv/////AKlgDP+mXg3/pF0O/5FSDf8iUPL/IlDy/yJQ8v+GTBH/ALp//wC6f/8Aun//e0cU/4ZOF/+DTBj/gEsZ/////wCvYgr/rGEL/6lfDP+VVAz/IlDy/yJQ8v8iUPL/ik8P/wC6f/8Aun//ALp//4BKE/+LUBb/iE8X/4VNGP////8AtGUJ/7FjCv+uYgv/m1cL/5dVC/+UVAz/kVMN/49RDf+MUA7/iU4P/4dNEP+FTBH/kFMU/41RFf+KUBb/////ALlnB/+2Zgj/s2QJ/7BjCv+tYQv/qmAM/6deDf+kXQ7/oVsP/55aEP+bWBH/mFcS/5VVEv+SVBP/kFMU/////wC8aQagu2gG/7hnB//hqRP/smQJ/69jCv+sYQv/qWAM/6ZeDf+jXA7/oFsP/9WaC/+aWBH/mFcS/5VVE6D///8A////AP///wD///8A+9Mr/////wD///8A////AP///wD///8A////AP///wDxwyD/////AP///wD///8A////AP///wD///8A////APPWTq3/vCL//7wi//+8Iv//vCL//7wi//+8Iv//vCL//9owoP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8AAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAO/vAADgDwAA//8AAA=='
     },
     @{
@@ -443,8 +450,8 @@ if (Test-Path -Path 'HKLM:\SOFTWARE\Policies\Google\Chrome\ExtensionInstallForce
     $CheckBoxes['Chrome - Extensions'].Text += ' (Installed)'
 }
 if ((Get-AppxPackage | Select-Object -ExpandProperty 'Name') -match 'Microsoft.HEVCVideoExtension') {
-    $CheckBoxes['Codec'].Enabled = $false
-    $CheckBoxes['Codec'].Text += ' (Installed)'
+    $CheckBoxes['Microsoft Store - Codec'].Enabled = $false
+    $CheckBoxes['Microsoft Store - Codec'].Text += ' (Installed)'
 }
 if ($InstalledSoftware -match 'CrystalDiskInfo') {
     $CheckBoxes['CrystalDiskInfo'].Enabled = $false
@@ -679,7 +686,7 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     if ($CheckBoxes['Chrome - Extensions'].Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Google_Chrome/Extensions.ps1')
     }
-    if ($CheckBoxes['Codec'].Checked) {
+    if ($CheckBoxes['Microsoft Store - Codec'].Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Store/Codec/Download.ps1')
     }
     if ($CheckBoxes['CrystalDiskInfo'].Checked) {
