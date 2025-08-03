@@ -2,10 +2,14 @@
 ! Homepage: https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Website_Debloater.txt
 ! Title: Website Debloater
 4pda.to###logostrip
+9gag.com##.btn-color-primary.ui-btn
 9gag.com##.comment-community__guideline
+9gag.com##.create-meme-btn.btn-color-inherit.ui-btn
+9gag.com##.notice-banner
 9gag.com##.post-action-btn
 9gag.com##.post-award-btn
 9gag.com##.post-award-users
+9gag.com##.post-badge
 9gag.com##.text-center.inline-banner
 account.xiaomi.com##._-src-components-CookieBanner-wrapper
 cosplay-xxx.com###protection
@@ -177,6 +181,9 @@ www.ebay.com##.x-atf-left-bottom-river.vim
 www.ebay.com##.x-evo-btf-river.vi-grid.vim
 www.ebay.com##.x-vi-evo-main-container__top-panel
 www.iec.co.il##.ng-star-inserted.sticky-banner--container.bottom
+www.kan.org.il##.d-flex.general-tags.article-tags
+www.kan.org.il##.elem.with-bg.section.ec-section
+www.kan.org.il##.trinity-tts-pb
 www.pornhub.com##.clearfix.premium-videos.search-video-thumbs.row-5-thumbs.videos
 www.pornhub.com##.extraMargin.languages.pornInLangWrapper.sectionWrapper
 www.pornhub.com##.footer
@@ -205,6 +212,10 @@ www.ynet.co.il##.articleShareButtons
 www.youtube.com###attached-survey
 www.youtube.com##ytd-rich-grid-media:has(.ytThumbnailOverlayProgressBarHostWatchedProgressBarSegment[style*="width: 100%"])
 www.youtube.com##ytd-rich-item-renderer:has(.ytThumbnailOverlayProgressBarHostWatchedProgressBarSegment)
+www.zap.co.il##.BidsContainer
+www.zap.co.il##.footer-model
+www.zap.co.il##.similarProductComponentContainer
+www.zap.co.il##.zap-products-carousel-mp
 xcamcovid.com##.modal-dialog
 xcamcovid.com##.show.fade.modal
 xcamcovid.com##.show.fade.modal-backdrop
