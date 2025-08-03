@@ -61,6 +61,7 @@
 - Do not use teflon (anti-stick coating).
 - Use glass cutting board.
 - Don't put oil in the kitchen drain.
+- Do not use toaster press, instead use toaster oven.
 
 ## Boiler
 
