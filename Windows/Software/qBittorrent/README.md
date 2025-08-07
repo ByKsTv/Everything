@@ -11,17 +11,20 @@ Everything about qBittorrent.
 
    ```
 
-   > Custom settings which are not included:
-   >
-   > ```ini
-   > [Preferences]Downloads\ScanDirsLastPath
-   > [BitTorrent]Session\TempPathEnabled
-   > [BitTorrent]Session\TempPath
-   > [BitTorrent]Session\DefaultSavePath
-   > [BitTorrent]Session\InterfaceName
-   > [BitTorrent]Session\InterfaceAddress
-   > [BitTorrent]Session\Interface
-   > [Application]FileLogger\Path
-   > [Network]Cookies
-   > [GUI]RSSWidget\OpenedFolders
-   > ```
+## Notes
+
+Custom settings which are not included:
+
+```ini
+[Preferences]Downloads\ScanDirsLastPath
+[BitTorrent]Session\TempPathEnabled
+[BitTorrent]Session\TempPath
+[BitTorrent]Session\DefaultSavePath
+[BitTorrent]Session\InterfaceName
+[BitTorrent]Session\InterfaceAddress
+[BitTorrent]Session\Interface
+[BitTorrent]Session\Port
+[Application]FileLogger\Path
+[Network]Cookies
+[GUI]RSSWidget\OpenedFolders
+```
