@@ -47,7 +47,8 @@ WD brand from AliExpress is sus because sticker is the same but the shape of the
 | MOES           | WiFi Touch Light Switch                                                                                                                                          | [AliExpress](https://www.aliexpress.com/item/4001103136550.html) |
 | LoraTap        | WiFi Boiler Switch                                                                                                                                               | [AliExpress](https://www.aliexpress.com/item/33020659733.html)   |
 
-speaker cable dont buy cca, buy ofc oxygen free
+Speaker cable: Don't buy CCA cable, instead buy OFC oxygen free cable.
+HDD: Don't buy SMR drives, instead buy CMR drives.
 
 ## Recycle
 
