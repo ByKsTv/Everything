@@ -403,7 +403,7 @@ Cancel unnecessary services, also voicemail
    >
    > [Firmware Update Changelog](https://eu.community.samsung.com/t5/tv/tv-firmware-changelogs-on-german-community/td-p/1846870)
 
-1. `Settings` > `General` > `Reset` > `0000` > `Reset`
+1. `Settings` > `General` > `Reset` > `0000` > `Reset` (This will take 2 min)
 1. (SmartThings Setup) Remote Control > Left arrow > Left arrow.
 1. (Connection Guide Setup) `Next`.
 1. (WiFi Setup) `Skip` > `Skip`.
@@ -490,6 +490,8 @@ Source: [𝗟𝗚 𝗢𝗟𝗘𝗗 𝗧𝗩 𝗦𝗲𝘁𝘁𝗶𝗻𝗴𝘀 �
     - Instead - Buy your own (Recommended: Google TV Streamer 4K).
   - Access to channels via their app – monthly fee.
     - Instead - Subscribe directly (same as Netflix).
+
+- Consider mounting the TV at an angle (up/down) so that if there's a dead pixel it won't bother you since it will be hidden by nearby pixels.
 
 ### Clean
 
