@@ -10,36 +10,36 @@
 
 ## Anime
 
-| Name          | Links                                                                | RSS Feed                                                       | Notes                                                                                                   |
-| ------------- | -------------------------------------------------------------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| Nyaa          | [BDMV](https://nyaa.si/?f=0&c=0_0&q=BDMV)                            | [RSS](https://nyaa.si/?page=rss&q=BDMV&c=0_0&f=0)              | Website to download anime                                                                               |
-| Nyaa          | [REMUX](https://nyaa.si/?f=0&c=0_0&q=REMUX)                          | [RSS](https://nyaa.si/?page=rss&q=REMUX&c=0_0&f=0)             | Website to download anime                                                                               |
-| Nyaa          | [BDREMUX](https://nyaa.si/?f=0&c=0_0&q=BDRemux)                      | [RSS](https://nyaa.si/?page=rss&q=BDRemux&c=0_0&f=0)           | Website to download anime                                                                               |
-| RuTracker.org | [BDREMUX](https://rutracker.org/forum/tracker.php?f=1105&nm=BDRemux) |                                                                | Website to download anime, [Requires an account](https://rutracker.org/forum/profile.php?mode=register) |
-| DMHY          | [BDMV](https://share.dmhy.org/topics/list?keyword=BDMV)              | [RSS](https://share.dmhy.org/topics/rss/rss.xml?keyword=BDMV)  | Website to download anime                                                                               |
-| DMHY          | [REMUX](https://share.dmhy.org/topics/list?keyword=REMUX)            | [RSS](https://share.dmhy.org/topics/rss/rss.xml?keyword=REMUX) | Website to download anime                                                                               |
-| AniDex        | [BDMV](https://anidex.info/?q=BDMV)                                  |                                                                | Website to download anime                                                                               |
-| AniDex        | [REMUX](https://anidex.info/?q=REMUX)                                |                                                                | Website to download anime                                                                               |
-| ACG.RIP       | [BDMV](https://acg.rip/?term=BDMV)                                   | [RSS](https://acg.rip/.xml?term=BDMV)                          | Website to download anime                                                                               |
-| Reddit        | [Watch order](https://www.reddit.com/r/anime/wiki/watch_order)       |                                                                | Watch order guide for anime                                                                             |
-| AnimeTosho    | [Website](https://animetosho.org)                                    |                                                                | Subtitles for anime                                                                                     |
-| Telegram      | [Berserk](https://t.me/+V_AxSlMdlNs5Mzdk)                            |                                                                | Dedicated source for anime                                                                              |
+| Name       | Links                                                                | RSS Feed                                                       | Notes                                                                                        |
+| ---------- | -------------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| Nyaa       | [BDMV](https://nyaa.si/?f=0&c=0_0&q=BDMV)                            | [RSS](https://nyaa.si/?page=rss&q=BDMV&c=0_0&f=0)              | Download anime                                                                               |
+| Nyaa       | [REMUX](https://nyaa.si/?f=0&c=0_0&q=REMUX)                          | [RSS](https://nyaa.si/?page=rss&q=REMUX&c=0_0&f=0)             | Download anime                                                                               |
+| Nyaa       | [BDREMUX](https://nyaa.si/?f=0&c=0_0&q=BDRemux)                      | [RSS](https://nyaa.si/?page=rss&q=BDRemux&c=0_0&f=0)           | Download anime                                                                               |
+| RuTracker  | [BDREMUX](https://rutracker.org/forum/tracker.php?f=1105&nm=BDRemux) |                                                                | Download anime, [Requires an account](https://rutracker.org/forum/profile.php?mode=register) |
+| DMHY       | [BDMV](https://share.dmhy.org/topics/list?keyword=BDMV)              | [RSS](https://share.dmhy.org/topics/rss/rss.xml?keyword=BDMV)  | Download anime                                                                               |
+| DMHY       | [REMUX](https://share.dmhy.org/topics/list?keyword=REMUX)            | [RSS](https://share.dmhy.org/topics/rss/rss.xml?keyword=REMUX) | Download anime                                                                               |
+| AniDex     | [BDMV](https://anidex.info/?q=BDMV)                                  |                                                                | Download anime                                                                               |
+| AniDex     | [REMUX](https://anidex.info/?q=REMUX)                                |                                                                | Download anime                                                                               |
+| ACG.RIP    | [BDMV](https://acg.rip/?term=BDMV)                                   | [RSS](https://acg.rip/.xml?term=BDMV)                          | Download anime                                                                               |
+| SeaDex     | [Website](https://releases.moe/)                                     |                                                                | Tracking the best releases (not always up-to-date)                                           |
+| Reddit     | [Watch order](https://www.reddit.com/r/anime/wiki/watch_order)       |                                                                | Watch order guide for anime                                                                  |
+| AnimeTosho | [Website](https://animetosho.org)                                    |                                                                | Subtitles for anime                                                                          |
+| Telegram   | [Berserk](https://t.me/+V_AxSlMdlNs5Mzdk)                            |                                                                | Dedicated source for anime                                                                   |
 
 ## Manga & Manwa
 
-| Name      | Links                                   | Notes        |
-| --------- | --------------------------------------- | ------------ |
-| MangaDex  | [Website](https://mangadex.org)         | Multilingual |
-| Manganelo | [Website](https://m.manganelo.com/wwww) |              |
-| Manganato | [Website](https://manganato.com)        |              |
-| bato.to   | [Website](https://bato.to)              |              |
-| nHentai   | [Website](https://nhentai.net)          | NSFW         |
+| Name      | Links                                                                     | Notes        |
+| --------- | ------------------------------------------------------------------------- | ------------ |
+| MangaDex  | [Website](https://mangadex.org)                                           | Multilingual |
+| Manganelo | [Website](https://m.manganelo.com/wwww)/ [Website](https://manganato.com) |              |
+| bato.to   | [Website](https://bato.to)                                                |              |
+| nHentai   | [Website](https://nhentai.net)                                            | NSFW         |
 
 ## TV Shows & Movies
 
 | Name          | Links                                                                  | Notes                                                                            |
 | ------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| RuTracker.org | [BDRemux](https://rutracker.org/forum/tracker.php?nm=BDRemux)          | [Requires an account](https://rutracker.org/forum/profile.php?mode=register)     |
+| RuTracker     | [BDRemux](https://rutracker.org/forum/tracker.php?nm=BDRemux)          | [Requires an account](https://rutracker.org/forum/profile.php?mode=register)     |
 | 1337x         | [REMUX 2160p](https://1337x.to/sort-search/REMUX%202160p/time/desc/1/) |                                                                                  |
 | RUTOR         | [BDREMUX 2160p](https://rutor.info/search/0/0/000/0/BDRemux%202160p)   |                                                                                  |
 | OpenSubtitles | [Website](https://www.opensubtitles.org/en/search/subs)                | Subtitles                                                                        |
@@ -50,7 +50,7 @@
 | Name            | Links                                                                                         | Notes                                                                        |
 | --------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | FitGirl Repacks | [Website](https://fitgirl-repacks.site)                                                       |                                                                              |
-| RuTracker.org   | [Website](https://rutracker.org/forum/index.php)                                              | [Requires an account](https://rutracker.org/forum/profile.php?mode=register) |
+| RuTracker       | [Website](https://rutracker.org/forum/index.php)                                              | [Requires an account](https://rutracker.org/forum/profile.php?mode=register) |
 | Skidrow Repacks | [Website](https://skidrowrepacks.com)                                                         |                                                                              |
 | ElAmigos Games  | [Website](https://www.elamigos-games.net)                                                     |                                                                              |
 | DODI Repacks    | [Website](https://dodi-repacks.site)                                                          |                                                                              |
@@ -72,7 +72,7 @@
 
 | Name             | Links                                                                                                                                            | Notes                                                                        |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------- |
-| RuTracker.org    | [Website](https://rutracker.org/forum/index.php)                                                                                                 | [Requires an account](https://rutracker.org/forum/profile.php?mode=register) |
+| RuTracker        | [Website](https://rutracker.org/forum/index.php)                                                                                                 | [Requires an account](https://rutracker.org/forum/profile.php?mode=register) |
 | NoNaMe Club      | [Website](https://nnmclub.to)                                                                                                                    |                                                                              |
 | LRepacks         | [Website](https://lrepacks.net)                                                                                                                  |                                                                              |
 | Diakov           | [Website](https://diakov.net)                                                                                                                    |                                                                              |
