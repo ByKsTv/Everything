@@ -28,7 +28,8 @@ ip-api.com
 # https://account.ui.com/
 static.ada.support
 
-# Facebook
+# Facebook Mobile App
+# Infinite loading screen
 graph.facebook.com
 
 # Samsung TV App Store
