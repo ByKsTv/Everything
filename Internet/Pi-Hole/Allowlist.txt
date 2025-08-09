@@ -33,5 +33,4 @@ static.ada.support
 graph.facebook.com
 
 # Samsung TV App Store
-# lcprd1.samsungcloudsolution.net
 oempprd.samsungcloudsolution.com
