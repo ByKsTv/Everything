@@ -1,4 +1,4 @@
-# Information
+# Table Of Contents
 
 - [LAN](#lan)
   - [Equipment](#lan---equipment)

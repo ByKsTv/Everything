@@ -1,4 +1,4 @@
-# Information
+# Table Of Contents
 
 - [Arriving](#arriving)
 - [Cleaning Dentist](#cleaning-dentist)

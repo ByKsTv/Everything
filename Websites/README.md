@@ -1,4 +1,4 @@
-# Information
+# Table Of Contents
 
 - [Anime](#anime)
 - [Manga & Manwa](#manga--manwa)

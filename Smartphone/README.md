@@ -1,4 +1,4 @@
-# Information
+# Table Of Contents
 
 - [APKs](#apks)
   - [IronFox Settings](#ironfox-settings)

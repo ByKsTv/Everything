@@ -1,4 +1,4 @@
-# Information
+# Table Of Contents
 
 - [Immigration](#immigration)
 - [Android Apps](#android-apps)

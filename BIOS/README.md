@@ -1,4 +1,4 @@
-# Information
+# Table Of Contents
 
 - [BIOS Search](#bios-search)
 - [BIOS Update](#bios-update)

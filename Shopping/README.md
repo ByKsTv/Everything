@@ -1,4 +1,4 @@
-# Information
+# Table Of Contents
 
 - [Amazon](#amazon)
 - [AliExpress](#aliexpress)

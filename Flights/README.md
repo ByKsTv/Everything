@@ -1,4 +1,4 @@
-# Information
+# Table Of Contents
 
 - [Tickets](#tickets)
 - [Hotels](#hotels)
