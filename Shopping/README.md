@@ -5,6 +5,10 @@
 - [Coupons](#coupons)
 - [Products](#products)
 - [Recycle](#recycle)
+- [AV Receiver](#av-receiver)
+  - [Factory Reset](#factory-reset)
+  - [Settings](#settings)
+  - [Issues](#issues)
 
 ## Amazon
 
@@ -63,3 +67,26 @@ Air Condition: Check noise rating (dB) for indoor/outdoor units and check which 
 - Products and materials that can not be bought off the user:
   - Monitors
   - TVs
+
+## AV Receiver
+
+### Factory Reset
+
+1. Turn off the AV Receiver.
+1. Hold `BAND` button + Power button untill `RESET?` will be shown on the screen.
+1. Press `Auto Surround/Stream Direct` button to confrim untill `OK?` will be shown on the screen.
+1. Press `ALC/Standard Surr` button to confrim.
+
+### Settings
+
+1. `DIRECT` (not `PURE DIRECT`).
+1. `AV ADJUST` > `A.DLY` (Auto Delay) > `On`.
+1. Press `DIMMER` a few times untill the screen is at it's dimmest state.
+1. `HOME MENU` > `Manual SP Setup` > `Speaker Distance` > Adjust accordingly.
+1. `Auto Power Down` (APD) > `Off`.
+1. `HDMI Setup` > `Standby Through` > `Last`.
+1. `HDMI Setup` > `4k60p Setting` > `4:4:4`.
+
+### Issues
+
+- Extreme white noise while idle: Send the unit to repair.
