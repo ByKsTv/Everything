@@ -35,6 +35,15 @@ Everything about Scripts.
 1. Use [Subtitles_Sorting.py](Subtitles_Sorting.py)
 1. Edit `ExtractFontsFrom`.
 
+## Powershell: Sort Subtitles
+
+1. PowerShell (Admin):
+
+   ```powershell
+   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Subtitles_Sorting.ps1')
+
+   ```
+
 ## Powershell: Extract BDMV PLAYLIST
 
 1. PowerShell (Admin):
