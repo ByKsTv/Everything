@@ -93,8 +93,10 @@ if (-not (Test-Path -Path "${env:ProgramFiles(x86)}\Internet Download Manager\Un
 
     do {
         Start-Sleep -Milliseconds 500
-    } until (Get-Process | Where-Object { $_.MainWindowTitle -eq 'Internet Download Manager Registration' })
-    Stop-Process -Name 'IDMan' -Force -ErrorAction SilentlyContinue
+    } until (
+        $IDM_Process = Get-Process | Where-Object { $_.MainWindowTitle -eq 'Internet Download Manager Registration' }
+    )
+    Stop-Process -Id $IDM_Process.Id -Force
 
     $DesktopShortcut = "$($env:USERPROFILE)\Desktop\Internet Download Manager.lnk"
     if (Test-Path -Path $DesktopShortcut) {
