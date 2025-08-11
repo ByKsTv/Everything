@@ -104,12 +104,13 @@ if (-not (Test-Path -Path "${env:ProgramFiles(x86)}\Internet Download Manager\Un
         Remove-Item -Path $DesktopShortcut
     }
 
-    $IDMan = "${env:ProgramFiles(x86)}\Internet Download Manager\IDMan.exe"
+    $IDMan_InstallLocation = "${env:ProgramFiles(x86)}\Internet Download Manager\IDMan.exe"
     $RegFile = Get-ChildItem -Path $TempDir -Filter '*.reg' -Recurse -File | Select-Object -First 1 | Select-Object -ExpandProperty 'FullName'
+    $IDMan_New = Get-ChildItem -Path $TempDir -Filter 'IDMan.exe' -Recurse -File | Select-Object -First 1 | Select-Object -ExpandProperty 'FullName'
     Start-Process regedit.exe -ArgumentList "/s ""$RegFile""" -Wait
-    Copy-Item -Path $TempDir -Destination $IDMan -Force
-    Unblock-File -Path $IDMan
-    Start-Process -FilePath $IDMan -WindowStyle Minimized
+    Copy-Item -Path $IDMan_New -Destination $IDMan_InstallLocation -Force
+    Unblock-File -Path $IDMan_InstallLocation
+    Start-Process -FilePath $IDMan_InstallLocation -WindowStyle Minimized
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
     Remove-MpPreference -ExclusionPath $TempDir
