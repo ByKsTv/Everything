@@ -103,7 +103,8 @@ if (-not (Test-Path -Path "${env:ProgramFiles(x86)}\Internet Download Manager\Un
     }
 
     $IDMan = "${env:ProgramFiles(x86)}\Internet Download Manager\IDMan.exe"
-    Start-Process regedit.exe -ArgumentList "/s `"$TempDir\Crack\idm.reg`""
+    $RegFile = Get-ChildItem -Path $TempDir -Filter '*.reg' -Recurse -File | Select-Object -First 1 | Select-Object -ExpandProperty 'FullName'
+    Start-Process regedit.exe -ArgumentList "/s ""$RegFile""" -Wait
     Copy-Item -Path $TempDir -Destination $IDMan -Force
     Unblock-File -Path $IDMan
     Start-Process -FilePath $IDMan -WindowStyle Minimized
