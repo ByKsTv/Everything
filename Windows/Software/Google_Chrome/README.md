@@ -1,8 +1,11 @@
 # Table Of Contents
 
-Everything about Chrome.
+- [Setup](#setup)
+- [Extensions](#extensions)
+- [Group Policy Templates](#group-policy-templates)
+- [Group Policies](#group-policies)
 
-## Google Chrome Setup - Auto Install
+## Setup
 
 1. PowerShell (Admin):
 
@@ -11,7 +14,7 @@ Everything about Chrome.
 
    ```
 
-## Google Chrome Extensions - Auto Install
+## Extensions
 
 1. PowerShell (Admin):
 
@@ -20,7 +23,7 @@ Everything about Chrome.
 
    ```
 
-## Google Chrome Group Policy Templates - Auto Install
+## Group Policy Templates
 
 1. PowerShell (Admin):
 
@@ -29,7 +32,7 @@ Everything about Chrome.
 
    ```
 
-## Google Chrome Group Policies - Auto Install
+## Group Policies
 
 1. PowerShell (Admin):
 

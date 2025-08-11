@@ -1,6 +1,7 @@
 # Table Of Contents
 
-Everything about Windows Server 2025 Datacenter.
+- [Issues](#issues)
+- [Key](#key)
 
 ## Issues
 

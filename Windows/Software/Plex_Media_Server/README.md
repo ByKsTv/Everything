@@ -1,8 +1,9 @@
 # Table Of Contents
 
-Everything about Plex.
+- [Setup](#setup)
+- [Settings](#settings)
 
-## Plex Setup - Auto Install
+## Setup
 
 1. PowerShell (Admin):
 
@@ -11,7 +12,7 @@ Everything about Plex.
 
    ```
 
-## Plex Settings
+## Settings
 
 1. `Got it!`.
 1. `Plex Pass` > `X`.

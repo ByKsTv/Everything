@@ -1,8 +1,9 @@
 # Table Of Contents
 
-Everything about qBittorrent.
+- [Setup](#setup)
+- [Notes](#notes)
 
-## qBittorrent Setup - Auto Install
+## Setup
 
 1. PowerShell (Admin):
 

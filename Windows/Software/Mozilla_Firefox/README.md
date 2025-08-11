@@ -1,8 +1,12 @@
 # Table Of Contents
 
-Everything about Mozilla Firefox.
+- [Setup](#setup)
+- [Arkenfox](#arkenfox)
+- [Extensions](#extensions)
+- [Group Policy Templates](#group-policy-templates)
+- [Group Policies](#group-policies)
 
-## Mozilla Firefox Setup - Auto Install
+## Setup
 
 1. PowerShell (Admin):
 
@@ -11,7 +15,7 @@ Everything about Mozilla Firefox.
 
    ```
 
-## Arkenfox Setup - Auto Install
+## Arkenfox
 
 1. PowerShell (Admin):
 
@@ -20,7 +24,7 @@ Everything about Mozilla Firefox.
 
    ```
 
-## Mozilla Firefox Extensions - Auto Install
+## Extensions
 
 1. PowerShell (Admin):
 
@@ -29,7 +33,7 @@ Everything about Mozilla Firefox.
 
    ```
 
-## Mozilla Firefox Group Policy Templates - Auto Install
+## Group Policy Templates
 
 1. PowerShell (Admin):
 
@@ -38,7 +42,7 @@ Everything about Mozilla Firefox.
 
    ```
 
-## Mozilla Firefox Group Policies - Auto Install
+## Group Policies
 
 1. PowerShell (Admin):
 

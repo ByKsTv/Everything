@@ -1,8 +1,11 @@
 # Table Of Contents
 
-Everything about mpv.
+- [Setup](#setup)
+- [Scripts included](#scripts-included)
+- [Cookies Setup](#cookies-setup)
+- [Summery](#summery)
 
-## mpv Setup - Auto Install
+## Setup
 
 1. PowerShell (Admin):
 
