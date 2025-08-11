@@ -59,9 +59,13 @@ pip install qrcode[pil]
 
 #### Directory Layout
 
-- **TV Show Name/**: This is the main parent folder.
-- **Subs/**: This is a subfolder inside **TV Show Name/**.
-- **Episode 1/**, **Episode 2/**, etc.: These are subfolders within **Subs/**.
+```txt
+TV Show/
+├── Subs
+   ├── Episode 1
+   ├── Episode 2
+   ├── Episode 3
+```
 
 ## PowerShell
 
