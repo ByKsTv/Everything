@@ -42,6 +42,12 @@ if (-not (Test-Path -Path "${env:ProgramFiles(x86)}\Internet Download Manager\Un
     New-ItemProperty -Path 'HKCU:\SOFTWARE\DownloadManager' -Name 'bShVistaAsAdmWarn' -PropertyType DWord -Value 1 -Force
 
     # Options > General > Customize IDM Download panels in browsers > Panel view > Mini mode
+    if (-not (Test-Path -Path 'HKCU:\SOFTWARE\DownloadManager\DwnlPanel')) {
+        New-Item 'HKCU:\SOFTWARE\DownloadManager\DwnlPanel' -Force
+    }
+    if (-not (Test-Path -Path 'HKCU:\SOFTWARE\DownloadManager\DwnlSelPanel')) {
+        New-Item 'HKCU:\SOFTWARE\DownloadManager\DwnlSelPanel' -Force
+    }
     New-ItemProperty -Path 'HKCU:\SOFTWARE\DownloadManager\DwnlPanel' -Name 'PanelView' -PropertyType DWord -Value 2 -Force
     New-ItemProperty -Path 'HKCU:\SOFTWARE\DownloadManager\DwnlSelPanel' -Name 'PanelView' -PropertyType DWord -Value 2 -Force
 
