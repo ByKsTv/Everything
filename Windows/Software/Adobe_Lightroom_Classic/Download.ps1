@@ -19,7 +19,7 @@ $DropDownList = New-Object System.Windows.Forms.ComboBox -Property @{
     Location      = [Drawing.Point]::new(5, 0)
 }
 
-$Source = Invoke-WebRequest -UseBasicParsing -Uri 'https://w16.monkrus.ws/search/label/Lightroom' | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -notmatch '#more' -and $_.outerHTML -match 'Classic' }
+$Source = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w16.monkrus.ws/search/label/Lightroom').Links | Where-Object { $_.outerHTML -notmatch '#more' -and $_.outerHTML -match 'Classic' }
 
 $Array = @{}
 $GFX = [Drawing.Graphics]::FromHwnd($Form.Handle)
@@ -67,13 +67,13 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     $Title = $DropDownList.SelectedItem
     $TitleHREF = $Array[$DropDownList.SelectedItem]
 
-    $ForumPost = Invoke-WebRequest -UseBasicParsing -Uri $TitleHREF | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -match 'pb.wtf' } | Select-Object -ExpandProperty 'href' | Select-Object -First 1
+    $ForumPost = ((Invoke-WebRequest -UseBasicParsing -Uri $TitleHREF).Links | Where-Object { $_.outerHTML -match 'pb.wtf' }).href | Select-Object -First 1
 
     if (-not ($ForumPost)) {
-        $ForumPost = Invoke-WebRequest -UseBasicParsing -Uri $TitleHREF | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -match 'uniondht.org' } | Select-Object -ExpandProperty 'href' | Select-Object -First 1
+        $ForumPost = ((Invoke-WebRequest -UseBasicParsing -Uri $TitleHREF).Links | Where-Object { $_.outerHTML -match 'uniondht.org' }).href | Select-Object -First 1
     }
 
-    $Magnet = [Uri]::UnescapeDataString((Invoke-WebRequest -UseBasicParsing -Uri $ForumPost | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -ExpandProperty 'href' | Select-Object -First 1))
+    $Magnet = [Uri]::UnescapeDataString((((Invoke-WebRequest -UseBasicParsing -Uri $ForumPost).Links | Where-Object { $_.outerHTML -match 'magnet' }).href | Select-Object -First 1))
     
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/7-Zip/Download.ps1')
 
@@ -91,14 +91,14 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
     Start-Process qBittorrent.exe -ArgumentList $Argument
 
-    while (-not ($Directory = Get-ChildItem $env:TEMP -Directory -Filter '*Classic*' | Select-Object -First 1 | Select-Object -ExpandProperty 'FullName')) {
+    while (-not ($Directory = (Get-ChildItem $env:TEMP -Directory -Filter '*Classic*' | Select-Object -First 1).FullName)) {
         Start-Sleep -Milliseconds 1000
     }
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Directory'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
     Add-MpPreference -ExclusionPath $Directory
 
-    while (-not ($ISO = Get-ChildItem $Directory -Filter '*.iso' | Select-Object -First 1 | Select-Object -ExpandProperty 'FullName')) {
+    while (-not ($ISO = (Get-ChildItem $Directory -Filter '*.iso' | Select-Object -First 1).FullName)) {
         Start-Sleep -Milliseconds 1000
     }
     do {
@@ -108,7 +108,7 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Directory'"); [Console]::ResetColor(); [Console]::WriteLine()
     & 7z.exe x $ISO -o"$Directory" -y
     
-    $AutoPlayEXE = Get-ChildItem -Path $Directory -Recurse -Filter 'autoplay.exe' | Select-Object -ExpandProperty 'FullName'
+    $AutoPlayEXE = (Get-ChildItem -Path $Directory -Recurse -Filter 'autoplay.exe').FullName
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutoPlayEXE'"); [Console]::ResetColor(); [Console]::WriteLine()
     Start-Process $AutoPlayEXE
 }

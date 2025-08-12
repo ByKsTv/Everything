@@ -8,8 +8,8 @@ if (-not (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue)) 
 	Register-ScheduledTask -TaskName $TaskName -Action $TaskAction -Trigger $TaskTrigger -Principal $TaskPrincipal -Settings $TaskSettings -Force
 }
 
-$InstalledVersion = Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Mediainfo' -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'DisplayVersion'
-$LatestVersion = Invoke-RestMethod -Uri 'https://api.github.com/repos/MediaArea/MediaInfo/releases/latest' | Select-Object -ExpandProperty 'name'
+$InstalledVersion = (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Mediainfo' -ErrorAction SilentlyContinue).DisplayVersion
+$LatestVersion = (Invoke-RestMethod -Uri 'https://api.github.com/repos/MediaArea/MediaInfo/releases/latest').name
 
 if (($null -eq $InstalledVersion) -or ($InstalledVersion -notmatch $LatestVersion)) {
 	$RemoteCFG = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/MediaInfo/MediaInfo.cfg'
@@ -20,10 +20,10 @@ if (($null -eq $InstalledVersion) -or ($InstalledVersion -notmatch $LatestVersio
 		(New-Object System.Net.WebClient).DownloadFile($RemoteCFG, $LocalCFG)
 	}
 	
-	$GUI_DDL = 'https:' + (Invoke-WebRequest -UseBasicParsing -Uri 'https://mediaarea.net/en/MediaInfo/Download/Windows' | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -match 'GUI' } | Select-Object -First 1 | Select-Object -ExpandProperty 'href')
+	$GUI_DDL = 'https:' + (((Invoke-WebRequest -UseBasicParsing -Uri 'https://mediaarea.net/en/MediaInfo/Download/Windows').Links | Where-Object { $_.outerHTML -match 'GUI' } | Select-Object -First 1).href)
 	$GUI_FileName = [IO.Path]::GetFileName(([URI]$GUI_DDL).AbsolutePath)
 	$GUI_SavePath = [IO.Path]::Combine($env:TEMP, $GUI_FileName)
-	$CLI_DDL = 'https:' + (Invoke-WebRequest -UseBasicParsing -Uri 'https://mediaarea.net/en/MediaInfo/Download/Windows' | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -match 'CLI' } | Select-Object -First 1 | Select-Object -ExpandProperty 'href')
+	$CLI_DDL = 'https:' + (((Invoke-WebRequest -UseBasicParsing -Uri 'https://mediaarea.net/en/MediaInfo/Download/Windows').Links | Where-Object { $_.outerHTML -match 'CLI' } | Select-Object -First 1).href)
 	$CLI_FileName = [IO.Path]::GetFileName(([URI]$CLI_DDL).AbsolutePath)
 	$CLI_SavePath = [IO.Path]::Combine($env:TEMP, $CLI_FileName)
 	

@@ -8,7 +8,7 @@ if (-not (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue)) 
     Register-ScheduledTask -TaskName $TaskName -Action $TaskAction -Trigger $TaskTrigger -Principal $TaskPrincipal -Settings $TaskSettings -Force
 }
 
-$InstalledVersion = Get-Package -Name 'Discord' -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'Version'
+$InstalledVersion = (Get-Package -Name 'Discord' -ErrorAction SilentlyContinue).Version
 $Discord_DDL = (Invoke-WebRequest -UseBasicParsing -Uri 'https://discord.com/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x64' -MaximumRedirection 0 -ErrorAction SilentlyContinue).Headers.Location
 $LatestVersion = [regex]::Match($DDL, '\d+(\.\d+)+').Value
 

@@ -19,7 +19,7 @@ $DropDownList = New-Object System.Windows.Forms.ComboBox -Property @{
     Location      = [Drawing.Point]::new(5, 0)
 }
 
-$Source = Invoke-WebRequest -UseBasicParsing -Uri 'https://nnmclub.to/forum/tracker.php?nm=VMware%20KpoJIuK' | Select-Object -ExpandProperty 'Links' | Where-Object { $_.class -match 'genmed topictitle' }
+$Source = (Invoke-WebRequest -UseBasicParsing -Uri 'https://nnmclub.to/forum/tracker.php?nm=VMware%20KpoJIuK').Links | Where-Object { $_.class -match 'genmed topictitle' }
 
 $Array = @{}
 $GFX = [Drawing.Graphics]::FromHwnd($Form.Handle)
@@ -67,7 +67,7 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     $Title = $DropDownList.SelectedItem
     $TitleHREF = $Array[$DropDownList.SelectedItem]
 
-    $Magnet = Invoke-WebRequest -UseBasicParsing -Uri $TitleHREF | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1 | Select-Object -ExpandProperty 'href'
+    $Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $TitleHREF).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
 
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/qBittorrent/Download.ps1')
 
@@ -82,14 +82,14 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
     Start-Process qBittorrent.exe -ArgumentList $Argument
     
-    while (-not ($TempDir = Get-ChildItem $env:TEMP -Directory -Filter '*VMware*' | Select-Object -First 1 | Select-Object -ExpandProperty 'FullName')) {
+    while (-not ($TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*VMware*' | Select-Object -First 1).FullName)) {
         Start-Sleep -Milliseconds 1000
     }
     
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$env:TEMP'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
     Add-MpPreference -ExclusionPath $env:TEMP
     
-    while (-not ($TempEXE = Get-ChildItem $TempDir -Filter '*.exe' | Select-Object -First 1 | Select-Object -ExpandProperty 'FullName')) {
+    while (-not ($TempEXE = (Get-ChildItem $TempDir -Filter '*.exe' | Select-Object -First 1).FullName)) {
         Start-Sleep -Milliseconds 1000
     }
     do {

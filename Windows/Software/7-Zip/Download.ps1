@@ -8,11 +8,11 @@ if (-not (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue)) 
     Register-ScheduledTask -TaskName $TaskName -Action $TaskAction -Trigger $TaskTrigger -Principal $TaskPrincipal -Settings $TaskSettings -Force
 }
 
-$InstalledVersion = Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\7-Zip' -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'DisplayVersion'
-$LatestVersion = Invoke-RestMethod -Uri 'https://api.github.com/repos/ip7z/7zip/releases/latest' | Select-Object -ExpandProperty 'tag_name'
+$InstalledVersion = (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\7-Zip' -ErrorAction SilentlyContinue).DisplayVersion
+$LatestVersion = (Invoke-RestMethod -Uri 'https://api.github.com/repos/ip7z/7zip/releases/latest').tag_name
 
 if (($null -eq $InstalledVersion) -or ($InstalledVersion -notmatch $LatestVersion)) {
-    $DDL = Invoke-RestMethod -Uri 'https://api.github.com/repos/ip7z/7zip/releases/latest' | Select-Object -ExpandProperty 'assets' | Where-Object { $_.name -match 'x64.exe' } | Select-Object -ExpandProperty 'browser_download_url'
+    $DDL = ((Invoke-RestMethod -Uri 'https://api.github.com/repos/ip7z/7zip/releases/latest').assets | Where-Object { $_.name -match 'x64.exe' }).browser_download_url
     $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
     $SavePath = [IO.Path]::Combine($env:TEMP, $FileName)
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'7-Zip'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
@@ -23,7 +23,7 @@ if (($null -eq $InstalledVersion) -or ($InstalledVersion -notmatch $LatestVersio
     Start-Process $SavePath -ArgumentList $Argument -Wait
 }
 
-$Destination = Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*', 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*' -ErrorAction SilentlyContinue | Where-Object { $_.DisplayName -match '7-Zip' } | Select-Object -ExpandProperty 'InstallLocation'
+$Destination = (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*', 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*' -ErrorAction SilentlyContinue | Where-Object { $_.DisplayName -match '7-Zip' }).InstallLocation
 $OLD_PATH = [Environment]::GetEnvironmentVariable('Path', [EnvironmentVariableTarget]::User)
 if (-not ($OLD_PATH.Contains($Destination))) {
     $NEW_PATH = "$OLD_PATH;$Destination"

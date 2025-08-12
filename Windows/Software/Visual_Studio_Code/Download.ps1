@@ -8,8 +8,8 @@ if (-not (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue)) 
     Register-ScheduledTask -TaskName $TaskName -Action $TaskAction -Trigger $TaskTrigger -Principal $TaskPrincipal -Settings $TaskSettings -Force
 }
 
-$InstalledVersion = Get-Package -Name 'Microsoft Visual Studio Code' -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'Version'
-$LatestVersion = Invoke-RestMethod -Uri 'https://api.github.com/repos/microsoft/vscode/releases/latest' | Select-Object -ExpandProperty 'tag_name'
+$InstalledVersion = (Get-Package -Name 'Microsoft Visual Studio Code' -ErrorAction SilentlyContinue).Version
+$LatestVersion = (Invoke-RestMethod -Uri 'https://api.github.com/repos/microsoft/vscode/releases/latest').tag_name
 
 if (($null -eq $InstalledVersion) -or ($InstalledVersion -notmatch $LatestVersion)) {
     $DDL = 'https://code.visualstudio.com/sha/download?build=stable&os=win32-x64'

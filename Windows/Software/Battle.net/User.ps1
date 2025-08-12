@@ -1,7 +1,7 @@
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Waiting for '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'User'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to login to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Battle.net'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' account'); [Console]::ResetColor(); [Console]::WriteLine()
 
 do {
-    $UserLogin_File = Get-ChildItem -Path "$env:AppData\Battle.net" -Filter '*.config' | Where-Object { $_.Name -ne 'battle.net.config' } | Select-Object -ExpandProperty 'Name'
+    $UserLogin_File = (Get-ChildItem -Path "$env:AppData\Battle.net" -Filter '*.config' | Where-Object { $_.Name -ne 'battle.net.config' }).Name
     Start-Sleep -Milliseconds 1000
 } until ($UserLogin_File)
 

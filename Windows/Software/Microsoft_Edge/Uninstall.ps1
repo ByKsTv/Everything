@@ -8,7 +8,7 @@ if (-not (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue)) 
     Register-ScheduledTask -TaskName $TaskName -Action $TaskAction -Trigger $TaskTrigger -Principal $TaskPrincipal -Settings $TaskSettings -Force
 }
 
-$InstalledSoftware = Get-Package | Select-Object -ExpandProperty 'Name'
+$InstalledSoftware = (Get-Package).Name
 if ($InstalledSoftware -match 'Microsoft Edge') {
     $Process = 'MicrosoftEdgeUpdate', 'OneDrive', 'WidgetService', 'Widgets', 'msedge', 'msedgewebview2'
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Stopping '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Edge'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' process '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Process'"); [Console]::ResetColor(); [Console]::WriteLine()

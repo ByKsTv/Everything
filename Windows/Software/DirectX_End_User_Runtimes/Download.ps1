@@ -1,4 +1,4 @@
-$DDL = Invoke-WebRequest -UseBasicParsing -Uri 'https://www.microsoft.com/en-us/download/details.aspx?id=8109' | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -match 'exe' } | Select-Object -ExpandProperty 'href'
+$DDL = ((Invoke-WebRequest -UseBasicParsing -Uri 'https://www.microsoft.com/en-us/download/details.aspx?id=8109').Links | Where-Object { $_.outerHTML -match 'exe' }).href
 $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
 $SavePath = [IO.Path]::Combine($env:TEMP, $FileName)
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'DirectX End-User Runtimes (June 2010)'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()

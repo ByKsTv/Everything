@@ -8,7 +8,7 @@ if (-not (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue)) 
     Register-ScheduledTask -TaskName $TaskName -Action $TaskAction -Trigger $TaskTrigger -Principal $TaskPrincipal -Settings $TaskSettings -Force
 }
 
-$InstalledVersion = Get-Package -Name 'NVCleanstall' -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'Version'
+$InstalledVersion = (Get-Package -Name 'NVCleanstall' -ErrorAction SilentlyContinue).Version
 $LatestVersionFileName = [regex]::Match((Invoke-WebRequest -Uri 'https://www.techpowerup.com/download/techpowerup-nvcleanstall/' -UseBasicParsing).Content, 'NVCleanstall_\d+\.\d+\.\d+\.exe').Value
 $LatestVersion = ([regex]::Match($LatestVersionFileName, '\d+\.\d+\.\d+')).Value
 

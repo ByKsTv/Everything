@@ -8,8 +8,8 @@ if (-not (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue)) 
     Register-ScheduledTask -TaskName $TaskName -Action $TaskAction -Trigger $TaskTrigger -Principal $TaskPrincipal -Settings $TaskSettings -Force
 }
 
-$Package = Get-AppxPackage | Where-Object { $_.Name -match 'TranslucentTB' } -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'Version'
-$LatestVersion = Invoke-RestMethod -UseBasicParsing -Uri https://api.github.com/repos/TranslucentTB/TranslucentTB/releases/latest | Select-Object -ExpandProperty 'tag_name'
+$Package = (Get-AppxPackage | Where-Object { $_.Name -match 'TranslucentTB' } -ErrorAction SilentlyContinue).Version
+$LatestVersion = (Invoke-RestMethod -UseBasicParsing -Uri https://api.github.com/repos/TranslucentTB/TranslucentTB/releases/latest).tag_name
 $InstalledVersionParts = ($InstalledVersion -split '\.' | Select-Object -First 2) -join '.'
 $LatestVersionParts = ($LatestVersion -split '\.' | Select-Object -First 2) -join '.'
 
@@ -25,7 +25,7 @@ if ($null -eq $Package) {
 
 if ($InstalledVersionParts -ne $LatestVersionParts) {
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('TranslucentTB: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-    (New-Object System.Net.WebClient).DownloadFile((Invoke-RestMethod -Uri 'https://api.github.com/repos/TranslucentTB/TranslucentTB/releases/latest' | Select-Object -ExpandProperty 'assets' | Where-Object { $_.name -match 'appinstaller' } | Select-Object -ExpandProperty 'browser_download_url'), "$env:TEMP\TranslucentTB.appinstaller")
+    (New-Object System.Net.WebClient).DownloadFile((((Invoke-RestMethod -Uri 'https://api.github.com/repos/TranslucentTB/TranslucentTB/releases/latest').assets | Where-Object { $_.name -match 'appinstaller' }).browser_download_url), "$env:TEMP\TranslucentTB.appinstaller")
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('TranslucentTB: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
     Add-AppxPackage -AppInstallerFile "$env:TEMP\TranslucentTB.appinstaller"

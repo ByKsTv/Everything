@@ -31,8 +31,8 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'RecordKey' 
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Jitbit\Macro Recorder' -Name 'AbortRecKey' -Value 123 -PropertyType DWord -Force
               
 $Label = 'https://rutracker.org/forum/viewtopic.php?t=6357418'
-$Title = (Invoke-WebRequest -UseBasicParsing -Uri $Label | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -match 'Jitbit' } | Select-Object -First 1).outerHTML -replace '.*?>(.*?)</a>', '$1'
-$Magnet = Invoke-WebRequest -UseBasicParsing -Uri $Label | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1 | Select-Object -ExpandProperty 'href'
+$Title = ((Invoke-WebRequest -UseBasicParsing -Uri $Label).Links | Where-Object { $_.outerHTML -match 'Jitbit' } | Select-Object -First 1).outerHTML -replace '.*?>(.*?)</a>', '$1'
+$Magnet = ((Invoke-WebRequest -UseBasicParsing -Uri $Label).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/qBittorrent/Download.ps1')
 $Log = [IO.Path]::Combine($env:LOCALAPPDATA, 'qBittorrent', 'logs', 'qbittorrent.log')
 if (Test-Path $Log) {
@@ -42,14 +42,14 @@ Remove-Item -Path "$env:TEMP\*Jitbit*" -Force -Recurse -Confirm:$false -ErrorAct
 $Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($Magnet)"""
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
 Start-Process qBittorrent.exe -ArgumentList $Argument
-while (-not ($TempDir = Get-ChildItem $env:TEMP -Directory -Filter '*Jitbit*' | Select-Object -First 1 | Select-Object -ExpandProperty 'FullName')) {
+while (-not ($TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*Jitbit*' | Select-Object -First 1).FullName)) {
     Start-Sleep -Milliseconds 1000
 }
         
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
 Add-MpPreference -ExclusionPath $TempDir
         
-while (-not ($TempEXE = Get-ChildItem $TempDir -Filter '*.exe' | Select-Object -First 1 | Select-Object -ExpandProperty 'FullName')) {
+while (-not ($TempEXE = (Get-ChildItem $TempDir -Filter '*.exe' | Select-Object -First 1).FullName)) {
     Start-Sleep -Milliseconds 1000
 }
 do {

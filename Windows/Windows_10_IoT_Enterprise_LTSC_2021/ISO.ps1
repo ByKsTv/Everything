@@ -4,14 +4,14 @@ if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Akeo Consulting\Rufus')) {
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Akeo Consulting\Rufus' -Name 'UpdateCheckInterval' -Value -1 -PropertyType DWord -Force
 
-$Rufus_DDL = Invoke-WebRequest -UseBasicParsing -Uri 'https://rufus.ie/en/' | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -match '.exe' } | Select-Object -First 1 | Select-Object -ExpandProperty 'href'
+$Rufus_DDL = ((Invoke-WebRequest -UseBasicParsing -Uri 'https://rufus.ie/en/').Links | Where-Object { $_.outerHTML -match '.exe' } | Select-Object -First 1).href
 $Rufus_FileName = [IO.Path]::GetFileName(([URI]$Rufus_DDL).AbsolutePath)
 $Rufus_SavePath = [IO.Path]::Combine($env:TEMP, $Rufus_FileName)
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Rufus'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Rufus_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Rufus_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
 (New-Object System.Net.WebClient).DownloadFile($Rufus_DDL, $Rufus_SavePath)
 
-$Windows_DDL1 = Invoke-WebRequest -UseBasicParsing -Uri 'https://massgrave.dev/windows_ltsc_links' | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -match 'windows' -and $_.outerHTML -match '10' -and $_.outerHTML -match 'iot' -and $_.outerHTML -match 'enterprise' -and $_.outerHTML -match 'ltsc' -and $_.outerHTML -match 'x64' } | Select-Object -First 1 | Select-Object -ExpandProperty 'href'
-$Windows_DDL2 = Invoke-WebRequest -UseBasicParsing -Uri $Windows_DDL1 | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -match 'Download' } | Select-Object -First 1 | Select-Object -ExpandProperty 'href'
+$Windows_DDL1 = ((Invoke-WebRequest -UseBasicParsing -Uri 'https://massgrave.dev/windows_ltsc_links').Links | Where-Object { $_.outerHTML -match 'windows' -and $_.outerHTML -match '10' -and $_.outerHTML -match 'iot' -and $_.outerHTML -match 'enterprise' -and $_.outerHTML -match 'ltsc' -and $_.outerHTML -match 'x64' } | Select-Object -First 1).href
+$Windows_DDL2 = ((Invoke-WebRequest -UseBasicParsing -Uri $Windows_DDL1).Links | Where-Object { $_.outerHTML -match 'Download' } | Select-Object -First 1).href
 $Windows_DDL = $Windows_DDL2 -replace '&amp;', '&'
 $Windows_FileName = [IO.Path]::GetFileName(([URI]$Windows_DDL).AbsolutePath)
 $Windows_SavePath = [IO.Path]::Combine($env:TEMP, $Windows_FileName)

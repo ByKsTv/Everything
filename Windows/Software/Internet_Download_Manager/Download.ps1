@@ -53,9 +53,9 @@ if (-not (Test-Path -Path "${env:ProgramFiles(x86)}\Internet Download Manager\Un
 
     $DDL = 'https://rutracker.org/forum/viewtopic.php?t=5913474'
 
-    $Title = (Invoke-WebRequest -UseBasicParsing -Uri $DDL | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -match 'Internet Download Manager' } | Select-Object -First 1).outerHTML -replace '.*?>(.*?)</a>', '$1'
+    $Title = ((Invoke-WebRequest -UseBasicParsing -Uri $DDL).Links | Where-Object { $_.outerHTML -match 'Internet Download Manager' } | Select-Object -First 1).outerHTML -replace '.*?>(.*?)</a>', '$1'
 
-    $Magnet = [Uri]::UnescapeDataString((Invoke-WebRequest -UseBasicParsing -Uri $DDL | Select-Object -ExpandProperty 'Links' | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1 | Select-Object -ExpandProperty 'href'))
+    $Magnet = [Uri]::UnescapeDataString((((Invoke-WebRequest -UseBasicParsing -Uri $DDL).Links | Where-Object { $_.outerHTML -match 'magnet' } | Select-Object -First 1).href))
 
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/qBittorrent/Download.ps1')
 
@@ -71,14 +71,14 @@ if (-not (Test-Path -Path "${env:ProgramFiles(x86)}\Internet Download Manager\Un
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
     Start-Process qBittorrent.exe -ArgumentList $Argument
 
-    while (-not ($TempDir = Get-ChildItem $env:TEMP -Directory -Filter '*Internet Download Manager*' | Select-Object -First 1 | Select-Object -ExpandProperty 'FullName')) {
+    while (-not ($TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*Internet Download Manager*' | Select-Object -First 1).FullName)) {
         Start-Sleep -Milliseconds 1000
     }
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
     Add-MpPreference -ExclusionPath $TempDir
 
-    while (-not ($TempEXE = Get-ChildItem $TempDir -Filter '*.exe' | Select-Object -First 1 | Select-Object -ExpandProperty 'FullName')) {
+    while (-not ($TempEXE = (Get-ChildItem $TempDir -Filter '*.exe' | Select-Object -First 1).FullName)) {
         Start-Sleep -Milliseconds 1000
     }
     do {
@@ -105,8 +105,8 @@ if (-not (Test-Path -Path "${env:ProgramFiles(x86)}\Internet Download Manager\Un
     }
 
     $IDMan_InstallLocation = "${env:ProgramFiles(x86)}\Internet Download Manager\IDMan.exe"
-    $RegFile = Get-ChildItem -Path $TempDir -Filter '*.reg' -Recurse -File | Select-Object -First 1 | Select-Object -ExpandProperty 'FullName'
-    $IDMan_New = Get-ChildItem -Path $TempDir -Filter 'IDMan.exe' -Recurse -File | Select-Object -First 1 | Select-Object -ExpandProperty 'FullName'
+    $RegFile = (Get-ChildItem -Path $TempDir -Filter '*.reg' -Recurse -File | Select-Object -First 1).FullName
+    $IDMan_New = (Get-ChildItem -Path $TempDir -Filter 'IDMan.exe' -Recurse -File | Select-Object -First 1).FullName
     Start-Process regedit.exe -ArgumentList "/s ""$RegFile""" -Wait
     Copy-Item -Path $IDMan_New -Destination $IDMan_InstallLocation -Force
     Unblock-File -Path $IDMan_InstallLocation

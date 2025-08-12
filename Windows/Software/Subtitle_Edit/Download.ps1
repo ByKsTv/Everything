@@ -8,9 +8,9 @@ if (-not (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue)) 
     Register-ScheduledTask -TaskName $TaskName -Action $TaskAction -Trigger $TaskTrigger -Principal $TaskPrincipal -Settings $TaskSettings -Force
 }
 
-$InstalledVersion = Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\SubtitleEdit_is1' -ErrorAction SilentlyContinue | Select-Object -ExpandProperty 'DisplayVersion'
+$InstalledVersion = (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\SubtitleEdit_is1' -ErrorAction SilentlyContinue).DisplayVersion
 $LatestVersion = Invoke-RestMethod -UseBasicParsing -Uri 'https://api.github.com/repos/SubtitleEdit/subtitleedit/releases/latest'
-$LatestVersionUnV = $LatestVersion | Select-Object -ExpandProperty 'tag_name'.TrimStart('v')
+$LatestVersionUnV = ($LatestVersion).tag_name.TrimStart('v')
 
 if ($InstalledVersion) {
     if ($InstalledVersion -notmatch '\.\d+\.\d+$') {

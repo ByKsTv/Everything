@@ -24,13 +24,13 @@ foreach ($Version in $Versions) {
 	$FullVersion = "$Version.0"
 	$ReleasesJsonURL = "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/$FullVersion/releases.json"
 	$ReleasesJson = Invoke-RestMethod $ReleasesJsonURL
-	$SDKLatest = $ReleasesJson | Select-Object -ExpandProperty 'latest-sdk'
-	$SupportPhase = $ReleasesJson | Select-Object -ExpandProperty 'eol-date'
+	$SDKLatest = ($ReleasesJson).'latest-sdk'
+	$SupportPhase = ($ReleasesJson).'eol-date'
 	$SupportPhaseDate = [DateTime]${SupportPhase}
 	$Today = Get-Date
 
 	if (($null -eq $SDKInstalled) -or ($SDKInstalled -ne $SDKLatest) -and ($SupportPhaseDate -gt $Today)) {
-		$DDL = $ReleasesJson | Select-Object -ExpandProperty 'Releases' | Select-Object -First 1 | Select-Object -ExpandProperty 'sdk' | Select-Object -ExpandProperty 'files' | Where-Object { $_.name -match 'win-x64.exe' } | Select-Object -ExpandProperty 'url'
+		$DDL = (((($ReleasesJson).Releases | Select-Object -First 1).sdk).files | Where-Object { $_.name -match 'win-x64.exe' }).url
 		$FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
 		$SavePath = [IO.Path]::Combine($env:TEMP, $FileName)
 		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft .NET SDK'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SDKLatest'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
@@ -42,7 +42,7 @@ foreach ($Version in $Versions) {
 	}
 
 	if (($SupportPhaseDate -lt $Today) -and ($SDKInstalled)) {
-		$UninstallDDL = Invoke-RestMethod -Uri 'https://api.github.com/repos/dotnet/cli-lab/releases/latest' | Select-Object -ExpandProperty 'assets' | Where-Object { $_.name -match '.msi' } | Select-Object -ExpandProperty 'browser_download_url'
+		$UninstallDDL = ((Invoke-RestMethod -Uri 'https://api.github.com/repos/dotnet/cli-lab/releases/latest').assets | Where-Object { $_.name -match '.msi' }).browser_download_url
 		$UninstallFileName = [IO.Path]::GetFileName(([URI]$UninstallDDL).AbsolutePath)
 		$UninstallSavePath = [IO.Path]::Combine($env:TEMP, $UninstallFileName)
 		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'dotnet-core-uninstall'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$UninstallDDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$UninstallSavePath'"); [Console]::ResetColor(); [Console]::WriteLine()

@@ -1,7 +1,7 @@
 $GitHub = Invoke-RestMethod -Uri 'https://api.github.com/repos/Orbmu2k/nvidiaProfileInspector/releases/latest'
-$GitHub_Version = $GitHub | Select-Object -ExpandProperty 'name'
-$GitHub_FileName = $GitHub | Select-Object -ExpandProperty 'assets' | Select-Object -ExpandProperty 'name'
-$GitHub_DDL = $GitHub | Select-Object -ExpandProperty 'assets' | Select-Object -ExpandProperty 'browser_download_url'
+$GitHub_Version = ($GitHub).name
+$GitHub_FileName = (($GitHub).assets).name
+$GitHub_DDL = (($GitHub).assets).browser_download_url
 
 $SavePath = [IO.Path]::Combine($env:TEMP, $GitHub_FileName)
 
@@ -13,7 +13,7 @@ $ExtractPath = [IO.Path]::Combine([IO.Path]::GetDirectoryName($SavePath), [IO.Pa
 Expand-Archive -Path $SavePath -DestinationPath $ExtractPath -Force
 
 $FileName = 'nvidiaProfileInspector.exe'
-$FilePath = Get-ChildItem -Path $ExtractPath -Filter $FileName | Select-Object -ExpandProperty 'FullName'
+$FilePath = (Get-ChildItem -Path $ExtractPath -Filter $FileName).FullName
 
 $Settings_DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/nvidiaProfileInspector/Settings.xml'
 $Settings_Extension = '.nip'

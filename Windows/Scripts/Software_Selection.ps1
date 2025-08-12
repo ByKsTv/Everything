@@ -45,7 +45,7 @@ $Panel = New-Object System.Windows.Forms.Panel -Property @{
     AutoSize   = $false
 }
 
-$InstalledSoftware = Get-Package | Select-Object -ExpandProperty 'Name'
+$InstalledSoftware = (Get-Package).Name
 $CheckBox_X_Location = 5
 $CheckBox_Y_Location = 0
 $CheckBoxWidth = $Form.Width - 40
@@ -405,7 +405,7 @@ if (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue) {
     $CheckBoxes['7-Zip'].Enabled = $false
     $CheckBoxes['7-Zip'].Text += ' (Installed)'
 }
-$Windows_Activation_Status = Get-WmiObject -Query 'SELECT LicenseStatus FROM SoftwareLicensingProduct WHERE PartialProductKey <> null and LicenseIsAddon = False' | Select-Object -ExpandProperty 'LicenseStatus'
+$Windows_Activation_Status = (Get-WmiObject -Query 'SELECT LicenseStatus FROM SoftwareLicensingProduct WHERE PartialProductKey <> null and LicenseIsAddon = False').LicenseStatus
 if ($Windows_Activation_Status -eq 1) {
     $CheckBoxes['Activate Windows'].Enabled = $false
     $CheckBoxes['Activate Windows'].Text += ' (Activated)'
@@ -449,7 +449,7 @@ if ($InstalledSoftware -match 'Google Chrome') {
 if (Test-Path -Path 'HKLM:\SOFTWARE\Policies\Google\Chrome\ExtensionInstallForcelist') {
     $CheckBoxes['Chrome - Extensions'].Text += ' (Installed)'
 }
-if ((Get-AppxPackage | Select-Object -ExpandProperty 'Name') -match 'Microsoft.HEVCVideoExtension') {
+if (((Get-AppxPackage).Name) -match 'Microsoft.HEVCVideoExtension') {
     $CheckBoxes['Microsoft Store - Codec'].Enabled = $false
     $CheckBoxes['Microsoft Store - Codec'].Text += ' (Installed)'
 }
