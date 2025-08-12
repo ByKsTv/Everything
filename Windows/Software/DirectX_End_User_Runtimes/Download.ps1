@@ -4,7 +4,7 @@ $SavePath = [IO.Path]::Combine($env:TEMP, $FileName)
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'DirectX End-User Runtimes (June 2010)'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
 (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
 
-$Destination = Join-Path -Path (Split-Path $SavePath -Parent) -ChildPath ([IO.Path]::GetFileNameWithoutExtension($SavePath))
+$Destination = [IO.Path]::Combine((Split-Path $SavePath -Parent), [IO.Path]::GetFileNameWithoutExtension($SavePath))
 $Argument = "/Q /T:$Destination"
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'DirectX End-User Runtimes (June 2010)'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Destination'"); [Console]::ResetColor(); [Console]::WriteLine()
 Start-Process $SavePath -ArgumentList $Argument -Wait

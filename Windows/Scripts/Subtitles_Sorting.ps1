@@ -14,8 +14,8 @@ $FolderDialog = New-Object System.Windows.Forms.FolderBrowserDialog -Property @{
 
 if ($FolderDialog.ShowDialog($Form) -eq [Windows.Forms.DialogResult]::OK) {
     $TVShow_Path = $FolderDialog.SelectedPath
-    $Fonts_Path = Join-Path $TVShow_Path 'Fonts'
-    $Subs_Path = Join-Path $TVShow_Path 'Subs'
+    $Fonts_Path = [IO.Path]::Combine($TVShow_Path, 'Fonts')
+    $Subs_Path = [IO.Path]::Combine($TVShow_Path, 'Subs')
 
     if (-not (Test-Path $Fonts_Path)) {
         New-Item -ItemType Directory -Path $Fonts_Path | Out-Null
@@ -24,8 +24,8 @@ if ($FolderDialog.ShowDialog($Form) -eq [Windows.Forms.DialogResult]::OK) {
     $Fonts_Extensions = '.otf', '.ttf', '.woff', '.woff2', '.eot', '.ttc'
     Get-ChildItem -Path $Subs_Path -Recurse -File | ForEach-Object {
         if ($Fonts_Extensions -contains $_.Extension.ToLower()) {
-            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Copying '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$($_.FullName)'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$(Join-Path $Fonts_Path $_.Name)'"); [Console]::ResetColor(); [Console]::WriteLine()
-            Copy-Item $_.FullName (Join-Path $Fonts_Path $_.Name) -ErrorAction SilentlyContinue
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Copying '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$($_.FullName)'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$([IO.Path]::Combine($Fonts_Path, $_.Name))'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Copy-Item $_.FullName ([IO.Path]::Combine($Fonts_Path, $_.Name)) -ErrorAction SilentlyContinue
         }
     }
 
@@ -39,7 +39,7 @@ if ($FolderDialog.ShowDialog($Form) -eq [Windows.Forms.DialogResult]::OK) {
             $largest_sub = $ENG_Subs | Sort-Object Length -Descending | Select-Object -First 1
             $new_subtitle_name = ($Video_Files[0].BaseName) + '.eng' + $largest_sub.Extension
             $old_subtitle_path = $largest_sub.FullName
-            $new_subtitle_path = Join-Path $Subs_Path $new_subtitle_name
+            $new_subtitle_path = [IO.Path]::Combine($Subs_Path, $new_subtitle_name)
             [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Moving '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$old_subtitle_path'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$new_subtitle_path'"); [Console]::ResetColor(); [Console]::WriteLine()
             Move-Item $old_subtitle_path $new_subtitle_path
             $Video_Files = $Video_Files | Select-Object -Skip 1

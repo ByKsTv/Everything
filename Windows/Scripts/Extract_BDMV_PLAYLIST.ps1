@@ -121,9 +121,9 @@ if ($FileDialog.ShowDialog($Form) -eq [Windows.Forms.DialogResult]::OK) {
                 }
 
                 foreach ($FileName in $FileNames) {
-                    $filePath = [IO.Path]::GetFullPath((Join-Path -Path (Split-Path -Path $mplsFile.FullName -Parent) -ChildPath $FileName))
+                    $filePath = [IO.Path]::GetFullPath([IO.Path]::Combine((Split-Path $mplsFile.FullName -Parent), $FileName))
                     $parentFolderPath = (Get-Item -Path (Split-Path -Path $filePath -Parent)).Parent.FullName
-                    $streamFolderPath = Join-Path -Path $parentFolderPath -ChildPath 'STREAM'
+                    $streamFolderPath = [IO.Path]::Combine($parentFolderPath, 'STREAM')
 
                     if (-not (Test-Path -Path $streamFolderPath)) {
                         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('STEAM folder not found in '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$streamFolderPath'"); [Console]::WriteLine()
@@ -134,13 +134,13 @@ if ($FileDialog.ShowDialog($Form) -eq [Windows.Forms.DialogResult]::OK) {
                     if ($streamFile) {
                         $fileExtension = $streamFile.Extension
                         $newFileName = '{0:D3}{1}' -f $ChosenNumber, $fileExtension
-                        $newFilePath = Join-Path -Path $streamFolderPath -ChildPath $newFileName
+                        $newFilePath = [IO.Path]::Combine($streamFolderPath, $newFileName)
                         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Renaming '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$($streamFile.FullName)'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$newFileName'"); [Console]::ResetColor(); [Console]::WriteLine()
                         Rename-Item -Path $streamFile.FullName -NewName $newFileName -Force
 
                         $mainFolderPath = (Get-Item -Path $streamFolderPath).Parent.Parent.Parent.Parent.FullName
                         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Moving '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$newFileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$mainFolderPath'"); [Console]::ResetColor(); [Console]::WriteLine()
-                        Move-Item -Path $newFilePath -Destination (Join-Path -Path $mainFolderPath -ChildPath $newFileName) -Force
+                        Move-Item -Path $newFilePath -Destination ([IO.Path]::Combine($mainFolderPath, $newFileName)) -Force
 
                         $ChosenNumber++
                         $processed = $true

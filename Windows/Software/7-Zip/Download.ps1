@@ -98,22 +98,22 @@ foreach ($Extension in $Extensions) {
     $IconIndex = $Extension.IconIndex
     $ExtensionDescription = $Extension.Description
 
-    $DotExtensionName = Join-Path $RegKey $ExtensionName
+    $DotExtensionName = [IO.Path]::Combine($RegKey, $ExtensionName)
     if (-not (Test-Path -Path $DotExtensionName)) {
         New-Item -Path $RegKey -Name $ExtensionName -Force
     }
     New-ItemProperty -Path $DotExtensionName -Name '(default)' -Value "7-Zip$ExtensionName" -PropertyType String -Force
 
     $ExtInd = "7-Zip$ExtensionName"
-    $ExtReg = Join-Path $RegKey $ExtInd
+    $ExtReg = [IO.Path]::Combine($RegKey, $ExtInd)
     if (-not (Test-Path -Path $ExtReg)) {
         New-Item -Path $RegKey -Name $ExtInd -Force
     }
 
-    $DefaultIconKey = Join-Path $ExtReg 'DefaultIcon'
-    $ShellKey = Join-Path $ExtReg 'shell'
-    $OpenKey = Join-Path $ShellKey 'open'
-    $CommandKey = Join-Path $OpenKey 'command'
+    $DefaultIconKey = [IO.Path]::Combine($ExtReg, 'DefaultIcon')
+    $ShellKey = [IO.Path]::Combine($ExtReg, 'shell')
+    $OpenKey = [IO.Path]::Combine($ShellKey, 'open')
+    $CommandKey = [IO.Path]::Combine($OpenKey, 'command')
 
     foreach ($Key in @($DefaultIconKey, $ShellKey, $OpenKey, $CommandKey)) {
         if (-not (Test-Path -Path $Key)) {

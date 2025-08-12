@@ -1172,9 +1172,9 @@ New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\PriorityControl' 
 $PciDevicesPath = 'HKLM:\SYSTEM\CurrentControlSet\Enum\PCI'
 Get-ChildItem -Path $PciDevicesPath -ErrorAction SilentlyContinue | Where-Object { $_.PSIsContainer } | ForEach-Object {
 	Get-ChildItem -Path $_.PSPath -ErrorAction SilentlyContinue | Where-Object { $_.PSIsContainer } | ForEach-Object {
-		$InterruptManagementPath = Join-Path -Path $_.PSPath -ChildPath 'Device Parameters\Interrupt Management'
-		$DeviceParametersPath = Join-Path -Path $InterruptManagementPath -ChildPath 'MessageSignaledInterruptProperties'
-		$AffinityPolicyPath = Join-Path -Path $InterruptManagementPath -ChildPath 'Affinity Policy'
+		$InterruptManagementPath = [IO.Path]::Combine($_.PSPath, 'Device Parameters', 'Interrupt Management')
+		$DeviceParametersPath = [IO.Path]::Combine($InterruptManagementPath, 'MessageSignaledInterruptProperties')
+		$AffinityPolicyPath = [IO.Path]::Combine($InterruptManagementPath, 'Affinity Policy')
 
 		@($InterruptManagementPath, $DeviceParametersPath, $AffinityPolicyPath) | ForEach-Object {
 			if (-not (Test-Path $_)) {

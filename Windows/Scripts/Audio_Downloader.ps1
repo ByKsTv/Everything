@@ -89,7 +89,7 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
         return
     }
 
-    $OutputTemplate = Join-Path $OutputDir '%(title)s.%(ext)s'
+    $OutputTemplate = [IO.Path]::Combine($OutputDir, '%(title)s.%(ext)s')
 
     $Arguments = @(
         '--extract-audio',

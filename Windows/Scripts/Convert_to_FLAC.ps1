@@ -18,7 +18,7 @@ if ($FileDialog.ShowDialog($Form) -eq [Windows.Forms.DialogResult]::OK) {
 
     $InputFileName = [IO.Path]::GetFileNameWithoutExtension($SelectedFile)
     $InputDirectory = [IO.Path]::GetDirectoryName($SelectedFile)
-    $OutputFile = Join-Path -Path $InputDirectory -ChildPath ("$InputFileName.flac")
+    $OutputFile = [IO.Path]::Combine($InputDirectory, "$InputFileName.flac")
 
     $FFmpegCommand = "ffmpeg -i `"$SelectedFile`" -c:v copy -c:a flac `"$OutputFile`""
     Write-Host "Running command: $FFmpegCommand"
