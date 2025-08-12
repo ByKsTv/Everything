@@ -11,7 +11,7 @@
 1. PowerShell (Admin):
 
    ```powershell
-   ($Motherboard = Get-CimInstance -ClassName 'Win32_BaseBoard' | Select-Object -ExpandProperty 'Product') | Set-Clipboard; $Motherboard
+   Set-Clipboard ($Motherboard=(Get-CimInstance Win32_BaseBoard).Product);$Motherboard
 
    ```
 

@@ -119,7 +119,7 @@ if (-not (Select-String -Quiet -Path $IndexJS -Pattern 'betterdiscord')) {
         )
         foreach ($RepoConfigJson in $RepoConfigJsons) {
             if (-not (Test-Path $RepoConfigJson)) {
-                New-Item -ItemType Directory -Path (Split-Path -Path $RepoConfigJson) -Force
+                New-Item -ItemType Directory -Path ([IO.Path]::GetDirectoryName($RepoConfigJson)) -Force
                 $RepoJsonSettings = @{ all = @{ general = @{ notifyNewEntries = $false } } } | ConvertTo-Json -Depth 10
                 $RepoJsonSettings | Set-Content -Path $RepoConfigJson
             }

@@ -121,8 +121,8 @@ if ($FileDialog.ShowDialog($Form) -eq [Windows.Forms.DialogResult]::OK) {
                 }
 
                 foreach ($FileName in $FileNames) {
-                    $filePath = [IO.Path]::GetFullPath([IO.Path]::Combine((Split-Path $mplsFile.FullName -Parent), $FileName))
-                    $parentFolderPath = (Get-Item -Path (Split-Path -Path $filePath -Parent)).Parent.FullName
+                    $filePath = [IO.Path]::GetFullPath([IO.Path]::Combine([IO.Path]::GetDirectoryName($mplsFile.FullName), $FileName))
+                    $parentFolderPath = (Get-Item -Path ([IO.Path]::GetDirectoryName($filePath))).Parent.FullName
                     $streamFolderPath = [IO.Path]::Combine($parentFolderPath, 'STREAM')
 
                     if (-not (Test-Path -Path $streamFolderPath)) {

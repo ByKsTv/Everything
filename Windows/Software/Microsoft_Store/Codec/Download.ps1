@@ -8,7 +8,7 @@ $SavePath = [IO.Path]::Combine($env:TEMP, $FileName)
 
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/7-Zip/Download.ps1')
 
-$ExtractPath = [IO.Path]::Combine((Split-Path $SavePath -Parent), [IO.Path]::GetFileNameWithoutExtension($SavePath))
+$ExtractPath = [IO.Path]::Combine([IO.Path]::GetDirectoryName($SavePath), [IO.Path]::GetFileNameWithoutExtension($SavePath))
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ExtractPath'"); [Console]::ResetColor(); [Console]::WriteLine()
 & 7z.exe x $SavePath -o"$ExtractPath" -y
 

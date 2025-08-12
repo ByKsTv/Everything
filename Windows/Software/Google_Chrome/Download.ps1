@@ -11,7 +11,7 @@ $Chrome_MSI_SavePath = [IO.Path]::Combine($env:TEMP, $Chrome_MSI_FileName)
 (New-Object System.Net.WebClient).DownloadFile($Chrome_MSI_DDL, $Chrome_MSI_SavePath)
 
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/7-Zip/Download.ps1')
-$Chrome_MSI_Dir = [IO.Path]::Combine((Split-Path $Chrome_MSI_SavePath -Parent), [IO.Path]::GetFileNameWithoutExtension($Chrome_MSI_SavePath))
+$Chrome_MSI_Dir = [IO.Path]::Combine([IO.Path]::GetDirectoryName($Chrome_MSI_SavePath), [IO.Path]::GetFileNameWithoutExtension($Chrome_MSI_SavePath))
 $Chrome_MSI_Dir_SavePath = [IO.Path]::Combine($env:TEMP, $Chrome_MSI_Dir)
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Chrome_MSI_FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Chrome_MSI_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Chrome_MSI_Dir_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
 & 7z.exe x $Chrome_MSI_SavePath -o"$Chrome_MSI_Dir_SavePath" -y

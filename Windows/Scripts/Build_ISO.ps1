@@ -16,7 +16,7 @@ $FileDialog = New-Object System.Windows.Forms.OpenFileDialog -Property @{
 if ($FileDialog.ShowDialog($Form) -eq [Windows.Forms.DialogResult]::OK) {
     $SelectedFolder = [IO.Path]::GetDirectoryName($FileDialog.FileName)
 
-    $InstalledSoftware = Get-Package | Select-Object -ExpandProperty 'Name'
+    $InstalledSoftware = (Get-Package).Name
     if ($InstalledSoftware -notcontains 'Windows System Image Manager') {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Windows_Assessment_and_Deployment_Kit/Deployment_Tools/Download.ps1')
     }

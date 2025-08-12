@@ -291,7 +291,7 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
         (New-Object System.Net.WebClient).DownloadFile($Scrubber_DDL, $Scrubber_SavePath)
 
-        $Scrubber_Dir = [IO.Path]::Combine((Split-Path $Scrubber_SavePath -Parent), [IO.Path]::GetFileNameWithoutExtension($Scrubber_SavePath))
+        $Scrubber_Dir = [IO.Path]::Combine([IO.Path]::GetDirectoryName($Scrubber_SavePath), [IO.Path]::GetFileNameWithoutExtension($Scrubber_SavePath))
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_Dir'"); [Console]::ResetColor(); [Console]::WriteLine()
         Expand-Archive -Path $Scrubber_SavePath -DestinationPath $Scrubber_Dir -Force
 

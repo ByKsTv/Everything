@@ -44,7 +44,7 @@ if ($InstalledSoftware -match 'Microsoft Edge') {
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Uninstalling '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Edge'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$UninstallString'"); [Console]::ResetColor(); [Console]::WriteLine()
     Start-Process cmd.exe "/c $UninstallString" -WindowStyle Hidden -Wait
 
-    $TemporaryFolder = Split-Path $TemporaryFile -Parent
+    $TemporaryFolder = [IO.Path]::GetDirectoryName($TemporaryFile)
     if (Test-Path $TemporaryFolder) {
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Taking ownership on '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Edge'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' temporary folder from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$TemporaryFolder'"); [Console]::ResetColor(); [Console]::WriteLine()
         & takeown.exe /F $TemporaryFolder /R /D Y

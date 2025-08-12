@@ -117,8 +117,8 @@ foreach ($Extension in $Extensions) {
 
     foreach ($Key in @($DefaultIconKey, $ShellKey, $OpenKey, $CommandKey)) {
         if (-not (Test-Path -Path $Key)) {
-            $ParentKey = Split-Path -Parent $Key
-            $NameKey = Split-Path -Leaf $Key
+            $ParentKey = [IO.Path]::GetDirectoryName($Key)
+            $NameKey = [IO.Path]::GetFileName($Key)
             New-Item -Path $ParentKey -Name $NameKey -Force
         }
     }

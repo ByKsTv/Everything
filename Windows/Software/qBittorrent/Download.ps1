@@ -34,7 +34,7 @@ if (($null -eq $InstalledVersion) -or ($InstalledVersion -notmatch $LatestVersio
 
 $ShortCut = [IO.Path]::Combine($env:ProgramData, 'Microsoft', 'Windows', 'Start Menu', 'Programs', 'qBittorrent', 'qBittorrent.lnk')
 if (Test-Path $ShortCut) {
-    $Destination = Split-Path (New-Object -ComObject WScript.Shell).CreateShortcut($ShortCut).TargetPath
+    $Destination = [IO.Path]::GetDirectoryName((New-Object -ComObject WScript.Shell).CreateShortcut($ShortCut).TargetPath)
     $OLD_PATH = [Environment]::GetEnvironmentVariable('Path', [EnvironmentVariableTarget]::User)
     if (-not ($OLD_PATH.Contains($Destination))) {
         $NEW_PATH = "$OLD_PATH;$Destination"
