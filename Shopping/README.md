@@ -4,6 +4,7 @@
 - [AliExpress](#aliexpress)
 - [Coupons](#coupons)
 - [Products](#products)
+- [Tips](#tips)
 - [Recycle](#recycle)
 - [AV Receiver](#av-receiver)
   - [Factory Reset](#factory-reset)
@@ -40,19 +41,26 @@ WD brand from AliExpress is sus because sticker is the same but the shape of the
 
 ## Products
 
-| Brand          | Product                                                                                                                                                          | Store                                                            |
-| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| 3M             | [PELTOR X5 Earmuffs](https://www.3m.com/3M/en_US/p/d/b00037368/)                                                                                                 | [Amazon](https://www.amazon.com/dp/B00CPCHBCQ)                   |
-| Mounting Dream | [MD2380](https://mountingdreamonline.com/products/full-motion-tv-wall-mount-for-32-65-tvs-mounting-dream-md2380)                                                 | [Amazon](https://www.amazon.com/dp/B00SFSU53G)                   |
-| SERMAN BRANDS  | [Elite - Jet Black](https://www.sermanbrands.com/products/elite?variant=31739503247431)                                                                          | [Amazon](https://www.amazon.com/dp/B07WRMXNYG)                   |
-| Club3D         | [USB 3.1 Type-C to Type-A Cable 10Gbps PD 60W M/M 1m/3.28ft](https://www.club-3d.com/en/detail/2354/usb_3.1_type_c_to_type_a_cable_10gbps_pd_60w_m-m_1m-3.28ft/) | Local                                                            |
-| Club3D         | [Premium High Speed HDMI 4K60Hz UHD Cable 3m/9.84 ft](https://www.club-3d.com/en/detail/2336/premium_high_speed_hdmi_2.0_4k60hz_uhd_cable_3m-9.84_ft/)           | Local                                                            |
-| MOES           | WiFi Touch Light Switch                                                                                                                                          | [AliExpress](https://www.aliexpress.com/item/4001103136550.html) |
-| LoraTap        | WiFi Touch Boiler Switch                                                                                                                                         | [AliExpress](https://www.aliexpress.com/item/33020659733.html)   |
+| Brand          | Product                                                                                                                                                          | Store                                                               |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| 3M             | [PELTOR X5 Earmuffs](https://www.3m.com/3M/en_US/p/d/b00037368/)                                                                                                 | [Amazon](https://www.amazon.com/dp/B00CPCHBCQ)                      |
+| Mounting Dream | [MD2380](https://mountingdreamonline.com/products/full-motion-tv-wall-mount-for-32-65-tvs-mounting-dream-md2380)                                                 | [Amazon](https://www.amazon.com/dp/B00SFSU53G)                      |
+| SERMAN BRANDS  | [Elite - Jet Black](https://www.sermanbrands.com/products/elite?variant=31739503247431)                                                                          | [Amazon](https://www.amazon.com/dp/B07WRMXNYG)                      |
+| Club3D         | [USB 3.1 Type-C to Type-A Cable 10Gbps PD 60W M/M 1m/3.28ft](https://www.club-3d.com/en/detail/2354/usb_3.1_type_c_to_type_a_cable_10gbps_pd_60w_m-m_1m-3.28ft/) | Local                                                               |
+| Club3D         | [Premium High Speed HDMI 4K60Hz UHD Cable 3m/9.84 ft](https://www.club-3d.com/en/detail/2336/premium_high_speed_hdmi_2.0_4k60hz_uhd_cable_3m-9.84_ft/)           | Local                                                               |
+| MOES           | WiFi Touch Light Switch                                                                                                                                          | [AliExpress](https://www.aliexpress.com/item/4001103136550.html)    |
+| MOES           | WiFi IR RF Remote                                                                                                                                                | [AliExpress](https://www.aliexpress.com/item/1005005982270448.html) |
+| LoraTap        | WiFi Touch Boiler Switch                                                                                                                                         | [AliExpress](https://www.aliexpress.com/item/33020659733.html)      |
+| COMPTYCO       | Fiber Optic Cleaning Pen                                                                                                                                         | [AliExpress](https://www.aliexpress.com/item/1005006456065623.html) |
+| SAIVXIAN       | Fiber Optic End Face Cleaning Box                                                                                                                                | [AliExpress](https://www.aliexpress.com/item/1005006654566634.html) |
+| YEFYM          | Ferrule Crimping Tool                                                                                                                                            | [AliExpress](https://www.aliexpress.com/item/1005005045473052.html) |
+| SAMSUNG        | DDR3 RAM                                                                                                                                                         | [AliExpress](https://www.aliexpress.com/item/1005007581427851.html) |
 
-Speaker cable: Don't buy CCA cable, instead buy OFC oxygen free cable.
-HDD: Don't buy SMR drives, instead buy CMR drives.
-Air Condition: Check noise rating (dB) for indoor/outdoor units and check which app it connects to and if it works with Google Home.
+## Tips
+
+- Speaker cable: Don't buy CCA cable, instead buy OFC oxygen free cable.
+- HDD: Don't buy SMR drives, instead buy CMR drives.
+- Air Condition: Check noise rating (dB) for indoor/outdoor units and check which app it connects to and if it works with Google Home.
 
 ## Recycle
 
