@@ -47,10 +47,10 @@ if ($InstalledSoftware -match 'Microsoft Edge') {
     $TemporaryFolder = Split-Path $TemporaryFile -Parent
     if (Test-Path $TemporaryFolder) {
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Taking ownership on '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Edge'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' temporary folder from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$TemporaryFolder'"); [Console]::ResetColor(); [Console]::WriteLine()
-        takeown.exe /F $TemporaryFolder /R /D Y
+        & takeown.exe /F $TemporaryFolder /R /D Y
 
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Granting premissions on '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Edge'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' temporary folder from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$TemporaryFolder'"); [Console]::ResetColor(); [Console]::WriteLine()
-        icacls.exe $TemporaryFolder /grant 'Everyone:F' /T
+        & icacls.exe $TemporaryFolder /grant 'Everyone:F' /T
 
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Deleting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Edge'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' temporary folder from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$TemporaryFolder'"); [Console]::ResetColor(); [Console]::WriteLine()
         Remove-Item $TemporaryFolder -Recurse -Force
@@ -95,8 +95,8 @@ if ($InstalledSoftware -match 'Microsoft Edge') {
     $ProgramFilesFolder = [IO.Path]::Combine(${env:ProgramFiles(x86)}, 'Microsoft')
     if (Test-Path $ProgramFilesFolder) {
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Deleting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Edge'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' folder from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ProgramFilesFolder'"); [Console]::ResetColor(); [Console]::WriteLine()
-        takeown.exe /F $ProgramFilesFolder /R /D Y
-        icacls.exe $ProgramFilesFolder /grant 'Everyone:F' /T
+        & takeown.exe /F $ProgramFilesFolder /R /D Y
+        & icacls.exe $ProgramFilesFolder /grant 'Everyone:F' /T
         Remove-Item $ProgramFilesFolder -Recurse -Force
     }
 

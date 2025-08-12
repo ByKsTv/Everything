@@ -232,7 +232,7 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
 	$Form.TopMost = $false
 	if ($TimeZoneSelection.SelectedItem -and $TimeZoneSelection.Text -ne 'Select Time Zone') {
 		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Time Zone: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write($TimeZoneSelection.SelectedItem); [Console]::ResetColor(); [Console]::WriteLine()
-		tzutil.exe /s $TimeZoneSelection.SelectedItem
+		& tzutil.exe /s $TimeZoneSelection.SelectedItem
 	}
 		
 	if ($KeyboardSelection.SelectedItem -and $KeyboardSelection.Text -ne 'Select Keyboard') {

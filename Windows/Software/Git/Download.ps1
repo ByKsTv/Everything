@@ -25,8 +25,8 @@ if (($null -eq $InstalledVersion) -or ($InstalledVersion -notmatch $LatestVersio
     Start-Process $SavePath -ArgumentList $Argument -Wait
 
     $env:Path = [Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [Environment]::GetEnvironmentVariable('Path', 'User')
-    $CurrentUsername = git.exe config user.name
-    $CurrentEmail = git.exe config user.email
+    $CurrentUsername = & git.exe config user.name
+    $CurrentEmail = & git.exe config user.email
     
     if (($null -eq $CurrentUsername) -and ($null -eq $CurrentEmail)) {
         Add-Type -AssemblyName System.Windows.Forms
@@ -81,12 +81,12 @@ if (($null -eq $InstalledVersion) -or ($InstalledVersion -notmatch $LatestVersio
         $Form_OK.Add_Click({
                 $Form.Topmost = $false
 
-                git.exe config --global user.name $TextBox_CustomUsername.Text
-                $CurrentUsername = git.exe config user.name
+                & git.exe config --global user.name $TextBox_CustomUsername.Text
+                $CurrentUsername = & git.exe config user.name
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Setting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Git'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' username '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$CurrentUsername'"); [Console]::ResetColor(); [Console]::WriteLine()
             
-                git.exe config --global user.email $TextBox_CustomEmail.Text
-                $CurrentEmail = git.exe config user.email
+                & git.exe config --global user.email $TextBox_CustomEmail.Text
+                $CurrentEmail = & git.exe config user.email
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Setting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Git'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' email '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$CurrentEmail'"); [Console]::ResetColor(); [Console]::WriteLine()
             })
             

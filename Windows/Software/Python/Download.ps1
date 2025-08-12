@@ -29,5 +29,5 @@ if (($null -eq $InstalledVersion) -or ($InstalledVersion -notmatch $LatestVersio
     Start-Process $SavePath -ArgumentList $Argument -Wait
     $env:Path = [Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [Environment]::GetEnvironmentVariable('Path', 'User')
 
-    python.exe -m pip install --upgrade pip
+    & python.exe -m pip install --upgrade pip
 }

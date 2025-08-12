@@ -16,7 +16,7 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Network.ps1')
 
-UsoClient.exe StartInteractiveScan
+& UsoClient.exe StartInteractiveScan
 
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Initial_Setup.ps1')
 

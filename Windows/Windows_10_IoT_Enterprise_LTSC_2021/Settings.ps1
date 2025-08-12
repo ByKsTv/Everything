@@ -7,8 +7,8 @@ Get-WindowsPackage -Online | Where-Object { $_.PackageName -match 'Microsoft-Win
 Get-AppxPackage -AllUsers -PackageTypeFilter Bundle -Name '*Windows.DevHome*' | Remove-AppxPackage -AllUsers
 
 # Black Lock Screen Image
-takeown.exe /f "$env:ProgramData\Microsoft\Windows\SystemData" /r /d y
-icacls.exe "$env:ProgramData\Microsoft\Windows\SystemData" /GRANT Everyone:F, Users:F /t
+& takeown.exe /f "$env:ProgramData\Microsoft\Windows\SystemData" /r /d y
+& icacls.exe "$env:ProgramData\Microsoft\Windows\SystemData" /GRANT Everyone:F, Users:F /t
 Remove-Item "$env:ProgramData\Microsoft\Windows\SystemData" -Force -Recurse
 
 # Disable Input language switching notification

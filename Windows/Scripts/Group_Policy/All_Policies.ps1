@@ -39,7 +39,7 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows NT\Reliabi
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\AppV\CEIP' -Name 'CEIPEnable' -Type DWORD -Value 0
 
 # Group Policy: Computer Configuration: Administrative Templates: System: Audit Process Creation: Include command line in process creation events: Disabled
-# auditpol.exe /set /subcategory:"{0CCE922B-69AE-11D9-BED3-505054503030}" /success:disable /failure:disable
+# & auditpol.exe /set /subcategory:"{0CCE922B-69AE-11D9-BED3-505054503030}" /success:disable /failure:disable
 Set-Policy -Scope Computer -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\System\Audit' -Name 'ProcessCreationIncludeCmdLine_Enabled' -Type DWORD -Value 0
 
 # Group Policy: Computer Configuration: Administrative Templates: System: Device Installation: Do not send a Windows error report when a generic driver is installed on a device: Enabled

@@ -9,4 +9,4 @@ $Dir_SavePath = [IO.Path]::Combine((Split-Path $SavePath -Parent), [IO.Path]::Ge
 Expand-Archive -Path $SavePath -DestinationPath $Dir_SavePath -Force
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'USB Driver'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Dir_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-pnputil.exe /add-driver "$Dir_SavePath\*.inf" /subdirs /install
+& pnputil.exe /add-driver "$Dir_SavePath\*.inf" /subdirs /install
