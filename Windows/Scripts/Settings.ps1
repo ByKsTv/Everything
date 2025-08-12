@@ -15,10 +15,10 @@ elseif ($PowerPlanHigh) {
 powercfg.exe /HIBERNATE OFF
 
 # Power Plan: Showing all hidden options
-Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' -Name 'CSEnabled' -Value 0 -Force
+New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Power' -Name 'CSEnabled' -Value 0 -Force
 $PowerCfg = (Get-ChildItem 'HKLM:\SYSTEM\CurrentControlSet\Control\Power\PowerSettings' -Recurse).Name -notmatch '\bDefaultPowerSchemeValues|(\\[0-9]|\b255)$'
 foreach ($item in $PowerCfg) {
-	Set-ItemProperty -Path $item.Replace('HKEY_LOCAL_MACHINE', 'HKLM:') -Name 'Attributes' -Value 2 -Force 
+	New-ItemProperty -Path $item.Replace('HKEY_LOCAL_MACHINE', 'HKLM:') -Name 'Attributes' -Value 2 -Force
 }
 
 # Power Plan: Require a password on wakeup: No
@@ -1215,7 +1215,7 @@ $Urls | ForEach-Object {
 # Open as Notepad
 $NotepadDefaultExts = @('.lua', '.conf', '.json', '.glsl', '.xml')
 foreach ($NotepadDefaultExt in $NotepadDefaultExts) {
-	New-Item "HKCU:\Software\Classes\$NotepadDefaultExt\shell\open\command" -Force | Set-ItemProperty -Name '(default)' -Value 'notepad.exe %1' 
+	New-Item "HKCU:\Software\Classes\$NotepadDefaultExt\shell\open\command" -Force | New-ItemProperty -Name '(default)' -Value 'notepad.exe %1' -Force
 }
 
 # Narrator: Do not show again

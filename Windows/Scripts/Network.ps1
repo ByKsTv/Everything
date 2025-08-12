@@ -1635,7 +1635,7 @@ foreach ($nic in $NetworkAdapters) {
 		$props = Get-ItemProperty -Path $subKeyPath -Name NetCfgInstanceID, PnPCapabilities -ErrorAction SilentlyContinue
 		if ($props.NetCfgInstanceID -and $props.NetCfgInstanceID -eq $ifGuid) {
 			if ($props.PnPCapabilities -ne $PnPValue) {
-				Set-ItemProperty -Path $subKeyPath -Name PnPCapabilities -Value $PnPValue -Force
+				New-ItemProperty -Path $subKeyPath -Name PnPCapabilities -Value $PnPValue -Force
 				Disable-PnpDevice -InstanceId $nic.PnPDeviceID -Confirm:$false
 				Enable-PnpDevice -InstanceId $nic.PnPDeviceID -Confirm:$false
 			}

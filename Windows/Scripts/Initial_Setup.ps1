@@ -276,12 +276,12 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
 
 	if ($RemoteDesktop.Checked -eq $true) {
 		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Remote Desktop: Enabling'); [Console]::ResetColor(); [Console]::WriteLine()
-		Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name 'fDenyTSConnections' -Value 0
+		New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name 'fDenyTSConnections' -Value 0 -Force
 		Enable-NetFirewallRule -DisplayGroup 'Remote Desktop'
 	}
 	elseif ($RemoteDesktop.Checked -eq $false) {
 		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Remote Desktop: Disabling'); [Console]::ResetColor(); [Console]::WriteLine()
-		Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name 'fDenyTSConnections' -Value 1
+		New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name 'fDenyTSConnections' -Value 1 -Force
 		Disable-NetFirewallRule -DisplayGroup 'Remote Desktop'
 	}
 
@@ -298,7 +298,7 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
 		Remove-Item -Path 'WSMan:\Localhost\listener\listener*' -Recurse
 		Clear-Item 'wsman:\localhost\client\trustedhosts' -Force
 		Set-NetFirewallRule -DisplayName 'Windows Remote Management (HTTP-In)' -Enabled False | Select-Object -Property DisplayName, Profile, Enabled
-		Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\policies\system' -Name 'LocalAccountTokenFilterPolicy' -Value 0
+		New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\policies\system' -Name 'LocalAccountTokenFilterPolicy' -Value 0 -Force
 		Stop-Service 'WinRM'
 		Set-Service 'WinRM' -StartupType Manual
 	}

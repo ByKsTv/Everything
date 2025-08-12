@@ -64,7 +64,7 @@ if ($itemsToDisplay.Length -gt 0) {
 	}
 }
 $data += ',194,60,1,194,70,1,197,90,1,0'
-Set-ItemProperty -Path $key.PSPath -Name 'Data' -Type Binary -Value $data.Split(',')
+New-ItemProperty -Path $key.PSPath -Name 'Data' -PropertyType Binary -Value $data.Split(',')
 
 # Settings: System: Tablet: When I sign in: Never use tablet mode
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell' -Name 'SignInMode' -Value 1 -PropertyType DWord -Force
@@ -111,7 +111,7 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Par
 
 # # svchost.exe: Group (Decrease Process Number)
 # $svchostram = (Get-CimInstance -ClassName Win32_PhysicalMemory | Measure-Object -Property Capacity -Sum).Sum / 1kb
-# Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control' -Name 'SvcHostSplitThresholdInKB' -Type DWord -Value $svchostram -Force
+# New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control' -Name 'SvcHostSplitThresholdInKB' -PropertyType DWord -Value $svchostram -Force
 
 # UserFolders -ThreeDObjects Hide 
 if (-not (Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag')) {
