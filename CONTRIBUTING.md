@@ -11,4 +11,5 @@
 - Do not use `Set-ItemProperty`, instead use `New-ItemProperty`.
 - For `if` statements: Do not use `!`, instead use `-not`.
 - For `if` statements: Use new line after `{`.
+- If running a standalone `.exe` cmdlet (i.e `powercfg` cmdlet), Use `&` prefix and `.exe` suffix.
 - Code as short as possible.
