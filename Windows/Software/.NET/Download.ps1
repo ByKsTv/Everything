@@ -24,8 +24,8 @@ foreach ($Version in $Versions) {
 	$FullVersion = "$Version.0"
 	$ReleasesJsonURL = "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/$FullVersion/releases.json"
 	$ReleasesJson = Invoke-RestMethod $ReleasesJsonURL
-	$SDKLatest = ($ReleasesJson).'latest-sdk'
-	$SupportPhase = ($ReleasesJson).'eol-date'
+	$SDKLatest = $ReleasesJson.'latest-sdk'
+	$SupportPhase = $ReleasesJson.'eol-date'
 	$SupportPhaseDate = [DateTime]${SupportPhase}
 	$Today = Get-Date
 
