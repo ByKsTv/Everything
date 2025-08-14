@@ -261,6 +261,8 @@ Known Issues:
   - [777 or 404](https://www.youtube.com/@hz777)
   - [Mactelecom Networks](https://www.youtube.com/@MactelecomNetworks)
 
+- For some IoT devices such as WiFi printers and WiFi universal remote will have issues if the "Band Steering" option is enabled.
+
 ## WAN
 
 ### WAN - Equipment
