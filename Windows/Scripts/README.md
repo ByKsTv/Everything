@@ -62,9 +62,9 @@ pip install qrcode[pil]
 ```txt
 TV Show/
 ├── Subs/
-   ├── Episode 1
-   ├── Episode 2
-   ├── Episode 3
+   ├── Episode 1/
+   ├── Episode 2/
+   ├── Episode 3/
 ```
 
 ## PowerShell
