@@ -61,7 +61,7 @@ pip install qrcode[pil]
 
 ```txt
 TV Show/
-├── Subs
+├── Subs/
    ├── Episode 1
    ├── Episode 2
    ├── Episode 3
