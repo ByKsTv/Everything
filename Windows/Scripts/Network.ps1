@@ -725,6 +725,7 @@ $SettingsToChange = @(
 	Related to energy savings.
 #>
 	@{ DisplayName = 'ECMA'; DisplayValues = @('Disabled') },
+	@{ DisplayName = 'Energy-Efficient Ethernet'; DisplayValues = @('Disabled') },
 
 	<#
 	Setting:
@@ -844,7 +845,7 @@ $SettingsToChange = @(
 	Note:
 	Lower rates reduce CPU usage but may add latency.
 #>
-	@{ DisplayName = 'Interrupt Moderation Rate'; DisplayValues = @('Extreme') },
+	@{ DisplayName = 'Interrupt Moderation Rate'; DisplayValues = @('High', 'Extreme') },
 
 	<#
 	Setting:
@@ -889,6 +890,8 @@ $SettingsToChange = @(
 	Note:
 	Improves throughput on compatible networks.
 #>
+
+	@{ DisplayName = 'JumboPacket'; DisplayValues = @('1514', 'Disabled') },
 	@{ DisplayName = 'Jumbo Packet'; DisplayValues = @('1514', 'Disabled') },
 
 	<#
@@ -1084,7 +1087,7 @@ $SettingsToChange = @(
 	Note:
 	For networks using Quality of Service (QoS) and VLANs.
 #>
-	@{ DisplayName = 'Packet Priority & VLAN'; DisplayValues = @('Packet Priority & VLAN Disabled') },
+	@{ DisplayName = 'Packet Priority & VLAN'; DisplayValues = @('Packet Priority & VLAN Disable', 'Packet Priority & VLAN Disabled') },
 
 	<#
 	Setting:
@@ -1537,6 +1540,253 @@ $SettingsToChange = @(
 #>
 	@{ DisplayName = 'Wake on Pattern Match'; DisplayValues = @('Disabled') }
 
+	<#
+	Setting:
+	SSIdleTimeout
+
+	Description:
+	Specifies the maximum idle time, in seconds, before a network session is considered inactive 
+	and is automatically disconnected. This helps manage resources and enforce security by 
+	closing unused connections.
+
+	Values:
+	Any positive integer (typically in seconds). Common defaults range from 300 (5 minutes) to 1800 (30 minutes).
+
+	Note:
+	Set a lower value for security-sensitive environments to reduce exposure from idle connections. 
+	Use a higher value if persistent connections are required for user convenience.
+#>
+	@{ DisplayName = 'SSIdleTimeout'; DisplayValues = @('60') }
+
+	<#
+	Setting:
+	AutoDetach
+
+	Description:
+	Determines whether a device will automatically detach from the host system when a 
+	USB reset or re-enumeration occurs. This is often used to allow firmware updates or 
+	to reinitialize the device without manual unplugging.
+
+	Values:
+	Disabled  - Device remains attached during reset or re-enumeration.
+	Enabled   - Device automatically detaches and reattaches during reset or re-enumeration.
+	Use EEPROM Setting - Device follows the configuration stored in its EEPROM.
+
+	Note:
+	Enabled can simplify firmware updates or recovery, but may cause brief connection loss. 
+	Use EEPROM Setting if the device’s built-in configuration should take precedence.
+#>
+	@{ DisplayName = 'AutoDetach'; DisplayValues = @('Use EEPROM Setting') }
+
+	<#
+	Setting:
+	Mask WakeUp Event Timer
+
+	Description:
+	Specifies the delay before the system responds to a wake-up event after entering a low-power state. 
+	This can help filter out unwanted or accidental wake-up triggers by ignoring events that occur 
+	too soon after sleep.
+
+	Values:
+	0 second  - No delay; wake-up events are handled immediately.
+	4 seconds  - Ignores wake-up events for the first 4 seconds after sleep.
+	8 seconds  - Ignores wake-up events for the first 8 seconds after sleep.
+	12 seconds - Ignores wake-up events for the first 12 seconds after sleep.
+	16 seconds - Ignores wake-up events for the first 16 seconds after sleep.
+	20 seconds - Ignores wake-up events for the first 20 seconds after sleep.
+	24 seconds - Ignores wake-up events for the first 24 seconds after sleep.
+	28 seconds - Ignores wake-up events for the first 28 seconds after sleep.
+
+	Note:
+	Use longer delays in environments prone to electrical noise or unintended wake signals. 
+	Set to 0 seconds if you require the fastest possible wake-up response.
+#>
+	@{ DisplayName = 'Mask WakeUp Event Timer'; DisplayValues = @('0 second') }
+
+	<#
+	Setting:
+	Wake on Link Change
+
+	Description:
+	Allows the system to wake from a low-power state when a change in the network link status 
+	is detected, such as a cable being plugged in, unplugged, or a network speed/duplex change.
+
+	Values:
+	Disabled - Link status changes will not wake the system.
+	Enabled - Any change in network link status will wake the system.
+
+	Note:
+	Enable for scenarios where immediate response to network link changes is required, 
+	such as network diagnostics or remote access readiness. Disable to prevent unintended 
+	wake-ups caused by transient link fluctuations.
+#>
+	@{ DisplayName = 'Wake on link change'; DisplayValues = @('Disabled') }
+
+	<#
+	Setting:
+	WOL Link Power Saving
+
+	Description:
+	Controls whether the network adapter reduces link speed or power usage while the system 
+	is in a low-power state, while still allowing Wake-on-LAN (WOL) functionality. This helps 
+	save energy without fully disabling network wake capabilities.
+
+	Values:
+	Disabled - Maintains full link power in low-power states for maximum responsiveness.
+	Enabled - Reduces link power consumption in low-power states while preserving WOL functionality.
+
+	Note:
+	Enable to conserve energy when the system is in sleep or standby, especially for battery-powered devices. 
+	Disable if you require the fastest possible WOL response or if reduced link speed causes wake failures.
+#>
+	@{ DisplayName = 'WOL Link Power Saving'; DisplayValues = @('Disabled') }
+
+	<#
+    Setting:
+    U1/U2 Power Saving
+
+    Description:
+    Controls whether the USB 3.0 link enters U1 or U2 low-power states when idle.
+    These states allow the link to reduce power usage by partially suspending the
+    connection while still maintaining readiness to resume full operation. U1 is a
+    shallower, quicker-to-resume state, while U2 is deeper and more power-efficient
+    but slightly slower to resume.
+
+    Values:
+    Disabled - Keeps the USB link in the U0 (active) state for maximum performance and lowest latency, at the cost of higher power usage.
+    Enabled - Allows the USB link to enter U1/U2 states when idle to save power.
+
+    Note:
+    Enable to reduce power consumption on battery-powered systems or when using
+    multiple USB devices that support U1/U2. Disable if you require the lowest
+    possible latency or if certain USB devices experience connection delays or
+    compatibility issues when resuming from low-power states.
+#>
+	@{ DisplayName = 'U1/U2 Power Saving'; DisplayValues = @('Disabled') }
+
+	<#
+    Setting:
+    Suspend Low Power
+
+    Description:
+    Controls whether the device reduces power consumption while in a suspended
+    state. When enabled, the device can enter a lower-power mode during suspend,
+    conserving energy but potentially increasing resume latency.
+
+    Values:
+    Disabled - Keeps the device in a higher-power state during suspend for faster resume times and maximum responsiveness.
+    Enabled - Allows the device to lower its power usage while suspended, saving energy.
+
+    Note:
+    Enable to extend battery life or reduce power usage in systems where longer
+    resume times are acceptable. Disable if immediate wake performance is required
+    or if certain devices do not function properly when resuming from low-power
+    suspend.
+#>
+	@{ DisplayName = 'Suspend Low Power'; DisplayValues = @('Disabled') }
+
+	<#
+    Setting:
+    Suspend AutoDetach
+
+    Description:
+    Controls whether the USB device automatically detaches from the host when the
+    system enters a suspend state. This can help save power by fully disconnecting
+    idle devices until the system resumes, after which the device will reattach.
+
+    Values:
+    Disabled - Keeps the device logically attached during suspend for quicker resume and uninterrupted functionality.
+    Enabled - Automatically detaches the device during suspend to conserve power.
+
+    Note:
+    Enable to reduce power consumption on systems where detached devices can be
+    reinitialized without issues upon resume. Disable if the device must remain
+    continuously available or if reattachment causes delays or compatibility
+    problems.
+#>
+	@{ DisplayName = 'Suspend AutoDetach'; DisplayValues = @('Disabled') }
+
+	<#
+    Setting:
+    MAC Passthrough
+
+    Description:
+    Allows the network adapter to adopt the MAC address of another device,
+    typically used in docking stations or with certain network configurations.
+    This can ensure consistent network identification when switching between
+    different hardware interfaces.
+
+    Values:
+    Disabled - Uses the network adapter’s built-in MAC address.
+    Enabled - Inherits the MAC address from a connected device, such as a dock or external network interface.
+
+    Note:
+    Enable if you need consistent MAC addressing across multiple connection
+    methods or when required by specific network policies. Disable to always use
+    the adapter’s native MAC address for clear hardware identification.
+#>
+	@{ DisplayName = 'MAC Passthrough'; DisplayValues = @('Disabled') }
+
+	<#
+    Setting:
+    ForceSuspend
+
+    Description:
+    Forces the device to enter the suspend state regardless of activity or pending
+    operations. This can be used to ensure strict power savings, but may interrupt
+    active data transfers or device functions.
+
+    Values:
+    Disabled - Allows the device to remain active if operations are ongoing, entering suspend only when idle or as determined by the system.
+    Enabled - Forces the device into suspend mode immediately, even if operations are in progress.
+
+    Note:
+    Enable for maximum power savings when uninterrupted operation is not critical.
+    Disable to prevent data loss or service interruptions when the device is active
+    during a suspend event.
+#>
+	@{ DisplayName = 'ForceSuspend'; DisplayValues = @('Disabled') }
+
+	<#
+    Setting:
+    Flow Control Mode Select
+
+    Description:
+    Determines how the network adapter handles Ethernet flow control, which is
+    used to manage data transmission rates between devices to prevent packet loss
+    during periods of high network traffic.
+
+    Values:
+    Aggressive Mode - Prioritizes sending pause frames quickly to slow incoming traffic, reducing the risk of buffer overflow but potentially lowering throughput.
+    Passive Mode - Sends pause frames less frequently, allowing higher throughput but with a greater risk of packet loss under heavy load.
+
+    Note:
+    Use Aggressive Mode for environments with frequent congestion or where
+    preventing packet loss is more important than maximum speed. Use Passive Mode
+    for high-performance networks with minimal congestion and well-managed traffic.
+#>
+	@{ DisplayName = 'Flow Control Mode Select'; DisplayValues = @('Passive Mode') }
+
+	<#
+    Setting:
+    Modern Standby Wake on Magic Packet
+
+    Description:
+    Controls whether the computer can wake from Modern Standby (low-power idle)
+    mode when a specific Wake-on-LAN (WOL) Magic Packet is received. This feature
+    allows remote wake capability while the system is in an ultra-low power state.
+
+    Values:
+    Disabled - Ignores Magic Packets during Modern Standby; the system will remain in low-power idle until another wake event occurs.
+    Enabled - Wakes the system from Modern Standby upon receiving a valid Magic Packet.
+
+    Note:
+    Enable if you need to remotely wake the system while it is in Modern Standby,
+    such as for updates or remote access. Disable to conserve maximum power or to
+    prevent unintended wake events from network activity.
+#>
+	@{ DisplayName = 'Modern standby wake on Magic packet'; DisplayValues = @('Enabled') }
+
 	# TODO
 	# Ethernet0: Locally Administered Address: Valid Values:
 	# Ethernet0: Maximum RSS Processor Number: Valid Values: 
@@ -1547,6 +1797,8 @@ $SettingsToChange = @(
 	# Local Area Connection: MAC Address: Valid Values:
 	# Local Area Connection: MTU: Valid Values:
 	# VMware Network Adapter VMnet1: VLAN ID: Valid Values:
+	# Ethernet 3: AutoDetachTimer: Valid Values: 
+	# Ethernet 3: NetworkAddress: Valid Values: 
 )
 
 $UnusedSettings = @()
