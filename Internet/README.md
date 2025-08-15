@@ -263,6 +263,8 @@ Known Issues:
 
 - For some IoT devices such as WiFi printers and WiFi universal remote will have issues if the "Band Steering" option is enabled.
 
+- Do not plug RJ45 male connector at a sharp angle and stress it, it will damage the copper pins on the RJ45 female port.
+
 ## WAN
 
 ### WAN - Equipment
