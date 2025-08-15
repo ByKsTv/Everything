@@ -168,7 +168,6 @@ www.amazon.com###sims-simsContainer_feature_div_01
 www.amazon.com###sims-simsContainer_feature_div_11
 www.amazon.com###tellAmazon_feature_div
 www.amazon.com###valuePick_feature_div
-www.amazon.com##.a-cardui-deck > div > .a-cardui
 www.amazon.com##.a-divider-normal
 www.amazon.com##.a-divider-section.a-divider
 www.amazon.com##.aplus-premium.premium-module-5-comparison-table-scroller.aplus-module.celwidget
