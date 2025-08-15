@@ -13,24 +13,25 @@
 
 ## Amazon
 
-1. Only buy products that ship from Amazon.
-1. Use [Copuons](#coupons).
-1. Use [Camelizer](https://camelcamelcamel.com/camelizer).
-1. Use [Today's Deals](https://www.amazon.com/gp/goldbox).
-1. In case of issues contact [Amazon Support](https://www.amazon.com/message-us?paradigm=foresight#) after 17:00 (say `Chat with an associate now`).
-   > Alternativly: You can send email to [cs-reply@amazon.com](mailto:cs-reply@amazon.com)
-1. In case of package delayed or not received (after estimated delivery date) contact support and say `Item not received`.
-1. Do not return packages.
-1. Do not use filters when searching for products.
+- Only buy products that ship from Amazon.
+- Use [Copuons](#coupons).
+- Use [Camelizer](https://camelcamelcamel.com/camelizer).
+- Use [Today's Deals](https://www.amazon.com/gp/goldbox).
+- In case of issues contact [Amazon Support](https://www.amazon.com/message-us?paradigm=foresight#) after 17:00 (say `Chat with an associate now`).
+  > Alternativly: You can send email to [cs-reply@amazon.com](mailto:cs-reply@amazon.com)
+- In case of package delayed or not received (after estimated delivery date) contact support and say `Item not received`.
+- Do not return packages.
+- Do not use filters when searching for products.
+- When buying a product, keep checking it's price untill it's shipped because you can still cancel the order and there's a chance the item will get a discount in that time window.
 
 ## AliExpress
 
-1. Use [PayPal](https://www.paypal.com/).
-1. Use [Copuons](#coupons).
-1. Use the app and go to "Home" > Coins
-1. Use store copuns
-1. Use existing aliexpress copuns (keep track on coupns that you receive if the package is delayed)
-1. In case of issues click on `Returns/refunds`.
+- Use [PayPal](https://www.paypal.com/).
+- Use [Copuons](#coupons).
+- Use the app and go to "Home" > Coins
+- Use store copuns
+- Use existing aliexpress copuns (keep track on coupns that you receive if the package is delayed)
+- In case of issues click on `Returns/refunds`.
 
 WD brand from AliExpress is sus because sticker is the same but the shape of the (is wrong)
 
@@ -61,6 +62,7 @@ WD brand from AliExpress is sus because sticker is the same but the shape of the
 - Speaker cable: Don't buy `Copper Clad Aluminum` (CCA) cable, instead buy `Oxygen Free Cable` (OFC) cable.
 - HDD: Don't buy SMR drives, instead buy CMR drives.
 - Air Condition: Check noise rating (dB) for indoor/outdoor units and check which app it connects to and if it works with Google Home.
+- Network Card: 100/1000/2500/5000/10000 with Wake on Lan - TX401.
 
 ## Recycle
 
