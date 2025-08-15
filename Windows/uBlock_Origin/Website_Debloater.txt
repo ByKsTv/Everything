@@ -37,6 +37,7 @@ javfinder.ai##.br-bottom-10.site-footer
 javfinder.ai##.site-info
 kin8-jav.com###protection
 kissjav.com##.footer-desc
+ksp.co.il##.muirtl-b13abt.MuiBox-root
 ksp.co.il##.null[class*="root-0-3-"]
 ksp.co.il##[class*="banner-0-3-"]
 ksp.co.il##[class*="muirtl-"][class*="banner-0-3-"].MuiContainer-maxWidthLg.MuiContainer-root
@@ -141,6 +142,7 @@ www.aliexpress.com##div[class^="split-line--wrap--"]
 www.aliexpress.com##div[class^="structure-label--wrap--"]
 www.aliexpress.com##span[class*="pc-header--line--"]
 www.amazon.com###ask_feature_div
+www.amazon.com###bundles_feature_div
 www.amazon.com###compatibilityContainerDesktop
 www.amazon.com###detail-related-products-narrow
 www.amazon.com###feature-bullets > .a-section
@@ -149,6 +151,7 @@ www.amazon.com###hover-zoom-end
 www.amazon.com###image-canvas-caption
 www.amazon.com###miraiBTFShopByLook_feature_div
 www.amazon.com###nav-flyout-anchor
+www.amazon.com###nav-flyout-ewc
 www.amazon.com###nav-global-location-toaster-script-container
 www.amazon.com###nav-subnav-toaster
 www.amazon.com###newerVersion_feature_div
@@ -156,12 +159,16 @@ www.amazon.com###nile-inline-btf_feature_div
 www.amazon.com###nile-inline_feature_div
 www.amazon.com###organic-substitutes_feature_div
 www.amazon.com###product-comparison_feature_div
+www.amazon.com###sc-about
+www.amazon.com###sc-primeupsell-widget
+www.amazon.com###sc-secondary-list
 www.amazon.com###sims-comparisonContainer_feature_div_01
 www.amazon.com###sims-productBundle_feature_div_01
 www.amazon.com###sims-simsContainer_feature_div_01
 www.amazon.com###sims-simsContainer_feature_div_11
 www.amazon.com###tellAmazon_feature_div
 www.amazon.com###valuePick_feature_div
+www.amazon.com##.a-cardui-deck > div > .a-cardui
 www.amazon.com##.a-divider-normal
 www.amazon.com##.a-divider-section.a-divider
 www.amazon.com##.aplus-premium.premium-module-5-comparison-table-scroller.aplus-module.celwidget
@@ -172,8 +179,16 @@ www.amazon.com##.detailPageWidgetBlock
 www.amazon.com##.export-alternative-trigger-content
 www.amazon.com##.gridgetContainer.leftCol
 www.amazon.com##.nav-flyout.nav-coreFlyout.glow-toaster-slot-default.glow-toaster-theme-default.glow-toaster.a-section
+www.amazon.com##.nav-footer-line
+www.amazon.com##.navAccessibility.navFooterVerticalColumn
+www.amazon.com##.navFooterCopyright.navFooterPadItemLine.navFooterLinkLine.navFooterLine
+www.amazon.com##.navFooterDescLine.navFooterLinkLine.navFooterLine
+www.amazon.com##.navFooterLogoLine.navFooterLine
+www.amazon.com##.p13n-carousel-initialized.a-carousel-initialized.p13n-sc-shoveler.a-carousel-transition-swap.a-carousel-display-swap.a-carousel-container.a-begin
 www.amazon.com##.rufus-accordion-widget-container.nice-widget-container.a-section
+www.amazon.com##.s-widget-spacing-large.sg-col-12-of-16.sg-col.s-widget.sg-col-16-of-20.sg-col-0-of-12.s-result-item.sg-col-20-of-24
 www.amazon.com##.sw-atf-recommendations-container
+www.amazon.com##.widgetId\=feedback.template\=FEEDBACK.slot\=MAIN.celwidget.s-widget-container-height-medium.s-spacing-medium.s-widget-container
 www.amazon.com##div#organic-complements-top_feature_div.celwidget
 www.amazon.com##div#similarities_feature_div.celwidget
 www.amazon.com##div.celwidget.sw-card-container.sw-recommendations-row.a-section
@@ -223,7 +238,9 @@ xcamcovid.com##.show.fade.modal-backdrop
 xxxclub.to##.footer-bottom
 xxxclub.to##.myBtn
 xxxclub.to##.page-footer
+xxxclub.to##.similardiv
 xxxclub.to##[href="/c/donate/"]
+xxxclub.to##hr
 youtube.com##[page-subtype="home"] ytd-thumbnail-overlay-resume-playback-renderer:upward(ytd-rich-item-renderer)
 ||bringthemhomenow.net^
 ||i114.fastpic.ru/big/2021/0314/5e/f17b7771e137fd5fd677967c660d3d5e.gif$image
