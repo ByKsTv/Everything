@@ -81,7 +81,7 @@ if ($FileDialog.ShowDialog($Form) -eq [Windows.Forms.DialogResult]::OK) {
         $ChosenNumber = [int]$TextBox.Text
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Starts from episode '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ChosenNumber'"); [Console]::ResetColor(); [Console]::WriteLine()
 
-        $mplsFiles = Get-ChildItem -Path $SelectedFolder -Recurse -Include '*.mpls'
+        $mplsFiles = Get-ChildItem -LiteralPath $SelectedFolder -Recurse -Include '*.mpls'
         if ($mplsFiles.Count -eq 0) {
             [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('No playlist files found in '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SelectedFolder'"); [Console]::ResetColor(); [Console]::WriteLine()
             exit
