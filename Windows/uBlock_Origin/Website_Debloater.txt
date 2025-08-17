@@ -241,6 +241,8 @@ xxxclub.to##.similardiv
 xxxclub.to##[href="/c/donate/"]
 xxxclub.to##hr
 youtube.com##[page-subtype="home"] ytd-thumbnail-overlay-resume-playback-renderer:upward(ytd-rich-item-renderer)
+||amazon.com^$removeparam=ref
+||amazon.com^$removeparam=th
 ||bringthemhomenow.net^
 ||i114.fastpic.ru/big/2021/0314/5e/f17b7771e137fd5fd677967c660d3d5e.gif$image
 ||senetic.co.il^$removeparam=listingSource
