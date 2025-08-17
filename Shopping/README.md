@@ -63,6 +63,8 @@ WD brand from AliExpress is sus because sticker is the same but the shape of the
 - HDD: Don't buy SMR drives, instead buy CMR drives.
 - Air Condition: Check noise rating (dB) for indoor/outdoor units and check which app it connects to and if it works with Google Home.
 - Network Card: 100/1000/2500/5000/10000 with Wake on Lan - TX401.
+- Security Cameras: Avoid cameras that have IR inside the camera body, prefer cameras that have IR outside.
+- Security Cameras: Avoid dome cameras that have a plastic round cover that can be removed, prefer cameras that don't have removable cover.
 
 ## Recycle
 
