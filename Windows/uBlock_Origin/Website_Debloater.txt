@@ -141,6 +141,7 @@ www.aliexpress.com##div[class^="result-messenger--messenger-container"]
 www.aliexpress.com##div[class^="split-line--wrap--"]
 www.aliexpress.com##div[class^="structure-label--wrap--"]
 www.aliexpress.com##span[class*="pc-header--line--"]
+www.amazon.com###aod-recommendations
 www.amazon.com###ask_feature_div
 www.amazon.com###bundles_feature_div
 www.amazon.com###compatibilityContainerDesktop
@@ -153,11 +154,14 @@ www.amazon.com###miraiBTFShopByLook_feature_div
 www.amazon.com###nav-flyout-anchor
 www.amazon.com###nav-flyout-ewc
 www.amazon.com###nav-global-location-toaster-script-container
+www.amazon.com###nav-progressive-subnav
 www.amazon.com###nav-subnav-toaster
 www.amazon.com###newerVersion_feature_div
 www.amazon.com###nile-inline-btf_feature_div
 www.amazon.com###nile-inline_feature_div
 www.amazon.com###organic-substitutes_feature_div
+www.amazon.com###prime-banner-desktop-ctaWrapper
+www.amazon.com###prime-banner-desktop-headerWrapper
 www.amazon.com###product-comparison_feature_div
 www.amazon.com###sc-about
 www.amazon.com###sc-primeupsell-widget
@@ -166,8 +170,10 @@ www.amazon.com###sims-comparisonContainer_feature_div_01
 www.amazon.com###sims-productBundle_feature_div_01
 www.amazon.com###sims-simsContainer_feature_div_01
 www.amazon.com###sims-simsContainer_feature_div_11
+www.amazon.com###storeDisclaimer_feature_div
 www.amazon.com###tellAmazon_feature_div
 www.amazon.com###valuePick_feature_div
+www.amazon.com###vse-placeholder-related-products-config
 www.amazon.com##.a-divider-normal
 www.amazon.com##.a-divider-section.a-divider
 www.amazon.com##.aplus-premium.premium-module-5-comparison-table-scroller.aplus-module.celwidget
@@ -196,6 +202,12 @@ www.ebay.com##.x-atf-left-bottom-river.vim
 www.ebay.com##.x-evo-btf-river.vi-grid.vim
 www.ebay.com##.x-vi-evo-main-container__top-panel
 www.iec.co.il##.ng-star-inserted.sticky-banner--container.bottom
+www.ivory.co.il###last-watched-products-area
+www.ivory.co.il###moreProdsSide
+www.ivory.co.il###otherProductsSlider
+www.ivory.co.il##.footerBgDark.align-items-center.justify-content-center.flex-row.d-flex.col-lg-12
+www.ivory.co.il##.footerIcons.col-lg-6
+www.ivory.co.il##.js-index_catalog_item.homepage-list.single-item-wrapper.product-box-view.catalogVertical_item
 www.kan.org.il##.d-flex.general-tags.article-tags
 www.kan.org.il##.elem.with-bg.section.ec-section
 www.kan.org.il##.trinity-tts-pb
@@ -227,8 +239,19 @@ www.ynet.co.il##.articleShareButtons
 www.youtube.com###attached-survey
 www.youtube.com##ytd-rich-grid-media:has(.ytThumbnailOverlayProgressBarHostWatchedProgressBarSegment[style*="width: 100%"])
 www.youtube.com##ytd-rich-item-renderer:has(.ytThumbnailOverlayProgressBarHostWatchedProgressBarSegment)
+www.zap.co.il###FooterBottomBarSection
+www.zap.co.il###FooterBottomBarSection > .FooterCenterFullWidth
+www.zap.co.il###FooterBottomComment
+www.zap.co.il###FooterBottomLeft
+www.zap.co.il###FooterBottomRight
+www.zap.co.il###FooterTopSection
+www.zap.co.il##.BackToTopLink
 www.zap.co.il##.BidsContainer
+www.zap.co.il##.BuyBox
+www.zap.co.il##.banner-model
 www.zap.co.il##.footer-model
+www.zap.co.il##.recaptcha
+www.zap.co.il##.share
 www.zap.co.il##.similarProductComponentContainer
 www.zap.co.il##.zap-products-carousel-mp
 xcamcovid.com##.modal-dialog
