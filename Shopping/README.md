@@ -65,6 +65,7 @@ WD brand from AliExpress is sus because sticker is the same but the shape of the
 - Network Card: 100/1000/2500/5000/10000 with Wake on Lan - TX401.
 - Security Cameras: Avoid cameras that have IR inside the camera body, prefer cameras that have IR outside.
 - Security Cameras: Avoid dome cameras that have a plastic round cover that can be removed, prefer cameras that don't have removable cover.
+- Deep Fryer: Avoid teflon coated.
 
 ## Recycle
 
