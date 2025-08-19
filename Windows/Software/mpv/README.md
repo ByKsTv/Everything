@@ -27,7 +27,7 @@
 
 1. Download [cookies.txt](https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/) extension.
 1. Open incognito window.
-1. Login to `youtube.com` and export `Current Site` cookies.
+1. Login to `youtube.com` burner account and export `Current Site` cookies.
 1. Move `cookies.firefox-private.txt` to mpv folder.
 1. Whitelist `s.youtube.com` on Pi-Hole.
 
