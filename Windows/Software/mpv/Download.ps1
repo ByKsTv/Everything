@@ -80,13 +80,13 @@ foreach ($ScriptURL in $ScriptsURLs) {
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' userscript '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ScriptURL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
     (New-Object Net.WebClient).DownloadFile($ScriptURL, $SavePath)
 }
-# if ((Get-Package).Name -match 'Mozilla Firefox') {
-#     $DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/scripts/firefox-cookies.lua'
-#     $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
-#     $SavePath = [IO.Path]::Combine($ScriptsPath, $FileName)
-#     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' userscript '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-#     (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
-# }
+if ((Get-Package).Name -match 'Mozilla Firefox') {
+    $DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/scripts/firefox-cookies.lua'
+    $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
+    $SavePath = [IO.Path]::Combine($ScriptsPath, $FileName)
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' userscript '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+    (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
+}
 
 $ScriptOptsPath = [IO.Path]::Combine($MPV_Destination, 'script-opts')
 if (-not (Test-Path -Path $ScriptOptsPath)) {
