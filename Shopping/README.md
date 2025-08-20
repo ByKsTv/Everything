@@ -66,6 +66,7 @@ WD brand from AliExpress is sus because sticker is the same but the shape of the
 - Security Cameras: Avoid cameras that have IR inside the camera body, prefer cameras that have IR outside.
 - Security Cameras: Avoid dome cameras that have a plastic round cover that can be removed, prefer cameras that don't have removable cover.
 - Deep Fryer: Avoid teflon coated.
+- Asus Motherboard: If buying from Amazon US and you're located in another region, make sure your location has repair labs for motherboards, otherwise Amazon support will redirect you to Asus support, if you've reached your region of Asus support they will redirect you to Asus US support which will require you to have US address, basically leaving you without warranty even if it's still active effectivly unusable.
 
 ## Recycle
 
