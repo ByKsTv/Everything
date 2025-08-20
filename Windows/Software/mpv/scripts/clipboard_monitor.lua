@@ -94,6 +94,51 @@ local function clear_clipboard()
     end
 end
 
+-- === New helper: strip a specific query parameter (e.g., pp) from any URL ===
+local function strip_param(url, param_name)
+    -- split off fragment, if any
+    local main, fragment = url, nil
+    local hash_pos = url:find("#", 1, true)
+    if hash_pos then
+        main = url:sub(1, hash_pos - 1)
+        fragment = url:sub(hash_pos) -- includes '#'
+    end
+
+    -- split off query, if any
+    local base, query = main:match("^(.-)%?(.*)$")
+    if not base then
+        -- no query string; nothing to strip
+        return url
+    end
+
+    -- rebuild query without the target param
+    local kept = {}
+    for part in (query .. "&"):gmatch("([^&]*)&") do
+        local k, v = part:match("^([^=]+)=(.*)$")
+        if not k then
+            k = part;
+            v = ""
+        end
+        if k ~= param_name then
+            if v ~= "" then
+                table.insert(kept, k .. "=" .. v)
+            else
+                table.insert(kept, k)
+            end
+        end
+    end
+
+    local new_url = base
+    if #kept > 0 then
+        new_url = new_url .. "?" .. table.concat(kept, "&")
+    end
+    if fragment then
+        new_url = new_url .. fragment
+    end
+    return new_url
+end
+-- === End new helper ===
+
 local function monitor_clipboard()
     print("Waiting for user to copy URL")
     clear_clipboard()
@@ -109,10 +154,16 @@ local function monitor_clipboard()
         if new_clipboard and new_clipboard ~= last_clipboard and new_clipboard:match("^https?://") then
             last_clipboard = new_clipboard
 
-            -- Print the detected URL
-            print("Detected URL: " .. new_clipboard)
+            -- Sanitize the URL by removing the 'pp' parameter (e.g., &pp=0xxXXX0XXXXXxxxX)
+            local sanitized = strip_param(new_clipboard, "pp")
 
-            mp.commandv("loadfile", new_clipboard)
+            -- Print the detected URL(s)
+            print("Detected URL: " .. new_clipboard)
+            if sanitized ~= new_clipboard then
+                print("Sanitized URL: " .. sanitized)
+            end
+
+            mp.commandv("loadfile", sanitized)
             bring_to_foreground()
             clear_clipboard()
 
