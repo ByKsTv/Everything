@@ -19,6 +19,7 @@
 - Use [Today's Deals](https://www.amazon.com/gp/goldbox).
 - In case of issues contact [Amazon Support](https://www.amazon.com/message-us?paradigm=foresight#) after 17:00 (say `Chat with an associate now`).
   > Alternativly: You can send email to [cs-reply@amazon.com](mailto:cs-reply@amazon.com)
+- If an associate doesn't help you, say `Please connect me with Amazon Leadership team.`.
 - In case of package delayed or not received (after estimated delivery date) contact support and say `Item not received`.
 - Do not return packages.
 - Do not use filters when searching for products.
