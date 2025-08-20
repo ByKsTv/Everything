@@ -103,4 +103,4 @@ WD brand from AliExpress is sus because sticker is the same but the shape of the
 
 ### Issues
 
-- Extreme white noise while idle: Send the unit to repair.
+- Extreme white noise while idle: Send the unit to repair, soltuons of which could be resoldering and electrical contact cleaning, prices could reach 100 USD.
