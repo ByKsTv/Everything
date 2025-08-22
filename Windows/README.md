@@ -56,6 +56,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 ## Pre Installation
 
 1. Power off PC.
+1. Disconnect network cable.
 1. Disconnect Every Hard Drive Except Windows Drive.
    > This is to ensure you don't delete data from other drives, but if you know which drive partition belongs to which drive then you don't have to.
 1. Boot to UEFI USB (DEL/F12/F11).
@@ -73,6 +74,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 1. `Delete` all partitions from the drive you want to install windows on > `Next`.
    > If drives not found - Use `Load Driver` and extract `Intel Rapid Storage Technology (IRST)` driver matching to the motherboard.
+1. After Windows boots up - connect network cable.
 
 ## Software Selection
 
