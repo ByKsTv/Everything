@@ -27,6 +27,7 @@ fitgirl-repacks.site##[href="https://fitgirl-repacks.site/donations/"]
 forum.mobilism.me##.welcome-bar
 github.com##.color-fg-muted.text-center.mt-3
 github.com##.mb-2.mt-md-2.mt-3.color-fg-muted.text-small
+github.com##.p-responsive.color-fg-muted.f6.pb-6.pt-8.footer
 github.com##.protip
 gofile.download###protection
 gofile.download##.popup-box-ads
@@ -60,6 +61,7 @@ missav.ws##.mb-5.space-y-5
 missav.ws##footer.px-4.mx-auto.sm\:container
 myanimelist.net##.mal-tooltip-layer
 nhentai.net###related-container
+pb.wtf##.footer.bs-docs-footer
 pi.hole##[href="https://pi-hole.net/donate/"]
 porn-pig.com###protection
 pornolab.net###logo
@@ -141,8 +143,10 @@ www.aliexpress.com##div[class^="result-messenger--messenger-container"]
 www.aliexpress.com##div[class^="split-line--wrap--"]
 www.aliexpress.com##div[class^="structure-label--wrap--"]
 www.aliexpress.com##span[class*="pc-header--line--"]
+www.amazon.com###alternativeOfferEligibilityMessaging_feature_div
 www.amazon.com###aod-recommendations
 www.amazon.com###ask_feature_div
+www.amazon.com###b2bUpsell_feature_div
 www.amazon.com###bundles_feature_div
 www.amazon.com###compatibilityContainerDesktop
 www.amazon.com###detail-related-products-narrow
@@ -162,6 +166,7 @@ www.amazon.com###nile-inline_feature_div
 www.amazon.com###organic-substitutes_feature_div
 www.amazon.com###prime-banner-desktop-ctaWrapper
 www.amazon.com###prime-banner-desktop-headerWrapper
+www.amazon.com###primeExclusivePricingMessage
 www.amazon.com###product-comparison_feature_div
 www.amazon.com###sc-about
 www.amazon.com###sc-primeupsell-widget
@@ -191,6 +196,7 @@ www.amazon.com##.navFooterDescLine.navFooterLinkLine.navFooterLine
 www.amazon.com##.navFooterLogoLine.navFooterLine
 www.amazon.com##.p13n-carousel-initialized.a-carousel-initialized.p13n-sc-shoveler.a-carousel-transition-swap.a-carousel-display-swap.a-carousel-container.a-begin
 www.amazon.com##.rufus-accordion-widget-container.nice-widget-container.a-section
+www.amazon.com##.rufus-overviews-inline-widget.a-section
 www.amazon.com##.s-widget-spacing-large.sg-col-12-of-16.sg-col.s-widget.sg-col-16-of-20.sg-col-0-of-12.s-result-item.sg-col-20-of-24
 www.amazon.com##.sw-atf-recommendations-container
 www.amazon.com##.widgetId\=feedback.template\=FEEDBACK.slot\=MAIN.celwidget.s-widget-container-height-medium.s-spacing-medium.s-widget-container
@@ -248,8 +254,10 @@ www.zap.co.il###FooterTopSection
 www.zap.co.il##.BackToTopLink
 www.zap.co.il##.BidsContainer
 www.zap.co.il##.BuyBox
+www.zap.co.il##.banner-buying-guid
 www.zap.co.il##.banner-model
 www.zap.co.il##.footer-model
+www.zap.co.il##.last-products-carousel
 www.zap.co.il##.recaptcha
 www.zap.co.il##.share
 www.zap.co.il##.similarProductComponentContainer
