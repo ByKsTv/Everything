@@ -143,6 +143,12 @@ user_pref("browser.preferences.experimental", false);
 // Enable Downloads Pop-up when finished downloading (for quick open downloaded files)
 user_pref("browser.download.alwaysOpenPanel", true);
 
+// Stop pausing media when the window is minimized
+user_pref("widget.windows.window_occlusion_tracking.enabled", false);
+
+// Avoid tab unloading on low memory
+user_pref("browser.tabs.unloadOnLowMemory", false);
+
 // Enable Custom userChrome.css
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 
