@@ -146,6 +146,9 @@ user_pref("browser.download.alwaysOpenPanel", true);
 // Stop pausing media when the window is minimized
 user_pref("widget.windows.window_occlusion_tracking.enabled", false);
 
+// Prevents Firefox from stopping video decoding ~10s after a tab goes background
+user_pref("media.suspend-background-video.enabled", false);
+
 // Avoid tab unloading on low memory
 user_pref("browser.tabs.unloadOnLowMemory", false);
 
