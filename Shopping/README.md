@@ -75,13 +75,21 @@ WD brand from AliExpress is sus because sticker is the same but the shape of the
 
   - Copper cables
   - Aluminium
-  - Air conditioner
+  - Air conditioner (both units)
   - Gas pipes
   - Faucets
+  - Hard Drives
+  - Motherboards
+  - Only the inside of a boiler sun caputre
 
 - Products and materials that can not be bought off the user:
+
   - Monitors
   - TVs
+  - Rubber
+  - Plastic
+
+- The city can accept monitors, tvs, cardboxes.
 
 ## AV Receiver
 
