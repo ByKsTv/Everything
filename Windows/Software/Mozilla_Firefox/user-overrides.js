@@ -152,6 +152,10 @@ user_pref("media.suspend-background-video.enabled", false);
 // Avoid tab unloading on low memory
 user_pref("browser.tabs.unloadOnLowMemory", false);
 
+// Undo process priority downgrades 
+user_pref("dom.ipc.processPriorityManager.enabled", false);
+user_pref("dom.ipc.processPriorityManager.backgroundUsesEcoQoS", false);
+
 // Enable Custom userChrome.css
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 
