@@ -61,6 +61,7 @@ WD brand from AliExpress is sus because sticker is the same but the shape of the
 ## Tips
 
 - Speaker cable: Don't buy `Copper Clad Aluminum` (CCA) cable, instead buy `Oxygen Free Cable` (OFC) cable.
+- Network cable: Don't buy `Copper Clad Aluminum` (CCA) cable, instead buy `Annealed Bare Copper` cable.
 - HDD: Don't buy SMR drives, instead buy CMR drives.
 - Air Condition: Check noise rating (dB) for indoor/outdoor units and check which app it connects to and if it works with Google Home.
 - Network Card: 100/1000/2500/5000/10000 with Wake on Lan - TX401.
