@@ -16,7 +16,7 @@ imasdk.googleapis.com
 
 # https://www.youtube.com/feed/history
 # Mark YouTube videos as watched
-# s.youtube.com
+s.youtube.com
 
 # https://play.google.com/store/apps/details?id=com.alienmanfc6.wheresmyandroid
 wmdcommander.appspot.com
