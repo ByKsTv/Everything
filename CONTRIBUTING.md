@@ -14,7 +14,7 @@
 - Do not use `-like`, instead use `-match`.
 - Do not use `;`, instead use a new line.
 - Do not use prompts (`Read-Host`).
-- For `if` statements: Do not use `!`, instead use `-not`.
-- For `if` statements: Use new line after `{`.
+- Do not use `!`, instead use `-not`.
+- Use new line after `{`.
 - If running a standalone `.exe` cmdlet (i.e `powercfg` cmdlet), Use `&` prefix and `.exe` suffix.
 - Code as short as possible.
