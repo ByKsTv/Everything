@@ -156,13 +156,6 @@ user_pref("browser.tabs.unloadOnLowMemory", false);
 user_pref("dom.ipc.processPriorityManager.enabled", false);
 user_pref("dom.ipc.processPriorityManager.backgroundUsesEcoQoS", false);
 
-// Never send referer
-user_pref("network.http.sendRefererHeader", 0);
-// Send scheme and host only
-user_pref("network.http.referer.trimmingPolicy", 2);
-// Send the referer only if the host is the same
-user_pref("network.http.referer.XOriginPolicy", 2);
-
 // Enable Custom userChrome.css
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 
