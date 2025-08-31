@@ -5,59 +5,37 @@ if (Test-Path $Firefox_Profiles) {
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Closing browser'); [Console]::ResetColor(); [Console]::WriteLine()
         Stop-Process -Name firefox -Force -ErrorAction SilentlyContinue
 
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Adding uBlock Origin'); [Console]::ResetColor(); [Console]::WriteLine()
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Adding Violentmonkey'); [Console]::ResetColor(); [Console]::WriteLine()
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Adding ClearURLs'); [Console]::ResetColor(); [Console]::WriteLine()
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Adding Buster: Captcha Solver for Humans'); [Console]::ResetColor(); [Console]::WriteLine()
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Adding The Camelizer - Price Tracker'); [Console]::ResetColor(); [Console]::WriteLine()
-
-        # https://github.com/letsdoautomation/powershell/tree/main/Firefox%20deploy%20Extension
-        $settings =
-        [PSCustomObject]@{
-            Path  = 'SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install'
-            Value = 'https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi'
-            Name  = ++$count
-        },
-        [PSCustomObject]@{
-            Path  = 'SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install'
-            Value = 'https://addons.mozilla.org/firefox/downloads/latest/violentmonkey/latest.xpi'
-            Name  = ++$count
-        },
-        [PSCustomObject]@{
-            Path  = 'SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install'
-            Value = 'https://addons.mozilla.org/firefox/downloads/latest/buster-captcha-solver/latest.xpi'
-            Name  = ++$count
-        },
-        [PSCustomObject]@{
-            Path  = 'SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install'
-            Value = 'https://addons.mozilla.org/firefox/downloads/latest/the-camelizer-price-history-ch/latest.xpi'
-            Name  = ++$count
-        } | Group-Object Path
-        foreach ($setting in $settings) {
-            $registry = [Microsoft.Win32.Registry]::LocalMachine.OpenSubKey($setting.Name, $true)
-            if ($null -eq $registry) {
-                $registry = [Microsoft.Win32.Registry]::LocalMachine.CreateSubKey($setting.Name, $true)
-            }
-            $setting.Group | ForEach-Object {
-                $registry.SetValue($_.name, $_.value)
-            }
-            $registry.Dispose()
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
+        $Extensions_RegPath = 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox\Extensions'
+        New-Item -Path $Extensions_RegPath -Name 'Install' -Force
+        $Install_RegPath = [IO.Path]::Combine($Extensions_RegPath, 'Install')
+        $ExtensionsList = @(
+            'https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi'
+            'https://addons.mozilla.org/firefox/downloads/latest/violentmonkey/latest.xpi'
+            'https://addons.mozilla.org/firefox/downloads/latest/disable-page-visibility/latest.xpi'
+            'https://addons.mozilla.org/firefox/downloads/latest/buster-captcha-solver/latest.xpi'
+            'https://addons.mozilla.org/firefox/downloads/latest/the-camelizer-price-history-ch/latest.xpi'
+        )
+        $ExtensionNumber = 1
+        $ExtensionsList | ForEach-Object {
+            New-ItemProperty -Path $Install_RegPath -Name $ExtensionNumber -Value $_ -PropertyType String -Force
+            $ExtensionNumber++
         }
 
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: uBlock Origin: Using custom settings'); [Console]::ResetColor(); [Console]::WriteLine()
-        # https://github.com/gorhill/uBlock/issues/2986#issuecomment-333198882
+        $DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.json'
+        $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
+        $SavePath = [Uri]::UnescapeDataString([IO.Path]::Combine($env:TEMP, $FileName))
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'uBlock Origin Backup File'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+        (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
+
         New-Item -Path 'HKLM:\SOFTWARE\Mozilla\ManagedStorage\uBlock0@raymondhill.net' -Force
-        New-ItemProperty -Path 'HKLM:\SOFTWARE\Mozilla\ManagedStorage\uBlock0@raymondhill.net' -Name '(default)' -Value "$env:TEMP\uBlock_Origin_Backup_Restore.json" -PropertyType String -Force
-        $uBlockDownloadLocation = "$env:TEMP\uBlock_Origin_Backup.json"
-        (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.json', "$uBlockDownloadLocation")
-        $uBlockTemplate = '{"name": "uBlock0@raymondhill.net","description": "ignored","type": "storage","data": {"adminSettings": '
-        $uBlockLatestContent = Get-Content $uBlockDownloadLocation
-        $uBlockFinishTemplate = $uBlockTemplate += $uBlockLatestContent += '}}'
-        New-Item "$env:TEMP\uBlock_Origin_Backup_Restore.json" -Value $uBlockFinishTemplate -Force
+        New-ItemProperty -Path 'HKLM:\SOFTWARE\Mozilla\ManagedStorage\uBlock0@raymondhill.net' -Name '(default)' -Value $SavePath -PropertyType String -Force
+        [IO.File]::WriteAllText($SavePath, '{"name": "uBlock0@raymondhill.net","description": "ignored","type": "storage","data": {"adminSettings": ' + (Get-Content $SavePath -Raw) + '}}')
         Start-Sleep -Milliseconds 1000
     
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Starting browser'); [Console]::ResetColor(); [Console]::WriteLine()
-        [Diagnostics.Process]::Start('firefox.exe')
+        [Diagnostics.Process]::Start('firefox.exe') | Out-Null
 
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Waiting for browser'); [Console]::ResetColor(); [Console]::WriteLine()
         while ($null -eq (Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' } -ErrorAction SilentlyContinue)) {
@@ -80,14 +58,14 @@ if (Test-Path $Firefox_Profiles) {
     }
     
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Setting foreground'); [Console]::ResetColor(); [Console]::WriteLine()
-    [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
+    [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle) | Out-Null
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Opening AdsBypasser'); [Console]::ResetColor(); [Console]::WriteLine()
-    [Diagnostics.Process]::Start('firefox.exe', 'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js')
+    [Diagnostics.Process]::Start('firefox.exe', 'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js') | Out-Null
     Start-Sleep -Milliseconds 5000
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Setting foreground'); [Console]::ResetColor(); [Console]::WriteLine()
-    [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle)
+    [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle) | Out-Null
     Start-Sleep -Milliseconds 2000
     
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Installing AdsBypasser'); [Console]::ResetColor(); [Console]::WriteLine()
