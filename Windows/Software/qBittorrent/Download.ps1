@@ -22,7 +22,7 @@ if (-not ($InstalledVersion)) {
 }
 
 if (($null -eq $InstalledVersion) -or ($InstalledVersion -notmatch $LatestVersion)) {
-    $SourceForge = ((Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/qbittorrent/qBittorrent-website/master/_site/download.html').Links | Where-Object { $_.outerHTML -match 'sourceforge' -and $_.outerHTML -match '.exe' -and $_.outerHTML -notmatch '.asc' -and $_.outerHTML -match 'lt2' } | Select-Object -First 1).href
+    $SourceForge = ((Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/qbittorrent/qBittorrent-website/master/_site/download.html').Links | Where-Object { $_.outerHTML -match 'sourceforge' -and $_.outerHTML -match '.exe' -and $_.outerHTML -notmatch '.asc' } | Select-Object -First 1).href
     $DDL = ((Invoke-WebRequest -UseBasicParsing -Uri $SourceForge).links | Where-Object { $_.'data-release-url' -ne $null }).'data-release-url'
     $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
     $SavePath = [IO.Path]::Combine($env:TEMP, $FileName)
