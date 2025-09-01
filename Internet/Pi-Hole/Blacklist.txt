@@ -3,3 +3,9 @@ mkcf.dxmcdn.com
 
 # Windows Search
 r.bing.comms-appx-web
+
+# InstaPro pop-ups
+updatepro.tech
+gadgetmod.net
+muskan.codeberg.page
+muskan1431.github.io
