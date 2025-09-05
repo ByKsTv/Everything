@@ -21,6 +21,7 @@
   > Alternativly: You can send email to [cs-reply@amazon.com](mailto:cs-reply@amazon.com)
 - If an associate doesn't help you, say `Please connect me with Amazon Leadership team.`.
 - In case of package delayed or not received (after estimated delivery date) contact support and say `Item not received`.
+- If an assosiate claims he will refund you, the change should show immidietly on the order page, a "Refund Total" would show up, if it doesn't then try chatting with leadership team.
 - Do not return packages.
 - Do not use filters when searching for products.
 - When buying a product, keep checking it's price untill it's shipped because you can still cancel the order and there's a chance the item will get a discount in that time window.
