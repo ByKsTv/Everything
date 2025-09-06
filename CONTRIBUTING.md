@@ -23,3 +23,7 @@
 
 - Do not use comments (`/*`).
 - Do not use variables (`var(--uc-bg)`), instead manually specify a value.
+- Merge selectors.
+- Sort.
+- Do not trim spacing and line breaks.
+- Code as short as possible.
