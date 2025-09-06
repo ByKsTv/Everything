@@ -330,3 +330,15 @@ menupopup > menu[disabled="true"],
     color: #555 !important;   /* dimmed text */
     opacity: 0.6 !important;  /* faded */
 }
+
+.tabbrowser-tab .tab-close-button {
+    width: 18px !important;
+    height: 18px !important;
+    padding: 0px !important;
+    margin-inline-start: 0px !important;
+    border-radius: 0px !important;
+}
+
+.tabbrowser-tab .tab-close-button:hover {
+    background-color: #0b0b0b !important;
+}
