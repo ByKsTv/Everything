@@ -18,3 +18,8 @@
 - Use new line after `{`.
 - If running a standalone `.exe` cmdlet (i.e `powercfg` cmdlet), Use `&` prefix and `.exe` suffix.
 - Code as short as possible.
+
+## Cascading Style Sheets (CSS)
+
+- Do not use comments (`/*`).
+- Do not use variables (`var(--uc-bg)`), instead manually specify a value.
