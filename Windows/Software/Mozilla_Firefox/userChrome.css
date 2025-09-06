@@ -333,3 +333,30 @@ menuitem:hover {
 	animation: none !important;
 	transition: none !important;
 }
+
+#contentAreaContextMenu,
+#contentAreaContextMenu menupopup,
+#contentAreaContextMenu :is(menu, menuitem) {
+	animation: none !important;
+	transition: none !important;
+}
+
+#contentAreaContextMenu
+	:is(menu, menuitem):is(
+		:hover,
+		:focus,
+		[_moz-menuactive='true'],
+		[open='true']
+	) {
+	background: #0a84ff !important;
+	color: #fff !important;
+	outline: 0 !important;
+}
+
+#contentAreaContextMenu
+	:is(menu, menuitem)
+	:is(.menu-iconic-icon, .menu-right) {
+	color: currentColor !important;
+	fill: currentColor !important;
+	filter: none !important;
+}
