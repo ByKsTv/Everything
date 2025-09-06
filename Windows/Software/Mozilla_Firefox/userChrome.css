@@ -39,8 +39,9 @@
 	border-bottom: 1px solid #1a1a1a !important;
 }
 
-#FindToolbar,
+#appMenu-popup,
 #bookmarksPanel,
+#contentAreaContextMenu,
 #downloadsListBox,
 #downloadsPanel,
 #downloadsPanel-mainView,
@@ -50,6 +51,7 @@
 #placesToolbar,
 #placesView,
 #preferences-body,
+#preferencesContainer,
 #searchbar,
 #sidebar,
 #sidebar-box,
@@ -57,17 +59,14 @@
 #sidebar-search-container,
 #urlbar,
 #urlbar-background,
-#appMenu-popup,
-#preferencesContainer,
-#contentAreaContextMenu,
+.panel-subview-body,
 dialog,
 findbar,
 menupopup,
 panel,
 panel .panel-arrowcontent,
 panelview,
-prefwindow,
-.panel-subview-body {
+prefwindow {
 	background: #000 !important;
 	border: 1px solid #1a1a1a !important;
 	color: #fff !important;
@@ -181,11 +180,11 @@ findbar textbox {
 	opacity: 1 !important;
 }
 
+#urlbar-results,
 .urlbarView,
 .urlbarView-body-inner,
 .urlbarView-results,
-.urlbarView-row,
-#urlbar-results {
+.urlbarView-row {
 	background: #000 !important;
 	border-color: #1a1a1a !important;
 	color: #fff !important;
@@ -210,20 +209,20 @@ toolbarbutton {
 	color: #fff !important;
 }
 
-toolbar .toolbarbutton-1:hover,
-toolbar .toolbarbutton-1[open='true'],
-toolbarbutton:hover,
-toolbarbutton[open='true'],
+#PersonalToolbar toolbarbutton.bookmark-item:hover,
 menupopup > menu:hover,
 menupopup > menuitem:hover,
 panelview .toolbarbutton-1:hover,
-#PersonalToolbar toolbarbutton.bookmark-item:hover {
+toolbar .toolbarbutton-1[open='true'],
+toolbar .toolbarbutton-1:hover,
+toolbarbutton[open='true'],
+toolbarbutton:hover {
 	background: #0b0b0b !important;
 }
 
+#nav-bar toolbarbutton .toolbarbutton-text,
 toolbar .toolbarbutton-1 .toolbarbutton-icon,
-toolbarbutton .toolbarbutton-icon,
-#nav-bar toolbarbutton .toolbarbutton-text {
+toolbarbutton .toolbarbutton-icon {
 	color: currentColor !important;
 	fill: currentColor !important;
 }
@@ -232,9 +231,7 @@ toolbarbutton:hover .toolbarbutton-icon {
 	filter: brightness(1.2) !important;
 }
 
-#PersonalToolbar toolbarbutton.bookmark-item,
-menupopup > menu,
-menupopup > menuitem {
+#PersonalToolbar toolbarbutton.bookmark-item {
 	color: #fff !important;
 }
 
@@ -245,6 +242,7 @@ menupopup > menuitem {
 	font-size: 13px !important;
 	min-height: 22px !important;
 	padding: 4px 8px !important;
+	color: #fff !important;
 }
 
 #historyTree,
@@ -301,12 +299,12 @@ scrollbar thumb:hover {
 	background: #fff !important;
 }
 
+#ContentSelectDropdown,
+#ContentSelectDropdown > menupopup,
 menu,
 menuitem,
 menupopup,
-popup,
-#ContentSelectDropdown,
-#ContentSelectDropdown > menupopup {
+popup {
 	background: #000 !important;
 	color: #fff !important;
 }
