@@ -110,7 +110,7 @@ findbar textbox {
 	border: 1px solid #1a1a1a !important;
 	color: #fff !important;
 	margin: 0 8px 8px !important;
-	opacity: .92 !important;
+	opacity: 0.92 !important;
 	overflow: hidden !important;
 	padding: 2px 8px !important;
 	text-overflow: ellipsis !important;
@@ -163,7 +163,7 @@ findbar textbox {
 .tabbrowser-tab .tab-icon-overlay,
 .tabbrowser-tab .tab-throbber {
 	filter: none !important;
-	opacity: .9 !important;
+	opacity: 0.9 !important;
 }
 
 .tabbrowser-tab .tab-close-button {
@@ -268,7 +268,7 @@ toolbarseparator {
 menupopup > menu[disabled='true'],
 menupopup > menuitem[disabled='true'] {
 	color: #555 !important;
-	opacity: .6 !important;
+	opacity: 0.6 !important;
 }
 
 tooltip {
