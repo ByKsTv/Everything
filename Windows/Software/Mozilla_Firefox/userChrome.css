@@ -18,18 +18,18 @@
 }
 
 * {
+	animation: none !important;
 	border-radius: 0 !important;
 	box-shadow: none !important;
 	transition: none !important;
-	animation: none !important;
 }
 
 #PersonalToolbar,
 #TabsToolbar,
 #titlebar,
 #toolbar-menubar,
-#nav-bar,
-.browser-toolbar {
+.browser-toolbar,
+#nav-bar {
 	background: #000 !important;
 	border: 0 !important;
 	color: #fff !important;
@@ -100,8 +100,6 @@ findbar textbox {
 	background: transparent !important;
 	border: 0 !important;
 	color: #fff !important;
-	transition: none !important;
-	animation: none !important;
 	opacity: 1 !important;
 }
 
@@ -115,8 +113,6 @@ findbar textbox {
 	padding: 2px 8px !important;
 	text-overflow: ellipsis !important;
 	white-space: nowrap !important;
-	transition: none !important;
-	animation: none !important;
 }
 
 #statuspanel:hover > #statuspanel-label {
@@ -141,7 +137,6 @@ findbar textbox {
 }
 
 .tabbrowser-tab[selected] .tab-background {
-	background: #000 !important;
 	box-shadow: inset 0 -2px 0 #0a84ff !important;
 }
 
@@ -167,7 +162,6 @@ findbar textbox {
 }
 
 .tabbrowser-tab .tab-close-button {
-	border-radius: 0 !important;
 	height: 18px !important;
 	margin-inline-start: 0 !important;
 	opacity: 0 !important;
@@ -210,13 +204,13 @@ toolbarbutton {
 }
 
 #PersonalToolbar toolbarbutton.bookmark-item:hover,
-menupopup > menu:hover,
-menupopup > menuitem:hover,
 panelview .toolbarbutton-1:hover,
 toolbar .toolbarbutton-1[open='true'],
 toolbar .toolbarbutton-1:hover,
 toolbarbutton[open='true'],
-toolbarbutton:hover {
+toolbarbutton:hover,
+menupopup > menu:hover,
+menupopup > menuitem:hover {
 	background: #0b0b0b !important;
 }
 
@@ -239,10 +233,10 @@ toolbarbutton:hover .toolbarbutton-icon {
 panelview .toolbarbutton-1,
 menupopup > menu,
 menupopup > menuitem {
+	color: #fff !important;
 	font-size: 13px !important;
 	min-height: 22px !important;
 	padding: 4px 8px !important;
-	color: #fff !important;
 }
 
 #historyTree,
@@ -309,39 +303,20 @@ popup {
 	color: #fff !important;
 }
 
-menu:hover,
-menuitem:hover {
-	background: #333 !important;
-	color: #fff !important;
-}
-
-#PersonalToolbar
-	menupopup[placespopup='true']
-	> :is(menu, menuitem).bookmark-item {
-	animation: none !important;
-	transition: none !important;
-}
-
-#PersonalToolbar
-	menupopup[placespopup='true']
-	> :is(menu, menuitem).bookmark-item:hover,
-#PersonalToolbar
-	menupopup[placespopup='true']
-	> :is(menu, menuitem).bookmark-item[_moz-menuactive='true'] {
-	background: #0a84ff !important;
-	color: #fff !important;
-	animation: none !important;
-	transition: none !important;
-}
-
 #contentAreaContextMenu,
-#contentAreaContextMenu menupopup,
-#contentAreaContextMenu :is(menu, menuitem) {
+#placesContext {
 	animation: none !important;
 	transition: none !important;
 }
 
 #contentAreaContextMenu
+	:is(menu, menuitem):is(
+		:hover,
+		:focus,
+		[_moz-menuactive='true'],
+		[open='true']
+	),
+#placesContext
 	:is(menu, menuitem):is(
 		:hover,
 		:focus,
@@ -355,8 +330,25 @@ menuitem:hover {
 
 #contentAreaContextMenu
 	:is(menu, menuitem)
-	:is(.menu-iconic-icon, .menu-right) {
+	:is(.menu-iconic-icon, .menu-right, .menu-accel),
+#placesContext
+	:is(menu, menuitem)
+	:is(.menu-iconic-icon, .menu-right, .menu-accel) {
 	color: currentColor !important;
 	fill: currentColor !important;
 	filter: none !important;
+}
+
+#PersonalToolbar
+	menupopup[placespopup='true']
+	> :is(menu, menuitem).bookmark-item {
+	animation: none !important;
+	transition: none !important;
+}
+
+#PersonalToolbar
+	menupopup[placespopup='true']
+	> :is(menu, menuitem).bookmark-item:is(:hover, [_moz-menuactive='true']) {
+	background: #0a84ff !important;
+	color: #fff !important;
 }
