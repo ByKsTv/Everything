@@ -322,3 +322,11 @@ tooltip {
 	color: #fff !important;
 	border: 1px solid #1a1a1a !important;
 }
+
+/* Make disabled/greyed-out menu items visibly different */
+menupopup > menuitem[disabled="true"],
+menupopup > menu[disabled="true"],
+#contentAreaContextMenu menuitem[disabled="true"] {
+    color: #555 !important;   /* dimmed text */
+    opacity: 0.6 !important;  /* faded */
+}
