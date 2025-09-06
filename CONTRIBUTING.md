@@ -26,4 +26,6 @@
 - Merge selectors.
 - Sort.
 - Do not trim spacing and line breaks.
+- Do not remove `root` global settings.
+- Add `animation` and `transition` and disable it globally and per relevant elements.
 - Code as short as possible.
