@@ -12,7 +12,7 @@
 	--uc-bg: #000; /* true black */
 	--uc-bg-2: #0b0b0b; /* subtle hover/selection */
 	--uc-fg: #fff; /* primary text */
-	--uc-fg-dim: #bdbdbd; /* secondary/dim text */
+	--uc-fg-dim: #999999; /* secondary/dim text */
 	--uc-accent: #0a84ff; /* Firefox blue accent */
 	--uc-border: #1a1a1a; /* thin separators */
 
