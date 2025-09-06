@@ -314,3 +314,22 @@ menuitem:hover {
 	background: #333 !important;
 	color: #fff !important;
 }
+
+#PersonalToolbar
+	menupopup[placespopup='true']
+	> :is(menu, menuitem).bookmark-item {
+	animation: none !important;
+	transition: none !important;
+}
+
+#PersonalToolbar
+	menupopup[placespopup='true']
+	> :is(menu, menuitem).bookmark-item:hover,
+#PersonalToolbar
+	menupopup[placespopup='true']
+	> :is(menu, menuitem).bookmark-item[_moz-menuactive='true'] {
+	background: #0a84ff !important;
+	color: #fff !important;
+	animation: none !important;
+	transition: none !important;
+}
