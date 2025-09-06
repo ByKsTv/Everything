@@ -443,3 +443,41 @@ menupopup > menuitem:hover,
 	border: 1px solid #1a1a1a !important;
 	color: #fff !important;
 }
+
+:is(#historyTree, #placeContent, #placesView)
+	:is(treecols, treecol, .treecol-text) {
+	background: #000 !important;
+	border-color: #1a1a1a !important;
+	color: #fff !important;
+	animation: none !important;
+	transition: none !important;
+}
+
+:is(#historyTree, #placeContent, #placesView) treecol:hover {
+	background: #0b0b0b !important;
+}
+
+:is(#historyTree, #placeContent, #placesView) treecol[sortDirection] {
+	background: #0a84ff !important;
+	color: #fff !important;
+}
+
+:is(#historyTree, #placesList) treechildren::-moz-tree-row(hover),
+:is(#historyTree, #placesList) treechildren::-moz-tree-row(selected) {
+	background: #0a84ff !important;
+}
+
+.urlbarView-row {
+	animation: none !important;
+	transition: none !important;
+}
+
+.urlbarView-row:is(:hover, [aria-selected='true']) {
+	background: #0a84ff !important;
+	color: #fff !important;
+}
+
+.urlbarView-row:is(:hover, [aria-selected='true'])
+	:is(.urlbarView-title, .urlbarView-url, .urlbarView-action) {
+	color: #fff !important;
+}
