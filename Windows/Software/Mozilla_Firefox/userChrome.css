@@ -39,7 +39,6 @@
 	border-bottom: 1px solid #1a1a1a !important;
 }
 
-#contentAreaContextMenu,
 #FindToolbar,
 #bookmarksPanel,
 #downloadsListBox,
@@ -60,6 +59,7 @@
 #urlbar-background,
 #appMenu-popup,
 #preferencesContainer,
+#contentAreaContextMenu,
 dialog,
 findbar,
 menupopup,
@@ -299,4 +299,20 @@ scrollbar thumb {
 
 scrollbar thumb:hover {
 	background: #fff !important;
+}
+
+menu,
+menuitem,
+menupopup,
+popup,
+#ContentSelectDropdown,
+#ContentSelectDropdown > menupopup {
+	background: #000 !important;
+	color: #fff !important;
+}
+
+menu:hover,
+menuitem:hover {
+	background: #333 !important;
+	color: #fff !important;
 }
