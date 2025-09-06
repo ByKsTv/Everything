@@ -20,6 +20,8 @@
 * {
 	border-radius: 0 !important;
 	box-shadow: none !important;
+	transition: none !important;
+	animation: none !important;
 }
 
 #PersonalToolbar,
@@ -39,36 +41,36 @@
 
 #contentAreaContextMenu,
 #FindToolbar,
-#sidebar,
-#sidebar-box,
-#sidebar-header,
 #bookmarksPanel,
-#history-panel,
-#sidebar-search-container,
-#urlbar,
-#searchbar,
-#urlbar-background,
-dialog,
-panel,
-panel .panel-arrowcontent,
-panelview,
-prefwindow,
-#PreferencesContainer,
+#downloadsListBox,
 #downloadsPanel,
 #downloadsPanel-mainView,
 #downloadsSummary,
-#downloadsListBox,
+#history-panel,
 #placesMenu,
 #placesToolbar,
 #placesView,
 #preferences-body,
+#searchbar,
+#sidebar,
+#sidebar-box,
+#sidebar-header,
+#sidebar-search-container,
+#urlbar,
+#urlbar-background,
+#appMenu-popup,
+#preferencesContainer,
+dialog,
 findbar,
 menupopup,
-.panel-subview-body,
-#appMenu-popup {
+panel,
+panel .panel-arrowcontent,
+panelview,
+prefwindow,
+.panel-subview-body {
 	background: #000 !important;
-	color: #fff !important;
 	border: 1px solid #1a1a1a !important;
+	color: #fff !important;
 }
 
 #FindToolbar,
@@ -77,11 +79,11 @@ findbar {
 }
 
 #FindToolbar textbox,
-#sidebar .textbox-input-box,
 #search-box,
 #search-box text,
-#urlbar-input,
 #searchbar .textbox-input-box,
+#sidebar .textbox-input-box,
+#urlbar-input,
 findbar textbox {
 	background: #000 !important;
 	border: 1px solid #1a1a1a !important;
@@ -89,9 +91,9 @@ findbar textbox {
 }
 
 #placesToolbar,
+#placesToolbar > toolbarbutton,
 #placesView,
-#placesView > splitter,
-#placesToolbar > toolbarbutton {
+#placesView > splitter {
 	border-color: #1a1a1a !important;
 }
 
@@ -99,28 +101,33 @@ findbar textbox {
 	background: transparent !important;
 	border: 0 !important;
 	color: #fff !important;
+	transition: none !important;
+	animation: none !important;
+	opacity: 1 !important;
 }
 
 #statuspanel-label {
 	background: #000 !important;
 	border: 1px solid #1a1a1a !important;
 	color: #fff !important;
-	margin: 0 8px 8px 8px !important;
-	opacity: 0.92 !important;
+	margin: 0 8px 8px !important;
+	opacity: .92 !important;
 	overflow: hidden !important;
 	padding: 2px 8px !important;
 	text-overflow: ellipsis !important;
 	white-space: nowrap !important;
+	transition: none !important;
+	animation: none !important;
 }
 
 #statuspanel:hover > #statuspanel-label {
 	opacity: 1 !important;
 }
 
-#tabbrowser-tabs .tabbrowser-tab::after,
-#tabbrowser-tabs .tabbrowser-tab::before,
+#TabsToolbar .titlebar-spacer,
 #TabsToolbar .toolbar-items,
-#TabsToolbar .titlebar-spacer {
+#tabbrowser-tabs .tabbrowser-tab::after,
+#tabbrowser-tabs .tabbrowser-tab::before {
 	border: 0 !important;
 	box-shadow: none !important;
 }
@@ -131,7 +138,7 @@ findbar textbox {
 
 .tabbrowser-tab .tab-background {
 	background: #000 !important;
-	border: none !important;
+	border: 0 !important;
 }
 
 .tabbrowser-tab[selected] .tab-background {
@@ -153,11 +160,11 @@ findbar textbox {
 }
 
 .tabbrowser-tab .tab-close-button,
+.tabbrowser-tab .tab-icon-image,
 .tabbrowser-tab .tab-icon-overlay,
-.tabbrowser-tab .tab-throbber,
-.tabbrowser-tab .tab-icon-image {
+.tabbrowser-tab .tab-throbber {
 	filter: none !important;
-	opacity: 0.9 !important;
+	opacity: .9 !important;
 }
 
 .tabbrowser-tab .tab-close-button {
@@ -191,8 +198,8 @@ treechildren::-moz-tree-row(selected) {
 	background: #0b0b0b !important;
 }
 
-.urlbarView-url,
-.urlbarView-action {
+.urlbarView-action,
+.urlbarView-url {
 	color: #999 !important;
 }
 
@@ -204,8 +211,8 @@ toolbarbutton {
 }
 
 toolbar .toolbarbutton-1:hover,
-toolbarbutton:hover,
 toolbar .toolbarbutton-1[open='true'],
+toolbarbutton:hover,
 toolbarbutton[open='true'],
 menupopup > menu:hover,
 menupopup > menuitem:hover,
@@ -232,19 +239,18 @@ menupopup > menuitem {
 }
 
 .panel-subview-body > toolbarbutton,
+panelview .toolbarbutton-1,
 menupopup > menu,
-menupopup > menuitem,
-panelview .toolbarbutton-1 {
+menupopup > menuitem {
 	font-size: 13px !important;
 	min-height: 22px !important;
-	padding-block: 4px !important;
-	padding-inline: 8px !important;
+	padding: 4px 8px !important;
 }
 
-tree,
-treechildren,
 #historyTree,
-#placesList {
+#placesList,
+tree,
+treechildren {
 	background: #000 !important;
 	border-color: #1a1a1a !important;
 	color: #fff !important;
@@ -260,11 +266,11 @@ toolbarseparator {
 	border-color: #1a1a1a !important;
 }
 
+#contentAreaContextMenu menuitem[disabled='true'],
 menupopup > menu[disabled='true'],
-menupopup > menuitem[disabled='true'],
-#contentAreaContextMenu menuitem[disabled='true'] {
+menupopup > menuitem[disabled='true'] {
 	color: #555 !important;
-	opacity: 0.6 !important;
+	opacity: .6 !important;
 }
 
 tooltip {
@@ -275,9 +281,9 @@ tooltip {
 }
 
 #sidebar,
-panelview,
 menupopup,
-panel {
+panel,
+panelview {
 	scrollbar-color: #999 #000 !important;
 }
 
