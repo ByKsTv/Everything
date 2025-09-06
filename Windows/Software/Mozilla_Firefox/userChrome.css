@@ -481,3 +481,18 @@ menupopup > menuitem:hover,
 	:is(.urlbarView-title, .urlbarView-url, .urlbarView-action) {
 	color: #fff !important;
 }
+
+:is(.titlebar-close, .titlebar-close .toolbarbutton-icon) {
+	animation: none !important;
+	background: transparent !important;
+	border: 0 !important;
+	color: #fff !important;
+	fill: currentColor !important;
+	transition: none !important;
+}
+
+:is(.titlebar-close:hover, .titlebar-close:hover .toolbarbutton-icon) {
+	background: #ff3b30 !important;
+	color: #fff !important;
+	fill: currentColor !important;
+}
