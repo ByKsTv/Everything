@@ -352,3 +352,94 @@ popup {
 	background: #0a84ff !important;
 	color: #fff !important;
 }
+
+panelview .subviewbutton,
+#PersonalToolbar toolbarbutton.bookmark-item,
+.tabbrowser-tab .tab-close-button,
+#permission-popup .popup-notification-secondary-button,
+.popup-notification-secondary-button,
+.panel-footer .panel-button[dlgtype='secondary'] {
+	animation: none !important;
+	transition: none !important;
+}
+
+#appMenu-popup panelview .subviewbutton:hover,
+#identity-popup .subviewbutton:hover,
+panelview .toolbarbutton-1:hover,
+panelview .subviewbutton:hover,
+menupopup > menu:hover,
+menupopup > menuitem:hover,
+#contentAreaContextMenu
+	:is(menu, menuitem):is(
+		:hover,
+		:focus,
+		[_moz-menuactive='true'],
+		[open='true']
+	),
+#placesContext
+	:is(menu, menuitem):is(
+		:hover,
+		:focus,
+		[_moz-menuactive='true'],
+		[open='true']
+	),
+#PersonalToolbar toolbarbutton.bookmark-item:hover {
+	background: #0a84ff !important;
+	color: #fff !important;
+}
+
+.tabbrowser-tab .tab-background {
+	background: #0b0b0b !important;
+}
+.tabbrowser-tab[selected] .tab-background {
+	background: #000 !important;
+	box-shadow: inset 0 -2px 0 #0a84ff !important;
+}
+.tabbrowser-tab:not([selected]) .tab-label {
+	color: #aaa !important;
+}
+.tabbrowser-tab[selected] .tab-label {
+	color: #fff !important;
+	font-weight: 600 !important;
+}
+
+.tabbrowser-tab .tab-close-button {
+	opacity: 0.85 !important;
+}
+.tabbrowser-tab .tab-close-button:hover {
+	background: #0b0b0b !important;
+	color: #ff3b30 !important;
+	fill: #ff3b30 !important;
+	opacity: 1 !important;
+}
+
+#permission-popup .popup-notification-secondary-button,
+.popup-notification-secondary-button,
+.panel-footer .panel-button[dlgtype='secondary'] {
+	background: #0b0b0b !important;
+	border: 1px solid #333 !important;
+	color: #fff !important;
+}
+#permission-popup .popup-notification-secondary-button:hover,
+.popup-notification-secondary-button:hover,
+.panel-footer .panel-button[dlgtype='secondary']:hover {
+	background: #ff3b30 !important;
+	color: #fff !important;
+}
+
+#placesView #detailsDeck,
+#placesView #detailsPane,
+#placesView #infoBox {
+	background: #000 !important;
+	border-top: 1px solid #1a1a1a !important;
+	color: #fff !important;
+}
+
+#placesView textbox,
+#placesView .textbox-input-box,
+#placesView input,
+#placesView menulist {
+	background: #000 !important;
+	border: 1px solid #1a1a1a !important;
+	color: #fff !important;
+}
