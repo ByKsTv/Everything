@@ -1,10 +1,19 @@
+/******************************************
+ * Firefox userChrome.css — Dark, minimal
+ * Organized to preserve cascade + behavior
+ ******************************************/
+
+/* ── Quick hides ───────────────────────────────────────────────────────────── */
 #alltabs-button,
 .titlebar-spacer[type='post-tabs'] {
 	display: none !important;
 }
 
+/* ── Root & global reset ───────────────────────────────────────────────────── */
 :root {
 	color-scheme: dark;
+
+	/* Firefox CSS vars */
 	--arrowpanel-background: #000 !important;
 	--arrowpanel-color: #fff !important;
 	--lwt-accent-color: #000 !important;
@@ -17,6 +26,7 @@
 	--toolbarbutton-outer-padding: 6px !important;
 }
 
+/* Hard reset */
 * {
 	animation: none !important;
 	border-radius: 0 !important;
@@ -24,6 +34,7 @@
 	transition: none !important;
 }
 
+/* ── Major bars/toolbars ───────────────────────────────────────────────────── */
 #PersonalToolbar,
 #TabsToolbar,
 #titlebar,
@@ -39,6 +50,7 @@
 	border-bottom: 1px solid #1a1a1a !important;
 }
 
+/* ── Panels, popups, sidebars, urlbar shells ───────────────────────────────── */
 #appMenu-popup,
 #bookmarksPanel,
 #contentAreaContextMenu,
@@ -72,11 +84,13 @@ prefwindow {
 	color: #fff !important;
 }
 
+/* Findbar borders */
 #FindToolbar,
 findbar {
 	border-top: 1px solid #1a1a1a !important;
 }
 
+/* Inputs (findbar/search/urlbar/sidebar) */
 #FindToolbar textbox,
 #search-box,
 #search-box text,
@@ -89,6 +103,7 @@ findbar textbox {
 	color: #fff !important;
 }
 
+/* Places toolbars/borders */
 #placesToolbar,
 #placesToolbar > toolbarbutton,
 #placesView,
@@ -96,6 +111,7 @@ findbar textbox {
 	border-color: #1a1a1a !important;
 }
 
+/* ── Status panel ──────────────────────────────────────────────────────────── */
 #statuspanel {
 	background: transparent !important;
 	border: 0 !important;
@@ -107,10 +123,10 @@ findbar textbox {
 	background: #000 !important;
 	border: 1px solid #1a1a1a !important;
 	color: #fff !important;
-	margin: 0 8px 8px !important;
+	margin: 0 0px 0px !important;
 	opacity: 0.92 !important;
 	overflow: hidden !important;
-	padding: 2px 8px !important;
+	padding: 0px 0px !important;
 	text-overflow: ellipsis !important;
 	white-space: nowrap !important;
 }
@@ -119,6 +135,7 @@ findbar textbox {
 	opacity: 1 !important;
 }
 
+/* ── Tabs — base layout & visuals (non-conflicting) ────────────────────────── */
 #TabsToolbar .titlebar-spacer,
 #TabsToolbar .toolbar-items,
 #tabbrowser-tabs .tabbrowser-tab::after,
@@ -131,28 +148,28 @@ findbar textbox {
 	padding: 0 6px !important;
 }
 
+/* Final tab backgrounds/labels (keep these together) */
 .tabbrowser-tab .tab-background {
-	background: #000 !important;
+	background: #0b0b0b !important; /* base tab */
 	border: 0 !important;
 }
-
 .tabbrowser-tab[selected] .tab-background {
+	background: #000 !important;
 	box-shadow: inset 0 -2px 0 #0a84ff !important;
 }
-
+.tabbrowser-tab:not([selected]) .tab-label {
+	color: #aaa !important;
+}
 .tabbrowser-tab[selected] .tab-label {
 	color: #fff !important;
-	font-weight: 500 !important;
+	font-weight: 600 !important;
 }
-
+/* Hover label pop */
 .tabbrowser-tab:hover .tab-label {
 	color: #fff !important;
 }
 
-.tabbrowser-tab:not([selected]) .tab-label {
-	color: #999 !important;
-}
-
+/* Tab icons / throbber */
 .tabbrowser-tab .tab-close-button,
 .tabbrowser-tab .tab-icon-image,
 .tabbrowser-tab .tab-icon-overlay,
@@ -161,19 +178,30 @@ findbar textbox {
 	opacity: 0.9 !important;
 }
 
+/* Close button sizing + reveal on hover */
 .tabbrowser-tab .tab-close-button {
 	height: 38px !important;
-	margin-inline-start: 0 !important;
-	opacity: 0 !important;
-	padding: 0 !important;
 	width: 38px !important;
+	margin-inline-start: 0 !important;
+	margin-inline: 0 !important; /* unify */
+	padding: 0 !important;
+	opacity: 0 !important;
+	order: 99 !important;
+}
+.tabbrowser-tab .tab-content,
+.tabbrowser-tab:not([pinned]) .tab-label-container {
+	padding-inline-end: 0 !important;
 }
 
-.tabbrowser-tab:hover .tab-close-button {
+/* Hover close button feedback */
+.tabbrowser-tab .tab-close-button:hover {
 	background: #0b0b0b !important;
+	color: #ff3b30 !important;
+	fill: #ff3b30 !important;
 	opacity: 1 !important;
 }
 
+/* ── Urlbar results ───────────────────────────────────────────────────────── */
 #urlbar-results,
 .urlbarView,
 .urlbarView-body-inner,
@@ -184,34 +212,32 @@ findbar textbox {
 	color: #fff !important;
 }
 
-.urlbarView-row[aria-selected='true'],
-.urlbarView-row:hover,
-treechildren::-moz-tree-row(hover),
-treechildren::-moz-tree-row(selected) {
-	background: #0b0b0b !important;
+/* Final selection/hover color */
+.urlbarView-row {
+	animation: none !important;
+	transition: none !important;
+}
+.urlbarView-row:is(:hover, [aria-selected='true']) {
+	background: #0a84ff !important;
+	color: #fff !important;
+}
+.urlbarView-row:is(:hover, [aria-selected='true'])
+	:is(.urlbarView-title, .urlbarView-url, .urlbarView-action) {
+	color: #fff !important;
 }
 
+/* Url/Action subtle color */
 .urlbarView-action,
 .urlbarView-url {
 	color: #999 !important;
 }
 
+/* ── Toolbar buttons ───────────────────────────────────────────────────────── */
 toolbar .toolbarbutton-1,
 toolbarbutton {
 	background: transparent !important;
 	border: 0 !important;
 	color: #fff !important;
-}
-
-#PersonalToolbar toolbarbutton.bookmark-item:hover,
-panelview .toolbarbutton-1:hover,
-toolbar .toolbarbutton-1[open='true'],
-toolbar .toolbarbutton-1:hover,
-toolbarbutton[open='true'],
-toolbarbutton:hover,
-menupopup > menu:hover,
-menupopup > menuitem:hover {
-	background: #0b0b0b !important;
 }
 
 #nav-bar toolbarbutton .toolbarbutton-text,
@@ -225,10 +251,24 @@ toolbarbutton:hover .toolbarbutton-icon {
 	filter: brightness(1.2) !important;
 }
 
+/* Hover (general toolbar) */
+#PersonalToolbar toolbarbutton.bookmark-item:hover,
+panelview .toolbarbutton-1:hover, /* overridden to blue later inside panelview */
+toolbar .toolbarbutton-1[open='true'],
+toolbar .toolbarbutton-1:hover,
+toolbarbutton[open='true'],
+toolbarbutton:hover,
+menupopup > menu:hover,
+menupopup > menuitem:hover {
+	background: #0b0b0b !important;
+}
+
+/* Bookmarks toolbar text color */
 #PersonalToolbar toolbarbutton.bookmark-item {
 	color: #fff !important;
 }
 
+/* Subview/menu item sizing */
 .panel-subview-body > toolbarbutton,
 panelview .toolbarbutton-1,
 menupopup > menu,
@@ -239,6 +279,7 @@ menupopup > menuitem {
 	padding: 4px 8px !important;
 }
 
+/* ── Trees (history/places) ───────────────────────────────────────────────── */
 #historyTree,
 #placesList,
 tree,
@@ -253,16 +294,31 @@ treechildren::-moz-tree-cell-text(selected) {
 	color: #fff !important;
 }
 
+/* Tree columns */
+:is(#historyTree, #placeContent, #placesView)
+	:is(treecols, treecol, .treecol-text) {
+	background: #000 !important;
+	border-color: #1a1a1a !important;
+	color: #fff !important;
+	animation: none !important;
+	transition: none !important;
+}
+:is(#historyTree, #placeContent, #placesView) treecol:hover {
+	background: #0b0b0b !important;
+}
+:is(#historyTree, #placeContent, #placesView) treecol[sortDirection] {
+	background: #0a84ff !important;
+	color: #fff !important;
+}
+:is(#historyTree, #placesList) treechildren::-moz-tree-row(hover),
+:is(#historyTree, #placesList) treechildren::-moz-tree-row(selected) {
+	background: #0a84ff !important;
+}
+
+/* ── Separators & tooltips ────────────────────────────────────────────────── */
 separator,
 toolbarseparator {
 	border-color: #1a1a1a !important;
-}
-
-#contentAreaContextMenu menuitem[disabled='true'],
-menupopup > menu[disabled='true'],
-menupopup > menuitem[disabled='true'] {
-	color: #555 !important;
-	opacity: 0.6 !important;
 }
 
 tooltip {
@@ -272,6 +328,15 @@ tooltip {
 	color: #fff !important;
 }
 
+/* Disabled menu items */
+#contentAreaContextMenu menuitem[disabled='true'],
+menupopup > menu[disabled='true'],
+menupopup > menuitem[disabled='true'] {
+	color: #555 !important;
+	opacity: 0.6 !important;
+}
+
+/* ── Scrollbars ───────────────────────────────────────────────────────────── */
 #sidebar,
 menupopup,
 panel,
@@ -293,6 +358,7 @@ scrollbar thumb:hover {
 	background: #fff !important;
 }
 
+/* ── Generic popup menus ──────────────────────────────────────────────────── */
 #ContentSelectDropdown,
 #ContentSelectDropdown > menupopup,
 menu,
@@ -303,12 +369,14 @@ popup {
 	color: #fff !important;
 }
 
+/* ── Context menus: behavior + highlight ──────────────────────────────────── */
 #contentAreaContextMenu,
 #placesContext {
 	animation: none !important;
 	transition: none !important;
 }
 
+/* Active/hover highlight */
 #contentAreaContextMenu
 	:is(menu, menuitem):is(
 		:hover,
@@ -328,6 +396,7 @@ popup {
 	outline: 0 !important;
 }
 
+/* Icons inside highlighted items follow text color */
 #contentAreaContextMenu
 	:is(menu, menuitem)
 	:is(.menu-iconic-icon, .menu-right, .menu-accel),
@@ -339,13 +408,13 @@ popup {
 	filter: none !important;
 }
 
+/* ── Bookmarks menu popups ────────────────────────────────────────────────── */
 #PersonalToolbar
 	menupopup[placespopup='true']
 	> :is(menu, menuitem).bookmark-item {
 	animation: none !important;
 	transition: none !important;
 }
-
 #PersonalToolbar
 	menupopup[placespopup='true']
 	> :is(menu, menuitem).bookmark-item:is(:hover, [_moz-menuactive='true']) {
@@ -353,6 +422,7 @@ popup {
 	color: #fff !important;
 }
 
+/* ── Extra no-anim (explicit for stubborn nodes) ──────────────────────────── */
 panelview .subviewbutton,
 #PersonalToolbar toolbarbutton.bookmark-item,
 .tabbrowser-tab .tab-close-button,
@@ -363,6 +433,7 @@ panelview .subviewbutton,
 	transition: none !important;
 }
 
+/* ── Stronger hover accents (placed after base hovers) ────────────────────── */
 #appMenu-popup panelview .subviewbutton:hover,
 #identity-popup .subviewbutton:hover,
 panelview .toolbarbutton-1:hover,
@@ -388,31 +459,7 @@ menupopup > menuitem:hover,
 	color: #fff !important;
 }
 
-.tabbrowser-tab .tab-background {
-	background: #0b0b0b !important;
-}
-.tabbrowser-tab[selected] .tab-background {
-	background: #000 !important;
-	box-shadow: inset 0 -2px 0 #0a84ff !important;
-}
-.tabbrowser-tab:not([selected]) .tab-label {
-	color: #aaa !important;
-}
-.tabbrowser-tab[selected] .tab-label {
-	color: #fff !important;
-	font-weight: 600 !important;
-}
-
-.tabbrowser-tab .tab-close-button {
-	opacity: 0 !important;
-}
-.tabbrowser-tab .tab-close-button:hover {
-	background: #0b0b0b !important;
-	color: #ff3b30 !important;
-	fill: #ff3b30 !important;
-	opacity: 1 !important;
-}
-
+/* ── Permission popup secondary buttons ───────────────────────────────────── */
 #permission-popup .popup-notification-secondary-button,
 .popup-notification-secondary-button,
 .panel-footer .panel-button[dlgtype='secondary'] {
@@ -427,6 +474,7 @@ menupopup > menuitem:hover,
 	color: #fff !important;
 }
 
+/* ── Places “Details” pane + inputs ───────────────────────────────────────── */
 #placesView #detailsDeck,
 #placesView #detailsPane,
 #placesView #infoBox {
@@ -434,7 +482,6 @@ menupopup > menuitem:hover,
 	border-top: 1px solid #1a1a1a !important;
 	color: #fff !important;
 }
-
 #placesView textbox,
 #placesView .textbox-input-box,
 #placesView input,
@@ -444,44 +491,7 @@ menupopup > menuitem:hover,
 	color: #fff !important;
 }
 
-:is(#historyTree, #placeContent, #placesView)
-	:is(treecols, treecol, .treecol-text) {
-	background: #000 !important;
-	border-color: #1a1a1a !important;
-	color: #fff !important;
-	animation: none !important;
-	transition: none !important;
-}
-
-:is(#historyTree, #placeContent, #placesView) treecol:hover {
-	background: #0b0b0b !important;
-}
-
-:is(#historyTree, #placeContent, #placesView) treecol[sortDirection] {
-	background: #0a84ff !important;
-	color: #fff !important;
-}
-
-:is(#historyTree, #placesList) treechildren::-moz-tree-row(hover),
-:is(#historyTree, #placesList) treechildren::-moz-tree-row(selected) {
-	background: #0a84ff !important;
-}
-
-.urlbarView-row {
-	animation: none !important;
-	transition: none !important;
-}
-
-.urlbarView-row:is(:hover, [aria-selected='true']) {
-	background: #0a84ff !important;
-	color: #fff !important;
-}
-
-.urlbarView-row:is(:hover, [aria-selected='true'])
-	:is(.urlbarView-title, .urlbarView-url, .urlbarView-action) {
-	color: #fff !important;
-}
-
+/* ── Titlebar system buttons ──────────────────────────────────────────────── */
 :is(.titlebar-close, .titlebar-close .toolbarbutton-icon) {
 	animation: none !important;
 	background: transparent !important;
@@ -490,27 +500,20 @@ menupopup > menuitem:hover,
 	fill: currentColor !important;
 	transition: none !important;
 }
-
 :is(.titlebar-close:hover, .titlebar-close:hover .toolbarbutton-icon) {
 	background: #ff3b30 !important;
 	color: #fff !important;
 	fill: currentColor !important;
 }
 
+/* ── Tab layout tweaks (order/padding) ────────────────────────────────────── */
 .tabbrowser-tab {
-	padding: 0 0 0 6px !important;
+	padding: 0 0 0 6px !important; /* left-align a touch */
 }
-
 .tabbrowser-tab .tab-content,
 .tabbrowser-tab:not([pinned]) .tab-label-container {
 	padding-inline-end: 0 !important;
 }
-
-.tabbrowser-tab .tab-close-button {
-	margin-inline: 0 !important;
-	order: 99 !important;
-}
-
 .tabbrowser-tab .tab-close-button,
 .tabbrowser-tab .tab-content,
 .tabbrowser-tab:not([pinned]) .tab-label-container {
