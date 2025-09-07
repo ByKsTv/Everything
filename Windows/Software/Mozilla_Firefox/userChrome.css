@@ -162,11 +162,11 @@ findbar textbox {
 }
 
 .tabbrowser-tab .tab-close-button {
-	height: 18px !important;
+	height: 38px !important;
 	margin-inline-start: 0 !important;
 	opacity: 0 !important;
 	padding: 0 !important;
-	width: 18px !important;
+	width: 38px !important;
 }
 
 .tabbrowser-tab:hover .tab-close-button {
@@ -404,7 +404,7 @@ menupopup > menuitem:hover,
 }
 
 .tabbrowser-tab .tab-close-button {
-	opacity: 0.85 !important;
+	opacity: 0 !important;
 }
 .tabbrowser-tab .tab-close-button:hover {
 	background: #0b0b0b !important;
@@ -495,4 +495,25 @@ menupopup > menuitem:hover,
 	background: #ff3b30 !important;
 	color: #fff !important;
 	fill: currentColor !important;
+}
+
+.tabbrowser-tab {
+	padding: 0 0 0 6px !important;
+}
+
+.tabbrowser-tab .tab-content,
+.tabbrowser-tab:not([pinned]) .tab-label-container {
+	padding-inline-end: 0 !important;
+}
+
+.tabbrowser-tab .tab-close-button {
+	margin-inline: 0 !important;
+	order: 99 !important;
+}
+
+.tabbrowser-tab .tab-close-button,
+.tabbrowser-tab .tab-content,
+.tabbrowser-tab:not([pinned]) .tab-label-container {
+	animation: none !important;
+	transition: none !important;
 }
