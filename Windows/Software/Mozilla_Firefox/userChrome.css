@@ -39,6 +39,14 @@
 	border-bottom: 1px solid #1a1a1a !important;
 }
 
+.panel-subview-body,
+dialog,
+findbar,
+menupopup,
+panel,
+panel .panel-arrowcontent,
+panelview,
+prefwindow,
 #appMenu-popup,
 #bookmarksPanel,
 #contentAreaContextMenu,
@@ -60,15 +68,7 @@
 #sidebar-header,
 #sidebar-search-container,
 #urlbar,
-#urlbar-background,
-.panel-subview-body,
-dialog,
-findbar,
-menupopup,
-panel,
-panel .panel-arrowcontent,
-panelview,
-prefwindow {
+#urlbar-background {
 	background: #000 !important;
 	border: 1px solid #1a1a1a !important;
 	color: #fff !important;
@@ -80,22 +80,82 @@ findbar {
 }
 
 #FindToolbar textbox,
+#editBMPanel_keywordField,
+#editBMPanel_locationField,
+#editBMPanel_namePicker,
+#editBMPanel_tagsField,
+#editBookmarkPanel .textbox-input,
+#editBookmarkPanel .textbox-input-box,
+#editBookmarkPanel input,
+#editBookmarkPanel textbox,
+#placesView .textbox-input-box,
+#placesView input,
+#placesView menulist,
+#placesView textbox,
 #search-box,
 #search-box text,
 #searchbar .textbox-input-box,
 #sidebar .textbox-input-box,
 #urlbar-input,
+dialog[windowtype='Browser:BookmarkProperties'] .textbox-input,
+dialog[windowtype='Browser:BookmarkProperties'] .textbox-input-box,
+dialog[windowtype='Browser:BookmarkProperties'] input,
+dialog[windowtype='Browser:BookmarkProperties'] textbox,
 findbar textbox {
+	-moz-appearance: none !important;
+	appearance: none !important;
 	background: #000 !important;
 	border: 1px solid #1a1a1a !important;
+	box-shadow: none !important;
+	caret-color: #fff !important;
 	color: #fff !important;
+	outline: 0 !important;
 }
 
-#placesToolbar,
-#placesToolbar > toolbarbutton,
-#placesView,
-#placesView > splitter {
-	border-color: #1a1a1a !important;
+#editBMPanel_keywordField:hover,
+#editBMPanel_locationField:hover,
+#editBMPanel_namePicker:hover,
+#editBMPanel_tagsField:hover,
+#editBookmarkPanel .textbox-input-box:hover,
+#editBookmarkPanel .textbox-input:hover,
+#editBookmarkPanel input:hover,
+#editBookmarkPanel textbox:hover,
+#placesView .textbox-input-box:hover,
+#placesView input:hover,
+#placesView menulist:hover,
+#placesView textbox:hover,
+dialog[windowtype='Browser:BookmarkProperties'] .textbox-input-box:hover,
+dialog[windowtype='Browser:BookmarkProperties'] .textbox-input:hover,
+dialog[windowtype='Browser:BookmarkProperties'] input:hover,
+dialog[windowtype='Browser:BookmarkProperties'] textbox:hover {
+	background: #0b0b0b !important;
+	border-color: #0a84ff !important;
+}
+
+#editBMPanel_keywordField[focused],
+#editBMPanel_locationField[focused],
+#editBMPanel_namePicker[focused],
+#editBMPanel_tagsField[focused],
+#editBookmarkPanel .textbox-input-box:focus-within,
+#editBookmarkPanel .textbox-input:focus,
+#editBookmarkPanel input:focus,
+dialog[windowtype='Browser:BookmarkProperties'] .textbox-input-box:focus-within,
+dialog[windowtype='Browser:BookmarkProperties'] .textbox-input:focus,
+dialog[windowtype='Browser:BookmarkProperties'] input:focus {
+	outline: 2px solid #0a84ff !important;
+	outline-offset: 0 !important;
+}
+
+#editBookmarkPanel .textbox-input::-moz-placeholder,
+#editBookmarkPanel .textbox-input::placeholder,
+#editBookmarkPanel input::-moz-placeholder,
+#editBookmarkPanel input::placeholder,
+dialog[windowtype='Browser:BookmarkProperties']
+	.textbox-input::-moz-placeholder,
+dialog[windowtype='Browser:BookmarkProperties'] .textbox-input::placeholder,
+dialog[windowtype='Browser:BookmarkProperties'] input::-moz-placeholder,
+dialog[windowtype='Browser:BookmarkProperties'] input::placeholder {
+	color: #999 !important;
 }
 
 #statuspanel {
@@ -134,26 +194,34 @@ findbar textbox {
 }
 
 .tabbrowser-tab .tab-background {
-	background: #0b0b0b !important;
 	border: 0 !important;
+	background: #0e0e0e !important;
+	border-left: 1px solid #161616 !important;
+	border-right: 1px solid #0a0a0a !important;
+}
+
+.tabbrowser-tab:hover:not([selected]) .tab-background {
+	background: #141414 !important;
 }
 
 .tabbrowser-tab[selected] .tab-background {
 	background: #000 !important;
+	border-left: 1px solid #1a1a1a !important;
+	border-right: 1px solid #1a1a1a !important;
 	box-shadow: inset 0 -2px 0 #0a84ff !important;
 }
 
 .tabbrowser-tab:not([selected]) .tab-label {
-	color: #aaa !important;
+	color: #c7c7c7 !important;
+}
+
+.tabbrowser-tab:hover .tab-label,
+.tabbrowser-tab[selected] .tab-label {
+	color: #fff !important;
 }
 
 .tabbrowser-tab[selected] .tab-label {
-	color: #fff !important;
 	font-weight: 0 !important;
-}
-
-.tabbrowser-tab:hover .tab-label {
-	color: #fff !important;
 }
 
 .tabbrowser-tab .tab-close-button,
@@ -234,29 +302,136 @@ toolbarbutton:hover .toolbarbutton-icon {
 	filter: brightness(1.2) !important;
 }
 
-#PersonalToolbar toolbarbutton.bookmark-item:hover,
-panelview .toolbarbutton-1:hover,
-toolbar .toolbarbutton-1[open='true'],
-toolbar .toolbarbutton-1:hover,
-toolbarbutton[open='true'],
-toolbarbutton:hover,
-menupopup > menu:hover,
-menupopup > menuitem:hover {
-	background: #0b0b0b !important;
+#PersonalToolbar toolbarbutton.bookmark-item {
+	color: #fff !important;
+	padding: 0 !important;
+	padding-inline: 0 !important;
 }
 
-#PersonalToolbar toolbarbutton.bookmark-item {
+toolbarbutton[widget-type='button-and-view'][data-extensionid]:hover,
+toolbarbutton.webextension-browser-action:hover {
+	background: #0a84ff !important;
+	color: #fff !important;
+}
+
+#unified-extensions-panel #unified-extensions-more-extensions-button:hover,
+#unified-extensions-panel .unified-extensions-item-action-button:hover,
+#unified-extensions-panel .unified-extensions-item-menu-button:hover,
+#unified-extensions-panel .unified-extensions-item:hover {
+	background: #0a84ff !important;
+	color: #fff !important;
+}
+
+#unified-extensions-panel
+	:is(
+		.unified-extensions-item,
+		.unified-extensions-item-action-button,
+		.unified-extensions-item-menu-button,
+		#unified-extensions-more-extensions-button
+	):hover
+	* {
+	color: #fff !important;
+	fill: currentColor !important;
+}
+
+#PanelUI-menu-button:hover,
+#back-button:hover,
+#forward-button:hover,
+#identity-box:hover,
+#permissions-granted-icon:hover,
+#reload-button:hover,
+#stop-reload-button:hover,
+#tracking-protection-icon-container:hover {
+	background: #0a84ff !important;
+	color: #fff !important;
+	fill: currentColor !important;
+}
+
+toolbar .toolbarbutton-1[open='true'],
+toolbarbutton[open='true'] {
+	background: #0a84ff !important;
 	color: #fff !important;
 }
 
 .panel-subview-body > toolbarbutton,
-panelview .toolbarbutton-1,
 menupopup > menu,
-menupopup > menuitem {
+menupopup > menuitem,
+panelview .toolbarbutton-1 {
 	color: #fff !important;
 	font-size: 13px !important;
 	min-height: 22px !important;
 	padding: 0px 0px !important;
+}
+
+#contentAreaContextMenu,
+#placesContext {
+	animation: none !important;
+	transition: none !important;
+}
+
+#appMenu-popup panelview .subviewbutton:hover,
+#contentAreaContextMenu
+	:is(menu, menuitem):is(
+		:hover,
+		:focus,
+		[_moz-menuactive='true'],
+		[open='true']
+	),
+#identity-popup .subviewbutton:hover,
+#placesContext
+	:is(menu, menuitem):is(
+		:hover,
+		:focus,
+		[_moz-menuactive='true'],
+		[open='true']
+	),
+#PersonalToolbar
+	menupopup[placespopup='true']
+	> :is(menu, menuitem).bookmark-item:is(:hover, [_moz-menuactive='true']),
+#PersonalToolbar toolbarbutton.bookmark-item:hover,
+panelview .subviewbutton:hover,
+panelview .toolbarbutton-1:hover {
+	background: #0a84ff !important;
+	color: #fff !important;
+	outline: 0 !important;
+}
+
+#contentAreaContextMenu
+	:is(menu, menuitem)
+	:is(.menu-iconic-icon, .menu-right, .menu-accel),
+#placesContext
+	:is(menu, menuitem)
+	:is(.menu-iconic-icon, .menu-right, .menu-accel) {
+	color: currentColor !important;
+	fill: currentColor !important;
+	filter: none !important;
+}
+
+#PersonalToolbar
+	menupopup[placespopup='true']
+	> :is(menu, menuitem).bookmark-item {
+	animation: none !important;
+	transition: none !important;
+}
+
+menupopup > menuitem[checked='true'],
+menupopup > menuitem[selected='true'] {
+	background: #0a84ff !important;
+	color: #fff !important;
+}
+
+#contentAreaContextMenu menuitem[disabled='true'],
+menupopup > menu[disabled='true'],
+menupopup > menuitem[disabled='true'] {
+	color: #555 !important;
+	opacity: 0.6 !important;
+}
+
+#placesToolbar,
+#placesToolbar > toolbarbutton,
+#placesView,
+#placesView > splitter {
+	border-color: #1a1a1a !important;
 }
 
 #historyTree,
@@ -308,13 +483,6 @@ tooltip {
 	color: #fff !important;
 }
 
-#contentAreaContextMenu menuitem[disabled='true'],
-menupopup > menu[disabled='true'],
-menupopup > menuitem[disabled='true'] {
-	color: #555 !important;
-	opacity: 0.6 !important;
-}
-
 #sidebar,
 menupopup,
 panel,
@@ -346,91 +514,6 @@ popup {
 	color: #fff !important;
 }
 
-#contentAreaContextMenu,
-#placesContext {
-	animation: none !important;
-	transition: none !important;
-}
-
-#contentAreaContextMenu
-	:is(menu, menuitem):is(
-		:hover,
-		:focus,
-		[_moz-menuactive='true'],
-		[open='true']
-	),
-#placesContext
-	:is(menu, menuitem):is(
-		:hover,
-		:focus,
-		[_moz-menuactive='true'],
-		[open='true']
-	) {
-	background: #0a84ff !important;
-	color: #fff !important;
-	outline: 0 !important;
-}
-
-#contentAreaContextMenu
-	:is(menu, menuitem)
-	:is(.menu-iconic-icon, .menu-right, .menu-accel),
-#placesContext
-	:is(menu, menuitem)
-	:is(.menu-iconic-icon, .menu-right, .menu-accel) {
-	color: currentColor !important;
-	fill: currentColor !important;
-	filter: none !important;
-}
-
-#PersonalToolbar
-	menupopup[placespopup='true']
-	> :is(menu, menuitem).bookmark-item {
-	animation: none !important;
-	transition: none !important;
-}
-
-#PersonalToolbar
-	menupopup[placespopup='true']
-	> :is(menu, menuitem).bookmark-item:is(:hover, [_moz-menuactive='true']) {
-	background: #0a84ff !important;
-	color: #fff !important;
-}
-
-panelview .subviewbutton,
-#PersonalToolbar toolbarbutton.bookmark-item,
-.tabbrowser-tab .tab-close-button,
-#permission-popup .popup-notification-secondary-button,
-.popup-notification-secondary-button,
-.panel-footer .panel-button[dlgtype='secondary'] {
-	animation: none !important;
-	transition: none !important;
-}
-
-#appMenu-popup panelview .subviewbutton:hover,
-#identity-popup .subviewbutton:hover,
-panelview .toolbarbutton-1:hover,
-panelview .subviewbutton:hover,
-menupopup > menu:hover,
-menupopup > menuitem:hover,
-#contentAreaContextMenu
-	:is(menu, menuitem):is(
-		:hover,
-		:focus,
-		[_moz-menuactive='true'],
-		[open='true']
-	),
-#placesContext
-	:is(menu, menuitem):is(
-		:hover,
-		:focus,
-		[_moz-menuactive='true'],
-		[open='true']
-	),
-#PersonalToolbar toolbarbutton.bookmark-item:hover {
-	background: #0a84ff !important;
-	color: #fff !important;
-}
-
 #identity-popup button,
 #permission-popup button,
 .panel-footer .panel-button {
@@ -439,28 +522,44 @@ menupopup > menuitem:hover,
 	color: #fff !important;
 }
 
+#permission-popup .popup-notification-button-default,
 #permission-popup .popup-notification-primary-button,
-.panel-footer .panel-button[dlgtype='accept'],
-#permission-popup .popup-notification-button-default {
+.panel-footer .panel-button[dlgtype='accept'] {
 	background: #0a84ff !important;
 	border: 1px solid #0a84ff !important;
 	color: #fff !important;
 }
 
+#permission-popup .popup-notification-button-default:hover,
 #permission-popup .popup-notification-primary-button:hover,
-.panel-footer .panel-button[dlgtype='accept']:hover,
-#permission-popup .popup-notification-button-default:hover {
+.panel-footer .panel-button[dlgtype='accept']:hover {
 	background: #2a96ff !important;
 }
 
 #permission-popup .popup-notification-secondary-button,
-.panel-footer .panel-button[dlgtype='secondary'] {
-	background: #0b0b0b !important;
-	border: 1px solid #333 !important;
-	color: #fff !important;
+.panel-footer .panel-button[dlgtype='secondary'],
+.popup-notification-secondary-button {
+	background: #000 !important;
+	border: 1px solid #ff3b30 !important;
+	color: #ff3b30 !important;
 }
 
-#permission-popup
+#permission-popup .popup-notification-secondary-button:hover,
+.panel-footer .panel-button[dlgtype='secondary']:hover,
+.popup-notification-secondary-button:hover {
+	background: #ff3b30 !important;
+	border-color: #ff3b30 !important;
+	color: #ffffff !important;
+}
+
+#permission-popup .popup-notification-secondary-button:focus-visible,
+.panel-footer .panel-button[dlgtype='secondary']::focus-visible,
+.popup-notification-secondary-button:focus-visible {
+	outline: 2px solid #ff3b30 !important;
+	outline-offset: 0 !important;
+}
+
+#identity-popup
 	:is(
 		.popup-notification-primary-button,
 		.popup-notification-secondary-button,
@@ -477,47 +576,6 @@ menupopup > menuitem:hover,
 	border: 1px solid #333 !important;
 	color: #fff !important;
 	padding: 0 0px !important;
-}
-
-#permission-popup .popup-notification-secondary-button:hover,
-.popup-notification-secondary-button:hover,
-.panel-footer .panel-button[dlgtype='secondary']:hover {
-	background: #ff3b30 !important;
-	color: #fff !important;
-}
-
-#placesView #detailsDeck,
-#placesView #detailsPane,
-#placesView #infoBox {
-	background: #000 !important;
-	border-top: 1px solid #1a1a1a !important;
-	color: #fff !important;
-}
-
-#placesView .textbox-input-box,
-#placesView input,
-#placesView menulist,
-#placesView textbox {
-	background: #000 !important;
-	border: 1px solid #1a1a1a !important;
-	color: #fff !important;
-}
-
-.titlebar-close,
-.titlebar-close .toolbarbutton-icon {
-	animation: none !important;
-	background: transparent !important;
-	border: 0 !important;
-	color: #fff !important;
-	fill: currentColor !important;
-	transition: none !important;
-}
-
-.titlebar-close:hover,
-.titlebar-close:hover .toolbarbutton-icon {
-	background: #ff3b30 !important;
-	color: #fff !important;
-	fill: currentColor !important;
 }
 
 #identity-popup .identity-popup-permission-item,
@@ -565,89 +623,29 @@ menupopup > menuitem:hover,
 	opacity: 1 !important;
 }
 
-menupopup > menuitem[checked='true'],
-menupopup > menuitem[selected='true'] {
-	background: #0a84ff !important;
-	color: #fff !important;
-}
-
-menupopup > menuitem[disabled='true'] {
-	color: #555 !important;
-	opacity: 0.6 !important;
-}
-
-#editBookmarkPanel,
-dialog[windowtype='Browser:BookmarkProperties'] {
-	animation: none !important;
-	transition: none !important;
-}
-
-#editBookmarkPanel textbox,
-#editBookmarkPanel .textbox-input-box,
-#editBookmarkPanel .textbox-input,
-#editBookmarkPanel input,
-dialog[windowtype='Browser:BookmarkProperties'] textbox,
-dialog[windowtype='Browser:BookmarkProperties'] .textbox-input-box,
-dialog[windowtype='Browser:BookmarkProperties'] .textbox-input,
-dialog[windowtype='Browser:BookmarkProperties'] input,
-#editBMPanel_namePicker,
-#editBMPanel_locationField,
-#editBMPanel_tagsField,
-#editBMPanel_keywordField {
-	-moz-appearance: none !important;
-	animation: none !important;
-	appearance: none !important;
+#placesView #detailsDeck,
+#placesView #detailsPane,
+#placesView #infoBox {
 	background: #000 !important;
-	border: 1px solid #1a1a1a !important;
-	box-shadow: none !important;
-	caret-color: #fff !important;
+	border-top: 1px solid #1a1a1a !important;
 	color: #fff !important;
-	outline: 0 !important;
+}
+
+.titlebar-close,
+.titlebar-close .toolbarbutton-icon {
+	animation: none !important;
+	background: transparent !important;
+	border: 0 !important;
+	color: #fff !important;
+	fill: currentColor !important;
 	transition: none !important;
 }
 
-#editBookmarkPanel textbox:hover,
-#editBookmarkPanel .textbox-input-box:hover,
-#editBookmarkPanel .textbox-input:hover,
-#editBookmarkPanel input:hover,
-dialog[windowtype='Browser:BookmarkProperties'] textbox:hover,
-dialog[windowtype='Browser:BookmarkProperties'] .textbox-input-box:hover,
-dialog[windowtype='Browser:BookmarkProperties'] .textbox-input:hover,
-dialog[windowtype='Browser:BookmarkProperties'] input:hover,
-#editBMPanel_namePicker:hover,
-#editBMPanel_locationField:hover,
-#editBMPanel_tagsField:hover,
-#editBMPanel_keywordField:hover {
-	background: #0b0b0b !important;
-	border-color: #0a84ff !important;
-}
-
-#editBookmarkPanel textbox[focused],
-#editBookmarkPanel .textbox-input:focus,
-#editBookmarkPanel .textbox-input-box:focus-within,
-#editBookmarkPanel input:focus,
-dialog[windowtype='Browser:BookmarkProperties'] textbox[focused],
-dialog[windowtype='Browser:BookmarkProperties'] .textbox-input:focus,
-dialog[windowtype='Browser:BookmarkProperties'] .textbox-input-box:focus-within,
-dialog[windowtype='Browser:BookmarkProperties'] input:focus,
-#editBMPanel_namePicker[focused],
-#editBMPanel_locationField[focused],
-#editBMPanel_tagsField[focused],
-#editBMPanel_keywordField[focused] {
-	outline: 2px solid #0a84ff !important;
-	outline-offset: 0 !important;
-}
-
-#editBookmarkPanel input::placeholder,
-#editBookmarkPanel .textbox-input::placeholder,
-#editBookmarkPanel input::-moz-placeholder,
-#editBookmarkPanel .textbox-input::-moz-placeholder,
-dialog[windowtype='Browser:BookmarkProperties'] input::placeholder,
-dialog[windowtype='Browser:BookmarkProperties'] .textbox-input::placeholder,
-dialog[windowtype='Browser:BookmarkProperties'] input::-moz-placeholder,
-dialog[windowtype='Browser:BookmarkProperties']
-	.textbox-input::-moz-placeholder {
-	color: #999 !important;
+.titlebar-close:hover,
+.titlebar-close:hover .toolbarbutton-icon {
+	background: #ff3b30 !important;
+	color: #fff !important;
+	fill: currentColor !important;
 }
 
 #ContentSelectDropdown,
@@ -677,17 +675,17 @@ dialog[windowtype='Browser:BookmarkProperties']
 
 #ContentSelectDropdown menuitem:hover,
 #ContentSelectDropdown menuitem[aria-selected='true'],
-#PopupAutoComplete richlistitem:hover,
 #PopupAutoComplete richlistitem[current='true'],
+#PopupAutoComplete richlistitem:hover,
 #PopupAutoComplete richlistitem[selected='true'],
-#PopupAutoCompleteRichResult .autocomplete-richlistitem:hover,
 #PopupAutoCompleteRichResult .autocomplete-richlistitem[aria-selected='true'],
+#PopupAutoCompleteRichResult .autocomplete-richlistitem:hover,
 #PopupAutoCompleteRichResult .autocomplete-richlistitem[selected='true'],
-#autofill-address-popup .autocomplete-richlistitem:hover,
 #autofill-address-popup .autocomplete-richlistitem[aria-selected='true'],
+#autofill-address-popup .autocomplete-richlistitem:hover,
 #autofill-address-popup .autocomplete-richlistitem[selected='true'],
-#autofill-creditCard-popup .autocomplete-richlistitem:hover,
 #autofill-creditCard-popup .autocomplete-richlistitem[aria-selected='true'],
+#autofill-creditCard-popup .autocomplete-richlistitem:hover,
 #autofill-creditCard-popup .autocomplete-richlistitem[selected='true'] {
 	animation: none !important;
 	background: #0a84ff !important;
@@ -696,37 +694,36 @@ dialog[windowtype='Browser:BookmarkProperties']
 	transition: none !important;
 }
 
+#ContentSelectDropdown .menu-accel,
 #ContentSelectDropdown .menu-iconic-icon,
 #ContentSelectDropdown .menu-right,
-#ContentSelectDropdown .menu-accel,
 #PopupAutoComplete .ac-action,
-#PopupAutoComplete .ac-label,
-#PopupAutoComplete .ac-title,
-#PopupAutoComplete .ac-url,
-#PopupAutoComplete .ac-site-icon,
-#PopupAutoComplete .ac-type-icon,
 #PopupAutoComplete .ac-clear-button,
+#PopupAutoComplete .ac-label,
+#PopupAutoComplete .ac-site-icon,
+#PopupAutoComplete .ac-title,
+#PopupAutoComplete .ac-type-icon,
+#PopupAutoComplete .ac-url,
 #PopupAutoCompleteRichResult .ac-action,
-#PopupAutoCompleteRichResult .ac-label,
-#PopupAutoCompleteRichResult .ac-title,
-#PopupAutoCompleteRichResult .ac-url,
-#PopupAutoCompleteRichResult .ac-site-icon,
-#PopupAutoCompleteRichResult .ac-type-icon,
 #PopupAutoCompleteRichResult .ac-clear-button,
+#PopupAutoCompleteRichResult .ac-label,
+#PopupAutoCompleteRichResult .ac-site-icon,
+#PopupAutoCompleteRichResult .ac-title,
+#PopupAutoCompleteRichResult .ac-type-icon,
+#PopupAutoCompleteRichResult .ac-url,
 #autofill-address-popup .ac-action,
 #autofill-address-popup .ac-label,
-#autofill-address-popup .ac-title,
-#autofill-address-popup .ac-url,
 #autofill-address-popup .ac-site-icon,
+#autofill-address-popup .ac-title,
 #autofill-address-popup .ac-type-icon,
-#autofill-address-popup .ac-clear-button,
+#autofill-address-popup .ac-url,
 #autofill-creditCard-popup .ac-action,
+#autofill-creditCard-popup .ac-clear-button,
 #autofill-creditCard-popup .ac-label,
-#autofill-creditCard-popup .ac-title,
-#autofill-creditCard-popup .ac-url,
 #autofill-creditCard-popup .ac-site-icon,
+#autofill-creditCard-popup .ac-title,
 #autofill-creditCard-popup .ac-type-icon,
-#autofill-creditCard-popup .ac-clear-button {
+#autofill-creditCard-popup .ac-url {
 	animation: none !important;
 	color: currentColor !important;
 	fill: currentColor !important;
@@ -746,100 +743,207 @@ dialog[windowtype='Browser:BookmarkProperties']
 	transition: none !important;
 }
 
+#PersonalToolbar toolbarbutton.bookmark-item,
+#PersonalToolbar toolbarbutton.bookmark-item .toolbarbutton-icon,
+#PersonalToolbar toolbarbutton.bookmark-item .toolbarbutton-text,
 #permission-popup .popup-notification-secondary-button,
 .panel-footer .panel-button[dlgtype='secondary'],
 .popup-notification-secondary-button,
 .tabbrowser-tab,
 .tabbrowser-tab .tab-background,
+.tabbrowser-tab .tab-close-button,
 .tabbrowser-tab .tab-label {
 	animation: none !important;
 	transition: none !important;
 }
 
-.tabbrowser-tab .tab-background {
-	background: #0e0e0e !important;
-	border-left: 1px solid #161616 !important;
-	border-right: 1px solid #0a0a0a !important;
-}
-
-.tabbrowser-tab:hover:not([selected]) .tab-background {
-	background: #141414 !important;
-}
-
-.tabbrowser-tab[selected] .tab-background {
-	background: #000000 !important;
-	border-left: 1px solid #1a1a1a !important;
-	border-right: 1px solid #1a1a1a !important;
-	box-shadow: inset 0 -2px 0 #0a84ff !important;
-}
-
-.tabbrowser-tab:not([selected]) .tab-label {
-	color: #c7c7c7 !important;
-}
-
-#permission-popup .popup-notification-secondary-button,
-.panel-footer .panel-button[dlgtype='secondary'],
-.popup-notification-secondary-button {
-	background: #000000 !important;
-	border: 1px solid #ff3b30 !important;
-	color: #ff3b30 !important;
-}
-
-#permission-popup .popup-notification-secondary-button:hover,
-.panel-footer .panel-button[dlgtype='secondary']:hover,
-.popup-notification-secondary-button:hover {
-	background: #ff3b30 !important;
-	border-color: #ff3b30 !important;
-	color: #ffffff !important;
-}
-
-#permission-popup .popup-notification-secondary-button:focus-visible,
-.panel-footer .panel-button[dlgtype='secondary']::focus-visible,
-.popup-notification-secondary-button:focus-visible {
-	outline: 2px solid #ff3b30 !important;
-	outline-offset: 0 !important;
-}
-
-.tabbrowser-tab,
-.tabbrowser-tab .tab-background,
-.tabbrowser-tab .tab-label,
-.tabbrowser-tab .tab-close-button,
-#PersonalToolbar toolbarbutton.bookmark-item,
-#PersonalToolbar toolbarbutton.bookmark-item .toolbarbutton-icon,
-#PersonalToolbar toolbarbutton.bookmark-item .toolbarbutton-text {
-	animation: none !important;
-	transition: none !important;
-}
-
-.tabbrowser-tab .tab-background {
-	background: #0e0e0e !important;
-	border-left: 1px solid #161616 !important;
-	border-right: 1px solid #0a0a0a !important;
-}
-
-.tabbrowser-tab:hover:not([selected]) .tab-background {
-	background: #141414 !important;
-}
-
-.tabbrowser-tab[selected] .tab-background {
+#tabContextMenu {
 	background: #000 !important;
-	border-left: 1px solid #1a1a1a !important;
-	border-right: 1px solid #1a1a1a !important;
-	box-shadow: inset 0 -2px 0 #0a84ff !important;
-}
-
-.tabbrowser-tab:not([selected]) .tab-label {
-	color: #c7c7c7 !important;
-}
-
-.tabbrowser-tab:hover .tab-label,
-.tabbrowser-tab[selected] .tab-label {
+	border: 1px solid #1a1a1a !important;
 	color: #fff !important;
 }
 
-#PersonalToolbar toolbarbutton.bookmark-item,
-#PersonalToolbar toolbarbutton.bookmark-item .toolbarbutton-icon,
-#PersonalToolbar toolbarbutton.bookmark-item .toolbarbutton-text {
-	padding: 0 !important;
-	padding-inline: 0 !important;
+#tabContextMenu
+	:is(menu, menuitem):is(
+		:hover,
+		:focus,
+		[_moz-menuactive='true'],
+		[open='true']
+	) {
+	background: #0a84ff !important;
+	color: #fff !important;
+	outline: 0 !important;
+}
+
+#tabContextMenu
+	:is(menu, menuitem)
+	:is(.menu-iconic-icon, .menu-right, .menu-accel) {
+	color: currentColor !important;
+	fill: currentColor !important;
+}
+
+#toolbar-context-menu,
+#unified-extensions-context-menu {
+	background: #000 !important;
+	border: 1px solid #1a1a1a !important;
+	color: #fff !important;
+}
+
+#toolbar-context-menu
+	:is(menu, menuitem):is(
+		:hover,
+		:focus,
+		[_moz-menuactive='true'],
+		[open='true']
+	),
+#unified-extensions-context-menu
+	:is(menu, menuitem):is(
+		:hover,
+		:focus,
+		[_moz-menuactive='true'],
+		[open='true']
+	) {
+	background: #0a84ff !important;
+	color: #fff !important;
+}
+
+#appMenu-popup panelview#appMenu-downloadsView {
+	background: #000 !important;
+	border: 1px solid #1a1a1a !important;
+	color: #fff !important;
+}
+
+#appMenu-popup
+	panelview#appMenu-downloadsView
+	:is(.subviewbutton, toolbarbutton):hover {
+	background: #0a84ff !important;
+	color: #fff !important;
+	outline: 0 !important;
+}
+
+#appMenu-popup
+	panelview#appMenu-downloadsView
+	:is(.subviewbutton, toolbarbutton)
+	.toolbarbutton-icon {
+	color: currentColor !important;
+	fill: currentColor !important;
+}
+
+#downloadsContextMenu,
+#downloadsPanel :is(richlistitem.download, .download):hover,
+#downloadsListBox > :is(richlistitem.download, .download):hover,
+menupopup#downloadsContextMenu,
+panelview#appMenu-downloadsView :is(richlistitem.download, .download):hover {
+	background: #0a84ff !important;
+	color: #fff !important;
+}
+
+#downloadsPanel :is(richlistitem.download, .download):hover * {
+	color: #fff !important;
+	fill: currentColor !important;
+}
+
+#downloadsContextMenu,
+menupopup#downloadsContextMenu {
+	background: #000 !important;
+	border: 1px solid #1a1a1a !important;
+	color: #fff !important;
+}
+
+#downloadsContextMenu
+	:is(menu, menuitem):is(
+		:hover,
+		:focus,
+		[_moz-menuactive='true'],
+		[open='true']
+	) {
+	background: #0a84ff !important;
+	color: #fff !important;
+}
+
+#allTabsMenu,
+#allTabsMenu-allTabsView {
+	background: #000 !important;
+	border: 1px solid #1a1a1a !important;
+	color: #fff !important;
+}
+
+#allTabsMenu-allTabsView .subviewbutton:hover {
+	background: #0a84ff !important;
+	color: #fff !important;
+}
+
+#FindToolbar,
+findbar {
+	background: #000 !important;
+	border-top: 1px solid #1a1a1a !important;
+	color: #fff !important;
+}
+
+#findbar-textbox,
+findbar .findbar-textbox {
+	-moz-appearance: none !important;
+	appearance: none !important;
+	background: #000 !important;
+	border: 1px solid #1a1a1a !important;
+	color: #fff !important;
+	caret-color: #fff !important;
+	box-shadow: none !important;
+	outline: 0 !important;
+}
+
+#findbar-textbox:hover,
+findbar .findbar-textbox:hover {
+	background: #0b0b0b !important;
+	border-color: #0a84ff !important;
+}
+
+#findbar-textbox:focus,
+findbar .findbar-textbox:focus {
+	outline: 2px solid #0a84ff !important;
+	outline-offset: 0 !important;
+}
+
+#identity-popup
+	:is(
+		.identity-popup-permission-item,
+		.identity-popup-security-content,
+		.identity-popup-content-blocking-category,
+		.identity-popup-content-blocking-category-label,
+		.identity-popup-preferences-button,
+		.identity-popup-clear-sitedata-button,
+		.identity-popup-connection-secure,
+		.identity-popup-connection-not-secure,
+		.subviewbutton,
+		button,
+		menuitem,
+		menulist,
+		select,
+		.identity-popup-permission-state,
+		.identity-popup-permission-state-label
+	):hover {
+	background: #0a84ff !important;
+	color: #fff !important;
+	border-color: #0a84ff !important;
+}
+
+#identity-popup
+	:is(
+		.identity-popup-permission-item,
+		.identity-popup-security-content,
+		.identity-popup-content-blocking-category,
+		.subviewbutton,
+		button,
+		menuitem,
+		menulist,
+		select
+	):hover
+	:is(
+		.menu-iconic-icon,
+		.menu-right,
+		.menu-accel,
+		.identity-popup-content-blocking-category-icon
+	) {
+	color: currentColor !important;
+	fill: currentColor !important;
 }
