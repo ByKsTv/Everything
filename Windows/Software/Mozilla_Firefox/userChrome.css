@@ -324,6 +324,11 @@ toolbarbutton.webextension-browser-action:hover {
 	color: #fff !important;
 }
 
+#unified-extensions-button:hover {
+	background: #0a84ff !important;
+	color: #fff !important;
+}
+
 #unified-extensions-panel #unified-extensions-more-extensions-button:hover,
 #unified-extensions-panel .unified-extensions-item-action-button:hover,
 #unified-extensions-panel .unified-extensions-item-menu-button:hover,
@@ -951,6 +956,9 @@ findbar .findbar-textbox {
 	caret-color: #fff !important;
 	box-shadow: none !important;
 	outline: 0 !important;
+	border-left-width: 1px !important;
+	border-right-width: 1px !important;
+	padding-inline: 6px !important;
 }
 
 #findbar-textbox:hover,
@@ -1007,4 +1015,111 @@ findbar .findbar-textbox:focus {
 	) {
 	color: currentColor !important;
 	fill: currentColor !important;
+}
+
+#PersonalToolbar menupopup[placespopup='true'] {
+	border-top-width: 0 !important;
+	margin-top: 1px !important;
+}
+
+#urlbar[breakout][breakout-extend]
+	~ #urlbar-input-container
+	menupopup#text-context-menu
+	:is(menu, menuitem):is(:hover, [_moz-menuactive='true']) {
+	background: #0a84ff !important;
+	color: #fff !important;
+}
+
+#unified-extensions-button:hover .toolbarbutton-icon {
+	filter: brightness(1.2) !important;
+}
+
+#appMenu-popup panelview#appMenu-historyView .subviewbutton:hover {
+	background: #0a84ff !important;
+	color: #fff !important;
+}
+
+dialog[windowtype='Places:Organizer'] input::selection,
+dialog[windowtype='Places:Organizer'] textarea::selection,
+#placesView input::selection,
+#placesView textarea::selection {
+	background: #0a84ff !important;
+	color: #fff !important;
+}
+dialog[windowtype='Places:Organizer'] input::-moz-selection,
+dialog[windowtype='Places:Organizer'] textarea::-moz-selection,
+#placesView input::-moz-selection,
+#placesView textarea::-moz-selection {
+	background: #0a84ff !important;
+	color: #fff !important;
+}
+
+dialog[windowtype='Places:Organizer'] #searchFilter,
+dialog[windowtype='Places:Organizer'] #searchFilter > .textbox-input-box,
+#placesView #searchFilter,
+#placesView #searchFilter > .textbox-input-box {
+	-moz-appearance: none !important;
+	appearance: none !important;
+	background: #000 !important;
+	border: 1px solid #1a1a1a !important;
+	color: #fff !important;
+	caret-color: #fff !important;
+}
+
+#appMenu-popup panelview#appMenu-downloadsView search-textbox,
+#appMenu-popup
+	panelview#appMenu-downloadsView
+	search-textbox
+	> .textbox-input-box,
+#appMenu-popup panelview#appMenu-downloadsView .textbox-input-box,
+#appMenu-popup panelview#appMenu-downloadsView input[type='search'] {
+	-moz-appearance: none !important;
+	appearance: none !important;
+	background: #000 !important;
+	border: 1px solid #1a1a1a !important;
+	color: #fff !important;
+	caret-color: #fff !important;
+}
+
+#urlbar-input::selection,
+#findbar-textbox::selection,
+findbar .findbar-textbox::selection,
+#editBookmarkPanel input::selection,
+#editBookmarkPanel textbox::selection {
+	background: #0a84ff !important;
+	color: #fff !important;
+}
+#urlbar-input::-moz-selection,
+#findbar-textbox::-moz-selection,
+findbar .findbar-textbox::-moz-selection,
+#editBookmarkPanel input::-moz-selection,
+#editBookmarkPanel textbox::-moz-selection {
+	background: #0a84ff !important;
+	color: #fff !important;
+}
+
+#editBMPanel_tagsSelector,
+#editBMPanel_tagsSelectorRow,
+#editBookmarkPanel .tagsSelector,
+#editBookmarkPanel .expander-up,
+#editBookmarkPanel .expander-down {
+	background: #000 !important;
+	border: 1px solid #1a1a1a !important;
+	color: #fff !important;
+}
+#editBMPanel_tagsSelector checkbox,
+#editBookmarkPanel .tagsSelector checkbox {
+	background: #000 !important;
+	color: #fff !important;
+}
+
+dialog[windowtype='Places:Organizer'] .textbox-input-box,
+dialog[windowtype='Places:Organizer'] input,
+dialog[windowtype='Places:Organizer'] menulist,
+dialog[windowtype='Places:Organizer'] select {
+	-moz-appearance: none !important;
+	appearance: none !important;
+	background: #000 !important;
+	border: 1px solid #1a1a1a !important;
+	color: #fff !important;
 }
