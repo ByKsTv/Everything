@@ -799,3 +799,47 @@ dialog[windowtype='Browser:BookmarkProperties']
 	outline: 2px solid #ff3b30 !important;
 	outline-offset: 0 !important;
 }
+
+.tabbrowser-tab,
+.tabbrowser-tab .tab-background,
+.tabbrowser-tab .tab-label,
+.tabbrowser-tab .tab-close-button,
+#PersonalToolbar toolbarbutton.bookmark-item,
+#PersonalToolbar toolbarbutton.bookmark-item .toolbarbutton-icon,
+#PersonalToolbar toolbarbutton.bookmark-item .toolbarbutton-text {
+	animation: none !important;
+	transition: none !important;
+}
+
+.tabbrowser-tab .tab-background {
+	background: #0e0e0e !important;
+	border-left: 1px solid #161616 !important;
+	border-right: 1px solid #0a0a0a !important;
+}
+
+.tabbrowser-tab:hover:not([selected]) .tab-background {
+	background: #141414 !important;
+}
+
+.tabbrowser-tab[selected] .tab-background {
+	background: #000 !important;
+	border-left: 1px solid #1a1a1a !important;
+	border-right: 1px solid #1a1a1a !important;
+	box-shadow: inset 0 -2px 0 #0a84ff !important;
+}
+
+.tabbrowser-tab:not([selected]) .tab-label {
+	color: #c7c7c7 !important;
+}
+
+.tabbrowser-tab:hover .tab-label,
+.tabbrowser-tab[selected] .tab-label {
+	color: #fff !important;
+}
+
+#PersonalToolbar toolbarbutton.bookmark-item,
+#PersonalToolbar toolbarbutton.bookmark-item .toolbarbutton-icon,
+#PersonalToolbar toolbarbutton.bookmark-item .toolbarbutton-text {
+	padding: 0 !important;
+	padding-inline: 0 !important;
+}
