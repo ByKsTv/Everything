@@ -284,6 +284,16 @@ dialog[windowtype='Browser:BookmarkProperties'] input::placeholder {
 	color: #999 !important;
 }
 
+#urlbar-input::selection {
+	background: #0a84ff !important;
+	color: #fff !important;
+}
+
+#urlbar-input::-moz-selection {
+	background: #0a84ff !important;
+	color: #fff !important;
+}
+
 toolbar .toolbarbutton-1,
 toolbarbutton {
 	background: transparent !important;
@@ -364,7 +374,10 @@ panelview .toolbarbutton-1 {
 }
 
 #contentAreaContextMenu,
-#placesContext {
+#placesContext,
+#textbox-contextmenu,
+#text-context-menu,
+#textContextMenu {
 	animation: none !important;
 	transition: none !important;
 }
@@ -390,7 +403,31 @@ panelview .toolbarbutton-1 {
 	> :is(menu, menuitem).bookmark-item:is(:hover, [_moz-menuactive='true']),
 #PersonalToolbar toolbarbutton.bookmark-item:hover,
 panelview .subviewbutton:hover,
-panelview .toolbarbutton-1:hover {
+panelview .toolbarbutton-1:hover,
+#textbox-contextmenu
+	:is(menu, menuitem):is(
+		:hover,
+		:focus,
+		[_moz-menuactive='true'],
+		[open='true']
+	),
+#text-context-menu
+	:is(menu, menuitem):is(
+		:hover,
+		:focus,
+		[_moz-menuactive='true'],
+		[open='true']
+	),
+#textContextMenu
+	:is(menu, menuitem):is(
+		:hover,
+		:focus,
+		[_moz-menuactive='true'],
+		[open='true']
+	),
+#PersonalToolbar
+	menupopup[placespopup='true']
+	> menuitem.openintabs-menuitem:is(:hover, [_moz-menuactive='true']) {
 	background: #0a84ff !important;
 	color: #fff !important;
 	outline: 0 !important;
@@ -401,23 +438,23 @@ panelview .toolbarbutton-1:hover {
 	:is(.menu-iconic-icon, .menu-right, .menu-accel),
 #placesContext
 	:is(menu, menuitem)
+	:is(.menu-iconic-icon, .menu-right, .menu-accel),
+#textbox-contextmenu
+	:is(menu, menuitem)
+	:is(.menu-iconic-icon, .menu-right, .menu-accel),
+#text-context-menu
+	:is(menu, menuitem)
+	:is(.menu-iconic-icon, .menu-right, .menu-accel),
+#textContextMenu
+	:is(menu, menuitem)
+	:is(.menu-iconic-icon, .menu-right, .menu-accel),
+#PersonalToolbar
+	menupopup[placespopup='true']
+	> menuitem.openintabs-menuitem:is(:hover, [_moz-menuactive='true'])
 	:is(.menu-iconic-icon, .menu-right, .menu-accel) {
 	color: currentColor !important;
 	fill: currentColor !important;
 	filter: none !important;
-}
-
-#PersonalToolbar
-	menupopup[placespopup='true']
-	> :is(menu, menuitem).bookmark-item {
-	animation: none !important;
-	transition: none !important;
-}
-
-menupopup > menuitem[checked='true'],
-menupopup > menuitem[selected='true'] {
-	background: #0a84ff !important;
-	color: #fff !important;
 }
 
 #contentAreaContextMenu menuitem[disabled='true'],
@@ -783,7 +820,10 @@ popup {
 }
 
 #toolbar-context-menu,
-#unified-extensions-context-menu {
+#unified-extensions-context-menu,
+#textbox-contextmenu,
+#text-context-menu,
+#textContextMenu {
 	background: #000 !important;
 	border: 1px solid #1a1a1a !important;
 	color: #fff !important;
@@ -797,6 +837,27 @@ popup {
 		[open='true']
 	),
 #unified-extensions-context-menu
+	:is(menu, menuitem):is(
+		:hover,
+		:focus,
+		[_moz-menuactive='true'],
+		[open='true']
+	),
+#textbox-contextmenu
+	:is(menu, menuitem):is(
+		:hover,
+		:focus,
+		[_moz-menuactive='true'],
+		[open='true']
+	),
+#text-context-menu
+	:is(menu, menuitem):is(
+		:hover,
+		:focus,
+		[_moz-menuactive='true'],
+		[open='true']
+	),
+#textContextMenu
 	:is(menu, menuitem):is(
 		:hover,
 		:focus,
