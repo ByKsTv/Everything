@@ -5,6 +5,7 @@
 - [Extensions](#extensions)
 - [Group Policy Templates](#group-policy-templates)
 - [Group Policies](#group-policies)
+- [Theme](#theme)
 
 ## Setup
 
@@ -52,3 +53,10 @@
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Group_Policy/Post.ps1')
 
    ```
+
+## Theme
+
+1. Enable `devtools.chrome.enabled`.
+1. Enable `devtools.debugger.remote-enabled`.
+1. Press `Ctrl + Alt + Shift + I`.
+1. In Browser Toolbox, click the element picker (mouse pointer icon).
