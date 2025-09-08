@@ -1,0 +1,10 @@
+@-moz-document url-prefix(http), url-prefix(about:reader) {
+	::selection {
+		background: #0a84ff !important;
+		color: #fff !important;
+	}
+	::-moz-selection {
+		background: #0a84ff !important;
+		color: #fff !important;
+	}
+}
