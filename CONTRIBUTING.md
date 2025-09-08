@@ -28,4 +28,5 @@
 - Do not trim spacing and line breaks.
 - Do not remove `root` global settings.
 - Add `animation` and `transition` and disable it globally and per relevant elements.
+- For `userChrome.css`: Do not use `:is()`.
 - Code as short as possible.
