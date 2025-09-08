@@ -573,7 +573,7 @@ menupopup > menuitem[selected='true'] {
 
 menupopup > menuitem[disabled='true'] {
 	color: #555 !important;
-	opacity: .6 !important;
+	opacity: 0.6 !important;
 }
 
 #editBookmarkPanel,
@@ -645,6 +645,103 @@ dialog[windowtype='Browser:BookmarkProperties'] input:focus,
 dialog[windowtype='Browser:BookmarkProperties'] input::placeholder,
 dialog[windowtype='Browser:BookmarkProperties'] .textbox-input::placeholder,
 dialog[windowtype='Browser:BookmarkProperties'] input::-moz-placeholder,
-dialog[windowtype='Browser:BookmarkProperties'] .textbox-input::-moz-placeholder {
+dialog[windowtype='Browser:BookmarkProperties']
+	.textbox-input::-moz-placeholder {
 	color: #999 !important;
+}
+
+#ContentSelectDropdown,
+#PopupAutoComplete,
+#PopupAutoCompleteRichResult,
+#autofill-address-popup,
+#autofill-creditCard-popup {
+	animation: none !important;
+	background: #000 !important;
+	border: 1px solid #1a1a1a !important;
+	box-shadow: none !important;
+	color: #fff !important;
+	transition: none !important;
+}
+
+#ContentSelectDropdown menuitem,
+#PopupAutoComplete richlistitem,
+#PopupAutoCompleteRichResult .autocomplete-richlistitem,
+#autofill-address-popup .autocomplete-richlistitem,
+#autofill-creditCard-popup .autocomplete-richlistitem {
+	animation: none !important;
+	background: #000 !important;
+	border: 0 !important;
+	color: #fff !important;
+	transition: none !important;
+}
+
+#ContentSelectDropdown menuitem:hover,
+#ContentSelectDropdown menuitem[aria-selected='true'],
+#PopupAutoComplete richlistitem:hover,
+#PopupAutoComplete richlistitem[current='true'],
+#PopupAutoComplete richlistitem[selected='true'],
+#PopupAutoCompleteRichResult .autocomplete-richlistitem:hover,
+#PopupAutoCompleteRichResult .autocomplete-richlistitem[aria-selected='true'],
+#PopupAutoCompleteRichResult .autocomplete-richlistitem[selected='true'],
+#autofill-address-popup .autocomplete-richlistitem:hover,
+#autofill-address-popup .autocomplete-richlistitem[aria-selected='true'],
+#autofill-address-popup .autocomplete-richlistitem[selected='true'],
+#autofill-creditCard-popup .autocomplete-richlistitem:hover,
+#autofill-creditCard-popup .autocomplete-richlistitem[aria-selected='true'],
+#autofill-creditCard-popup .autocomplete-richlistitem[selected='true'] {
+	animation: none !important;
+	background: #0a84ff !important;
+	color: #fff !important;
+	outline: 0 !important;
+	transition: none !important;
+}
+
+#ContentSelectDropdown .menu-iconic-icon,
+#ContentSelectDropdown .menu-right,
+#ContentSelectDropdown .menu-accel,
+#PopupAutoComplete .ac-action,
+#PopupAutoComplete .ac-label,
+#PopupAutoComplete .ac-title,
+#PopupAutoComplete .ac-url,
+#PopupAutoComplete .ac-site-icon,
+#PopupAutoComplete .ac-type-icon,
+#PopupAutoComplete .ac-clear-button,
+#PopupAutoCompleteRichResult .ac-action,
+#PopupAutoCompleteRichResult .ac-label,
+#PopupAutoCompleteRichResult .ac-title,
+#PopupAutoCompleteRichResult .ac-url,
+#PopupAutoCompleteRichResult .ac-site-icon,
+#PopupAutoCompleteRichResult .ac-type-icon,
+#PopupAutoCompleteRichResult .ac-clear-button,
+#autofill-address-popup .ac-action,
+#autofill-address-popup .ac-label,
+#autofill-address-popup .ac-title,
+#autofill-address-popup .ac-url,
+#autofill-address-popup .ac-site-icon,
+#autofill-address-popup .ac-type-icon,
+#autofill-address-popup .ac-clear-button,
+#autofill-creditCard-popup .ac-action,
+#autofill-creditCard-popup .ac-label,
+#autofill-creditCard-popup .ac-title,
+#autofill-creditCard-popup .ac-url,
+#autofill-creditCard-popup .ac-site-icon,
+#autofill-creditCard-popup .ac-type-icon,
+#autofill-creditCard-popup .ac-clear-button {
+	animation: none !important;
+	color: currentColor !important;
+	fill: currentColor !important;
+	filter: none !important;
+	opacity: 1 !important;
+	transition: none !important;
+}
+
+#PopupAutoComplete .autocomplete-richlistbox,
+#PopupAutoCompleteRichResult .autocomplete-richlistbox,
+#autofill-address-popup .autocomplete-richlistbox,
+#autofill-creditCard-popup .autocomplete-richlistbox {
+	animation: none !important;
+	background: #000 !important;
+	border-color: #1a1a1a !important;
+	color: #fff !important;
+	transition: none !important;
 }
