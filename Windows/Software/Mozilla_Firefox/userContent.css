@@ -1,9 +1,308 @@
-@-moz-document url-prefix(http), url-prefix(about:reader) {
-	::selection {
+/* ================================
+   GLOBAL COLORS & SELECTION
+   ================================ */
+@-moz-document url-prefix("http"), url-prefix("about:reader") {
+	::selection,
+	::-moz-selection {
 		background: #0a84ff !important;
 		color: #fff !important;
 	}
-	::-moz-selection {
+}
+
+@-moz-document url("about:blank") {
+	html,
+	body {
+		background: #000 !important;
+	}
+}
+
+@-moz-document url-prefix("about:") {
+	* {
+		font-size: 13px !important;
+		font-family: Segoe UI, sans-serif !important;
+	}
+
+	html,
+	body {
+		background: #000 !important;
+		color: #fff !important;
+	}
+
+	/* Scrollbars */
+	scrollbar {
+		width: 10px !important;
+		height: 10px !important;
+	}
+	scrollbar thumb {
+		background: #666 !important;
+		border-radius: 4px !important;
+	}
+	scrollbar thumb:hover {
+		background: #0a84ff !important;
+	}
+	scrollbar track {
+		background: #000 !important;
+	}
+}
+
+/* Hide Firefox Support button */
+@-moz-document url-prefix("about:preferences"),
+url-prefix("about:addons"),
+url-prefix("about:logins") {
+	#help-button,
+	#helpButton {
+		display: none !important;
+	}
+}
+
+/* ================================
+   ABOUT:PREFERENCES
+   ================================ */
+@-moz-document url-prefix("about:preferences") {
+	.pane-container,
+	.pane-section {
+		padding: 4px 6px !important;
+		margin: 0 !important;
+	}
+
+	input[type='checkbox'],
+	input[type='radio'] {
+		accent-color: #0a84ff !important;
+		margin: 2px !important;
+		padding: 2px !important;
+	}
+
+	button {
+		background: #000 !important;
+		border: 1px solid #1a1a1a !important;
+		color: #fff !important;
+		padding: 2px 6px !important;
+	}
+	button:hover {
+		background: #0a84ff !important;
+		color: #fff !important;
+	}
+}
+
+/* ================================
+   ABOUT:ADDONS
+   ================================ */
+@-moz-document url-prefix("about:addons") {
+	#sidebar,
+	#header,
+	.main-heading,
+	#main,
+	#toolbar,
+	#addons-page {
+		background: #000 !important;
+		color: #fff !important;
+		border: none !important;
+	}
+
+	.addon-card {
+		background: #000 !important;
+		border: 1px solid #1a1a1a !important;
+		margin: 2px 0 !important;
+		padding: 6px !important;
+		color: #fff !important;
+	}
+	.addon-card:hover {
+		border-color: #0a84ff !important;
+	}
+
+	.addon-list {
+		gap: 2px !important;
+	}
+
+	.toggle-button {
+		background: #222 !important;
+		border: 1px solid #1a1a1a !important;
+	}
+	.toggle-button[checked='true'] {
+		background: #0a84ff !important;
+		border-color: #0a84ff !important;
+	}
+	.toggle-button:hover {
+		filter: brightness(1.2) !important;
+	}
+
+	/* More Options buttons with icons */
+	.more-options-button[action='more-options']::before {
+		content: '';
+		display: inline-block;
+		width: 14px;
+		height: 14px;
+		mask-image: url('chrome://global/skin/icons/more.svg');
+		-webkit-mask-image: url('chrome://global/skin/icons/more.svg');
+		mask-repeat: no-repeat;
+		mask-position: center;
+		mask-size: contain;
+		background-color: #fff !important;
+	}
+	.more-options-button[action='page-options']::before {
+		content: '';
+		display: inline-block;
+		width: 14px;
+		height: 14px;
+		mask-image: url('chrome://global/skin/icons/settings.svg');
+		-webkit-mask-image: url('chrome://global/skin/icons/settings.svg');
+		mask-repeat: no-repeat;
+		mask-position: center;
+		mask-size: contain;
+		background-color: #fff !important;
+	}
+
+	.more-options-button,
+	[action='page-options'] {
+		background: #000 !important;
+		border: 1px solid #1a1a1a !important;
+		width: 20px !important;
+		height: 20px !important;
+	}
+	.more-options-button:hover,
+	[action='page-options']:hover {
+		background: #0a84ff !important;
+	}
+
+	/* More Options context menu */
+	.panel-list,
+	menupopup,
+	menuitem {
+		background: #000 !important;
+		color: #fff !important;
+		border: 1px solid #1a1a1a !important;
+	}
+	menuitem:hover,
+	menuitem[_moz-menuactive='true'] {
+		background: #0a84ff !important;
+		color: #fff !important;
+	}
+}
+
+/* ================================
+   ABOUT:CONFIG
+   ================================ */
+@-moz-document url-prefix("about:config") {
+	tr {
+		background: #000 !important;
+		color: #fff !important;
+		height: 20px !important;
+	}
+	tr:hover {
+		background: #0a84ff !important;
+		color: #fff !important;
+	}
+	td {
+		padding: 2px 4px !important;
+	}
+
+	.button-save {
+		background: #0a84ff !important;
+		border: 1px solid #0a84ff !important;
+		color: #fff !important;
+		padding: 1px 4px !important;
+		height: 18px !important;
+	}
+	.button-save:hover {
+		background: #2a96ff !important;
+	}
+
+	.button-delete {
+		background: #ff3b30 !important;
+		border: 1px solid #ff3b30 !important;
+		color: #fff !important;
+		padding: 1px 4px !important;
+		height: 18px !important;
+	}
+	.button-delete:hover {
+		background: #ff5550 !important;
+	}
+}
+
+/* ================================
+   ABOUT:LOGINS
+   ================================ */
+@-moz-document url-prefix("about:logins") {
+	/* Saved password list (sidebar) */
+	.login-list {
+		background: #000 !important;
+		color: #fff !important;
+		border-right: 1px solid #1a1a1a !important;
+	}
+	.login-list-item {
+		background: #000 !important;
+		border-bottom: 1px solid #1a1a1a !important;
+		padding: 6px !important;
+		color: #fff !important;
+	}
+	.login-list-item:hover {
+		background: #0a84ff !important;
+		color: #fff !important;
+	}
+
+	/* Show password checkbox */
+	.reveal-password-checkbox {
+		accent-color: #0a84ff !important;
+	}
+
+	/* Open menu button fix */
+	.menu-button {
+		background: #000 !important;
+		border: 1px solid #1a1a1a !important;
+		width: 20px !important;
+		height: 20px !important;
+	}
+	.menu-button::before {
+		content: '';
+		display: inline-block;
+		width: 14px;
+		height: 14px;
+		mask-image: url('chrome://global/skin/icons/more.svg');
+		-webkit-mask-image: url('chrome://global/skin/icons/more.svg');
+		mask-repeat: no-repeat;
+		mask-position: center;
+		mask-size: contain;
+		background-color: #fff !important;
+	}
+	.menu-button:hover {
+		background: #0a84ff !important;
+	}
+}
+
+/* ================================
+   MISC ABOUT:* (profiles, support, memory, etc.)
+   ================================ */
+@-moz-document url-prefix("about:profiles"),
+url-prefix("about:crashes"),
+url-prefix("about:support"),
+url-prefix("about:memory"),
+url-prefix("about:performance"),
+url-prefix("about:networking"),
+url-prefix("about:permissions"),
+url-prefix("about:processes"),
+url-prefix("about:url-classifier") {
+	:root,
+	html,
+	body {
+		background: #000 !important;
+		color: #fff !important;
+	}
+	section,
+	.card,
+	.row,
+	.pane,
+	.container,
+	.data-table,
+	table {
+		background: #000 !important;
+		color: #fff !important;
+		border: 1px solid #1a1a1a !important;
+	}
+	th,
+	td {
+		border-color: #1a1a1a !important;
+	}
+	a:hover {
 		background: #0a84ff !important;
 		color: #fff !important;
 	}
