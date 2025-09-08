@@ -17,14 +17,19 @@ if (Test-Path $Firefox_Profiles) {
             Stop-Process -Name firefox -Force
         }
         
-        $DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/userChrome.css'
-        $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
-        $SavePath = [IO.Path]::Combine($Firefox_Profile, 'chrome', $FileName)
-        if (-not (Test-Path $SavePath)) {
-            New-Item $SavePath -ItemType File -Force
+        $DDLs = @(
+            'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/userChrome.css',
+            'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/userContent.css'
+        )
+        foreach ($DDL in $DDLs) {
+            $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
+            $SavePath = [IO.Path]::Combine($Firefox_Profile, 'chrome', $FileName)
+            if (-not (Test-Path $SavePath)) {
+                New-Item $SavePath -ItemType File -Force
+            }
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+            (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
         }
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-        (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
 
         $DDLs = @(
             'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/user-overrides.js',
