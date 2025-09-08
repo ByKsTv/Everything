@@ -519,3 +519,132 @@ menupopup > menuitem:hover,
 	color: #fff !important;
 	fill: currentColor !important;
 }
+
+#identity-popup .identity-popup-permission-item,
+#identity-popup .identity-popup-permission-state,
+#identity-popup .identity-popup-permission-state-label,
+#identity-popup menulist,
+#identity-popup select,
+#permission-popup menulist,
+#permission-popup select {
+	background: #000 !important;
+	border: 1px solid #333 !important;
+	color: #fff !important;
+	font-weight: 600 !important;
+	animation: none !important;
+	transition: none !important;
+}
+
+#identity-popup .identity-popup-permission-state:focus-visible,
+#identity-popup menulist:focus-visible,
+#identity-popup select:focus-visible,
+#permission-popup menulist:focus-visible,
+#permission-popup select:focus-visible {
+	outline: 2px solid #0a84ff !important;
+	outline-offset: 0 !important;
+}
+
+#identity-popup .identity-popup-permission-state:hover,
+#identity-popup menulist:hover,
+#identity-popup select:hover,
+#permission-popup menulist:hover,
+#permission-popup select:hover {
+	background: #0b0b0b !important;
+	border-color: #0a84ff !important;
+}
+
+#identity-popup .menulist-dropmarker,
+#identity-popup .menulist-label,
+#identity-popup .popup-internal-box,
+#permission-popup .menulist-dropmarker,
+#permission-popup .menulist-label,
+#permission-popup .popup-internal-box {
+	color: #fff !important;
+	fill: #fff !important;
+	filter: none !important;
+	opacity: 1 !important;
+}
+
+menupopup > menuitem[checked='true'],
+menupopup > menuitem[selected='true'] {
+	background: #0a84ff !important;
+	color: #fff !important;
+}
+
+menupopup > menuitem[disabled='true'] {
+	color: #555 !important;
+	opacity: .6 !important;
+}
+
+#editBookmarkPanel,
+dialog[windowtype='Browser:BookmarkProperties'] {
+	animation: none !important;
+	transition: none !important;
+}
+
+#editBookmarkPanel textbox,
+#editBookmarkPanel .textbox-input-box,
+#editBookmarkPanel .textbox-input,
+#editBookmarkPanel input,
+dialog[windowtype='Browser:BookmarkProperties'] textbox,
+dialog[windowtype='Browser:BookmarkProperties'] .textbox-input-box,
+dialog[windowtype='Browser:BookmarkProperties'] .textbox-input,
+dialog[windowtype='Browser:BookmarkProperties'] input,
+#editBMPanel_namePicker,
+#editBMPanel_locationField,
+#editBMPanel_tagsField,
+#editBMPanel_keywordField {
+	-moz-appearance: none !important;
+	animation: none !important;
+	appearance: none !important;
+	background: #000 !important;
+	border: 1px solid #1a1a1a !important;
+	box-shadow: none !important;
+	caret-color: #fff !important;
+	color: #fff !important;
+	outline: 0 !important;
+	transition: none !important;
+}
+
+#editBookmarkPanel textbox:hover,
+#editBookmarkPanel .textbox-input-box:hover,
+#editBookmarkPanel .textbox-input:hover,
+#editBookmarkPanel input:hover,
+dialog[windowtype='Browser:BookmarkProperties'] textbox:hover,
+dialog[windowtype='Browser:BookmarkProperties'] .textbox-input-box:hover,
+dialog[windowtype='Browser:BookmarkProperties'] .textbox-input:hover,
+dialog[windowtype='Browser:BookmarkProperties'] input:hover,
+#editBMPanel_namePicker:hover,
+#editBMPanel_locationField:hover,
+#editBMPanel_tagsField:hover,
+#editBMPanel_keywordField:hover {
+	background: #0b0b0b !important;
+	border-color: #0a84ff !important;
+}
+
+#editBookmarkPanel textbox[focused],
+#editBookmarkPanel .textbox-input:focus,
+#editBookmarkPanel .textbox-input-box:focus-within,
+#editBookmarkPanel input:focus,
+dialog[windowtype='Browser:BookmarkProperties'] textbox[focused],
+dialog[windowtype='Browser:BookmarkProperties'] .textbox-input:focus,
+dialog[windowtype='Browser:BookmarkProperties'] .textbox-input-box:focus-within,
+dialog[windowtype='Browser:BookmarkProperties'] input:focus,
+#editBMPanel_namePicker[focused],
+#editBMPanel_locationField[focused],
+#editBMPanel_tagsField[focused],
+#editBMPanel_keywordField[focused] {
+	outline: 2px solid #0a84ff !important;
+	outline-offset: 0 !important;
+}
+
+#editBookmarkPanel input::placeholder,
+#editBookmarkPanel .textbox-input::placeholder,
+#editBookmarkPanel input::-moz-placeholder,
+#editBookmarkPanel .textbox-input::-moz-placeholder,
+dialog[windowtype='Browser:BookmarkProperties'] input::placeholder,
+dialog[windowtype='Browser:BookmarkProperties'] .textbox-input::placeholder,
+dialog[windowtype='Browser:BookmarkProperties'] input::-moz-placeholder,
+dialog[windowtype='Browser:BookmarkProperties'] .textbox-input::-moz-placeholder {
+	color: #999 !important;
+}
