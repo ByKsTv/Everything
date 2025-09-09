@@ -1,3 +1,9 @@
+/*
+	1. Always add `!important;` to each rule, otherwise it won't apply.
+	2. Do not delete comments.
+	3. Do not use `moz-selection` because it's deprecated.
+*/
+
 /* Black background on about dialog */
 #clientBox,
 #bottomBox {
