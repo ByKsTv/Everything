@@ -10,8 +10,9 @@
 *::after {
 	/* Disable animation */
 	animation: none !important;
-	/* No transition */
-	transition: all 0s linear 0.001s !important;
+	/* Disable transition (causes breakage on google login page so don't disable completly) */
+	transition-duration: 0.001s !important;
+	transition-delay: 0s !important;
 	/* Square borders */
 	border-radius: 0px !important;
 	/* No shadow */
