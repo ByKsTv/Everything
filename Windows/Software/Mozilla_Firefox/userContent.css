@@ -72,4 +72,10 @@
 		height: 2px !important;
 		background-color: #0a84ff !important;
 	}
+
+	/* Compact context menu when clicking on `More Options` in `about:addons` for an extenstion */
+	panel-list {
+		padding: 0px 0px !important;
+		min-width: 0em !important;
+	}
 }
