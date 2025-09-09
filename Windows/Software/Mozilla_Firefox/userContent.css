@@ -29,6 +29,8 @@
 			--button-background-color-hover: #0a84ff !important;
 			/* Blue accent color in `about:addons` */
 			--color-accent-primary: #0a84ff !important;
+			/* Small spacing between checkboxes in `about:preferences` */
+			--space-small: 0px !important;
 		}
 	}
 
