@@ -4,6 +4,20 @@
 /* Guidelines: */
 /* Add `!important;` to each rule, otherwise it won't apply. */
 
+/* Global settings */
+*,
+*::before,
+*::after {
+	/* Disable animation */
+	animation: none !important;
+	/* Square borders */
+	border-radius: 0px !important;
+	/* No transition */
+	transition: none !important;
+	/* No shadow */
+	box-shadow: none !important;
+}
+
 /* Black background on about dialog */
 #clientBox,
 #bottomBox {
@@ -27,13 +41,6 @@
 	--toolbar-color: white !important;
 	--toolbarbutton-inner-padding: 4px !important;
 	--toolbarbutton-outer-padding: 0px !important;
-}
-
-* {
-	animation: none !important;
-	border-radius: 0 !important;
-	box-shadow: none !important;
-	transition: none !important;
 }
 
 #PersonalToolbar,

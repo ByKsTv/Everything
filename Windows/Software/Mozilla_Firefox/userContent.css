@@ -4,6 +4,20 @@
 /* Guidelines: */
 /* Add `!important;` to each rule, otherwise it won't apply. */
 
+/* Global settings */
+*,
+*::before,
+*::after {
+	/* Disable animation */
+	animation: none !important;
+	/* Square borders */
+	border-radius: 0px !important;
+	/* No transition */
+	transition: none !important;
+	/* No shadow */
+	box-shadow: none !important;
+}
+
 /* Highlight in blue the selected text and make the text white */
 ::selection {
 	background: #0a84ff !important;
@@ -41,13 +55,13 @@
 		--in-content-button-background-hover: #0a84ff !important;
 		/* Blue background when hover perfs in `about:config` */
 		--in-content-item-hover: #0a84ff !important;
+		/* White text for active button */
+		--in-content-primary-button-text-color: white !important;
 	}
 
 	.addon.card {
 		/* Compact add-on cards on `about:addons` */
 		margin-bottom: 3px !important;
-		/* No animations */
-		transition: opacity 0ms, box-shadow 0ms !important;
 	}
 
 	/* Hide `Firefox Support` on `about:preferences` */
@@ -55,13 +69,6 @@
     /* Hide `Add-ons Support` on `about:addons` */
     #help-button {
 		display: none !important;
-	}
-
-	#categories > .category {
-		/* Use square border for category */
-		border-radius: 0px !important;
-		/* No animations */
-		transition: background-color 0ms !important;
 	}
 
 	/* Create a line below selected category in `about:addons` to indicate currently active category */
@@ -83,8 +90,7 @@
 
 	/* Compact context menu when clicking on `More Options` in `about:addons` for an extenstion */
 	panel-list {
-		padding: 0px 0px !important;
-		min-width: 0em !important;
+		padding: 0px !important;
 	}
 
 	/* Red background on `Remove` on `about:logins` */
@@ -96,16 +102,13 @@
 		background: red !important;
 		color: white !important;
 	}
+	/* Dark red background on `Remove` on `about:logins` on hover */
 	button.ghost-button:has(
 			> span[data-l10n-id='about-logins-login-item-remove-button']
 		):hover,
+	/* Dark red background on `Remove` confirm dialog on `about:logins` on hover */
 	button[data-l10n-id='about-logins-confirm-remove-dialog-confirm-button']:hover {
 		background: darkred !important;
-	}
-
-	/* Use square border for buttons */
-	button {
-		border-radius: 0px !important;
 	}
 
 	/* Highlight in blue hover checkboxes in `about:preferences` */
@@ -131,7 +134,5 @@
 	.info-box-container {
 		/* Compact spacing for info boxes in `about:preferences` */
 		padding: 0px !important;
-		/* Use square border for info boxes */
-		border-radius: 0px !important;
 	}
 }
