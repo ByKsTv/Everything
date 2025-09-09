@@ -1,9 +1,7 @@
-/*	`userContent.css`
-    OLED Theme
-    
-    1. Always add `!important;` to each rule, otherwise it won't apply.
-    2. Do not delete comments.
-    3. Do not use `moz-selection` because it's deprecated.
+/*
+	1. Always add `!important;` to each rule, otherwise it won't apply.
+	2. Do not delete comments.
+	3. Do not use `moz-selection` because it's deprecated.
 */
 
 /* Highlight in blue the selected text and make the text white */
