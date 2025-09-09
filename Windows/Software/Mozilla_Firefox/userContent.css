@@ -45,6 +45,9 @@
 	:root {
 		/* --in-content-button-background-hover: color-mix(in srgb, currentColor 14%, transparent); */
 		--in-content-button-background-hover: #0a84ff !important;
+		/* Blue background when hover perfs in `about:config` */
+		/* --in-content-item-hover: color-mix(in srgb, var(--in-content-primary-button-background) 20%, transparent); */
+		--in-content-item-hover: #0a84ff !important;
 	}
 
 	/* Blue background when hover menu item on `about:addons` */
