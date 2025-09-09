@@ -1,19 +1,19 @@
-/*
-	1. Always add `!important;` to each rule, otherwise it won't apply.
-	2. Do not delete comments.
-	3. Do not use `moz-selection` because it's deprecated.
-*/
+/* userContent.css */
+/* OLED Theme */
+
+/* Guidelines: */
+/* Add `!important;` to each rule, otherwise it won't apply. */
 
 /* Highlight in blue the selected text and make the text white */
 ::selection {
 	background: #0a84ff !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 /* Black background in `about:blank` and in `about:newtab` */
 @-moz-document url("about:blank"), url("about:newtab") {
 	html {
-		background: #000 !important;
+		background: black !important;
 	}
 }
 
@@ -22,15 +22,16 @@
 		:root,
 		:host(.anonymous-content-host) {
 			/* Black Background in tables in `about:preferences' */
-			--background-color-box: #000 !important;
+			--background-color-box: black !important;
 			/* Black Background in `about:addons' */
-			--background-color-canvas: #000 !important;
+			--background-color-canvas: black !important;
 			/* Blue background when hover menu item on `about:addons` */
 			--button-background-color-hover: #0a84ff !important;
 			/* Blue accent color in `about:addons` */
 			--color-accent-primary: #0a84ff !important;
 			/* Small spacing between checkboxes in `about:preferences` */
 			--space-small: 0px !important;
+			--space-large: 0px !important;
 		}
 	}
 
@@ -56,10 +57,17 @@
 		display: none !important;
 	}
 
+	#categories > .category {
+		/* Use square border for category */
+		border-radius: 0px !important;
+		/* No animations */
+		transition: background-color 0ms !important;
+	}
+
 	/* Create a line below selected category in `about:addons` to indicate currently active category */
 	#categories > .category[selected],
 	#categories > .category.selected {
-		color: #fff !important;
+		color: white !important;
 		position: relative !important;
 	}
 	#categories > .category[selected]::after,
@@ -95,6 +103,11 @@
 		background: darkred !important;
 	}
 
+	/* Use square border for buttons */
+	button {
+		border-radius: 0px !important;
+	}
+
 	/* Highlight in blue hover checkboxes in `about:preferences` */
 	checkbox:hover > .checkbox-check {
 		box-shadow: 0 0 0 1px #0a84ff !important;
@@ -102,5 +115,23 @@
 	/* Round blue hover ring for radios in about:preferences (outside) */
 	radio:hover > .radio-check {
 		box-shadow: 0 0 0 1px #0a84ff !important;
+	}
+	/* Highlight in blue hover checkboxes and rings for `about:addons` */
+	.radio-check:hover,
+	.checkbox-check:hover,
+	input:where([type='checkbox'], [type='radio']):hover {
+		box-shadow: 0 0 0 1px #0a84ff !important;
+	}
+
+	.updateSettingCrossUserWarningContainer {
+		/* Compact spacing between settings in `about:preferences` */
+		margin-block-end: 0px !important;
+	}
+
+	.info-box-container {
+		/* Compact spacing for info boxes in `about:preferences` */
+		padding: 0px !important;
+		/* Use square border for info boxes */
+		border-radius: 0px !important;
 	}
 }

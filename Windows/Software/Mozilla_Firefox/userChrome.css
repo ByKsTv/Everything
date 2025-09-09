@@ -1,13 +1,13 @@
-/*
-	1. Always add `!important;` to each rule, otherwise it won't apply.
-	2. Do not delete comments.
-	3. Do not use `moz-selection` because it's deprecated.
-*/
+/* userChrome.css */
+/* OLED Theme */
+
+/* Guidelines: */
+/* Add `!important;` to each rule, otherwise it won't apply. */
 
 /* Black background on about dialog */
 #clientBox,
 #bottomBox {
-	background: #000 !important;
+	background: black !important;
 }
 
 #alltabs-button,
@@ -17,14 +17,14 @@
 
 :root {
 	color-scheme: dark;
-	--arrowpanel-background: #000 !important;
-	--arrowpanel-color: #fff !important;
-	--lwt-accent-color: #000 !important;
+	--arrowpanel-background: black !important;
+	--arrowpanel-color: white !important;
+	--lwt-accent-color: black !important;
 	--panel-shadow: none !important;
 	--tab-min-height: 30px !important;
-	--tab-selected-bgcolor: #000 !important;
-	--toolbar-bgcolor: #000 !important;
-	--toolbar-color: #fff !important;
+	--tab-selected-bgcolor: black !important;
+	--toolbar-bgcolor: black !important;
+	--toolbar-color: white !important;
 	--toolbarbutton-inner-padding: 4px !important;
 	--toolbarbutton-outer-padding: 0px !important;
 }
@@ -42,9 +42,9 @@
 #toolbar-menubar,
 #nav-bar,
 .browser-toolbar {
-	background: #000 !important;
+	background: black !important;
 	border: 0 !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 #TabsToolbar {
@@ -81,9 +81,9 @@ prefwindow,
 #sidebar-search-container,
 #urlbar,
 #urlbar-background {
-	background: #000 !important;
+	background: black !important;
 	border: 1px solid #1a1a1a !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 #FindToolbar,
@@ -116,11 +116,11 @@ dialog[windowtype='Browser:BookmarkProperties'] textbox,
 findbar textbox {
 	-moz-appearance: none !important;
 	appearance: none !important;
-	background: #000 !important;
+	background: black !important;
 	border: 1px solid #1a1a1a !important;
 	box-shadow: none !important;
-	caret-color: #fff !important;
-	color: #fff !important;
+	caret-color: white !important;
+	color: white !important;
 	outline: 0 !important;
 }
 
@@ -173,14 +173,14 @@ dialog[windowtype='Browser:BookmarkProperties'] input::placeholder {
 #statuspanel {
 	background: transparent !important;
 	border: 0 !important;
-	color: #fff !important;
+	color: white !important;
 	opacity: 1 !important;
 }
 
 #statuspanel-label {
-	background: #000 !important;
+	background: black !important;
 	border: 1px solid #1a1a1a !important;
-	color: #fff !important;
+	color: white !important;
 	margin: 0 0px 0px !important;
 	opacity: 0.92 !important;
 	overflow: hidden !important;
@@ -217,7 +217,7 @@ dialog[windowtype='Browser:BookmarkProperties'] input::placeholder {
 }
 
 .tabbrowser-tab[selected] .tab-background {
-	background: #000 !important;
+	background: black !important;
 	border-left: 1px solid #1a1a1a !important;
 	border-right: 1px solid #1a1a1a !important;
 	box-shadow: inset 0 -2px 0 #0a84ff !important;
@@ -229,7 +229,7 @@ dialog[windowtype='Browser:BookmarkProperties'] input::placeholder {
 
 .tabbrowser-tab:hover .tab-label,
 .tabbrowser-tab[selected] .tab-label {
-	color: #fff !important;
+	color: white !important;
 }
 
 .tabbrowser-tab[selected] .tab-label {
@@ -271,9 +271,9 @@ dialog[windowtype='Browser:BookmarkProperties'] input::placeholder {
 .urlbarView-body-inner,
 .urlbarView-results,
 .urlbarView-row {
-	background: #000 !important;
+	background: black !important;
 	border-color: #1a1a1a !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 .urlbarView-row {
@@ -283,12 +283,12 @@ dialog[windowtype='Browser:BookmarkProperties'] input::placeholder {
 
 .urlbarView-row:is(:hover, [aria-selected='true']) {
 	background: #0a84ff !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 .urlbarView-row:is(:hover, [aria-selected='true'])
 	:is(.urlbarView-title, .urlbarView-url, .urlbarView-action) {
-	color: #fff !important;
+	color: white !important;
 }
 
 .urlbarView-action,
@@ -298,19 +298,19 @@ dialog[windowtype='Browser:BookmarkProperties'] input::placeholder {
 
 #urlbar-input::selection {
 	background: #0a84ff !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 #urlbar-input::-moz-selection {
 	background: #0a84ff !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 toolbar .toolbarbutton-1,
 toolbarbutton {
 	background: transparent !important;
 	border: 0 !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 #nav-bar toolbarbutton .toolbarbutton-text,
@@ -325,7 +325,7 @@ toolbarbutton:hover .toolbarbutton-icon {
 }
 
 #PersonalToolbar toolbarbutton.bookmark-item {
-	color: #fff !important;
+	color: white !important;
 	padding: 0 !important;
 	padding-inline: 0 !important;
 }
@@ -333,12 +333,12 @@ toolbarbutton:hover .toolbarbutton-icon {
 toolbarbutton[widget-type='button-and-view'][data-extensionid]:hover,
 toolbarbutton.webextension-browser-action:hover {
 	background: #0a84ff !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 #unified-extensions-button:hover {
 	background: #0a84ff !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 #unified-extensions-panel #unified-extensions-more-extensions-button:hover,
@@ -346,7 +346,7 @@ toolbarbutton.webextension-browser-action:hover {
 #unified-extensions-panel .unified-extensions-item-menu-button:hover,
 #unified-extensions-panel .unified-extensions-item:hover {
 	background: #0a84ff !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 #unified-extensions-panel
@@ -357,7 +357,7 @@ toolbarbutton.webextension-browser-action:hover {
 		#unified-extensions-more-extensions-button
 	):hover
 	* {
-	color: #fff !important;
+	color: white !important;
 	fill: currentColor !important;
 }
 
@@ -370,21 +370,21 @@ toolbarbutton.webextension-browser-action:hover {
 #stop-reload-button:hover,
 #tracking-protection-icon-container:hover {
 	background: #0a84ff !important;
-	color: #fff !important;
+	color: white !important;
 	fill: currentColor !important;
 }
 
 toolbar .toolbarbutton-1[open='true'],
 toolbarbutton[open='true'] {
 	background: #0a84ff !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 .panel-subview-body > toolbarbutton,
 menupopup > menu,
 menupopup > menuitem,
 panelview .toolbarbutton-1 {
-	color: #fff !important;
+	color: white !important;
 	font-size: 13px !important;
 	min-height: 22px !important;
 	padding: 0px 0px !important;
@@ -446,7 +446,7 @@ panelview .toolbarbutton-1:hover,
 	menupopup[placespopup='true']
 	> menuitem.openintabs-menuitem:is(:hover, [_moz-menuactive='true']) {
 	background: #0a84ff !important;
-	color: #fff !important;
+	color: white !important;
 	outline: 0 !important;
 }
 
@@ -492,22 +492,22 @@ menupopup > menuitem[disabled='true'] {
 #placesList,
 tree,
 treechildren {
-	background: #000 !important;
+	background: black !important;
 	border-color: #1a1a1a !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 treechildren::-moz-tree-cell-text(hover),
 treechildren::-moz-tree-cell-text(selected) {
-	color: #fff !important;
+	color: white !important;
 }
 
 :is(#historyTree, #placeContent, #placesView)
 	:is(treecols, treecol, .treecol-text) {
 	animation: none !important;
-	background: #000 !important;
+	background: black !important;
 	border-color: #1a1a1a !important;
-	color: #fff !important;
+	color: white !important;
 	transition: none !important;
 }
 
@@ -517,7 +517,7 @@ treechildren::-moz-tree-cell-text(selected) {
 
 :is(#historyTree, #placeContent, #placesView) treecol[sortDirection] {
 	background: #0a84ff !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 :is(#historyTree, #placesList) treechildren::-moz-tree-row(hover),
@@ -532,16 +532,16 @@ toolbarseparator {
 
 tooltip {
 	appearance: none !important;
-	background: #000 !important;
+	background: black !important;
 	border: 1px solid #1a1a1a !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 #sidebar,
 menupopup,
 panel,
 panelview {
-	scrollbar-color: #999 #000 !important;
+	scrollbar-color: #999 black !important;
 }
 
 scrollbar {
@@ -555,7 +555,7 @@ scrollbar thumb {
 }
 
 scrollbar thumb:hover {
-	background: #fff !important;
+	background: white !important;
 }
 
 #ContentSelectDropdown,
@@ -564,8 +564,8 @@ menu,
 menuitem,
 menupopup,
 popup {
-	background: #000 !important;
-	color: #fff !important;
+	background: black !important;
+	color: white !important;
 }
 
 #identity-popup button,
@@ -573,7 +573,7 @@ popup {
 .panel-footer .panel-button {
 	background: #0b0b0b !important;
 	border: 1px solid #333 !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 #permission-popup .popup-notification-button-default,
@@ -581,7 +581,7 @@ popup {
 .panel-footer .panel-button[dlgtype='accept'] {
 	background: #0a84ff !important;
 	border: 1px solid #0a84ff !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 #permission-popup .popup-notification-button-default:hover,
@@ -593,7 +593,7 @@ popup {
 #permission-popup .popup-notification-secondary-button,
 .panel-footer .panel-button[dlgtype='secondary'],
 .popup-notification-secondary-button {
-	background: #000 !important;
+	background: black !important;
 	border: 1px solid #ff3b30 !important;
 	color: #ff3b30 !important;
 }
@@ -603,7 +603,7 @@ popup {
 .popup-notification-secondary-button:hover {
 	background: #ff3b30 !important;
 	border-color: #ff3b30 !important;
-	color: #ffffff !important;
+	color: whitefff !important;
 }
 
 #permission-popup .popup-notification-secondary-button:focus-visible,
@@ -628,7 +628,7 @@ popup {
 #identity-popup .identity-popup-permission-state-label {
 	background: #111 !important;
 	border: 1px solid #333 !important;
-	color: #fff !important;
+	color: white !important;
 	padding: 0 0px !important;
 }
 
@@ -639,9 +639,9 @@ popup {
 #identity-popup select,
 #permission-popup menulist,
 #permission-popup select {
-	background: #000 !important;
+	background: black !important;
 	border: 1px solid #333 !important;
-	color: #fff !important;
+	color: white !important;
 	font-weight: 600 !important;
 	animation: none !important;
 	transition: none !important;
@@ -671,8 +671,8 @@ popup {
 #permission-popup .menulist-dropmarker,
 #permission-popup .menulist-label,
 #permission-popup .popup-internal-box {
-	color: #fff !important;
-	fill: #fff !important;
+	color: white !important;
+	fill: white !important;
 	filter: none !important;
 	opacity: 1 !important;
 }
@@ -680,9 +680,9 @@ popup {
 #placesView #detailsDeck,
 #placesView #detailsPane,
 #placesView #infoBox {
-	background: #000 !important;
+	background: black !important;
 	border-top: 1px solid #1a1a1a !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 .titlebar-close,
@@ -690,7 +690,7 @@ popup {
 	animation: none !important;
 	background: transparent !important;
 	border: 0 !important;
-	color: #fff !important;
+	color: white !important;
 	fill: currentColor !important;
 	transition: none !important;
 }
@@ -698,7 +698,7 @@ popup {
 .titlebar-close:hover,
 .titlebar-close:hover .toolbarbutton-icon {
 	background: #ff3b30 !important;
-	color: #fff !important;
+	color: white !important;
 	fill: currentColor !important;
 }
 
@@ -708,10 +708,10 @@ popup {
 #autofill-address-popup,
 #autofill-creditCard-popup {
 	animation: none !important;
-	background: #000 !important;
+	background: black !important;
 	border: 1px solid #1a1a1a !important;
 	box-shadow: none !important;
-	color: #fff !important;
+	color: white !important;
 	transition: none !important;
 }
 
@@ -721,9 +721,9 @@ popup {
 #autofill-address-popup .autocomplete-richlistitem,
 #autofill-creditCard-popup .autocomplete-richlistitem {
 	animation: none !important;
-	background: #000 !important;
+	background: black !important;
 	border: 0 !important;
-	color: #fff !important;
+	color: white !important;
 	transition: none !important;
 }
 
@@ -743,7 +743,7 @@ popup {
 #autofill-creditCard-popup .autocomplete-richlistitem[selected='true'] {
 	animation: none !important;
 	background: #0a84ff !important;
-	color: #fff !important;
+	color: white !important;
 	outline: 0 !important;
 	transition: none !important;
 }
@@ -791,9 +791,9 @@ popup {
 #autofill-address-popup .autocomplete-richlistbox,
 #autofill-creditCard-popup .autocomplete-richlistbox {
 	animation: none !important;
-	background: #000 !important;
+	background: black !important;
 	border-color: #1a1a1a !important;
-	color: #fff !important;
+	color: white !important;
 	transition: none !important;
 }
 
@@ -812,9 +812,9 @@ popup {
 }
 
 #tabContextMenu {
-	background: #000 !important;
+	background: black !important;
 	border: 1px solid #1a1a1a !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 #tabContextMenu
@@ -825,7 +825,7 @@ popup {
 		[open='true']
 	) {
 	background: #0a84ff !important;
-	color: #fff !important;
+	color: white !important;
 	outline: 0 !important;
 }
 
@@ -841,9 +841,9 @@ popup {
 #textbox-contextmenu,
 #text-context-menu,
 #textContextMenu {
-	background: #000 !important;
+	background: black !important;
 	border: 1px solid #1a1a1a !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 #toolbar-context-menu
@@ -882,20 +882,20 @@ popup {
 		[open='true']
 	) {
 	background: #0a84ff !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 #appMenu-popup panelview#appMenu-downloadsView {
-	background: #000 !important;
+	background: black !important;
 	border: 1px solid #1a1a1a !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 #appMenu-popup
 	panelview#appMenu-downloadsView
 	:is(.subviewbutton, toolbarbutton):hover {
 	background: #0a84ff !important;
-	color: #fff !important;
+	color: white !important;
 	outline: 0 !important;
 }
 
@@ -913,19 +913,19 @@ popup {
 menupopup#downloadsContextMenu,
 panelview#appMenu-downloadsView :is(richlistitem.download, .download):hover {
 	background: #0a84ff !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 #downloadsPanel :is(richlistitem.download, .download):hover * {
-	color: #fff !important;
+	color: white !important;
 	fill: currentColor !important;
 }
 
 #downloadsContextMenu,
 menupopup#downloadsContextMenu {
-	background: #000 !important;
+	background: black !important;
 	border: 1px solid #1a1a1a !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 #downloadsContextMenu
@@ -936,36 +936,36 @@ menupopup#downloadsContextMenu {
 		[open='true']
 	) {
 	background: #0a84ff !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 #allTabsMenu,
 #allTabsMenu-allTabsView {
-	background: #000 !important;
+	background: black !important;
 	border: 1px solid #1a1a1a !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 #allTabsMenu-allTabsView .subviewbutton:hover {
 	background: #0a84ff !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 #FindToolbar,
 findbar {
-	background: #000 !important;
+	background: black !important;
 	border-top: 1px solid #1a1a1a !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 #findbar-textbox,
 findbar .findbar-textbox {
 	-moz-appearance: none !important;
 	appearance: none !important;
-	background: #000 !important;
+	background: black !important;
 	border: 1px solid #1a1a1a !important;
-	color: #fff !important;
-	caret-color: #fff !important;
+	color: white !important;
+	caret-color: white !important;
 	box-shadow: none !important;
 	outline: 0 !important;
 	border-left-width: 1px !important;
@@ -1004,7 +1004,7 @@ findbar .findbar-textbox:focus {
 		.identity-popup-permission-state-label
 	):hover {
 	background: #0a84ff !important;
-	color: #fff !important;
+	color: white !important;
 	border-color: #0a84ff !important;
 }
 
@@ -1039,7 +1039,7 @@ findbar .findbar-textbox:focus {
 	menupopup#text-context-menu
 	:is(menu, menuitem):is(:hover, [_moz-menuactive='true']) {
 	background: #0a84ff !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 #unified-extensions-button:hover .toolbarbutton-icon {
@@ -1048,7 +1048,7 @@ findbar .findbar-textbox:focus {
 
 #appMenu-popup panelview#appMenu-historyView .subviewbutton:hover {
 	background: #0a84ff !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 dialog[windowtype='Places:Organizer'] input::selection,
@@ -1056,14 +1056,14 @@ dialog[windowtype='Places:Organizer'] textarea::selection,
 #placesView input::selection,
 #placesView textarea::selection {
 	background: #0a84ff !important;
-	color: #fff !important;
+	color: white !important;
 }
 dialog[windowtype='Places:Organizer'] input::-moz-selection,
 dialog[windowtype='Places:Organizer'] textarea::-moz-selection,
 #placesView input::-moz-selection,
 #placesView textarea::-moz-selection {
 	background: #0a84ff !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 dialog[windowtype='Places:Organizer'] #searchFilter,
@@ -1072,10 +1072,10 @@ dialog[windowtype='Places:Organizer'] #searchFilter > .textbox-input-box,
 #placesView #searchFilter > .textbox-input-box {
 	-moz-appearance: none !important;
 	appearance: none !important;
-	background: #000 !important;
+	background: black !important;
 	border: 1px solid #1a1a1a !important;
-	color: #fff !important;
-	caret-color: #fff !important;
+	color: white !important;
+	caret-color: white !important;
 }
 
 #appMenu-popup panelview#appMenu-downloadsView search-textbox,
@@ -1087,10 +1087,10 @@ dialog[windowtype='Places:Organizer'] #searchFilter > .textbox-input-box,
 #appMenu-popup panelview#appMenu-downloadsView input[type='search'] {
 	-moz-appearance: none !important;
 	appearance: none !important;
-	background: #000 !important;
+	background: black !important;
 	border: 1px solid #1a1a1a !important;
-	color: #fff !important;
-	caret-color: #fff !important;
+	color: white !important;
+	caret-color: white !important;
 }
 
 #urlbar-input::selection,
@@ -1099,7 +1099,7 @@ findbar .findbar-textbox::selection,
 #editBookmarkPanel input::selection,
 #editBookmarkPanel textbox::selection {
 	background: #0a84ff !important;
-	color: #fff !important;
+	color: white !important;
 }
 #urlbar-input::-moz-selection,
 #findbar-textbox::-moz-selection,
@@ -1107,7 +1107,7 @@ findbar .findbar-textbox::-moz-selection,
 #editBookmarkPanel input::-moz-selection,
 #editBookmarkPanel textbox::-moz-selection {
 	background: #0a84ff !important;
-	color: #fff !important;
+	color: white !important;
 }
 
 #editBMPanel_tagsSelector,
@@ -1115,14 +1115,14 @@ findbar .findbar-textbox::-moz-selection,
 #editBookmarkPanel .tagsSelector,
 #editBookmarkPanel .expander-up,
 #editBookmarkPanel .expander-down {
-	background: #000 !important;
+	background: black !important;
 	border: 1px solid #1a1a1a !important;
-	color: #fff !important;
+	color: white !important;
 }
 #editBMPanel_tagsSelector checkbox,
 #editBookmarkPanel .tagsSelector checkbox {
-	background: #000 !important;
-	color: #fff !important;
+	background: black !important;
+	color: white !important;
 }
 
 dialog[windowtype='Places:Organizer'] .textbox-input-box,
@@ -1131,7 +1131,7 @@ dialog[windowtype='Places:Organizer'] menulist,
 dialog[windowtype='Places:Organizer'] select {
 	-moz-appearance: none !important;
 	appearance: none !important;
-	background: #000 !important;
+	background: black !important;
 	border: 1px solid #1a1a1a !important;
-	color: #fff !important;
+	color: white !important;
 }
