@@ -12,8 +12,8 @@
 	color: #fff !important;
 }
 
-/* Black background in `about:blank` */
-@-moz-document url("about:blank") {
+/* Black background in `about:blank` and in `about:newtab` */
+@-moz-document url("about:blank"), url("about:newtab") {
 	html {
 		background: #000 !important;
 	}
