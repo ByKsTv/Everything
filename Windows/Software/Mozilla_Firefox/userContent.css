@@ -94,4 +94,10 @@
 	button[data-l10n-id='about-logins-confirm-remove-dialog-confirm-button']:hover {
 		background: darkred !important;
 	}
+
+	/* Highlight in blue hover checkboxes in `about:preferences` */
+	checkbox:hover > .checkbox-check {
+		appearance: none !important;
+		background-color: #0a84ff !important;
+	}
 }
