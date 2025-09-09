@@ -1,3 +1,9 @@
+/* Black background on about dialog */
+#clientBox,
+#bottomBox {
+	background: #000 !important;
+}
+
 #alltabs-button,
 .titlebar-spacer[type='post-tabs'] {
 	display: none !important;
