@@ -11,7 +11,7 @@
 	/* Disable animation */
 	animation: none !important;
 	/* No transition */
-	transition: none !important;
+	transition: all 0s linear 0.001s !important;
 	/* Square borders */
 	border-radius: 0px !important;
 	/* No shadow */
