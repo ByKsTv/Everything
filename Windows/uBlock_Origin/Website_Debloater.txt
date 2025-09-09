@@ -80,6 +80,7 @@ pornolab.net##.thx-form
 pornolab.net##.w100.nav
 pornolab.net##div.spacer_10
 pornolab.net##tr.tCenter.row3 > .med
+rog.asus.com##div[class^="PageLoading__loadingContainer__"]
 rutracker.org###footer-info-links
 rutracker.org###logo
 rutracker.org###post-msg-form
