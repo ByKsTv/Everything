@@ -78,4 +78,20 @@
 		padding: 0px 0px !important;
 		min-width: 0em !important;
 	}
+
+	/* Red background on `Remove` on `about:logins` */
+	button.ghost-button:has(
+			> span[data-l10n-id='about-logins-login-item-remove-button']
+		),
+	/* Red background on `Remove` confirm dialog on `about:logins` */
+	button[data-l10n-id='about-logins-confirm-remove-dialog-confirm-button'] {
+		background: red !important;
+		color: white !important;
+	}
+	button.ghost-button:has(
+			> span[data-l10n-id='about-logins-login-item-remove-button']
+		):hover,
+	button[data-l10n-id='about-logins-confirm-remove-dialog-confirm-button']:hover {
+		background: darkred !important;
+	}
 }
