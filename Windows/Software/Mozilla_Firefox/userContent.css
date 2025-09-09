@@ -97,7 +97,10 @@
 
 	/* Highlight in blue hover checkboxes in `about:preferences` */
 	checkbox:hover > .checkbox-check {
-		appearance: none !important;
-		background-color: #0a84ff !important;
+		box-shadow: 0 0 0 1px #0a84ff !important;
+	}
+	/* Round blue hover ring for radios in about:preferences (outside) */
+	radio:hover > .radio-check {
+		box-shadow: 0 0 0 1px #0a84ff !important;
 	}
 }
