@@ -1,12 +1,12 @@
-/* `userContent.css`
+/*	`userContent.css`
     OLED Theme
     
-    1. Always add `!important;` to each rule.
+    1. Always add `!important;` to each rule, otherwise it won't apply.
     2. Do not delete comments.
-    3. Do not use `moz-selection`, legacy option.
+    3. Do not use `moz-selection` because it's deprecated.
  */
 
-/* Blue highlight selected text */
+/* Highlight in blue the selected text and make the text white */
 ::selection {
 	background: #0a84ff !important;
 	color: #fff !important;
@@ -20,52 +20,32 @@
 }
 
 @-moz-document url-prefix("about:") {
-	/* Black Background in `about:addons' */
-	/* tokens-brand.css | chrome://global/skin/design-system/tokens-brand.css */
 	@layer tokens-foundation {
 		:root,
 		:host(.anonymous-content-host) {
-			/* --background-color-canvas: light-dark(var(--color-white), var(--color-gray-90)); */
-			--background-color-canvas: #000 !important;
-		}
-	}
-
-	/* Black Background in tables in `about:preferences' */
-	/* tokens-shared.css | chrome://global/skin/design-system/tokens-shared.css */
-	@layer tokens-foundation {
-		:root,
-		:host(.anonymous-content-host) {
+			/* Black Background in tables in `about:preferences' */
 			--background-color-box: #000 !important;
+			/* Black Background in `about:addons' */
+			--background-color-canvas: #000 !important;
+			/* Blue background when hover menu item on `about:addons` */
+			--button-background-color-hover: #0a84ff !important;
+			/* Blue accent color in `about:addons` */
+			--color-accent-primary: #0a84ff !important;
 		}
 	}
 
-	/* Blue background when hover categories in `about:preferences` */
-	/* common-shared.css | chrome://global/skin/in-content/common-shared.css */
 	:host(.anonymous-content-host),
 	:root {
-		/* --in-content-button-background-hover: color-mix(in srgb, currentColor 14%, transparent); */
+		/* Blue background when hover categories in `about:preferences` */
 		--in-content-button-background-hover: #0a84ff !important;
 		/* Blue background when hover perfs in `about:config` */
-		/* --in-content-item-hover: color-mix(in srgb, var(--in-content-primary-button-background) 20%, transparent); */
 		--in-content-item-hover: #0a84ff !important;
 	}
 
-	/* Blue background when hover menu item on `about:addons` */
-	/* tokens-brand.css | chrome://global/skin/design-system/tokens-brand.css */
-	@layer tokens-foundation {
-		:root,
-		:host(.anonymous-content-host) {
-			/* --button-background-color-hover: color-mix(in srgb, currentColor 14%, transparent); */
-			--button-background-color-hover: #0a84ff !important;
-		}
-	}
-
-	/* Compact add-on cards on `about:addons` */
-	/* aboutaddons.css | chrome://mozapps/content/extensions/aboutaddons.css */
 	.addon.card {
-		/* margin-bottom: 16px; */
-		/* transition: opacity 150ms, box-shadow 150ms; */
+		/* Compact add-on cards on `about:addons` */
 		margin-bottom: 3px !important;
+		/* No animations */
 		transition: opacity 0ms, box-shadow 0ms !important;
 	}
 
@@ -74,5 +54,22 @@
     /* Hide `Add-ons Support` on `about:addons` */
     #help-button {
 		display: none !important;
+	}
+
+	/* Create a line below selected category in `about:addons` to indicate currently active category */
+	#categories > .category[selected],
+	#categories > .category.selected {
+		color: #fff !important;
+		position: relative !important;
+	}
+	#categories > .category[selected]::after,
+	#categories > .category.selected::after {
+		content: '' !important;
+		position: absolute !important;
+		bottom: 0 !important;
+		left: 0 !important;
+		width: 100% !important;
+		height: 2px !important;
+		background-color: #0a84ff !important;
 	}
 }
