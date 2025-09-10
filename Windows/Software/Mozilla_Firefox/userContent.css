@@ -15,8 +15,6 @@
 	transition-delay: 0s !important;
 	/* Square borders */
 	border-radius: 0px !important;
-	/* No shadow */
-	box-shadow: none !important;
 }
 
 /* Highlight in blue the selected text and make the text white */

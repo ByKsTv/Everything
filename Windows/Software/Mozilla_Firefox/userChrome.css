@@ -14,8 +14,6 @@
 	transition: none !important;
 	/* Square borders */
 	border-radius: 0px !important;
-	/* No shadow */
-	box-shadow: none !important;
 }
 
 /* Black background on about dialog */
