@@ -1,4 +1,5 @@
 /* userContent.css */
+/* Applies to Websites */
 /* OLED Theme */
 
 /* Guidelines */
@@ -20,6 +21,16 @@
 ::selection {
 	background: #0a84ff !important;
 	color: white !important;
+}
+/* Highlight URL on hover */
+a:hover {
+	color: #0a84ff !important;
+}
+/* Highlight Buttons on hover */
+button:hover {
+	color: white !important;
+	background-color: #0a84ff !important;
+	border-color: #0a84ff !important;
 }
 
 /* New tab > Background color > Black */

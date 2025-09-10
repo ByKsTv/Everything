@@ -1,4 +1,5 @@
 /* userChrome.css */
+/* Applies to Firefox UI */
 /* OLED Theme */
 
 /* Guidelines */
@@ -25,10 +26,9 @@
 	background: black !important;
 }
 
-/* Tabs toolbar */
-/* "Search tabs" button */
+/* Tabs toolbar > "Search tabs" button */
 #alltabs-button,
-/* Spacer */
+/* Tabs toolbar > Spacer */
 .titlebar-spacer {
 	/* Hide */
 	display: none !important;
