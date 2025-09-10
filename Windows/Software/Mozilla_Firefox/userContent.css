@@ -17,6 +17,14 @@
 	border-radius: 0px !important;
 }
 
+html {
+	/* Scrollbar > Width > Thin */
+	scrollbar-width: thin !important;
+	/* Scrollbar > Background color > White */
+	/* Scrollbar > Main color > Highlight */
+	scrollbar-color: #0a84ff white !important;
+}
+
 /* Highlight selected text */
 ::selection {
 	background: #0a84ff !important;
