@@ -29,7 +29,14 @@ a:hover {
 	transition: none !important;
 }
 /* Highlight Buttons on hover */
-button:hover {
+button:hover,
+input[type='button']:hover,
+input[type='submit']:hover,
+input[type='reset']:hover,
+a.button:hover,
+[class*='btn']:hover,
+[role='button']:hover
+/* [class*='button']:hover has issues on Amazon*/ {
 	/* Text Color > White */
 	color: white !important;
 	/* Background color > Highlight */
