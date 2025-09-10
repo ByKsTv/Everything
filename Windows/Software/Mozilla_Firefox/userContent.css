@@ -11,7 +11,6 @@
 	/* Minimize animation (Disabling causes loading animations to appear stuck on pages like Gmail, TVTime) */
 	animation-delay: 0s !important;
 	/* Minimize transition (Disabling causes breakage on Google login page) */
-	transition-duration: 0.001s !important;
 	transition-delay: 0s !important;
 	/* Square borders */
 	border-radius: 0px !important;
