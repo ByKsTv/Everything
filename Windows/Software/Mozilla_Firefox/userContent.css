@@ -25,12 +25,19 @@
 /* Highlight URL on hover */
 a:hover {
 	color: #0a84ff !important;
+	/* Disable transition */
+	transition: none !important;
 }
 /* Highlight Buttons on hover */
 button:hover {
+	/* Text Color > White */
 	color: white !important;
+	/* Background color > Highlight */
 	background-color: #0a84ff !important;
-	border-color: #0a84ff !important;
+	/* Border color > Black */
+	border-color: black !important;
+	/* Disable transition */
+	transition: none !important;
 }
 
 /* New tab > Background color > Black */
