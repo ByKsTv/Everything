@@ -1,7 +1,7 @@
 /* userChrome.css */
 /* OLED Theme */
 
-/* Guidelines: */
+/* Guidelines */
 /* Add `!important;` to each rule, otherwise it won't apply. */
 
 /* Global settings */
@@ -10,20 +10,27 @@
 *::after {
 	/* Disable animation */
 	animation: none !important;
-	/* No transition */
+	/* Disable transition */
 	transition: none !important;
 	/* Square borders */
 	border-radius: 0px !important;
 }
 
-/* Black background on about dialog */
+/* Settings > Help > About Firefox */
+/* Main box */
 #clientBox,
+/* Footer box */
 #bottomBox {
+	/* Black background */
 	background: black !important;
 }
 
+/* Tabs toolbar */
+/* "Search tabs" button */
 #alltabs-button,
-.titlebar-spacer[type='post-tabs'] {
+/* Spacer */
+.titlebar-spacer {
+	/* Hide */
 	display: none !important;
 }
 
@@ -34,7 +41,10 @@
 	--lwt-accent-color: black !important;
 	--panel-shadow: none !important;
 	--tab-min-height: 30px !important;
+	/* Current tab > Background color > Black */
 	--tab-selected-bgcolor: black !important;
+	/* Current tab > Text color of title > White */
+	--tab-selected-textcolor: white !important;
 	--toolbar-bgcolor: black !important;
 	--toolbar-color: white !important;
 	--toolbarbutton-inner-padding: 4px !important;

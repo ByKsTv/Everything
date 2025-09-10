@@ -1,29 +1,28 @@
 /* userContent.css */
 /* OLED Theme */
 
-/* Guidelines: */
+/* Guidelines */
 /* Add `!important;` to each rule, otherwise it won't apply. */
 
 /* Global settings */
 *,
 *::before,
 *::after {
-	/* Disable animation */
-	animation: none !important;
-	/* Disable transition (causes breakage on google login page so don't disable completly) */
+	/* Default animation (Disabling causes loading animations to appear stuck on pages like Gmail, TVTime) */
+	/* Minimize transition (Disabling causes breakage on Google login page) */
 	transition-duration: 0.001s !important;
 	transition-delay: 0s !important;
 	/* Square borders */
 	border-radius: 0px !important;
 }
 
-/* Highlight in blue the selected text and make the text white */
+/* Highlight selected text */
 ::selection {
 	background: #0a84ff !important;
 	color: white !important;
 }
 
-/* Black background in `about:blank` and in `about:newtab` */
+/* New tab > Background color > Black */
 @-moz-document url("about:blank"), url("about:newtab") {
 	html {
 		background: black !important;
@@ -34,43 +33,45 @@
 	@layer tokens-foundation {
 		:root,
 		:host(.anonymous-content-host) {
-			/* Black Background in tables in `about:preferences' */
+			/* about:preferences > Tables > Background color > Black */
 			--background-color-box: black !important;
-			/* Black Background in `about:addons' */
+			/* about:addons > Background color > Black */
 			--background-color-canvas: black !important;
-			/* Blue background when hover menu item on `about:addons` */
+			/* about:addons > Buttons > Hover > Highlight */
 			--button-background-color-hover: #0a84ff !important;
-			/* Blue accent color in `about:addons` */
+			/* about:addons > Accent color > Highlight */
 			--color-accent-primary: #0a84ff !important;
-			/* Small spacing between checkboxes in `about:preferences` */
+			/* about:preferences > Spacing > Each checkbox */
 			--space-small: 0px !important;
+			/* about:preferences > Spacing > Each section */
 			--space-large: 0px !important;
 		}
 	}
 
 	:host(.anonymous-content-host),
 	:root {
-		/* Blue background when hover categories in `about:preferences` */
+		/* about:preferences > Categories > Hover > Background color > Highlight */
 		--in-content-button-background-hover: #0a84ff !important;
-		/* Blue background when hover perfs in `about:config` */
+		/* about:config > Perfs > Hover > Background color > Highlight */
 		--in-content-item-hover: #0a84ff !important;
-		/* White text for active button */
+		/* about:config > Save > Icon color */
 		--in-content-primary-button-text-color: white !important;
 	}
 
 	.addon.card {
-		/* Compact add-on cards on `about:addons` */
+		/* about:addons > Spacing > Compact */
 		margin-bottom: 3px !important;
 	}
 
-	/* Hide `Firefox Support` on `about:preferences` */
+	/* about:preferences > Firefox Support */
 	#helpButton,
-    /* Hide `Add-ons Support` on `about:addons` */
+    /* about:addons > Add-ons Support */
     #help-button {
+		/* Hide */
 		display: none !important;
 	}
 
-	/* Create a line below selected category in `about:addons` to indicate currently active category */
+	/* about:addons > Current category > Highlight */
 	#categories > .category[selected],
 	#categories > .category.selected {
 		color: white !important;
@@ -87,38 +88,38 @@
 		background-color: #0a84ff !important;
 	}
 
-	/* Compact context menu when clicking on `More Options` in `about:addons` for an extenstion */
+	/* about:addons > More Options > Spacing > Compact */
 	panel-list {
 		padding: 0px !important;
 	}
 
-	/* Red background on `Remove` on `about:logins` */
+	/* about:logins > Remove > Background color > Red */
 	button.ghost-button:has(
 			> span[data-l10n-id='about-logins-login-item-remove-button']
 		),
-	/* Red background on `Remove` confirm dialog on `about:logins` */
+	/* about:logins > Remove > Confirm dialog > Background color > Red */
 	button[data-l10n-id='about-logins-confirm-remove-dialog-confirm-button'] {
 		background: red !important;
 		color: white !important;
 	}
-	/* Dark red background on `Remove` on `about:logins` on hover */
+	/* about:logins > Remove > Hover > Highlight */
 	button.ghost-button:has(
 			> span[data-l10n-id='about-logins-login-item-remove-button']
 		):hover,
-	/* Dark red background on `Remove` confirm dialog on `about:logins` on hover */
+	/* about:logins > Remove > Confirm dialog > Hover > Highlight */
 	button[data-l10n-id='about-logins-confirm-remove-dialog-confirm-button']:hover {
-		background: darkred !important;
+		background: #0a84ff !important;
 	}
 
-	/* Highlight in blue hover checkboxes in `about:preferences` */
+	/* about:preferences > Checkbox > Hover > Highlight */
 	checkbox:hover > .checkbox-check {
 		box-shadow: 0 0 0 1px #0a84ff !important;
 	}
-	/* Round blue hover ring for radios in about:preferences (outside) */
+	/* about:preferences > Radio > Hover > Highlight */
 	radio:hover > .radio-check {
 		box-shadow: 0 0 0 1px #0a84ff !important;
 	}
-	/* Highlight in blue hover checkboxes and rings for `about:addons` */
+	/* about:addons > Radio > Hover > Highlight > */
 	.radio-check:hover,
 	.checkbox-check:hover,
 	input:where([type='checkbox'], [type='radio']):hover {
@@ -126,12 +127,12 @@
 	}
 
 	.updateSettingCrossUserWarningContainer {
-		/* Compact spacing between settings in `about:preferences` */
+		/* about:preferences > Warning box > Spacing > Compact */
 		margin-block-end: 0px !important;
 	}
 
 	.info-box-container {
-		/* Compact spacing for info boxes in `about:preferences` */
+		/* about:preferences > Info box > Spacing > Compact */
 		padding: 0px !important;
 	}
 }
