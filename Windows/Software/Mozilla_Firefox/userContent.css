@@ -26,17 +26,10 @@ html {
 }
 
 /* Highlight selected text */
-::selection {
-	background: #0a84ff !important;
-	color: white !important;
-}
+::selection,
 /* Highlight URL on hover */
-a:hover {
-	color: #0a84ff !important;
-	/* Disable transition */
-	transition: none !important;
-}
-/* Highlight Buttons on hover */
+a:hover,
+/* Highlight buttons on hover */
 button:hover,
 input[type='button']:hover,
 input[type='submit']:hover,
@@ -53,6 +46,8 @@ a.button:hover,
 	border-color: black !important;
 	/* Disable transition */
 	transition: none !important;
+	/* Disable animation */
+	animation: none !important;
 }
 
 /* New tab > Background color > Black */
