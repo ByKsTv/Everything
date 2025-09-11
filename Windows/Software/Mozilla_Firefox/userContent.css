@@ -1,36 +1,6 @@
-/* userContent.css */
-/* Applies to Websites */
-/* OLED Theme */
-
-/* Guidelines */
-/* Add `!important;` to each rule, otherwise it won't apply. */
-
-/* New tab > Background color > Black */
+/* New empty tab with black background */
 @-moz-document url("about:blank"), url("about:newtab") {
 	html {
 		background: black !important;
 	}
-}
-
-/* about:preferences > Firefox Support */
-#helpButton,
-    /* about:addons > Add-ons Support */
-    #help-button {
-	/* Hide */
-	display: none !important;
-}
-
-.info-box-container {
-	/* about:preferences > Info boxes > Spacing > Compact */
-	padding: 0px !important;
-}
-
-.updateSettingCrossUserWarningContainer {
-	/* about:preferences > Firefox Updates > Spacing after end block  > Compact */
-	margin-block-end: 0px !important;
-}
-
-/* about:addons > More Options > Spacing > Compact */
-panel-list {
-	padding: 0px !important;
 }

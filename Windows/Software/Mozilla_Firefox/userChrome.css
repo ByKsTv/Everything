@@ -1,32 +1,11 @@
-/* userChrome.css */
-/* Applies to Firefox UI */
-/* OLED Theme */
-
-/* Guidelines */
-/* Add `!important;` to each rule, otherwise it won't apply. */
-
-/* Tabs toolbar > "Search tabs" button */
-#alltabs-button,
-/* Tabs toolbar > Spacer */
-.titlebar-spacer {
-	/* Hide */
-	display: none !important;
-}
-
-/* Title bar > Background color > Black  */
-slot {
-	background: black !important;
-}
-
-/* Toolbar > Spacers > Background color > Black */
-toolbarpaletteitem[place='toolbar'][id^='wrapper-customizableui-special-spring'],
-toolbarspring {
-	#nav-bar &:not(#vertical-spacer) {
-		background: black !important;
+/* Remove the "Search tabs" button from the tabs toolbar */
+#alltabs-button {
+	#TabsToolbar & {
+		display: none;
 	}
 }
 
-/* Bookmarks toolbar > Background color > Black */
-#PersonalToolbar {
-	background: black !important;
+/* Remove the spacer from the tabs toolbar */
+.titlebar-spacer {
+	display: none;
 }
