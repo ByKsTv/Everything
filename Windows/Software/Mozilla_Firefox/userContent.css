@@ -1,6 +1,6 @@
 /* New empty tab with black background */
 @-moz-document url("about:blank"), url("about:newtab") {
 	html {
-		background: black !important;
+		background: black;
 	}
 }
