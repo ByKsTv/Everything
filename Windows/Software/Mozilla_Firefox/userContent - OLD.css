@@ -1,0 +1,129 @@
+/* Global settings */
+*,
+*::before,
+*::after {
+	/* Minimize animation (Disabling causes loading animations to appear stuck on pages like Gmail, TVTime) */
+	animation-delay: 0s !important;
+	/* Minimize transition (Disabling causes breakage on Google login page) */
+	transition-delay: 0s !important;
+	/* Square borders */
+	border-radius: 0px !important;
+}
+
+html {
+	/* Scrollbar > Width > Thin */
+	scrollbar-width: thin !important;
+	/* Scrollbar > Background color > Black */
+	/* Scrollbar > Main color > Highlight */
+	scrollbar-color: #0a84ff black !important;
+}
+
+/* Highlight selected text */
+::selection,
+/* Highlight URL on hover */
+a:hover,
+/* Highlight buttons on hover */
+button:hover,
+input[type='button']:hover,
+input[type='submit']:hover,
+input[type='reset']:hover,
+a.button:hover,
+[class*='btn']:hover,
+[role='button']:hover
+/* [class*='button']:hover has issues on Amazon*/ {
+	/* Text Color > White */
+	color: white !important;
+	/* Background color > Highlight */
+	background-color: #0a84ff !important;
+	/* Border color > Black */
+	border-color: black !important;
+	/* Disable transition */
+	transition: none !important;
+	/* Disable animation */
+	animation: none !important;
+}
+
+@-moz-document url-prefix("about:") {
+	@layer tokens-foundation {
+		:root,
+		:host(.anonymous-content-host) {
+			/* about:preferences > Tables > Background color > Black */
+			--background-color-box: black !important;
+			/* about:addons > Background color > Black */
+			--background-color-canvas: black !important;
+			/* about:addons > Buttons > Hover > Highlight */
+			--button-background-color-hover: #0a84ff !important;
+			/* about:addons > Accent color > Highlight */
+			--color-accent-primary: #0a84ff !important;
+			/* about:preferences > Spacing > Each checkbox */
+			--space-small: 0px !important;
+			/* about:preferences > Spacing > Each section */
+			--space-large: 0px !important;
+		}
+	}
+
+	:host(.anonymous-content-host),
+	:root {
+		/* about:preferences > Categories > Hover > Background color > Highlight */
+		--in-content-button-background-hover: #0a84ff !important;
+		/* about:config > Perfs > Hover > Background color > Highlight */
+		--in-content-item-hover: #0a84ff !important;
+		/* about:config > Save > Icon color */
+		--in-content-primary-button-text-color: white !important;
+	}
+
+	.addon.card {
+		/* about:addons > Spacing > Compact */
+		margin-bottom: 3px !important;
+	}
+
+	/* about:addons > Current category > Highlight */
+	#categories > .category[selected],
+	#categories > .category.selected {
+		color: white !important;
+		position: relative !important;
+	}
+	#categories > .category[selected]::after,
+	#categories > .category.selected::after {
+		content: '' !important;
+		position: absolute !important;
+		bottom: 0 !important;
+		left: 0 !important;
+		width: 100% !important;
+		height: 2px !important;
+		background-color: #0a84ff !important;
+	}
+
+	/* about:logins > Remove > Background color > Red */
+	button.ghost-button:has(
+			> span[data-l10n-id='about-logins-login-item-remove-button']
+		),
+	/* about:logins > Remove > Confirm dialog > Background color > Red */
+	button[data-l10n-id='about-logins-confirm-remove-dialog-confirm-button'] {
+		background: red !important;
+		color: white !important;
+	}
+	/* about:logins > Remove > Hover > Highlight */
+	button.ghost-button:has(
+			> span[data-l10n-id='about-logins-login-item-remove-button']
+		):hover,
+	/* about:logins > Remove > Confirm dialog > Hover > Highlight */
+	button[data-l10n-id='about-logins-confirm-remove-dialog-confirm-button']:hover {
+		background: #0a84ff !important;
+	}
+
+	/* about:preferences > Checkbox > Hover > Highlight */
+	checkbox:hover > .checkbox-check {
+		box-shadow: 0 0 0 1px #0a84ff !important;
+	}
+	/* about:preferences > Radio > Hover > Highlight */
+	radio:hover > .radio-check {
+		box-shadow: 0 0 0 1px #0a84ff !important;
+	}
+	/* about:addons > Radio > Hover > Highlight > */
+	.radio-check:hover,
+	.checkbox-check:hover,
+	input:where([type='checkbox'], [type='radio']):hover {
+		box-shadow: 0 0 0 1px #0a84ff !important;
+	}
+}
