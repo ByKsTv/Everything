@@ -12,3 +12,16 @@
 		background: black;
 	}
 }
+
+/* Firefox internal websites rules */
+@-moz-document url-prefix("about:") {
+	/* Hide the "Firefox Support" button from buttom left sidebar on the settings page */
+	#helpButton {
+		display: none !important; /* It doesn't apply without `!important` */
+	}
+
+	/* Hide the "Add-ons Support" button from buttom left sidebar on the add-ons manager page */
+	#help-button {
+		display: none !important; /* It doesn't apply without `!important` */
+	}
+}
