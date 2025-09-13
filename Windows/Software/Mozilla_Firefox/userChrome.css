@@ -100,7 +100,7 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 	padding: 1px !important; /* It doesn't apply without `!important` */
 }
 
-/* Compact spacing between each setting on setting context menu */
+/* Compact spacing between each setting on settings context menu */
 .subview-subheader,
 panelview .toolbarbutton-1,
 .subviewbutton,
