@@ -162,6 +162,8 @@ user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 // Dark mode
 user_pref("browser.display.background_color", "#000000");
 user_pref("browser.display.background_color.dark", "#000000");
+// Firefox tells pages that your prefers-color-scheme is dark, so sites that honor this setting will render their dark themes regardless of your OS/browser theme. This is the same as choosing Website Appearance → Dark in Firefox.
+user_pref("layout.css.prefers-color-scheme.content-override", 0);
 
 // Disable auto-hiding overlay scrollbar
 user_pref("widget.windows.overlay-scrollbars.enabled", false);
