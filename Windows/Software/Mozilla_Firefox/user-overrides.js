@@ -171,5 +171,10 @@ user_pref("widget.windows.overlay-scrollbars.enabled", false);
 // Change style of scrollbar
 user_pref("widget.non-native-theme.scrollbar.style", 4);
 
+// Firefox (on Windows) shows a pre-XUL “skeleton” window using cached theme colors and basic chrome (title bar/tab strip/url bar placeholders). Once the real UI finishes loading, the skeleton is replaced by the actual window.
+user_pref("browser.startup.preXulSkeletonUI", true);
+// Firefox shows an about:blank window as early as possible so you get instant visual feedback while the real UI is still loading. It’s just a plain placeholder, not the full chrome.
+user_pref("browser.startup.blankWindow", true);
+
 // Custom UI
 user_pref("browser.uiCustomization.state", "{\"placements\":{\"widget-overflow-fixed-list\":[],\"nav-bar\":[\"back-button\",\"forward-button\",\"stop-reload-button\",\"customizableui-special-spring1\",\"vertical-spacer\",\"urlbar-container\",\"customizableui-special-spring2\",\"save-to-pocket-button\",\"downloads-button\",\"fxa-toolbar-menu-button\",\"unified-extensions-button\",\"ublock0_raymondhill_net-browser-action\"],\"toolbar-menubar\":[\"menubar-items\"],\"TabsToolbar\":[\"tabbrowser-tabs\",\"new-tab-button\",\"alltabs-button\"],\"vertical-tabs\":[],\"PersonalToolbar\":[\"personal-bookmarks\"],\"unified-extensions-area\":[]},\"seen\":[\"ublock0_raymondhill_net-browser-action\",\"developer-button\"],\"dirtyAreaCache\":[\"unified-extensions-area\",\"nav-bar\"],\"currentVersion\":22,\"newElementCount\":3}");
