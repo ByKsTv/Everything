@@ -36,6 +36,16 @@
 	color: white !important; /* It doesn't apply without `!important` */
 }
 
+/* Highlight browser close button on hover */
+.titlebar-button {
+	@media not (prefers-contrast) {
+		&.titlebar-close:hover {
+			/* Set the background color to red to indicate warning */
+			background-color: red !important;
+		}
+	}
+}
+
 /* Remove spacing between each item on context menus (right-click | folder from bookmark) */
 menupopup,
 panel {
@@ -59,4 +69,26 @@ panel {
 menupopup,
 panel {
 	--panel-background: black !important; /* It doesn't apply without `!important` */
+}
+
+/* Set the background color of the title bar (tabs bar) to black */
+#navigator-toolbox {
+	background-color: black !important; /* It doesn't apply without `!important` */
+}
+
+/* Set the background color of the entire toolbar to black */
+.browser-toolbar {
+	background-color: black !important; /* It doesn't apply without `!important` */
+	/* Set the text inside to white */
+	color: white !important; /* It doesn't apply without `!important` */
+}
+
+/* Dim the inactive tabs on the tabs bar */
+.tabbrowser-tab:not([selected='true']) {
+	opacity: 0.3;
+}
+
+/* Undim the inactive tabs on the tabs bar on hover */
+.tabbrowser-tab:not([selected='true']):hover {
+	opacity: 1;
 }

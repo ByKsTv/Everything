@@ -9,7 +9,7 @@
 /* New empty tab with black background */
 @-moz-document url("about:blank"), url("about:newtab") {
 	html {
-		background: black;
+		background-color: black;
 	}
 }
 
@@ -23,5 +23,38 @@
 	/* Hide the "Add-ons Support" button from buttom left sidebar on the add-ons manager page */
 	#help-button {
 		display: none !important; /* It doesn't apply without `!important` */
+	}
+
+	/* Highlight delete saved password button on hover */
+	button.ghost-button:has(
+			> span[data-l10n-id='about-logins-login-item-remove-button']
+		):hover {
+		/* Set the background color to red to indicate warning */
+		background-color: red !important; /* It doesn't apply without `!important` */
+		/* Set the text inside to white */
+		color: white !important; /* It doesn't apply without `!important` */
+	}
+
+	/* Highlight delete saved password button on confirm dialog on hover */
+	button[data-l10n-id='about-logins-confirm-remove-dialog-confirm-button']:hover {
+		/* Set the background color to red to indicate warning */
+		background-color: red !important; /* It doesn't apply without `!important` */
+		/* Set the text inside to white */
+		color: white !important; /* It doesn't apply without `!important` */
+	}
+
+	/* Set the background color of all pages to black */
+	html {
+		background-color: black !important; /* It doesn't apply without `!important` */
+	}
+
+	/* Set the background color of rest of the space to black */
+	.sticky-container {
+		background: black !important; /* It doesn't apply without `!important` */
+	}
+
+	/* Set the background color of the search container to black */
+	.main-search {
+		background: black !important; /* It doesn't apply without `!important` */
 	}
 }
