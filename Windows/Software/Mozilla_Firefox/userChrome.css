@@ -49,7 +49,7 @@
 /* Remove spacing between each item on context menus (right-click | folder from bookmark) */
 menupopup,
 panel {
-	--menuitem-padding: 0em 0em !important; /* It doesn't apply without `!important` */
+	--menuitem-padding: 0.1em 0em !important; /* It doesn't apply without `!important` */
 }
 
 /* Bookmarks items inside a folder */
@@ -61,7 +61,7 @@ panel {
 		/* Set the border color of the panel to white */
 		--panel-border-color: white !important; /* It doesn't apply without `!important` */
 		/* Remove spacing of the panel from border to the items */
-		--panel-padding: 0px !important; /* It doesn't apply without `!important` */
+		--panel-padding: 2px !important; /* It doesn't apply without `!important` */
 	}
 }
 
@@ -85,10 +85,27 @@ panel {
 
 /* Dim the inactive tabs on the tabs bar */
 .tabbrowser-tab:not([selected='true']) {
-	opacity: 0.3;
+	opacity: 0.5;
 }
 
 /* Undim the inactive tabs on the tabs bar on hover */
 .tabbrowser-tab:not([selected='true']):hover {
 	opacity: 1;
+}
+
+/* Compact spacing between each bookmark on bookmarks toolbar */
+#personal-toolbar-empty-description,
+toolbarbutton.bookmark-item:not(.subviewbutton) {
+	margin: 1px !important; /* It doesn't apply without `!important` */
+	padding: 1px !important; /* It doesn't apply without `!important` */
+}
+
+/* Compact spacing between each setting on setting context menu */
+.subview-subheader,
+panelview .toolbarbutton-1,
+.subviewbutton,
+.widget-overflow-list .toolbarbutton-1 {
+	margin: 1px !important; /* It doesn't apply without `!important` */
+	min-height: 0px !important; /* It doesn't apply without `!important` */
+	padding: 1px !important; /* It doesn't apply without `!important` */
 }
