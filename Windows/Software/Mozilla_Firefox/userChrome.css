@@ -17,3 +17,46 @@
 .titlebar-spacer {
 	display: none;
 }
+
+/* Enlarge and align tab close button */
+.tab-close-button {
+	/* Increase the height to match the maximum height of hover */
+	height: 44px !important; /* It doesn't apply without `!important` */
+	/* Match the width to it's height since it's original size is 12x12 */
+	width: 44px !important; /* It doesn't apply without `!important` */
+	/* Align button button to the right */
+	margin-inline-end: -8px !important; /* It doesn't apply without `!important` */
+}
+
+/* Highlight tab close button on hover */
+.tab-close-button:hover {
+	/* Set the background color to red to indicate warning */
+	background-color: red !important; /* It doesn't apply without `!important` */
+	/* Set the icon color to white */
+	color: white !important; /* It doesn't apply without `!important` */
+}
+
+/* Remove spacing between each item on context menus (right-click | folder from bookmark) */
+menupopup,
+panel {
+	--menuitem-padding: 0em 0em !important; /* It doesn't apply without `!important` */
+}
+
+/* Bookmarks items inside a folder */
+.toolbar-menupopup {
+	&,
+	& menupopup {
+		/* Set the background color of the panel to black */
+		--panel-background: black !important; /* It doesn't apply without `!important` */
+		/* Set the border color of the panel to white */
+		--panel-border-color: white !important; /* It doesn't apply without `!important` */
+		/* Remove spacing of the panel from border to the items */
+		--panel-padding: 0px !important; /* It doesn't apply without `!important` */
+	}
+}
+
+/* Set the background color of context menus (right-click | settings) to black */
+menupopup,
+panel {
+	--panel-background: black !important; /* It doesn't apply without `!important` */
+}
