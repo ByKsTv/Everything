@@ -109,3 +109,44 @@ panelview .toolbarbutton-1,
 	min-height: 0px !important; /* It doesn't apply without `!important` */
 	padding: 1px !important; /* It doesn't apply without `!important` */
 }
+
+/* Hide "Copy Clean Link (U)" from context menu if it's greyed out */
+#context-stripOnShareLink[disabled='true'],
+#context-stripOnShareLink[aria-disabled='true'],
+#context-stripOnShareLink[hidden] {
+	visibility: collapse;
+}
+
+/* Hide "Copy Link" from context menu if "Copy Clean Link (U)" is available */
+menupopup#contentAreaContextMenu:has(
+		#context-stripOnShareLink:not([disabled='true']):not(
+				[aria-disabled='true']
+			):not([hidden])
+	)
+	#context-copylink {
+	visibility: collapse;
+}
+
+/* Remove separators from the top-level page context menu */
+/* menupopup#contentAreaContextMenu > menuseparator {
+	visibility: collapse;
+} */
+
+/* Hide "Open Link in New Window" from context menu */
+menupopup#contentAreaContextMenu > #context-openlink,
+/* Hide "Open Link in New Private Window" from context menu */
+menupopup#contentAreaContextMenu > #context-openlinkprivate,
+/* Hide "Open Link in New Container Tab" from context menu */
+menupopup#contentAreaContextMenu > #context-openlinkincontainertab,
+/* Hide "Bookmark Link…" from context menu */
+menupopup#contentAreaContextMenu > #context-bookmarklink,
+/* Hide "Save Link As…" from context menu */
+menupopup#contentAreaContextMenu > #context-savelink,
+/* Hide "Search in a Private Window" from context menu */
+menupopup#contentAreaContextMenu > #context-searchselect-private,
+/* Hide "Inspect Accessibility Properties" from context menu */
+menupopup#contentAreaContextMenu > #context-inspect-a11y,
+/* Hide "Email Image…" from context menu */
+menupopup#contentAreaContextMenu > #context-sendimage {
+	visibility: collapse;
+}
