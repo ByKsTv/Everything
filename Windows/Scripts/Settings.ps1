@@ -1302,3 +1302,19 @@ New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multi
 	Setting this to "High" gives games higher priority access to disk resources, reducing I/O latency during gameplay. Useful for minimizing stutters from background disk activity.
 #>
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games' -Name 'SFIO Priority' -Value 'High' -PropertyType String -Force
+
+# Windows search indexer
+Stop-Service WSearch -Force -ErrorAction SilentlyContinue
+Set-Service WSearch -StartupType Disabled
+$base = "$env:ProgramData\Microsoft\Search\Data"
+$targets = @(
+	(Join-Path -Path $base -ChildPath 'Applications\Windows')  # contains Windows.edb + logs
+	(Join-Path -Path $base -ChildPath 'Temp')                  # working/temp files
+)
+foreach ($t in $targets) {
+	if (Test-Path -LiteralPath $t) {
+		Remove-Item -LiteralPath $t -Recurse -Force -ErrorAction Stop
+	}
+}
+Get-Process -Name 'SearchApp', 'SearchHost' -ErrorAction SilentlyContinue |
+Stop-Process -Force -ErrorAction SilentlyContinue
