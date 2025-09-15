@@ -55,11 +55,6 @@
 | FitGirl Repacks | [Website](https://fitgirl-repacks.site)                                                       |                                                                              |
 | RuTracker       | [Website](https://rutracker.org/forum/index.php)                                              | [Requires an account](https://rutracker.org/forum/profile.php?mode=register) |
 | Skidrow Repacks | [Website](https://skidrowrepacks.com)                                                         |                                                                              |
-| ElAmigos Games  | [Website](https://www.elamigos-games.net)                                                     |                                                                              |
-| DODI Repacks    | [Website](https://dodi-repacks.site)                                                          |                                                                              |
-| RePack.Info     | [Website](https://repack.info)                                                                |                                                                              |
-| Qoob.NAME       | [Website](https://qoob.name)                                                                  |                                                                              |
-| freegogpcgames  | [Website](https://freegogpcgames.com)                                                         |                                                                              |
 | cs.rin.ru       | [Website](https://cs.rin.ru/forum/index.php)                                                  |                                                                              |
 | GitHub          | [awesome-piracy](https://github.com/Shakil-Shahadat/awesome-piracy?tab=readme-ov-file#gaming) |                                                                              |
 
