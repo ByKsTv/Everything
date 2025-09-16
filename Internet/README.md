@@ -423,7 +423,6 @@ Cancel unnecessary services, also voicemail
 1. `Source` > `Edit` > `Blu-ray player` > `Ok`.
 1. `Settings` > `Picture` > `Picture Mode` > `FILMMAKER MODE`.
 1. `Settings` > `Picture` > `Expert Settings` > `Picture Clarity Settings` > `Custom` > `Blur Reduction: 0` > `Judder Reduction: 0`.
-1. `Settings` > `General` > `External Device Manager` > `Anynet+ (HDMI-CEC)` > `Off`.
 1. `Settings` > `General` > `External Device Manager` > `Input Signal Plus` > Select current HDMI > `Close`.
 1. `Settings`> `General` > `Eco Solution` > `Ambient Light Detection` > `Off`
 1. `Settings` > `General` > `Smart Features` > `Autorun Smart Hub: Off` > `Autorun Last App: Off` > `Autorun Multi View Casting: Off`.
