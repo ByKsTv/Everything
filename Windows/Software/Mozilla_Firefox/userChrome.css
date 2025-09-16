@@ -150,3 +150,24 @@ menupopup#contentAreaContextMenu > #context-inspect-a11y,
 menupopup#contentAreaContextMenu > #context-sendimage {
 	visibility: collapse;
 }
+
+/* Settings > Help > About Firefox */
+/* Main box */
+#clientBox,
+/* Footer box */
+#bottomBox {
+	/* Black background */
+	background: black !important; /* It doesn't apply without `!important` */
+}
+
+/* Remove fade effects from status panel (URL Preview) */
+#statuspanel {
+	transition: none !important; /* It doesn't apply without `!important` */
+}
+
+/* Style the status panel (URL Preview) */
+#statuspanel-label {
+	color: white !important; /* It doesn't apply without `!important` */
+	background-color: black !important; /* It doesn't apply without `!important` */
+	border-color: white !important; /* It doesn't apply without `!important` */
+}
