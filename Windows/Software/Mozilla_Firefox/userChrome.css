@@ -171,3 +171,13 @@ menupopup#contentAreaContextMenu > #context-sendimage {
 	background-color: black !important; /* It doesn't apply without `!important` */
 	border-color: white !important; /* It doesn't apply without `!important` */
 }
+
+/* Remove "Add tab to taskbar" button from URL bar */
+#taskbar-tabs-button {
+	display: none;
+}
+
+/* Remove "Enter Reader View" button from URL bar */
+#reader-mode-button {
+	display: none;
+}
