@@ -41,7 +41,7 @@
 	@media not (prefers-contrast) {
 		&.titlebar-close:hover {
 			/* Set the background color to red to indicate warning */
-			background-color: red !important;
+			background-color: red !important; /* It doesn't apply without `!important` */
 		}
 	}
 }
