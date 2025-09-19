@@ -176,3 +176,8 @@ menupopup#contentAreaContextMenu > #context-sendimage {
 #reader-mode-button {
 	display: none;
 }
+
+/* Hide greyed out options from context menus */
+menupopup :is(menuitem, menu)[disabled='true'] {
+	display: none;
+}
