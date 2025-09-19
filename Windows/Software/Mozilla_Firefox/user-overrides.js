@@ -1,6 +1,9 @@
 // about:preferences > General > Startup > Always check if Firefox is your default browser > Off
 user_pref("browser.shell.checkDefaultBrowser", false);
 
+// about:preferences > General > Tabs > Use AI to suggest tabs and a name for tab groups > Off
+user_pref("browser.tabs.groups.smart.userEnabled", false);
+
 // about:preferences > General > Tabs > Enable Container Tabs > Off
 user_pref("privacy.userContext.enabled", false);
 
