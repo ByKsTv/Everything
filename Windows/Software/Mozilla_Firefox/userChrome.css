@@ -127,11 +127,6 @@ menupopup#contentAreaContextMenu:has(
 	visibility: collapse;
 }
 
-/* Remove separators from the top-level page context menu */
-/* menupopup#contentAreaContextMenu > menuseparator {
-	visibility: collapse;
-} */
-
 /* Hide "Open Link in New Window" from context menu */
 menupopup#contentAreaContextMenu > #context-openlink,
 /* Hide "Open Link in New Private Window" from context menu */
