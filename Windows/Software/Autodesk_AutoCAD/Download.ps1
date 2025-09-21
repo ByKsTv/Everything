@@ -19,7 +19,7 @@ $DropDownList = New-Object System.Windows.Forms.ComboBox -Property @{
     Location      = [Drawing.Point]::new(5, 0)
 }
 
-$Source = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w16.monkrus.ws/search/label/AutoCAD').Links | Where-Object { $_.outerHTML -notmatch '#more' -and $_.outerHTML -match 'AutoCAD' -and $_.outerHTML -notmatch 'LT' -and $_.outerHTML -notmatch 'Addon' }
+$Source = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w17.monkrus.ws/search/label/AutoCAD').Links | Where-Object { $_.outerHTML -notmatch '#more' -and $_.outerHTML -match 'AutoCAD' -and $_.outerHTML -notmatch 'LT' -and $_.outerHTML -notmatch 'Addon' }
 
 $Array = @{}
 $GFX = [Drawing.Graphics]::FromHwnd($Form.Handle)

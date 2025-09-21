@@ -74,7 +74,7 @@
 | NoNaMe Club      | [Website](https://nnmclub.to)                                                                                                                    |                                                                              |
 | LRepacks         | [Website](https://lrepacks.net)                                                                                                                  |                                                                              |
 | Diakov           | [Website](https://diakov.net)                                                                                                                    |                                                                              |
-| monkrus          | [Website](http://www.monkrus.ws) / [VK](https://vk.com/monkrus) / [Telegram](https://t.me/real_monkrus) / [RSS](https://w16.monkrus.ws/atom.xml) | Adobe & Autodesk                                                             |
+| monkrus          | [Website](http://www.monkrus.ws) / [VK](https://vk.com/monkrus) / [Telegram](https://t.me/real_monkrus) / [RSS](https://w17.monkrus.ws/atom.xml) | Adobe & Autodesk                                                             |
 | Ratiborus        | [Website](https://msfree.su/index.php)                                                                                                           |                                                                              |
 | store.rg-adguard | [Website](https://store.rg-adguard.net/)                                                                                                         | Microsoft Store                                                              |
 
