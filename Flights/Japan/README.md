@@ -8,7 +8,7 @@
 
 - [Visit Japan Web](https://services.digital.go.jp/en/visit-japan-web/)
 
-> Fill the form from the smartphone, you need to take a picture of the passport.
+> Fill the form from the smartphone, you need to take a picture of your passport.
 
 ## Android Apps
 
