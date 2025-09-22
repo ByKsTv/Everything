@@ -142,7 +142,9 @@ menupopup#contentAreaContextMenu > #context-searchselect-private,
 /* Hide "Inspect Accessibility Properties" from context menu */
 menupopup#contentAreaContextMenu > #context-inspect-a11y,
 /* Hide "Email Image…" from context menu */
-menupopup#contentAreaContextMenu > #context-sendimage {
+menupopup#contentAreaContextMenu > #context-sendimage,
+/* Hide "Set Image as Desktop Background…" from context menu */
+menupopup#contentAreaContextMenu > #context-setDesktopBackground {
 	visibility: collapse;
 }
 
