@@ -83,6 +83,7 @@ WD brand from AliExpress is sus because sticker is the same but the shape of the
 - Asus Motherboard: If buying from Amazon US and you're located in another region, make sure your location has repair labs for motherboards, otherwise Amazon support will redirect you to Asus support, if you've reached your region of Asus support they will redirect you to Asus US support which will require you to have US address, basically leaving you without warranty even if it's still active effectivly unusable.
 - Steelband: When storing don't use cobra pipe or any pipe, use zip ties.
 - Headset: Don't buy pleather.
+- Smartphone: Buy eSIM, 5G, VoLTE, WiFi-Calling phone.
 
 ## Recycle
 
