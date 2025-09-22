@@ -2,6 +2,7 @@
 
 - [Immigration](#immigration)
 - [Android Apps](#android-apps)
+- [Food](#food)
 
 ## Immigration
 
@@ -16,3 +17,7 @@
 - [Payke](https://play.google.com/store/apps/details?id=jp.co.payke.Payke1) - Barcode scanner to show product information in multiple languages.
 - [DeepL](https://play.google.com/store/apps/details?id=com.deepl.mobiletranslator) - Translate.
 - [GO](https://play.google.com/store/apps/details?id=com.dena.automotive.taxibell) - Taxi.
+
+## Food
+
+- Yakiniku Like.
