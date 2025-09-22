@@ -34,6 +34,7 @@
 - Use store copuns
 - Use existing aliexpress copuns (keep track on coupns that you receive if the package is delayed)
 - In case of issues click on `Returns/refunds`.
+- Prefer not to use door-to-door.
 
 WD brand from AliExpress is sus because sticker is the same but the shape of the (is wrong)
 
