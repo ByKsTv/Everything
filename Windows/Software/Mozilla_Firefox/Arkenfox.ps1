@@ -58,5 +58,17 @@ if (Test-Path $Firefox_Profiles) {
                 Remove-Item $TelemetryDir -Force -Recurse
             }
         }
+    
+        $CrashHelper = "$env:ProgramFiles\Mozilla Firefox\crashhelper.exe"
+        if (Test-Path $CrashHelper) {
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Deleting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$CrashHelper'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Remove-Item $CrashHelper -Force -Recurse
+        }
+
+        $CrashReporter = "$env:ProgramFiles\Mozilla Firefox\crashreporter.exe"
+        if (Test-Path $CrashReporter) {
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Deleting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$CrashReporter'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Remove-Item $CrashReporter -Force -Recurse
+        }
     }
 }
