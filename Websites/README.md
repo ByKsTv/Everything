@@ -7,6 +7,7 @@
 - [Android Apps Sources](#android-apps-sources)
 - [Software](#software)
 - [Reviews](#reviews)
+- [Security](#security)
 
 ## Anime
 
@@ -84,3 +85,16 @@
 | -------- | -------------------------------------------- | ---------------- |
 | RTINGS   | [Website](https://www.rtings.com)            | Hardware Reviews |
 | HDTVTest | [Website](https://www.youtube.com/@hdtvtest) | TV Reviews       |
+
+## Security
+
+| Name               | Links                                                                 | Notes |
+| ------------------ | --------------------------------------------------------------------- | ----- |
+| VirusTotal         | [Website](https://www.virustotal.com/gui/home/upload)                 | ----- |
+| Google Safe Search | [Website](https://transparencyreport.google.com/safe-browsing/search) | ----- |
+| UrlScan            | [Website](https://urlscan.io)                                         | ----- |
+| PhishTank          | [Website](https://phishtank.org)                                      | ----- |
+| SUCURI             | [Website](https://sitecheck.sucuri.net)                               | ----- |
+| Unshorten.It       | [Website](https://unshorten.it)                                       | ----- |
+| CheckShortURL      | [Website](https://checkshorturl.com)                                  | ----- |
+| Browserling        | [Website](https://www.browserling.com)                                | ----- |
