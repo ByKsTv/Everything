@@ -11,6 +11,16 @@ if (-not (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue)) 
 $InstalledVersion = (Get-Package -Name 'Microsoft Visual Studio Code' -ErrorAction SilentlyContinue).Version
 $LatestVersion = (Invoke-RestMethod -Uri 'https://api.github.com/repos/microsoft/vscode/releases/latest').tag_name
 
+if ($null -eq $InstalledVersion) {
+    $RemoteJSON = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Visual_Studio_Code/settings.json'
+    $LocalJSON = [IO.Path]::Combine($env:APPDATA, 'Code', 'User', 'settings.json')
+    if (-not (Test-Path -Path $LocalJSON)) {
+        New-Item -Path $LocalJSON -ItemType File -Force
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Visual Studio Code'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' custom settings from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$RemoteJSON'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$LocalJSON'"); [Console]::ResetColor(); [Console]::WriteLine()
+        (New-Object System.Net.WebClient).DownloadFile($RemoteJSON, $LocalJSON)
+    }
+}
+
 if (($null -eq $InstalledVersion) -or ($InstalledVersion -notmatch $LatestVersion)) {
     $DDL = 'https://code.visualstudio.com/sha/download?build=stable&os=win32-x64'
     $FileName = 'VSCodeSetup-x64-' + "$LatestVersion" + '.exe'
