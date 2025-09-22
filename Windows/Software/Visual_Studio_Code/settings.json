@@ -1,0 +1,48 @@
+{
+    "[markdown]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "powershell.codeFormatting.autoCorrectAliases": true,
+    "powershell.codeFormatting.avoidSemicolonsAsLineTerminators": true,
+    "powershell.codeFormatting.trimWhitespaceAroundPipe": true,
+    "powershell.codeFormatting.useCorrectCasing": true,
+    "powershell.codeFormatting.whitespaceBetweenParameters": true,
+    "prettier.singleQuote": true,
+    "prettier.useTabs": true,
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "git.confirmSync": false,
+    "[powershell]": {
+        "editor.defaultFormatter": "ms-vscode.powershell"
+    },
+    "diffEditor.ignoreTrimWhitespace": false,
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "git.suggestSmartCommit": false,
+    "git.postCommitCommand": "sync",
+    "git.enableSmartCommit": true,
+    "powershell.codeFormatting.ignoreOneLineBlock": false,
+    "powershell.codeFormatting.useConstantStrings": true,
+    "workbench.activityBar.location": "top",
+    "git.ignoreRebaseWarning": true,
+    "gitlens.launchpad.indicator.enabled": false,
+    "editor.minimap.size": "fill",
+    "editor.minimap.showSlider": "always",
+    "gitlens.views.commits.files.layout": "list",
+    "workbench.startupEditor": "none",
+    "git.allowForcePush": true,
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "diffEditor.maxComputationTime": 0,
+    "editor.wordWrap": "on",
+    "telemetry.feedback.enabled": false,
+    "telemetry.editStats.enabled": false,
+    "telemetry.telemetryLevel": "off"
+}
