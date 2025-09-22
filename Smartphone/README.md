@@ -2,6 +2,7 @@
 
 - [APKs](#apks)
   - [IronFox Settings](#ironfox-settings)
+- [Diagnose APKs](#diagnose-apks)
 - [Useful ADB Commands](#useful-adb-commands)
 - [What to backup](#what-to-backup)
 - [Switch from Official ROM to Custom ROM](#switch-from-official-rom-to-custom-rom)
@@ -83,6 +84,13 @@ Buy eSIM, 5G, VoLTE, WiFi-Calling phone.
 | `Settings` > `Add-ons` > `uBlock Origin` > `Settings`                                            | [Restore from file](https://github.com/ByKsTv/Everything/blob/main/Windows/uBlock_Origin/Backup.json) |
 | `about:config` > `media.autoplay.blocking_policy`                                                | `0`                                                                                                   |
 | `about:config` > `media.autoplay.default`                                                        | `1`                                                                                                   |
+
+## Diagnose APKs
+
+| Name    | Links                                                             | Notes |
+| ------- | ----------------------------------------------------------------- | ----- |
+| jadx    | [Website](https://github.com/skylot/jadx/releases/latest)         | ----- |
+| Apktool | [Website](https://github.com/iBotPeaches/Apktool/releases/latest) | ----- |
 
 ## Useful ADB Commands
 
