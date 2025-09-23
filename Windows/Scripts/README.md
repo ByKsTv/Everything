@@ -1,11 +1,5 @@
 # Table Of Contents
 
-- [Python](#python)
-  - [SSID QR Code](#ssid-qr-code)
-  - [Convert Batch HEIC to PNG](#convert-batch-heic-to-png)
-  - [Convert PNG to ICO](#convert-png-to-ico)
-  - [Sorting subtitles and fonts to the current video files](#sorting-subtitles-and-fonts-to-the-current-video-files)
-    - [Directory Layout](#directory-layout)
 - [PowerShell](#powershell)
   - [Sort Subtitles](#sort-subtitles)
   - [Extract BDMV PLAYLIST](#extract-bdmv-playlist)
@@ -13,59 +7,13 @@
   - [Extract Base64](#extract-base64)
   - [Convert to FLAC](#convert-to-flac-requires-ffmpeg-in-path)
   - [Download Audio Only](#download-audio-only-requires-yt-dlp-in-path)
+- [Python](#python)
+  - [SSID QR Code](#ssid-qr-code)
+  - [Convert Batch HEIC to PNG](#convert-batch-heic-to-png)
+  - [Convert PNG to ICO](#convert-png-to-ico)
 - [Extra](#extra)
   - [Cut audio](#cut-audio-requires-ffmpeg-in-path)
   - [Extract .WIM](#extract-wim)
-
-## Python
-
-### SSID QR Code
-
-1. Open CMD:
-
-```cmd
-pip install qrcode[pil]
-```
-
-1. Use [WiFi_QR_Code](WiFi_QR_Code.py)
-1. Edit `WiFi_Name` and `WiFi_Password`.
-
-### Convert Batch HEIC to PNG
-
-1. CMD (Admin):
-
-   ```bash
-   pip install pillow pillow-heif
-   ```
-
-1. Use [Convert_HEIC_to_PNG.py](Convert_HEIC_to_PNG.py)
-1. Edit `directory_path`.
-
-### Convert PNG to ICO
-
-1. CMD (Admin):
-
-   ```bash
-   pip install pillow
-   ```
-
-1. Use [Convert_PNG_to_ICO.py](Convert_PNG_to_ICO.py)
-1. Edit `input_path`.
-
-### Sorting subtitles and fonts to the current video files
-
-1. Use [Subtitles_Sorting.py](Subtitles_Sorting.py)
-1. Edit `ExtractFontsFrom`.
-
-#### Directory Layout
-
-```txt
-TV Show/
-├── Subs/
-   ├── Episode 1/
-   ├── Episode 2/
-   ├── Episode 3/
-```
 
 ## PowerShell
 
@@ -122,6 +70,41 @@ TV Show/
    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Audio_Downloader.ps1')
 
    ```
+
+## Python
+
+### SSID QR Code
+
+1. Open CMD:
+
+```cmd
+pip install qrcode[pil]
+```
+
+1. Use [WiFi_QR_Code](WiFi_QR_Code.py)
+1. Edit `WiFi_Name` and `WiFi_Password`.
+
+### Convert Batch HEIC to PNG
+
+1. CMD (Admin):
+
+   ```bash
+   pip install pillow pillow-heif
+   ```
+
+1. Use [Convert_HEIC_to_PNG.py](Convert_HEIC_to_PNG.py)
+1. Edit `directory_path`.
+
+### Convert PNG to ICO
+
+1. CMD (Admin):
+
+   ```bash
+   pip install pillow
+   ```
+
+1. Use [Convert_PNG_to_ICO.py](Convert_PNG_to_ICO.py)
+1. Edit `input_path`.
 
 ## Extra
 
