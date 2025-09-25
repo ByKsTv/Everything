@@ -4,7 +4,11 @@
 1337x.to##.bitcoin
 1337x.to##.scroll-top
 1337x.to##footer > .info
+4pda.to###gfooter
 4pda.to###logostrip
+4pda.to##.copyright
+4pda.to##.social-icons
+4pda.to##table.ipbtable .catend
 9gag.com##.btn-color-primary.ui-btn
 9gag.com##.comment-community__guideline
 9gag.com##.create-meme-btn.btn-color-inherit.ui-btn
@@ -80,6 +84,7 @@ pornolab.net##.thx-form
 pornolab.net##.w100.nav
 pornolab.net##div.spacer_10
 pornolab.net##tr.tCenter.row3 > .med
+rog.asus.com##.reminder-info
 rog.asus.com##div[class^="PageLoading__loadingContainer__"]
 rutracker.org###footer-info-links
 rutracker.org###logo
@@ -89,6 +94,7 @@ rutracker.org##.footer-bottom-links
 rutracker.org##.hide-for-print.bottom_info
 rutracker.org##.hide-for-print.w100 .w100.nav
 rutracker.org##.med.catBottom
+rutracker.org##.nav-hidden-arrow.hide-for-print
 rutracker.org##.spacer_12
 rutracker.org##.spacer_4
 rutracker.org##.thHead
