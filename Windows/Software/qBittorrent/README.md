@@ -27,6 +27,7 @@ Custom settings which are not included:
 [BitTorrent]Session\Port
 [BitTorrent]Session\DiskCacheSize
 [BitTorrent]Session\DiskCacheTTL
+[BitTorrent]Session\StartPaused
 [Application]FileLogger\Path
 [Network]Cookies
 [GUI]RSSWidget\OpenedFolders
