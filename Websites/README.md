@@ -69,15 +69,15 @@
 
 ## Software
 
-| Name             | Links                                                                                                                                         | Notes                                                                        |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| RuTracker        | [Website](https://rutracker.org/forum/index.php)                                                                                              | [Requires an account](https://rutracker.org/forum/profile.php?mode=register) |
-| NoNaMe Club      | [Website](https://nnmclub.to)                                                                                                                 |                                                                              |
-| LRepacks         | [Website](https://lrepacks.net)                                                                                                               |                                                                              |
-| Diakov           | [Website](https://diakov.net)                                                                                                                 |                                                                              |
-| monkrus          | [Website](https://monkrus.ws) / [VK](https://vk.com/monkrus) / [Telegram](https://t.me/real_monkrus) / [RSS](https://w17.monkrus.ws/atom.xml) | Adobe & Autodesk                                                             |
-| Ratiborus        | [Website](https://msfree.su/index.php)                                                                                                        |                                                                              |
-| store.rg-adguard | [Website](https://store.rg-adguard.net/)                                                                                                      | Microsoft Store                                                              |
+| Name             | Links                                                                                                                                            | Notes                                                                        |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------- |
+| RuTracker        | [Website](https://rutracker.org/forum/index.php)                                                                                                 | [Requires an account](https://rutracker.org/forum/profile.php?mode=register) |
+| NoNaMe Club      | [Website](https://nnmclub.to)                                                                                                                    |                                                                              |
+| LRepacks         | [Website](https://lrepacks.net)                                                                                                                  |                                                                              |
+| Diakov           | [Website](https://diakov.net)                                                                                                                    |                                                                              |
+| monkrus          | [Website](http://www.monkrus.ws) / [VK](https://vk.com/monkrus) / [Telegram](https://t.me/real_monkrus) / [RSS](https://w17.monkrus.ws/atom.xml) | Adobe & Autodesk                                                             |
+| Ratiborus        | [Website](https://msfree.su/index.php)                                                                                                           |                                                                              |
+| store.rg-adguard | [Website](https://store.rg-adguard.net/)                                                                                                         | Microsoft Store                                                              |
 
 ## Reviews
 
