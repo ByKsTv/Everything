@@ -508,7 +508,7 @@ netsh interface tcp set global ecncapability=enabled
 	Note:
 	Lowering this value can improve responsiveness on lossy networks but may lead to unnecessary retransmissions. Increasing it can reduce retransmits on slow or high-latency networks. Use with care based on your environment.
 #>
-Set-NetTCPSetting -InitialRtoMs 300
+Set-NetTCPSetting -InitialRtoMs 3000
 
 <#
 	Setting:
