@@ -26,6 +26,8 @@
 	width: 44px !important; /* It doesn't apply without `!important` */
 	/* Align button button to the right */
 	margin-inline-end: -8px !important; /* It doesn't apply without `!important` */
+	/* Don't shrink when hover */
+	padding: 0 !important; /* It doesn't apply without `!important` */
 }
 
 /* Highlight tab close button on hover */
