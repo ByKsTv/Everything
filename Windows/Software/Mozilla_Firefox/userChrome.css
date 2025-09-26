@@ -196,6 +196,11 @@ menupopup :is(menuitem, menu)[disabled='true'] {
 	--background-color-canvas: black !important; /* It doesn't apply without `!important` */
 }
 
+/* Set the background color of "Edit Bookmark" table tags to black */
+#editBMPanel_tagsSelector {
+	background-color: black !important; /* It doesn't apply without `!important` */
+}
+
 /* Set the background color of the "Manage History" buttons on the header to black */
 #placesToolbar {
 	background-color: black !important; /* It doesn't apply without `!important` */
