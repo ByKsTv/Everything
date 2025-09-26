@@ -164,6 +164,11 @@ menupopup#contentAreaContextMenu > #context-setDesktopBackground {
 	transition: none !important; /* It doesn't apply without `!important` */
 }
 
+/* Remove fade effects from application menu */
+panel {
+	transition: none !important; /* It doesn't apply without `!important` */
+}
+
 /* Style the status panel (URL Preview) */
 #statuspanel-label {
 	color: white !important; /* It doesn't apply without `!important` */
