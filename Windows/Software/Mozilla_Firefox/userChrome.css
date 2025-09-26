@@ -190,3 +190,8 @@ panel {
 menupopup :is(menuitem, menu)[disabled='true'] {
 	display: none;
 }
+
+/* Set the background color of "Edit Bookmark" to black */
+:root[dialogroot] {
+	--background-color-canvas: black !important; /* It doesn't apply without `!important` */
+}
