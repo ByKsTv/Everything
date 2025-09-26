@@ -28,5 +28,5 @@ if ($installedVersionNormalized -lt $latestVersionNormalized) {
     (New-Object System.Net.WebClient).DownloadFile(($LatestVersion.assets | Where-Object { $_.name -match 'exe' }).browser_download_url, "$env:TEMP\SubtitleEditSetup.exe")
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Subtitle Edit: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
-    Start-Process -FilePath "$env:TEMP\SubtitleEditSetup.exe" -ArgumentList '/verysilent'
+    Start-Process -FilePath "$env:TEMP\SubtitleEditSetup.exe" -ArgumentList '/verysilent' -Wait
 }

@@ -110,7 +110,7 @@ if (-not (Test-Path -Path "${env:ProgramFiles(x86)}\Internet Download Manager\Un
     Start-Process regedit.exe -ArgumentList "/s ""$RegFile""" -Wait
     Copy-Item -Path $IDMan_New -Destination $IDMan_InstallLocation -Force
     Unblock-File -Path $IDMan_InstallLocation
-    Start-Process -FilePath $IDMan_InstallLocation -WindowStyle Minimized
+    Start-Process -FilePath $IDMan_InstallLocation -WindowStyle Minimized -Wait
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
     Remove-MpPreference -ExclusionPath $TempDir

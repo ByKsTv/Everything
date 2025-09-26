@@ -104,5 +104,5 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
 
     $Arguments += "`"$Url`""
 
-    Start-Process -FilePath 'yt-dlp' -ArgumentList $Arguments
+    Start-Process -FilePath 'yt-dlp' -ArgumentList $Arguments -Wait
 }

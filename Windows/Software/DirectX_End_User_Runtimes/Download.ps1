@@ -12,4 +12,4 @@ Start-Process $SavePath -ArgumentList $Argument -Wait
 $Destination = [IO.Path]::Combine($Destination, 'DXSETUP.exe')
 $Argument = '/silent'
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'DirectX End-User Runtimes (June 2010)'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Destination'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-Start-Process $Destination -ArgumentList $Argument
+Start-Process $Destination -ArgumentList $Argument -Wait

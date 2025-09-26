@@ -19,4 +19,4 @@ $SavePath = [IO.Path]::Combine($env:TEMP, $FileName)
                 
 $Argument = '/S /ALLUSERS'
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'CurseForge'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-Start-Process $SavePath -ArgumentList $Argument
+Start-Process $SavePath -ArgumentList $Argument -Wait

@@ -10,4 +10,4 @@ $SavePath = [IO.Path]::Combine($env:TEMP, $FileName)
 (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Edge WebView2 Runtime'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-Start-Process $SavePath
+Start-Process $SavePath -Wait

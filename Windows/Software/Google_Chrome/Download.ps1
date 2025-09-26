@@ -29,7 +29,7 @@ $Chrome_7Zip_FileName = [IO.Path]::GetFileName(([URI]$Chrome_7Zip_SavePath).Abso
 $Chrome_Installer_SavePath = (Get-ChildItem -Path $Chrome_MSI_Dir_SavePath -Recurse -Filter '*chrome_installer*' | Select-Object -First 1).FullName
 $Chrome_Installer_FileName = [IO.Path]::GetFileName(([URI]$Chrome_Installer_SavePath).AbsolutePath)
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Chrome_Installer_FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Chrome_Installer_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-Start-Process -FilePath $Chrome_Installer_SavePath
+Start-Process -FilePath $Chrome_Installer_SavePath -Wait
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome: Opening default apps on Windows Settings'); [Console]::ResetColor(); [Console]::WriteLine()
 Start-Process 'ms-settings:defaultapps'

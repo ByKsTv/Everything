@@ -10,7 +10,7 @@ $DisplayDriverUninstaller_Downloader.DownloadFile($DDU_DDL, $SavePath)
 
 $Argument = '/S'
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-Start-Process -FilePath $SavePath -ArgumentList $Argument
+Start-Process -FilePath $SavePath -ArgumentList $Argument -Wait
 
 $Settings_Path = "${env:ProgramFiles(x86)}\Display Driver Uninstaller\Settings\Settings.xml"
 $Settings_FileName = [IO.Path]::GetFileName(([URI]$Settings_Path).AbsolutePath)

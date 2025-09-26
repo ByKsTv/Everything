@@ -5,4 +5,4 @@ $CrystalDiskMark.Headers.Add('user-agent', 'Wget')
 $CrystalDiskMark.DownloadFile($DDL, "$env:temp\CrystalDiskMark.exe")
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('CrystalDiskMark: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
-Start-Process $env:temp\CrystalDiskMark.exe -ArgumentList '/VERYSILENT'
+Start-Process $env:temp\CrystalDiskMark.exe -ArgumentList '/VERYSILENT' -Wait

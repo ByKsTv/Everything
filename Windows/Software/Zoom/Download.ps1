@@ -5,4 +5,4 @@ $SavePath = [IO.Path]::Combine($env:TEMP, $FileName)
 (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Zoom'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-Start-Process $SavePath
+Start-Process $SavePath -Wait

@@ -26,5 +26,5 @@ if (($null -eq $Installed) -or ($Installed -notmatch $PlexLatestVersion)) {
     (New-Object System.Net.WebClient).DownloadFile("$PlexURL64bit", "$env:TEMP\PlexMediaServer-$PlexLatestVersion-x86_64.exe")
 
     Write-Host "Plex: Installing $PlexLatestVersion" -ForegroundColor green -BackgroundColor black
-    Start-Process -FilePath "$env:TEMP\PlexMediaServer-$PlexLatestVersion-x86_64.exe" -ArgumentList '/quiet /VERYSILENT'
+    Start-Process -FilePath "$env:TEMP\PlexMediaServer-$PlexLatestVersion-x86_64.exe" -ArgumentList '/quiet /VERYSILENT' -Wait
 }
