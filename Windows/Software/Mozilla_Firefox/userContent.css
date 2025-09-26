@@ -1,11 +1,5 @@
 /* Applies to Websites */
 
-/* Global rules */
-* {
-	/* Change all rounded borders to square borders */
-	border-radius: 0px !important; /* It doesn't apply without `!important` */
-}
-
 /* New empty tab with black background */
 @-moz-document url("about:blank"), url("about:newtab") {
 	html {

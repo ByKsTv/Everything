@@ -1,11 +1,5 @@
 /* Applies to Firefox UI */
 
-/* Global rules */
-* {
-	/* Change all rounded borders to square borders */
-	border-radius: 0px !important; /* It doesn't apply without `!important` */
-}
-
 /* Remove the "Search tabs" button from the tabs toolbar */
 #alltabs-button {
 	#TabsToolbar & {
