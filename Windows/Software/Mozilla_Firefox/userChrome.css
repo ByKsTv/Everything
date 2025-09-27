@@ -263,3 +263,38 @@ treecol,
 .autocomplete-richlistbox {
 	background: black !important; /* It doesn't apply without `!important` */
 }
+
+/* Set the border color of buttons to white */
+button,
+select,
+input[type='color'],
+menulist {
+	border-color: white !important; /* It doesn't apply without `!important` */
+}
+
+/* Set the border color of Permissions of current site to white */
+:is(menupopup, panel):where([type='arrow']) {
+	--panel-border-color: white !important; /* It doesn't apply without `!important` */
+}
+
+/* Set the border color of "Edit Bookmark" input text to white */
+:root[subdialog] {
+	input {
+		border-color: white !important; /* It doesn't apply without `!important` */
+	}
+}
+
+/* Set the border color of Permissions buttons such as "Allow" and "Block" pop-ups of current site to white */
+#notification-popup button {
+	border: 1px solid white !important; /* It doesn't apply without `!important` */
+}
+
+/* Set the border color of Permissions buttons such as "Store data in persistent storage" of current site to white */
+.permission-popup-permission-remove-button {
+	border: 1px solid white !important; /* It doesn't apply without `!important` */
+}
+
+/* Set a border for Permissions buttons such as "Autoplay" of current site */
+#permission-popup-menulist {
+	border: 1px solid;
+}
