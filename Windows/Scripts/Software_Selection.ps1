@@ -590,7 +590,7 @@ if (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue) {
     $CheckBoxes['NVCleanstall'].Enabled = $false
     $CheckBoxes['NVCleanstall'].Text += ' (Installed)'
 }
-$TaskName = 'OBS Studio Updater Updater'
+$TaskName = 'OBS Studio Updater'
 if (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue) {
     $CheckBoxes['OBS Studio'].Enabled = $false
     $CheckBoxes['OBS Studio'].Text += ' (Installed)'
