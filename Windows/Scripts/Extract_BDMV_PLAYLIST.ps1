@@ -7,15 +7,13 @@ $Form = New-Object System.Windows.Forms.Form -Property @{
     StartPosition = 'CenterScreen'
 }
 
-$FileDialog = New-Object System.Windows.Forms.OpenFileDialog -Property @{
-    FileName        = 'Select PLAYLIST Folder'
-    Title           = 'Extract BDMV Playlist'
-    Filter          = 'Folders|*.'
-    CheckFileExists = $false
+$FolderDialog = New-Object System.Windows.Forms.FolderBrowserDialog -Property @{
+    Description         = 'Select the PLAYLIST folder'
+    ShowNewFolderButton = $false
 }
 
-if ($FileDialog.ShowDialog($Form) -eq [Windows.Forms.DialogResult]::OK) {
-    $SelectedFolder = [IO.Path]::GetDirectoryName($FileDialog.FileName)
+if ($FolderDialog.ShowDialog($Form) -eq [Windows.Forms.DialogResult]::OK) {
+    $SelectedFolder = $FolderDialog.SelectedPath
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Selected folder '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SelectedFolder'"); [Console]::ResetColor(); [Console]::WriteLine()
 
     $Form = New-Object System.Windows.Forms.Form -Property @{
