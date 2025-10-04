@@ -1,11 +1,11 @@
 // ==UserScript==
-// @name         AliExpress Auto “View more” (all locales)
-// @namespace    https://example.com/
-// @version      0.2
-// @description  Auto-click the “View more” for specifications & extended description on AliExpress listings across subdomains/locales.
-// @match        *://*.aliexpress.com/item/*
-// @match        *://aliexpress.com/item/*
-// @grant        none
+// @name            AliExpress - View More
+// @version         2.0
+// @description     Auto-click the “View more” for specifications & extended description on AliExpress listings.
+// @downloadURL     https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/AliExpress_ExpandDetails.user.js
+// @match           *://*.aliexpress.com/item/*
+// @match           *://aliexpress.com/item/*
+// @grant           none
 // ==/UserScript==
 
 (function () {
