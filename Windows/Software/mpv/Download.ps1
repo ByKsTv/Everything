@@ -9,10 +9,6 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_Destination'"); [Console]::ResetColor(); [Console]::WriteLine()
 & 7z.exe x $MPV_SavePath -o"$MPV_Destination" -y
 
-$Installer = [IO.Path]::Combine($MPV_Destination, 'installer', 'mpv-install.bat')
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Installer'"); [Console]::ResetColor(); [Console]::WriteLine()
-Start-Process cmd.exe -ArgumentList "/C start /MIN $Installer /u ^&exit"
-
 $DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/settings.xml'
 $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
 $SavePath = [IO.Path]::Combine($MPV_Destination, $FileName)
@@ -28,6 +24,8 @@ if (-not ($OLD_PATH.Contains($MPV_Destination))) {
     [Environment]::SetEnvironmentVariable('Path', $NEW_PATH, [EnvironmentVariableTarget]::User)
     $env:Path = [Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [Environment]::GetEnvironmentVariable('Path', 'User')
 }
+
+& mpv.exe --register
 
 $DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/input.conf'
 $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
