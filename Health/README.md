@@ -1,7 +1,7 @@
 # Table Of Contents
 
 - [Arriving](#arriving)
-- [Cleaning Dentist](#cleaning-dentist)
+- [Tooth Cleaning Dentist](#tooth-cleaning-dentist)
 - [ENT Doctor](#ent-doctor)
 - [Prescriptions at a pharmacy](#prescriptions-at-a-pharmacy)
 - [Call Center](#call-center)
