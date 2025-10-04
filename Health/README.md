@@ -22,7 +22,7 @@
 
 - Arrive 40 minutes before appoinment, once you swipe your card you'll receive a number.
 
-## Cleaning Dentist
+## Tooth Cleaning Dentist
 
 - Visit once per year for cheap cost.
 - Do not use fluoride, it costs additional money.
@@ -33,6 +33,7 @@
 - Ears are self cleaning.
 - When doctor cleaning ear wax do not get close to the ear drum.
 - Dont use Q-Tips.
+- Do not block your sneeze.
 
 ## Prescriptions at a pharmacy
 
