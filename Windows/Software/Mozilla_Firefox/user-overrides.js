@@ -68,11 +68,20 @@ user_pref("signon.generation.enabled", false);
 // about:preferences#privacy > Privacy & Security > Passwords > Suggest Firefox Relay email masks to protect your email address > Off
 user_pref("signon.firefoxRelay.feature", "disabled");
 
+// about:preferences#privacy > Privacy & Security > History > Clear history when Firefox closes > Off
+user_pref("privacy.sanitize.sanitizeOnShutdown", false);
+
 // about:preferences#privacy > Privacy & Security > History > Clear history when Firefox closes > Settings > Browsing & download history > Off
 user_pref("privacy.clearOnShutdown_v2.browsingHistoryAndDownloads", false);
 
 // about:preferences#privacy > Privacy & Security > History > Clear history when Firefox closes > Settings > Cookies and site data > Off
 user_pref("privacy.clearOnShutdown_v2.cookiesAndStorage", false);
+
+// about:preferences#privacy > Privacy & Security > History > Clear history when Firefox closes > Settings > Temporary cached files and pages > Off
+user_pref("privacy.clearOnShutdown_v2.cache", false);
+
+// about:preferences#privacy > Privacy & Security > History > Clear history when Firefox closes > Settings > Saved form info > Off
+user_pref("privacy.clearOnShutdown_v2.formdata", false);
 
 // about:preferences#privacy > Privacy & Security > Firefox Data Collection and Use > Send daily usage ping to Mozilla > Off
 user_pref("datareporting.usage.uploadEnabled", false);
