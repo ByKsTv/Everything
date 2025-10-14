@@ -8,25 +8,26 @@
 
 ## Search
 
-1. PowerShell (Admin):
+1. PowerShell:
 
    ```powershell
    Set-Clipboard ($Motherboard=(Get-CimInstance Win32_BaseBoard).Product);$Motherboard
 
    ```
 
-   > This will show the motherboard model and will copy it to the clipboard.
+   > This will output the motherboard model and copy it to the clipboard.
 
 1. Paste the motherboard model to Google.
-1. Use the offical manufacter website to download the latest BIOS.
+1. Use the offical manufacturer website to download the latest BIOS.
 
 ## Update
 
 1. Insert a USB drive.
 1. Format the USB drive as `FAT32`.
 1. Move BIOS file to the USB.
-1. Safely Eject the USB (Taskbar > USB Icon > Right Click > `Eject`).
-1. Boot to BIOS:
+1. Safely Eject the USB:
+   > Taskbar > USB Icon > Right Click > `Eject`.
+1. Boot to BIOS (PowerShell/CMD):
 
    ```bat
    shutdown /r /fw /t 00
@@ -38,6 +39,7 @@
    > BIOS Update estimated completion time is 8 minutes.
 
 1. Update BIOS Firmware.
+   > Asus: `Tool` > `Asus EZ Flash 3 Utility` > Select storage device > Select BIOS file > `Yes`.
 1. Press `F1` to enter BIOS setup.
 1. Press `F5` to `Reset to Defaults`.
 
@@ -64,6 +66,6 @@
 
 ## Additional Information
 
-- [djdallmann Guide](https://github.com/djdallmann/GamingPCSetup/tree/master/CONTENT/DOCS/BIOS)
-- [fujitsu Guide](https://sp.ts.fujitsu.com/dmsp/Publications/public/wp-bios-settings-primergy-ww-en.pdf)
-- [congatec Guide](https://www.congatec.com/fileadmin/user_upload/Documents/Application_Notes/AN40_BIOS_Optimization_For_Real-time_Applications.pdf)
+- [djdallmann](https://github.com/djdallmann/GamingPCSetup/tree/master/CONTENT/DOCS/BIOS)
+- [fujitsu](https://sp.ts.fujitsu.com/dmsp/Publications/public/wp-bios-settings-primergy-ww-en.pdf)
+- [congatec](https://www.congatec.com/fileadmin/user_upload/Documents/Application_Notes/AN40_BIOS_Optimization_For_Real-time_Applications.pdf)
