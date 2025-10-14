@@ -34,6 +34,7 @@
    ```
 
    > Prefer to update at night hours to avoid sudden power outage.
+   >
    > BIOS Update estimated completion time is 8 minutes.
 
 1. Update BIOS Firmware.
