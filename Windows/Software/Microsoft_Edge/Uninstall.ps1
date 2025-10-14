@@ -9,7 +9,7 @@ if (-not (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue)) 
 }
 
 $InstalledSoftware = (Get-Package).Name
-if (($InstalledSoftware -match 'Microsoft Edge') -or (Get-Process | Where-Object { $_.Name -match 'Edge' })) {
+if (($InstalledSoftware -match 'Microsoft Edge') -or (Get-Process | Where-Object { $_.Name -match 'Edge' }) -or (Test-Path "${env:ProgramFiles(x86)}\Microsoft\EdgeUpdate")) {
     $Process = 'MicrosoftEdgeUpdate', 'OneDrive', 'WidgetService', 'Widgets', 'msedge', 'msedgewebview2'
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Stopping '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Edge'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' process '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Process'"); [Console]::ResetColor(); [Console]::WriteLine()
     $Process | ForEach-Object {
