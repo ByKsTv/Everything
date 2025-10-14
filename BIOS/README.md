@@ -10,13 +10,12 @@
 
 1. PowerShell (Admin):
 
-   > [!NOTE]
-   > This will show the motherboard model and will copy it to the clipboard.
-
    ```powershell
    Set-Clipboard ($Motherboard=(Get-CimInstance Win32_BaseBoard).Product);$Motherboard
 
    ```
+
+   > This will show the motherboard model and will copy it to the clipboard.
 
 1. Paste the motherboard model to Google.
 1. Use the offical manufacter website to download the latest BIOS.
@@ -29,15 +28,13 @@
 1. Safely Eject the USB (Taskbar > USB Icon > Right Click > `Eject`).
 1. Boot to BIOS:
 
-   > [!TIP]
-   > Prefer to update at night hours to avoid sudden power outage.
-   > [!NOTE]
-   > BIOS Update estimated completion time is 8 minutes.
-
    ```bat
    shutdown /r /fw /t 00
 
    ```
+
+   > Prefer to update at night hours to avoid sudden power outage.
+   > BIOS Update estimated completion time is 8 minutes.
 
 1. Update BIOS Firmware.
 1. Press `F1` to enter BIOS setup.
