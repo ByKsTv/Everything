@@ -19,7 +19,7 @@ $DropDownList = New-Object System.Windows.Forms.ComboBox -Property @{
     Location      = [Drawing.Point]::new(5, 0)
 }
 
-$Source = (Invoke-WebRequest -UseBasicParsing -Uri 'https://w17.monkrus.ws/search/label/Acrobat').Links | Where-Object { $_.outerHTML -notmatch '#more' -and $_.outerHTML -match 'x64' }
+$Source = (Invoke-WebRequest -UseBasicParsing -Uri "$((Invoke-WebRequest 'http://www.monkrus.ws/' -UseBasicParsing -MaximumRedirection 0 -ErrorAction SilentlyContinue).Headers.Location)search/label/Acrobat").Links | Where-Object { $_.outerHTML -notmatch '#comment-form' -and $_.outerHTML -notmatch '#more' -and $_.outerHTML -match 'x64' }
 
 $Array = @{}
 $GFX = [Drawing.Graphics]::FromHwnd($Form.Handle)
