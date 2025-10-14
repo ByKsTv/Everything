@@ -1,12 +1,12 @@
 # Table Of Contents
 
-- [BIOS Search](#bios-search)
-- [BIOS Update](#bios-update)
-- [BIOS Settings](#bios-settings)
+- [Search](#search)
+- [Update](#update)
+- [Settings](#settings)
   - [Asus](#asus)
 - [Additional Information](#additional-information)
 
-## BIOS Search
+## Search
 
 1. PowerShell (Admin):
 
@@ -16,16 +16,16 @@
    ```
 
 1. Paste from clipboard the motherboard model to Google.
-1. Use the official manufacter website to download the latest BIOS.
+1. Use the offical manufacter website to download the latest BIOS.
 
-## BIOS Update
+## Update
 
 1. Insert a USB drive.
 1. Format the USB drive as `FAT32`.
 1. Move BIOS file to the USB.
 1. Boot to BIOS:
 
-   ```powershell
+   ```bat
    shutdown /r /fw /t 00
 
    ```
@@ -36,7 +36,7 @@
 1. Press `F1` to enter BIOS setup.
 1. Press `F5` to `Reset to Defaults`.
 
-## BIOS Settings
+## Settings
 
 ### Asus
 
