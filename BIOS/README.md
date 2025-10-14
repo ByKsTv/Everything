@@ -15,8 +15,8 @@
 
    ```
 
-   > [!NOTE]
-   > This will show the motherboard model and will copy it to the clipboard.
+      > [!NOTE]
+      > This will show the motherboard model and will copy it to the clipboard.
 
 1. Paste the motherboard model to Google.
 1. Use the offical manufacter website to download the latest BIOS.
