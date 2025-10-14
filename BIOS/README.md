@@ -15,8 +15,8 @@
 
    ```
 
-> [!NOTE]
-> This will show the motherboard model and will copy it to the clipboard.
+   > [!NOTE]
+   > This will show the motherboard model and will copy it to the clipboard.
 
 1. Paste the motherboard model to Google.
 1. Use the offical manufacter website to download the latest BIOS.
@@ -34,11 +34,11 @@
 
    ```
 
-> [!TIP]
-> Prefer to update at night hours to avoid sudden power outage.
+   > [!TIP]
+   > Prefer to update at night hours to avoid sudden power outage.
 
-> [!NOTE]
-> BIOS Update estimated completion time is 8 minutes.
+   > [!NOTE]
+   > BIOS Update estimated completion time is 8 minutes.
 
 1. Update BIOS Firmware.
 1. Press `F1` to enter BIOS setup.
