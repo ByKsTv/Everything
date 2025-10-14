@@ -15,7 +15,10 @@
 
    ```
 
-1. Paste from clipboard the motherboard model to Google.
+> [!NOTE]
+> This will show the motherboard model and will copy it to the clipboard.
+
+1. Paste the motherboard model to Google.
 1. Use the offical manufacter website to download the latest BIOS.
 
 ## Update
@@ -23,6 +26,7 @@
 1. Insert a USB drive.
 1. Format the USB drive as `FAT32`.
 1. Move BIOS file to the USB.
+1. Safely Eject the USB (Taskbar > USB Icon > Right Click > `Eject`).
 1. Boot to BIOS:
 
    ```bat
@@ -30,8 +34,12 @@
 
    ```
 
-1. Prefer to update at night hours to avoid sudden power outage.
-1. BIOS Update estimated completion time is 8 minutes.
+> [!TIP]
+> Prefer to update at night hours to avoid sudden power outage.
+
+> [!NOTE]
+> BIOS Update estimated completion time is 8 minutes.
+
 1. Update BIOS Firmware.
 1. Press `F1` to enter BIOS setup.
 1. Press `F5` to `Reset to Defaults`.
