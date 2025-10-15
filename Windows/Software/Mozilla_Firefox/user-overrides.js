@@ -188,5 +188,26 @@ user_pref("browser.startup.preXulSkeletonUI", true);
 // Firefox shows an about:blank window as early as possible so you get instant visual feedback while the real UI is still loading. It’s just a plain placeholder, not the full chrome.
 user_pref("browser.startup.blankWindow", true);
 
+// master switch for Firefox’s built-in chatbot hooks. Turning this off removes the chatbot integrations broadly.
+user_pref("browser.ml.chat.enabled", false);
+// explicitly controls the context-menu “Ask an AI chatbot” item.
+user_pref("browser.ml.chat.menu", false);
+// disables the floating shortcut / mini popup that appears when selecting text.
+user_pref("browser.ml.chat.shortcuts", false);
+// hides the AI Chat tool in the sidebar.
+user_pref("browser.ml.chat.sidebar", false);
+// disables the on-device ML runtime used by Firefox’s AI features.
+user_pref("browser.ml.enable", false);
+// turns off AI “Link previews.”
+user_pref("browser.ml.linkPreview.enabled", false);
+user_pref("browser.ml.linkPreview.optin", false);
+// disables AI “Smart tab groups.” 
+user_pref("browser.tabs.groups.smart.enabled", false);
+// suppress badges/promo UI around the chatbot.
+user_pref("sidebar.notification.badge.aichat", false);
+user_pref("browser.ml.chat.page", false);
+user_pref("browser.ml.chat.page.menuBadge", false);
+user_pref("browser.ml.chat.page.footerBadge", false);
+
 // Custom UI
 user_pref("browser.uiCustomization.state", "{\"placements\":{\"widget-overflow-fixed-list\":[],\"nav-bar\":[\"back-button\",\"forward-button\",\"stop-reload-button\",\"customizableui-special-spring1\",\"vertical-spacer\",\"urlbar-container\",\"customizableui-special-spring2\",\"save-to-pocket-button\",\"downloads-button\",\"fxa-toolbar-menu-button\",\"unified-extensions-button\",\"ublock0_raymondhill_net-browser-action\"],\"toolbar-menubar\":[\"menubar-items\"],\"TabsToolbar\":[\"tabbrowser-tabs\",\"new-tab-button\",\"alltabs-button\"],\"vertical-tabs\":[],\"PersonalToolbar\":[\"personal-bookmarks\"],\"unified-extensions-area\":[]},\"seen\":[\"ublock0_raymondhill_net-browser-action\",\"developer-button\"],\"dirtyAreaCache\":[\"unified-extensions-area\",\"nav-bar\"],\"currentVersion\":22,\"newElementCount\":3}");
