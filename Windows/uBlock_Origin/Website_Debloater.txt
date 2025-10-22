@@ -262,7 +262,7 @@ www.xvideos.com##.slogan
 www.ynet.co.il##.articleShareButtons
 www.youtube.com###attached-survey
 www.youtube.com##ytd-rich-grid-media:has(.ytThumbnailOverlayProgressBarHostWatchedProgressBarSegment[style*="width: 100%"])
-www.youtube.com##:matches-path(^/$) ytd-rich-item-renderer:has(.yt-lockup-view-model--collection-stack-2):has(yt-thumbnail-overlay-badge-view-model)
+www.youtube.com##:matches-path(/^\/$/) ytd-rich-item-renderer:has(.yt-lockup-view-model--collection-stack-2):has(yt-thumbnail-overlay-badge-view-model)
 www.youtube.com##ytd-rich-item-renderer:has(.ytThumbnailOverlayProgressBarHostWatchedProgressBarSegment)
 www.zap.co.il###FooterBottomBarSection
 www.zap.co.il###FooterBottomBarSection > .FooterCenterFullWidth
