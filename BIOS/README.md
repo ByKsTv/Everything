@@ -25,7 +25,7 @@
 1. Insert a USB drive.
 1. Format the USB drive as `FAT32`.
 1. Move BIOS file to the USB.
-1. Safely Eject the USB:
+1. Safely Eject the USB.
    > Taskbar > USB Icon > Right Click > `Eject`.
 1. Boot to BIOS (PowerShell/CMD):
 
