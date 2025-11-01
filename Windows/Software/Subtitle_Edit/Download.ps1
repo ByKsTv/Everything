@@ -29,4 +29,10 @@ if ($installedVersionNormalized -lt $latestVersionNormalized) {
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Subtitle Edit: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
     Start-Process -FilePath "$env:TEMP\SubtitleEditSetup.exe" -ArgumentList '/verysilent' -Wait
+
+    $DesktopShortcut = "$($env:USERPROFILE)\Desktop\Subtitle Edit.lnk"
+    if (Test-Path -Path $DesktopShortcut) {
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Deleting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Subtitle Edit'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' desktop shortcut from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DesktopShortcut'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Remove-Item -Path $DesktopShortcut
+    }
 }
