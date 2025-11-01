@@ -18,6 +18,7 @@
 - [Transfer data from existing non-functional phone to existing old functional phone](#transfer-data-from-existing-non-functional-phone-to-existing-old-functional-phone)
   - [Prerequisites to Transfer data](#prerequisites-to-transfer-data)
 - [Install all APKs from Downloads folder](#install-all-apks-from-downloads-folder)
+- [Notes](#notes)
 
 ## APKs
 
@@ -87,8 +88,8 @@
 
 | Name    | Links                                                             | Notes |
 | ------- | ----------------------------------------------------------------- | ----- |
-| jadx    | [Website](https://github.com/skylot/jadx/releases/latest)         | ----- |
-| Apktool | [Website](https://github.com/iBotPeaches/Apktool/releases/latest) | ----- |
+| jadx    | [Website](https://github.com/skylot/jadx/releases/latest)         |       |
+| Apktool | [Website](https://github.com/iBotPeaches/Apktool/releases/latest) |       |
 
 ## Useful ADB Commands
 
@@ -121,7 +122,7 @@
 | [Backup](#what-to-backup)                                                                                              |
 | Charge device's battery                                                                                                |
 | `Settings` > `Security` > `Screen lock` > `None`                                                                       |
-| `Settings` > `System` > `Developer options` > `OEM Unlock` > Enable                                                    |
+| `Settings` > `System` > `Developer options` > `OEM Unlock` > Enable (Don't do it now)                                  |
 | `Settings` > `System` > `Developer options` > `USB debugging` > Enable                                                 |
 | Connect USB Cable from the device to the PC                                                                            |
 | Download [LineageOS](https://download.lineageos.org/devices)                                                           |
@@ -145,7 +146,7 @@
 | `adb install Magisk-v28.1.apk`                                                                           | Install `Magisk` app to the device                                                                                |
 | `adb push boot.img /storage/emulated/0/Download`                                                         | Copy `boot.img` from the PC to `Downloads` folder on the device                                                   |
 | `Magisk` > `Install` > `Select and Patch a File` > `boot.img` > `Let's Go`                               | Patch `boot.img` using `Magisk` app                                                                               |
-| `adb pull /storage/emulated/0/Download/magisk_patched.img`                                               | Copy patched `boot.img` from the device to the PC                                                                 |
+| `adb pull /storage/emulated/0/Download/magisk_patched-29000_gWxtQ.img`                                   | Copy patched `boot.img` from the device to the PC                                                                 |
 | `adb reboot bootloader`                                                                                  | Reboot to bootloader                                                                                              |
 | `fastboot devices`                                                                                       | If no devices detected - check Windows Update for drivers / `Device Manager` and manually select to update driver |
 | `fastboot oem unlock` > `UNLOCK THE BOOTLOADER`                                                          | Unlock OEM Bootloader - This will wipe the data on the device                                                     |
@@ -156,7 +157,7 @@
 | `fastboot flash dtbo dtbo.img`                                                                           | Flash `dtbo.img`                                                                                                  |
 | `fastboot flash vbmeta vbmeta.img`                                                                       | Flash `vbmeta.img`                                                                                                |
 | `fastboot flash boot boot.img`                                                                           | Flash original recovery image of Custom ROM                                                                       |
-| `fastboot flash boot magisk_patched.img`                                                                 | Flash rooted recovery image of Custom ROM                                                                         |
+| `fastboot flash boot magisk_patched-29000_gWxtQ.img`                                                     | Flash rooted recovery image of Custom ROM                                                                         |
 | `fastboot reboot recovery`                                                                               | Reboot to recovery                                                                                                |
 | `Factory Reset` > `Format data / factory reset` > `Format data`                                          | Factory reset                                                                                                     |
 | `Advanced` > `Enable ADB` > `Apply Update` > `Apply from ADB`                                            | Enable ADB and Use ADB to Sideload                                                                                |
@@ -203,7 +204,7 @@
 | -------------------------------------------------------------------------- | --------------------------------------------------------------- |
 | `adb push boot.img /storage/emulated/0/Download`                           | Copy `boot.img` from the PC to `Downloads` folder on the device |
 | `Magisk` > `Install` > `Select and Patch a File` > `boot.img` > `Let's Go` | Patch `boot.img` using `Magisk` app                             |
-| `adb pull /storage/emulated/0/Download/magisk_patched-28100_Yxsaz.img`     | Copy patched `boot.img` from the device to the PC               |
+| `adb pull /storage/emulated/0/Download/magisk_patched-29000_gWxtQ.img`     | Copy patched `boot.img` from the device to the PC               |
 | `adb reboot sideload`                                                      | Reboot to sideload                                              |
 | `adb sideload lineage-22.1-20250105-nightly-signed.zip`                    | Sideload Custom ROM                                             |
 | `Reboot to recovery` > `Yes`                                               | Reboot to recovery                                              |
@@ -211,10 +212,9 @@
 | `adb sideload MindTheGapps-15.0.0-arm64-20240928_150548.zip`               | Sideload Google Apps                                            |
 | `Signature verification failed, install anyway?` > `Yes`                   | Install anyway                                                  |
 | `adb reboot bootloader`                                                    | Reboot to bootloader                                            |
-| `fastboot flash boot magisk_patched.img`                                   | Flash rooted recovery image of Custom ROM                       |
+| `fastboot flash boot magisk_patched-29000_gWxtQ.img`                       | Flash rooted recovery image of Custom ROM                       |
 | `fastboot reboot`                                                          | Reboot to system                                                |
-
-Disable USB debugging.
+| Disable USB Debugging                                                      |                                                                 |
 
 ## Factory Reset Custom ROM
 
@@ -243,7 +243,7 @@ Disable USB debugging.
 | `adb install Magisk-v28.1.apk`                                                              | Install `Magisk` app to the device                                     |
 | `adb push boot.img /storage/emulated/0/Download`                                            | Copy `boot.img` from the PC to `Downloads` folder on the device        |
 | `Magisk` > `Install` > `Select and Patch a File` > `boot.img` > `Let's Go`                  | Patch `boot.img` using `Magisk` app                                    |
-| `adb pull /storage/emulated/0/Download/magisk_patched.img`                                  | Copy patched `boot.img` from the device to the PC                      |
+| `adb pull /storage/emulated/0/Download/magisk_patched-29000_gWxtQ.img`                      | Copy patched `boot.img` from the device to the PC                      |
 | `adb reboot recovery`                                                                       | Reboot to recovery                                                     |
 | `Factory Reset` > `Format data / factory reset` > `Format data`                             | Factory reset                                                          |
 | `Advanced` > `Enable ADB` > `Apply Update` > `Apply from ADB`                               | Enable ADB and Use ADB to Sideload                                     |
@@ -253,7 +253,7 @@ Disable USB debugging.
 | `adb sideload MindTheGapps-15.0.0-arm64-20240928_150548.zip`                                | Sideload Google Apps                                                   |
 | `Signature verification failed, install anyway?` > `Yes`                                    | Install anyway                                                         |
 | `adb reboot bootloader`                                                                     | Reboot to bootloader                                                   |
-| `fastboot flash boot magisk_patched.img`                                                    | Flash rooted recovery image of Custom ROM                              |
+| `fastboot flash boot magisk_patched-29000_gWxtQ.img`                                        | Flash rooted recovery image of Custom ROM                              |
 | `fastboot reboot`                                                                           | Reboot to system                                                       |
 | `adb push BCR-1.77-release.zip /storage/emulated/0/Download`                                | Copy `Basic Call Recorder` from PC to `Downloads` folder on the device |
 | `Magisk` > `Modules` > `Install from storage` > `BCR-1.77-release.zip` > `Reboot Now`       | Install `Basic Call Recorder` app                                      |
@@ -283,3 +283,10 @@ Get-ChildItem "$env:USERPROFILE\Downloads" -Filter *.apk | ForEach-Object {
     & adb.exe install $_.FullName
 }
 ```
+
+## Notes
+
+- Disable SIM Data Roaming (if you're overseas and it's turned on you'll pay high data rates).
+- If printing using the phone stops after a short while it might be related to battery optimization, battery saver.
+- Incoming calls from overseas won't charge you.
+- Printing from phone requires additional app to be installed, if owns a HP printer download HP Print Service.
