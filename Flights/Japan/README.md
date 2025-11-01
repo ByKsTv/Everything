@@ -3,12 +3,16 @@
 - [Immigration](#immigration)
 - [Android Apps](#android-apps)
 - [Food](#food)
+- [Water](#water)
+- [Culture](#culture)
+- [Places](#places)
 
 ## Immigration
 
-- [Visit Japan Web](https://services.digital.go.jp/en/visit-japan-web/)
-
-> Fill the form from the smartphone, you need to take a picture of your passport.
+- Fill out the form on [Visit Japan Web](https://services.digital.go.jp/en/visit-japan-web)
+  > Use smartphone, you need to take a picture of your passport.
+- Temporary visitor: 90 days duration.
+- Always carry Passport on you, useful for discounts.
 
 ## Android Apps
 
@@ -21,3 +25,15 @@
 ## Food
 
 - Yakiniku Like.
+
+## Water
+
+- Don't drink water from shower.
+
+## Culture
+
+- Do not eat and walk.
+
+## Places
+
+- Circus Tokyo - Music club
