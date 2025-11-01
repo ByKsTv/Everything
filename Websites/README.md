@@ -11,6 +11,7 @@
 - [Reviews](#reviews)
 - [Security](#security)
 - [Wiki](#wiki)
+- [Other](#other)
 
 ## Anime
 
@@ -90,6 +91,7 @@
 | monkrus          | [Website](http://www.monkrus.ws) / [VK](https://vk.com/monkrus) / [Telegram](https://t.me/real_monkrus) / [RSS](https://w17.monkrus.ws/atom.xml) | Adobe & Autodesk                                                             |
 | Ratiborus        | [Website](https://msfree.su/index.php)                                                                                                           |                                                                              |
 | store.rg-adguard | [Website](https://store.rg-adguard.net)                                                                                                          | Microsoft Store                                                              |
+| KpoJIuK          | [Website](https://repack.me/)                                                                                                                    | Requires an account                                                          |
 
 ## Reviews
 
@@ -121,3 +123,9 @@
 | Piracy  | [Website](https://www.reddit.com/r/Piracy/wiki/index)                                   |       |
 | Hacking | [Website](https://www.reddit.com/r/hacking/wiki/index)                                  |       |
 | GitHub  | [awesome-piracy](https://github.com/Shakil-Shahadat/awesome-piracy/blob/main/Readme.md) |       |
+
+## Other
+
+| Name            | Links                                                 | Notes |
+| --------------- | ----------------------------------------------------- | ----- |
+| RDP File Editor | [Website](https://kimmknight.github.io/rdpfileeditor) |       |
