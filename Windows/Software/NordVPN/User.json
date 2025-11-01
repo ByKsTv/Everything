@@ -17,7 +17,7 @@
 		"CustomDnsHosts": [],
 		"CustomDnsServersEnabled": false,
 		"KillSwitchApps": [],
-		"InternetKillSwitchInFullMode": false,
+		"InternetKillSwitchInFullMode": true,
 		"LocalNetworkBlock": false,
 		"KillSwitch": false,
 		"SelectedAutoConnectTypes": ["off"],
