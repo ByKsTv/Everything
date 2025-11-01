@@ -17,6 +17,8 @@
 - [Bed](#bed)
 - [Microwave](#microwave)
 - [Clothes](#clothes)
+- [Water](#water)
+- [Food](#food)
 
 ## Arriving
 
@@ -46,7 +48,7 @@
 ## Nails
 
 - Hand: Cut Round.
-- Toenails: Cut Straight.
+- Toenails: Cut Straight, Don't cut too short.
 
 ## Eyes
 
@@ -100,3 +102,13 @@
 ## Clothes
 
 - When first buying clothes use the washing machine.
+
+## Water
+
+- Do not drink water from the shower.
+- Do not lay down and eat or drink.
+- Do not drive and eat or drink.
+
+## Food
+
+- Cut the top layer of an apple.
