@@ -12,10 +12,11 @@
 - [Luggage](#luggage)
 - [Terminal](#terminal)
 - [Withdraw](#withdraw)
+- [Washing machine](#washing-machine)
 
 ## Tickets
 
-- [Skyscanner](https://www.skyscanner.com) - [Android App](https://play.google.com/store/apps/details?id=net.skyscanner.android.main)
+- [Skyscanner](https://www.skyscanner.com/) - [Google Play Store](https://play.google.com/store/apps/details?id=net.skyscanner.android.main)
 
 > Use multiple devices to check the price.
 >
@@ -34,8 +35,8 @@
 
 ## Hotels
 
-- [Booking](https://www.booking.com/) - [Android App](https://play.google.com/store/apps/details?id=com.booking)
-- [Airbnb](https://www.airbnb.com/)
+- [Booking](https://www.booking.com/) - [Google Play Store](https://play.google.com/store/apps/details?id=com.booking)
+- [Airbnb](https://www.airbnb.com/) - [Google Play Store](https://play.google.com/store/apps/details?id=com.airbnb.android)
 
 > Use multiple devices to check the price.
 >
@@ -70,6 +71,7 @@
 - Buy SIM in the destination country in you do't plan to get SMS.
 - Buy local SIM if you plan to use SMS to transfer money.
 - If you buy SIM in the destination country - buy longer than needed.
+- Compare eSIM packages using [Airalo](https://www.airalo.com).
 
 ## Portable charger
 
@@ -107,3 +109,7 @@ Trolly:
 ## Withdraw
 
 - While in another country, withdraw using their local currency to avoid exchange rate.
+
+## Washing machine
+
+- Do not share washing machine with a partner since clothes might get mixed up.
