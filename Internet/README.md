@@ -246,24 +246,29 @@ Domains Regex Blacklist:
 Known Issues:
 
 - When using `Pi-Hole` and `Kan11` app - a pop-up will say "No Connection" when first watching live.
-- When using `Pi-Hole` and `Samsung` TV - can't install new apps.
 
 ### LAN - Router - Setup
 
-1. `Network Application` > `Settings` > `System` > `General` > `Country/Region` > `United States`
-   > This will improve WiFI signal.
+- `Network Application` > `Settings` > `System` > `General` > `Country/Region` > `United States`
+  > This will improve WiFI signal.
+- `Network Application` > `Settings` > `WiFi` > `Multicast to Unicast` > `On`
+  > This will improve. [More info](https://www.youtube.com/watch?v=ldOVGSiSViw).
 
 ### LAN - More
 
 - More information about Ubiquiti:
 
   - [AP Antenna Radiation Patterns](https://help.ui.com/hc/en-us/articles/115005212927-AP-Antenna-Radiation-Patterns)
+  - [UniFi WiFi SSID and AP Settings Overview](https://help.ui.com/hc/en-us/articles/32065480092951-UniFi-WiFi-SSID-and-AP-Settings-Overview)
+  - [WiFi 7 MLO w/ Pixel 10 Pro & Ubiquiti UniFi Access Point (E7/U7-Pro-XGS/EMLMR/EMLSR/STR)](https://www.youtube.com/watch?v=RPSnWxe9_DE)
   - [777 or 404](https://www.youtube.com/@hz777)
   - [Mactelecom Networks](https://www.youtube.com/@MactelecomNetworks)
 
 - For some IoT devices such as WiFi printers and WiFi universal remote will have issues if the "Band Steering" option is enabled.
 
 - Do not plug RJ45 male connector at a sharp angle and stress it, it will damage the copper pins on the RJ45 female port.
+
+- Never let ISP technicians touch your private LAN equipment.
 
 ## WAN
 
@@ -328,6 +333,9 @@ Known Issues:
 
   - Take a picture of the damaged ISP cable.
   - Contact the ISP in every way and claim: `Cable is damaged, I don't have internet and I work from home`.
+
+- Clean fiber results better dBm and lower ping.
+- Clean fiber even if it's new.
 
 ## Mobile
 
@@ -423,6 +431,9 @@ Cancel unnecessary services, also voicemail
 1. `Source` > `Edit` > `Blu-ray player` > `Ok`.
 1. `Settings` > `Picture` > `Picture Mode` > `FILMMAKER MODE`.
 1. `Settings` > `Picture` > `Expert Settings` > `Picture Clarity Settings` > `Custom` > `Blur Reduction: 0` > `Judder Reduction: 0`.
+1. `Settings` > `Picture` > `Expert Settings` > `Local Dimming` > `Low`.
+   > Becasue default value (`Standard`) clips whites when using `AVS HD 709` Calibration test.
+1. `Settings` > `Picture` > `Expert Settings` > `Gamma` > `2.2`.
 1. `Settings` > `General` > `External Device Manager` > `Input Signal Plus` > Select current HDMI > `Close`.
 1. `Settings`> `General` > `Eco Solution` > `Ambient Light Detection` > `Off`
 1. `Settings` > `General` > `Smart Features` > `Autorun Smart Hub: Off` > `Autorun Last App: Off` > `Autorun Multi View Casting: Off`.
