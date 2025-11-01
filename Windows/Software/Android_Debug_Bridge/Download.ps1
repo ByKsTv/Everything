@@ -15,7 +15,7 @@ if (-not (Test-Path $Install)) {
     Expand-Archive -Path $SavePath -DestinationPath $env:TEMP -Force
             
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Moving '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'ADB'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ExtractPath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Install'"); [Console]::ResetColor(); [Console]::WriteLine()
-    Move-Item -Path $ExtractPath -Destination $Install
+    Move-Item -Path $ExtractPath -Destination $Install -Force
 }
         
 $ADB_OLD_PATH = [Environment]::GetEnvironmentVariable('Path', [EnvironmentVariableTarget]::User)
