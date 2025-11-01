@@ -46,6 +46,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 1. `START` > Uncheck every box > `OK` > `OK` > When finished close the program.
 1. A folder called `Drivers` has been opened, download and extract all of your motherboard drivers to this folder.
+   > If you installed PCI-E Network card then download it's drivers.
 1. To find which motherboard is installed - PowerShell (Admin):
 
    ```powershell
