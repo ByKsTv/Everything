@@ -997,7 +997,7 @@ $SettingsToChange = @(
 	Note:
 	Higher values help on multi-core systems.
 #>
-	@{ DisplayName = 'Maximum Number of RSS Queues'; DisplayValues = @('1 RSS Queues', '2 RSS Queues', '4 RSS Queues', '1 Queue', '2 Queue', '4 Queue') },
+	@{ DisplayName = 'Maximum Number of RSS Queues'; DisplayValues = @('1 RSS Queues', '2 RSS Queues', '4 RSS Queues', '1 Queue', '2 Queue', '4 Queue', '2 Queues', '4 Queues') },
 
 	<#
 	Setting:
@@ -1193,7 +1193,7 @@ $SettingsToChange = @(
 	Note:
 	Higher values may improve performance.
 #>
-	@{ DisplayName = 'Receive Buffers'; DisplayValues = @('2048') },
+	@{ DisplayName = 'Receive Buffers'; DisplayValues = @('2048', '4096') },
 
 	<#
 	Setting:
@@ -1328,7 +1328,7 @@ $SettingsToChange = @(
 	Note:
 	Auto Negotiation is best for most users.
 #>
-	@{ DisplayName = 'Speed & Duplex'; DisplayValues = @('1.0 Gbps Full Duplex', '2.5 Gbps Full Duplex') },
+	@{ DisplayName = 'Speed & Duplex'; DisplayValues = @('Auto Negotiation') },
 
 	<#
 	Setting:
@@ -1388,7 +1388,7 @@ $SettingsToChange = @(
 	Note:
 	More buffers may help with heavy network use.
 #>
-	@{ DisplayName = 'Transmit Buffers'; DisplayValues = @('1024', '2048') },
+	@{ DisplayName = 'Transmit Buffers'; DisplayValues = @('1024', '2048', '8184') },
 
 	<#
 	Setting:
@@ -1787,6 +1787,108 @@ $SettingsToChange = @(
 #>
 	@{ DisplayName = 'Modern standby wake on Magic packet'; DisplayValues = @('Enabled') }
 
+	<#
+	Setting:
+	NDIS QoS
+
+	Description:
+	Enables NIC-level Quality of Service so the adapter can mark and prioritize traffic (e.g., 802.1p/DSCP) and participate in Data Center Bridging features (ETS/PFC) when configured, helping latency-sensitive flows.
+
+	Values:
+	QoS Disabled, QoS Enabled
+
+	Note:
+	Best for managed networks using QoS/DCB (e.g., Hyper-V, SMB Direct/RDMA, iSCSI, VoIP). In typical home/office setups or with switches lacking QoS support, leave Disabled.
+#>
+	@{ DisplayName = 'NDIS QoS'; DisplayValues = @('QoS Disabled') }
+
+	<#
+	Setting:
+	Recv Segment Coalescing (IPv4)
+
+	Description:
+	NIC offload that aggregates multiple incoming TCP segments from the same flow into a larger packet before handing it to the OS, reducing interrupts/CPU overhead and improving throughput for IPv4 traffic.
+
+	Values:
+	Disabled, Enabled
+
+	Note:
+	Usually beneficial to leave Enabled. May slightly add per-packet latency and can interfere with packet capture/IDS tools or certain VPN/teaming/virtual switch stacks—disable if troubleshooting odd latency, drops, or monitoring accuracy.
+#>
+	@{ DisplayName = 'Recv Segment Coalescing (IPv4)'; DisplayValues = @('Disabled') }
+	@{ DisplayName = 'Recv Segment Coalescing (IPv6)'; DisplayValues = @('Disabled') }
+
+	<#
+	Setting:
+	Downshift retries
+
+	Description:
+	Sets how many failed 1Gb (1000BASE-T) auto-negotiation attempts the NIC’s PHY will make before disabling 1Gb and retrying link at 100/10 Mb to establish connectivity on marginal cabling or older gear. More retries = longer link-up time but greater chance to keep 1Gb; fewer retries = faster fallback to 100/10.
+
+	Values:
+	7, 6, 5, 4, 3, 2, 1, Disabled
+
+	Note:
+	Use higher values on known-good cabling to favor 1Gb links. Use lower values if links take long to come up or frequently drop to 100 Mb on suspect runs. “Disabled” prevents downshifting (keeps trying 1Gb), which can leave the link down on bad cabling; generally not recommended except for troubleshooting. Once the link is up, this setting doesn’t affect runtime speed/behavior.
+#>
+	@{ DisplayName = 'Downshift retries'; DisplayValues = @('7') }
+
+	<#
+	Setting:
+	Wake from power off state
+
+	Description:
+	Allows the NIC to power on the system from a soft-off state (S5) when standby power is present—typically via a Magic Packet (WoL) or other wake events supported by the adapter. Not effective from mechanical off (G3) or when AC power is removed. Requires platform/BIOS and OS support to function.
+
+	Values:
+	Disabled, Enabled
+
+	Note:
+	Enable if you need Wake-on-LAN for remote access or maintenance after shutdown. May keep link LEDs on, draw a small standby power, or cause unintended wakes on noisy networks—use “Magic Packet only” if available. Ensure corresponding BIOS/UEFI PME/WoL options and the OS “Allow this device to wake the computer” setting are also enabled. Windows Fast Startup (hybrid shutdown, S4) can interact with this—behavior may differ by system.
+#>
+	@{ DisplayName = 'Wake from power off state'; DisplayValues = @('Disabled') }
+
+	<#
+	Setting:
+	Wake on Link
+
+	Description:
+	Allows the NIC to wake the system when a physical Ethernet link is detected or restored (e.g., cable plugged in, switch port becomes active), without requiring a Magic Packet. Some adapters keep a low-power link alive while off so they can detect this event.
+
+	Values:
+	Disabled, Forced
+
+	Note:
+	Use “Forced” only if you specifically want the PC to power up on link change/restore. It can cause unintended wakes during link flaps, keeps link LEDs on, and draws small standby power. Requires BIOS/UEFI WoL/PME support and OS permission to let the NIC wake the computer. If you prefer wake via Magic Packet only, leave this Disabled.
+#>
+	@{ DisplayName = 'Wake on Link'; DisplayValues = @('Disabled') }
+
+	<#
+	Setting:
+	Wake on Ping
+
+	Description:
+	Wakes the system when the NIC receives an ICMP Echo Request (ping) to its IP address while in a low-power state—no Magic Packet required. Relies on the adapter’s low-power filters/offloads (e.g., ARP/NDP, pattern match) and platform wake support.
+
+	Values:
+	Enabled, Disabled
+
+	Note:
+	Leave Disabled unless you specifically need to wake devices by ping. Any network scanner or stray ping can power the system on; ICMP filtering or blocked pings will prevent it from working. Requires BIOS/UEFI WoL/PME support and OS permission for the NIC to wake the computer; behavior may vary by adapter and may work only on the local subnet.
+#>
+	@{ DisplayName = 'Wake on Ping'; DisplayValues = @('Disabled') }
+
+	@{ DisplayName = 'IPv4 Checksum Offload'; DisplayValues = @('Rx & Tx Enabled') }
+	@{ DisplayName = 'Large Send Offload V1 (IPv4)'; DisplayValues = @('Enabled') }
+	@{ DisplayName = 'Large Send Offload V2 (IPv4)'; DisplayValues = @('Enabled') }
+	@{ DisplayName = 'Large Send Offload V2 (IPv6)'; DisplayValues = @('Enabled') }
+	@{ DisplayName = 'TCP Checksum Offload (IPv4)'; DisplayValues = @('Rx & Tx Enabled') }
+	@{ DisplayName = 'TCP Checksum Offload (IPv6)'; DisplayValues = @('Rx & Tx Enabled') }
+	@{ DisplayName = 'UDP Checksum Offload (IPv4)'; DisplayValues = @('Rx & Tx Enabled') }
+	@{ DisplayName = 'UDP Checksum Offload (IPv6)'; DisplayValues = @('Rx & Tx Enabled') }
+	@{ DisplayName = 'TCP/UDP Checksum Offload (IPv4)'; DisplayValues = @('Rx & Tx Enabled') }
+	@{ DisplayName = 'TCP/UDP Checksum Offload (IPv6)'; DisplayValues = @('Rx & Tx Enabled') }
+
 	# TODO
 	# Ethernet0: Locally Administered Address: Valid Values:
 	# Ethernet0: Maximum RSS Processor Number: Valid Values: 
@@ -1897,7 +1999,8 @@ foreach ($nic in $NetworkAdapters) {
 
 $WakeOnLanProperties = @(
 	'Enable PME',
-	'Shutdown Wake Up'
+	'Shutdown Wake Up',
+	'Wake from power off state'
 )
 foreach ($Adapter in $NetworkAdapters) {
 	$AdvancedProperties = Get-NetAdapterAdvancedProperty -Name $Adapter.Name -ErrorAction SilentlyContinue
