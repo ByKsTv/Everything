@@ -499,7 +499,7 @@ Source: [𝗟𝗚 𝗢𝗟𝗘𝗗 𝗧𝗩 𝗦𝗲𝘁𝘁𝗶𝗻𝗴𝘀 �
 - Cable TV is outdated. Providers now sell a bundle that includes:
 
   - Router (Internet + WiFi) – rented monthly.
-    - Instead - Buy your own (Recommended: Ubiquiti).
+    - Instead - Buy your own (Recommended: Ubiquiti), choose the best CPU and highest GHz.
   - Android TV box (with their app) – rented monthly.
     - Instead - Buy your own (Recommended: Google TV Streamer 4K).
   - Access to channels via their app – monthly fee.
