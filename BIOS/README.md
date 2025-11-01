@@ -1,12 +1,12 @@
 # Table Of Contents
 
-- [Search](#search)
-- [Update](#update)
-- [Settings](#settings)
-  - [Asus](#asus)
+- [What is my motherboard?](#what-is-my-motherboard)
+- [How to update BIOS?](#how-to-update-bios)
+- [BIOS Settings](#bios-settings)
+  - [Asus motherboard](#asus-motherboard)
 - [Additional Information](#additional-information)
 
-## Search
+## What is my motherboard?
 
 1. PowerShell:
 
@@ -20,7 +20,7 @@
 1. Paste the motherboard model to Google.
 1. Use the offical manufacturer website to download the latest BIOS.
 
-## Update
+## How to update BIOS?
 
 1. Insert a USB drive.
 1. Format the USB drive as `FAT32`.
@@ -39,13 +39,13 @@
    > BIOS Update estimated completion time is 8 minutes.
 
 1. Update BIOS Firmware.
-   > Asus: `Tool` > `Asus EZ Flash 3 Utility` > Select storage device > Select BIOS file > `Yes`.
+   > Asus motherboard: `Tool` > `Asus EZ Flash 3 Utility` > Select storage device > Select BIOS file > `Yes`.
 1. Press `F1` to enter BIOS setup.
 1. Press `F5` to `Reset to Defaults`.
 
-## Settings
+## BIOS Settings
 
-### Asus
+### Asus motherboard
 
 | Menu     | Setting                                                                      | Value             | Notes       |
 | -------- | ---------------------------------------------------------------------------- | ----------------- | ----------- |
