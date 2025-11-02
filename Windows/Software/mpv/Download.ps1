@@ -176,7 +176,8 @@ $Form_OK.Add_Click({
         $Form.Topmost = $false
         if ($CheckBox_SponsorBlock.Checked -eq $true) {
 
-            $DDL = 'https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblock.lua'
+            # $DDL = 'https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblock.lua'
+            $DDL = 'https://raw.githubusercontent.com/alopatindev/mpv_sponsorblock/ff13c937f9ba0897f78a828cc7b833081baf73ae/sponsorblock.lua' # PR to add `poi_highlight`
             $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
             $SavePath = [IO.Path]::Combine($ScriptsPath, $FileName)
             [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' userscript '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
@@ -192,8 +193,7 @@ $Form_OK.Add_Click({
             if (-not (Test-Path -Path $DIR_sponsorblock)) {
                 New-Item $DIR_sponsorblock -ItemType Directory -Force
             }
-            # $DDL = 'https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblock_shared/sponsorblock.py'
-            $DDL = 'https://raw.githubusercontent.com/alopatindev/mpv_sponsorblock/ff13c937f9ba0897f78a828cc7b833081baf73ae/sponsorblock.lua' # PR to add `poi_highlight`
+            $DDL = 'https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblock_shared/sponsorblock.py'
             $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
             $SavePath = [IO.Path]::Combine($DIR_sponsorblock, $FileName)
             [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' userscript '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
