@@ -27,7 +27,8 @@
 - Do not return packages.
 - Do not use filters when searching for products.
 - When buying a product, keep checking it's price untill it's shipped because you can still cancel the order and there's a chance the item will get a discount in that time window.
-- In case a specific product has Amazon Prime Deal, you can use [Amazon Prime Free Trial for 30 days](https://www.amazon.com/amazonprime), but don't forget to [Cancel Amazon Prime](https://www.amazon.com/mm/pipeline/cancellation?cp=cafebaseline&pId=CANCELLATION).
+- In case a specific product has Amazon Prime Deal, you can use [Amazon Prime Free Trial for 30 days](https://www.amazon.com/amazonprime), and then [Cancel Amazon Prime](https://www.amazon.com/mm/pipeline/cancellation?cp=cafebaseline&pId=CANCELLATION).
+  > Even if you cancel the trial, it will only expire after 30 days, so it's fine to cancel immediately.
 
 ## AliExpress
 
