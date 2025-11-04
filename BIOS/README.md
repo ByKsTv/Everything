@@ -22,15 +22,9 @@
 
 ## Update BIOS
 
-> [!TIP]
-> Do not update during daytime.
->
->
-> [!NOTE]
-> Duration of BIOS Update is 8 minutes.
-
 1. Insert a USB drive.
 1. Format the USB drive as `FAT32`.
+   > Be careful, this will delete all data on the USB drive.
 1. Move BIOS file to the USB.
 1. Safely Eject the USB.
    > Taskbar -> USB Icon -> Right Click -> `Eject`.
@@ -40,6 +34,10 @@
    shutdown /r /fw /t 00
 
    ```
+
+> Do not update during daytime.
+>
+> Duration of BIOS Update is 8 minutes.
 
 1. Update BIOS Firmware.
    > Asus motherboard: `Tool` -> `Asus EZ Flash 3 Utility` -> Select storage device -> Select BIOS file -> `Yes`.
