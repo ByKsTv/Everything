@@ -1,4 +1,10 @@
-# BIOS
+# Table Of Contents
+
+- [Find Motherboard Model](#find-motherboard-model)
+- [Update BIOS](#update-bios)
+- [BIOS Settings](#bios-settings)
+  - [Asus motherboard](#asus-motherboard)
+- [Additional Information](#additional-information)
 
 ## Find Motherboard Model
 
