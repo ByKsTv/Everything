@@ -25,6 +25,7 @@
 > [!TIP]
 > Do not update during daytime.
 >
+>
 > [!NOTE]
 > Duration of BIOS Update is 8 minutes.
 
