@@ -22,6 +22,12 @@
 
 ## Update BIOS
 
+> [!TIP]
+> Do not update during daytime.
+>
+> [!NOTE]
+> Duration of BIOS Update is 8 minutes.
+
 1. Insert a USB drive.
 1. Format the USB drive as `FAT32`.
 1. Move BIOS file to the USB.
@@ -34,10 +40,6 @@
 
    ```
 
-   > Prefer to update at night hours to avoid sudden power outage.
-   >
-   > BIOS Update estimated completion time is 8 minutes.
-
 1. Update BIOS Firmware.
    > Asus motherboard: `Tool` -> `Asus EZ Flash 3 Utility` -> Select storage device -> Select BIOS file -> `Yes`.
 1. Press `F1` to enter BIOS setup.
@@ -47,21 +49,21 @@
 
 ### Asus motherboard
 
-| Menu     | Setting                                                                       | Value             | Notes                         |
-| -------- | ----------------------------------------------------------------------------- | ----------------- | ----------------------------- |
-| Advanced | Platform Misc Configuration -> PCI Express Native Power Management            | Disabled          |                               |
-| Advanced | Platform Misc Configuration -> ASPM                                           | Disabled          |                               |
-| Advanced | APM Configuration -> Power On By PCI-E                                        | Enabled           | Wake-on-Lan                   |
-| Advanced | Onboard Devices Configuration -> Wi-Fi Controller                             | Disabled          |                               |
-| Advanced | Onboard Devices Configuration -> Bluetooth Controller                         | Disabled          |                               |
-| Advanced | Onboard Devices Configuration -> LED lighting When system is in working state | Stealth Mode      |                               |
-| Boot     | Secure Boot -> OS Type                                                        | Windows UEFI mode |                               |
-| Boot     | Secure Boot -> Secure Boot Mode                                               | Standard          |                               |
-| Boot     | Boot Configuration -> Fast Boot                                               | Disabled          |                               |
-| Boot     | Boot Configuration -> Boot Logo Display                                       | Disabled          |                               |
-| Boot     | Boot Configuration -> POST Report                                             | 1 sec             |                               |
-| Tool     | ASUS Armoury Crate -> Download & Install ARMOURY CRATE app                    | Disabled          |                               |
-|          |                                                                               |                   | Press `F10` to `Save Changes` |
+| Menu     | Setting                                                                       | Value             | Notes       |
+| -------- | ----------------------------------------------------------------------------- | ----------------- | ----------- |
+| Advanced | Platform Misc Configuration -> PCI Express Native Power Management            | Disabled          |             |
+| Advanced | Platform Misc Configuration -> ASPM                                           | Disabled          |             |
+| Advanced | APM Configuration -> Power On By PCI-E                                        | Enabled           | Wake-on-Lan |
+| Advanced | Onboard Devices Configuration -> Wi-Fi Controller                             | Disabled          |             |
+| Advanced | Onboard Devices Configuration -> Bluetooth Controller                         | Disabled          |             |
+| Advanced | Onboard Devices Configuration -> LED lighting When system is in working state | Stealth Mode      |             |
+| Boot     | Secure Boot -> OS Type                                                        | Windows UEFI mode |             |
+| Boot     | Secure Boot -> Secure Boot Mode                                               | Standard          |             |
+| Boot     | Boot Configuration -> Fast Boot                                               | Disabled          |             |
+| Boot     | Boot Configuration -> Boot Logo Display                                       | Disabled          |             |
+| Boot     | Boot Configuration -> POST Report                                             | 1 sec             |             |
+| Tool     | ASUS Armoury Crate -> Download & Install ARMOURY CRATE app                    | Disabled          |             |
+|          | Press `F10` to `Save Changes`                                                 |                   |             |
 
 ## Additional Information
 
