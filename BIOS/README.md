@@ -35,9 +35,9 @@
 
    ```
 
-> Do not update during daytime.
->
-> Duration of BIOS Update is 8 minutes.
+   > Do not update during daytime.
+   >
+   > Duration of BIOS Update is 8 minutes.
 
 1. Update BIOS Firmware.
    > Asus motherboard: `Tool` -> `Asus EZ Flash 3 Utility` -> Select storage device -> Select BIOS file -> `Yes`.
