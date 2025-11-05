@@ -16,6 +16,10 @@ if (Test-Path $Firefox_Profiles) {
             [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Closing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Mozilla Firefox'"); [Console]::ResetColor(); [Console]::WriteLine()
             Stop-Process -Name firefox -Force
         }
+
+        # Temporary disable firefox from running by renaming
+        $FireFox_EXE = "$env:ProgramFiles\Mozilla Firefox\firefox.exe"
+        Rename-Item -Path $FireFox_EXE -NewName 'firefox.bak'
         
         $DDLs = @(
             'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/userChrome.css',
@@ -70,5 +74,9 @@ if (Test-Path $Firefox_Profiles) {
             [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Deleting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$CrashReporter'"); [Console]::ResetColor(); [Console]::WriteLine()
             Remove-Item $CrashReporter -Force -Recurse
         }
+
+        # Enable firefox from running by renaming
+        $FireFox_BAK = "$env:ProgramFiles\Mozilla Firefox\firefox.bak"
+        Rename-Item -Path $FireFox_BAK -NewName 'firefox.exe'
     }
 }
