@@ -1,5 +1,5 @@
 ! Expires: 1 hours
-! Homepage: https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Website_Debloater.txt
+! Homepage: https://raw.githubusercontent.com/ByKsTv/Everything/main/Internet/uBlock_Origin/Website_Debloater.txt
 ! Title: Website Debloater
 1337x.to##.bitcoin
 1337x.to##.scroll-top

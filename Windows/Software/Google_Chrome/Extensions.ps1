@@ -34,7 +34,7 @@ if ($InstalledSoftware -match 'Google Chrome') {
     # https://www.reddit.com/r/sysadmin/comments/u9fg8c/comment/i5tudv7/
     New-Item -Path 'HKLM:\SOFTWARE\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy' -Force
     $uBlockDownloadLocation = "$env:TEMP\uBlock_Origin_Backup.json"
-    (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.json', "$uBlockDownloadLocation")
+    (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/ByKsTv/Everything/main/Internet/uBlock_Origin/Backup.json', "$uBlockDownloadLocation")
     $uBlockLatestContent = Get-Content $uBlockDownloadLocation
     New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy' -Name 'adminSettings' -Value "$uBlockLatestContent" -PropertyType String -Force
 

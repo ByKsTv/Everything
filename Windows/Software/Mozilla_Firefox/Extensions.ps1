@@ -23,7 +23,7 @@ if (Test-Path $Firefox_Profiles) {
         }
 
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: uBlock Origin: Using custom settings'); [Console]::ResetColor(); [Console]::WriteLine()
-        $DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/uBlock_Origin/Backup.json'
+        $DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Internet/uBlock_Origin/Backup.json'
         $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
         $SavePath = [Uri]::UnescapeDataString([IO.Path]::Combine($env:TEMP, $FileName))
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'uBlock Origin Backup File'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()

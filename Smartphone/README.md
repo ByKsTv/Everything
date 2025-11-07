@@ -59,30 +59,30 @@
 
 ### IronFox Settings
 
-| Location                                                                                         | Action                                                                                                |
-| ------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
-|                                                                                                  | `Set IronFox as your default browser app`                                                             |
-| `Try IronFox Widget`                                                                             | `Not Now`                                                                                             |
-|                                                                                                  | `Sign In`                                                                                             |
-| `Theme`                                                                                          | `Dark`                                                                                                |
-| `Address bar location`                                                                           | `Down`                                                                                                |
-| `Settings` > `Search` > `Default search engine`                                                  | Disable all > Add `Google` with `https://www.google.com/search?q=%s`                                  |
-| `Settings` > `Search` > `Manage alternative search engines`                                      | Disable all                                                                                           |
-| `Settings` > `Search`                                                                            | Disable all except `Search browsing history`,`Search bookmarks`                                       |
-| `Settings` > `Tabs`                                                                              | `List`                                                                                                |
-| `Settings` > `Tabs` > `Tabs you haven't viewed for two weeks get moved to the inactive section.` | Disable                                                                                               |
-| `Settings` > `Homepage`                                                                          | Disable all                                                                                           |
-| `Settings` > `Homepage`                                                                          | `Last tab`                                                                                            |
-| `Settings` > `Customise` > `Pull to refresh`                                                     | Disable                                                                                               |
-| `Settings` > `Passwords` > `Save passwords`                                                      | `Ask to save`                                                                                         |
-| `Settings` > `Passwords` > `Autofill in IronFox`                                                 | Enable                                                                                                |
-| `Settings` > `Passwords` > `Autofill in other apps`                                              | Enable                                                                                                |
-| `Settings` > `DNS Over HTTPS`                                                                    | Off                                                                                                   |
-| `Settings` > `Delete browsing data`                                                              | Disable: `Open tabs`, `Browsing history`, `Cookies and site data`                                     |
-| `Settings` > `Delete browsing data on quit`                                                      | Disable: `Open tabs`, `Browsing history`, `Cookies and site data`                                     |
-| `Settings` > `Add-ons` > `uBlock Origin` > `Settings`                                            | [Restore from file](https://github.com/ByKsTv/Everything/blob/main/Windows/uBlock_Origin/Backup.json) |
-| `about:config` > `media.autoplay.blocking_policy`                                                | `0`                                                                                                   |
-| `about:config` > `media.autoplay.default`                                                        | `1`                                                                                                   |
+| Location                                                                                         | Action                                                                                                 |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+|                                                                                                  | `Set IronFox as your default browser app`                                                              |
+| `Try IronFox Widget`                                                                             | `Not Now`                                                                                              |
+|                                                                                                  | `Sign In`                                                                                              |
+| `Theme`                                                                                          | `Dark`                                                                                                 |
+| `Address bar location`                                                                           | `Down`                                                                                                 |
+| `Settings` > `Search` > `Default search engine`                                                  | Disable all > Add `Google` with `https://www.google.com/search?q=%s`                                   |
+| `Settings` > `Search` > `Manage alternative search engines`                                      | Disable all                                                                                            |
+| `Settings` > `Search`                                                                            | Disable all except `Search browsing history`,`Search bookmarks`                                        |
+| `Settings` > `Tabs`                                                                              | `List`                                                                                                 |
+| `Settings` > `Tabs` > `Tabs you haven't viewed for two weeks get moved to the inactive section.` | Disable                                                                                                |
+| `Settings` > `Homepage`                                                                          | Disable all                                                                                            |
+| `Settings` > `Homepage`                                                                          | `Last tab`                                                                                             |
+| `Settings` > `Customise` > `Pull to refresh`                                                     | Disable                                                                                                |
+| `Settings` > `Passwords` > `Save passwords`                                                      | `Ask to save`                                                                                          |
+| `Settings` > `Passwords` > `Autofill in IronFox`                                                 | Enable                                                                                                 |
+| `Settings` > `Passwords` > `Autofill in other apps`                                              | Enable                                                                                                 |
+| `Settings` > `DNS Over HTTPS`                                                                    | Off                                                                                                    |
+| `Settings` > `Delete browsing data`                                                              | Disable: `Open tabs`, `Browsing history`, `Cookies and site data`                                      |
+| `Settings` > `Delete browsing data on quit`                                                      | Disable: `Open tabs`, `Browsing history`, `Cookies and site data`                                      |
+| `Settings` > `Add-ons` > `uBlock Origin` > `Settings`                                            | [Restore from file](https://github.com/ByKsTv/Everything/blob/main/Internet/uBlock_Origin/Backup.json) |
+| `about:config` > `media.autoplay.blocking_policy`                                                | `0`                                                                                                    |
+| `about:config` > `media.autoplay.default`                                                        | `1`                                                                                                    |
 
 ## Diagnose APKs
 
