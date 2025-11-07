@@ -12,7 +12,6 @@ if (Test-Path $Firefox_Profiles) {
         $ExtensionsList = @(
             'https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi'
             'https://addons.mozilla.org/firefox/downloads/latest/violentmonkey/latest.xpi'
-            'https://addons.mozilla.org/firefox/downloads/latest/disable-page-visibility/latest.xpi'
             'https://addons.mozilla.org/firefox/downloads/latest/buster-captcha-solver/latest.xpi'
             'https://addons.mozilla.org/firefox/downloads/latest/the-camelizer-price-history-ch/latest.xpi'
         )
