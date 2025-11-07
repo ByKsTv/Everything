@@ -179,6 +179,7 @@ missav.ws##.mb-5.space-y-5
 missav.ws##footer.px-4.mx-auto.sm\:container
 myanimelist.net##.mal-tooltip-layer
 nhentai.net###related-container
+nnmclub.to###cse-search-box
 paste.tf##.banner_image
 paste.tf##.bg_secondary.radius_medium.p_4.align_center.container
 paste.tf##.footer
@@ -261,8 +262,8 @@ www.senetic.co.il##.tabs-headings
 www.xvideos.com##.slogan
 www.ynet.co.il##.articleShareButtons
 www.youtube.com###attached-survey
-www.youtube.com##ytd-rich-grid-media:has(.ytThumbnailOverlayProgressBarHostWatchedProgressBarSegment[style*="width: 100%"])
 www.youtube.com##:matches-path(/^\/$/) ytd-rich-item-renderer:has(.yt-lockup-view-model--collection-stack-2):has(yt-thumbnail-overlay-badge-view-model)
+www.youtube.com##ytd-rich-grid-media:has(.ytThumbnailOverlayProgressBarHostWatchedProgressBarSegment[style*="width: 100%"])
 www.youtube.com##ytd-rich-item-renderer:has(.ytThumbnailOverlayProgressBarHostWatchedProgressBarSegment)
 www.zap.co.il###FooterBottomBarSection
 www.zap.co.il###FooterBottomBarSection > .FooterCenterFullWidth
