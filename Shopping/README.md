@@ -18,6 +18,7 @@
 - Use [Copuons](#coupons).
 - Use [Camelizer](https://camelcamelcamel.com/camelizer).
 - Use [Today's Deals](https://www.amazon.com/gp/goldbox).
+- After placing an order - immidietly save invoice as PDF for any warranty claims.
 - In case of issues contact [Amazon Support](https://www.amazon.com/message-us?paradigm=foresight#) and say `Chat with an associate now`.
 - Document your chat with Amazon Customer Service.
 - If an associate doesn't help you, say `Please connect me with Amazon Leadership team.`.
@@ -29,6 +30,7 @@
 - When buying a product, keep checking it's price untill it's shipped because you can still cancel the order and there's a chance the item will get a discount in that time window.
 - In case a specific product has Amazon Prime Deal, you can use [Amazon Prime Free Trial for 30 days](https://www.amazon.com/amazonprime), and then [Cancel Amazon Prime](https://www.amazon.com/mm/pipeline/cancellation?cp=cafebaseline&pId=CANCELLATION).
   > Even if you cancel the trial, it will only expire after 30 days, so it's fine to cancel immediately.
+- [Returns and Refund Policy Violation](https://account-status.amazon.com/customer-appeal-form) or <ofm@amazon.com>.
 
 ## AliExpress
 
