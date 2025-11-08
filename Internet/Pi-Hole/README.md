@@ -180,7 +180,6 @@ Adlists:
 ```text
 https://adaway.org/hosts.txt
 https://big.oisd.nl
-https://bitbucket.org/ethanr/dns-blacklists/raw/8575c9f96e5b4a1308f2f12394abd86d0927a4a0/bad_lists/Mandiant_APT1_Report_Appendix_D.txt
 https://blocklistproject.github.io/Lists/ads.txt
 https://blocklistproject.github.io/Lists/alt-version/ransomware-nl.txt
 https://blocklistproject.github.io/Lists/alt-version/scam-nl.txt
@@ -190,9 +189,6 @@ https://blocklistproject.github.io/Lists/fraud.txt
 https://blocklistproject.github.io/Lists/phishing.txt
 https://blocklistproject.github.io/Lists/ransomware.txt
 https://blocklistproject.github.io/Lists/tracking.txt
-https://github.com/matomo-org/referrer-spam-blacklist/raw/master/spammers.txt
-https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-blocklist.txt
-https://gitlab.com/quidsup/notrack-blocklists/raw/master/notrack-malware.txt
 https://hostfiles.frogeye.fr/firstparty-trackers-hosts.txt
 https://lists.cyberhost.uk/malware.txt
 https://malware-filter.gitlab.io/malware-filter/phishing-filter-hosts.txt
@@ -215,7 +211,6 @@ https://raw.githubusercontent.com/PolishFiltersTeam/KADhosts/master/KADhosts.txt
 https://raw.githubusercontent.com/PoorPocketsMcNewHold/SteamScamSites/master/steamscamsite.txt
 https://raw.githubusercontent.com/RooneyMcNibNug/pihole-stuff/master/SNAFU.txt
 https://raw.githubusercontent.com/Spam404/lists/master/main-blacklist.txt
-https://raw.githubusercontent.com/StevenBlack/hosts/master/data/StevenBlack/hosts
 https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
 https://raw.githubusercontent.com/VeleSila/yhosts/master/hosts
 https://raw.githubusercontent.com/Yhonay/antipopads/master/hosts
@@ -235,7 +230,6 @@ https://raw.githubusercontent.com/mitchellkrogza/The-Big-List-of-Hacked-Malware-
 https://raw.githubusercontent.com/nextdns/cname-cloaking-blocklist/master/domains
 https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/stalkerware/domains
 https://raw.githubusercontent.com/omicron-b/custom-filters/master/domains_imported.txt
-https://raw.githubusercontent.com/paulgb/BarbBlock/master/blacklists/domain-list.txt
 https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardCNAME.txt
 https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardMobileAds.txt
 https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardMobileSpyware.txt
@@ -245,9 +239,6 @@ https://raw.githubusercontent.com/sakib-m/Pi-hole-Torrent-Blocklist/main/all-tor
 https://raw.githubusercontent.com/sakib-m/Pi-hole-Torrent-Blocklist/main/all-torrent-websites.txt
 https://raw.githubusercontent.com/stamparm/blackbook/master/blackbook.txt
 https://raw.githubusercontent.com/yous/YousList/master/hosts.txt
-https://s3.amazonaws.com/lists.disconnect.me/simple_malware.txt
-https://s3.amazonaws.com/lists.disconnect.me/simple_tracking.txt
-https://someonewhocares.org/hosts/hosts
 https://someonewhocares.org/hosts/zero/hosts
 https://urlhaus.abuse.ch/downloads/hostfile/
 https://urlhaus.abuse.ch/downloads/rpz/
@@ -262,7 +253,6 @@ https://v.firebog.net/hosts/RPiList-Malware.txt
 https://v.firebog.net/hosts/RPiList-Phishing.txt
 https://v.firebog.net/hosts/neohostsbasic.txt
 https://v.firebog.net/hosts/static/w3kbl.txt
-https://winhelp2002.mvps.org/hosts.txt
 https://www.github.developerdan.com/hosts/lists/hate-and-junk-extended.txt
 ```
 
