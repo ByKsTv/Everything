@@ -210,8 +210,6 @@ https://raw.githubusercontent.com/infinitytec/blocklists/master/ads-and-trackers
 https://raw.githubusercontent.com/infinitytec/blocklists/master/scams-and-phishing.txt
 https://raw.githubusercontent.com/lightswitch05/hosts/master/docs/lists/ads-and-tracking-extended.txt
 https://raw.githubusercontent.com/matomo-org/referrer-spam-blacklist/master/spammers.txt
-https://raw.githubusercontent.com/mitchellkrogza/Badd-Boyz-Hosts/master/domains
-https://raw.githubusercontent.com/mitchellkrogza/The-Big-List-of-Hacked-Malware-Web-Sites/master/hacked-domains.list
 https://raw.githubusercontent.com/nextdns/cname-cloaking-blocklist/master/domains
 https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/stalkerware/domains
 https://raw.githubusercontent.com/omicron-b/custom-filters/master/domains_imported.txt
