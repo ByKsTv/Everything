@@ -217,7 +217,6 @@ https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardCNAME.txt
 https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardMobileAds.txt
 https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardMobileSpyware.txt
 https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardTracking.txt
-https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/EasyPrivacyCNAME.txt
 https://raw.githubusercontent.com/sakib-m/Pi-hole-Torrent-Blocklist/main/all-torrent-trackers.txt
 https://raw.githubusercontent.com/sakib-m/Pi-hole-Torrent-Blocklist/main/all-torrent-websites.txt
 https://raw.githubusercontent.com/stamparm/blackbook/master/blackbook.txt
