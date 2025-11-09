@@ -236,7 +236,7 @@ https://v.firebog.net/hosts/RPiList-Phishing.txt
 https://v.firebog.net/hosts/static/w3kbl.txt
 ```
 
-> Source: <https://firebog.net/>
+> More: <https://firebog.net/>, <https://filterlists.com/>
 
 Allowlist:
 
