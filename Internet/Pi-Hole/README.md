@@ -189,6 +189,7 @@ https://blocklistproject.github.io/Lists/tracking.txt
 https://hostfiles.frogeye.fr/firstparty-trackers-hosts.txt
 https://lists.cyberhost.uk/malware.txt
 https://malware-filter.gitlab.io/malware-filter/phishing-filter-hosts.txt
+https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-hosts-online.txt
 https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext
 https://phishing.army/download/phishing_army_blocklist_extended.txt
 https://raw.githubusercontent.com/AssoEchap/stalkerware-indicators/master/generated/hosts
@@ -205,6 +206,7 @@ https://raw.githubusercontent.com/Spam404/lists/master/main-blacklist.txt
 https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
 https://raw.githubusercontent.com/anudeepND/blacklist/master/adservers.txt
 https://raw.githubusercontent.com/bigdargon/hostsVN/master/hosts
+https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/ultimate.txt
 https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt
 https://raw.githubusercontent.com/infinitytec/blocklists/master/ads-and-trackers.txt
 https://raw.githubusercontent.com/infinitytec/blocklists/master/scams-and-phishing.txt
