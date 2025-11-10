@@ -21,6 +21,9 @@ Start-Service -Name 'SSDPSRV'
 Set-Service -Name 'upnphost' -StartupType Automatic
 Start-Service -Name 'upnphost'
 
+$cpuCount = [Environment]::ProcessorCount
+Set-NetAdapterRss -Name * -Enabled $true -MaxProcessors $cpuCount -BaseProcessorNumber 0 -Profile Closest
+
 Get-ChildItem 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces' | ForEach-Object {
 	<#
 	Setting:
@@ -240,6 +243,186 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
 	Raising this value may improve performance for applications sending large UDP datagrams by avoiding additional buffering. However, using very large values may lead to resource issues if not managed carefully.
 #>
 New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'FastSendDatagramThreshold' -PropertyType DWord -Value 65536 -Force
+
+<#
+    Setting:
+    DefaultSendWindow
+
+    Description:
+    Default socket send buffer (bytes) AFD uses when an app doesn't set SO_SNDBUF.
+
+    Values:
+    DWORD bytes. Typical: 262144 (256 KiB). Use your Bandwidth-Delay Product if known.
+
+    Note:
+    Useful on high-BDP paths (long RTT / high Mbps). Windows autotuning still applies at TCP level; this only seeds Winsock’s defaults. Reboot required. Sources: smallvoid, ServerFault. 
+#>
+# New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'DefaultSendWindow' -PropertyType DWord -Value 2621440 -Force
+
+<#
+    Setting:
+    DefaultReceiveWindow
+
+    Description:
+    Default socket receive buffer (bytes) when an app doesn’t set SO_RCVBUF.
+
+    Values:
+    DWORD bytes. Typical: 262144 (256 KiB). Match your BDP if possible.
+
+    Note:
+    Helps prevent application-level backpressure on high-rate streams. Reboot required. 
+#>
+# New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'DefaultReceiveWindow' -PropertyType DWord -Value 2621440 -Force
+
+<#
+    Setting:
+    DynamicSendBufferDisable
+
+    Description:
+    Turns OFF (1) or ON (0) the dynamic send-backlog mechanism in AFD.
+
+    Values:
+    0 = ENABLE dynamic sizing (recommended); 1 = disable (legacy workaround).
+
+    Note:
+    Keep at 0 for better scaling/throughput on modern Windows. 
+#>
+# New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'DynamicSendBufferDisable' -PropertyType DWord -Value 0 -Force
+
+<#
+    Setting:
+    BufferAlignment
+
+    Description:
+    Undocumented/private AFD tuning related to internal buffer alignment.
+
+    Values:
+    DWORD (undocumented). Do not set for performance.
+
+    Note:
+    Leave unset (or remove). There’s no evidence this improves modern Windows performance and it can regress stability. 
+#>
+# New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'BufferAlignment' -PropertyType DWord -Value 1 -Force
+
+<#
+    Setting:
+    DoNotHoldNICBuffers
+
+    Description:
+    Undocumented/private toggle hinting whether AFD retains NIC buffers.
+
+    Values:
+    DWORD (undocumented). Avoid setting.
+
+    Note:
+    Leave unset (or remove). Seen in third-party scripts/malware; no credible perf data to support enabling it. 
+#>
+# New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'DoNotHoldNICBuffers' -PropertyType DWord -Value 1 -Force
+
+<#
+    Setting:
+    DisableDirectAcceptEx
+
+    Description:
+    Disables kernel-level AcceptEx fast-path used by servers.
+
+    Values:
+    0 = don’t disable (recommended); 1 = disable the fast path.
+
+    Note:
+    Disabling can slow high-connection-rate servers. Keep 0/absent for performance. 
+#>
+# New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'DisableDirectAcceptEx' -PropertyType DWord -Value 1 -Force
+
+<#
+    Setting:
+    DisableChainedReceive
+
+    Description:
+    Disables receiving data with chained MDLs/buffers.
+
+    Values:
+    0 = don’t disable (recommended); 1 = disable (can hurt throughput).
+
+    Note:
+    Keep at 0/absent; disabling usually reduces receive efficiency. 
+#>
+# New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'DisableChainedReceive' -PropertyType DWord -Value 1 -Force
+
+<#
+    Setting:
+    DisableRawSecurity
+
+    Description:
+    Disables AFD’s raw-socket security checks (legacy OSes).
+
+    Values:
+    0 = keep security (recommended); 1 = disable (less secure).
+
+    Note:
+    Setting 1 broadens raw socket access and is not a performance tweak. Keep 0. 
+#>
+# New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'DisableRawSecurity' -PropertyType DWord -Value 1 -Force
+
+<#
+    Setting:
+    IgnorePushBitOnReceives
+
+    Description:
+    Treat all incoming TCP segments as if PSH is set (deliver immediately).
+
+    Values:
+    0 = normal behavior (recommended generally); 1 = ignore PSH (lower latency workaround).
+
+    Note:
+    Only consider 1 if you’re working around specific stacks that don’t set PSH and you see latency hiccups; otherwise 0 for efficiency. 
+#>
+# New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'IgnorePushBitOnReceives' -PropertyType DWord -Value 1 -Force
+
+<#
+    Setting:
+    IgnoreOrderlyRelease
+
+    Description:
+    Alters FIN/“orderly release” handling semantics.
+
+    Values:
+    0 = normal FIN handling (recommended); 1 = ignore (not advised).
+
+    Note:
+    Keep default; ignoring may confuse connection teardown and doesn’t help throughput. 
+#>
+# New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'IgnoreOrderlyRelease' -PropertyType DWord -Value 1 -Force
+
+<#
+    Setting:
+    DisableAddressSharing
+
+    Description:
+    Disallow socket address/port reuse (SO_REUSEADDR) system-wide.
+
+    Values:
+    0 = allow reuse (recommended for many servers); 1 = disallow (hardening).
+
+    Note:
+    For raw performance/scale, keep 0. Some hardened baselines set 1 for security; assess your workload. 
+#>
+# New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'DisableAddressSharing' -PropertyType DWord -Value 1 -Force
+
+<#
+    Setting:
+    FastCopyReceiveThreshold
+
+    Description:
+    UDP: payload size below which AFD copies directly instead of using more complex paths.
+
+    Values:
+    DWORD bytes. Default ~1024; recommended 1500.
+
+    Note:
+    1500 (0x5DC) lines up with typical Ethernet MTU and shows good results in published tests. 
+#>
+# New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'FastCopyReceiveThreshold' -PropertyType DWord -Value 1 -Force
 
 <#
 	Setting:
@@ -473,8 +656,8 @@ netsh interface tcp set global rss=enabled
 	Note:
 	Setting this to "normal" allows Windows to dynamically optimize TCP performance for most network environments. Only change this if troubleshooting or testing specific network behaviors.
 #>
-Set-NetTCPSetting -AutoTuningLevelLocal Experimental
-netsh interface tcp set global autotuninglevel=Experimental
+Set-NetTCPSetting -AutoTuningLevelLocal Normal
+netsh interface tcp set global autotuninglevel=Normal
 
 <#
 	Setting:
@@ -491,8 +674,8 @@ netsh interface tcp set global autotuninglevel=Experimental
 	Note:
 	Enabling ECN can improve performance and reduce packet loss on congested networks. Some older routers or firewalls may not support ECN properly, which could lead to connectivity issues.
 #>
-Set-NetTCPSetting -EcnCapability Enabled
-netsh interface tcp set global ecncapability=enabled
+Set-NetTCPSetting -EcnCapability Disabled
+netsh interface tcp set global ecncapability=Disabled
 
 <#
 	Setting:
@@ -525,8 +708,8 @@ Set-NetTCPSetting -InitialRtoMs 3000
 	Note:
 	Lower values reduce connection retry time for unreachable hosts, which can improve responsiveness in some apps. Higher values improve reliability on slow or unstable networks.
 #>
-Set-NetTCPSetting -MaxSynRetransmissions 8
-netsh interface tcp set global maxsynretransmissions=8
+Set-NetTCPSetting -MaxSynRetransmissions 2
+netsh interface tcp set global maxsynretransmissions=2
 
 <#
 	Setting:
@@ -576,8 +759,8 @@ netsh interface tcp set heuristics disabled
 	Note:
 	Disabling timestamps can slightly reduce overhead and exposure of system uptime, but may impair RTT estimation and performance on high-latency networks. Recommended to leave enabled unless avoiding timestamp-related compatibility or privacy issues.
 #>
-Set-NetTCPSetting -Timestamps Enabled
-netsh interface tcp set global timestamps=Enabled
+Set-NetTCPSetting -Timestamps Disabled
+netsh interface tcp set global timestamps=Disabled
 
 <#
 	Setting:
@@ -845,7 +1028,7 @@ $SettingsToChange = @(
 	Note:
 	Lower rates reduce CPU usage but may add latency.
 #>
-	@{ DisplayName = 'Interrupt Moderation Rate'; DisplayValues = @('High', 'Extreme') },
+	@{ DisplayName = 'Interrupt Moderation Rate'; DisplayValues = @('Off', 'Disabled') },
 
 	<#
 	Setting:
@@ -860,7 +1043,7 @@ $SettingsToChange = @(
 	Note:
 	Useful for reducing CPU overhead on busy networks.
 #>
-	@{ DisplayName = 'Interrupt Moderation'; DisplayValues = @('Enabled') },
+	@{ DisplayName = 'Interrupt Moderation'; DisplayValues = @('Disabled') },
 
 	<#
 	Setting:
