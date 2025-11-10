@@ -1,3 +1,20 @@
+$MTU_URL = '1.1.1.1'
+$MTU_Initial = 1472
+while ($true) {
+	if ((& ping -f -l $MTU_Initial $MTU_URL -n 1 | Out-String) -match 'Packet needs to be fragmented') {
+		$MTU_Initial--
+	}
+	else {
+		break
+	}
+}
+$MTU_Final = $MTU_Initial + 28
+(Get-NetIPConfiguration | Where-Object { $_.IPv4DefaultGateway }).InterfaceAlias | ForEach-Object {
+	Write-Host "Setting MTU to $MTU_Final on $_"
+	netsh interface ipv4 set subinterface $_ mtu=$MTU_Final store=persistent
+	netsh interface ipv6 set subinterface $_ mtu=$MTU_Final store=persistent
+}
+
 # Settings: Network & Internet: All networks: Network discovery: Off
 Set-NetFirewallRule -Profile Any -Group '@FirewallAPI.dll,-28502' -Enabled False
 
@@ -192,7 +209,7 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
 	Note:
 	Setting TTL to 64 can make Windows behave more like Linux in network diagnostics. A lower TTL can limit packet propagation and help mitigate routing loops, but may cause reachability issues if too low.
 #>
-New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\Parameters' -Name 'DefaultTTL' -Value 255 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\Parameters' -Name 'DefaultTTL' -Value 64 -PropertyType DWord -Force
 
 <#
 	Setting:
@@ -208,7 +225,7 @@ New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\Parameters
 	Note:
 	Enabling SACK improves efficiency on high-latency or lossy networks by reducing unnecessary retransmissions. It is recommended to keep this enabled unless troubleshooting specific TCP issues.
 #>
-New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters' -Name 'SackOpts' -PropertyType DWord -Value 1 -Force
+New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters' -Name 'SackOpts' -PropertyType DWord -Value 0 -Force
 
 <#
 	Setting:
@@ -456,7 +473,7 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Ndis\Parameters'
 	Note:
 	Setting this to 1 improves throughput on high-latency networks by allowing larger TCP window sizes. Timestamps (value 2 or 3) are useful for more accurate round-trip time measurement but can expose uptime to remote systems.
 #>
-New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters' -Name 'Tcp1323Opts' -Value 3 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters' -Name 'Tcp1323Opts' -Value 1 -PropertyType DWord -Force
 
 <#
 	Setting:
@@ -474,22 +491,6 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
 #>
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\MSMQ\Parameters' -Name 'TCPNoDelay' -Value 1 -PropertyType DWord -Force -ErrorAction SilentlyContinue
 
-$MTU_URL = 'google.com'
-$MTU_Initial = 1472
-while ($true) {
-	if ((ping -f -l $MTU_Initial $MTU_URL -n 1 | Out-String) -match 'Packet needs to be fragmented') {
-		$MTU_Initial--
-	}
-	else {
-		break
-	}
-}
-$MTU_Final = $MTU_Initial + 28
-$MTU_Interface = (Get-NetIPConfiguration | Where-Object { $_.IPv4DefaultGateway }).InterfaceAlias
-Write-Host "Setting MTU to $MTU_Final"
-netsh interface ipv4 set subinterface "$MTU_Interface" mtu=$MTU_Final store=persistent
-netsh interface ipv6 set subinterface "$MTU_Interface" mtu=$MTU_Final store=persistent
-
 <#
 	Setting:
 	Checksum Offload
@@ -505,7 +506,7 @@ netsh interface ipv6 set subinterface "$MTU_Interface" mtu=$MTU_Final store=pers
 	Disabling checksum offload can help troubleshoot network issues such as packet corruption, latency, or compatibility problems with older network hardware or drivers. It may slightly increase CPU usage.
 	Controlling the following settings: IPv4 Checksum Offload, TCP Checksum Offload (IPv4), TCP Checksum Offload (IPv6), UDP Checksum Offload (IPv4), UDP Checksum Offload (IPv6)
 #>
-Enable-NetAdapterChecksumOffload -Name *
+Enable-NetAdapterChecksumOffload -Name * -ErrorAction SilentlyContinue
 
 <#
 	Setting:
@@ -725,8 +726,8 @@ netsh interface tcp set global maxsynretransmissions=2
 	Note:
 	Recommended to keep Enabled for improved stability and reliability when communicating with older or less capable TCP stacks that do not support SACK. Helps avoid unnecessary retransmissions.
 #>
-Set-NetTCPSetting -NonSackRttResiliency Enabled
-netsh interface tcp set global nonsackrttresiliency=enabled
+Set-NetTCPSetting -NonSackRttResiliency Disabled
+netsh interface tcp set global nonsackrttresiliency=Disabled
 
 <#
 	Setting:
