@@ -2062,6 +2062,7 @@ $SettingsToChange = @(
 	@{ DisplayName = 'Wake on Ping'; DisplayValues = @('Disabled') }
 
 	@{ DisplayName = 'IPv4 Checksum Offload'; DisplayValues = @('Rx & Tx Enabled') }
+	@{ DisplayName = 'Large Send Offload (IPv4)'; DisplayValues = @('Enabled') }
 	@{ DisplayName = 'Large Send Offload V1 (IPv4)'; DisplayValues = @('Enabled') }
 	@{ DisplayName = 'Large Send Offload V2 (IPv4)'; DisplayValues = @('Enabled') }
 	@{ DisplayName = 'Large Send Offload V2 (IPv6)'; DisplayValues = @('Enabled') }
