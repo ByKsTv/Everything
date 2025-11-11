@@ -6,7 +6,6 @@
 		"firewallPaneMinimized": false,
 		"importedLists": [
 			"https://badblock.celenity.dev/abp/click-tracking.txt",
-			"https://badblock.celenity.dev/abp/unsafe.txt",
 			"https://badblock.celenity.dev/hardened/block-page-visibility.txt",
 			"https://big.oisd.nl/",
 			"https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.plus.txt",
@@ -100,7 +99,6 @@
 		"VIE-1",
 		"https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt",
 		"https://badblock.celenity.dev/abp/click-tracking.txt",
-		"https://badblock.celenity.dev/abp/unsafe.txt",
 		"https://badblock.celenity.dev/hardened/block-page-visibility.txt",
 		"https://raw.githubusercontent.com/DandelionSprout/adfilt/master/AnnoyancesList",
 		"https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Dandelion%20Sprout's%20Anti-Malware%20List.txt",
