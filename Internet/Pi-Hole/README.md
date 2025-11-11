@@ -206,7 +206,7 @@ https://raw.githubusercontent.com/Spam404/lists/master/main-blacklist.txt
 https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
 https://raw.githubusercontent.com/anudeepND/blacklist/master/adservers.txt
 https://raw.githubusercontent.com/bigdargon/hostsVN/master/hosts
-https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/ultimate.txt
+https://raw.githubusercontent.com/hagezi/dns-blocklists/main/domains/pro.plus.txt
 https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt
 https://raw.githubusercontent.com/infinitytec/blocklists/master/ads-and-trackers.txt
 https://raw.githubusercontent.com/infinitytec/blocklists/master/scams-and-phishing.txt
