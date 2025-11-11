@@ -100,6 +100,7 @@ WD brand from AliExpress is sus because sticker is the same but the shape of the
 - WiFi 7 MLO: Maximum Number of Simultanious Links: 2 (It's actually 3)
 - WiFi 7 MLO: Frequency Seperation for STR/AP MLD Indication: 1
 - WiFi 7 MLO: TID-To-Link Mapping Neogotion Support?
+- Companies like Huawei and ZTE are considered spyware by US.
 
 ## Recycle
 

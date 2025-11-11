@@ -204,6 +204,8 @@ Source: [𝗟𝗚 𝗢𝗟𝗘𝗗 𝗧𝗩 𝗦𝗲𝘁𝘁𝗶𝗻𝗴𝘀 �
 
 - Consider mounting the TV at an angle (up/down) so that if there's a dead pixel it won't bother you since it will be hidden by nearby pixels.
 
+- Local dimming has a big downside which is the latency is a variable depending on the content, which may cause video to be out of sync with the audio.
+
 ### Clean
 
 - Do not use paper towel.
