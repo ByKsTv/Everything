@@ -101,6 +101,7 @@ WD brand from AliExpress is sus because sticker is the same but the shape of the
 - WiFi 7 MLO: Frequency Seperation for STR/AP MLD Indication: 1
 - WiFi 7 MLO: TID-To-Link Mapping Neogotion Support?
 - Companies like Huawei and ZTE are considered spyware by US.
+- [Update Razer Firmware](https://mysupport.razer.com/app/answers/detail/a_id/4166/~/software-and-firmware-updates-for-razer-peripherals).
 
 ## Recycle
 
