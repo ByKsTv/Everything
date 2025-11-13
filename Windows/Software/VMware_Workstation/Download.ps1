@@ -28,7 +28,7 @@ $TitleWidth = 0
 $Source | ForEach-Object {
     $Title = $_.outerHTML -replace '.*?<b>(.*?)</b></a>', '$1'
     if (-not $Array.ContainsKey($Title)) {
-        $Array[$Title] = $_.href
+        $Array[$Title] = 'https://nnmclub.to/forum/' + $_.href
         $DropDownList.Items.Add($Title) | Out-Null
 
         $Width = [int]$GFX.MeasureString($Title, $Form.Font).Width
