@@ -55,6 +55,7 @@ aliexpress.com##[class^="back-top--wrap--"].comet-v2-back-top
 aliexpress.com##[class^="cross-link--breadcrumb--"]
 aliexpress.com##[class^="description--report--"]
 aliexpress.com##[class^="list--itemHelp--"]
+aliexpress.com##[class^="moreToLove--recommendWrap--"]
 aliexpress.com##[class^="notranslate navigation--wrap--"].comet-v2-anchor
 aliexpress.com##[class^="recommend-store--title--"][class*="title--wrap--"]
 aliexpress.com##[class^="survey--wrap--"]
