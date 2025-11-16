@@ -319,6 +319,11 @@ $List = @(
         Icon64  = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB0YQAQdGEAIZjSkGKcpAQSrPQZIrz0HGKs9B2irOQdopzUDHKcxAkyjEPUMVfiQKB0YQBAdGEAMHRhACAAAAAAdGEAImwj0YKs9BlSvQQu4qz0H/Ks1A/ynMQP8pzED/KcxA/ynNQP8qzUHuKc1BlyOzNxsHRhAEB0YQAwdGEAInxD0bK9BBsSrRQv8qzkH/Kcs//yjJP/8oxz7/KMc+/yRbLP8noTj/Kcs//yrNQP8pzkCyJbo5HQdGEAMcly0HKs9BlCrRQv8qzUD/Kco//yjHPv8nxDz/JsE7/ybBO/8jXCv/JHsw/yjHPv8pyz//Ks5B/yrOQZQZjSkIKcpAQSvQQvAqzkH/Kco//yfGPf8mwTv/JHww/yR5L/8kei//I00p/yRpLf8nwzz/KMg+/ynMQP8qz0HwKMg+QirPQZIqz0H/Kcs//yjHPv8mwTv/JYky/yRlLP8jSSf/I28t/yRjK/8lijL/JsA7/yfFPf8pyj//Ks9B/yrPQZIrz0HGKs5B/yjJP/8nxD3/Jr86/ySoNf8jXyr/Ikon/yJrLP8jlzP/JLg3/yW9Ov8nwzz/KMk+/yrNQP8rz0HGKtBC2SnMQP8oyD7/J6U3/yR0Lv8kmTP/Imgr/yFEJv8hYSr/Ik0o/yNGJ/8kZSz/JsE7/yjHPv8pzED/KtBC2SrOQdopzED/KKI4/yNZK/8jVCr/I2ks/yKFL/8hVyj/IWAq/yJVKP8jQSb/I1Yq/ybBO/8oxz7/KcxA/yrPQdoqzkDGKcxA/yRRKv8kdDD/JZo0/yNVKf8jRif/Ik0o/yJYKf8ijDD/I1Ip/yR4L/8mwTv/KMg+/ynMQP8qzkDGKc1BkyrNQP8oyT//J8U9/ybBO/8keC//JGIs/yNQKP8jqjT/JHAt/yNfK/8lnTT/J8Q8/yjJPv8pzUD/Kc1BkyjEPUMqzkHwKcxA/yjJPv8nxT3/Jrs7/yR4L/8lmzT/Jbw5/yRtLf8jQif/I2Is/yfDPf8pyj//Ks1B8CjEPUMVfiQKKs5BlCrOQf8pzED/KMk//yjGPf8nxDz/JsI8/ybCPP8mwjz/J7o7/yR2MP8kZS3/KcxA/ynKP5YTdCEMB0YQBCW6OR0qz0GyKs9B/yrNQP8pyz//KMk//yjIPv8oyD7/KMg+/yjIPv8pyj//KcxA/ynMQLMjsTcfB0YQBgdGEAMHRhADJLg5GirPQZUq0ELuKs9B/yrOQf8qzUD/Kc1A/ynNQP8pzUD/Ks1B7inLP5cirjUcB0YQBgdGEAQHRhABB0YQAgdGEAMZjSkGKc1BQCrPQZErz0HFK9BC2SvQQtkqz0HFKc1BkijEPUMScB8KB0YQBQdGEAQHRhADgAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
     },
     @{
+        Name    = 'RustDesk'
+        Tooltip = "Downloads and Installs the latest version of 'RustDesk'.`nAdds a scheduled task that will auto-update the software once windows starts."
+        Icon64  = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAHDYAQBw2AEAAAAAAAAAAAD///9A////y/////7//////////////////////////////////////////////////////////v///8v///9A////y//////////////////+/v//7t///tGp//3Bh//8w4f//NWp//7w3////v7/////////////////////y/////z/////////////////zaP//Ygi//t8A//6fQD/+IEA//eIA//2nCP/+cuH//758P////////////////z//////////////////////tCo//yCEP/6fQD/+IYH//eKBv/1igD/844A//KUA//2wGL//vnw///////////////////+/v//zqX//tOt///9+//91Kr//MKE//3duP/83rf/+cV6//OfG//wlwD/7p0D//bSh///////////////////7t///Ykk//yDEv/91q7////////////////////////////747n/8Kcb/+ygAP/usST//PTe/////////////tGp//x8A//6fQD//MSI//////////////////////////////////XPe//rpAD/6aoD//fjqf////////////3Bh//6fQD/+IYI//3euv/////////////////////////////////55rf/6qwH/+etAP/z2of////////////8w4f/+IEA//eLCP/837r/////////////////////////////////+ei4/+iwB//msQD/89yI/////////////dWp//eIA//1iwD/+cZ///////////////////////////////////PZhv/msQD/5bcD//bnqv////////////7w3//2nCX/844A//OgHf/75L3////////////////////////////35qv/5rsQ/+fEJP/799//////////////////+cuI//KUA//wlwD/8Kcd//bQfv/557r/+em6//Tah//3567///77//Xoqf/156T////+//////////////////758P/2wGP/7p0D/+yfAP/rpAH/6qwH/+iwCP/msQD/5rsS//bpq////////////////////////////P///////////vnw//fTif/usiT/6aoD/+etAP/msQD/5bcD/+bDIf/056P//////////////////////P///8v///////////////////7//PTf//fjqf/z2of/89yH//bnqP/79t7////9/////////////////////8v///9A////y/////7//////////////////////////////////////////////////////////v///8v///9AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
+    },
+    @{
         Name    = 'SketchUp'
         Tooltip = "Downloads and Installs the user selected version of 'SketchUp' from 'nnmclub'.`nRequires 'qBittorrent' to be installed and added to PATH."
         Icon64  = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAADdyK3/6dzN/+nczf/p3M3/6dzN/+nczf/p3M3/6dzN/+nczf/p3M3/6dzN/+nczf/p3M3/6dzN/+nczf/dyK3/6dzN//fz8//38/P/9/Pz//fz8//38/P/9/Pz//fz8//38/P/9/Pz//fz8//38/P/9/Pz//fz8//38/P/6dzN/+nczf/38/P/9/Pz//fz8//38/P/9/Pz/9vEp/+/llv/xaBr/9nBof/38/L/9/Pz//fz8//38/P/9/Pz/+nczf/p3M3/9/Pz//fz8//38/P/6NnJ/7aGQP+eXwD/s4I6/7qOTv+eXwD/s4M7/+bWxP/38/P/9/Pz//fz8//p3M3/6dzN//fz8//38/P/1LmU/6BiBP+wfDD/w51l/7OCOv+6jk7/tIQ8/7KANv+fYAL/zq+D//fz8//38/P/6dzN/+nczf/38/P/7ODU/6hvG//Or4T/w5xk/59hBP+zgjr/uo5O/59hA//Cm2L/x6Nw/59gAv/p3M3/9/Pz/+nczf/p3M3/9/Pz/+3j2f/Wu5j/pGoR/6VrFP++lFf/s4I6/7qOTv+sdyf/n2EE/9K1jv+fYQP/172b//fz8//p3M3/6dzN//fz8//38/P/9fDu/9jAoP/Or4P/pWsU/7WFP/+6jk7/wJdd/6x2Jv/Mq3z/oWQJ/9a8mP/38/P/6dzN/+nczf/38/P/9/Pz/+LRu/+wfDD/n2ED/8KcZP/Or4P/pGoS/8CYXf+sdyf/y6t8/6FkCf/WvJj/9/Pz/+nczf/p3M3/9/Pz/93Irf+eYAH/tYU//9O3kf+wfTH/oGIE/8OdZv/Or4P/omYL/8uqe/+hZQn/1ryY//fz8//p3M3/6dzN//fz8//hz7j/0bSL/76UV/+fYAL/oGIE/6dvGv+sdyf/n2EE/8OcZf/PsIX/n2ED/9W7mP/38/P/6dzN/+nczf/38/P/9/Pz/8ilc/+fYQT/qXEd/9O3kf++lFf/vZJU/9O4kv+wfTL/n2ED/8OcZP/x6OL/9/Pz/+nczf/p3M3/9/Pz//fz8//38/P/6NrK/7aHQv+eXwD/soA3/7KBOP+eYAH/tYU+/+fYx//38/P/9/Pz//fz8//p3M3/6dzN//fz8//38/P/9/Pz//fz8//38/P/3cit/8CYXf+/llv/28Wo//fz8//38/P/9/Pz//fz8//38/P/6dzN/+nczf/38/P/9/Pz//fz8//38/P/9/Pz//fz8//38/P/9/Pz//fz8//38/P/9/Pz//fz8//38/P/9/Pz/+nczf/dyK3/6dzN/+nczf/p3M3/6dzN/+nczf/p3M3/6dzN/+nczf/p3M3/6dzN/+nczf/p3M3/6dzN/+nczf/dyK3/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
@@ -638,6 +643,11 @@ if ($InstalledSoftware -match 'Razer Synapse') {
     $CheckBoxes['Razer Synapse'].Enabled = $false
     $CheckBoxes['Razer Synapse'].Text += ' (Installed)'
 }
+$TaskName = 'RustDesk Updater'
+if (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue) {
+    $CheckBoxes['RustDesk'].Enabled = $false
+    $CheckBoxes['RustDesk'].Text += ' (Installed)'
+}
 if ($InstalledSoftware -match 'SketchUp') {
     $CheckBoxes['SketchUp'].Text += ' (Installed)'
 }
@@ -853,6 +863,9 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     }
     if ($CheckBoxes['Razer Synapse'].Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Razer_Synapse/Download.ps1') 
+    }
+    if ($CheckBoxes['RustDesk'].Checked) {
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/RustDesk/Download.ps1') 
     }
     if ($CheckBoxes['SketchUp'].Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/SketchUp/Download.ps1') 
