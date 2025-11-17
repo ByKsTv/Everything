@@ -279,9 +279,7 @@
 ## Install all APKs from Downloads folder
 
 ```powershell
-Get-ChildItem "$env:USERPROFILE\Downloads" -Filter *.apk | ForEach-Object {
-    & adb.exe install $_.FullName
-}
+Get-ChildItem "$env:USERPROFILE\Downloads" -Filter *.apk | ForEach-Object { & adb.exe install $_.FullName }
 ```
 
 ## Notes
