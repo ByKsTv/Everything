@@ -66,14 +66,6 @@ $Form.Controls.AddRange(@($DropDownList, $Ok, $Cancel))
 if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     $Title = $DropDownList.SelectedItem
     $TitleHREF = $Array[$DropDownList.SelectedItem]
-
-    $ForumPost = ((Invoke-WebRequest -UseBasicParsing -Uri $TitleHREF).Links | Where-Object { $_.outerHTML -match 'pb.wtf' }).href | Select-Object -First 1
-
-    if (-not ($ForumPost)) {
-        $ForumPost = ((Invoke-WebRequest -UseBasicParsing -Uri $TitleHREF).Links | Where-Object { $_.outerHTML -match 'uniondht.org' }).href | Select-Object -First 1
-    }
-
-    $Magnet = [Uri]::UnescapeDataString((((Invoke-WebRequest -UseBasicParsing -Uri $ForumPost).Links | Where-Object { $_.outerHTML -match 'magnet' }).href | Select-Object -First 1))
     
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/7-Zip/Download.ps1')
 
@@ -86,10 +78,39 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
 
     Remove-Item -Path "$env:TEMP\*Classic*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
 
-    $Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($Magnet)"""
+    $TitleHTML = Invoke-WebRequest -UseBasicParsing -Uri $TitleHREF
 
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-    Start-Process qBittorrent.exe -ArgumentList $Argument
+    $DomainsToSearch = @(
+        'pb.wtf'
+        'uniondht.org'
+        'uztracker.net'
+    )
+
+    $TitleDomains = $DomainsToSearch | ForEach-Object {
+        $DomainToSearch = $_
+
+        ($TitleHTML.Links |
+        Where-Object { $_.outerHTML -match $DomainToSearch } |
+        Select-Object -First 1).href
+    }
+
+    $TitleMagnets = $TitleDomains | ForEach-Object {
+        $ToSearch = $_
+
+        if ($_) {
+            [Uri]::UnescapeDataString(
+                (((Invoke-WebRequest -UseBasicParsing -Uri $ToSearch).Links |
+                    Where-Object { $_.outerHTML -match 'magnet' }).href |
+                Select-Object -First 1)
+            )
+        }
+    }
+
+    $TitleMagnets | ForEach-Object {
+        $Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($_)"""
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+        Start-Process qBittorrent.exe -ArgumentList $Argument
+    }
 
     while (-not ($Directory = (Get-ChildItem $env:TEMP -Directory -Filter '*Classic*' | Select-Object -First 1).FullName)) {
         Start-Sleep -Milliseconds 1000
