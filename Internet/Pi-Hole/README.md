@@ -218,8 +218,6 @@ https://raw.githubusercontent.com/sakib-m/Pi-hole-Torrent-Blocklist/main/all-tor
 https://raw.githubusercontent.com/stamparm/blackbook/master/blackbook.txt
 https://raw.githubusercontent.com/yous/YousList/master/hosts.txt
 https://someonewhocares.org/hosts/zero/hosts
-https://urlhaus.abuse.ch/downloads/hostfile/
-https://urlhaus.abuse.ch/downloads/rpz/
 https://v.firebog.net/hosts/AdguardDNS.txt
 https://v.firebog.net/hosts/Admiral.txt
 https://v.firebog.net/hosts/Easyprivacy.txt
