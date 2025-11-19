@@ -209,7 +209,6 @@ https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt
 https://raw.githubusercontent.com/infinitytec/blocklists/master/scams-and-phishing.txt
 https://raw.githubusercontent.com/matomo-org/referrer-spam-blacklist/master/spammers.txt
 https://raw.githubusercontent.com/nextdns/cname-cloaking-blocklist/master/domains
-https://raw.githubusercontent.com/omicron-b/custom-filters/master/domains_imported.txt
 https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardCNAME.txt
 https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardMobileAds.txt
 https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardMobileSpyware.txt
