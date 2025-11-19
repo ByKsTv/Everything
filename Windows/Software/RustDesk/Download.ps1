@@ -20,8 +20,6 @@ if (-not ($InstalledVersion)) {
         $SavePath = [IO.Path]::Combine($env:APPDATA, 'RustDesk', 'config', $FileName)
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'RustDesk'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' settings '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$_'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
         (New-Object System.Net.WebClient).DownloadFile($_, $SavePath)
-
-        (Get-Content $SavePath) -replace "'ToChange'", "'$env:computername'" | Set-Content $SavePath
     }
 }
 

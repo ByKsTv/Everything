@@ -1,6 +1,6 @@
 [options]
 access-mode = 'full'
-allow-remote-config-modification = 'ToChange'
-direct-server = 'ToChange'
+allow-remote-config-modification = 'Y'
+direct-server = 'Y'
 enable-abr = 'N'
-av1-test = 'ToChange'
+av1-test = 'Y'
