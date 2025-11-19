@@ -1,0 +1,8 @@
+[options]
+view_style = 'adaptive'
+custom-fps = '120.0'
+custom_image_quality = '2000.0'
+show_remote_cursor = 'ToChange'
+i444 = 'ToChange'
+show_quality_monitor = 'ToChange'
+image_quality = 'custom'
