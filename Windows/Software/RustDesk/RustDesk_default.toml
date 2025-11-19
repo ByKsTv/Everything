@@ -1,8 +1,8 @@
 [options]
 view_style = 'adaptive'
-custom-fps = '120.0'
-custom_image_quality = '2000.0'
+show_quality_monitor = 'Y'
 show_remote_cursor = 'Y'
 i444 = 'Y'
-show_quality_monitor = 'Y'
 image_quality = 'custom'
+custom-fps = '120.0'
+custom_image_quality = '2000.0'

@@ -1,6 +1,7 @@
 [options]
-access-mode = 'full'
-allow-remote-config-modification = 'Y'
 direct-server = 'Y'
 enable-abr = 'N'
 av1-test = 'Y'
+allow-auto-update = 'Y'
+access-mode = 'full'
+allow-remote-config-modification = 'Y'

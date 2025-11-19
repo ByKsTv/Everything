@@ -1,0 +1,5 @@
+[options]
+enable-confirm-closing-tabs = 'N'
+remote-menubar-drag-left = '0.0'
+remote-menubar-drag-right = '1.0'
+enable-open-new-connections-in-tabs = 'N'
