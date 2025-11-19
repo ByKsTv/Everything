@@ -1,6 +1,6 @@
 # https://play.google.com/store/apps/details?id=com.tozelabs.tvshowtime
 # Profile > Stats
-stats.tvtime.com
+# stats.tvtime.com
 
 # https://www.kan.org.il/lobby/kan-box/
 # Infinite loading screen
@@ -12,29 +12,29 @@ pubads.g.doubleclick.net
 
 # https://www.mako.co.il/mako-vod
 # Ad Blocker Warning
-imasdk.googleapis.com
+# imasdk.googleapis.com
 
 # https://www.youtube.com/feed/history
 # Mark YouTube videos as watched
-s.youtube.com
+# s.youtube.com
 
 # https://play.google.com/store/apps/details?id=com.alienmanfc6.wheresmyandroid
-wmdcommander.appspot.com
+# wmdcommander.appspot.com
 
 # https://github.com/Dev4Mod/WaEnhancer
 # Privacy > Calls > Additional call information
-ip-api.com
+# ip-api.com
 
 # https://account.ui.com/
-static.ada.support
+# static.ada.support
 
 # Facebook Mobile App
 # Infinite loading screen
-graph.facebook.com
+# graph.facebook.com
 
 # Samsung TV App Store
-oempprd.samsungcloudsolution.com
+# oempprd.samsungcloudsolution.com
 
 # https://www.speedtest.net/run
 # Stuck on "Finding optimal server..."
-cdn.ziffstatic.com
+# cdn.ziffstatic.com

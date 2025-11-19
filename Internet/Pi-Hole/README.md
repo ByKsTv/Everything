@@ -180,7 +180,6 @@ Adlists:
 ```text
 https://adaway.org/hosts.txt
 https://big.oisd.nl
-https://blocklistproject.github.io/Lists/ads.txt
 https://blocklistproject.github.io/Lists/crypto.txt
 https://blocklistproject.github.io/Lists/fraud.txt
 https://blocklistproject.github.io/Lists/phishing.txt
@@ -192,7 +191,6 @@ https://malware-filter.gitlab.io/malware-filter/phishing-filter-hosts.txt
 https://malware-filter.gitlab.io/malware-filter/urlhaus-filter-hosts-online.txt
 https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext
 https://phishing.army/download/phishing_army_blocklist_extended.txt
-https://raw.githubusercontent.com/AssoEchap/stalkerware-indicators/master/generated/hosts
 https://raw.githubusercontent.com/ByKsTv/Everything/main/Internet/Pi-Hole/Blacklist.txt
 https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Alternate%20versions%20Anti-Malware%20List/AntiMalwareHosts.txt
 https://raw.githubusercontent.com/FadeMind/hosts.extras/master/UncheckyAds/hosts
@@ -205,15 +203,12 @@ https://raw.githubusercontent.com/RooneyMcNibNug/pihole-stuff/master/SNAFU.txt
 https://raw.githubusercontent.com/Spam404/lists/master/main-blacklist.txt
 https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
 https://raw.githubusercontent.com/bigdargon/hostsVN/master/hosts
-https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.plus.txt
+https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.txt
 https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/tif.txt
 https://raw.githubusercontent.com/hoshsadiq/adblock-nocoin-list/master/hosts.txt
-https://raw.githubusercontent.com/infinitytec/blocklists/master/ads-and-trackers.txt
 https://raw.githubusercontent.com/infinitytec/blocklists/master/scams-and-phishing.txt
-https://raw.githubusercontent.com/lightswitch05/hosts/master/docs/lists/ads-and-tracking-extended.txt
 https://raw.githubusercontent.com/matomo-org/referrer-spam-blacklist/master/spammers.txt
 https://raw.githubusercontent.com/nextdns/cname-cloaking-blocklist/master/domains
-https://raw.githubusercontent.com/olbat/ut1-blacklists/master/blacklists/stalkerware/domains
 https://raw.githubusercontent.com/omicron-b/custom-filters/master/domains_imported.txt
 https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardCNAME.txt
 https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardMobileAds.txt
@@ -228,7 +223,6 @@ https://urlhaus.abuse.ch/downloads/hostfile/
 https://urlhaus.abuse.ch/downloads/rpz/
 https://v.firebog.net/hosts/AdguardDNS.txt
 https://v.firebog.net/hosts/Admiral.txt
-https://v.firebog.net/hosts/Easylist.txt
 https://v.firebog.net/hosts/Easyprivacy.txt
 https://v.firebog.net/hosts/Prigent-Ads.txt
 https://v.firebog.net/hosts/Prigent-Crypto.txt
@@ -246,7 +240,7 @@ Allowlist:
 https://raw.githubusercontent.com/ByKsTv/Everything/main/Internet/Pi-Hole/Allowlist.txt
 ```
 
-Domains Regex Blacklist:
+Domains Regex Blacklist (Optional):
 
 ```regex
 ^ad([sxv]?[0-9]*|system)[_.-]([^.[:space:]]+\.){1,}|[_.-]ad([sxv]?[0-9]*|system)[_.-]
