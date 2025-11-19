@@ -14,7 +14,7 @@ $InstalledVersion = (Get-Package -Name 'RustDesk' -ErrorAction SilentlyContinue)
 
 if (-not ($InstalledVersion)) {
     New-Item -Path "$env:APPDATA\RustDesk\config" -ItemType Directory -Force
-    $SettingFilesURL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/RustDesk/RustDesk_default.toml', 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/RustDesk/RustDesk2.toml'
+    $SettingFilesURL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/RustDesk/RustDesk_default.toml', 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/RustDesk/RustDesk2.toml', 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/RustDesk/RustDesk_local.toml'
     $SettingFilesURL | ForEach-Object {
         $FileName = [IO.Path]::GetFileName(([URI]$_).AbsolutePath)
         $SavePath = [IO.Path]::Combine($env:APPDATA, 'RustDesk', 'config', $FileName)
