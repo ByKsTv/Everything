@@ -10,6 +10,10 @@ if ($InstalledSoftware -match 'Google Chrome') {
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Adding Buster: Captcha Solver for Humans'); [Console]::ResetColor(); [Console]::WriteLine()
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Adding The Camelizer - Price Tracker'); [Console]::ResetColor(); [Console]::WriteLine()
 
+    # Delete previous installed lists using policies
+    Remove-Item -Path 'HKLM:\SOFTWARE\Policies\Google\Chrome\ExtensionInstallForcelist' -Force
+    New-Item -Path 'HKLM:\SOFTWARE\Policies\Google\Chrome\ExtensionInstallForcelist' -Force
+
     # https://github.com/letsdoautomation/powershell/tree/main/Install%20Google%20Chrome%20Extensions
     $extensions = 'cjpalhdlnbpafiamejdnhcphjbkeiagm', 'jinjaccalgkegednnccohejagnlnfdag', 'mpbjkejclgfgadiemmefgebjfooflfhl', 'ghnomdcacenbmilgjigehppbamfndblo'
     $key_path = 'SOFTWARE\Policies\Google\Chrome\ExtensionInstallForcelist'
@@ -39,13 +43,8 @@ if ($InstalledSoftware -match 'Google Chrome') {
     New-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy' -Name 'adminSettings' -Value "$uBlockLatestContent" -PropertyType String -Force
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Starting browser'); [Console]::ResetColor(); [Console]::WriteLine()
-    [Diagnostics.Process]::Start('chrome.exe')
-    #     Exception calling "Start" with "1" argument(s): "The system cannot find the file specified"
-    # At line:43 char:5
-    # +     [Diagnostics.Process]::Start('chrome.exe')
-    # +     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    #     + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
-    #     + FullyQualifiedErrorId : Win32Exception
+    $ChromeEXE = [IO.Path]::Combine($env:LOCALAPPDATA, 'Google', 'Chrome', 'Application', 'chrome.exe')
+    Start-Process $ChromeEXE
     Start-Sleep -Milliseconds 1000
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Waiting for browser'); [Console]::ResetColor(); [Console]::WriteLine()
@@ -71,13 +70,9 @@ if ($InstalledSoftware -match 'Google Chrome') {
     [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'Chrome' }).MainWindowHandle)
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Opening AdsBypasser'); [Console]::ResetColor(); [Console]::WriteLine()
-    [Diagnostics.Process]::Start('Chrome.exe', 'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js')
-    #     Exception calling "Start" with "1" argument(s): "The system cannot find the file specified"
-    # At line:43 char:5
-    # +     [Diagnostics.Process]::Start('chrome.exe')
-    # +     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    #     + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
-    #     + FullyQualifiedErrorId : Win32Exception
+    Start-Process $ChromeEXE
+    Start-Sleep -Milliseconds 1000
+    Start-Process $ChromeEXE -ArgumentList 'https://adsbypasser.github.io/releases/adsbypasser.full.user.js'
     Start-Sleep -Milliseconds 5000
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Setting foreground'); [Console]::ResetColor(); [Console]::WriteLine()
