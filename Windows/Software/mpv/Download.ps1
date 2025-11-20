@@ -1,7 +1,7 @@
 $MPV_DDL = ((Invoke-RestMethod -Uri 'https://api.github.com/repos/zhongfly/mpv-winbuild/releases/latest').assets | Where-Object { $_.name -match 'mpv-x86_64-v3' }).browser_download_url
 $MPV_FileName = [IO.Path]::GetFileName(([URI]$MPV_DDL).AbsolutePath)
 $MPV_SavePath = [IO.Path]::Combine($env:TEMP, $MPV_FileName)
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$MPV_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
 (New-Object System.Net.WebClient).DownloadFile($MPV_DDL, $MPV_SavePath)
 
 $MPV_Destination = [IO.Path]::Combine($env:USERPROFILE, 'mpv')
