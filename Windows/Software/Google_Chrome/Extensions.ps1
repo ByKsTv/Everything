@@ -81,6 +81,7 @@ if ($InstalledSoftware -match 'Google Chrome') {
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Installing AdsBypasser'); [Console]::ResetColor(); [Console]::WriteLine()
     (New-Object -ComObject wscript.shell).SendKeys('^{ENTER}')
+    (New-Object -ComObject wscript.shell).SendKeys('{ENTER}')
     
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Cleaning up'); [Console]::ResetColor(); [Console]::WriteLine()
     if (Test-Path -Path 'HKLM:\SOFTWARE\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy') {
