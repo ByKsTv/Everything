@@ -11,7 +11,7 @@ if ($InstalledSoftware -match 'Google Chrome') {
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Adding The Camelizer - Price Tracker'); [Console]::ResetColor(); [Console]::WriteLine()
 
     # Delete previous installed lists using policies
-    Remove-Item -Path 'HKLM:\SOFTWARE\Policies\Google\Chrome\ExtensionInstallForcelist' -Force
+    Remove-Item -Path 'HKLM:\SOFTWARE\Policies\Google\Chrome\ExtensionInstallForcelist' -Force -ErrorAction SilentlyContinue
     New-Item -Path 'HKLM:\SOFTWARE\Policies\Google\Chrome\ExtensionInstallForcelist' -Force
 
     # https://github.com/letsdoautomation/powershell/tree/main/Install%20Google%20Chrome%20Extensions
