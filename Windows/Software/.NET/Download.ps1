@@ -16,7 +16,7 @@ if (-not (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NET' -Name 'AllowAUO
 	New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NET' -Name 'AllowAUOnServerOS' -Value 1 -PropertyType DWord -Force
 }
 
-$Versions = @('8', '9')
+$Versions = @('8', '9', '10')
 foreach ($Version in $Versions) {
 	$VersionPattern = "$Version*"
 	$SDK = "Microsoft .NET SDK $VersionPattern"
