@@ -284,18 +284,33 @@ $Cancel = New-Object System.Windows.Forms.Button -Property @{
 $Form.Controls.AddRange(@($Language_Selection, $Ok, $Cancel))
 if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     if ($Scrubber.Checked) {
+        if (-not (Test-Path -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings')) {
+            New-Item -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings' -Force
+        }
         New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings' -Name 'Enabled' -PropertyType DWord -Value 1 -Force
 
-        $Scrubber_FileName = [IO.Path]::GetFileName(([URI]$Scrubber_DDL).AbsolutePath)
-        $Scrubber_SavePath = [IO.Path]::Combine($env:TEMP, $Scrubber_FileName)
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-        (New-Object System.Net.WebClient).DownloadFile($Scrubber_DDL, $Scrubber_SavePath)
+        # If URL is not working
+        $Scrubber_Exists = Invoke-WebRequest -Uri $Scrubber_DDL -Method Head -ErrorAction SilentlyContinue
+        if ($null -eq $Scrubber_Exists) {
+            $Scrubber_DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Office/OfficeScrubberAIO.cmd'
+            $Scrubber_FileName = [IO.Path]::GetFileName(([URI]$Scrubber_DDL).AbsolutePath)
+            $Scrubber_CMD = [IO.Path]::Combine($env:TEMP, $Scrubber_FileName)
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_CMD'"); [Console]::ResetColor(); [Console]::WriteLine()
+            (New-Object System.Net.WebClient).DownloadFile($Scrubber_DDL, $Scrubber_CMD)
+        }
+        # If URL is working
+        else {
+            $Scrubber_FileName = [IO.Path]::GetFileName(([URI]$Scrubber_DDL).AbsolutePath)
+            $Scrubber_SavePath = [IO.Path]::Combine($env:TEMP, $Scrubber_FileName)
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+            (New-Object System.Net.WebClient).DownloadFile($Scrubber_DDL, $Scrubber_SavePath)
 
-        $Scrubber_Dir = [IO.Path]::Combine([IO.Path]::GetDirectoryName($Scrubber_SavePath), [IO.Path]::GetFileNameWithoutExtension($Scrubber_SavePath))
-        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_Dir'"); [Console]::ResetColor(); [Console]::WriteLine()
-        Expand-Archive -Path $Scrubber_SavePath -DestinationPath $Scrubber_Dir -Force
+            $Scrubber_Dir = [IO.Path]::Combine([IO.Path]::GetDirectoryName($Scrubber_SavePath), [IO.Path]::GetFileNameWithoutExtension($Scrubber_SavePath))
+            [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_Dir'"); [Console]::ResetColor(); [Console]::WriteLine()
+            Expand-Archive -Path $Scrubber_SavePath -DestinationPath $Scrubber_Dir -Force
 
-        $Scrubber_CMD = [IO.Path]::Combine($Scrubber_Dir, 'OfficeScrubber.cmd')
+            $Scrubber_CMD = [IO.Path]::Combine($Scrubber_Dir, 'OfficeScrubber.cmd')
+        }
         $Scrubber_Argument = '/P /C /A'
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Uninstalling '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Office'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_CMD'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process $Scrubber_CMD -ArgumentList $Scrubber_Argument -Wait
