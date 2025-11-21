@@ -128,7 +128,7 @@ $DisableTelemetry = New-Object System.Windows.Forms.CheckBox -Property @{
 }
 
 $Scrubber = New-Object System.Windows.Forms.CheckBox -Property @{
-    Text     = 'Office Scrubber (Uninstall Office)'
+    Text     = 'Uninstall Previous Office Versions'
     Width    = 300
     Height   = 20
     Checked  = $true
