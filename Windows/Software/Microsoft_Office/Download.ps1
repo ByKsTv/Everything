@@ -291,7 +291,7 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
         New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings' -Name 'Enabled' -PropertyType DWord -Value 1 -Force
 
         # If URL is not working
-        $Scrubber_Exists = Invoke-WebRequest -Uri $Scrubber_DDL -Method Head -ErrorAction SilentlyContinue
+        $Scrubber_Exists = Invoke-WebRequest -Uri $Scrubber_DDL -UseBasicParsing -Method Head -ErrorAction SilentlyContinue
         if ($null -eq $Scrubber_Exists) {
             $Scrubber_DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Office/OfficeScrubberAIO.cmd'
             $Scrubber_FileName = [IO.Path]::GetFileName(([URI]$Scrubber_DDL).AbsolutePath)
