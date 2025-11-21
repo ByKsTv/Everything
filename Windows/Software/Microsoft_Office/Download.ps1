@@ -131,6 +131,7 @@ $Scrubber = New-Object System.Windows.Forms.CheckBox -Property @{
     Text     = 'Office Scrubber (Uninstall Office)'
     Width    = 300
     Height   = 20
+    Checked  = $true
     Location = [Drawing.Point]::new(5, 370)
 }
 
