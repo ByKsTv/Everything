@@ -94,7 +94,10 @@ if ($FolderDialog.ShowDialog($Form) -eq [Windows.Forms.DialogResult]::OK) {
 
             $mplsFilePath = $mplsFile.FullName
 
-            Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/MediaInfo/Download.ps1')
+            $TaskName = 'Mediainfo Updater'
+            if (-not (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue)) {
+                Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/MediaInfo/Download.ps1')
+            }
             
             $mediaInfoOutput = & MediaInfo.exe --Output=JSON "$mplsFilePath"
             if (-not $mediaInfoOutput) {

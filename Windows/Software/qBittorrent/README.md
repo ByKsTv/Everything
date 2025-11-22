@@ -17,6 +17,7 @@
 Custom settings which are not included:
 
 ```ini
+[Application]MemoryWorkingSetLimit
 [Preferences]Downloads\ScanDirsLastPath
 [BitTorrent]Session\TempPathEnabled
 [BitTorrent]Session\TempPath
@@ -24,7 +25,6 @@ Custom settings which are not included:
 [BitTorrent]Session\InterfaceName
 [BitTorrent]Session\InterfaceAddress
 [BitTorrent]Session\Interface
-[BitTorrent]Session\Port
 [BitTorrent]Session\DiskCacheSize
 [BitTorrent]Session\DiskCacheTTL
 [BitTorrent]Session\StartPaused
