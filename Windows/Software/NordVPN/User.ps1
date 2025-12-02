@@ -1,4 +1,4 @@
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Waiting for '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'NordVPN'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to open '); [Console]::ResetColor(); [Console]::WriteLine()
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Waiting for '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'NordVPN'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to open'); [Console]::ResetColor(); [Console]::WriteLine()
 Start-Process -FilePath "$env:ProgramFiles\NordVPN\NordVPN.exe"
 
 do {
