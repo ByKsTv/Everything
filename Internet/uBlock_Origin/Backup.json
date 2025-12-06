@@ -18,7 +18,6 @@
 			"https://raw.githubusercontent.com/Spam404/lists/master/adblock-list.txt",
 			"https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts",
 			"https://raw.githubusercontent.com/gijsdev/ublock-hide-yt-shorts/master/list.txt",
-			"https://raw.githubusercontent.com/mchangrh/yt-neuter/main/filters/sponsorblock.txt",
 			"https://raw.githubusercontent.com/mchangrh/yt-neuter/main/yt-neuter.txt",
 			"https://secure.fanboy.co.nz/fanboy-annoyance_ubo.txt"
 		],
@@ -110,7 +109,6 @@
 		"https://raw.githubusercontent.com/Spam404/lists/master/adblock-list.txt",
 		"https://raw.githubusercontent.com/ByKsTv/Everything/main/Internet/uBlock_Origin/Website_Debloater.txt",
 		"https://raw.githubusercontent.com/mchangrh/yt-neuter/main/yt-neuter.txt",
-		"https://raw.githubusercontent.com/mchangrh/yt-neuter/main/filters/sponsorblock.txt",
 		"https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
 	],
 	"hiddenSettings": {},

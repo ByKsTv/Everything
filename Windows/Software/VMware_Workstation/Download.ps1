@@ -87,7 +87,7 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     }
     
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$env:TEMP'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
-    Add-MpPreference -ExclusionPath $env:TEMP
+    Add-MpPreference -ExclusionPath $TempDir
     
     while (-not ($TempEXE = (Get-ChildItem $TempDir -Filter '*.exe' | Select-Object -First 1).FullName)) {
         Start-Sleep -Milliseconds 1000
