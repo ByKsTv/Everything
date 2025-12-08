@@ -39,13 +39,13 @@
 
 ## TV Shows & Movies
 
-| Name          | Links                                                                                                                                                                                     | Notes                                                                            |
-| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| RuTracker     | [BDRemux](https://rutracker.org/forum/tracker.php?nm=BDRemux)                                                                                                                             | [Requires an account](https://rutracker.org/forum/profile.php?mode=register)     |
-| 1337x         | [Movies REMUX 2160p](https://1337x.to/sort-category-search/REMUX%202160p/Movies/time/desc/1/) [TV Shows REMUX 2160p](https://1337x.to/sort-category-search/REMUX%202160p/TV/time/desc/1/) |                                                                                  |
-| RUTOR         | [BDREMUX 2160p](https://rutor.info/search/0/0/000/0/BDRemux%202160p)                                                                                                                      |                                                                                  |
-| OpenSubtitles | [Website](https://www.opensubtitles.org/en/search/subs)                                                                                                                                   | Subtitles                                                                        |
-| Ktuvit        | [Website](https://www.ktuvit.me)                                                                                                                                                          | Hebrew Subtitles, [Requires an account](https://www.ktuvit.me/Registration.aspx) |
+| Name          | Links                                                                                                                                                                                       | Notes                                                                            |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| RuTracker     | [BDRemux](https://rutracker.org/forum/tracker.php?nm=BDRemux)                                                                                                                               | [Requires an account](https://rutracker.org/forum/profile.php?mode=register)     |
+| 1337x         | [Movies REMUX 2160p](https://1337x.to/sort-category-search/REMUX%202160p/Movies/time/desc/1/) / [TV Shows REMUX 2160p](https://1337x.to/sort-category-search/REMUX%202160p/TV/time/desc/1/) |                                                                                  |
+| RUTOR         | [BDREMUX 2160p](https://rutor.info/search/0/0/000/0/BDRemux%202160p)                                                                                                                        |                                                                                  |
+| OpenSubtitles | [Website](https://www.opensubtitles.org/en/search/subs)                                                                                                                                     | Subtitles                                                                        |
+| Ktuvit        | [Website](https://www.ktuvit.me)                                                                                                                                                            | Hebrew Subtitles, [Requires an account](https://www.ktuvit.me/Registration.aspx) |
 
 ## Games
 
