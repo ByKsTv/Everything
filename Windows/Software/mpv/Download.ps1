@@ -15,8 +15,6 @@ $SavePath = [IO.Path]::Combine($MPV_Destination, $FileName)
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' settings '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
 (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
 
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/Updater.ps1')
-
 $OLD_PATH = [Environment]::GetEnvironmentVariable('Path', [EnvironmentVariableTarget]::User)
 if (-not ($OLD_PATH.Contains($MPV_Destination))) {
     $NEW_PATH = "$OLD_PATH;$MPV_Destination"
@@ -26,6 +24,8 @@ if (-not ($OLD_PATH.Contains($MPV_Destination))) {
 }
 
 & mpv.exe --register
+
+Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/Updater.ps1')
 
 $DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/input.conf'
 $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)

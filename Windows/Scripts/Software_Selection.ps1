@@ -89,6 +89,11 @@ $List = @(
         Icon64  = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAACMuAAAjLgAAAAAAAAAAAAAAAAAGAAAATQAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAE0AAAAGAAIgWAAKn9kAC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8ACp/ZAAIgWAAKn9kAC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wAKn9kAC7P/AAuz/4CF2f/g4fb/0NLx/yAqvf8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs//Aw+z/EBq4/7Cz5//Q0vH/EBq4/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/ICq9/7Cz5//Q0vH//////5CV3v8AC7P/AAuz/wALs/9gZ9D/8PH7/8DD7P8gKr3/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/ICq9/8DD7P//////4OH2/5CV3v+Ahdn/0NLx/xAauP/g4fb/sLPn/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8gKr3//////yAqvf+gpOP/8PH7/8DD7P/Aw+z/sLPn/zA5wf8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/6Ck4/+gpOP//////zA5wf8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/9QWMv//////5CV3v8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/QEjG//////+gpOP/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/6Ck4//Aw+z/wMPs/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs//Aw+z/ICq9/7Cz5/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/cHbU//Dx+/8gKr3/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALssEAC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALssEAC7MQAAuzwAALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs8AAC7MQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
     },
     @{
+        Name    = 'Adobe After Effects'
+        Tooltip = "Downloads and Installs the user selected version of 'Adobe After Effects' from 'monkrus'.`nRequires 'qBittorrent' to be installed and added to PATH."
+        Icon64  = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAACMuAAAjLgAAAAAAAAAAAAAAAAAGAAAATQAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAE0AAAAGAAIgWAAKn9kAC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8ACp/ZAAIgWAAKn9kAC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wAKn9kAC7P/AAuz/4CF2f/g4fb/0NLx/yAqvf8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs//Aw+z/EBq4/7Cz5//Q0vH/EBq4/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/ICq9/7Cz5//Q0vH//////5CV3v8AC7P/AAuz/wALs/9gZ9D/8PH7/8DD7P8gKr3/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/ICq9/8DD7P//////4OH2/5CV3v+Ahdn/0NLx/xAauP/g4fb/sLPn/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8gKr3//////yAqvf+gpOP/8PH7/8DD7P/Aw+z/sLPn/zA5wf8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/6Ck4/+gpOP//////zA5wf8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/9QWMv//////5CV3v8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/QEjG//////+gpOP/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/6Ck4//Aw+z/wMPs/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs//Aw+z/ICq9/7Cz5/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/cHbU//Dx+/8gKr3/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALssEAC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALssEAC7MQAAuzwAALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs8AAC7MQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
+    },
+    @{
         Name    = 'Adobe Lightroom Classic'
         Tooltip = "Downloads and Installs the user selected version of 'Adobe Lightroom Classic' from 'monkrus'.`nRequires 'qBittorrent' to be installed and added to PATH."
         Icon64  = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAAAAAAAAAAAAAGAAAATQAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAE0AAAAGCgUAWDAbANk2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP8wGwDZCgUAWDAbANk2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zAbANk2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP+bYxn//6gx//+oMf//qDH/86Au/zYeAP//qDH/m2MZ/zYeAP82HgD/Ty8G/7R1H//nlyv/zYYl/zYeAP82HgD/m2MZ//+oMf/NhiX/zYYl/82GJf82HgD//6gx/5tjGf82HgD/Nh4A/7R1H///qDH/tHUf/8F9Iv82HgD/Nh4A/5tjGf//qDH/Nh4A/zYeAP82HgD/Nh4A//+oMf+bYxn/Nh4A/zYeAP/zoC7/m2MZ/zYeAP82HgD/Nh4A/zYeAP+bYxn//6gx/zYeAP82HgD/Nh4A/zYeAP//qDH/qGwc/zYeAP82HgD/86Au/2hBDP82HgD/Nh4A/zYeAP82HgD/m2MZ//+oMf82HgD/Nh4A/zYeAP82HgD//6gx//+oMf/NhiX/Nh4A/7R1H//BfSL/Nh4A/zYeAP82HgD/Nh4A/5tjGf//qDH/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP9DJwP/wX0i//OgLv//qDH/Nh4A/zYeAP+bYxn//6gx/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAME2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAME2HgAQNh4AwDYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAMA2HgAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
@@ -97,6 +102,11 @@ $List = @(
         Name    = 'Adobe Photoshop'
         Tooltip = "Downloads and Installs the user selected version of 'Adobe Photoshop' from 'monkrus'.`nRequires 'qBittorrent' to be installed and added to PATH."
         Icon64  = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAAAAAAAAAAAAAGAAAATQAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAE0AAAAGCgUAWDAbANk2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP8wGwDZCgUAWDAbANk2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zAbANk2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP//qDH/Nh4A/zYeAP82HgD/Nh4A//OgLv//qDH/55cr/1w4Cf82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD//6gx/zYeAP82HgD/Nh4A/zYeAP+CUhL/dUkP//OgLv/NhiX/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A//+oMf/NhiX/tHUf/1w4Cf82HgD/QycD/8F9Iv//qDH/wX0i/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP//qDH/zYYl/+eXK//zoC7/Nh4A/9qPKP/zoC7/jlsW/1w4Cf82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD//6gx/zYeAP9PLwb//6gx/zYeAP/nlyv/86Au//OgLv//qDH/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A//+oMf+bYxn/wX0i//+oMf82HgD/QycD/45bFv+bYxn/glIS/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP//qDH//6gx//+oMf+obBz/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAME2HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAME2HgAQNh4AwDYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAP82HgD/Nh4A/zYeAMA2HgAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
+    },
+    @{
+        Name    = 'Adobe Premiere Pro'
+        Tooltip = "Downloads and Installs the user selected version of 'Adobe Premiere Pro' from 'monkrus'.`nRequires 'qBittorrent' to be installed and added to PATH."
+        Icon64  = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAACMuAAAjLgAAAAAAAAAAAAAAAAAGAAAATQAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAGYAAABmAAAAZgAAAE0AAAAGAAIgWAAKn9kAC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8ACp/ZAAIgWAAKn9kAC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wAKn9kAC7P/AAuz/4CF2f/g4fb/0NLx/yAqvf8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs//Aw+z/EBq4/7Cz5//Q0vH/EBq4/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/ICq9/7Cz5//Q0vH//////5CV3v8AC7P/AAuz/wALs/9gZ9D/8PH7/8DD7P8gKr3/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/ICq9/8DD7P//////4OH2/5CV3v+Ahdn/0NLx/xAauP/g4fb/sLPn/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8gKr3//////yAqvf+gpOP/8PH7/8DD7P/Aw+z/sLPn/zA5wf8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/6Ck4/+gpOP//////zA5wf8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/9QWMv//////5CV3v8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/QEjG//////+gpOP/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/6Ck4//Aw+z/wMPs/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs//Aw+z/ICq9/7Cz5/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/cHbU//Dx+/8gKr3/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALssEAC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALssEAC7MQAAuzwAALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs/8AC7P/AAuz/wALs8AAC7MQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
     },
     @{
         Name    = 'AnyDesk'
@@ -452,11 +462,17 @@ if (Test-Path -Path "$env:USERPROFILE\adb") {
 if ($InstalledSoftware -match 'Adobe Acrobat') {
     $CheckBoxes['Adobe Acrobat Pro'].Text += ' (Installed)'
 }
+if ($InstalledSoftware -match 'Adobe After Effects') {
+    $CheckBoxes['Adobe After Effects'].Text += ' (Installed)'
+}
 if ($InstalledSoftware -match 'Adobe Lightroom Classic') {
     $CheckBoxes['Adobe Lightroom Classic'].Text += ' (Installed)'
 }
 if ($InstalledSoftware -match 'Adobe Photoshop') {
     $CheckBoxes['Adobe Photoshop'].Text += ' (Installed)'
+}
+if ($InstalledSoftware -match 'Adobe Premiere') {
+    $CheckBoxes['Adobe Premiere Pro'].Text += ' (Installed)'
 }
 if ($InstalledSoftware -match 'AnyDesk') {
     $CheckBoxes['AnyDesk'].Enabled = $false
@@ -725,11 +741,17 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     if ($CheckBoxes['Adobe Acrobat Pro'].Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Acrobat/Download.ps1')
     }
+    if ($CheckBoxes['Adobe After Effects'].Checked) {
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_After_Effects/Download.ps1')
+    }
     if ($CheckBoxes['Adobe Lightroom Classic'].Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Lightroom_Classic/Download.ps1')
     }
     if ($CheckBoxes['Adobe Photoshop'].Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Photoshop/Download.ps1')
+    }
+    if ($CheckBoxes['Adobe Premiere Pro'].Checked) {
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Premiere/Download.ps1')
     }
     if ($CheckBoxes['AnyDesk'].Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/AnyDesk/Download.ps1')

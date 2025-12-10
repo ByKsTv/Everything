@@ -2074,6 +2074,8 @@ $SettingsToChange = @(
 	@{ DisplayName = 'TCP/UDP Checksum Offload (IPv4)'; DisplayValues = @('Rx & Tx Enabled') }
 	@{ DisplayName = 'TCP/UDP Checksum Offload (IPv6)'; DisplayValues = @('Rx & Tx Enabled') }
 
+	@{ DisplayName = 'Link Speed Battery Saver'; DisplayValues = @('Disabled') }
+
 	# TODO
 	# Ethernet0: Locally Administered Address: Valid Values:
 	# Ethernet0: Maximum RSS Processor Number: Valid Values: 
