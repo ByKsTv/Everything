@@ -225,14 +225,6 @@ rutracker.org##tr.tCenter.row3 > td
 supjav.com##.copyright
 vjav.com##.footer__text
 www.aliexpress.com##.order-block.order-recommend
-www.amazon.com###nav-flyout-iss-anchor
-www.amazon.com###nile-inline-btf_feature_div
-www.amazon.com###nile-inline_feature_div
-www.amazon.com###sims-simsContainer_feature_div_11
-www.amazon.com###valuePick_feature_div
-www.amazon.com##.aplus-premium.premium-module-5-comparison-table-scroller.aplus-module.celwidget
-www.amazon.com##.copilot-secure-display
-www.amazon.com##.js-yo-right-rail.right-rail
 www.ebay.com##.x-atf-left-bottom-river.vim
 www.ebay.com##.x-evo-btf-river.vi-grid.vim
 www.ebay.com##.x-vi-evo-main-container__top-panel
