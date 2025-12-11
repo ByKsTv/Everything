@@ -102,5 +102,5 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     Start-Process $TempEXE -ArgumentList $Argument -Wait
     
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$env:TEMP'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
-    Remove-MpPreference -ExclusionPath $env:TEMP
+    Remove-MpPreference -ExclusionPath $TempDir
 }

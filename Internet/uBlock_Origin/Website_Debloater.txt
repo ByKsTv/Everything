@@ -19,6 +19,10 @@
 9gag.com##.post-badge
 9gag.com##.text-center.inline-banner
 account.xiaomi.com##._-src-components-CookieBanner-wrapper
+ajdown.space##.card-footer
+ajdown.space##.footer-bottom
+ajdown.space##.fw-500.w-100.radius.btn-md.btn-primary.btn
+ajdown.space##.mt-5.file-links
 aliexpress.com###nav-store
 aliexpress.com##*[class*="recommend-store--title--"][class*="title--wrap--"]
 aliexpress.com##._32_es._1wVX7
@@ -132,6 +136,16 @@ amazon.*##div#similarities_feature_div.celwidget
 amazon.*##div.celwidget.sw-card-container.sw-recommendations-row.a-section
 amazon.*##hr
 cosplay-xxx.com###protection
+datavaults.co##.footer-bottom
+datavaults.co##.justify-content-start.download-controls
+datavaults.co##.p-4.text-end.btn-premDownload.h-100.w-100.d-block.btn-primary.btn
+datavaults.co##footer.footer
+diakov.net###thx
+diakov.net##.FiveStarsTd
+diakov.net##.buyAction
+diakov.net##.quote
+diakov.net##.related
+diakov.net##.relatedrate
 fc2ppv.stream###load-modal > .modal-dialog
 filespayouts.com##.paybox.row
 fitgirl-repacks.site###block-2 > .jetpack_top_posts_widget
@@ -146,6 +160,7 @@ fitgirl-repacks.site##[href="https://fitgirl-repacks.site/donations/"]
 forum.mobilism.me##.welcome-bar
 github.com##.color-fg-muted.text-center.mt-3
 github.com##.mb-2.mt-md-2.mt-3.color-fg-muted.text-small
+github.com##.p-responsive.color-border-subtle.color-fg-muted.f6.pb-6.pt-7.footer
 github.com##.p-responsive.color-fg-muted.f6.pb-6.pt-8.footer
 github.com##.protip
 gofile.download###protection
@@ -181,6 +196,8 @@ missav.ws##footer.px-4.mx-auto.sm\:container
 myanimelist.net##.mal-tooltip-layer
 nhentai.net###related-container
 nnmclub.to###cse-search-box
+nnmclub.to##.copyright
+nnmclub.to##.signature
 paste.tf##.banner_image
 paste.tf##.bg_secondary.radius_medium.p_4.align_center.container
 paste.tf##.footer
@@ -210,12 +227,14 @@ rutor.info##[href="#up"]
 rutracker.org###footer-info-links
 rutracker.org###logo
 rutracker.org###post-msg-form
+rutracker.org###thx-block
 rutracker.org###thx-btn-div
 rutracker.org##.footer-bottom-links
 rutracker.org##.hide-for-print.bottom_info
 rutracker.org##.hide-for-print.w100 .w100.nav
 rutracker.org##.med.catBottom
 rutracker.org##.nav-hidden-arrow.hide-for-print
+rutracker.org##.post-img-broken.postImg
 rutracker.org##.spacer_12
 rutracker.org##.spacer_4
 rutracker.org##.thHead
@@ -299,5 +318,7 @@ youtube.com##[page-subtype="home"] ytd-thumbnail-overlay-resume-playback-rendere
 ||amazon.com^$removeparam=ref
 ||amazon.com^$removeparam=th
 ||bringthemhomenow.net^
+||datavaults.co/images/logo.png$image
 ||i114.fastpic.ru/big/2021/0314/5e/f17b7771e137fd5fd677967c660d3d5e.gif$image
+||i4.imageban.ru/out/2011/06/05/8d01e2418787990b99f108564408cb49.png$image
 ||senetic.co.il^$removeparam=listingSource
