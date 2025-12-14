@@ -289,3 +289,4 @@ Get-ChildItem "$env:USERPROFILE\Downloads" -Filter *.apk | ForEach-Object { & ad
 - If printing using the phone stops after a short while it might be related to battery optimization, battery saver.
 - Incoming calls from overseas won't charge you.
 - Printing from phone requires additional app to be installed, if owns a HP printer download HP Print Service.
+- Disable Play Protect.

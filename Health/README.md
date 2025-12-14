@@ -29,6 +29,7 @@
 - Visit once per year for cheap cost.
 - Do not use fluoride, it costs additional money.
 - Visit all cleaning dentists available to know who does it better.
+- Bleeding is a symptom of Gingivitis, to solve it try gargle water with salt.
 
 ## ENT Doctor
 

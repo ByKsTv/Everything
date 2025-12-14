@@ -1,8 +1,7 @@
 // ==UserScript==
 // @name            AliExpress - View More
-// @version         2.0
-// @description     Auto-click the “View more” for specifications & extended description on AliExpress listings.
-// @downloadURL     https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/AliExpress_ExpandDetails.user.js
+// @version         2.1
+// @downloadURL     https://raw.githubusercontent.com/ByKsTv/Everything/main/Websites/Scripts/AliExpress_ViewMore.user.js
 // @match           *://*.aliexpress.com/item/*
 // @match           *://aliexpress.com/item/*
 // @grant           none

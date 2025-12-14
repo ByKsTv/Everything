@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name            Amazon - Shorten URL
-// @version         1.0
+// @name            Amazon - Clean URL
+// @version         1.1
+// @downloadURL     https://raw.githubusercontent.com/ByKsTv/Everything/main/Websites/Scripts/Amazon_CleanURL.user.js
 // @match           https://*.amazon.*/*
-// @downloadURL     https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Amazon_CleanURL.user.js
 // @run-at          document-start
 // ==/UserScript==
 

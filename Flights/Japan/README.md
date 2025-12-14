@@ -25,6 +25,7 @@
 ## Food
 
 - Yakiniku Like.
+- Eggs from Convi Stores aren't real according to <https://www.youtube.com/shorts/4FEG4gjMvHs>
 
 ## Water
 

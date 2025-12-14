@@ -10,6 +10,7 @@
 - [Sounds](#sounds)
 - [Printers](#printers)
 - [Reset Password to Windows 10 Local Account](#reset-password-to-windows-10-local-account)
+- [USB Latency Analyzer](#usb-latency-analyzer)
 
 ## Backup
 
@@ -153,3 +154,14 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
    rename osk.old osk.exe
    shutdown /r /t 00
    ```
+
+### USB Latency Analyzer
+
+1. PowerShell (Admin):
+
+   ```powershell
+   Invoke-Expression (New-Object Net.WebClient).DownloadString('https://tools.mariusheier.com/cpudirect.ps1')
+
+   ```
+
+Source: <https://tools.mariusheier.com/cpudirect.html>

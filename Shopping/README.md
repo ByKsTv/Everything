@@ -89,9 +89,13 @@ WD brand from AliExpress is sus because sticker is the same but the shape of the
 - Security Cameras: Avoid cameras that have IR inside the camera body, prefer cameras that have IR outside.
 - Security Cameras: Avoid dome cameras that have a plastic round cover that can be removed, prefer cameras that don't have removable cover.
 - Deep Fryer: Avoid teflon coated.
+- Amazon has deals on Black Friday which is on 20/11.
+- AliExpress has deals on 11/11.
 - Asus Motherboard: If buying from Amazon US and you're located in another region, make sure your location has repair labs for motherboards, otherwise Amazon support will redirect you to Asus support, if you've reached your region of Asus support they will redirect you to Asus US support which will require you to have US address, basically leaving you without warranty even if it's still active effectivly unusable.
 - Steelband: When storing don't use cobra pipe or any pipe, use zip ties.
 - Headset: Don't buy pleather.
+- Apperently buying above custom limit (i.e 100$ is fine as long as the product itself isn't over that amount)
+- RAM: Buy ECC RAM.
 - Smartphone: Buy eSIM, 5G, VoLTE, WiFi-Calling phone.
 - Save package of products through their return window (some 14days some 30days)
 - GPU: Prefer with backplane (cover for the back side), keep the dust covers.

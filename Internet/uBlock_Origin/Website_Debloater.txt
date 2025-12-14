@@ -1,4 +1,4 @@
-! Expires: 1 hours
+! Expires: 12 hours
 ! Homepage: https://raw.githubusercontent.com/ByKsTv/Everything/main/Internet/uBlock_Origin/Website_Debloater.txt
 ! Title: Website Debloater
 1337x.to##.bitcoin
@@ -193,6 +193,11 @@ missav.ws##.gap-2.grid-cols-2.grid.text-nord14.list-none.mb-4
 missav.ws##.lg\:mb-10.mb-5
 missav.ws##.mb-5.space-y-5
 missav.ws##footer.px-4.mx-auto.sm\:container
+myanimelist.net###copyright
+myanimelist.net###footer-block
+myanimelist.net###recaptcha-terms
+myanimelist.net##.ac.footer-recommended
+myanimelist.net##.footer-ranking
 myanimelist.net##.mal-tooltip-layer
 nhentai.net###related-container
 nnmclub.to###cse-search-box
