@@ -66,6 +66,6 @@
 
 ## Additional Information
 
-- [djdallmann](https://github.com/djdallmann/GamingPCSetup/tree/master/CONTENT/DOCS/BIOS)
-- [fujitsu](https://sp.ts.fujitsu.com/dmsp/Publications/public/wp-bios-settings-primergy-ww-en.pdf)
-- [congatec](https://www.congatec.com/fileadmin/user_upload/Documents/Application_Notes/AN40_BIOS_Optimization_For_Real-time_Applications.pdf)
+- <https://github.com/djdallmann/GamingPCSetup/tree/master/CONTENT/DOCS/BIOS>
+- <https://sp.ts.fujitsu.com/dmsp/Publications/public/wp-bios-settings-primergy-ww-en.pdf>
+- <https://www.congatec.com/fileadmin/user_upload/Documents/Application_Notes/AN40_BIOS_Optimization_For_Real-time_Applications.pdf>
