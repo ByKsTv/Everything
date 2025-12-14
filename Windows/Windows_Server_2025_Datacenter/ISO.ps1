@@ -10,12 +10,25 @@ $Rufus_SavePath = [IO.Path]::Combine($env:TEMP, $Rufus_FileName)
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Rufus'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Rufus_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Rufus_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
 (New-Object System.Net.WebClient).DownloadFile($Rufus_DDL, $Rufus_SavePath)
 
-$Windows_DDL1 = ((Invoke-WebRequest -UseBasicParsing -Uri 'https://massgrave.dev/windows_server_links').Links | Where-Object { $_.outerHTML -match 'en-us' } | Select-Object -First 1).href
-$Windows_DDL = $Windows_DDL1 -replace '&amp;', '&'
+$Windows_DDL = ((Invoke-WebRequest -UseBasicParsing -Uri 'https://massgrave.dev/windows-server-links').Links | Where-Object { $_.outerHTML -match 'en-us' } | Select-Object -First 1).href -replace '&amp;', '&'
 $Windows_FileName = [IO.Path]::GetFileName(([URI]$Windows_DDL).AbsolutePath)
-$Windows_SavePath = "$env:TEMP\$Windows_FileName.iso"
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Windows Server 2025'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Windows_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Windows_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-(New-Object System.Net.WebClient).DownloadFile($Windows_DDL, $Windows_SavePath)
+
+if ($Windows_DDL -match 'drive.massgrave') {
+    Start-Process $Windows_DDL
+
+    Add-Type -AssemblyName System.Windows.Forms
+    $Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{ TopMost = $true }
+    $Popup_Text = 'Manually download the ISO file and click OK when download completed.'
+    [Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK') | Out-Null
+
+    $DownloadsDir = (New-Object -ComObject Shell.Application).NameSpace('shell:Downloads').Self.Path
+    $Windows_SavePath = (Get-ChildItem -Path $DownloadsDir -File | Where-Object { $_.Name -eq $Windows_FileName }).FullName
+}
+else {
+    $Windows_SavePath = "$env:TEMP\$Windows_FileName.iso"
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Windows Server 2025'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Windows_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Windows_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+    (New-Object System.Net.WebClient).DownloadFile($Windows_DDL, $Windows_SavePath)
+}
 
 $Argument = "--gui --iso=$Windows_SavePath"
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Starting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Rufus'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Rufus_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
