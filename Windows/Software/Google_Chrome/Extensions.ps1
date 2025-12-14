@@ -66,21 +66,17 @@ if ($InstalledSoftware -match 'Google Chrome') {
 '@
     }
 
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Setting foreground'); [Console]::ResetColor(); [Console]::WriteLine()
-    [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'Chrome' }).MainWindowHandle)
-
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Opening AdsBypasser'); [Console]::ResetColor(); [Console]::WriteLine()
-    Start-Process $ChromeEXE
-    Start-Sleep -Milliseconds 1000
-    Start-Process $ChromeEXE -ArgumentList 'https://adsbypasser.github.io/releases/adsbypasser.full.user.js'
-    Start-Sleep -Milliseconds 5000
-
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Setting foreground'); [Console]::ResetColor(); [Console]::WriteLine()
-    [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'Chrome' }).MainWindowHandle)
-    Start-Sleep -Milliseconds 1000
-
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Installing AdsBypasser'); [Console]::ResetColor(); [Console]::WriteLine()
-    (New-Object -ComObject wscript.shell).SendKeys('^{ENTER}')
+    $UserScripts_URLs = @(
+        'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js'
+        'https://raw.githubusercontent.com/ByKsTv/Everything/main/Websites/Scripts/AliExpress_ViewMore.user.js'
+        'https://raw.githubusercontent.com/ByKsTv/Everything/main/Websites/Scripts/Amazon_CleanURL.user.js'
+    )
+    foreach ($UserScripts_URL in $UserScripts_URLs) {
+        Start-Process $UserScripts_URL
+        Start-Sleep -Seconds 5
+        [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'Chrome' }).MainWindowHandle) | Out-Null
+        (New-Object -ComObject wscript.shell).SendKeys('^{ENTER}')
+    }
     
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Cleaning up'); [Console]::ResetColor(); [Console]::WriteLine()
     if (Test-Path -Path 'HKLM:\SOFTWARE\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy') {

@@ -55,20 +55,18 @@ if (Test-Path $Firefox_Profiles) {
 '@
         }
     }
-    
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Setting foreground'); [Console]::ResetColor(); [Console]::WriteLine()
-    [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle) | Out-Null
 
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Opening AdsBypasser'); [Console]::ResetColor(); [Console]::WriteLine()
-    [Diagnostics.Process]::Start('firefox.exe', 'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js') | Out-Null
-    Start-Sleep -Milliseconds 5000
-
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Setting foreground'); [Console]::ResetColor(); [Console]::WriteLine()
-    [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle) | Out-Null
-    Start-Sleep -Milliseconds 2000
-    
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Installing AdsBypasser'); [Console]::ResetColor(); [Console]::WriteLine()
-    (New-Object -ComObject wscript.shell).SendKeys('^{ENTER}')
+    $UserScripts_URLs = @(
+        'https://adsbypasser.github.io/releases/adsbypasser.full.es7.user.js'
+        'https://raw.githubusercontent.com/ByKsTv/Everything/main/Websites/Scripts/AliExpress_ViewMore.user.js'
+        'https://raw.githubusercontent.com/ByKsTv/Everything/main/Websites/Scripts/Amazon_CleanURL.user.js'
+    )
+    foreach ($UserScripts_URL in $UserScripts_URLs) {
+        Start-Process $UserScripts_URL
+        Start-Sleep -Seconds 5
+        [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'firefox' }).MainWindowHandle) | Out-Null
+        (New-Object -ComObject wscript.shell).SendKeys('^{ENTER}')
+    }
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Cleaning up'); [Console]::ResetColor(); [Console]::WriteLine()
     if (Test-Path -Path 'HKLM:\SOFTWARE\Policies\Mozilla\Firefox\Extensions\Install') {
