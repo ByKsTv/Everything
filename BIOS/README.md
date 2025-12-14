@@ -1,8 +1,4 @@
-# BIOS
-
-This file includes information on the topic of `BIOS`.
-
-## Table Of Contents
+# Table Of Contents
 
 - [Find Motherboard Model](#find-motherboard-model)
 - [Update BIOS](#update-bios)
