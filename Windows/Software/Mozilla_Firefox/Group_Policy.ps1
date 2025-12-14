@@ -21,3 +21,6 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'Disa
 
 # Group Policy: Computer Configuration: Administrative Templates: Mozilla: Firefox: No Default Bookmarks: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'NoDefaultBookmarks' -Type DWORD -Value 1
+
+# Group Policy: Computer Configuration: Administrative Templates: Mozilla: Firefox: Generative AI: Enabled: Disabled
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox\GenerativeAI' -Name 'Enabled' -Type DWORD -Value 0
