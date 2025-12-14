@@ -1,4 +1,4 @@
-$InstalledSoftware = Get-Package | Select-Object -Property 'Name'
+$InstalledSoftware = (Get-Package).Name
 
 if ($InstalledSoftware -match 'Google Chrome') {
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Closing browser'); [Console]::ResetColor(); [Console]::WriteLine()
