@@ -1,4 +1,10 @@
-# Table Of Contents
+<div align="center"> <!-- markdownlint-disable-line MD033 MD041 -->
+
+# BIOS
+
+This file includes information on the topic of `BIOS`.
+
+## Table Of Contents
 
 - [Find Motherboard Model](#find-motherboard-model)
 - [Update BIOS](#update-bios)
