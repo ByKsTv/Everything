@@ -1,0 +1,9 @@
+$DDL = ((Invoke-WebRequest -UseBasicParsing -Uri 'https://www.wireshark.org/download.html').Links | Where-Object { $_.outerHTML -match 'x64.exe' } | Select-Object -First 1).href
+$FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
+$SavePath = [IO.Path]::Combine($env:TEMP, $FileName)
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Wireshark'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+(New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
+
+$Argument = '/S'
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+Start-Process -FilePath $SavePath -ArgumentList $Argument -Wait
