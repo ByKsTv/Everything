@@ -84,6 +84,7 @@ WD brand from AliExpress is sus because sticker is the same but the shape of the
 - Speaker cable: Don't buy `Copper Clad Aluminum` (CCA) cable, instead buy `Oxygen Free Cable` (OFC) cable.
 - Network cable: Don't buy `Copper Clad Aluminum` (CCA) cable, instead buy `Annealed Bare Copper` cable.
 - HDD: Don't buy SMR drives, instead buy CMR drives.
+- Wallet: Use RFID Blocker.
 - Air Condition: Check noise rating (dB) for indoor/outdoor units and check which app it connects to and if it works with Google Home.
 - Network Card: 100/1000/2500/5000/10000 with Wake on Lan - TX401.
 - Security Cameras: Avoid cameras that have IR inside the camera body, prefer cameras that have IR outside.
@@ -96,6 +97,8 @@ WD brand from AliExpress is sus because sticker is the same but the shape of the
 - Headset: Don't buy pleather.
 - Apperently buying above custom limit (i.e 100$ is fine as long as the product itself isn't over that amount)
 - RAM: Buy ECC RAM.
+- RAM: Populate all RAM slots.
+- Credit Card: If owns a credit card without conversion fees it's cheaper to use USD.
 - Smartphone: Buy eSIM, 5G, VoLTE, WiFi-Calling phone.
 - Save package of products through their return window (some 14days some 30days)
 - GPU: Prefer with backplane (cover for the back side), keep the dust covers.
