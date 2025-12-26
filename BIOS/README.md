@@ -40,7 +40,7 @@
    > Duration of BIOS Update is 8 minutes.
 
 1. Update BIOS Firmware.
-   > Asus motherboard: `Tool` -> `Asus EZ Flash 3 Utility` -> Select storage device -> Select BIOS file -> `Yes`.
+   > Asus motherboard: `Tool` -> `Asus EZ Flash 3 Utility` -> Select storage device -> Select BIOS file -> `Yes` -> `Yes` -> `Yes`.
 1. Press `F1` to enter BIOS setup.
 1. Press `F5` to `Reset to Defaults`.
 

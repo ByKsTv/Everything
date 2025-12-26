@@ -18,7 +18,6 @@
 - [Microwave](#microwave)
 - [Clothes](#clothes)
 - [Water](#water)
-- [Food](#food)
 
 ## Arriving
 
@@ -37,6 +36,8 @@
 - When doctor cleaning ear wax do not get close to the ear drum.
 - Dont use Q-Tips.
 - Do not block your sneeze.
+- Do not sleep with in-ear headphones.
+- Avoid using in-ear headphones.
 
 ## Prescriptions at a pharmacy
 
@@ -110,6 +111,13 @@
 - Do not lay down and eat or drink.
 - Do not drive and eat or drink.
 
-## Food
+## Teeth straightening
 
-- Cut the top layer of an apple.
+- InvisiAlign:
+  1. Schedule an appointment to the Orthodent, either by the official healthcare app or by their dedicated page on their website.
+  1. You will get a quote and a work plan.
+  1. Try talking to the manager to get the full discounts since normally you won't get them.
+  1. The plan expires in 3 months.
+  1. The duration of the plan is subjective and depends on the work needed.
+  1. Make sure they know and can get a bank transfer transaction.
+  1. Ask how long the warranty is.

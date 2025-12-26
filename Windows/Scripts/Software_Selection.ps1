@@ -810,9 +810,6 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     if ($CheckBoxes['Chrome - Extensions'].Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Google_Chrome/Extensions.ps1')
     }
-    if ($CheckBoxes['Microsoft Store - Codec'].Checked) {
-        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Store/Codec/Download.ps1')
-    }
     if ($CheckBoxes['CrystalDiskInfo'].Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/CrystalDiskInfo/Download.ps1')
     }
@@ -890,6 +887,9 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     }
     if ($CheckBoxes['Microsoft Store'].Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Store/Download.ps1')
+    }
+    if ($CheckBoxes['Microsoft Store - Codec'].Checked) {
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Store/Codec/Download.ps1')
     }
     if ($CheckBoxes['Minecraft Launcher'].Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Minecraft_Launcher/Download.ps1')

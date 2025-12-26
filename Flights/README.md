@@ -113,3 +113,7 @@ Trolly:
 ## Washing machine
 
 - Do not share washing machine with a partner since clothes might get mixed up.
+
+## Return
+
+- Upon returning make sure to transfer and backup all photos and videos to the PC.

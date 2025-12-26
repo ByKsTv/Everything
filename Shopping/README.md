@@ -98,6 +98,7 @@ WD brand from AliExpress is sus because sticker is the same but the shape of the
 - Apperently buying above custom limit (i.e 100$ is fine as long as the product itself isn't over that amount)
 - RAM: Buy ECC RAM.
 - RAM: Populate all RAM slots.
+- Shabbat plate: One made out of rubber or silicone is bad, use a solid one.
 - Credit Card: If owns a credit card without conversion fees it's cheaper to use USD.
 - Smartphone: Buy eSIM, 5G, VoLTE, WiFi-Calling phone.
 - Save package of products through their return window (some 14days some 30days)

@@ -60,3 +60,13 @@
 1. Enable `devtools.debugger.remote-enabled`.
 1. Press `Ctrl + Alt + Shift + I`.
 1. In Browser Toolbox, click the element picker (mouse pointer icon).
+
+## Edit Search.json
+
+1. PowerShell (Admin):
+
+   ```bash
+   python -m pip install lz4
+   ```
+
+1. Use `Search.json - Read` and `Search.json - Write`.
