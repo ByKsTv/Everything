@@ -187,6 +187,7 @@ Source: [𝗟𝗚 𝗢𝗟𝗘𝗗 𝗧𝗩 𝗦𝗲𝘁𝘁𝗶𝗻𝗴𝘀 �
   - Buy a USB 3.0 to RJ45 adapter (1000Mbps).
   - Do not buy a USB 2.0 to RJ45 adapter (100Mbps).
   - Disable USB Debugging if enabled to make the adapter work.
+  - Samsung and Haier TVs don't work with USB-to-Ethernet adapters.
 
 - Most TVs are not Android-based (LG / Samsung / older TVs). To get Android apps, you can use a Android streaming device:
 
