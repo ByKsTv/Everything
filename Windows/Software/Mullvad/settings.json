@@ -50,8 +50,8 @@
   },
   "update_default_location": false,
   "allow_lan": true,
-  "lockdown_mode": false,
-  "auto_connect": false,
+  "lockdown_mode": true,
+  "auto_connect": true,
   "tunnel_options": {
     "openvpn": {
       "mssfix": null
@@ -66,7 +66,7 @@
       "rotation_interval": null
     },
     "generic": {
-      "enable_ipv6": false
+      "enable_ipv6": true
     },
     "dns_options": {
       "state": "default",
