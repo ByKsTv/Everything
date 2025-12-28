@@ -89,14 +89,14 @@ if (-not (Test-Path -Path "${env:ProgramFiles(x86)}\Internet Download Manager\Un
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$TempEXE'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
     Unblock-File $TempEXE
-    Start-Process $TempEXE -ArgumentList $Argument
+    Start-Process $TempEXE -ArgumentList $Argument -Wait
 
-    do {
-        Start-Sleep -Milliseconds 500
-    } until (
-        $IDM_Process = Get-Process | Where-Object { $_.MainWindowTitle -eq 'Internet Download Manager Registration' }
-    )
-    Stop-Process -Id $IDM_Process.Id -Force
+    # do {
+    #     Start-Sleep -Milliseconds 500
+    # } until (
+    #     $IDM_Process = Get-Process | Where-Object { $_.MainWindowTitle -eq 'Internet Download Manager Registration' }
+    # )
+    # Stop-Process -Id $IDM_Process.Id -Force
 
     $DesktopShortcut = "$($env:USERPROFILE)\Desktop\Internet Download Manager.lnk"
     if (Test-Path -Path $DesktopShortcut) {
