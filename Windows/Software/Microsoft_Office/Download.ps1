@@ -2,7 +2,7 @@ Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 [Windows.Forms.Application]::EnableVisualStyles()
 
-$GraveSoft = (Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/gravesoft/gravesoft.dev/main/docs/office_c2r_links.md' -UseBasicParsing).Content
+$GraveSoft = (Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/massgravel/massgrave.dev/main/docs/office_c2r_links.md' -UseBasicParsing).Content
 
 $Scrubber_Regex = '\[Download Office Scrubber\]\((.*?)\)'
 $Scrubber_Match = [regex]::Match($GraveSoft, $Scrubber_Regex)
