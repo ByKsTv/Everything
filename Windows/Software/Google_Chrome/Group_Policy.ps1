@@ -4,9 +4,6 @@ Set-Policy -Scope Computer -Path 'Software\Policies\Google\Chrome' -Name 'Bookma
 # Computer Configuration: Administrative Templates: Google: Google Chrome: Show the apps shortcut in the bookmark bar: Disabled
 Set-Policy -Scope Computer -Path 'Software\Policies\Google\Chrome' -Name 'ShowAppsShortcutInBookmarkBar' -Type DWORD -Value 0
 
-# Computer Configuration: Administrative Templates: Google: Google Chrome: Enable showing full-tab promotional content: Disabled
-Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'PromotionalTabsEnabled' -Type DWORD -Value 0
-
 # Computer Configuration: Administrative Templates: Google: Google Chrome: Privacy Sanndbox policies: Choose whether the Privacy Sandbox ad measurement setting can be disabled: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'PrivacySandboxAdMeasurementEnabled' -Type DWORD -Value 0
 
@@ -22,8 +19,13 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'Privac
 # Computer Configuration: Administrative Templates: Google: Google Chrome: Extensions: Control Manifest v2 extension availability: Manifest v2 is enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'ExtensionManifestV2Availability' -Type DWORD -Value 2
 
-# Computer Configuration: Administrative Templates: Google: Google Chrome: 
+# Computer Configuration: Administrative Templates: Google: Google Chrome: Generative AI: Settings for Google's AI Mode integrations in the address bar and New Tab page search box.: Do not allow AI Mode integrations.
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'AIModeSettings' -Type DWORD -Value 1
 
+# Ignored because the policy is not set by a cloud source.
 # Computer Configuration: Administrative Templates: Google: Google Chrome: 
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'GenAiDefaultSettings' -Type DWORD -Value 2
+
+# Deprecated
+# Computer Configuration: Administrative Templates: Google: Google Chrome: Enable showing full-tab promotional content: Disabled
+# Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'PromotionalTabsEnabled' -Type DWORD -Value 0
