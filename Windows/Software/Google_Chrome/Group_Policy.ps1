@@ -21,3 +21,9 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'Privac
 
 # Computer Configuration: Administrative Templates: Google: Google Chrome: Extensions: Control Manifest v2 extension availability: Manifest v2 is enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'ExtensionManifestV2Availability' -Type DWORD -Value 2
+
+# Computer Configuration: Administrative Templates: Google: Google Chrome: 
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'AIModeSettings' -Type DWORD -Value 1
+
+# Computer Configuration: Administrative Templates: Google: Google Chrome: 
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'GenAiDefaultSettings' -Type DWORD -Value 2

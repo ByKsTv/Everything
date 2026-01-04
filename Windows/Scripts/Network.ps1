@@ -2088,6 +2088,23 @@ $SettingsToChange = @(
 	# VMware Network Adapter VMnet1: VLAN ID: Valid Values:
 	# Ethernet 3: AutoDetachTimer: Valid Values: 
 	# Ethernet 3: NetworkAddress: Valid Values: 
+	# Wi-Fi: Sleep on WoWLAN Disconnect: Valid Values: Disabled, Enabled
+	# Wi-Fi: Packet Coalescing: Valid Values: Disabled, Enabled
+	# Wi-Fi: ARP offload for WoWLAN: Valid Values: Disabled, Enabled
+	# Wi-Fi: NS offload for WoWLAN: Valid Values: Disabled, Enabled
+	# Wi-Fi: GTK rekeying for WoWLAN: Valid Values: Disabled, Enabled
+	# Wi-Fi: Channel Width for 2.4GHz: Valid Values: 20 MHz Only, Auto
+	# Wi-Fi: Channel Width for 5GHz: Valid Values: 20 MHz Only, Auto
+	# Wi-Fi: Mixed Mode Protection: Valid Values: RTS/CTS Enabled, CTS-to-self Enabled
+	# Wi-Fi: Fat Channel Intolerant: Valid Values: Disabled, Enabled
+	# Wi-Fi: Transmit Power: Valid Values: 1. Lowest, 2. Medium-low, 3. Medium, 4. Medium-High, 5. Highest
+	# Wi-Fi: 802.11n/ac/ax Wireless Mode: Valid Values: 1. Disabled, 2. 802.11n, 3. 802.11ac, 4. 802.11ax
+	# Wi-Fi: MIMO Power Save Mode: Valid Values: Auto SMPS, Static SMPS, Dynamic SMPS, No SMPS
+	# Wi-Fi: Roaming Aggressiveness: Valid Values: 1. Lowest, 2. Medium-low, 3. Medium, 4. Medium-High, 5. Highest
+	# Wi-Fi: Preferred Band: Valid Values: 1. No Preference, 2. Prefer 2.4GHz band, 3. Prefer 5GHz band
+	# Wi-Fi: Throughput Booster: Valid Values: Disabled, Enabled
+	# Wi-Fi: U-APSD support: Valid Values: Disabled, Enabled
+	# Wi-Fi: 802.11a/b/g Wireless Mode: Valid Values: 1. 5GHz 802.11a, 2. 2.4GHz 802.11b, 3. 2.4GHz 802.11g, 4. 2.4GHz 802.11b/g, 5. Dual Band 802.11a/g, 6. Dual Band 802.11a/b/g
 )
 
 $UnusedSettings = @()

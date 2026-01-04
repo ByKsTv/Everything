@@ -1033,6 +1033,9 @@ Set-MpPreference -EnableNetworkProtection Disabled
 # Disable detection for potentially unwanted applications and block them
 Set-MpPreference -PUAProtection Disabled
 
+# Settings: Touchpad: Scroll & zoom: Scrolling direction: Down motion scrolls down
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\PrecisionTouchPad' -Name 'ScrollDirection' -PropertyType DWord -Value 0 -Force
+
 # Disable sandboxing for Microsoft Defender
 & "$env:SystemRoot\System32\setx.exe" /M MP_FORCE_USE_SANDBOX 0
 

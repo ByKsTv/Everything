@@ -4,12 +4,6 @@ if ($InstalledSoftware -match 'Google Chrome') {
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Closing browser'); [Console]::ResetColor(); [Console]::WriteLine()
     Stop-Process -Name Chrome -Force -ErrorAction SilentlyContinue
 
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Adding uBlock Origin'); [Console]::ResetColor(); [Console]::WriteLine()
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Adding Violentmonkey'); [Console]::ResetColor(); [Console]::WriteLine()
-    Write-Host "Google Chrome Extensions: Adding I'm not robot captcha clicker" -ForegroundColor green -BackgroundColor black
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Adding Buster: Captcha Solver for Humans'); [Console]::ResetColor(); [Console]::WriteLine()
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Adding The Camelizer - Price Tracker'); [Console]::ResetColor(); [Console]::WriteLine()
-
     # Delete previous installed lists using policies
     Remove-Item -Path 'HKLM:\SOFTWARE\Policies\Google\Chrome\ExtensionInstallForcelist' -Force -ErrorAction SilentlyContinue
     New-Item -Path 'HKLM:\SOFTWARE\Policies\Google\Chrome\ExtensionInstallForcelist' -Force
