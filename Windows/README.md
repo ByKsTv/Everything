@@ -14,7 +14,7 @@
 
 ## Backup
 
-Usernames, passwords, videos, photos, files, software, desktop layout, macros, mpv settings, chrome sync turn on, firefox profile folder, app data, quick access pinned items, ublock filters.
+Usernames, passwords, videos, photos, files, software, desktop layout, macros, mpv settings, chrome sync turn on, qbittorrent appdata from roaming and local, firefox profile folder, app data, quick access pinned items, ublock filters.
 
 ## Download ISO
 
@@ -73,6 +73,8 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 1. `Boot` > `Boot Override` > `UEFI`
 
 ## Installation
+
+> Some laptops have touchpad that won't work, only after first boot-up and windows updates the touchpad will work.
 
 1. `Delete` all partitions from the drive you want to install windows on > `Next`.
    > If drives not found - Use `Load Driver` and extract `Intel Rapid Storage Technology (IRST)` driver matching to the motherboard.

@@ -562,4 +562,7 @@ New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\NlaSvc\Parameter
 New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\wuauserv' -Name 'Start' -Value 3 -PropertyType DWord -Force
 
 # O&O ShutUp10++: Current User: Miscellaneous: Disable the desktop icon for information on "Windows Spotlight": On
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel' -Name '{2cc5ca98-6485-489a-920e-b3e88a6ccce3}' -Value 1 -PropertyType DWord 
+if (-not (Test-Path -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel')) {
+	New-Item -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel' -Force
+}
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\HideDesktopIcons\NewStartPanel' -Name '{2cc5ca98-6485-489a-920e-b3e88a6ccce3}' -Value 1 -PropertyType DWord -Force

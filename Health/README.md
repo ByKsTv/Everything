@@ -22,6 +22,7 @@
 ## Arriving
 
 - Arrive 40 minutes before appoinment, once you swipe your card you'll receive a number.
+- I think if we arrive with another person (as supervisor) the thretment is better.
 
 ## Tooth Cleaning Dentist
 
@@ -57,6 +58,10 @@
 - Do not rub your eyes.
 - Do not look directly at the fiber optic cable ends.
 
+## Eye doctor
+
+- לעיתים לפני הבדיקה עצמה יש צורך להיכנס לחדר אחר לבדיקת ויזוס, בדיקת ראיה פשוטה, הקראת מספרים בקול מול מסך.
+
 ## Haircut
 
 - Don't wet your hair before a haircut.
@@ -87,6 +92,7 @@
 ## Bloodtest
 
 - (Unconfirmed) Also tell the nurse to test for magnezium.
+- כדי לקבל הפניה לבדיקת דם ניתן לפנות למרפאה ולבקש הפניה לבדיקת ביוכימיה, המטולוגיה.
 
 ## Fiber Optic
 

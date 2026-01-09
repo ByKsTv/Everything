@@ -96,7 +96,7 @@ WD brand from AliExpress is sus because sticker is the same but the shape of the
 - Steelband: When storing don't use cobra pipe or any pipe, use zip ties.
 - Headset: Don't buy pleather.
 - Apperently buying above custom limit (i.e 100$ is fine as long as the product itself isn't over that amount)
-- RAM: Buy ECC RAM but make sure thr motherboard supports it.
+- RAM: Prefer to use ECC RAM but make sure the motherboard and cpu supports it.
 - RAM: Populate all RAM slots.
 - Shabbat plate: One made out of rubber or silicone is bad, use a solid one.
 - Credit Card: If owns a credit card without conversion fees it's cheaper to use USD.

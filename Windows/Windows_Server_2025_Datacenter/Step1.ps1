@@ -1,5 +1,7 @@
 Start-Process powershell.exe -ArgumentList '-NoProfile -WindowStyle Minimized -Command "Invoke-Expression (New-Object Net.WebClient).DownloadString(''https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Update.ps1'')"'
 
+Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/PowerPlan.ps1')
+
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Key.ps1')
 
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Windows_Server_2025_Datacenter/Settings.ps1')

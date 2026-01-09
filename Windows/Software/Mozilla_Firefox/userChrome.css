@@ -300,3 +300,8 @@ menulist {
 #permission-popup-menulist {
 	border: 1px solid;
 }
+
+/* Set the color scheme to dark for drop down menus */
+#ContentSelectDropdownPopup {
+	color-scheme: dark !important; /* It doesn't apply without `!important` */
+}

@@ -1,5 +1,11 @@
 /* Applies to Websites */
 
+/* All Pages */
+:root {
+	/* Set scrollbar thumb to white and background to black */
+	scrollbar-color: white black;
+}
+
 /* New empty tab with black background */
 @-moz-document url("about:blank"), url("about:newtab") {
 	html {

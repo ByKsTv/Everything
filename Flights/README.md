@@ -32,6 +32,7 @@
 - Don't buy tickets that are near the aile or bathroom
 - Application for compensation and reimbursement of expenses if your flight was cancelled or delayed
 - When suing - apperently NOT each canceled flight which was rebooked is eligable for reimbursement, but each PAID flight, so even if you rebook 5 times, it only considered as one flight. Also, apperently they don't pay for food, only for hotels and flight.
+- Keep a document of every purchase.
 
 ## Hotels
 
