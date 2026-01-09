@@ -19,6 +19,7 @@
 9gag.com##.post-badge
 9gag.com##.text-center.inline-banner
 account.xiaomi.com##._-src-components-CookieBanner-wrapper
+acg.rip##.footer
 ajdown.space##.card-footer
 ajdown.space##.footer-bottom
 ajdown.space##.fw-500.w-100.radius.btn-md.btn-primary.btn
@@ -285,7 +286,10 @@ www.senetic.co.il##.product-cross-selling
 www.senetic.co.il##.product__row--associations.product__row
 www.senetic.co.il##.section-with-slider--footer-recommended-products.section-with-slider
 www.senetic.co.il##.tabs-headings
+www.xvideos.com##.botLinks
+www.xvideos.com##.remove-ads
 www.xvideos.com##.slogan
+www.xvideos.com##.terms
 www.ynet.co.il##.articleShareButtons
 www.youtube.com###attached-survey
 www.youtube.com##.ytdChipsShelfWithVideoShelfRendererHost
@@ -316,6 +320,8 @@ xxxclub.to##.footer-bottom
 xxxclub.to##.logo
 xxxclub.to##.myBtn
 xxxclub.to##.page-footer
+xxxclub.to##.recdiv
+xxxclub.to##.recimg
 xxxclub.to##.similardiv
 xxxclub.to##[href="/c/donate/"]
 xxxclub.to##hr
