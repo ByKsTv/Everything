@@ -3,8 +3,8 @@
 /* All Pages */
 :root,
 * {
-	/* Set scrollbar thumb to white and background to black */
-	scrollbar-color: white black !important; /* It doesn't apply without `!important` */
+	/* Set scrollbar thumb to grey and background to black */
+	scrollbar-color: grey black !important; /* It doesn't apply without `!important` */
 }
 
 /* New empty tab with black background */
