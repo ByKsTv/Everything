@@ -81,7 +81,6 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     $TitleHTML = Invoke-WebRequest -UseBasicParsing -Uri $TitleHREF
 
     $DomainsToSearch = @(
-        'pb.wtf'
         'uniondht.org'
         'uztracker.net'
     )
