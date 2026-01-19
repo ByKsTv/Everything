@@ -22,6 +22,8 @@ QPushButton:hover,
 QRadioButton::indicator:checked:hover,
 QRadioButton::indicator:hover,
 QRadioButton::indicator:on:hover,
+QScrollBar::handle:horizontal:hover,
+QScrollBar::handle:vertical:hover,
 QSpinBox:hover,
 QTabBar::tab:hover,
 QTabBar::tab:selected,
@@ -41,6 +43,8 @@ QLineEdit,
 QListView,
 QPlainTextEdit,
 QRadioButton::indicator,
+QScrollBar::horizontal,
+QScrollBar::vertical,
 QSpinBox,
 QTableView,
 QTextEdit,
@@ -60,4 +64,15 @@ QRadioButton::indicator:on {
 QProgressBar {
 	text-align: center;
 	background-color: rgb(50, 50, 50);
+}
+
+QScrollBar::add-line,
+QScrollBar::sub-line {
+	background: none;
+	border: none;
+}
+
+QScrollBar::handle:horizontal,
+QScrollBar::handle:vertical {
+	background-color: rgb(80, 80, 80);
 }
