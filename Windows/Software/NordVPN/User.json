@@ -104,7 +104,7 @@
 		"WebProtectionSessionHijackCategoryEnabled": false,
 		"DedicatedIpUpsellInAppNotificationShown": false,
 		"DedicatedIpUpsellBannerShown": false,
-		"DedicatedIpUpsellBannerClosed": false,
+		"DedicatedIpUpsellBannerClosed": true,
 		"FileSharingDownloadsLocationBannerShown": false,
 		"CurrentMeshnetDownloadsLocation": "",
 		"ShowUpsellSailyBanner": true,
