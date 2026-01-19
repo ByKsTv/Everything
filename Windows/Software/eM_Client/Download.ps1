@@ -112,3 +112,14 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
 
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/eM_Client/License.ps1')
 }
+
+$ThemesDir = "$env:APPDATA\eM Client\Themes"
+if (-not (Test-Path -Path $ThemesDir)) {
+    New-Item -Path $ThemesDir -ItemType Directory -Force
+}
+
+$DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/eM_Client/OLED.emtheme'
+$FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
+$SavePath = [IO.Path]::Combine($ThemesDir, $FileName)
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+(New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)

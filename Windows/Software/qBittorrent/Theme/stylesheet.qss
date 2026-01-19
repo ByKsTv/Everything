@@ -1,0 +1,63 @@
+QWidget {
+	background-color: black;
+}
+
+QCheckBox::indicator:checked:hover,
+QCheckBox::indicator:hover,
+QCheckBox::indicator:on:hover,
+QComboBox::item:selected,
+QComboBox:hover,
+QGroupBox::indicator:checked:hover,
+QGroupBox::indicator:hover,
+QGroupBox::indicator:on:hover,
+QLineEdit:hover,
+QListView::item:hover,
+QListView::item:selected,
+QMenu::item:hover,
+QMenu::item:selected,
+QMenuBar::item:hover,
+QMenuBar::item:selected,
+QPlainTextEdit:hover,
+QPushButton:hover,
+QRadioButton::indicator:checked:hover,
+QRadioButton::indicator:hover,
+QRadioButton::indicator:on:hover,
+QSpinBox:hover,
+QTabBar::tab:hover,
+QTabBar::tab:selected,
+QTableView::item:hover,
+QTableView::item:selected,
+QToolButton:hover,
+QToolButton:selected,
+QTreeView::item:hover,
+QTreeView::item:selected {
+	background-color: rgb(50, 50, 50);
+}
+
+QCheckBox::indicator,
+QComboBox,
+QGroupBox::indicator,
+QLineEdit,
+QListView,
+QPlainTextEdit,
+QRadioButton::indicator,
+QSpinBox,
+QTableView,
+QTextEdit,
+QTreeView {
+	border: 1px solid rgb(50, 50, 50);
+}
+
+QCheckBox::indicator:checked,
+QCheckBox::indicator:on,
+QGroupBox::indicator:checked,
+QGroupBox::indicator:on,
+QRadioButton::indicator:checked,
+QRadioButton::indicator:on {
+	background-color: deepskyblue;
+}
+
+QProgressBar {
+	text-align: center;
+	background-color: rgb(50, 50, 50);
+}
