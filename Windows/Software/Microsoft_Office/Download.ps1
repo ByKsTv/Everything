@@ -284,6 +284,9 @@ $Cancel = New-Object System.Windows.Forms.Button -Property @{
 
 $Form.Controls.AddRange(@($Language_Selection, $Ok, $Cancel))
 if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
+
+    Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Office/Group_Policy_Templates.ps1')
+    
     if ($Scrubber.Checked) {
         if (-not (Test-Path -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings')) {
             New-Item -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings' -Force

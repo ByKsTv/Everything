@@ -123,7 +123,7 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     }
     do {
         Start-Sleep -Milliseconds 1000
-    } until ((Get-Content $Log -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*Effects*')
+    } until ((Get-Content $Log -ErrorAction SilentlyContinue) -match 'Torrent download finished. Torrent: .*Effects*')
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Directory'"); [Console]::ResetColor(); [Console]::WriteLine()
     & 7z.exe x $ISO -o"$Directory" -y

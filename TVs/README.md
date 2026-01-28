@@ -64,7 +64,6 @@
 #### Android TV - Notes
 
 - When using `UAD-ng` - Don't uninstall the following:
-
   - `com.google.android.tv.remote.service` - Android TV Remote Service.
   - `com.netflix.ninja` - Netflix.
   - A Package on the `Recommended` list - Disconnects the WiFi.
@@ -183,19 +182,16 @@ Source: [𝗟𝗚 𝗢𝗟𝗘𝗗 𝗧𝗩 𝗦𝗲𝘁𝘁𝗶𝗻𝗴𝘀 �
 ### More
 
 - Most TVs have a network (RJ45) port limited to 100Mbps. To get faster speeds, you can use a USB-to-Ethernet adapter:
-
   - Buy a USB 3.0 to RJ45 adapter (1000Mbps).
   - Do not buy a USB 2.0 to RJ45 adapter (100Mbps).
   - Disable USB Debugging if enabled to make the adapter work.
   - Samsung and Haier TVs don't work with USB-to-Ethernet adapters.
 
 - Most TVs are not Android-based (LG / Samsung / older TVs). To get Android apps, you can use a Android streaming device:
-
   - Google TV Streamer 4K
   - Xiaomi TV Box S 3rd Gen 4K
 
 - Cable TV is outdated. Providers now sell a bundle that includes:
-
   - Router (Internet + WiFi) – rented monthly.
     - Instead - Buy your own (Recommended: Ubiquiti), choose the best CPU and highest GHz.
   - Android TV box (with their app) – rented monthly.

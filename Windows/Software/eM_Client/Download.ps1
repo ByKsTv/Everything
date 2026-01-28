@@ -95,7 +95,7 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     }
     do {
         Start-Sleep -Milliseconds 1000
-    } until ((Get-Content $Log -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*eM Client*')
+    } until ((Get-Content $Log -ErrorAction SilentlyContinue) -match 'Torrent download finished. Torrent: .*eM Client*')
     
     if ($Title -match 'KpoJIuK') {
         $Argument = '/S /I'

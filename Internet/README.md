@@ -33,7 +33,6 @@
 ### LAN - More
 
 - More information about Ubiquiti:
-
   - [AP Antenna Radiation Patterns](https://help.ui.com/hc/en-us/articles/115005212927-AP-Antenna-Radiation-Patterns)
   - [UniFi WiFi SSID and AP Settings Overview](https://help.ui.com/hc/en-us/articles/32065480092951-UniFi-WiFi-SSID-and-AP-Settings-Overview)
   - [WiFi 7 MLO w/ Pixel 10 Pro & Ubiquiti UniFi Access Point (E7/U7-Pro-XGS/EMLMR/EMLSR/STR)](https://www.youtube.com/watch?v=RPSnWxe9_DE)
@@ -51,14 +50,12 @@
 ### WAN - Equipment
 
 - Some ISPs use PPPoE and some use DHCP:
-
   - PPPoE - Visit the ISP website to know which SFP moudle to buy, tell the ISP Customer Service the serial number in order to activate it.
   - DHCP - TODO.
 
 ### WAN - More
 
 - Ways to contact the ISP:
-
   - Chat with ISP technicians on Whatsapp.
   - Chat with ISP Customer Service on Whatsapp.
   - Report a hazarad damaged cable using the ISP website.
@@ -70,7 +67,6 @@
 - Create a reminder to renew the plan each year.
 
 - When adding or removing fixed IP, brief disconnections will occour:
-
   - On PPPoE Connection - Adding a fixed IP - 12 Seconds.
   - On PPPoE Connection - Removing a fixed IP - 10 Seconds.
 
@@ -79,7 +75,6 @@
 - When trying to help a user with ISP router - first contact the ISP technical support.
 
 - Process of moving from aerial infrastructure to underground infrastructure:
-
   - Contact Ministery of communications, request an underground infrastructure (some require payment).
   - Pay an upfront payment for opening a case (estimate around 160USD).
   - The area manager will come and inspect the area, make your demands to him and be clear on what's your plan is.
@@ -92,7 +87,6 @@
   - Sumbit a public inquiry to request a fix to the road.
 
 - Technician law:
-
   - Example: Technician schduled to arrive from 12:00 to 14:00.
   - Technician arrives before 16:00 - No compensation.
   - Technician arrives after 16:00 - X compensation.
@@ -100,13 +94,11 @@
   - Search for `Technician law` on Google.
 
 - Process of getting a compensation thanks to `Technician law`:
-
   - Send a public inquiry using the ISP website.
   - You'll receive a phone call from the boss of the technician which will try to lie to you, just say `I would like a compensation`.
   - Now you'll receive a phone call from the public inquiry repesenetive which will get you your compensation.
 
 - Process of reporting a damaged ISP cable and no internet connection:
-
   - Take a picture of the damaged ISP cable.
   - Contact the ISP in every way and claim: `Cable is damaged, I don't have internet and I work from home`.
 

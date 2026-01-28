@@ -114,7 +114,6 @@ WD brand from AliExpress is sus because sticker is the same but the shape of the
 ## Recycle
 
 - Products and materials that can be bought off the user:
-
   - Copper cables
   - Aluminium
   - Air conditioner (both units)
@@ -125,7 +124,6 @@ WD brand from AliExpress is sus because sticker is the same but the shape of the
   - Only the inside of a boiler sun caputre
 
 - Products and materials that can not be bought off the user:
-
   - Monitors
   - TVs
   - Rubber

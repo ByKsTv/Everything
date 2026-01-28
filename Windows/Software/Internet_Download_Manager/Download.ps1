@@ -83,7 +83,7 @@ if (-not (Test-Path -Path "${env:ProgramFiles(x86)}\Internet Download Manager\Un
     }
     do {
         Start-Sleep -Milliseconds 1000
-    } until ((Get-Content $Log -ErrorAction SilentlyContinue) -match 'Torrent removed. Torrent: .*Internet Download Manager*')
+    } until ((Get-Content $Log -ErrorAction SilentlyContinue) -match 'Torrent download finished. Torrent: .*Internet Download Manager*')
 
     $Argument = '/skipdlgs'
 
