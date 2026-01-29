@@ -691,7 +691,8 @@ if ($InstalledSoftware -match 'Razer Synapse') {
     $CheckBoxes['Razer Synapse'].Enabled = $false
     $CheckBoxes['Razer Synapse'].Text += ' (Installed)'
 }
-if ($InstalledSoftware -match 'RustDesk') {
+$TaskName = 'RustDesk Updater'
+if (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue) {
     $CheckBoxes['RustDesk'].Enabled = $false
     $CheckBoxes['RustDesk'].Text += ' (Installed)'
 }

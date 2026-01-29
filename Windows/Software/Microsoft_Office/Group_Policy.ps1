@@ -1,5 +1,3 @@
-# https://www.microsoft.com/en-us/download/details.aspx?id=49030
-
 # Group Policy: User Configuration: Administrative Templates: Microsoft Office 2016: First Run: Disable First Run Movie: Enabled
 Set-Policy -Scope User -Path 'Software\Policies\Microsoft\Office\16.0\Firstrun' -Name 'disablemovie' -Type DWORD -Value 1
 

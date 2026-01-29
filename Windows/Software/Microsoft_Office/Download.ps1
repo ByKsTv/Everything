@@ -127,12 +127,19 @@ $DisableTelemetry = New-Object System.Windows.Forms.CheckBox -Property @{
     Checked  = $true
 }
 
+$RevertTelemetry = New-Object System.Windows.Forms.CheckBox -Property @{
+    Text     = 'Revert Telemetry'
+    Width    = 300
+    Height   = 20
+    Location = [Drawing.Point]::new(5, 370)
+}
+
 $Scrubber = New-Object System.Windows.Forms.CheckBox -Property @{
     Text     = 'Uninstall Previous Office Versions'
     Width    = 300
     Height   = 20
     Checked  = $true
-    Location = [Drawing.Point]::new(5, 370)
+    Location = [Drawing.Point]::new(5, 390)
 }
 
 $Language_Selection = New-Object System.Windows.Forms.ComboBox -Property @{
@@ -142,7 +149,7 @@ $Language_Selection = New-Object System.Windows.Forms.ComboBox -Property @{
     DropDownStyle = 'DropDownList'
 }
 
-$Form.Controls.AddRange(@($Activate, $DisableTelemetry, $Scrubber))
+$Form.Controls.AddRange(@($Activate, $DisableTelemetry, $RevertTelemetry, $Scrubber))
 
 # Add languages to the combobox, sorted alphabetically
 foreach ($language in ($Language_Sections.Keys | Sort-Object)) {
@@ -361,6 +368,14 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
 
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Group_Policy/Pre.ps1')
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Office/Group_Policy.ps1')
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Group_Policy/Post.ps1')
+    }
+
+    if ($RevertTelemetry.Checked) {
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Office: Revert Telemetry'); [Console]::ResetColor(); [Console]::WriteLine()
+
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Group_Policy/Pre.ps1')
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Office/Group_Policy_Revert.ps1')
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Scripts/Group_Policy/Post.ps1')
     }
 }
