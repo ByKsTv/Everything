@@ -35,7 +35,6 @@
 | Name     | Links                           | Notes        |
 | -------- | ------------------------------- | ------------ |
 | MangaDex | [Website](https://mangadex.org) | Multilingual |
-| BATOTO   | [Website](https://bato.to)      |              |
 | nHentai  | [Website](https://nhentai.net)  | NSFW         |
 
 ## TV Shows & Movies
