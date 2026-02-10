@@ -49,7 +49,7 @@
 | Symbolab: AI Math Photo Solver   | [4pda](https://4pda.to/forum/index.php?showtopic=702296&view=findpost&p=44337245)                                                                                   |                                                                                            |
 | TickTick:To Do List & Calendar   | [4pda](https://4pda.to/forum/index.php?showtopic=478412&view=findpost&p=23310127)                                                                                   | Pro by Balatan                                                                             |
 | TikTok                           | [4pda](https://4pda.to/forum/index.php?showtopic=1057582&view=findpost&p=88888432)                                                                                  | TikTokModCloud                                                                             |
-| Truecaller                       | [4pda](https://4pda.to/forum/index.php?showtopic=417409#Spoil-18455027-5)                                                                                           | Premium by Balatan                                                                         |
+| Truecaller                       | [4pda](https://4pda.to/forum/index.php?showtopic=417409#Spoil-18455027-3)                                                                                           | Premium by youarefinished                                                                  |
 | UAD-ng                           | [GitHub](https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/releases/latest)                                               | uad-ng-windows.exe                                                                         |
 | Vocalizer                        | [4pda](https://4pda.to/forum/index.php?showtopic=987292#apk)                                                                                                        | [Latest 3.8.2](https://4pda.to/forum/index.php?showtopic=987292&view=findpost&p=132720887) |
 | WhatsApp                         | [4pda](https://4pda.to/forum/index.php?showtopic=186375#Spoil-5125511-11)                                                                                           |                                                                                            |
@@ -84,6 +84,38 @@
 | `Settings` > `Add-ons` > `uBlock Origin` > `Settings`                                            | [Restore from file](https://github.com/ByKsTv/Everything/blob/main/Internet/uBlock_Origin/Backup.json) |
 | `about:config` > `media.autoplay.blocking_policy`                                                | `0`                                                                                                    |
 | `about:config` > `media.autoplay.default`                                                        | `1`                                                                                                    |
+
+### Truecaller Settings
+
+| Location                                                                  | Action                                                                                        |
+| ------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `Get started`                                                             |                                                                                               |
+| `Set Truecaller as your default caller ID & spam app?` -> `Truecaller`    | `Set as default`                                                                              |
+| `CONTINUE`                                                                | `Allow` 4 times                                                                               |
+| `Set Truecaller as your default sms app?` -> `Truecaller`                 | `Set as default`                                                                              |
+| `Sign back in to Truecaller with Google`                                  | Close                                                                                         |
+| `User your Google account to log in faster`                               | `Cancel`                                                                                      |
+| `Fill in manually`                                                        | Only first and last name are required                                                         |
+| `Backup available`                                                        | `Skip` -> `Skip`                                                                              |
+| `Introducing Verified Business Caller ID`                                 | `Dismiss`                                                                                     |
+| `Settings` -> `Calls`                                                     | `Disable battery optimization` -> `Allow`                                                     |
+|                                                                           | Enable `Hide for phonebook contacts`, `Hide for non-phonebook contacts`                       |
+|                                                                           | Enable `Identify numbers on other apps`                                                       |
+|                                                                           | `Receive Video Caller ID` -> `No one`                                                         |
+|                                                                           | Disable `Group calls in call history`, `Show frequently called contacts`                      |
+|                                                                           | Enable `Announce phone calls`                                                                 |
+| `Settings` -> `Messaging`                                                 | `Make Truecaller default SMS app`                                                             |
+|                                                                           | `Spam protection for messages` -> `High`                                                      |
+|                                                                           | `Manage preferences` -> Disable `Provide feedback on Message ID`                              |
+| `Settings` -> `Privacy Center`                                            | Disable `Availablity`, `Social graph`, `Verified business call logs`, `Ad Campaign Analytics` |
+|                                                                           | Enable `Search profiles privately`                                                            |
+| `Settings` -> `Privacy Center` -> `Control how ads appear to you`         | Disable `Show me relevant ads`, `Get deals and promotions`                                    |
+| `Settings` -> `Block`                                                     | `Level of protection` -> `Max`                                                                |
+|                                                                           | Enable `Notification for blocked messages`                                                    |
+| `Homepage` -> Hold `Messages` Tab to make it default when opening the app |                                                                                               |
+| `Homepage` -> `Messages`                                                  | Dismiss `Enable passcode`, `Introducing urgent messages`                                      |
+| `Homepage` -> `Inbox Cleaner`                                             |                                                                                               |
+| `Homepage` -> `Passcode lock`                                             |                                                                                               |
 
 ## Diagnose APKs
 
