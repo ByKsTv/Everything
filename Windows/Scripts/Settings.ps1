@@ -737,3 +737,6 @@ foreach ($t in $targets) {
 }
 Get-Process -Name 'SearchApp', 'SearchHost' -ErrorAction SilentlyContinue |
 Stop-Process -Force -ErrorAction SilentlyContinue
+
+# Don't promt to save pictures on Snipping Tool
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\TabletPC\Snipping Tool' -Name 'PromptToSave' -Value 0 -PropertyType DWord -Force
