@@ -37,7 +37,7 @@ QTreeView::item:selected {
 }
 
 QCheckBox::indicator,
-QComboBox,
+/* Don't use `QComboBox`, it will mess with lenght of text from dropdownlist */
 QGroupBox::indicator,
 QLineEdit,
 QListView,
