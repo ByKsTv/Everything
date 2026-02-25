@@ -5,7 +5,7 @@ QWidget {
 QCheckBox::indicator:checked:hover,
 QCheckBox::indicator:hover,
 QCheckBox::indicator:on:hover,
-QComboBox::item:selected,
+/* Don't use `QComboBox::item:selected`, it will mess with indentation */
 QComboBox:hover,
 QGroupBox::indicator:checked:hover,
 QGroupBox::indicator:hover,
@@ -45,7 +45,7 @@ QPlainTextEdit,
 QRadioButton::indicator,
 QScrollBar::horizontal,
 QScrollBar::vertical,
-QSpinBox,
+/* Don't use `QSpinBox`, it will mess with arrow sizes */
 QTableView,
 QTextEdit,
 QTreeView {
