@@ -40,7 +40,7 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\AppV\CEIP' -Name '
 
 # Group Policy: Computer Configuration: Administrative Templates: System: Audit Process Creation: Include command line in process creation events: Disabled
 # & auditpol.exe /set /subcategory:"{0CCE922B-69AE-11D9-BED3-505054503030}" /success:disable /failure:disable
-Set-Policy -Scope Computer -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\System\Audit' -Name 'ProcessCreationIncludeCmdLine_Enabled' -Type DWORD -Value 0
+Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Audit' -Name 'ProcessCreationIncludeCmdLine_Enabled' -Type DWORD -Value 0
 
 # Group Policy: Computer Configuration: Administrative Templates: System: Device Installation: Do not send a Windows error report when a generic driver is installed on a device: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\DeviceInstall\Settings' -Name 'DisableSendGenericDriverNotFoundToWER' -Type DWORD -Value 1
@@ -87,7 +87,7 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Poli
 Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'NoPublishingWizard' -Type DWORD -Value 1
 
 # Group Policy: Computer Configuration: Administrative Templates: System: Logon: Show first sign-in animation: Disabled
-Set-Policy -Scope Computer -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\System' -Name 'EnableFirstLogonAnimation' -Type DWORD -Value 0
+Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' -Name 'EnableFirstLogonAnimation' -Type DWORD -Value 0
 
 # Group Policy: Computer Configuration: Administrative Templates: System: OS Policies: Allow Clipboard History: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\System' -Name 'AllowClipboardHistory' -Type DWORD -Value 0
@@ -111,7 +111,7 @@ Set-Policy -Scope Computer -Path 'System\CurrentControlSet\Control\Power\PowerTh
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services' -Name 'fAllowToGetHelp' -Type DWORD -Value 0
 
 # Group Policy: Computer Configuration: Administrative Templates: System: Shutdown: Require use of fast startup: Disabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\System' -Name 'HiberbootEnabled' -Type DWORD -Value 0
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\System' -Name 'HiberbootEnabled' -Type DWORD -Value 0
 
 # Group Policy: Computer Configuration: Administrative Templates: System: User Profiles: Turn off the advertising ID: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\AdvertisingInfo' -Name 'DisabledByGroupPolicy' -Type DWORD -Value 1
@@ -291,36 +291,36 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\PowerShell
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging' -Name 'EnableScriptBlockLogging' -Type DWORD -Value 0
 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: Legacy Policies: Always automatically restart at the scheduled time: Enabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AlwaysAutoRebootAtScheduledTime' -Type DWORD -Value 1
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AlwaysAutoRebootAtScheduledTime' -Type DWORD -Value 1
 # The restart timer will give users this much time to save their work (minutes): 5
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AlwaysAutoRebootAtScheduledTimeMinutes' -Type DWORD -Value 5
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AlwaysAutoRebootAtScheduledTimeMinutes' -Type DWORD -Value 5
 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: Legacy Policies: No auto-restart with logged on users for scheduled automatic updates installations: Disabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'NoAutoRebootWithLoggedOnUsers' -Type DWORD -Value 0
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'NoAutoRebootWithLoggedOnUsers' -Type DWORD -Value 0
 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: Legacy Policies: Turn off auto-restart for updates during active hours: Disabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'SetActiveHours' -Type DWORD -Value 0
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate' -Name 'SetActiveHours' -Type DWORD -Value 0
 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: Allow updates to be downloaded automatically over metered connections: Enabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'AllowAutoWindowsUpdateDownloadOverMeteredNetwork' -Type DWORD -Value 1
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate' -Name 'AllowAutoWindowsUpdateDownloadOverMeteredNetwork' -Type DWORD -Value 1
 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: Manage end user experience: Configure Automatic Updats: Enabled: 
 # 4 - Auto download and schedule the install
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AUOptions' -Type DWORD -Value 4
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AUOptions' -Type DWORD -Value 4
 # Install during automatic maintenance: Enabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AutomaticMaintenanceEnabled' -Type DWORD -Value 1
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AutomaticMaintenanceEnabled' -Type DWORD -Value 1
 # Scheduled install day: 0 - Every day
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'ScheduledInstallDay' -Type DWORD -Value 0
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'ScheduledInstallDay' -Type DWORD -Value 0
 # Scheduled install time: 01:00
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'ScheduledInstallTime' -Type DWORD -Value 3
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'ScheduledInstallTime' -Type DWORD -Value 3
 # Install updates for other Microsoft products: Enabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AllowMUUpdateService' -Type DWORD -Value 1
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AllowMUUpdateService' -Type DWORD -Value 1
 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: Manage updates offered from Windows Update: Do not include drivers with Windows Updates: Disabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate' -Name 'ExcludeWUDriversInQualityUpdate' -Type DWORD -Value 0
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate' -Name 'ExcludeWUDriversInQualityUpdate' -Type DWORD -Value 0
 
 # Group Policy: User Configuration: Administrative Templates: Control Panel: Printers: Turn off Windows default printer management: Enabled
-Set-Policy -Scope User -Path 'Software\Microsoft\Windows NT\CurrentVersion\Windows' -Name 'LegacyDefaultPrinterMode' -Type DWORD -Value 1
+Set-Policy -Scope User -Path 'SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows' -Name 'LegacyDefaultPrinterMode' -Type DWORD -Value 1
 
 # Group Policy: User Configuration: Administrative Templates: Start Menu and Taskbar: Remove the Meet Now icon: Enabled
 Set-Policy -Scope User -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'HideSCAMeetNow' -Type DWORD -Value 1
@@ -356,7 +356,7 @@ Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows\CloudContent' 
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows\Explorer' -Name 'DisableSearchBoxSuggestions' -Type DWORD -Value 1
 
 # Group Policy: User Configuration: Administrative Templates: Windows Components: File Explorer: Turn off caching of thumbnail pictures: Enabled
-Set-Policy -Scope User -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'NoThumbnailCache' -Type DWORD -Value 1
+Set-Policy -Scope User -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'NoThumbnailCache' -Type DWORD -Value 1
 
 # Group Policy: User Configuration: Administrative Templates: Windows Components: Remote Desktop Services: Remote Desktop Connection Client: Allow .rdp files from unknown publishers: Enabled
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services' -Name 'AllowUnsignedFiles' -Type DWORD -Value 1
@@ -370,7 +370,7 @@ Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'SmartScre
 # To Sort
 Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer' -Name 'HideSCAMeetNow' -Type DWORD -Value 1
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsCopilot' -Name 'TurnOffWindowsCopilot' -Type DWORD -Value 1
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'NoAutoUpdate' -Type DWORD -Value 0
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'NoAutoUpdate' -Type DWORD -Value 0
 
 # Group Policy: Computer Configuration: Administrative Templates: System: Internet Communication Management: Internet Communication settings: Turn off the Windows Messenger Customer Experience Improvement Program: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Messenger\Client' -Name 'CEIP' -Type DWORD -Value 2
@@ -418,48 +418,48 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Poli
 Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System' -Name 'EnableLinkedConnections' -Type DWORD -Value 1
 
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Hello for Business: Use Windows Hello for Business: Disabled.
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\PassportForWork' -Name 'DisablePostLogonProvisioning' -Type DWORD -Value 0
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\PassportForWork' -Name 'Enabled' -Type DWORD -Value 0
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\PassportForWork' -Name 'DisablePostLogonProvisioning' -Type DWORD -Value 0
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\PassportForWork' -Name 'Enabled' -Type DWORD -Value 0
 
 # O&O ShutUp10++: Current User: Microsoft Edge (new version based on Chromium): Disable the Microsoft Account Sign-In Button: On
-Set-Policy -Scope User -Path 'Software\Policies\Microsoft\Edge' -Name 'BrowserSignin' -Type DWORD -Value 0
+Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'BrowserSignin' -Type DWORD -Value 0
 
 # O&O ShutUp10++: Current User: Microsoft Edge (new version based on Chromium): Disable Enhanced Spell Checking: On
-Set-Policy -Scope User -Path 'Software\Policies\Microsoft\Edge' -Name 'MicrosoftEditorProofingEnabled' -Type DWORD -Value 0
+Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'MicrosoftEditorProofingEnabled' -Type DWORD -Value 0
 
 # O&O ShutUp10++: Local Machine: Microsoft Edge (new version based on Chromium): Disable the Microsoft Account Sign-In Button: On
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'BrowserSignin' -Type DWORD -Value 0
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'BrowserSignin' -Type DWORD -Value 0
 
 # O&O ShutUp10++: Local Machine: Microsoft Edge (new version based on Chromium): Disable Enhanced Spell Checking: On
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Edge' -Name 'MicrosoftEditorProofingEnabled' -Type DWORD -Value 0
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Edge' -Name 'MicrosoftEditorProofingEnabled' -Type DWORD -Value 0
 
 # O&O ShutUp10++: Local Machine: Microsoft Edge (new version based on Chromium): Disable automatic redirection from Internet Explorer to Microsoft Edge: On
-Set-Policy -Scope Computer -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\Ext\CLSID' -Name '{1FD49718-1D00-4B19-AF5F-070AF6D5D54C}' -Type DWORD -Value 0
+Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Ext\CLSID' -Name '{1FD49718-1D00-4B19-AF5F-070AF6D5D54C}' -Type DWORD -Value 0
 
 # O&O ShutUp10++: Local Machine: Windows AI: Disable the provision of recall functionality to all users: On
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\WindowsAI' -Name 'AllowRecallEnablement' -Type DWORD -Value 0
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsAI' -Name 'AllowRecallEnablement' -Type DWORD -Value 0
 
 # O&O ShutUp10++: Local Machine: Windows AI: Disable the Image Creator in Microsoft Paint: On
-Set-Policy -Scope Computer -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\Paint' -Name 'DisableImageCreator' -Type DWORD -Value 1
+Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Paint' -Name 'DisableImageCreator' -Type DWORD -Value 1
 
 # O&O ShutUp10++: Local Machine: Windows AI: Disable Cocreator in Microsoft Paint: On
-Set-Policy -Scope Computer -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\Paint' -Name 'DisableCocreator' -Type DWORD -Value 1
+Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Paint' -Name 'DisableCocreator' -Type DWORD -Value 1
 
 # O&O ShutUp10++: Local Machine: Windows AI: Disable AI-powered image fill in Microsoft Paint: On
-Set-Policy -Scope Computer -Path 'Software\Microsoft\Windows\CurrentVersion\Policies\Paint' -Name 'DisableGenerativeFill' -Type DWORD -Value 1
+Set-Policy -Scope Computer -Path 'SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Paint' -Name 'DisableGenerativeFill' -Type DWORD -Value 1
 
 # O&O ShutUp10++: Local Machine: Taskbar: Disable news and interests in the task bar: On
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Dsh' -Name 'AllowNewsAndInterests' -Type DWORD -Value 0
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Dsh' -Name 'AllowNewsAndInterests' -Type DWORD -Value 0
 
 # Group Policy: Computer Configuration: Administrative Templates: System: Group Policy: Continue experiences on this device: Disabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\System' -Name 'EnableCdp' -Type DWORD -Value 0
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\System' -Name 'EnableCdp' -Type DWORD -Value 0
 
 # Group Policy: Computer Configuration > Administrative Templates > Windows Components > Sync your settings > Do not sync: Enabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\SettingSync' -Name 'DisableSettingSyncUserOverride' -Type DWORD -Value 1
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\SettingSync' -Name 'DisableSettingSync' -Type DWORD -Value 2
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\SettingSync' -Name 'DisableSettingSyncUserOverride' -Type DWORD -Value 1
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\SettingSync' -Name 'DisableSettingSync' -Type DWORD -Value 2
 
 # Group Policy: Computer Configuration > Administrative Templates > Windows Components > Sync your settings > Enable Windows Backup: Disabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\SettingSync' -Name 'EnableWindowsBackup' -Type DWORD -Value 0
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\SettingSync' -Name 'EnableWindowsBackup' -Type DWORD -Value 0
 
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Acrobat/Group_Policy.ps1')
 

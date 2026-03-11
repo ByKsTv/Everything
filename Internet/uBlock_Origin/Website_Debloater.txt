@@ -159,6 +159,9 @@ fitgirl-repacks.site##.site-info
 fitgirl-repacks.site##.widget_archive.widget
 fitgirl-repacks.site##[href="https://fitgirl-repacks.site/donations/"]
 forum.mobilism.me##.welcome-bar
+fredl.ru##.alright-footer
+fredl.ru##.my-2.download-btn > .btn-lg.btn-warning.btn
+github.com###issues-index-tip
 github.com##.color-fg-muted.text-center.mt-3
 github.com##.mb-2.mt-md-2.mt-3.color-fg-muted.text-small
 github.com##.p-responsive.color-border-subtle.color-fg-muted.f6.pb-6.pt-7.footer
@@ -235,6 +238,7 @@ rutracker.org###logo
 rutracker.org###post-msg-form
 rutracker.org###thx-block
 rutracker.org###thx-btn-div
+rutracker.org##.dl-btn-text-ad
 rutracker.org##.footer-bottom-links
 rutracker.org##.hide-for-print.bottom_info
 rutracker.org##.hide-for-print.w100 .w100.nav
@@ -250,6 +254,7 @@ rutracker.org##tr.tCenter.row3 > td
 supjav.com##.copyright
 vjav.com##.footer__text
 www.aliexpress.com##.order-block.order-recommend
+www.amazon.com###desktop-dp-ilm_feature_div_0
 www.ebay.com##.x-atf-left-bottom-river.vim
 www.ebay.com##.x-evo-btf-river.vi-grid.vim
 www.ebay.com##.x-vi-evo-main-container__top-panel
@@ -263,6 +268,7 @@ www.ivory.co.il##.js-index_catalog_item.homepage-list.single-item-wrapper.produc
 www.kan.org.il##.d-flex.general-tags.article-tags
 www.kan.org.il##.elem.with-bg.section.ec-section
 www.kan.org.il##.trinity-tts-pb
+www.ktuvit.me##[href="https://tinyurl.com/ktuvitpay"]
 www.pornhub.com##.clearfix.premium-videos.search-video-thumbs.row-5-thumbs.videos
 www.pornhub.com##.extraMargin.languages.pornInLangWrapper.sectionWrapper
 www.pornhub.com##.footer
@@ -277,6 +283,8 @@ www.pornhub.com##.pre-footer
 www.pornhub.com##.relatedSearchTermsBottom.sectionWrapper
 www.pornhub.com##.tagsForWomen
 www.pornhub.com##.trendingPillsContainer
+www.rtings.com##.e-rich_content.e-tooltip-content
+www.rtings.com##.registration_tooltip-content
 www.senetic.co.il###footer_copyrights
 www.senetic.co.il###top-brands
 www.senetic.co.il###ubiquiti-network-popup
@@ -292,6 +300,7 @@ www.xvideos.com##.slogan
 www.xvideos.com##.terms
 www.ynet.co.il##.articleShareButtons
 www.youtube.com###attached-survey
+www.youtube.com##.ytSlimlineSurveyViewModelHost
 www.youtube.com##.ytdChipsShelfWithVideoShelfRendererHost
 www.youtube.com##:matches-path(/^\/$/) ytd-rich-item-renderer:has(.yt-lockup-view-model--collection-stack-2):has(yt-thumbnail-overlay-badge-view-model)
 www.youtube.com##ytd-rich-grid-media:has(.ytThumbnailOverlayProgressBarHostWatchedProgressBarSegment[style*="width: 100%"])
@@ -330,6 +339,7 @@ youtube.com##[page-subtype="home"] ytd-thumbnail-overlay-resume-playback-rendere
 ||amazon.com^$removeparam=th
 ||bringthemhomenow.net^
 ||datavaults.co/images/logo.png$image
+||freedl.ink/images/rules_dl.png$image
 ||i114.fastpic.ru/big/2021/0314/5e/f17b7771e137fd5fd677967c660d3d5e.gif$image
 ||i4.imageban.ru/out/2011/06/05/8d01e2418787990b99f108564408cb49.png$image
 ||senetic.co.il^$removeparam=listingSource

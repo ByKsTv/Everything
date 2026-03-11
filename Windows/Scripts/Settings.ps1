@@ -154,10 +154,10 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'ShowSuperHidden' -PropertyType DWord -Value 0 -Force
 
 # Folder Options: View: Launch folder windows in a separate process: Enabled
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'SeparateProcess' -PropertyType DWord -Value 1 -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'SeparateProcess' -PropertyType DWord -Value 1 -Force
 
 # Folder Options: View: Restore previous folder windows at logon: Disabled
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'PersistBrowsers' -PropertyType DWord -Value 0 -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'PersistBrowsers' -PropertyType DWord -Value 0 -Force
 
 # Folder Options: View: Show drive letters: Enabled
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer' -Name 'ShowDriveLettersFirst' -PropertyType DWord -Value 0 -Force
@@ -193,10 +193,10 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'NavPaneShowAllFolders' -PropertyType DWord -Value 0 -Force
 
 # Folder Options: View: Navigation pane: Show libraries: Disabled
-if (-not (Test-Path -Path 'HKCU:\Software\Classes\CLSID\{031E4825-7B94-4dc3-B131-E946B44C8DD5}')) {
-	New-Item -Path 'HKCU:\Software\Classes\CLSID\{031E4825-7B94-4dc3-B131-E946B44C8DD5}' -Force
+if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Classes\CLSID\{031E4825-7B94-4dc3-B131-E946B44C8DD5}')) {
+	New-Item -Path 'HKCU:\SOFTWARE\Classes\CLSID\{031E4825-7B94-4dc3-B131-E946B44C8DD5}' -Force
 }
-New-ItemProperty -Path 'HKCU:\Software\Classes\CLSID\{031E4825-7B94-4dc3-B131-E946B44C8DD5}' -Name 'System.IsPinnedToNameSpaceTree' -PropertyType DWord -Value 0 -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Classes\CLSID\{031E4825-7B94-4dc3-B131-E946B44C8DD5}' -Name 'System.IsPinnedToNameSpaceTree' -PropertyType DWord -Value 0 -Force
 
 # Turn off Sticky keys by pressing the Shift key 5 times
 New-ItemProperty -Path 'HKCU:\Control Panel\Accessibility\StickyKeys' -Name 'Flags' -PropertyType String -Value 506 -Force
@@ -264,37 +264,37 @@ if (Get-CimInstance -ClassName CIM_VideoController | Where-Object -FilterScript 
 }
 
 # Settings: Personalization: Taskbar: Combine taskbar buttons and hide labels: Always
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'TaskbarGlomLevel' -PropertyType DWord -Value 0 -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'TaskbarGlomLevel' -PropertyType DWord -Value 0 -Force
 
 # Control Panel: Large Icons
-if (-not (Test-Path -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel')) {
-	New-Item -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel' -Force
+if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel')) {
+	New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel' -Force
 }
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel' -Name 'AllItemsIconView' -PropertyType DWord -Value 0 -Force
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel' -Name 'StartupPage' -PropertyType DWord -Value 1 -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel' -Name 'AllItemsIconView' -PropertyType DWord -Value 0 -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel' -Name 'StartupPage' -PropertyType DWord -Value 1 -Force
 
 # When I grab a windows's title bar and shake it, don't minimize all other windows
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'DisallowShaking' -PropertyType DWord -Value 1 -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'DisallowShaking' -PropertyType DWord -Value 1 -Force
 
 # Control Panel: Ease of Access Center: Make the computer easier to see: Turn off all unnecessary animations (when possible): On
 New-ItemProperty -Path 'HKCU:\Control Panel\Desktop\WindowMetrics' -Name 'MinAnimate' -Value '0' -PropertyType String -Force
 New-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'UserPreferencesMask' -Value ([byte[]](0x90, 0x12, 0x07, 0x80, 0x91, 0x00, 0x00, 0x00)) -PropertyType Binary -Force
 
 # Do not group files and folder in the Downloads folder
-Get-ChildItem -Path 'HKCU:\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell\Bags\*\Shell' -Recurse -ErrorAction SilentlyContinue | Where-Object -FilterScript {
+Get-ChildItem -Path 'HKCU:\SOFTWARE\Classes\Local Settings\SOFTWARE\Microsoft\Windows\Shell\Bags\*\Shell' -Recurse -ErrorAction SilentlyContinue | Where-Object -FilterScript {
 	$_.PSChildName -eq '{885A186E-A440-4ADA-812B-DB871B942259}'
 } | Remove-Item -Force
 # https://learn.microsoft.com/en-us/windows/win32/properties/props-system-null
-if (-not (Test-Path -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}')) {
-	New-Item -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Force
+if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}')) {
+	New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Force
 }
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name 'ColumnList' -PropertyType String -Value 'System.Null' -Force
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name 'GroupBy' -PropertyType String -Value 'System.Null' -Force
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name 'LogicalViewMode' -PropertyType DWord -Value 1 -Force
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name 'Name' -PropertyType String -Value NoName -Force
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name 'Order' -PropertyType DWord -Value 0 -Force
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name 'PrimaryProperty' -PropertyType String -Value 'System.ItemNameDisplay' -Force
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name 'SortByList' -PropertyType String -Value 'prop:System.ItemNameDisplay' -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name 'ColumnList' -PropertyType String -Value 'System.Null' -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name 'GroupBy' -PropertyType String -Value 'System.Null' -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name 'LogicalViewMode' -PropertyType DWord -Value 1 -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name 'Name' -PropertyType String -Value NoName -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name 'Order' -PropertyType DWord -Value 0 -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name 'PrimaryProperty' -PropertyType String -Value 'System.ItemNameDisplay' -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderTypes\{885a186e-a440-4ada-812b-db871b942259}\TopViews\{00000000-0000-0000-0000-000000000000}' -Name 'SortByList' -PropertyType String -Value 'prop:System.ItemNameDisplay' -Force
 
 # Settings: System: Storage: Storage Sense: [Windows 11] Keep Windows running smoothly by automatically cleaning up temporary system and app files / [Windows 10] Delete temporary files that my apps aren't using: On
 if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\StorageSense\Parameters\StoragePolicy')) {
@@ -422,16 +422,16 @@ New-ItemProperty -Path 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\.NETFramework' -Nam
 Set-WindowsReservedStorageState -State Disabled
 
 # Disable help lookup via F1
-if (-not (Test-Path -Path 'HKCU:\Software\Classes\Typelib\{8cec5860-07a1-11d9-b15e-000d56bfe6ee}\1.0\0\win64')) {
-	New-Item -Path 'HKCU:\Software\Classes\Typelib\{8cec5860-07a1-11d9-b15e-000d56bfe6ee}\1.0\0\win64' -Force
+if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Classes\Typelib\{8cec5860-07a1-11d9-b15e-000d56bfe6ee}\1.0\0\win64')) {
+	New-Item -Path 'HKCU:\SOFTWARE\Classes\Typelib\{8cec5860-07a1-11d9-b15e-000d56bfe6ee}\1.0\0\win64' -Force
 }
-New-ItemProperty -Path 'HKCU:\Software\Classes\Typelib\{8cec5860-07a1-11d9-b15e-000d56bfe6ee}\1.0\0\win64' -Name '(default)' -PropertyType String -Value '' -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Classes\Typelib\{8cec5860-07a1-11d9-b15e-000d56bfe6ee}\1.0\0\win64' -Name '(default)' -PropertyType String -Value '' -Force
 
 # Enable Num Lock at startup
 New-ItemProperty -Path 'Registry::HKEY_USERS\.DEFAULT\Control Panel\Keyboard' -Name 'InitialKeyboardIndicators' -PropertyType String -Value 2147483650 -Force
 
 # Use AutoPlay for all media and devices
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers' -Name 'DisableAutoplay' -PropertyType DWord -Value 0 -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers' -Name 'DisableAutoplay' -PropertyType DWord -Value 0 -Force
 
 # Enable thumbnail cache removal
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\VolumeCaches\Thumbnail Cache' -Name 'Autorun' -PropertyType DWord -Value 3 -Force
@@ -447,31 +447,31 @@ Set-MpPreference -EnableNetworkProtection Disabled
 Set-MpPreference -PUAProtection Disabled
 
 # Settings: Touchpad: Scroll & zoom: Scrolling direction: Down motion scrolls down
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\PrecisionTouchPad' -Name 'ScrollDirection' -PropertyType DWord -Value 0 -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\PrecisionTouchPad' -Name 'ScrollDirection' -PropertyType DWord -Value 0 -Force
 
 # Disable sandboxing for Microsoft Defender
 & "$env:SystemRoot\System32\setx.exe" /M MP_FORCE_USE_SANDBOX 0
 
 # Dismiss Microsoft Defender offer in the Windows Security about signing in Microsoft account
-if (-not (Test-Path -Path 'HKCU:\Software\Microsoft\Windows Security Health\State')) {
-	New-Item -Path 'HKCU:\Software\Microsoft\Windows Security Health\State' -Force
+if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows Security Health\State')) {
+	New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Windows Security Health\State' -Force
 }
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Security Health\State' -Name 'AccountProtection_MicrosoftAccount_Disconnected' -PropertyType DWord -Value 1 -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows Security Health\State' -Name 'AccountProtection_MicrosoftAccount_Disconnected' -PropertyType DWord -Value 1 -Force
 
 # Dismiss Microsoft Defender offer in the Windows Security about turning on the SmartScreen filter for Microsoft Edge
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Security Health\State' -Name 'AppAndBrowser_EdgeSmartScreenOff' -PropertyType DWord -Value 0 -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows Security Health\State' -Name 'AppAndBrowser_EdgeSmartScreenOff' -PropertyType DWord -Value 0 -Force
 
 # Microsoft Defender: App & browser control: SmartScreen for Microsoft Store apps: Dismiss offer
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Security Health\State' -Name 'AppAndBrowser_StoreAppsSmartScreenOff' -Value 0 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows Security Health\State' -Name 'AppAndBrowser_StoreAppsSmartScreenOff' -Value 0 -PropertyType DWord -Force
 
 # Disable apps and files checking within Microsoft Defender SmartScreen
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer' -Name 'SmartScreenEnabled' -PropertyType String -Value 'Off' -Force
 
 # Disable Windows Script Host
-if (-not (Test-Path -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings')) {
-	New-Item -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings' -Force
+if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows Script Host\Settings')) {
+	New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Windows Script Host\Settings' -Force
 }
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings' -Name 'Enabled' -PropertyType DWord -Value 0 -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows Script Host\Settings' -Name 'Enabled' -PropertyType DWord -Value 0 -Force
 
 # Disable DNS-over-HTTPS for IPv4
 if (-not (Get-CimInstance -ClassName CIM_ComputerSystem).HypervisorPresent) {
@@ -506,7 +506,7 @@ New-ItemProperty -Path 'Registry::HKEY_CLASSES_ROOT\cmdfile\shell\print' -Name '
 Remove-Item -Path 'Registry::HKEY_CLASSES_ROOT\.zip\CompressedFolder\ShellNew' -Force -ErrorAction Ignore
 
 # Enable the "Open", "Print", and "Edit" items if more than 15 files selected
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer' -Name 'MultipleInvokePromptMinimum' -PropertyType DWord -Value 300 -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer' -Name 'MultipleInvokePromptMinimum' -PropertyType DWord -Value 300 -Force
 
 # Settings: Update & Security: Troubleshoot: Don't run any troubleshooters
 if (-not (Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\WindowsMitigation')) {
@@ -628,29 +628,29 @@ $Urls | ForEach-Object {
 		Add-Content -Path $HostsPath -Value $Line
 	} }
 
-# Open as Notepad
-$NotepadDefaultExts = @('.lua', '.conf', '.json', '.glsl', '.xml')
+# Open as Notepad (`.nfo` doesn't work)
+$NotepadDefaultExts = @('.lua', '.conf', '.json', '.glsl', '.xml', '.md5', '.sfv', '.sha1', '.tth')
 foreach ($NotepadDefaultExt in $NotepadDefaultExts) {
-	New-Item "HKCU:\Software\Classes\$NotepadDefaultExt\shell\open\command" -Force | New-ItemProperty -Name '(default)' -Value 'notepad.exe %1' -Force
+	New-Item "HKCU:\SOFTWARE\Classes\$NotepadDefaultExt\shell\open\command" -Force | New-ItemProperty -Name '(default)' -Value 'notepad.exe %1' -Force
 }
 
 # Narrator: Do not show again
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Narrator' -Name 'ShortcutKeysDialogState' -Value 1 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Narrator' -Name 'ShortcutKeysDialogState' -Value 1 -PropertyType DWord -Force
 
 # Settings: Accessibility: Narrator: Keyboard shortcut for Narrator: Off
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Narrator\NoRoam' -Name 'WinEnterLaunchEnabled' -Value 0 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Narrator\NoRoam' -Name 'WinEnterLaunchEnabled' -Value 0 -PropertyType DWord -Force
 
 # Settings: Accessibility: Narrator: Volume: 1
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Narrator\NoRoam' -Name 'SpeechVolume' -Value 1 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Narrator\NoRoam' -Name 'SpeechVolume' -Value 1 -PropertyType DWord -Force
 
 # Settings: Accessibility: Narrator: Enable Narrator extenstions: Off
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Narrator\NoRoam' -Name 'ScriptingEnabled' -Value 0 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Narrator\NoRoam' -Name 'ScriptingEnabled' -Value 0 -PropertyType DWord -Force
 
 # Microsoft Store: Settings: App Updates: On
-if (-not (Test-Path -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\WindowsStore\WindowsUpdate')) {
-	New-Item -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\WindowsStore\WindowsUpdate' -Force
+if (-not (Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsStore\WindowsUpdate')) {
+	New-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsStore\WindowsUpdate' -Force
 }
-New-ItemProperty -Path 'HKLM:\Software\Microsoft\Windows\CurrentVersion\WindowsStore\WindowsUpdate' -Name 'AutoDownload' -Value 4 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsStore\WindowsUpdate' -Name 'AutoDownload' -Value 4 -PropertyType DWord -Force
 
 <#
 	Setting:
@@ -739,4 +739,4 @@ Get-Process -Name 'SearchApp', 'SearchHost' -ErrorAction SilentlyContinue |
 Stop-Process -Force -ErrorAction SilentlyContinue
 
 # Don't promt to save pictures on Snipping Tool
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\TabletPC\Snipping Tool' -Name 'PromptToSave' -Value 0 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\TabletPC\Snipping Tool' -Name 'PromptToSave' -Value 0 -PropertyType DWord -Force

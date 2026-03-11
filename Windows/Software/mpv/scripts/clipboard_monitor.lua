@@ -42,6 +42,16 @@ local VK_MENU = 0x12 -- Alt key
 local KEYEVENTF_EXTENDEDKEY = 0x0001
 local KEYEVENTF_KEYUP = 0x0002
 
+local clipboard_timer = nil
+local idle_active = false
+
+local function stop_clipboard_monitor()
+    if clipboard_timer then
+        clipboard_timer:kill()
+        clipboard_timer = nil
+    end
+end
+
 -- Bring MPV window to the foreground
 local function bring_to_foreground()
     local pid = mp.get_property_native("pid")
@@ -95,41 +105,44 @@ local function clear_clipboard()
 end
 
 local function monitor_clipboard()
+    -- Prevent stacking multiple periodic timers
+    if clipboard_timer then
+        return
+    end
+
     print("Waiting for user to copy URL")
     clear_clipboard()
     local last_clipboard = ""
 
-    -- Define the timer variable outside to control it later
-    local clipboard_timer = nil
-
-    -- Create the periodic timer
     clipboard_timer = mp.add_periodic_timer(1, function()
         print("Waiting")
         local new_clipboard = get_clipboard_content()
         if new_clipboard and new_clipboard ~= last_clipboard and new_clipboard:match("^https?://") then
             last_clipboard = new_clipboard
 
-            -- Print the detected URL
             print("Detected URL: " .. new_clipboard)
 
             mp.commandv("loadfile", new_clipboard)
             bring_to_foreground()
             clear_clipboard()
 
-            -- Stop the timer once the action is performed
-            clipboard_timer:kill()
+            stop_clipboard_monitor()
             print("URL loaded and timer stopped.")
         end
     end)
 end
-
-local idle_active = false
 
 mp.observe_property("idle-active", "bool", function(_, is_idle)
     idle_active = is_idle
 end)
 
 mp.observe_property("path", "string", function(_, path)
+    -- Any loaded path means playback resumed, so stop stale monitoring
+    if path then
+        stop_clipboard_monitor()
+        return
+    end
+
     if idle_active and not path then
         monitor_clipboard()
     end
@@ -137,6 +150,11 @@ end)
 
 mp.observe_property("eof-reached", "bool", function(_, eof_reached)
     if eof_reached then
-        monitor_clipboard()
+        -- Let playlist auto-advance settle first.
+        mp.add_timeout(0, function()
+            if mp.get_property_bool("eof-reached", false) then
+                monitor_clipboard()
+            end
+        end)
     end
 end)

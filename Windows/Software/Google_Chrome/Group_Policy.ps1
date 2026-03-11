@@ -1,8 +1,8 @@
 # Computer Configuration: Administrative Templates: Google: Google Chrome: Enable Bookmark Bar: Enabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Google\Chrome' -Name 'BookmarkBarEnabled' -Type DWORD -Value 1
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'BookmarkBarEnabled' -Type DWORD -Value 1
 
 # Computer Configuration: Administrative Templates: Google: Google Chrome: Show the apps shortcut in the bookmark bar: Disabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Google\Chrome' -Name 'ShowAppsShortcutInBookmarkBar' -Type DWORD -Value 0
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'ShowAppsShortcutInBookmarkBar' -Type DWORD -Value 0
 
 # Computer Configuration: Administrative Templates: Google: Google Chrome: Privacy Sanndbox policies: Choose whether the Privacy Sandbox ad measurement setting can be disabled: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'PrivacySandboxAdMeasurementEnabled' -Type DWORD -Value 0

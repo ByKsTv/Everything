@@ -295,10 +295,10 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Office/Group_Policy_Templates.ps1')
     
     if ($Scrubber.Checked) {
-        if (-not (Test-Path -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings')) {
-            New-Item -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings' -Force
+        if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows Script Host\Settings')) {
+            New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Windows Script Host\Settings' -Force
         }
-        New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings' -Name 'Enabled' -PropertyType DWord -Value 1 -Force
+        New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows Script Host\Settings' -Name 'Enabled' -PropertyType DWord -Value 1 -Force
 
         # If URL is not working
         $Scrubber_Exists = Invoke-WebRequest -Uri $Scrubber_DDL -UseBasicParsing -Method Head -ErrorAction SilentlyContinue
@@ -326,7 +326,7 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Uninstalling '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Office'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_CMD'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Scrubber_Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process $Scrubber_CMD -ArgumentList $Scrubber_Argument -Wait
 
-        New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows Script Host\Settings' -Name 'Enabled' -PropertyType DWord -Value 0 -Force
+        New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows Script Host\Settings' -Name 'Enabled' -PropertyType DWord -Value 0 -Force
     }
 
     # Collect selected products from the active tab only

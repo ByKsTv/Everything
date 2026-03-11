@@ -1,5 +1,8 @@
 # Ads on N12+ Live on Xiaomi MiBox 4
-mkcf.dxmcdn.com 
+mkcf.dxmcdn.com
+
+# Ads on N12+ Live on Haier Android TV
+ads.kway.co.il
 
 # Windows Search
 r.bing.comms-appx-web

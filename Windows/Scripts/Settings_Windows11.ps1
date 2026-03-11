@@ -56,7 +56,7 @@ if (-not (Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\PolicyManager\default\Settin
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\PolicyManager\default\SettingsPageVisibility' -Name 'Value' -Value 'hide:Feedback' -Force
 
 # Show default Start layout
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'Start_Layout' -PropertyType DWord -Value 0 -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'Start_Layout' -PropertyType DWord -Value 0 -Force
 
 # Settings: Accessibility: Keyboard: Notification preferences: Notify me when I turn on Sticky, Filter, or Toogle keys from keyboard: Off
 # Settings: Accessibility: Keyboard: Notification preferences: Play a sound when I turn Sticky, Filter, or Toogle keys on or off from the keyboard: Off
@@ -70,33 +70,33 @@ New-ItemProperty -Path 'HKCU:\Control Panel\Accessibility\ToggleKeys' -Name 'Fla
 New-ItemProperty -Path 'HKCU:\Control Panel\Cursors' -Name 'CursorDeadzoneJumpingSetting' -PropertyType DWord -Value 0 -Force
 
 # Context menu: Remove 'Share'
-New-Item -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked' -Force
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked' -Name '{e2bf9676-5f8f-435c-97eb-11607a5bedf7}' -Value '' -PropertyType String -Force
+New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked' -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked' -Name '{e2bf9676-5f8f-435c-97eb-11607a5bedf7}' -Value '' -PropertyType String -Force
 
 # Context menu: Remove 'Cast to device'
 New-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked' -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked' -Name '{7AD84985-87B4-4a16-BE58-8B72A5B390F7}' -Value 'Play to Menu' -PropertyType String -Force
 
 # File Explorer: Restore to Windows 10 Navigation bar
-# if (-not (Test-Path -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths')) {
-# 	New-Item -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths' -Force
+# if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths')) {
+# 	New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths' -Force
 # }
-# $TypedPaths_AccessControl = (Get-Acl 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths')
+# $TypedPaths_AccessControl = (Get-Acl 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths')
 # $TypedPaths_AccessControl.SetAccessRule((New-Object System.Security.AccessControl.RegistryAccessRule(
 # 			[Security.Principal.WindowsIdentity]::GetCurrent().Name, 'FullControl', 'Deny')))
-# Set-Acl -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths' -AclObject $TypedPaths_AccessControl
+# Set-Acl -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\TypedPaths' -AclObject $TypedPaths_AccessControl
 
 # Context Menu: Remove 'Add to Favorites'
 [Microsoft.Win32.Registry]::ClassesRoot.DeleteSubKeyTree('*\shell\pintohomefile')
 
 # Settings > Personalization > Dynamic Lighting > Brightness > 0
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Lighting' -Name 'Brightness' -Value 0 -PropertyType DWord -Force
-Get-ChildItem 'HKCU:\Software\Microsoft\Lighting\Devices' | ForEach-Object {
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Lighting' -Name 'Brightness' -Value 0 -PropertyType DWord -Force
+Get-ChildItem 'HKCU:\SOFTWARE\Microsoft\Lighting\Devices' | ForEach-Object {
 	New-ItemProperty -Path $_.PSPath -Name 'Brightness' -Value 0 -PropertyType DWord -Force
 }
 
 # Settings > Apps > Resume > Off
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\CrossDeviceResume\Configuration' -Name 'IsResumeAllowed' -Value 0 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CrossDeviceResume\Configuration' -Name 'IsResumeAllowed' -Value 0 -PropertyType DWord -Force
 
 # Settings > Accessibility > Narrator > Get image descriptions, page titles, and popular links > Off
-New-ItemProperty -Path 'HKCU:\Software\Microsoft\Narrator\NoRoam' -Name 'OnlineServicesEnabled' -Value 0 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Narrator\NoRoam' -Name 'OnlineServicesEnabled' -Value 0 -PropertyType DWord -Force

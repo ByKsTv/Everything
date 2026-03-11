@@ -625,9 +625,9 @@ if exist "%ProgramFiles(x86)%\Microsoft Office\Office%1\*.dll" set _O%1MSI=1
 goto :eof
 
 :officeREG
-reg.exe delete HKCU\Software\Microsoft\Office\%1.0 /f
-reg.exe delete HKCU\Software\Policies\Microsoft\Office\%1.0 /f
-reg.exe delete HKCU\Software\Policies\Microsoft\Cloud\Office\%1.0 /f
+reg.exe delete HKCU\SOFTWARE\Microsoft\Office\%1.0 /f
+reg.exe delete HKCU\SOFTWARE\Policies\Microsoft\Office\%1.0 /f
+reg.exe delete HKCU\SOFTWARE\Policies\Microsoft\Cloud\Office\%1.0 /f
 reg.exe delete HKLM\SOFTWARE\Microsoft\Office\%1.0 /f
 reg.exe delete HKLM\SOFTWARE\Policies\Microsoft\Office\%1.0 /f
 reg.exe delete HKLM\SOFTWARE\Policies\Microsoft\Cloud\Office\%1.0 /f
