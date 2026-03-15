@@ -225,7 +225,7 @@ New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Services\Tcpip\Parameters
 	Note:
 	Enabling SACK improves efficiency on high-latency or lossy networks by reducing unnecessary retransmissions. It is recommended to keep this enabled unless troubleshooting specific TCP issues.
 #>
-New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters' -Name 'SackOpts' -PropertyType DWord -Value 0 -Force
+New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters' -Name 'SackOpts' -PropertyType DWord -Value 1 -Force
 
 <#
 	Setting:
@@ -242,7 +242,7 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
 	Note:
 	Lowering this value can speed up recovery from packet loss but may cause unnecessary retransmissions on networks with out-of-order delivery. Typical recommended value is 2 or 3.
 #>
-New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters' -Name 'TcpMaxDupAcks' -PropertyType DWord -Value 3 -Force
+New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters' -Name 'TcpMaxDupAcks' -PropertyType DWord -Value 1 -Force
 
 <#
 	Setting:
@@ -473,7 +473,7 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Ndis\Parameters'
 	Note:
 	Setting this to 1 improves throughput on high-latency networks by allowing larger TCP window sizes. Timestamps (value 2 or 3) are useful for more accurate round-trip time measurement but can expose uptime to remote systems.
 #>
-New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters' -Name 'Tcp1323Opts' -Value 1 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters' -Name 'Tcp1323Opts' -Value 3 -PropertyType DWord -Force
 
 <#
 	Setting:
@@ -675,8 +675,8 @@ netsh interface tcp set global autotuninglevel=Normal
 	Note:
 	Enabling ECN can improve performance and reduce packet loss on congested networks. Some older routers or firewalls may not support ECN properly, which could lead to connectivity issues.
 #>
-Set-NetTCPSetting -EcnCapability Disabled
-netsh interface tcp set global ecncapability=Disabled
+Set-NetTCPSetting -EcnCapability Enabled
+netsh interface tcp set global ecncapability=Enabled
 
 <#
 	Setting:
@@ -702,7 +702,7 @@ Set-NetTCPSetting -InitialRtoMs 3000
 	Specifies the maximum number of times TCP will retransmit a SYN packet when attempting to establish a connection.
 
 	Values:
-	1–8 (decimal) - Number of SYN retransmissions before giving up.
+	2–8 (decimal) - Number of SYN retransmissions before giving up.
 	Default - 2 or 3, depending on Windows version.
 	2 - TCP gives up after sending the initial SYN and 2 retransmissions (total of 3 SYNs).
 
@@ -726,8 +726,8 @@ netsh interface tcp set global maxsynretransmissions=2
 	Note:
 	Recommended to keep Enabled for improved stability and reliability when communicating with older or less capable TCP stacks that do not support SACK. Helps avoid unnecessary retransmissions.
 #>
-Set-NetTCPSetting -NonSackRttResiliency Disabled
-netsh interface tcp set global nonsackrttresiliency=Disabled
+Set-NetTCPSetting -NonSackRttResiliency Enabled
+netsh interface tcp set global nonsackrttresiliency=Enabled
 
 <#
 	Setting:
@@ -760,8 +760,8 @@ netsh interface tcp set heuristics disabled
 	Note:
 	Disabling timestamps can slightly reduce overhead and exposure of system uptime, but may impair RTT estimation and performance on high-latency networks. Recommended to leave enabled unless avoiding timestamp-related compatibility or privacy issues.
 #>
-Set-NetTCPSetting -Timestamps Disabled
-netsh interface tcp set global timestamps=Disabled
+Set-NetTCPSetting -Timestamps Enabled
+netsh interface tcp set global timestamps=Enabled
 
 <#
 	Setting:

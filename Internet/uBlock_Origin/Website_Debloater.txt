@@ -81,6 +81,7 @@ amazon.*###ask_feature_div
 amazon.*###b2bUpsell_feature_div
 amazon.*###bundles_feature_div
 amazon.*###compatibilityContainerDesktop
+amazon.*###desktop-dp-ilm_feature_div_0
 amazon.*###detail-related-products-narrow
 amazon.*###feature-bullets > .a-section
 amazon.*###followTheAuthor_feature_div
@@ -254,7 +255,6 @@ rutracker.org##tr.tCenter.row3 > td
 supjav.com##.copyright
 vjav.com##.footer__text
 www.aliexpress.com##.order-block.order-recommend
-www.amazon.com###desktop-dp-ilm_feature_div_0
 www.ebay.com##.x-atf-left-bottom-river.vim
 www.ebay.com##.x-evo-btf-river.vi-grid.vim
 www.ebay.com##.x-vi-evo-main-container__top-panel
