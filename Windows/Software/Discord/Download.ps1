@@ -10,7 +10,8 @@ if (-not (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue)) 
 
 $InstalledVersion = (Get-Package -Name 'Discord' -ErrorAction SilentlyContinue).Version
 $Discord_DDL = (Invoke-WebRequest -UseBasicParsing -Uri 'https://discord.com/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x64' -MaximumRedirection 0 -ErrorAction SilentlyContinue).Headers.Location
-$LatestVersion = [regex]::Match($Discord_DDL, '\d+\.\d+\.\d+').Value
+# $LatestVersion = [regex]::Match($Discord_DDL, '\d+\.\d+\.\d+').Value
+$LatestVersion = [regex]::Match($Discord_DDL, '(?<=/x64/)[^/]+').Value
 
 if (($null -eq $InstalledVersion) -or ($InstalledVersion -notmatch $LatestVersion)) {
     if (Get-Process -Name 'Discord' -ErrorAction SilentlyContinue) {
