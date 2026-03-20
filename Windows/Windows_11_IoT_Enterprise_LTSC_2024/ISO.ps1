@@ -11,24 +11,15 @@ $Rufus_SavePath = [IO.Path]::Combine($env:TEMP, $Rufus_FileName)
 (New-Object System.Net.WebClient).DownloadFile($Rufus_DDL, $Rufus_SavePath)
 
 $Windows_DDL = ((Invoke-WebRequest -UseBasicParsing -Uri 'https://massgrave.dev/windows_ltsc_links').Links | Where-Object { $_.outerHTML -match 'en-us' -and $_.outerHTML -match 'x64' -and $_.outerHTML -match 'ENTERPRISES' } | Select-Object -First 1).href -replace '&amp;', '&'
-$Windows_FileName = [IO.Path]::GetFileName(([URI]$Windows_DDL).AbsolutePath)
+Start-Process $Windows_DDL
 
-if ($Windows_DDL -match 'drive.massgrave') {
-    Start-Process $Windows_DDL
+Add-Type -AssemblyName System.Windows.Forms
+$Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{ TopMost = $true }
+$Popup_Text = 'Manually download the ISO file and click OK when download completed.'
+[Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK') | Out-Null
 
-    Add-Type -AssemblyName System.Windows.Forms
-    $Popup_Usermanual = New-Object System.Windows.Forms.Form -Property @{ TopMost = $true }
-    $Popup_Text = 'Manually download the ISO file and click OK when download completed.'
-    [Windows.Forms.MessageBox]::Show($Popup_Usermanual, $Popup_Text, '', 'OK') | Out-Null
-
-    $DownloadsDir = (New-Object -ComObject Shell.Application).NameSpace('shell:Downloads').Self.Path
-    $Windows_SavePath = (Get-ChildItem -Path $DownloadsDir -File | Where-Object { $_.Name -eq $Windows_FileName }).FullName
-}
-else {
-    $Windows_SavePath = "$env:TEMP\$Windows_FileName.iso"
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Windows 11 IoT Enterprise LTSC 2024'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Windows_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Windows_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-    (New-Object System.Net.WebClient).DownloadFile($Windows_DDL, $Windows_SavePath)
-}
+$DownloadsDir = (New-Object -ComObject Shell.Application).NameSpace('shell:Downloads').Self.Path
+$Windows_SavePath = (Get-ChildItem -Path $DownloadsDir -File | Where-Object { $_.Name -match 'en-us_windows' }).FullName
 
 $Argument = "--gui --iso=$Windows_SavePath"
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Starting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Rufus'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Rufus_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()

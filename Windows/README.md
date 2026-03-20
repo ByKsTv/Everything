@@ -45,7 +45,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
    ```
 
-1. `START` > Uncheck every box > `OK` > `OK` > When finished close the program.
+1. `START` -> Uncheck every box -> `OK` -> `OK` > When finished close the program.
 1. A folder called `Drivers` has been opened, download and extract all of your motherboard drivers to this folder.
    > If you installed PCI-E Network card then download it's drivers.
 1. To find which motherboard is installed - PowerShell (Admin):
@@ -58,27 +58,25 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 ## Pre Installation
 
 1. Power off PC.
-1. Disconnect network cable.
 1. Disconnect Every Hard Drive Except Windows Drive.
    > This is to ensure you don't delete data from other drives, but if you know which drive partition belongs to which drive then you don't have to.
 1. Boot to UEFI USB (DEL/F12/F11).
 
-   > Restart to BIOS - CMD (Admin):
+   > Boot to BIOS (PowerShell/CMD):
    >
-   > ```cmd
+   > ```bat
    > shutdown /r /fw /t 00
    >
    > ```
 
-1. `Boot` > `Boot Override` > `UEFI`
+1. `Boot` -> `Boot Override` -> `UEFI`.
 
 ## Installation
 
 > Some laptops have touchpad that won't work, only after first boot-up and windows updates the touchpad will work.
 
-1. `Delete` all partitions from the drive you want to install windows on > `Next`.
+1. `Delete` all partitions from the drive you want to install windows on -> `Next`.
    > If drives not found - Use `Load Driver` and extract `Intel Rapid Storage Technology (IRST)` driver matching to the motherboard.
-1. After Windows boots up - connect network cable.
 
 ## Software Selection
 
@@ -91,8 +89,8 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 ### NVCleanstall
 
-1. Restart to Safe Mode (SHIFT+RESTART) `Troubleshoot` > `Advanced options` > `Startup Settings` > `Restart` > `Safe mode` (4) > Open Display Driver Uninstaller > `---Select device type---` > `GPU` > `Clean and restart` > Disconnect Network Cable (Or disable network adapter).
-1. Open NVCleanstall > Connect Network Cable (Or enable network adapter) > `Refresh` > `Manually select a driver version` > `Studio` > `Next` > `Recommended` > `Next` > `Use Previous Settings` > `Next` > `Install` > Restart.
+1. Restart to Safe Mode (SHIFT+RESTART) `Troubleshoot` -> `Advanced options` -> `Startup Settings` -> `Restart` -> `Safe mode` (4) -> Open Display Driver Uninstaller -> `---Select device type---` -> `GPU` -> `Clean and restart` > Disconnect Network Cable (Or disable network adapter).
+1. Open NVCleanstall -> Connect Network Cable (Or enable network adapter) -> `Refresh` -> `Manually select a driver version` -> `Studio` -> `Next` -> `Recommended` -> `Next` -> `Use Previous Settings` -> `Next` -> `Install` -> Restart.
 
 ### NVIDIA Control Panel
 
@@ -103,7 +101,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
    ```
 
-1. `Display` > `Change resolution` > `Output color format` > `YCbCr444` (TV) / `RGB` (Gaming) > `Output dynamic range` > `Limited` (TV) / `Full` (Gaming) > `Output color depth` > `12bpc`.
+1. `Display` -> `Change resolution` -> `Output color format` -> `YCbCr444` (TV) / `RGB` (Gaming) -> `Output dynamic range` -> `Limited` (TV) / `Full` (Gaming) -> `Output color depth` -> `12bpc`.
 
 ### Sounds
 
@@ -113,9 +111,9 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 ### Printers
 
-1. `Settings` > `Devices` > `Printers & scanners` > `Add a printer or scanner` > `The printer that I want isn't listed` > `My printer is a little older. Help me find it.` > `Next`.
-1. Select the correct printer > `Next` > `Windows Update`.
-1. Select the correct manufacturer > Select the correct printer > `Next` > `Next` > `Next` > `Finish`.
+1. `Settings` -> `Devices` -> `Printers & scanners` -> `Add a printer or scanner` -> `The printer that I want isn't listed` -> `My printer is a little older. Help me find it.` -> `Next`.
+1. Select the correct printer -> `Next` -> `Windows Update`.
+1. Select the correct manufacturer -> Select the correct printer -> `Next` -> `Next` -> `Next` -> `Finish`.
 1. To scan pages use `Windows Fax and Scan` software.
 1. Set up scan profile.
 1. Set up print quality and print size.
@@ -126,7 +124,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 1. Connect USB with Windows Installation to the PC.
 1. Boot to UEFI USB (F12/DEL/F11).
-1. `Next` > `Repair your computer` > `Troubleshoot` > `Command Prompt`
+1. `Next` -> `Repair your computer` -> `Troubleshoot` -> `Command Prompt`
 
    ```cmd
    C:
@@ -137,16 +135,16 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
    shutdown /r /t 00
    ```
 
-1. `Ease of Access` > `On-Screen Keyboard`
+1. `Ease of Access` -> `On-Screen Keyboard`
 
    ```cmd
    control userpasswords2
    ```
 
-1. `Reset Password...` > `OK`
+1. `Reset Password...` -> `OK`
 
 1. Boot to UEFI USB (F12/DEL/F11).
-1. `Next` > `Repair your computer` > `Troubleshoot` > `Command Prompt`
+1. `Next` -> `Repair your computer` -> `Troubleshoot` -> `Command Prompt`
 
    ```cmd
    C:

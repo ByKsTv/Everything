@@ -1,4 +1,5 @@
 [options]
+enable-udp-punch = 'Y'
 enable-confirm-closing-tabs = 'N'
 remote-menubar-drag-left = '0.0'
 remote-menubar-drag-right = '1.0'

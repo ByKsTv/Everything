@@ -629,7 +629,7 @@ $Urls | ForEach-Object {
 	} }
 
 # Open as Notepad (`.nfo` doesn't work)
-$NotepadDefaultExts = @('.lua', '.conf', '.json', '.glsl', '.xml', '.md5', '.sfv', '.sha1', '.tth')
+$NotepadDefaultExts = @('.lua', '.conf', '.json', '.glsl', '.xml', '.md5', '.sfv', '.sha1', '.tth', 'toml')
 foreach ($NotepadDefaultExt in $NotepadDefaultExts) {
 	New-Item "HKCU:\SOFTWARE\Classes\$NotepadDefaultExt\shell\open\command" -Force | New-ItemProperty -Name '(default)' -Value 'notepad.exe %1' -Force
 }

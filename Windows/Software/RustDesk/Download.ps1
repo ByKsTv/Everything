@@ -24,13 +24,13 @@ if (-not ($InstalledVersion)) {
 }
 
 if (($null -eq $InstalledVersion) -or ($InstalledVersion -notmatch $LatestVersion)) {
-    $DDL = (($GitHub).assets | Where-Object { $_.Name -match '64.exe' }).browser_download_url
+    $DDL = (($GitHub).assets | Where-Object { $_.Name -match '64.msi' }).browser_download_url
     $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
     $SavePath = [IO.Path]::Combine($env:TEMP, $FileName)
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'RustDesk'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
     (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
 
-    $Argument = '--silent-install'
+    $Argument = "/i `"$SavePath`" /qn CREATESTARTMENUSHORTCUTS=`"Y`" CREATEDESKTOPSHORTCUTS=`"N`""
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'RustDesk'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-    Start-Process $SavePath -ArgumentList $Argument # Do not add `-Wait`
+    Start-Process 'msiexec.exe' -ArgumentList $Argument # Do not add `-Wait`
 }
