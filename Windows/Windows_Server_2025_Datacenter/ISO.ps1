@@ -10,7 +10,7 @@ $Rufus_SavePath = [IO.Path]::Combine($env:TEMP, $Rufus_FileName)
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Rufus'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Rufus_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Rufus_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
 (New-Object System.Net.WebClient).DownloadFile($Rufus_DDL, $Rufus_SavePath)
 
-$Windows_DDL = ((Invoke-WebRequest -UseBasicParsing -Uri 'https://massgrave.dev/windows-server-links').Links | Where-Object { $_.outerHTML -match 'en-us' } | Select-Object -First 1).href -replace '&amp;', '&'
+$Windows_DDL = ((Invoke-WebRequest -UseBasicParsing -Uri 'https://massgrave.dev/windows-server-links').Links | Where-Object { $_.outerHTML -match 'en-us' } | Select-Object -First 1).href
 Start-Process $Windows_DDL
 
 Add-Type -AssemblyName System.Windows.Forms
