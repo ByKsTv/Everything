@@ -1,15 +1,22 @@
-$DDU_DDL1 = ((Invoke-WebRequest -UseBasicParsing -Uri 'https://www.wagnardsoft.com/display-driver-uninstaller-DDU-').Links | Where-Object { $_.outerHTML -match 'Download Display Driver Uninstaller' } | Select-Object -First 1).href
-$DDU_DDL2 = ((Invoke-WebRequest -UseBasicParsing -Uri ('https://www.wagnardsoft.com' + $DDU_DDL1)).Links | Where-Object { $_.outerHTML -match 'DOWNLOAD' } | Select-Object -First 1).href
-$DDU_DDL = ((Invoke-WebRequest -UseBasicParsing -Uri $DDU_DDL2).Links | Where-Object { $_.outerHTML -match 'setup.exe' } | Select-Object -First 1).href
-$FileName = [Uri]::UnescapeDataString([IO.Path]::GetFileName(([URI]$DDU_DDL).AbsolutePath))
+$news = Invoke-WebRequest 'https://www.wagnardsoft.com/software' -UseBasicParsing
+
+$version = [regex]::Match(
+    $news.Content,
+    'Download Display Driver Uninstaller \(DDU\)\s+([0-9]+(?:\.[0-9]+)+)'
+).Groups[1].Value
+
+if (-not $version) {
+    throw 'Could not find the latest DDU version on Wagnardsoft.'
+}
+
+$DDL = "https://www.wagnardsoft.com/DDU/download/DDU%20v${version}_setup.exe"
+$FileName = [Uri]::UnescapeDataString([IO.Path]::GetFileName(([URI]$DDL).AbsolutePath))
 $SavePath = [IO.Path]::Combine($env:TEMP, $FileName)
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDU_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-$DisplayDriverUninstaller_Downloader = New-Object System.Net.WebClient
-$DisplayDriverUninstaller_Downloader.Headers['User-Agent'] = 'Mozilla/5.0'
-$DisplayDriverUninstaller_Downloader.DownloadFile($DDU_DDL, $SavePath)
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Display Driver Uninstaller'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+(New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
 
 $Argument = '/S'
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Display Driver Uninstaller'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
 Start-Process -FilePath $SavePath -ArgumentList $Argument -Wait
 
 $Settings_Path = "${env:ProgramFiles(x86)}\Display Driver Uninstaller\Settings\Settings.xml"
