@@ -6,7 +6,7 @@ $Form = New-Object System.Windows.Forms.Form -Property @{
 	Text            = 'Initial Setup'
 	Font            = [Drawing.Font]::new('Tahoma', 11)
 	Width           = 350
-	Height          = 420
+	Height          = 450
 	StartPosition   = 'CenterScreen'
 	FormBorderStyle = 'FixedDialog'
 	Topmost         = $true
@@ -96,7 +96,7 @@ $RegionalFormatSelection.Items.AddRange($regionalFormatMapping.DisplayName)
 
 $LocY += $_LocAdd
 
-$PreComputerName = 'Enter Computer Name'
+$PreComputerName = 'Enter Computer Name and Username'
 $ComputerName = New-Object System.Windows.Forms.TextBox -Property @{
 	Text     = $PreComputerName
 	Width    = $SizeX
@@ -226,7 +226,16 @@ $GoogleChrome = New-Object System.Windows.Forms.CheckBox -Property @{
 
 $LocY += $_LocAdd
 
-$Form.Controls.AddRange(@($Ok, $Cancel, $TimeZoneSelection, $KeyboardSelection, $RegionalFormatSelection, $ComputerName, $ComputerPasswordCheckBox, $ComputerPasswordTextBox, $AutoLogonCheckBox, $RemoteDesktop, $RemotePowershell, $RemotePowershellIP, $MozillaFirefox, $GoogleChrome))
+$RustDesk = New-Object System.Windows.Forms.CheckBox -Property @{
+	Text     = 'RustDesk'
+	Width    = $SizeX
+	Height   = $SizeY
+	Location = [Drawing.Point]::new($LocX, $LocY)
+}
+
+$LocY += $_LocAdd
+
+$Form.Controls.AddRange(@($Ok, $Cancel, $TimeZoneSelection, $KeyboardSelection, $RegionalFormatSelection, $ComputerName, $ComputerPasswordCheckBox, $ComputerPasswordTextBox, $AutoLogonCheckBox, $RemoteDesktop, $RemotePowershell, $RemotePowershellIP, $MozillaFirefox, $GoogleChrome, $RustDesk))
 
 if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
 	$Form.TopMost = $false
@@ -252,6 +261,7 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
 	if ($ComputerName.Text -ne $PreComputerName) {
 		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Computer name: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write($ComputerName.Text); [Console]::ResetColor(); [Console]::WriteLine()
 		Rename-Computer -NewName $ComputerName.Text -Force
+		Rename-LocalUser -Name $env:USERNAME -NewName $ComputerName.Text -Force
 	}
 
 	if ($ComputerPasswordCheckBox.Checked -eq $true) {
@@ -309,5 +319,9 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
 	
 	if ($GoogleChrome.Checked -eq $true) {
 		Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Google_Chrome/Download.ps1')
+	}
+
+	if ($RustDesk.Checked -eq $true) {
+		Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/RustDesk/Download.ps1')
 	}
 }
