@@ -89,7 +89,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
 ### NVCleanstall
 
-1. Restart to Safe Mode (SHIFT+RESTART) `Troubleshoot` -> `Advanced options` -> `Startup Settings` -> `Restart` -> `Safe mode` (4) -> Open Display Driver Uninstaller -> `---Select device type---` -> `GPU` -> `Clean and restart` > Disconnect Network Cable (Or disable network adapter).
+1. Disconnect Network Cable (Or disable network adapter) -> Restart to Safe Mode (SHIFT+RESTART) -> `Troubleshoot` -> `Advanced options` -> `Startup Settings` -> `Restart` -> `Safe mode` (4) -> Open Display Driver Uninstaller -> `---Select device type---` -> `GPU` -> `Clean and restart`.
 1. Open NVCleanstall -> Connect Network Cable (Or enable network adapter) -> `Refresh` -> `Manually select a driver version` -> `Studio` -> `Next` -> `Recommended` -> `Next` -> `Use Previous Settings` -> `Next` -> `Install` -> Restart.
 
 ### NVIDIA Control Panel
