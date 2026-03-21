@@ -55,7 +55,7 @@ if (($null -eq $Installed) -or ($Installed -notmatch $PlexLatestVersion)) {
         # `Settings` -> `Transcoder` -> `Transcoder quality` -> `Make my CPU hurt`.
         New-ItemProperty -Path 'HKCU:\SOFTWARE\Plex, Inc.\Plex Media Server' -Name 'TranscoderQuality' -Value 3 -PropertyType DWord -Force
 
-        # `Settings` -> `Transcoder` -> `Background transcoding x264 preset` -> `Very slow` -> `Save Changes`.
+        # `Settings` -> `Transcoder` -> `Background transcoding x264 preset` -> `Very slow`.
         New-ItemProperty -Path 'HKCU:\SOFTWARE\Plex, Inc.\Plex Media Server' -Name 'TranscoderH264BackgroundPreset' -Value 'veryslow' -PropertyType String -Force
 
         # `Settings` -> `Scheduled Tasks` -> `Update all libraries during maintenance` -> On.

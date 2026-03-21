@@ -71,4 +71,7 @@ if (($null -eq $InstalledVersion) -or ($InstalledVersion -notmatch $LatestVersio
     if (Test-Path -Path "$env:ProgramData\SquirrelMachineInstalls\Discord.exe") {
         Remove-Item -Path "$env:ProgramData\SquirrelMachineInstalls\Discord.exe" -Force
     }
+    if (Test-Path -Path "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\Discord.lnk") {
+        Remove-Item -Path "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\Discord.lnk" -Force
+    }
 }
