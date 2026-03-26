@@ -30,6 +30,8 @@
 - Do not use fluoride, it costs additional money.
 - Visit all cleaning dentists available to know who does it better.
 - Bleeding is a symptom of Gingivitis, to solve it try gargle water with salt.
+- How to brsuh with electric https://www.youtube.com/watch?v=Hpabg5l9xOg
+- Do not brush after breakfast https://www.youtube.com/watch?v=eA9E_Kzqz04
 
 ## ENT Doctor
 
