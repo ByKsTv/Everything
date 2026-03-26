@@ -130,7 +130,9 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     
     $AutoPlayEXE = (Get-ChildItem -Path $Directory -Recurse -Filter 'autoplay.exe').FullName
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutoPlayEXE'"); [Console]::ResetColor(); [Console]::WriteLine()
-    Start-Process $AutoPlayEXE
+    Start-Process $AutoPlayEXE -Wait
+
+    (Get-ChildItem $Directory -Recurse -Filter 'crack.exe' | Select-Object -First 1).FullName | Start-Process
 
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Acrobat/Group_Policy_Templates.ps1')
 
