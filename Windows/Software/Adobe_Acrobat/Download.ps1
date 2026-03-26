@@ -130,9 +130,29 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     
     $AutoPlayEXE = (Get-ChildItem -Path $Directory -Recurse -Filter 'autoplay.exe').FullName
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutoPlayEXE'"); [Console]::ResetColor(); [Console]::WriteLine()
-    Start-Process $AutoPlayEXE -Wait
+    Start-Process $AutoPlayEXE
 
-    (Get-ChildItem $Directory -Recurse -Filter 'crack.exe' | Select-Object -First 1).FullName | Start-Process
+    while (-not (Get-Process | Where-Object { $_.MainWindowTitle -match 'Acrobat' -and $_.MainWindowTitle -match 'Installer' })) {
+        Start-Sleep -Milliseconds 1000
+    }
+    while ((Get-Process | Where-Object { $_.MainWindowTitle -match 'Acrobat' -and $_.MainWindowTitle -match 'Installer' })) {
+        Start-Sleep -Milliseconds 1000
+    }
+    while (-not (Get-Process | Where-Object { $_.MainWindowTitle -match 'Acrobat' -and $_.MainWindowTitle -match 'Setup' })) {
+        Start-Sleep -Milliseconds 1000
+    }
+    while ((Get-Process | Where-Object { $_.MainWindowTitle -match 'Acrobat' -and $_.MainWindowTitle -match 'Setup' })) {
+        Start-Sleep -Milliseconds 1000
+    }
+
+    $Crack = (Get-ChildItem -Path $Directory -Recurse -Filter 'crack.exe').FullName
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Cracking '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Crack'"); [Console]::ResetColor(); [Console]::WriteLine()
+    Start-Process $Crack
+
+    while (-not (Get-Process | Where-Object { $_.MainWindowTitle -match 'crack' })) {
+        Start-Sleep -Milliseconds 1000
+    }
+    (Get-Process | Where-Object { $_.MainWindowTitle -match 'crack' }).CloseMainWindow() | Out-Null
 
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Acrobat/Group_Policy_Templates.ps1')
 

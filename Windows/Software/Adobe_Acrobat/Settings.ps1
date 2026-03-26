@@ -3,7 +3,7 @@ if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals')) {
     New-Item 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals' -Force
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Originals' -Name 'bDisplayAboutDialog' -Value 0 -PropertyType DWord -Force
-        
+
 # Adobe Acrobat Pro: Preferences: Catalog: Enable Logging: Off
 if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Catalog\cOptions')) {
     New-Item 'HKCU:\SOFTWARE\Adobe\Adobe Acrobat\DC\Catalog\cOptions' -Force
