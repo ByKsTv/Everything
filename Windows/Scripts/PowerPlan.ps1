@@ -110,8 +110,8 @@ foreach ($item in $PowerCfg) {
 & powercfg.exe /SETDCVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 7bc4a2f9-d8fc-4469-b07b-33eb785aaca0 0
 
 # Power Plan: Sleep: Allow hybrid sleep: Off
-& powercfg.exe /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 29f6c1db-86da-48c5-9fdb-f2b67b1f44da 0
-& powercfg.exe /SETDCVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 29f6c1db-86da-48c5-9fdb-f2b67b1f44da 0
+& powercfg.exe /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 94ac6d29-73ce-41a6-809f-6363ba21b47e 0
+& powercfg.exe /SETDCVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 94ac6d29-73ce-41a6-809f-6363ba21b47e 0
 
 # Power Plan: Sleep: Hibernate after: 0 Seconds
 & powercfg.exe /SETACVALUEINDEX SCHEME_CURRENT 238c9fa8-0aad-41ed-83f4-97be242c8f20 9d7815a6-7ee4-497e-8888-515a05f02364 0
@@ -489,9 +489,9 @@ Write-Host 'Power Plan: Display: Advanced Color quality bias: Advanced Color vis
 # & powercfg.exe /SETACVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 90959d22-d6a1-49b9-af93-bce885ad335b 0
 # & powercfg.exe /SETDCVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 90959d22-d6a1-49b9-af93-bce885ad335b 0
 
-# Write-Host 'Power Plan: Display: Allow display required policy: No=0/Yes=1' -ForegroundColor green -BackgroundColor black
-# & powercfg.exe /SETACVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 a9ceb8da-cd46-44fb-a98b-02af69de4623 0
-# & powercfg.exe /SETDCVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 a9ceb8da-cd46-44fb-a98b-02af69de4623 0
+Write-Host 'Power Plan: Display: Allow display required policy: No' -ForegroundColor green -BackgroundColor black
+& powercfg.exe /SETACVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 a9ceb8da-cd46-44fb-a98b-02af69de4623 0
+& powercfg.exe /SETDCVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 a9ceb8da-cd46-44fb-a98b-02af69de4623 0
 
 # Write-Host 'Power Plan: Display: Display brightness: 0%' -ForegroundColor green -BackgroundColor black
 # & powercfg.exe /SETACVALUEINDEX SCHEME_CURRENT 7516b95f-f776-4464-8c53-06167f40cc99 aded5e82-b909-4619-9949-f5d71dac0bcb 0
@@ -584,3 +584,6 @@ Write-Host 'Power Plan: Multimedia settings: When playing video: Optimize video 
 # Write-Host 'Power Plan: Battery: Reserve battery level: 0%' -ForegroundColor green -BackgroundColor black
 # & powercfg.exe /SETACVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f f3c5027d-cd16-4930-aa6b-90db844a8f00 0
 # & powercfg.exe /SETDCVALUEINDEX SCHEME_CURRENT e73a048d-bf27-4f12-9731-8b2076e8891f f3c5027d-cd16-4930-aa6b-90db844a8f00 0
+
+# Apply all changes
+& powercfg.exe /SETACTIVE SCHEME_CURRENT
