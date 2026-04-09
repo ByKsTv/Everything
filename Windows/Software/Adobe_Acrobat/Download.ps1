@@ -162,4 +162,8 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
         Start-Sleep -Milliseconds 1000
     }
     (Get-Process | Where-Object { $_.MainWindowTitle -match 'crack' }).CloseMainWindow() | Out-Null
+
+    if ($null -ne (Get-Item -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run').GetValue('Adobe Acrobat Synchronizer')) {
+        Remove-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run' -Name 'Adobe Acrobat Synchronizer' -Force
+    }
 }

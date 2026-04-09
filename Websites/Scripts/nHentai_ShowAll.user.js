@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name            nHentai - Show all
-// @version         1.1
+// @version         1.2
 // @downloadURL     https://raw.githubusercontent.com/ByKsTv/Everything/main/Websites/Scripts/nHentai_ShowAll.user.js
 // @match           *://nhentai.net/*
 // @grant           none
@@ -10,22 +10,34 @@
     'use strict';
 
     function clickShowAllButton() {
-        // Find the span with text "Show all"
-        const spans = document.querySelectorAll('span.text');
-        for (const span of spans) {
-            if (span.textContent.trim() === 'Show all') {
-                const clickable = span.closest('button, a, div');
-                if (clickable) {
-                    console.log('Clicking "Show all" button...');
-                    clickable.click();
-                    return;
-                }
+        const buttons = document.querySelectorAll('button.btn.btn-secondary');
+
+        for (const button of buttons) {
+            const text = button.textContent.replace(/\s+/g, ' ').trim();
+            if (text === 'Show all') {
+                console.log('Clicking "Show all" button...');
+                button.click();
+                return true;
             }
         }
 
-        // Try again after a short delay
-        setTimeout(clickShowAllButton, 500);
+        return false;
     }
 
-    window.addEventListener('load', clickShowAllButton);
+    function waitForButton() {
+        if (clickShowAllButton()) return;
+
+        const observer = new MutationObserver(() => {
+            if (clickShowAllButton()) {
+                observer.disconnect();
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    window.addEventListener('load', waitForButton);
 })();

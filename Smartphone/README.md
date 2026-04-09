@@ -20,6 +20,7 @@
 - [Transfer data from existing non-functional phone to existing old functional phone](#transfer-data-from-existing-non-functional-phone-to-existing-old-functional-phone)
   - [Prerequisites to Transfer data](#prerequisites-to-transfer-data)
 - [Install all APKs from Downloads folder](#install-all-apks-from-downloads-folder)
+- [Update all APKs from Downloads folder](#update-all-apks-from-downloads-folder)
 - [Notes](#notes)
 
 ## APKs
@@ -324,6 +325,54 @@
 
 ```powershell
 Get-ChildItem "$env:USERPROFILE\Downloads" -Filter *.apk | ForEach-Object { & adb.exe install $_.FullName }
+```
+
+## Update all APKs from Downloads folder
+
+Note: You need [aapt2.exe](https://maven.google.com/web/index.html?q=com.android.tools.build#com.android.tools.build:aapt2), Download stable version, `jar` file for `windows` and extract it to get the `.exe` file and add to `PATH`.
+
+```powershell
+$downloads = [IO.Path]::Combine($env:USERPROFILE, 'Downloads')
+
+foreach ($apk in [IO.Directory]::EnumerateFiles($downloads, '*.apk')) {
+    Write-Host ''
+    Write-Host "APK: $([IO.Path]::GetFileName($apk))"
+
+    $badging = & aapt2.exe dump badging $apk 2>&1 | Out-String
+
+    if ($badging -notmatch "package: name='([^']+)' versionCode='(\d+)'") {
+        Write-Host 'Status: could not read apk info'
+        Write-Host $badging.Trim()
+        continue
+    }
+
+    $package = $Matches[1]
+    $apkVersionCode = [int64]$Matches[2]
+
+    Write-Host "Package: $package"
+    Write-Host "APK versionCode: $apkVersionCode"
+
+    $dump = & adb.exe shell dumpsys package $package 2>$null | Out-String
+
+    if ($dump -notmatch 'versionCode=(\d+)') {
+        Write-Host 'Status: not installed'
+        continue
+    }
+
+    $deviceVersionCode = [int64]$Matches[1]
+
+    Write-Host "Device versionCode: $deviceVersionCode"
+
+    if ($deviceVersionCode -lt $apkVersionCode) {
+        Write-Host 'Action: update'
+        $install = & adb.exe install -r $apk 2>&1 | Out-String
+        Write-Host $install.Trim()
+    }
+    else {
+        Write-Host 'Action: skip'
+    }
+}
+
 ```
 
 ## Notes
