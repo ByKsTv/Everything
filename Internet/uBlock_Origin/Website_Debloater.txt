@@ -35,3 +35,16 @@ forum.mobilism.me##.welcome-bar
 
 ! Hide top left logo on pornolab
 pornolab.net###logo
+
+! Hide "Customers who viewed this item also viewed" on product page on Amazon
+www.amazon.com###sims-simsContainer_feature_div_1
+www.amazon.com###sims-simsContainer_feature_div_0
+
+! Hide Sponsored videos on "Product Videos" section of product page on Amazon
+www.amazon.com##.vse-sponsor-product.vse-product-item.a-section
+
+! Hide the top left notification below the shipping address saying "We're showing you items that ship to..." on Amazon
+www.amazon.com###nav-flyout-iss-anchor
+
+! Hide "Customers who bought this item also bought" on product page on Amazon
+www.amazon.com###sims-simsContainer_feature_div_2
