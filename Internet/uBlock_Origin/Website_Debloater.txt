@@ -1,3 +1,37 @@
 ! Expires: 12 hours
 ! Homepage: https://raw.githubusercontent.com/ByKsTv/Everything/main/Internet/uBlock_Origin/Website_Debloater.txt
 ! Title: Website Debloater
+
+! Hide watched videos on YouTube Homepage
+youtube.com##:is(ytd-rich-item-renderer):has(.ytThumbnailOverlayProgressBarHostWatchedProgressBarSegment)
+
+! Hide "Explore more topics" and some spacing on YouTube Homepage
+www.youtube.com##ytd-rich-section-renderer.ytd-rich-grid-renderer.style-scope
+
+! Hide "Mix" videos on YouTube Homepage
+youtube.com##:is(ytd-rich-item-renderer):has(a[href*="start_radio=1"])
+
+! Hide top left logo on RuTracker
+rutracker.org###logo
+
+! Hide bitcoin donation info located on the footer on 1337x
+1337x.to##.bitcoin
+
+! Hide "XXXClub Recommended Torrents" on xxxclub
+xxxclub.to##.recimg
+xxxclub.to##.recdiv
+
+! Hide "Donate" button on xxxclub
+xxxclub.to##[href="/c/donate/"]
+
+! Hide top left logo on xxxclub
+xxxclub.to##.logo
+
+! Hide top bar which is used for ads on mobilism
+forum.mobilism.me##.welcome-bar
+
+! Hide top left logo on 4pda
+4pda.to###logostrip
+
+! Hide top left logo on pornolab
+pornolab.net###logo
