@@ -7,8 +7,8 @@
 		"AutoProtocolChangeShown": true,
 		"RecentServers": [
 			{
-				"Type": "categoryCountry",
-				"Group": "p2P",
+				"Type": "country",
+				"Group": "standard",
 				"CountryId": 209,
 				"CityId": null,
 				"ServerId": null
@@ -45,6 +45,7 @@
 		},
 		"IsFastestChosenForPreferredLocation": true,
 		"TrustedWifiNetworks": [],
+		"ShowConnectionDetails": true,
 		"ThreatProtectionEnabled": false,
 		"FileProtectionEnabled": false,
 		"FilesDeepScanEnabled": false,
@@ -73,21 +74,21 @@
 		"UserHasConnectedToVpn": true,
 		"AllowIncomingConnection": false,
 		"AllowBackgroundProcesses": true,
-		"LastRunAppVersion": "7.59.1.0",
-		"ShowUpdateReleaseNotes": true,
+		"LastRunAppVersion": "8.0.5.0",
+		"ShowUpdateReleaseNotes": false,
 		"IsMeshnetSentReceivedFiles": false,
 		"IsThreatProtectionTurnOffByConnection": false,
-		"LastRunThreatProtectionVersion": "1.39.59.2",
+		"LastRunThreatProtectionVersion": "8.0.7.0",
 		"OnboardingCompleted": true,
 		"ConnectionQuery": {
 			"DedicatedIpExcluded": false,
 			"Protocol": "nordLynxUdp",
-			"ServerGroup": "p2P",
+			"ServerGroup": "standard",
 			"CountryId": 209,
 			"CityId": null,
 			"SpecificServerID": null
 		},
-		"ConnectionType": "categoryCountry",
+		"ConnectionType": "country",
 		"QuestionnaireCampaigns": [],
 		"MeshnetTrafficRoutingDisclaimerShown": false,
 		"LastUsedLibmanglerVersion": "",
@@ -118,6 +119,7 @@
 		"LastUserIntentWasToConnect": true,
 		"WasVpnConnectionTrustPilotVisited": false,
 		"ConnectionRateFormShown": null,
-		"EmailProtectionFeatureDisclaimerEnabled": true
+		"EmailProtectionFeatureDisclaimerEnabled": false,
+		"LeapWalkthroughFeatureDisclaimerEnabled": false
 	}
 }
