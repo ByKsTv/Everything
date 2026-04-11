@@ -48,3 +48,6 @@ www.amazon.com###nav-flyout-iss-anchor
 
 ! Hide "Customers who bought this item also bought" on product page on Amazon
 www.amazon.com###sims-simsContainer_feature_div_2
+
+! Hide "More Like This" on nHentai
+nhentai.net###related-container
