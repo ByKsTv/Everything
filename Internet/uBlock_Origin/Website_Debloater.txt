@@ -11,6 +11,9 @@ www.youtube.com##ytd-rich-section-renderer.ytd-rich-grid-renderer.style-scope
 ! Hide "Mix" videos on YouTube Homepage
 youtube.com##:is(ytd-rich-item-renderer):has(a[href*="start_radio=1"])
 
+! Hide "How much do you like or dislike this item?" survey popup below video post on YouTube
+www.youtube.com##.ytSlimlineSurveyViewModelHost
+
 ! Hide top left logo on RuTracker
 rutracker.org###logo
 
@@ -51,3 +54,33 @@ www.amazon.com###sims-simsContainer_feature_div_2
 
 ! Hide "More Like This" on nHentai
 nhentai.net###related-container
+
+! Hide "More to love" on Orders page on AliExpress
+www.aliexpress.com##.order-block.order-recommend
+
+! Hide "More to love" on Order details on AliExpress
+www.aliexpress.com##[class*="more-to-love-v2--wrap--"]
+
+! Hide "Want fewer political content? Block tags" top banner on 9GAG Homepage
+9gag.com##.notice-banner
+
+! Hide "Remember to keep comments respectful and to follow our Community Guidelines." top banner on comments section on 9GAG post
+9gag.com##.comment-community__guideline
+
+! Hide the banner between the post and the comments on 9GAG post
+9gag.com##.text-center.inline-banner
+
+! Hide the cheer button on the post action buttons on 9GAG
+9gag.com##.post-award-btn
+
+! Hide the share button on the post action buttons on 9GAG
+9gag.com##.post-action-btn
+
+! Hide the "Cheered by (users)" above the title post on the header on 9GAG post
+9gag.com##.post-award-users
+
+! Hide the badge icons from uploader name on 9GAG post
+9gag.com##.small.potz-badge--hoverable.potz-badge.creator__badge
+
+! Hide the badge icons from users comments on 9GAG post 
+9gag.com##span.small.potz-badge--hoverable.potz-badge
