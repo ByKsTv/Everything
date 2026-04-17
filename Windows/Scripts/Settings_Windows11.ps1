@@ -100,3 +100,6 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\CrossDev
 
 # Settings > Accessibility > Narrator > Get image descriptions, page titles, and popular links > Off
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Narrator\NoRoam' -Name 'OnlineServicesEnabled' -Value 0 -PropertyType DWord -Force
+
+# Remote Desktop Connection -> "You are opening an RDP file which will establish a connection to another computer. Connecting to any remote system can expose your PC and data to security risks." -> "I understand and allow RDP files to open on this device for my account"
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Terminal Server Client' -Name 'RdpLaunchConsentAccepted' -Value 1 -PropertyType DWord -Force

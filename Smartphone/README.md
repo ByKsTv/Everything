@@ -117,7 +117,7 @@
 |                                                                           | Disable `Group calls in call history`, `Show frequently called contacts`                      |
 |                                                                           | Enable `Announce phone calls`                                                                 |
 | `Settings` -> `Messaging`                                                 | `Make Truecaller default SMS app`                                                             |
-|                                                                           | `Spam protection for messages` -> `Medium`                                                    |
+|                                                                           | `Spam protection for messages` -> `High`                                                      |
 |                                                                           | `Manage preferences` -> Disable `Provide feedback on Message ID`                              |
 | `Settings` -> `Privacy Center`                                            | Disable `Availablity`, `Social graph`, `Verified business call logs`, `Ad Campaign Analytics` |
 |                                                                           | Enable `Search profiles privately`                                                            |

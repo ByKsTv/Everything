@@ -17,6 +17,9 @@ www.youtube.com##.ytSlimlineSurveyViewModelHost
 ! Hide top left logo on RuTracker
 rutracker.org###logo
 
+! Hide "Hide your IP" ad below the "Скачать .torrent" on RuTracker
+rutracker.org##.dl-btn-text-ad
+
 ! Hide bitcoin donation info located on the footer on 1337x
 1337x.to##.bitcoin
 
@@ -84,3 +87,6 @@ www.aliexpress.com##[class*="more-to-love-v2--wrap--"]
 
 ! Hide the badge icons from users comments on 9GAG post 
 9gag.com##span.small.potz-badge--hoverable.potz-badge
+
+! Hide the ads in between results, after results, cookies notice on the footer on KSP
+ksp.co.il##.MuiContainer-root.MuiContainer-maxWidthLg[class*="banner-"]
