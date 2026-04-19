@@ -103,3 +103,7 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Narrator\NoRoam' -Name 'OnlineS
 
 # Remote Desktop Connection -> "You are opening an RDP file which will establish a connection to another computer. Connecting to any remote system can expose your PC and data to security risks." -> "I understand and allow RDP files to open on this device for my account"
 New-ItemProperty -Path 'HKCU:\Software\Microsoft\Terminal Server Client' -Name 'RdpLaunchConsentAccepted' -Value 1 -PropertyType DWord -Force
+
+# https://learn.microsoft.com/en-us/windows-server/remote/remote-desktop-services/remotepc/understanding-security-warnings#im-an-it-administrator-how-do-i-temporarily-revert-the-new-security-dialog
+# Remote Desktop Connection -> Revert new security dialog
+New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows NT\Terminal Services\Client' -Name 'RedirectionWarningDialogVersion' -Value 1 -PropertyType DWord -Force

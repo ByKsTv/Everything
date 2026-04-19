@@ -352,6 +352,9 @@ Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows\CloudContent' 
 # Group Policy: User Configuration: Administrative Templates: Windows Components: Cloud Content: Turn off the Windows Welcome Experience: Enabled
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows\CloudContent' -Name 'DisableWindowsSpotlightWindowsWelcomeExperience' -Type DWORD -Value 1
 
+# Group Policy: User Configuration: Administrative Templates: Windows Components: File Explorer: Turn off the caching of thumbnails in hidden thumbs.db files: Enabled
+Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows\Explorer' -Name 'DisableThumbsDBOnNetworkFolders' -Type DWORD -Value 1
+
 # Group Policy: User Configuration: Administrative Templates: Windows Components: File Explorer: Turn off display of recent search entries in the File Explorer search box: Enabled
 Set-Policy -Scope User -Path 'SOFTWARE\Policies\Microsoft\Windows\Explorer' -Name 'DisableSearchBoxSuggestions' -Type DWORD -Value 1
 
