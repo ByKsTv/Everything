@@ -94,11 +94,6 @@ New-ItemProperty -Path 'HKCU:\Control Panel\Mouse' -Name 'MouseThreshold2' -Prop
 # Maximum password age (days): Unlimited
 & net.exe accounts /maxpwage:unlimited
 
-# Control Panel: Ease of Access: Ease of Access Center: Make the computer easier to see: Remove background images (when available): On
-$RemoveBackgroundImagesBytes = [byte[]](Get-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'UserPreferencesMask').UserPreferencesMask
-$RemoveBackgroundImagesBytes[4] = $RemoveBackgroundImagesBytes[4]-bor 1
-New-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'UserPreferencesMask' -PropertyType Binary -Value $RemoveBackgroundImagesBytes -Force
-
 # Settings: Accessibility: Visual effects: Always show scrollbars: On
 New-ItemProperty -Path 'HKCU:\Control Panel\Accessibility' -Name 'DynamicScrollbars' -Value 0 -PropertyType DWord -Force
 
@@ -275,10 +270,6 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer
 
 # When I grab a windows's title bar and shake it, don't minimize all other windows
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'DisallowShaking' -PropertyType DWord -Value 1 -Force
-
-# Control Panel: Ease of Access Center: Make the computer easier to see: Turn off all unnecessary animations (when possible): On
-New-ItemProperty -Path 'HKCU:\Control Panel\Desktop\WindowMetrics' -Name 'MinAnimate' -Value '0' -PropertyType String -Force
-New-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'UserPreferencesMask' -Value ([byte[]](0x90, 0x12, 0x07, 0x80, 0x91, 0x00, 0x00, 0x00)) -PropertyType Binary -Force
 
 # Do not group files and folder in the Downloads folder
 Get-ChildItem -Path 'HKCU:\SOFTWARE\Classes\Local Settings\SOFTWARE\Microsoft\Windows\Shell\Bags\*\Shell' -Recurse -ErrorAction SilentlyContinue | Where-Object -FilterScript {
@@ -740,3 +731,70 @@ Stop-Process -Force -ErrorAction SilentlyContinue
 
 # Don't promt to save pictures on Snipping Tool
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\TabletPC\Snipping Tool' -Name 'PromptToSave' -Value 0 -PropertyType DWord -Force
+
+# Performance Options -> Visual Effects -> Animate controls and elements inside windows -> Disabled
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\VisualEffects' -Name 'VisualFXSetting' -Value 3 -PropertyType DWord -Force
+
+# Performance Options -> Visual Effects -> Animate windows when minimizing and maximizing -> Disabled
+New-ItemProperty -Path 'HKCU:\Control Panel\Desktop\WindowMetrics' -Name 'MinAnimate' -Value 0 -PropertyType String -Force
+
+# Performance Options -> Visual Effects -> Animations in the taskbar -> Disabled
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'TaskbarAnimations' -Value 0 -PropertyType DWord -Force
+
+# Performance Options -> Visual Effects -> Enable Peek -> Disabled
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\DWM' -Name 'EnableAeroPeek' -Value 0 -PropertyType DWord -Force
+
+# Performance Options -> Visual Effects -> Fade or slide menus into view -> Disabled
+# [HKEY_CURRENT_USER\Control Panel\Desktop]
+# "UserPreferencesMask"=hex(3):90,12,03,80,91,00,00,00
+
+# Performance Options -> Visual Effects -> Fade or slide ToolTips into view -> Disabled
+# [HKEY_CURRENT_USER\Control Panel\Desktop]
+# "UserPreferencesMask"=hex(3):90,12,03,80,91,00,00,00
+
+# Performance Options -> Visual Effects -> Fade out menu items after clicking -> Disabled
+# [HKEY_CURRENT_USER\Control Panel\Desktop]
+# "UserPreferencesMask"=hex(3):90,12,03,80,91,00,00,00
+
+# Performance Options -> Visual Effects -> Save taskbar thumbnail previews -> Disabled
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\DWM' -Name 'AlwaysHibernateThumbnails' -Value 0 -PropertyType DWord -Force
+
+# Performance Options -> Visual Effects -> Show shadows under mouse pointer -> Disabled
+# [HKEY_CURRENT_USER\Control Panel\Desktop]
+# "UserPreferencesMask"=hex(3):90,12,07,80,91,00,00,00
+
+# Performance Options -> Visual Effects -> Show shadows under windows -> Disabled
+# [HKEY_CURRENT_USER\Control Panel\Desktop]
+# "UserPreferencesMask"=hex(3):90,12,03,80,91,00,00,00
+
+# Performance Options -> Visual Effects -> Show thumbnails instead of icons -> Disabled
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'IconsOnly' -Value 1 -PropertyType DWord -Force
+
+# Performance Options -> Visual Effects -> Show translucent selection rectangle -> Disabled
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'ListviewAlphaSelect' -Value 0 -PropertyType DWord -Force
+
+# Performance Options -> Visual Effects -> Show window contents while dragging -> Enabled
+New-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'DragFullWindows' -Value 1 -PropertyType String -Force
+
+# Performance Options -> Visual Effects -> Slide open combo boxes -> Disabled
+# [HKEY_CURRENT_USER\Control Panel\Desktop]
+# "UserPreferencesMask"=hex(3):90,12,03,80,91,00,00,00
+
+# Performance Options -> Visual Effects -> Smooth edges of screen fonts -> Disabled
+New-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'FontSmoothing' -Value 2 -PropertyType String -Force
+
+# Performance Options -> Visual Effects -> Smooth-scroll list boxes -> Disabled
+# [HKEY_CURRENT_USER\Control Panel\Desktop]
+# "UserPreferencesMask"=hex(3):90,12,03,80,91,00,00,00
+
+# Performance Options -> Visual Effects -> Use drop shadows for icon labels on the desktop -> Disabled
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'ListviewShadow' -Value 0 -PropertyType DWord -Force
+
+# Control Panel: Ease of Access: Ease of Access Center: Make the computer easier to see: Remove background images (when available): On
+# $RemoveBackgroundImagesBytes = [byte[]](Get-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'UserPreferencesMask').UserPreferencesMask
+# $RemoveBackgroundImagesBytes[4] = $RemoveBackgroundImagesBytes[4]-bor 1
+# New-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'UserPreferencesMask' -PropertyType Binary -Value $RemoveBackgroundImagesBytes -Force
+
+# Control Panel: Ease of Access Center: Make the computer easier to see: Turn off all unnecessary animations (when possible): On
+# New-ItemProperty -Path 'HKCU:\Control Panel\Desktop\WindowMetrics' -Name 'MinAnimate' -Value '0' -PropertyType String -Force
+New-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'UserPreferencesMask' -Value ([byte[]](0x90, 0x12, 0x03, 0x80, 0x91, 0x00, 0x00, 0x00)) -PropertyType Binary -Force

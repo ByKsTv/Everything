@@ -64,12 +64,12 @@ if (-not (Test-Path -Path $ScriptsPath)) {
 $ScriptsURLs = @(
     'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/scripts/browser-switch.lua',
     'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/scripts/clipboard_monitor.lua',
-    'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/scripts/toggle-reader.lua',
+    # 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/scripts/toggle-reader.lua',
     'https://raw.githubusercontent.com/po5/celebi/master/celebi.lua',
     'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/scripts/hidecursor.lua',
     'https://raw.githubusercontent.com/Akemi/mpv-oled-screensaver/master/oled-screensaver.lua',
-    'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/scripts/toggleconsole.lua',
-    'https://raw.githubusercontent.com/po5/trackselect/master/trackselect.lua'
+    'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/scripts/toggleconsole.lua'
+    # 'https://raw.githubusercontent.com/po5/trackselect/master/trackselect.lua'
 
 )
 foreach ($ScriptURL in $ScriptsURLs) {
@@ -93,8 +93,8 @@ if (-not (Test-Path -Path $ScriptOptsPath)) {
 $ScriptOptsURLs = @(
     'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/script-opts/celebi.conf',
     'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/script-opts/oled_screensaver.conf',
-    'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/script-opts/osc.conf',
-    'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/script-opts/trackselect.conf'
+    'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/script-opts/osc.conf'
+    # 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/script-opts/trackselect.conf'
 )
 foreach ($ScriptOptURL in $ScriptOptsURLs) {
     $FileName = [IO.Path]::GetFileName(([URI]$ScriptOptURL).AbsolutePath)
