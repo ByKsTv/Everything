@@ -798,3 +798,8 @@ New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer
 # Control Panel: Ease of Access Center: Make the computer easier to see: Turn off all unnecessary animations (when possible): On
 # New-ItemProperty -Path 'HKCU:\Control Panel\Desktop\WindowMetrics' -Name 'MinAnimate' -Value '0' -PropertyType String -Force
 New-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'UserPreferencesMask' -Value ([byte[]](0x90, 0x12, 0x03, 0x80, 0x91, 0x00, 0x00, 0x00)) -PropertyType Binary -Force
+
+# Stop CTFMon
+# https://www.youtube.com/watch?v=b6wfwG4jecQ
+New-ItemProperty -Path 'HKLM:\Software\Microsoft\Input' -Name 'InputServiceEnabled' -Value 0 -PropertyType DWord -Force
+New-ItemProperty -Path 'HKLM:\Software\Microsoft\Input' -Name 'InputServiceEnabledForCCI' -Value 0 -PropertyType DWord -Force

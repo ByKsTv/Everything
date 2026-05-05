@@ -14,6 +14,7 @@
 - [Extra](#extra)
   - [Cut audio](#cut-audio-requires-ffmpeg-in-path)
   - [Extract .WIM](#extract-wim)
+  - [Fix Windows Files]
 
 ## PowerShell
 
@@ -118,4 +119,14 @@ ffmpeg -ss 00:00 -to 00:00 -y -i input.opus -c copy output.opus
 
 ```bash
 dism /Get-WimInfo /WimFile:"path\install.wim"
+```
+
+### Fix Windows Files
+
+```powershell
+DISM /Online /Cleanup-Image /CheckHealth
+DISM /Online /Cleanup-Image /ScanHealth
+DISM /Online /Cleanup-Image /RestoreHealth
+SFC /ScanNow
+
 ```

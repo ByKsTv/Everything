@@ -8,8 +8,9 @@ if (-not (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue)) 
     Register-ScheduledTask -TaskName $TaskName -Action $TaskAction -Trigger $TaskTrigger -Principal $TaskPrincipal -Settings $TaskSettings -Force
 }
 
+$GitHub = Invoke-RestMethod -Uri 'https://api.github.com/repos/qbittorrent/qbittorrent/releases/latest'
+$LatestVersion = ($GitHub).name.Replace('qBittorrent v', '')
 $InstalledVersion = (Get-Package -Name 'qBittorrent' -ErrorAction SilentlyContinue).Version
-$LatestVersion = ((Invoke-RestMethod https://api.github.com/repos/qbittorrent/qbittorrent/tags).Name | Where-Object { $_ -notmatch 'beta' -and $_ -notmatch 'rc' } | Select-Object -First 1).Replace('release-', '')
 
 if (-not ($InstalledVersion)) {
     $RemoteINI = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/qBittorrent/qBittorrent.ini'
@@ -23,8 +24,7 @@ if (-not ($InstalledVersion)) {
 
 if (-not (Get-Process -Name 'qBittorrent' -ErrorAction SilentlyContinue)) {
     if (($null -eq $InstalledVersion) -or ($InstalledVersion -notmatch $LatestVersion)) {
-        $SourceForge = ((Invoke-WebRequest -UseBasicParsing -Uri 'https://raw.githubusercontent.com/qbittorrent/qBittorrent-website/master/_site/download.html').Links | Where-Object { $_.outerHTML -match 'sourceforge' -and $_.outerHTML -match '.exe' -and $_.outerHTML -notmatch '.asc' } | Select-Object -First 1).href
-        $DDL = ((Invoke-WebRequest -UseBasicParsing -Uri $SourceForge).links | Where-Object { $_.'data-release-url' -ne $null }).'data-release-url'
+        $DDL = (($GitHub).assets | Where-Object { $_.Name -match '.exe' -and $_.Name -notmatch '.asc' -and $_.Name -notmatch 'lt2' }).browser_download_url
         $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
         $SavePath = [IO.Path]::Combine($env:TEMP, $FileName)
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
