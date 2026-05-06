@@ -58,6 +58,22 @@ if (Select-String -Quiet -Path $IndexJS -Pattern 'betterdiscord') {
             (New-Object Net.WebClient).DownloadFile($PluginURL, $PluginSavePath)
         }
     }
+
+    $SettingsDir = [IO.Path]::Combine($env:APPDATA, 'BetterDiscord', 'data', 'stable')
+    $SettingsURLs = @(
+        'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/BetterDiscord/plugins.json',
+        'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/BetterDiscord/themes.json'
+    )
+    foreach ($SettingsURL in $SettingsURLs) {
+        $SettingFileName = [IO.Path]::GetFileName(([URI]$SettingsURL).AbsolutePath)
+        $SettingSavePath = [IO.Path]::Combine($SettingsDir, $SettingFileName)
+        [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Enabling all on '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SettingFileName'"); [Console]::ResetColor(); [Console]::WriteLine()
+        $Content = Get-Content -Path $SettingSavePath -Raw
+        if ($Content -match '\bfalse\b') {
+            Get-Process -Name 'Discord' | Stop-Process
+            $Content -replace '\bfalse\b', 'true' | Set-Content -Path $SettingSavePath
+        }    
+    }
 }
 
 if (-not (Select-String -Quiet -Path $IndexJS -Pattern 'betterdiscord')) {
