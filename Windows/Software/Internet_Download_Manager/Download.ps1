@@ -89,7 +89,7 @@ if (-not (Test-Path -Path "${env:ProgramFiles(x86)}\Internet Download Manager\Un
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$TempEXE'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
     Unblock-File $TempEXE
-    Start-Process $TempEXE -ArgumentList $Argument -Wait
+    Start-Process $TempEXE -ArgumentList $Argument # Do not add `-Wait`
 
     # do {
     #     Start-Sleep -Milliseconds 500
@@ -97,6 +97,19 @@ if (-not (Test-Path -Path "${env:ProgramFiles(x86)}\Internet Download Manager\Un
     #     $IDM_Process = Get-Process | Where-Object { $_.MainWindowTitle -eq 'Internet Download Manager Registration' }
     # )
     # Stop-Process -Id $IDM_Process.Id -Force
+
+    $process = $null
+    while ($null -eq $process) {
+        $process = @(Get-Process | Where-Object {
+                $_.MainWindowTitle -eq 'Internet Download Manager Registration'
+            })[0]
+
+        if ($null -eq $process) {
+            Start-Sleep -Milliseconds 500
+        }
+    }
+    $process | Stop-Process -Force
+    Wait-Process -Id $process.Id
 
     $DesktopShortcut = "$($env:USERPROFILE)\Desktop\Internet Download Manager.lnk"
     if (Test-Path -Path $DesktopShortcut) {
@@ -110,7 +123,7 @@ if (-not (Test-Path -Path "${env:ProgramFiles(x86)}\Internet Download Manager\Un
     Start-Process regedit.exe -ArgumentList "/s ""$RegFile""" -Wait
     Copy-Item -Path $IDMan_New -Destination $IDMan_InstallLocation -Force
     Unblock-File -Path $IDMan_InstallLocation
-    Start-Process -FilePath $IDMan_InstallLocation -WindowStyle Minimized -Wait
+    Start-Process -FilePath $IDMan_InstallLocation -WindowStyle Minimized # Do not add `-Wait`
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
     Remove-MpPreference -ExclusionPath $TempDir
