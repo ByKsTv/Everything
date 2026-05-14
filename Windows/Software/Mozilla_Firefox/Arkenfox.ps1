@@ -53,6 +53,19 @@ if (Test-Path $Firefox_Profiles) {
             (New-Object Net.WebClient).DownloadFile($DDL, $SavePath)
         }
         
+        $Files = @(
+            [IO.Path]::Combine($Firefox_Profile, 'updater.bat')
+            [IO.Path]::Combine($Firefox_Profile, 'prefsCleaner.bat')
+        )
+
+        foreach ($File in $Files) {
+            if (Test-Path -LiteralPath $File) {
+                $Lines = Get-Content -LiteralPath $File
+                $Lines = $Lines | Where-Object { $_ -notmatch '^\s*@?\s*TIMEOUT(\.EXE)?(\s|$)' }
+                Set-Content -LiteralPath $File -Value $Lines
+            }
+        }
+
         Start-Process -FilePath "$Firefox_Profile\updater.bat" -ArgumentList '-unattended', '-updatebatch' -Wait
 
         Start-Process -FilePath "$Firefox_Profile\prefsCleaner.bat" -ArgumentList '-unattended' -Wait
@@ -81,5 +94,11 @@ if (Test-Path $Firefox_Profiles) {
         # Enable firefox from running by renaming
         $FireFox_BAK = "$env:ProgramFiles\Mozilla Firefox\firefox.bak"
         Rename-Item -Path $FireFox_BAK -NewName 'firefox.exe'
+    }
+
+    Get-ChildItem -LiteralPath $Firefox_Profile -File | Where-Object {
+        $_.Name -match '^(prefs|user)-backup-\d{8}_\d{6}\.js$'
+    } | ForEach-Object {
+        Remove-Item -LiteralPath $_.FullName -Force
     }
 }
