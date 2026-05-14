@@ -38,8 +38,65 @@ Start-Service -Name 'SSDPSRV'
 Set-Service -Name 'upnphost' -StartupType Automatic
 Start-Service -Name 'upnphost'
 
-$cpuCount = [Environment]::ProcessorCount
-Set-NetAdapterRss -Name * -Enabled $true -MaxProcessors $cpuCount -BaseProcessorNumber 0 -Profile Closest
+# $cpuCount = [Environment]::ProcessorCount
+# Set-NetAdapterRss -Name * -Enabled $true -MaxProcessors $cpuCount -BaseProcessorNumber 0 -Profile Closest
+
+$C = [Environment]::ProcessorCount
+$B = 0
+
+if ($C -ge 8) {
+	$B = 2
+}
+
+$M = [Math]::Min($C - 1, 15)
+
+foreach ($A in Get-NetAdapter -Physical) {
+	$R = Get-NetAdapterRss -Name $A.Name -ErrorAction SilentlyContinue
+
+	if (-not $R) {
+		continue
+	}
+
+	$N = [Math]::Min(4, $M - $B + 1)
+
+	if ($R.NumberOfReceiveQueues -gt 0) {
+		$N = [Math]::Min($N, $R.NumberOfReceiveQueues)
+	}
+
+	Set-NetAdapterRss -Name $A.Name -Enabled $true -Profile Closest -BaseProcessorNumber $B -MaxProcessorNumber $M -MaxProcessors $N -ErrorAction SilentlyContinue
+}
+
+$R = 'HKLM:\System\CurrentControlSet\Control\Class\{4d36e972-e325-11ce-bfc1-08002be10318}'
+foreach ($K in Get-ChildItem -Path "$R\0*" -ErrorAction SilentlyContinue) {
+	New-ItemProperty -Path $K.PSPath -Name ManyCoreScaling -Value '1' -PropertyType String -Force
+	New-ItemProperty -Path $K.PSPath -Name DisablePortScaling -Value '0' -PropertyType String -Force
+}
+
+# Windows NDIS registry value used for network driver/debug tracing.
+New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\NDIS\Parameters' -Name 'TrackNblOwner' -Value 0 -PropertyType DWord -Force
+
+$R = 'HKLM:\System\CurrentControlSet\Control\Class\{4d36e972-e325-11ce-bfc1-08002be10318}'
+$V = @(
+	, @('AutoPowerSaveModeEnabled', 0, 'DWord')
+	, @('*NicAutoPowerSaver', '0', 'String')
+	, @('DisableDelayedPowerUp', 1, 'DWord')
+	, @('ReduceSpeedOnPowerDown', 0, 'DWord')
+	, @('EnableConnectedPowerGating', 0, 'DWord')
+	, @('*EnableDynamicPowerGating', '0', 'String')
+	, @('EnableCoalesce', '0', 'DWord')
+	, @('*UDPChecksumOffloadIPv4', '3', 'String')
+	, @('*UDPChecksumOffloadIPv6', '3', 'String')
+	, @('EnableUdpTxScaling', 1, 'DWord')
+	, @('*TCPChecksumOffloadIPv6', '3', 'String')
+	, @('*TCPChecksumOffloadIPv4', '3', 'String')
+	, @('*PacketDirect', '0', 'String')
+)
+
+foreach ($K in Get-ChildItem -Path "$R\0*" -ErrorAction SilentlyContinue) {
+	foreach ($X in $V) {
+		New-ItemProperty -Path $K.PSPath -Name $X[0] -Value $X[1] -PropertyType $X[2] -Force
+	}
+}
 
 Get-ChildItem 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces' | ForEach-Object {
 	<#
@@ -2114,7 +2171,7 @@ foreach ($Adapter in $NetworkAdapters) {
 	$AdvancedProperties = try {
 		Get-NetAdapterAdvancedProperty -Name $Adapter.Name -ErrorAction Stop
 	}
- catch {
+	catch {
 		Write-Host "Error retrieving properties for adapter: $($Adapter.Name)" -ForegroundColor Red
 		continue
 	}
