@@ -77,16 +77,16 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\NDIS\Parameters'
 
 $R = 'HKLM:\System\CurrentControlSet\Control\Class\{4d36e972-e325-11ce-bfc1-08002be10318}'
 $V = @(
-	, @('AutoPowerSaveModeEnabled', 0, 'DWord')
+	, @('AutoPowerSaveModeEnabled', '0', 'DWord')
 	, @('*NicAutoPowerSaver', '0', 'String')
-	, @('DisableDelayedPowerUp', 1, 'DWord')
-	, @('ReduceSpeedOnPowerDown', 0, 'DWord')
-	, @('EnableConnectedPowerGating', 0, 'DWord')
+	, @('DisableDelayedPowerUp', '1', 'DWord')
+	, @('ReduceSpeedOnPowerDown', '0', 'DWord')
+	, @('EnableConnectedPowerGating', '0', 'DWord')
 	, @('*EnableDynamicPowerGating', '0', 'String')
 	, @('EnableCoalesce', '0', 'DWord')
 	, @('*UDPChecksumOffloadIPv4', '3', 'String')
 	, @('*UDPChecksumOffloadIPv6', '3', 'String')
-	, @('EnableUdpTxScaling', 1, 'DWord')
+	, @('EnableUdpTxScaling', '1', 'DWord')
 	, @('*TCPChecksumOffloadIPv6', '3', 'String')
 	, @('*TCPChecksumOffloadIPv4', '3', 'String')
 	, @('*PacketDirect', '0', 'String')
