@@ -90,6 +90,7 @@ $V = @(
 	, @('*TCPChecksumOffloadIPv6', '3', 'String')
 	, @('*TCPChecksumOffloadIPv4', '3', 'String')
 	, @('*PacketDirect', '0', 'String')
+	, @('*LsoV1IPv4', '1', 'String')
 )
 
 foreach ($K in Get-ChildItem -Path "$R\0*" -ErrorAction SilentlyContinue) {
@@ -1419,7 +1420,7 @@ $SettingsToChange = @(
 	Helps tune performance for specific workloads.
 	https://www.intel.com/content/www/us/en/support/articles/000006703/ethernet-products.html
 #>
-	@{ DisplayName = 'RSS load balancing profile'; DisplayValues = @('NUMAScalingStatic') },
+	@{ DisplayName = 'RSS load balancing profile'; DisplayValues = @('Closest Processor') },
 
 	<#
 	Setting:
