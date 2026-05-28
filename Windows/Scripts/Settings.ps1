@@ -396,8 +396,8 @@ foreach ($AppInstall in $AppsToInstall) {
 	}
 }
 
-# Settings: Windows Update: Get the latest updates as soon as they're available: Off
-New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings' -Name 'IsContinuousInnovationOptedIn' -PropertyType DWord -Value 0 -Force
+# Settings: Windows Update: Get the latest updates as soon as they're available: On
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings' -Name 'IsContinuousInnovationOptedIn' -PropertyType DWord -Value 1 -Force
 
 # Override for default input method: English
 Set-WinDefaultInputMethodOverride -InputTip '0409:00000409'

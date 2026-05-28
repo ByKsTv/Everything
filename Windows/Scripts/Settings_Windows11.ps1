@@ -107,3 +107,6 @@ New-ItemProperty -Path 'HKCU:\Software\Microsoft\Terminal Server Client' -Name '
 # https://learn.microsoft.com/en-us/windows-server/remote/remote-desktop-services/remotepc/understanding-security-warnings#im-an-it-administrator-how-do-i-temporarily-revert-the-new-security-dialog
 # Remote Desktop Connection -> Revert new security dialog
 New-ItemProperty -Path 'HKLM:\Software\Policies\Microsoft\Windows NT\Terminal Services\Client' -Name 'RedirectionWarningDialogVersion' -Value 1 -PropertyType DWord -Force
+
+# Start -> View: List
+New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Start' -Name 'AllAppsViewMode' -Value 2 -PropertyType DWord -Force

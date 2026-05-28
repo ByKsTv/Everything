@@ -319,6 +319,10 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsUpd
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: Manage updates offered from Windows Update: Do not include drivers with Windows Updates: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate' -Name 'ExcludeWUDriversInQualityUpdate' -Type DWORD -Value 0
 
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: Enable optional updates: Automatically receive optional updates (including CFRs)
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate' -Name 'SetAllowOptionalContent' -Type DWORD -Value 1
+Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate' -Name 'AllowOptionalContent' -Type DWORD -Value 1
+
 # Group Policy: User Configuration: Administrative Templates: Control Panel: Printers: Turn off Windows default printer management: Enabled
 Set-Policy -Scope User -Path 'SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows' -Name 'LegacyDefaultPrinterMode' -Type DWORD -Value 1
 
