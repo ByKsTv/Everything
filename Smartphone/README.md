@@ -1,11 +1,11 @@
 # Table Of Contents
 
 - [APKs](#apks)
+  - [Android Auto Settings](#android-auto-settings)
   - [IronFox Settings](#ironfox-settings)
   - [Truecaller Reset](#truecaller-reset)
   - [Truecaller Settings](#truecaller-settings)
   - [YouTube Music Settings](#youtube-music-settings)
-  - [Android Auto Settings](#android-auto-settings)
 - [Diagnose APKs](#diagnose-apks)
 - [Useful ADB Commands](#useful-adb-commands)
 - [What to backup](#what-to-backup)
@@ -59,9 +59,21 @@
 | Vocalizer                      | [4pda](https://4pda.to/forum/index.php?showtopic=987292#apk)                                                                                                                                                                                       | [Latest 3.8.2](https://4pda.to/forum/index.php?showtopic=987292&view=findpost&p=132720887) |
 | WhatsApp                       | [4pda](https://4pda.to/forum/index.php?showtopic=186375#Spoil-5125511-11)                                                                                                                                                                          |                                                                                            |
 | Wheres My Droid                | [mobilism](https://forum.mobilism.me/search.php?keywords=Wheres+My+Droid&sr=topics&sf=titleonly)                                                                                                                                                   | Elite                                                                                      |
-| YouTube Music + MicroG-RE      | [GitHub](https://github.com/MANCrimSon/YouTube-ReVanced-Extended/releases/latest) / [4pda](https://4pda.to/forum/index.php?act=findpost&pid=116484303&anchor=Spoil-116484303-5) + [GitHub](https://github.com/MorpheApp/MicroG-RE/releases/latest) | `youtube-music-morphe-v8.47.56-arm64-v8a.apk` + `microg-6.1.4.apk`                         |
-| YouTube ReVanced + GmsCore     | [4pda](https://4pda.to/forum/index.php?showtopic=1050118&view=findpost&p=115638129) + [GitHub](https://github.com/ReVanced/GmsCore/releases/latest)                                                                                                | ReVanced patches + `Default`                                                               |
+| YouTube Music + MicroG-RE      | [GitHub](https://github.com/MANCrimSon/YouTube-ReVanced-Extended/releases/latest) / [4pda](https://4pda.to/forum/index.php?act=findpost&pid=116484303&anchor=Spoil-116484303-5) + [GitHub](https://github.com/MorpheApp/MicroG-RE/releases/latest) | `youtube-music-revanced-extended-v8.30.54-arm64-v8a.apk` + `microg-6.1.4.apk`              |
+| YouTube + MicroG-RE            | [GitHub](https://github.com/MANCrimSon/YouTube-ReVanced-Extended/releases/latest) / [4pda](https://4pda.to/forum/index.php?act=findpost&pid=115638129&anchor=Spoil-115638129-4) + [GitHub](https://github.com/MorpheApp/MicroG-RE/releases/latest) | `youtube-revanced-extended-v20.51.39-all.apk` + `microg-6.1.4.apk`                         |
 | aRDP                           | [4pda](https://4pda.to/forum/index.php?showtopic=658880#entry39545784)                                                                                                                                                                             | Paid                                                                                       |
+
+### Android Auto Settings
+
+| Location                       | Action                                           |
+| ------------------------------ | ------------------------------------------------ |
+| `Maps`                         | `Day/Night mode for maps` -> `Night`             |
+| `Messaging`                    | `Show first line of messages` -> Off             |
+|                                | `Play message chime` -> Off                      |
+| `Advanced`                     | `Driver seat location` -> `Left`                 |
+|                                | `Change layout` -> `Navigation closer to driver` |
+| `Version`                      | Click many times to activate developer mode      |
+| 3 dots -> `Developer settings` | `Unknown sources` -> On                          |
 
 ### IronFox Settings
 
@@ -136,22 +148,14 @@
 | Location                            | Action                                                                              |
 | ----------------------------------- | ----------------------------------------------------------------------------------- |
 | Open `YT Music` app                 | `Action needed` -> `Continue` -> `Allow` -> `Sign in` -> `Add account` -> `Sign in` |
+| `Settings` -> `RVX` -> `General`    | `Disable Cairo splash animation` -> On -> `Cancel`                                  |
+| `Settings` -> `RVX` -> `Account`    | `Hide terms container` -> On                                                        |
+| `Settings` -> `RVX` -> `Ads`        | `Hide fullscreen ads` -> On -> `Cancel`                                             |
+| `Settings` -> `RVX` -> `Video`      | `Disable DRC audio` -> On -> `Cancel`                                               |
 | `Settings` -> `Data saving`         | `Audio quality on mobile network` -> `Always High`                                  |
 |                                     | `Audio quality on Wi-Fi` -> `Always High`                                           |
 | `Settings` -> `Downloads & storage` | `Audio quality` -> `High`                                                           |
 |                                     | `Video quality` -> `HD - 720p`                                                      |
-
-### Android Auto Settings
-
-| Location                       | Action                                           |
-| ------------------------------ | ------------------------------------------------ |
-| `Maps`                         | `Day/Night mode for maps` -> `Night`             |
-| `Messaging`                    | `Show first line of messages` -> Off             |
-|                                | `Play message chime` -> Off                      |
-| `Advanced`                     | `Driver seat location` -> `Left`                 |
-|                                | `Change layout` -> `Navigation closer to driver` |
-| `Version`                      | Click many times to activate developer mode      |
-| 3 dots -> `Developer settings` | `Unknown sources` -> On                          |
 
 ## Diagnose APKs
 
