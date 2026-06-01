@@ -64,7 +64,27 @@ panel {
 /* Set the background color of context menus (right-click | settings) to black */
 menupopup,
 panel {
-	--panel-background: black !important; /* It doesn't apply without `!important` */
+	--panel-background: #000 !important;
+	--panel-color: #fff !important;
+	--panel-border-color: #444 !important;
+
+	--menu-background-color: #000 !important;
+	--menu-color: #fff !important;
+	--menu-border-color: #444 !important;
+
+	--menuitem-hover-background-color: #333 !important;
+	--menuitem-hover-color: #fff !important;
+	--menuitem-disabled-hover-background-color: transparent !important;
+}
+menu,
+menuitem {
+	color: white !important;
+}
+
+menu:hover,
+menuitem:hover {
+	color: white !important;
+	background-color: #333 !important;
 }
 
 /* Set the background color of the title bar (tabs bar) to black */
