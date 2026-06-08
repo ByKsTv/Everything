@@ -78,32 +78,74 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
 
     Remove-Item -Path "$env:TEMP\*Effects*" -Force -Recurse -Confirm:$false -ErrorAction SilentlyContinue
 
-    $TitleHTML = Invoke-WebRequest -UseBasicParsing -Uri $TitleHREF
-
-    $DomainsToSearch = @(
-        'uniondht.org'
-        'uztracker.net'
-        'uztracker.me'
+    $Domains = @(
+        'fost.club'
+        # 'ddgroupclub.win'
+        # 'rutracker.ru'
     )
+    $TitleMagnetsPattern = '(?i)<a\b[^>]*\bhref=["''](?<Value>magnet[^"'']*)["'']'
+    $TitleMagnetss = @{}
 
-    $TitleDomains = $DomainsToSearch | ForEach-Object {
-        $DomainToSearch = $_
-
-        ($TitleHTML.Links |
-        Where-Object { $_.outerHTML -match $DomainToSearch } |
-        Select-Object -First 1).href
+    $Links = (Invoke-WebRequest -UseBasicParsing -Uri $TitleHREF).Links.Href |
+    Where-Object {
+        $_
+    } |
+    ForEach-Object {
+        [Uri]::new(
+            [Uri]$TitleHREF,
+            [Net.WebUtility]::HtmlDecode($_)
+        ).AbsoluteUri
     }
 
-    $TitleMagnets = $TitleDomains | ForEach-Object {
-        $ToSearch = $_
+    foreach ($Domain in $Domains) {
+        $URL = $Links |
+        Where-Object {
+            ([Uri]$_).Host -match "(^|\.)$([regex]::Escape($Domain))$"
+        } |
+        Select-Object -First 1
 
-        if ($_) {
-            [Uri]::UnescapeDataString(
-                (((Invoke-WebRequest -UseBasicParsing -Uri $ToSearch).Links |
-                    Where-Object { $_.outerHTML -match 'magnet' }).href |
-                Select-Object -First 1)
-            )
+        if (-not $URL) {
+            throw "Domain not found: $Domain"
         }
+
+        $Page = Invoke-WebRequest -UseBasicParsing -Uri $URL
+        $URL = $Page.BaseResponse.ResponseUri.AbsoluteUri
+        $ID = [regex]::Match($URL, '[?&]t=(\d+)').Groups[1].Value
+        $URL = $Page.Links.Href |
+        Where-Object {
+            $_ -match 'viewforum\.php\?[^"'']*f=\d+'
+        } |
+        ForEach-Object {
+            [Uri]::new(
+                [Uri]$URL,
+                [Net.WebUtility]::HtmlDecode($_)
+            ).AbsoluteUri
+        } |
+        Select-Object -First 1
+
+        if (-not $ID -or -not $URL) {
+            throw "Topic or forum not found: $Domain"
+        }
+
+        $Row = [regex]::Matches(
+            [Net.WebUtility]::HtmlDecode(
+                (Invoke-WebRequest -UseBasicParsing -Uri $URL).Content
+            ),
+            '(?is)<tr\b[^>]*\bid=["'']tr-[^"'']+["''][^>]*>.*?</tr>'
+        ) |
+        Where-Object {
+            $_.Value -match "[?&]t=$ID(?!\d)"
+        } |
+        Select-Object -First 1
+
+        $TitleMagnets = [regex]::Match($Row.Value, $TitleMagnetsPattern).Groups['Value'].Value
+
+        if (-not $TitleMagnets) {
+            throw "Value not found: $Domain"
+        }
+
+        $TitleMagnetss[$Domain] = $TitleMagnets
+        $TitleMagnets = [Uri]::UnescapeDataString($TitleMagnets)
     }
 
     $TitleMagnets | ForEach-Object {

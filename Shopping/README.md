@@ -143,12 +143,12 @@ WD brand from AliExpress is sus because sticker is the same but the shape of the
 ### Settings
 
 1. `PURE DIRECT`.
-1. `AV ADJUST` > `A.DLY` (Auto Delay) > `On`.
+1. `AV ADJUST` -> `A.DLY` (Auto Delay) > `On`.
 1. Press `DIMMER` a few times untill the screen is at it's dimmest state.
-1. `HOME MENU` > `Manual SP Setup` > `Speaker Distance` > Adjust accordingly.
+1. `HOME MENU` -> `Manual SP Setup` -> `Speaker Distance` > Adjust accordingly.
 1. `Auto Power Down` (APD) > `Off`.
-1. `HDMI Setup` > `Standby Through` > `Last`.
-1. `HDMI Setup` > `4k60p Setting` > `4:4:4`.
+1. `HDMI Setup` -> `Standby Through` -> `Last`.
+1. `HDMI Setup` -> `4k60p Setting` -> `4:4:4`.
 
 ### Issues
 

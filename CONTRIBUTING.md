@@ -4,6 +4,7 @@
 
 ## PowerShell
 
+- Use PowerShell 5.1.
 - Do not use functions.
 - Do not use alias.
 - Do not use comments (`#`).

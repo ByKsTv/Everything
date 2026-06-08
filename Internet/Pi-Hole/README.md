@@ -170,10 +170,10 @@
    ```
 
 1. Browser > Pi-Hole IP > Login to Pi-Hole WebUI.
-1. `Settings` > `DNS` > `Upstream DNS Servers` > `127.0.0.1#5335`
-1. `Settings` > `DNS` > `Interface settings` > `Permit all origins`.
-1. `Settings` > `DNS` > `Advanced DNS settings` > `Rate-limiting` > `Block clients making more than 0 queries within 0 seconds`.
-1. `Settings` > `Web interface` > `Pi-hole deep-midnight theme (dark)`.
+1. `Settings` -> `DNS` -> `Upstream DNS Servers` -> `127.0.0.1#5335`
+1. `Settings` -> `DNS` -> `Interface settings` -> `Permit all origins`.
+1. `Settings` -> `DNS` -> `Advanced DNS settings` -> `Rate-limiting` -> `Block clients making more than 0 queries within 0 seconds`.
+1. `Settings` -> `Web interface` -> `Pi-hole deep-midnight theme (dark)`.
 
 Adlists:
 

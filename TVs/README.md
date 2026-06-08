@@ -75,7 +75,7 @@
 
 #### Samsung TV - Update
 
-1. `Settings` > `Support` > `Software Update` > `Update Now`.
+1. `Settings` -> `Support` -> `Software Update` -> `Update Now`.
 
    > Update TV Firmware at night hours to avoid power loss.
    >
@@ -150,28 +150,28 @@
 
 #### LG TV - Setup
 
-1. `Settings` > `Picture` > `Select Mode` > `FILMMAKER MODE`
-1. `Settings` > `Picture` > `Advanced Settings` > `Colour` > `White Balance` > `Colour Temperature` > `Warm 50` (2024-) / `Warm 40` (2025+)`
-1. `Settings` > `Picture` > `Advanced Settings` > `Colour` > `Color Gamut` > `Auto Detect`
-1. `Settings` > `Picture` > `Advanced Settings` > `Clarity` > `Adjust Sharpness` > `0`
-1. `Settings` > `Picture` > `Advanced Settings` > `Clarity` > `Super Resolution` > `Off`
-1. `Settings` > `Picture` > `Advanced Settings` > `Clarity` > `Noise Reduction` > `Off`
-1. `Settings` > `Picture` > `Advanced Settings` > `Clarity` > `MPEG Noise Reduction` > `Off`
-1. `Settings` > `Picture` > `Advanced Settings` > `Clarity` > `Smooth Gradation` > `Off`
-1. `Settings` > `Picture` > `Advanced Settings` > `Clarity` > `Real Cinema` > `On`
-1. `Settings` > `Picture` > `Advanced Settings` > `Clarity` > `TruMotion` > `Off`
-1. `Settings` > `Picture` > `Select Mode` > `1113111` > `EOTF` > `ST2084`
-1. `Settings` > `Picture` > `HDR Select Mode` > `FILMMAKER MODE`
-1. `Settings` > `Picture` > `Advanced Settings` > `Colour` > `White Balance` > `Colour Temperature` > `Warm 50` (2024-) / `Warm 40` (2025+)`
-1. `Settings` > `Picture` > `Advanced Settings` > `Clarity` > `Adjust Sharpness` > `0`
-1. `Settings` > `Picture` > `Advanced Settings` > `Clarity` > `Smooth Gradation` > `Off`
-1. `Settings` > `Picture` > `Advanced Settings` > `Clarity` > `Real Cinema` > `On`
-1. `Settings` > `Picture` > `Select Mode` > `1113111` > `EOTF` > `AUTO`
+1. `Settings` -> `Picture` -> `Select Mode` -> `FILMMAKER MODE`
+1. `Settings` -> `Picture` -> `Advanced Settings` -> `Colour` -> `White Balance` -> `Colour Temperature` -> `Warm 50` (2024-) / `Warm 40` (2025+)`
+1. `Settings` -> `Picture` -> `Advanced Settings` -> `Colour` -> `Color Gamut` -> `Auto Detect`
+1. `Settings` -> `Picture` -> `Advanced Settings` -> `Clarity` -> `Adjust Sharpness` -> `0`
+1. `Settings` -> `Picture` -> `Advanced Settings` -> `Clarity` -> `Super Resolution` -> `Off`
+1. `Settings` -> `Picture` -> `Advanced Settings` -> `Clarity` -> `Noise Reduction` -> `Off`
+1. `Settings` -> `Picture` -> `Advanced Settings` -> `Clarity` -> `MPEG Noise Reduction` -> `Off`
+1. `Settings` -> `Picture` -> `Advanced Settings` -> `Clarity` -> `Smooth Gradation` -> `Off`
+1. `Settings` -> `Picture` -> `Advanced Settings` -> `Clarity` -> `Real Cinema` -> `On`
+1. `Settings` -> `Picture` -> `Advanced Settings` -> `Clarity` -> `TruMotion` -> `Off`
+1. `Settings` -> `Picture` -> `Select Mode` -> `1113111` -> `EOTF` -> `ST2084`
+1. `Settings` -> `Picture` -> `HDR Select Mode` -> `FILMMAKER MODE`
+1. `Settings` -> `Picture` -> `Advanced Settings` -> `Colour` -> `White Balance` -> `Colour Temperature` -> `Warm 50` (2024-) / `Warm 40` (2025+)`
+1. `Settings` -> `Picture` -> `Advanced Settings` -> `Clarity` -> `Adjust Sharpness` -> `0`
+1. `Settings` -> `Picture` -> `Advanced Settings` -> `Clarity` -> `Smooth Gradation` -> `Off`
+1. `Settings` -> `Picture` -> `Advanced Settings` -> `Clarity` -> `Real Cinema` -> `On`
+1. `Settings` -> `Picture` -> `Select Mode` -> `1113111` -> `EOTF` -> `AUTO`
 1. Open `Netflix` > Play `Dolby Vision` Content > Pause Video
-1. `Settings` > `Picture` > `Dolby Vision Select Mode` > `FILMMAKER MODE`
-1. `Settings` > `Picture` > `Advanced Settings` > `Clarity` > `Adjust Sharpness` > `0`
-1. `Settings` > `General` > `System` > `Additional Settings` > `Settings Help` > `Off`
-1. `Settings` > `General` > `Enegry Saving` > `Energy Saving Step` > `Off`
+1. `Settings` -> `Picture` -> `Dolby Vision Select Mode` -> `FILMMAKER MODE`
+1. `Settings` -> `Picture` -> `Advanced Settings` -> `Clarity` -> `Adjust Sharpness` -> `0`
+1. `Settings` -> `General` -> `System` -> `Additional Settings` -> `Settings Help` -> `Off`
+1. `Settings` -> `General` -> `Enegry Saving` -> `Energy Saving Step` -> `Off`
 
 Source: [𝗟𝗚 𝗢𝗟𝗘𝗗 𝗧𝗩 𝗦𝗲𝘁𝘁𝗶𝗻𝗴𝘀 𝗧𝗵𝗲 𝗣𝗿𝗼𝘀 𝗨𝘀𝗲: SDR, HDR & Dolby Vision](https://www.youtube.com/watch?v=YQ9E7RK0gDM)
 

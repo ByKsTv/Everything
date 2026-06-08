@@ -25,9 +25,9 @@
 
 ### LAN - Router - Setup
 
-- `Network Application` > `Settings` > `System` > `General` > `Country/Region` > `United States`
+- `Network Application` -> `Settings` -> `System` -> `General` -> `Country/Region` -> `United States`
   > This will improve WiFI signal.
-- `Network Application` > `Settings` > `WiFi` > `Multicast to Unicast` > `On`
+- `Network Application` -> `Settings` -> `WiFi` -> `Multicast to Unicast` -> `On`
   > This will improve. [More info](https://www.youtube.com/watch?v=ldOVGSiSViw).
 
 ### LAN - More
