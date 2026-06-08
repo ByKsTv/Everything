@@ -80,15 +80,19 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
 
     $Domains = @(
         'fost.club'
-        # 'ddgroupclub.win'
-        # 'rutracker.ru'
+        'ddgroupclub.win'
+        'rutracker.ru'
     )
-    $TitleMagnetsPattern = '(?i)<a\b[^>]*\bhref=["''](?<Value>magnet[^"'']*)["'']'
-    $TitleMagnetss = @{}
+    $ValuePattern = '(?i)\bhref\s*=\s*["''](?<Value>magnet[^"'']*)["'']'
+
+    $DomainURLs = @{}
+    $TopicURLs = @{}
+    $ForumURLs = @{}
+    $Values = @{}
 
     $Links = (Invoke-WebRequest -UseBasicParsing -Uri $TitleHREF).Links.Href |
     Where-Object {
-        $_
+        $null -ne $_
     } |
     ForEach-Object {
         [Uri]::new(
@@ -98,58 +102,115 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     }
 
     foreach ($Domain in $Domains) {
-        $URL = $Links |
+        $DomainURL = $Links |
         Where-Object {
             ([Uri]$_).Host -match "(^|\.)$([regex]::Escape($Domain))$"
         } |
         Select-Object -First 1
 
-        if (-not $URL) {
+        if ($null -eq $DomainURL) {
             throw "Domain not found: $Domain"
         }
 
-        $Page = Invoke-WebRequest -UseBasicParsing -Uri $URL
-        $URL = $Page.BaseResponse.ResponseUri.AbsoluteUri
-        $ID = [regex]::Match($URL, '[?&]t=(\d+)').Groups[1].Value
-        $URL = $Page.Links.Href |
+        $DomainURLs[$Domain] = $DomainURL
+
+        $TopicPage = Invoke-WebRequest -UseBasicParsing -Uri $DomainURL -SessionVariable WebSession
+        $TopicURL = $TopicPage.BaseResponse.ResponseUri.AbsoluteUri
+
+        if ($null -eq $TopicURL) {
+            $TopicURL = $DomainURL
+        }
+
+        $TopicURLs[$Domain] = $TopicURL
+
+        $TopicID = [regex]::Match(
+            [Net.WebUtility]::HtmlDecode($TopicURL),
+            '(?:\?|&)t=(?<Value>\d+)'
+        ).Groups['Value'].Value
+
+        if ($TopicID.Length -eq 0) {
+            throw "Topic ID not found: $TopicURL"
+        }
+
+        $TopicPattern = "(?:\?|&)t=$([regex]::Escape($TopicID))(?!\d)"
+        $ForumCandidates = @()
+
+        $ForumID = [regex]::Match(
+            [Net.WebUtility]::HtmlDecode($TopicURL),
+            '(?:\?|&)f=(?<Value>\d+)'
+        ).Groups['Value'].Value
+
+        if ($ForumID.Length -gt 0) {
+            $ForumCandidates += [Uri]::new(
+                [Uri]$TopicURL,
+                "viewforum.php?f=$ForumID"
+            ).AbsoluteUri
+        }
+
+        $ForumCandidates += $TopicPage.Links.Href |
         Where-Object {
             $_ -match 'viewforum\.php\?[^"'']*f=\d+'
         } |
         ForEach-Object {
             [Uri]::new(
-                [Uri]$URL,
+                [Uri]$TopicURL,
                 [Net.WebUtility]::HtmlDecode($_)
             ).AbsoluteUri
-        } |
-        Select-Object -First 1
-
-        if (-not $ID -or -not $URL) {
-            throw "Topic or forum not found: $Domain"
         }
 
-        $Row = [regex]::Matches(
-            [Net.WebUtility]::HtmlDecode(
-                (Invoke-WebRequest -UseBasicParsing -Uri $URL).Content
-            ),
-            '(?is)<tr\b[^>]*\bid=["'']tr-[^"'']+["''][^>]*>.*?</tr>'
-        ) |
-        Where-Object {
-            $_.Value -match "[?&]t=$ID(?!\d)"
-        } |
-        Select-Object -First 1
+        $ForumCandidates = $ForumCandidates |
+        Select-Object -Unique
 
-        $TitleMagnets = [regex]::Match($Row.Value, $TitleMagnetsPattern).Groups['Value'].Value
+        $ForumURL = $null
+        $Match = $null
 
-        if (-not $TitleMagnets) {
-            throw "Value not found: $Domain"
+        foreach ($Candidate in $ForumCandidates) {
+            $ForumHTML = [Net.WebUtility]::HtmlDecode(
+                (Invoke-WebRequest -UseBasicParsing -Uri $Candidate -WebSession $WebSession).Content
+            )
+
+            $Row = [regex]::Matches(
+                $ForumHTML,
+                '(?is)<(?<Tag>tr|li)\b[^>]*>.*?</\k<Tag>>'
+            ) |
+            Where-Object {
+                $_.Value -match $TopicPattern
+            } |
+            Select-Object -First 1
+
+            if ($null -eq $Row) {
+                $Row = $ForumHTML -split '\r?\n' |
+                Where-Object {
+                    $_ -match $TopicPattern
+                } |
+                Select-Object -First 1
+            }
+
+            if ($null -ne $Row) {
+                $Match = [regex]::Match(
+                    [string]$Row,
+                    $ValuePattern
+                )
+
+                if ($Match.Success) {
+                    $ForumURL = $Candidate
+                    break
+                }
+            }
         }
 
-        $TitleMagnetss[$Domain] = $TitleMagnets
-        $TitleMagnets = [Uri]::UnescapeDataString($TitleMagnets)
+        if ($null -eq $ForumURL) {
+            throw "Topic row or value not found: $TopicURL"
+        }
+
+        $ForumURLs[$Domain] = $ForumURL
+        $Values[$Domain] = $Match.Groups['Value'].Value
     }
 
-    $TitleMagnets | ForEach-Object {
-        $Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($_)"""
+    foreach ($Domain in $Domains) {
+        $Value = $Values[$Domain]
+
+        $Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($Value)"""
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process qBittorrent.exe -ArgumentList $Argument
     }
