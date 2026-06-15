@@ -66,16 +66,17 @@
 
 ### Android Auto Settings
 
-| Location                       | Action                                           |
-| ------------------------------ | ------------------------------------------------ |
-| `Startup`                      | `Start music automatically` -> On                |
-| `Maps`                         | `Day/Night mode for maps` -> `Night`             |
-| `Messaging`                    | `Show first line of messages` -> On              |
-|                                | `Play message chime` -> On                       |
-| `Advanced`                     | `Driver seat location` -> `Left`                 |
-|                                | `Change layout` -> `Navigation closer to driver` |
-| `Version`                      | Click many times to activate developer mode      |
-| 3 dots -> `Developer settings` | `Unknown sources` -> On                          |
+| Location                       | Action                                                     |
+| ------------------------------ | ---------------------------------------------------------- |
+| `Startup`                      | `Start Android Auto automatically` -> `Always`             |
+| `Maps`                         | `Day/Night mode for maps` -> `Night`                       |
+| `Advanced`                     | `Driver seat location` -> `Left`                           |
+|                                | `Change layout` -> `Navigation closer to driver`           |
+| `Version`                      | Click 10 times to activate developer mode -> `Ok`          |
+| 3 dots -> `Developer settings` | `Application Mode` -> `Release`                            |
+|                                | `Audio Codec` -> `Prefer PCM`                              |
+|                                | `Video Resolution` -> `Allow up to 2160x3840 or 3840x2160` |
+|                                | `Unknown sources` -> On                                    |
 
 ### IronFox Settings
 
@@ -147,11 +148,10 @@
 
 ### YouTube Settings
 
-| Location                         | Action                                                                              |
-| -------------------------------- | ----------------------------------------------------------------------------------- |
-| Open `YouTube` app               | `Action needed` -> `Continue` -> `Allow` -> `Sign in` -> `Add account` -> `Sign in` |
-| `Settings` -> `RVX` -> `General` | `Disable splash animation` -> On -> `Cancel`                                        |
-| `Settings` -> `RVX` -> `Video`   | `Disable DRC audio` -> On -> `Cancel`                                               |
+| Location                                   | Action                                                                              |
+| ------------------------------------------ | ----------------------------------------------------------------------------------- |
+| Open `YouTube` app                         | `Action needed` -> `Continue` -> `Allow` -> `Sign in` -> `Add account` -> `Sign in` |
+| `Settings` -> `Morphe Settings` -> `Video` | `Disable DRC audio` -> On -> `Cancel`                                               |
 
 ### YouTube Music Settings
 
