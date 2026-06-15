@@ -60,17 +60,18 @@
 | Vocalizer                      | [4pda](https://4pda.to/forum/index.php?showtopic=987292#apk)                                                                                                                                                                                | [Latest 3.8.2](https://4pda.to/forum/index.php?showtopic=987292&view=findpost&p=132720887) |
 | WhatsApp                       | [4pda](https://4pda.to/forum/index.php?showtopic=186375#Spoil-5125511-11)                                                                                                                                                                   |                                                                                            |
 | Wheres My Droid                | [mobilism](https://forum.mobilism.me/search.php?keywords=Wheres+My+Droid&sr=topics&sf=titleonly)                                                                                                                                            | Elite                                                                                      |
-| YouTube Music + MicroG-RE      | [GitHub](https://github.com/MANCrimSon/YouTube-ReVanced-Extended/releases) / [4pda](https://4pda.to/forum/index.php?act=findpost&pid=116484303&anchor=Spoil-116484303-5) + [GitHub](https://github.com/MorpheApp/MicroG-RE/releases/latest) | `youtube-music-revanced-extended-v8.30.54-arm64-v8a.apk` + `microg-6.1.4.apk`              |
-| YouTube + MicroG-RE            | [GitHub](https://github.com/MANCrimSon/YouTube-ReVanced-Extended/releases) / [4pda](https://4pda.to/forum/index.php?act=findpost&pid=115638129&anchor=Spoil-115638129-4) + [GitHub](https://github.com/MorpheApp/MicroG-RE/releases/latest) | `youtube-revanced-extended-v20.51.39-all.apk` + `microg-6.1.4.apk`                         |
+| YouTube Music + MicroG-RE      | [GitHub](https://github.com/MANCrimSon/YouTube-ReVanced-Extended/releases) / [4pda](https://4pda.to/forum/index.php?act=findpost&pid=116484303&anchor=Spoil-116484303-5) + [GitHub](https://github.com/MorpheApp/MicroG-RE/releases/latest) | `youtube-music-morphe-v8.51.51-arm64-v8a.apk` + `microg-6.1.4.apk`                         |
+| YouTube + MicroG-RE            | [GitHub](https://github.com/MANCrimSon/YouTube-ReVanced-Extended/releases) / [4pda](https://4pda.to/forum/index.php?act=findpost&pid=115638129&anchor=Spoil-115638129-4) + [GitHub](https://github.com/MorpheApp/MicroG-RE/releases/latest) | `youtube-morphe-v20.51.39-all.apk` + `microg-6.1.4.apk`                                    |
 | aRDP                           | [4pda](https://4pda.to/forum/index.php?showtopic=658880#entry39545784)                                                                                                                                                                      | Paid                                                                                       |
 
 ### Android Auto Settings
 
 | Location                       | Action                                           |
 | ------------------------------ | ------------------------------------------------ |
+| `Startup`                      | `Start music automatically` -> On                |
 | `Maps`                         | `Day/Night mode for maps` -> `Night`             |
-| `Messaging`                    | `Show first line of messages` -> Off             |
-|                                | `Play message chime` -> Off                      |
+| `Messaging`                    | `Show first line of messages` -> On              |
+|                                | `Play message chime` -> On                       |
 | `Advanced`                     | `Driver seat location` -> `Left`                 |
 |                                | `Change layout` -> `Navigation closer to driver` |
 | `Version`                      | Click many times to activate developer mode      |
@@ -154,15 +155,14 @@
 
 ### YouTube Music Settings
 
-| Location                            | Action                                                                              |
-| ----------------------------------- | ----------------------------------------------------------------------------------- |
-| Open `YT Music` app                 | `Action needed` -> `Continue` -> `Allow` -> `Sign in` -> `Add account` -> `Sign in` |
-| `Settings` -> `RVX` -> `General`    | `Disable Cairo splash animation` -> On -> `Cancel`                                  |
-| `Settings` -> `RVX` -> `Account`    | `Hide terms container` -> On                                                        |
-| `Settings` -> `RVX` -> `Ads`        | `Hide fullscreen ads` -> On -> `Cancel`                                             |
-| `Settings` -> `RVX` -> `Video`      | `Disable DRC audio` -> On -> `Cancel`                                               |
-| `Settings` -> `Downloads & storage` | `Audio quality` -> `High`                                                           |
-|                                     | `Video quality` -> `HD - 720p`                                                      |
+| Location                                  | Action                                                                              |
+| ----------------------------------------- | ----------------------------------------------------------------------------------- |
+| Open `YT Music` app                       | `Action needed` -> `Continue` -> `Allow` -> `Sign in` -> `Add account` -> `Sign in` |
+| `Settings` -> `Morphe` -> `Miscellaneous` | `Disable DRC audio` -> On -> `Cancel`                                               |
+| `Settings` -> `Data Saving`               | `Audio quality on mobile network` -> `Always High`                                  |
+|                                           | `Audio quality on Wi-Fi` -> `Always High`                                           |
+| `Settings` -> `Downloads & storage`       | `Audio quality` -> `High`                                                           |
+|                                           | `Video quality` -> `HD - 720p`                                                      |
 
 ## Diagnose APKs
 
@@ -417,3 +417,4 @@ foreach ($apk in [IO.Directory]::EnumerateFiles($downloads, '*.apk')) {
 - Incoming calls from overseas won't charge you.
 - Printing from phone requires additional app to be installed, if owns a HP printer download HP Print Service.
 - Disable Play Protect.
+- Developer options: Disable extended RAM option (that moves RAM to Storage, storage is slow).
