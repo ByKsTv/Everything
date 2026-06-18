@@ -14,6 +14,9 @@ youtube.com##:is(ytd-rich-item-renderer):has(a[href*="start_radio=1"])
 ! Hide "How much do you like or dislike this item?" survey popup below video post on YouTube
 www.youtube.com##.ytSlimlineSurveyViewModelHost
 
+! Hide Playlist cards on YouTube Homepage
+www.youtube.com##:matches-path(/^\/(?:\?.*)?$/) ytd-rich-item-renderer:has(a[href*="/playlist?list="])
+
 ! Hide top left logo on RuTracker
 rutracker.org###logo
 
