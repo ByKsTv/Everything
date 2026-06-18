@@ -112,4 +112,4 @@
 - Each year you'll have to renew the plan, when doing so use the Public Inquiry page, don't comminicate with the Customer Service via Whatsapp or phone call.
   > Remove all the extra charges such as `5G`, `Cyber Security` and bundled `TV` plans, all you actually need is phone calls + data plan.
 
-Cancel unnecessary services, also voicemail
+Cancel unnecessary services, also voicemail, call them to enable a free of charge service that notifies you whenever a person calls you but you have no signal youll receive an sms.

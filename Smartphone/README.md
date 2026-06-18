@@ -7,6 +7,8 @@
   - [Truecaller Settings](#truecaller-settings)
   - [YouTube Settings](#youtube-settings)
   - [YouTube Music Settings](#youtube-music-settings)
+  - [BYD Settings](#byd-settings)
+  - [Waze Settings](#waze-settings)
 - [Diagnose APKs](#diagnose-apks)
 - [Useful ADB Commands](#useful-adb-commands)
 - [What to backup](#what-to-backup)
@@ -66,17 +68,20 @@
 
 ### Android Auto Settings
 
-| Location                       | Action                                                     |
-| ------------------------------ | ---------------------------------------------------------- |
-| `Startup`                      | `Start Android Auto automatically` -> `Always`             |
-| `Maps`                         | `Day/Night mode for maps` -> `Night`                       |
-| `Advanced`                     | `Driver seat location` -> `Left`                           |
-|                                | `Change layout` -> `Navigation closer to driver`           |
-| `Version`                      | Click 10 times to activate developer mode -> `Ok`          |
-| 3 dots -> `Developer settings` | `Application Mode` -> `Release`                            |
-|                                | `Audio Codec` -> `Prefer PCM`                              |
-|                                | `Video Resolution` -> `Allow up to 2160x3840 or 3840x2160` |
-|                                | `Unknown sources` -> On                                    |
+| Location                       | Action                                                    |
+| ------------------------------ | --------------------------------------------------------- |
+| `Startup`                      | `Start Android Auto automatically` -> `Always`            |
+| `Maps`                         | `Day/Night mode for maps` -> `Night`                      |
+| `Advanced`                     | `Driver seat location` -> `Left`                          |
+|                                | `Change layout` -> `Navigation closer to driver`          |
+| `Version`                      | Click 10 times to activate developer mode -> `Ok`         |
+| 3 dots -> `Developer settings` | `Wireless Android Auto` -> Off (Only if you use wired)    |
+|                                | `Application Mode` -> `Release`                           |
+|                                | `Audio Codec` -> `Prefer PCM`                             |
+|                                | `Video Resolution` -> `Allow car and phone to neogotiate` |
+|                                | `Unknown sources` -> On                                   |
+
+- I think the max setting for `Video Resolution` makes the phone too laggy.
 
 ### IronFox Settings
 
@@ -163,6 +168,29 @@
 |                                           | `Audio quality on Wi-Fi` -> `Always High`                                           |
 | `Settings` -> `Downloads & storage`       | `Audio quality` -> `High`                                                           |
 |                                           | `Video quality` -> `HD - 720p`                                                      |
+
+### BYD Settings
+
+| Location                                                    | Action                         |
+| ----------------------------------------------------------- | ------------------------------ |
+| `My Account` -> `Settings` -> `Remote Control Verification` | `Biometric verification` -> On |
+| `My Account` -> `Settings`                                  | `Use vehicle position` - On    |
+
+### Waze Settings
+
+| Location                                     | Action                                        |
+| -------------------------------------------- | --------------------------------------------- |
+| `Settings` -> `General`                      | `Keep Waze on top` -> On                      |
+| `Settings` -> `Map display` -> `Dark mode`   | `Dark mode` -> On                             |
+|                                              | `Apply to car display` -> On                  |
+| `Settings` -> `Map display`                  | `Wazers` -> Off                               |
+| `Settings` -> `Map display` -> `Speedometer` | `Show speed limit` -> `Always`                |
+|                                              | `Speeding threshold` -> `10 km/h above limit` |
+|                                              | `Alert on threshold` -> On                    |
+| `Settings` -> `Voice and sound`              | `Less chatty`                                 |
+|                                              | `Play sound to phone speaker` -> On           |
+| `Settings` -> `Audio player`                 | `Show on the map` -> Off                      |
+| `Settings` -> `Privacy`                      | `Go invisible` -> On                          |
 
 ## Diagnose APKs
 

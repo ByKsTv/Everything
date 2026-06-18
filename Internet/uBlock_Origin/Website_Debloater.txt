@@ -90,3 +90,33 @@ www.aliexpress.com##[class*="more-to-love-v2--wrap--"]
 
 ! Hide the ads in between results, cookies notice on the footer on KSP
 ksp.co.il##.MuiContainer-root.MuiContainer-maxWidthLg[class*="banner-"]
+
+! Hide the "Get started" ("Try making your own Anime List! (No sign-up required)") pop-up on MyAnimeList
+myanimelist.net##.mal-tooltip-layer
+
+! Hide "ProTip" toolbar on the footer below the comment box on GitHub
+github.com##.protip
+
+! Hide the FAQ section above the download button on PornoLab
+pornolab.net##tr.tCenter.row3 > .med
+
+! Hide the FAQ section above the download button on RuTracker
+rutracker.org##tr.tCenter.row3 > td
+
+! Hide the "(Advertisement)" sections on EV-Database
+ev-database.org##.adslot_container
+
+! Hide "Explore more items" and "Items you may like" sections below the results page on Amazon
+www.amazon.com##.copilot-secure-display
+
+! Show "Save to Watch later" and "Save to plailist" on YouTube
+www.youtube.com#@#tp-yt-paper-item:has(yt-icon):has(yt-formatted-string:has-text(Save))
+
+! Show "Download" button on YouTube
+www.youtube.com#@#ytd-menu-service-item-download-renderer
+
+! Hide header ad on Amazon
+www.amazon.com###desktop-dp-ilm_feature_div_0
+
+! Hide "Add X amount to use Y amount off coupon" below the product details on AliExpress
+aliexpress.com###fusionPageCard
