@@ -5,8 +5,11 @@
 ## Setup
 
 - [Raspberry Pi 4 Model B](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/) (or higher)
-- MicroSD Card (A2).
-- MicroSD Card Reader.
+- MicroSD Card (A2), ask AI which card to buy.
+- MicroSD Card Reader (USB 3.0).
+- No need for more than 2GB ram.
+- RJ45 port.
+- Cooling case because it heats up.
 - A router with access to change the DNS settings.
 
 1. Download and Open [Raspberry Pi Imager](https://www.raspberrypi.com/software/).
@@ -250,7 +253,3 @@ Domains Regex Blacklist (Optional):
 ^pixels?[-.]
 ^stat(s|istics)?[0-9]*[_.-]
 ```
-
-Known Issues:
-
-- When using `Pi-Hole` and `Kan11` app - a pop-up will say "No Connection" when first watching live.

@@ -71,6 +71,7 @@
 | Location                       | Action                                                    |
 | ------------------------------ | --------------------------------------------------------- |
 | `Startup`                      | `Start Android Auto automatically` -> `Always`            |
+| `Customize launcher`           | `Waze`, `YT Music Morphe`, `Phone`                        |
 | `Maps`                         | `Day/Night mode for maps` -> `Night`                      |
 | `Advanced`                     | `Driver seat location` -> `Left`                          |
 |                                | `Change layout` -> `Navigation closer to driver`          |
@@ -85,30 +86,38 @@
 
 ### IronFox Settings
 
-| Location                                                                                           | Action                                                                                                 |
-| -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-|                                                                                                    | `Set IronFox as your default browser app`                                                              |
-| `Try IronFox Widget`                                                                               | `Not Now`                                                                                              |
-|                                                                                                    | `Sign In`                                                                                              |
-| `Theme`                                                                                            | `Dark`                                                                                                 |
-| `Address bar location`                                                                             | `Down`                                                                                                 |
-| `Settings` -> `Search` -> `Default search engine`                                                  | Disable all > Add `Google` with `https://www.google.com/search?q=%s`                                   |
-| `Settings` -> `Search` -> `Manage alternative search engines`                                      | Disable all                                                                                            |
-| `Settings` -> `Search`                                                                             | Disable all except `Search browsing history`,`Search bookmarks`                                        |
-| `Settings` -> `Tabs`                                                                               | `List`                                                                                                 |
-| `Settings` -> `Tabs` -> `Tabs you haven't viewed for two weeks get moved to the inactive section.` | Disable                                                                                                |
-| `Settings` -> `Homepage`                                                                           | Disable all                                                                                            |
-| `Settings` -> `Homepage`                                                                           | `Last tab`                                                                                             |
-| `Settings` -> `Customise` -> `Pull to refresh`                                                     | Disable                                                                                                |
-| `Settings` -> `Passwords` -> `Save passwords`                                                      | `Ask to save`                                                                                          |
-| `Settings` -> `Passwords` -> `Autofill in IronFox`                                                 | Enable                                                                                                 |
-| `Settings` -> `Passwords` -> `Autofill in other apps`                                              | Enable                                                                                                 |
-| `Settings` -> `DNS Over HTTPS`                                                                     | Off                                                                                                    |
-| `Settings` -> `Delete browsing data`                                                               | Disable: `Open tabs`, `Browsing history`, `Cookies and site data`                                      |
-| `Settings` -> `Delete browsing data on quit`                                                       | Disable: `Open tabs`, `Browsing history`, `Cookies and site data`                                      |
-| `Settings` -> `Add-ons` -> `uBlock Origin` -> `Settings`                                           | [Restore from file](https://github.com/ByKsTv/Everything/blob/main/Internet/uBlock_Origin/Backup.json) |
-| `about:config` -> `media.autoplay.blocking_policy`                                                 | `0`                                                                                                    |
-| `about:config` -> `media.autoplay.default`                                                         | `1`                                                                                                    |
+| Location                                                           | Action                                                                                                 |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `Welcome to IronFox`                                               | `Continue`                                                                                             |
+| `Enable notifications`                                             | `Turn on notifications` -> `Allow`                                                                     |
+| `Choose your address bar`                                          | `Buttom` -> `Continue`                                                                                 |
+| `Customize IronFox`                                                | `Default Protection` -> `Continue`                                                                     |
+|                                                                    | `Enable JavaScript Just-in-time Complication (JIT)` -> `Continue`                                      |
+|                                                                    | `Continue`                                                                                             |
+|                                                                    | `Continue`                                                                                             |
+|                                                                    | `Continue` -> `Add` -> `Ok`                                                                            |
+| 3 dots -> `Settings` -> `Mozilla account`                          | Sign in                                                                                                |
+| `Settings` -> `Search`                                             | `Default search engine` -> `Add search engine` -> `Google` -> `https://www.google.com/search?q=%s`     |
+| `Settings` -> `Search` -> `Manage alternative search engines`      | Disable all                                                                                            |
+| `Settings` -> `Search`                                             | Disable all except `Search browsing history`, `Search bookmarks`                                       |
+| `Settings` -> `Tabs`                                               | `List`                                                                                                 |
+| `Settings` -> `Tabs` -> `Move old tabs to inactive`                | Disable                                                                                                |
+| `Settings` -> `Homepage`                                           | Disable all                                                                                            |
+| `Settings` -> `Homepage` -> `Opening screen`                       | `Last tab`                                                                                             |
+| `Settings` -> `Customize`                                          | `OLED`                                                                                                 |
+| `Settings` -> `Customize` -> `Pull to refresh`                     | Disable                                                                                                |
+| `Settings` -> `Passwords` -> `Save passwords`                      | `Ask to save`                                                                                          |
+| `Settings` -> `Passwords` -> `Autofill in IronFox`                 | Enable                                                                                                 |
+| `Settings` -> `Passwords` -> `Autofill in other apps`              | Enable                                                                                                 |
+| `Settings` -> `DNS Over HTTPS`                                     | `Off`                                                                                                  |
+| `Settings` -> `Delete browsing data`                               | Disable: `Open tabs`, `Browsing history`, `Cookies and site data`                                      |
+| `Settings` -> `Delete browsing data on quit`                       | Disable: `Open tabs`, `Browsing history`, `Cookies and site data`                                      |
+| `Settings` -> `IronFox settings` -> `Preferred website appearance` | `Dark`                                                                                                 |
+| `Settings` -> `IronFox settings` -> `Privacy and security`         | `Disable WebGL` -> Off                                                                                 |
+| `Settings` -> `IronFox settings` -> `Miscellaneous`                | `Enable collections` -> Off                                                                            |
+| `Settings` -> `Add-ons` -> `uBlock Origin` -> `Settings`           | [Restore from file](https://github.com/ByKsTv/Everything/blob/main/Internet/uBlock_Origin/Backup.json) |
+| `about:config` -> `media.autoplay.blocking_policy`                 | `0`                                                                                                    |
+| `about:config` -> `media.autoplay.default`                         | `1`                                                                                                    |
 
 ### Truecaller Reset
 
@@ -123,15 +132,12 @@
 
 | Location                                                                  | Action                                                                                        |
 | ------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `Get started`                                                             |                                                                                               |
+| `Get started`                                                             | `Do not show again` ->                                                                        |
 | `Set Truecaller as your default caller ID & spam app?` -> `Truecaller`    | `Set as default`                                                                              |
 | `CONTINUE`                                                                | `Allow` 4 times                                                                               |
-| `Set Truecaller as your default sms app?` -> `Truecaller`                 | `Set as default`                                                                              |
-| `Sign back in to Truecaller with Google`                                  | Close                                                                                         |
-| `User your Google account to log in faster`                               | `Cancel`                                                                                      |
 | `Fill in manually`                                                        | Only first and last name are required                                                         |
+| `Enhanced Search`                                                         | `Don't Allow`                                                                                 |
 | `Backup available`                                                        | `Skip` -> `Skip`                                                                              |
-| `Introducing Verified Business Caller ID`                                 | `Dismiss`                                                                                     |
 | `Settings` -> `Calls`                                                     | `Disable battery optimization` -> `Allow`                                                     |
 |                                                                           | Enable `Hide for phonebook contacts`, `Hide for non-phonebook contacts`                       |
 |                                                                           | Enable `Identify numbers on other apps`                                                       |
@@ -174,23 +180,29 @@
 | Location                                                    | Action                         |
 | ----------------------------------------------------------- | ------------------------------ |
 | `My Account` -> `Settings` -> `Remote Control Verification` | `Biometric verification` -> On |
-| `My Account` -> `Settings`                                  | `Use vehicle position` - On    |
+| `My Account` -> `Settings`                                  | `Use vehicle position` -> On   |
 
 ### Waze Settings
 
-| Location                                     | Action                                        |
-| -------------------------------------------- | --------------------------------------------- |
-| `Settings` -> `General`                      | `Keep Waze on top` -> On                      |
-| `Settings` -> `Map display` -> `Dark mode`   | `Dark mode` -> On                             |
-|                                              | `Apply to car display` -> On                  |
-| `Settings` -> `Map display`                  | `Wazers` -> Off                               |
-| `Settings` -> `Map display` -> `Speedometer` | `Show speed limit` -> `Always`                |
-|                                              | `Speeding threshold` -> `10 km/h above limit` |
-|                                              | `Alert on threshold` -> On                    |
-| `Settings` -> `Voice and sound`              | `Less chatty`                                 |
-|                                              | `Play sound to phone speaker` -> On           |
-| `Settings` -> `Audio player`                 | `Show on the map` -> Off                      |
-| `Settings` -> `Privacy`                      | `Go invisible` -> On                          |
+| Location                                     | Action                                                       |
+| -------------------------------------------- | ------------------------------------------------------------ |
+|                                              | `Continue` -> `While using the app`                          |
+|                                              | `Get started` -> `Allow` -> Set `Home` -> `Not personalized` |
+|                                              | `Search contacts` -> `Next` -> `Allow`                       |
+| `Settings` -> `General`                      | `Keep Waze on top` -> On -> `Settings` -> `Waze` -> `Allow`  |
+| `Settings` -> `General` -> `Personalization` | Disable all                                                  |
+| `Settings` -> `Map display` -> `Dark mode`   | `Dark mode` -> On                                            |
+|                                              | `Apply to car display` -> On                                 |
+| `Settings` -> `Map display`                  | `Wazers` -> Off                                              |
+| `Settings` -> `Map display` -> `Speedometer` | `Show speed limit` -> `Always`                               |
+|                                              | `Speeding threshold` -> `10 km/h above limit`                |
+|                                              | `Alert on threshold` -> On                                   |
+|                                              | `Play sound to phone speaker` -> On                          |
+| `Settings` -> `Audio player`                 | `Show on the map` -> Off                                     |
+| `Settings` -> `Privacy`                      | `Go invisible` -> On                                         |
+
+Note 1: `Chuppito Mod` has a different app icon, OLED background for roads.
+Note 2: None of the mods seem to show up as an app on Android Auto, even with `Unknown sources` enabled, apperently you need to buy external Android Auto adapter.
 
 ## Diagnose APKs
 

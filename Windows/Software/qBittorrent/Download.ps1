@@ -36,7 +36,7 @@ if (-not (Get-Process -Name 'qBittorrent' -ErrorAction SilentlyContinue)) {
 
         $DDL = 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/qBittorrent/Theme/OLED.qbtheme'
         $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
-        $SavePath = [IO.Path]::Combine($env:PUBLIC, $FileName)
+        $SavePath = [IO.Path]::Combine($env:ProgramFiles, 'qBittorrent', $FileName)
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
         (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
     }

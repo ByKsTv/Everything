@@ -1,4 +1,4 @@
-# Group Policy: Computer Configuration: Administrative Templates: Mozilla: Firefox: Background updater: Disabled
+# Group Policy: Computer Configuration: Administrative Templates: Mozilla: Firefox: Background updater: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Mozilla\Firefox' -Name 'BackgroundAppUpdate' -Type DWORD -Value 1
 
 # Group Policy: Computer Configuration: Administrative Templates: Mozilla: Firefox: Disable Feedback Commands: Enabled

@@ -1,75 +1,37 @@
 # Table Of Contents
 
-- [Television](#television)
-  - [Android TV](#android-tv)
-    - [Setup](#android-tv---setup)
-    - [Apps](#android-tv---apps)
-      - [Setup](#android-tv---apps---setup)
-    - [Notes](#android-tv---notes)
-  - [Samsung](#samsung)
-    - [Notes](#samsung-tv---notes)
-  - [LG](#lg)
-    - [Setup](#lg-tv---setup)
-    - [Notes](#lg-tv---notes)
-  - [More - TV](#more)
-  - [Clean](#clean)
-- [Cancel](#cancel)
+## Android TV
 
-## Television
+1. Manually set up.
+1. `Settings` -> `System` -> `About` -> Click `Android TV OS Build` 7 times.
+1. `Settings` -> `System` -> `Developer options` -> `Wireless debugging` -> `Enabled` -> `Pair device with a pairing code`.
+1. `adb pair IP:PORT CODE` -> On TV go back -> `adb connect IP:PORT`.
+1. Download [tvQuickActions](https://forum.mobilism.me/search.php?keywords=tvQuickActions&sr=topics&sf=titleonly), [SmartTube](https://github.com/yuliskov/SmartTube/releases/latest), [Spotify](https://4pda.to/forum/index.php?showtopic=248440#Spoil-8030514-11) (Android TV)
+1. Run `Get-ChildItem "$env:USERPROFILE\Downloads" -Filter *.apk | ForEach-Object { & adb.exe install $_.FullName }`
+1. Apply `Settings.ps1`.
+1. Open `tvQuickActions Pro` app -> `Continue` -> `Continue` -> `Continue` -> `Continue` -> `Continue` -> `Continue` -> `Agree`
+1. `Buttons & actions` -> `ADD BUTTON` -> YouTube key -> `Button action type` -> `Usual action` -> `Single press` -> `SmartTube` -> Go back
+1. `ADD BUTTON` -> Netflix key -> `Button action type` -> `Usual action` -> `Single press` -> `NEXT TV` -> Go back
+1. `ADD BUTTON` -> Prime video key -> `Button action type` -> `Usual action` -> `Single press` -> `UniFi Protect` -> Go back
+1. `ADD BUTTON` -> YouTube Music key -> `Button action type` -> `Usual action` -> `Single press` -> `Spotify` -> Go back
+1. Home -> `Apps` -> `Reorder` from first to last: `UniFi Protect`, `NEXT TV`, `SmartTube`, `Spotify`, `Plex`, `Kan Box`, `12+`, `13+`, `Now14`, `i24NEWS`, `TV Bro`, `tvQuickActions Pro`
+1. `Settings` -> `Accounts & Profiles` -> (Current User) -> `Apps only mode` -> On -> `Turn on`
+1. Open `UniFi Protect` -> Login using QR Code
+1. Open `NEXT TV` -> Login
+1. Open `Plex` -> [Link TV](https://www.plex.tv/link/)
+1. `adb reboot`
+1. `adb kill-server`
 
-### Android TV
+### Android TV - Notes
 
-#### Android TV - Setup
-
-1. TODO
-
-#### Android TV - Apps
-
-| Name                     | Links                                                                                                                 | Mod to download    |
-| ------------------------ | --------------------------------------------------------------------------------------------------------------------- | ------------------ |
-| UniFi Protect            | [Google Play](https://play.google.com/store/apps/details?id=com.ubnt.unifi.protect)                                   |                    |
-| NEXT TV                  | [Google Play](https://play.google.com/store/apps/details?id=com.hotnext)                                              |                    |
-| SmartTube                | [GitHub](https://github.com/yuliskov/SmartTube/releases/latest)                                                       |                    |
-| Netflix                  | [Google Play](https://play.google.com/store/apps/details?id=com.netflix.mediaclient)                                  |                    |
-| Spotify                  | [4pda](https://4pda.to/forum/index.php?showtopic=248440#Spoil-8030514-11)                                             | Android TV         |
-| Plex: Stream Movies & TV | [Google Play](https://play.google.com/store/apps/details?id=com.plexapp.android)                                      |                    |
-| Kan11                    | [Google Play](https://play.google.com/store/apps/details?id=com.applicaster.il.ch1)                                   |                    |
-| N12                      | [Google Play](https://play.google.com/store/apps/details?id=com.channel2.mobile.ui)                                   |                    |
-| Reshet 13                | [Google Play](https://play.google.com/store/apps/details?id=com.applicaster.iReshet)                                  |                    |
-| TV Bro                   | [Google Play](https://play.google.com/store/apps/details?id=com.phlox.tvwebbrowser)                                   |                    |
-| UAD-ng                   | [GitHub](https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/releases/latest) | uad-ng-windows.exe |
-
-#### Android TV - Apps - Setup
-
-1. Open `UniFi Protect` > Login using QR Code
-1. Install `SmartTube`:
-
-   ```bash
-   adb install SmartTube_stable_27.37_arm64-v8a.apk
-   ```
-
-1. Open `SmartTube` > Restore settings using file (TODO)
-1. Open `Netflix` > Login
-1. Install `Spotify`:
-
-   ```bash
-   adb install Spotify+-+Music+and+Podcasts_1.91.8_mod.apk
-   ```
-
-1. Open `Spotify` > Login
-1. Open `Plex` > [Link TV](https://www.plex.tv/link/)
-1. Plex > Settings TODO
-1. Open `UAD-ng`
-
-#### Android TV - Notes
-
+- Remote Control on Google Home (Virtual Remote) does not appear
 - When using `UAD-ng` - Don't uninstall the following:
   - `com.google.android.tv.remote.service` - Android TV Remote Service.
   - `com.netflix.ninja` - Netflix.
   - A Package on the `Recommended` list - Disconnects the WiFi.
   - A Package on the `Recommended` list - Can't control TV from Google Home.
 
-- TCL has issues playing Next TV channels, zoom-in when selecting a channel, temporary fix is the toggle overscan picture settings, but when chagning to different channel this fix needs to be re-applaied.
+- TCL has issues playing NEXT TV channels, zoom-in when selecting a channel, temporary fix is the toggle overscan picture settings, but when chagning to different channel this fix needs to be re-applaied.
 
 ### Samsung
 
