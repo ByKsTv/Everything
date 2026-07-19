@@ -38,3 +38,6 @@ s.youtube.com
 # https://www.speedtest.net/run
 # Stuck on "Finding optimal server..."
 # cdn.ziffstatic.com
+
+# This is required for the unblocking of the electricity app
+firebaseinstallations.googleapis.com

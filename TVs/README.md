@@ -65,30 +65,32 @@
 
 #### Samsung TV - SDR Setup
 
-| Menu                                                               | Setting                      | Value          | Notes                                                                                    |
-| ------------------------------------------------------------------ | ---------------------------- | -------------- | ---------------------------------------------------------------------------------------- |
-| Settings -> Picture                                                | Picture Mode                 | FILMMAKER MODE |                                                                                          |
-| Settings -> Picture -> Expert Settings -> Picture Clarity Settings | Picture Clarity              | Custom         |                                                                                          |
-| Settings -> Picture -> Expert Settings -> Picture Clarity Settings | Blur Reduction               | 0              |                                                                                          |
-| Settings -> Picture -> Expert Settings -> Picture Clarity Settings | Judder Reduction             | 0              |                                                                                          |
-| Settings -> Picture -> Expert Settings                             | Local Dimming                | Standard       | Default value `Standard` clips whites on `AVS HD 709` and flickering on black background |
-| Settings -> General -> External Device Manager                     | Input Signal Plus            | Current HDMI   | Enables 4k60p                                                                            |
-| Settings -> General -> Eco Solution                                | Ambient Light Detection      | Off            |                                                                                          |
-| Settings -> General -> Smart Features                              | Autorun Smart Hub            | Off            |                                                                                          |
-| Settings -> General -> Smart Features                              | Autorun Last App             | Off            |                                                                                          |
-| Settings -> General -> Smart Features                              | Autorun Multi View Mirroring | Off            |                                                                                          |
-| Settings -> General -> Smart Features                              | Autorun Multi View Casting   | Off            |                                                                                          |
+| Menu                                                               | Setting                      | Value          | Notes                                                                                   |
+| ------------------------------------------------------------------ | ---------------------------- | -------------- | --------------------------------------------------------------------------------------- |
+| Settings -> Picture                                                | Picture Mode                 | FILMMAKER MODE |                                                                                         |
+| Settings -> Picture -> Expert Settings -> Picture Clarity Settings | Picture Clarity              | Custom         |                                                                                         |
+| Settings -> Picture -> Expert Settings -> Picture Clarity Settings | Blur Reduction               | 0              |                                                                                         |
+| Settings -> Picture -> Expert Settings -> Picture Clarity Settings | Judder Reduction             | 0              |                                                                                         |
+| Settings -> Picture -> Expert Settings                             | Local Dimming                | Standard       | Default value `Standard` clips white on `AVS HD 709` and flickering on black background |
+| Settings -> General -> External Device Manager                     | Input Signal Plus            | Current HDMI   | Enables 4k60p                                                                           |
+| Settings -> General -> Eco Solution                                | Ambient Light Detection      | Off            |                                                                                         |
+| Settings -> General -> Smart Features                              | Autorun Smart Hub            | Off            |                                                                                         |
+| Settings -> General -> Smart Features                              | Autorun Last App             | Off            |                                                                                         |
+| Settings -> General -> Smart Features                              | Autorun Multi View Mirroring | Off            |                                                                                         |
+| Settings -> General -> Smart Features                              | Autorun Multi View Casting   | Off            |                                                                                         |
+
+Note 1: Local Dimming of High is causing noise levels on white.
 
 #### Samsung TV - HDR Setup
 
-| Menu                                                               | Setting          | Value  | Notes            |
-| ------------------------------------------------------------------ | ---------------- | ------ | ---------------- |
-|                                                                    |                  |        | Enable HDR       |
-| Settings -> Picture -> Expert Settings -> Picture Clarity Settings | Picture Clarity  | Custom |                  |
-| Settings -> Picture -> Expert Settings -> Picture Clarity Settings | Blur Reduction   | 0      |                  |
-| Settings -> Picture -> Expert Settings -> Picture Clarity Settings | Judder Reduction | 0      |                  |
-| Settings -> Picture -> Expert Settings                             | Local Dimming    | High   | `Low` is too dim |
-|                                                                    |                  |        | Disable HDR      |
+| Menu                                                               | Setting          | Value    | Notes            |
+| ------------------------------------------------------------------ | ---------------- | -------- | ---------------- |
+|                                                                    |                  |          | Enable HDR       |
+| Settings -> Picture -> Expert Settings -> Picture Clarity Settings | Picture Clarity  | Custom   |                  |
+| Settings -> Picture -> Expert Settings -> Picture Clarity Settings | Blur Reduction   | 0        |                  |
+| Settings -> Picture -> Expert Settings -> Picture Clarity Settings | Judder Reduction | 0        |                  |
+| Settings -> Picture -> Expert Settings                             | Local Dimming    | Standard | `Low` is too dim |
+|                                                                    |                  |          | Disable HDR      |
 
 #### Samsung TV - Game mode Setup
 

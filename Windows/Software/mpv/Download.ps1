@@ -39,23 +39,23 @@ $SavePath = [IO.Path]::Combine($MPV_Destination, $FileName)
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' settings '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
 (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
 
-$DDL = ((Invoke-RestMethod -Uri 'https://api.github.com/repos/igv/FSRCNN-TensorFlow/releases/latest').assets | Where-Object { $_.name -match 'FSRCNNX_x2_16' }).browser_download_url
-$FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
-$SavePath = [IO.Path]::Combine($MPV_Destination, $FileName)
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-(New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
+# $DDL = ((Invoke-RestMethod -Uri 'https://api.github.com/repos/igv/FSRCNN-TensorFlow/releases/latest').assets | Where-Object { $_.name -match 'FSRCNNX_x2_16' }).browser_download_url
+# $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
+# $SavePath = [IO.Path]::Combine($MPV_Destination, $FileName)
+# [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+# (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
 
-$DDL = ((Invoke-RestMethod -Uri 'https://api.github.com/repos/igv/FSRCNN-TensorFlow/releases/latest').assets | Where-Object { $_.name -match 'FSRCNNX_x2_8' }).browser_download_url
-$FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
-$SavePath = [IO.Path]::Combine($MPV_Destination, $FileName)
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-(New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
+# $DDL = ((Invoke-RestMethod -Uri 'https://api.github.com/repos/igv/FSRCNN-TensorFlow/releases/latest').assets | Where-Object { $_.name -match 'FSRCNNX_x2_8' }).browser_download_url
+# $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
+# $SavePath = [IO.Path]::Combine($MPV_Destination, $FileName)
+# [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+# (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
 
-$DDL = 'https://gist.githubusercontent.com/igv/a015fc885d5c22e6891820ad89555637/raw/'
-$FileName = 'KrigBilateral.glsl'
-$SavePath = [IO.Path]::Combine($MPV_Destination, $FileName)
-[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-(New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
+# $DDL = 'https://gist.githubusercontent.com/igv/a015fc885d5c22e6891820ad89555637/raw/'
+# $FileName = 'KrigBilateral.glsl'
+# $SavePath = [IO.Path]::Combine($MPV_Destination, $FileName)
+# [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+# (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
 
 $ScriptsPath = [IO.Path]::Combine($MPV_Destination, 'scripts')
 if (-not (Test-Path -Path $ScriptsPath)) {

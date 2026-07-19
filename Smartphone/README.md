@@ -65,6 +65,7 @@
 | YouTube Music + MicroG-RE      | [GitHub](https://github.com/MANCrimSon/YouTube-ReVanced-Extended/releases) / [4pda](https://4pda.to/forum/index.php?act=findpost&pid=116484303&anchor=Spoil-116484303-5) + [GitHub](https://github.com/MorpheApp/MicroG-RE/releases/latest) | `youtube-music-morphe-v8.51.51-arm64-v8a.apk` + `microg-6.1.4.apk`                         |
 | YouTube + MicroG-RE            | [GitHub](https://github.com/MANCrimSon/YouTube-ReVanced-Extended/releases) / [4pda](https://4pda.to/forum/index.php?act=findpost&pid=115638129&anchor=Spoil-115638129-4) + [GitHub](https://github.com/MorpheApp/MicroG-RE/releases/latest) | `youtube-morphe-v20.51.39-all.apk` + `microg-6.1.4.apk`                                    |
 | aRDP                           | [4pda](https://4pda.to/forum/index.php?showtopic=658880#entry39545784)                                                                                                                                                                      | Paid                                                                                       |
+| Flightradar24                  | [4pda](https://4pda.to/forum/index.php?showtopic=239024#Spoil-7558598-4)                                                                                                                                                                    |                                                                                            |
 
 ### Android Auto Settings
 
@@ -157,6 +158,8 @@
 | `Homepage` -> `Inbox Cleaner`                                             |                                                                                               |
 | `Homepage` -> `Passcode lock`                                             |                                                                                               |
 
+Note 1: Issue with `App not supported`? Deactivate account by Settings -> Privacy Center -> Deactivate my account, uninstall old mod, install new mod.
+
 ### YouTube Settings
 
 | Location                                   | Action                                                                              |
@@ -175,6 +178,8 @@
 | `Settings` -> `Downloads & storage`       | `Audio quality` -> `High`                                                           |
 |                                           | `Video quality` -> `HD - 720p`                                                      |
 
+Note 1: Playback stuck at 1:00? Force stop app, clear storage.
+
 ### BYD Settings
 
 | Location                                                    | Action                         |
@@ -184,25 +189,29 @@
 
 ### Waze Settings
 
-| Location                                     | Action                                                       |
-| -------------------------------------------- | ------------------------------------------------------------ |
-|                                              | `Continue` -> `While using the app`                          |
-|                                              | `Get started` -> `Allow` -> Set `Home` -> `Not personalized` |
-|                                              | `Search contacts` -> `Next` -> `Allow`                       |
-| `Settings` -> `General`                      | `Keep Waze on top` -> On -> `Settings` -> `Waze` -> `Allow`  |
-| `Settings` -> `General` -> `Personalization` | Disable all                                                  |
-| `Settings` -> `Map display` -> `Dark mode`   | `Dark mode` -> On                                            |
-|                                              | `Apply to car display` -> On                                 |
-| `Settings` -> `Map display`                  | `Wazers` -> Off                                              |
-| `Settings` -> `Map display` -> `Speedometer` | `Show speed limit` -> `Always`                               |
-|                                              | `Speeding threshold` -> `10 km/h above limit`                |
-|                                              | `Alert on threshold` -> On                                   |
-|                                              | `Play sound to phone speaker` -> On                          |
-| `Settings` -> `Audio player`                 | `Show on the map` -> Off                                     |
-| `Settings` -> `Privacy`                      | `Go invisible` -> On                                         |
+| Location                                     | Action                                                      |
+| -------------------------------------------- | ----------------------------------------------------------- |
+|                                              | `Continue` -> `While using the app`                         |
+|                                              | `Get started` -> `Allow` -> Set `Home`                      |
+|                                              | `Search contacts` -> `Next` -> `Allow`                      |
+|                                              | `Connect calendar` -> `Allow` -> `Ok`                       |
+| `Settings` -> `General`                      | `Keep Waze on top` -> On -> `Settings` -> `Waze` -> `Allow` |
+| `Settings` -> `General` -> `Personalization` | Disable all                                                 |
+| `Settings` -> `Map display` -> `Dark mode`   | `Dark mode` -> On                                           |
+|                                              | `Apply to car display` -> On                                |
+| `Settings` -> `Map display`                  | `Wazers` -> Off                                             |
+| `Settings` -> `Map display` -> `Speedometer` | `Show speed limit` -> `Always`                              |
+|                                              | `Speeding threshold` -> `10 km/h above limit`               |
+|                                              | `Alert on threshold` -> On                                  |
+|                                              | `Show on the map` -> Off                                    |
+| `Settings` -> `Navigation`                   | `Avoid toll roads` -> On                                    |
+| `Settings` -> `Vehicle details`              | If your car is electric -> `Electric vehicles`              |
+| `Settings` -> `Notifications`                | Disable `Allow push notifications` -> `Save`                |
+| `Settings` -> `Privacy`                      | `Go invisible` -> On                                        |
 
 Note 1: `Chuppito Mod` has a different app icon, OLED background for roads.
 Note 2: None of the mods seem to show up as an app on Android Auto, even with `Unknown sources` enabled, apperently you need to buy external Android Auto adapter.
+Note 3: For sound, `Normal` is for hazards, anything other than that mutes hazards.
 
 ## Diagnose APKs
 
