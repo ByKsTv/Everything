@@ -468,6 +468,9 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\SettingSyn
 # Group Policy: Computer Configuration > Administrative Templates > Windows Components > Sync your settings > Enable Windows Backup: Disabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\SettingSync' -Name 'EnableWindowsBackup' -Type DWORD -Value 0
 
+# Group Policy -> Computer Configuration -> Administrative Templates -> System -> Device Installation -> Prevent automatic download of applications associated with device metadata -> Enabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Device Metadata' -Name 'PreventDeviceMetadataFromNetwork' -Type DWORD -Value 1
+
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Acrobat/Group_Policy.ps1')
 
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Google_Chrome/Group_Policy.ps1')

@@ -803,3 +803,11 @@ New-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'UserPreferencesMask'
 # https://www.youtube.com/watch?v=b6wfwG4jecQ
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Input' -Name 'InputServiceEnabled' -Value 0 -PropertyType DWord -Force
 New-ItemProperty -Path 'HKLM:\Software\Microsoft\Input' -Name 'InputServiceEnabledForCCI' -Value 0 -PropertyType DWord -Force
+
+# Reduce the exposure
+Get-Service -Name 'CDPSvc' | Stop-Service -Force
+Get-Service -Name 'CDPSvc' | Set-Service -StartupType Disabled
+Get-Service -Name 'CDPUserSvc' | Stop-Service -Force
+Get-Service -Name 'CDPUserSvc' | Set-Service -StartupType Disabled
+Get-Service -Name 'CDPUserSvc_*' | Stop-Service -Force
+Remove-Item -Path "$env:LOCALAPPDATA\ConnectedDevicesPlatform" -Recurse -Force -ErrorAction SilentlyContinue

@@ -9,6 +9,7 @@
   - [YouTube Music Settings](#youtube-music-settings)
   - [BYD Settings](#byd-settings)
   - [Waze Settings](#waze-settings)
+  - [Flightradar24 Settings](#flightradar24-settings)
 - [Diagnose APKs](#diagnose-apks)
 - [Useful ADB Commands](#useful-adb-commands)
 - [What to backup](#what-to-backup)
@@ -75,7 +76,7 @@
 | `Customize launcher`           | `Waze`, `YT Music Morphe`, `Phone`                        |
 | `Maps`                         | `Day/Night mode for maps` -> `Night`                      |
 | `Advanced`                     | `Driver seat location` -> `Left`                          |
-|                                | `Change layout` -> `Navigation closer to driver`          |
+|                                | `Change layout` -> `Media closer to driver`               |
 | `Version`                      | Click 10 times to activate developer mode -> `Ok`         |
 | 3 dots -> `Developer settings` | `Wireless Android Auto` -> Off (Only if you use wired)    |
 |                                | `Application Mode` -> `Release`                           |
@@ -212,6 +213,16 @@ Note 1: Playback stuck at 1:00? Force stop app, clear storage.
 Note 1: `Chuppito Mod` has a different app icon, OLED background for roads.
 Note 2: None of the mods seem to show up as an app on Android Auto, even with `Unknown sources` enabled, apperently you need to buy external Android Auto adapter.
 Note 3: For sound, `Normal` is for hazards, anything other than that mutes hazards.
+
+## Flightradar24 Settings
+
+| Location             | Action                                       |
+| -------------------- | -------------------------------------------- |
+|                      | `Learn More` -> `Disagree to all` -> `Allow` |
+|                      | Login                                        |
+| `Settings` -> `Misc` | `ANALYTICS` -> Off                           |
+|                      | `CRASH REPORTING` -> Off                     |
+|                      | `PERFORMANCE MONITORING` -> Off              |
 
 ## Diagnose APKs
 

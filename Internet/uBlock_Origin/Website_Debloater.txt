@@ -62,10 +62,10 @@ www.amazon.com###sims-simsContainer_feature_div_2
 nhentai.net###related-container
 
 ! Hide "More to love" on Orders page on AliExpress
-www.aliexpress.com##.order-block.order-recommend
+aliexpress.*##.order-block.order-recommend
 
 ! Hide "More to love" on Order details on AliExpress
-www.aliexpress.com##[class*="more-to-love-v2--wrap--"]
+aliexpress.*##[class*="more-to-love-v2--wrap--"]
 
 ! Hide "Want fewer political content? Block tags" top banner on 9GAG Homepage
 9gag.com##.notice-banner
