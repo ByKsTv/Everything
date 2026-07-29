@@ -184,10 +184,10 @@ $settings = @(
     # Settings -> Developer options -> Wi-Fi scan throttling -> On
 
     [PSCustomObject]@{
-        Name  = 'Settings -> Developer options -> Mobile data always active -> Off'
+        Name  = 'Settings -> Developer options -> Mobile data always active -> On'
         Table = 'global'
         Key   = 'mobile_data_always_on'
-        Value = '0'
+        Value = '1'
     }
 
     [PSCustomObject]@{
@@ -225,53 +225,11 @@ $settings = @(
         Value = '1'
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    # old
     [PSCustomObject]@{
-        Name  = 'Turn on Wi-Fi automatically'
+        Name  = 'Settings -> Battery and device care -> Memory -> RAM Plus -> Off'
         Table = 'global'
-        Key   = 'wifi_wakeup_enabled'
-        Value = '0' # Off
-    }
-    [PSCustomObject]@{
-        Name  = 'Notify for public networks'
-        Table = 'global'
-        Key   = 'wifi_networks_available_notification_on'
-        Value = '0' # Off
-    }
-    [PSCustomObject]@{
-        Name  = 'Ambient display'
-        Table = 'secure'
-        Key   = 'doze_enabled'
-        Value = '1' # On
-    }
-    [PSCustomObject]@{
-        Name  = 'Tap to wake'
-        Table = 'secure'
-        Key   = 'double_tap_to_wake'
-        Value = '1' # On
-    }
-    [PSCustomObject]@{
-        Name  = 'Use Battery Manager'
-        Table = 'global'
-        Key   = 'app_auto_restriction_enabled'
-        Value = '0' # Off
+        Key   = 'ram_expand_size'
+        Value = '0'
     }
 )
 

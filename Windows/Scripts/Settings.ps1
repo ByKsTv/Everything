@@ -396,8 +396,8 @@ foreach ($AppInstall in $AppsToInstall) {
 	}
 }
 
-# Settings: Windows Update: Get the latest updates as soon as they're available: On
-New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings' -Name 'IsContinuousInnovationOptedIn' -PropertyType DWord -Value 1 -Force
+# Settings: Windows Update: Get the latest updates as soon as they're available: Off
+New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\WindowsUpdate\UX\Settings' -Name 'IsContinuousInnovationOptedIn' -PropertyType DWord -Value 0 -Force
 
 # Override for default input method: English
 Set-WinDefaultInputMethodOverride -InputTip '0409:00000409'
@@ -620,7 +620,7 @@ $Urls | ForEach-Object {
 	} }
 
 # Open as Notepad (`.nfo` doesn't work)
-$NotepadDefaultExts = @('.lua', '.conf', '.json', '.glsl', '.xml', '.md5', '.sfv', '.sha1', '.tth', 'toml')
+$NotepadDefaultExts = @('.lua', '.conf', '.json', '.glsl', '.xml', '.md5', '.sfv', '.sha1', '.tth', '.toml', '.srt')
 foreach ($NotepadDefaultExt in $NotepadDefaultExts) {
 	New-Item "HKCU:\SOFTWARE\Classes\$NotepadDefaultExt\shell\open\command" -Force | New-ItemProperty -Name '(default)' -Value 'notepad.exe %1' -Force
 }
@@ -798,6 +798,9 @@ New-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer
 # Control Panel: Ease of Access Center: Make the computer easier to see: Turn off all unnecessary animations (when possible): On
 # New-ItemProperty -Path 'HKCU:\Control Panel\Desktop\WindowMetrics' -Name 'MinAnimate' -Value '0' -PropertyType String -Force
 New-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'UserPreferencesMask' -Value ([byte[]](0x90, 0x12, 0x03, 0x80, 0x91, 0x00, 0x00, 0x00)) -PropertyType Binary -Force
+
+# Settings -> Bluetooth & devices -> Mouse -> Scroll inactive windows when hovering over them -> On
+New-ItemProperty -Path 'HKCU:\Control Panel\Desktop' -Name 'MouseWheelRouting' -Value 2 -PropertyType DWord -Force
 
 # Stop CTFMon
 # https://www.youtube.com/watch?v=b6wfwG4jecQ

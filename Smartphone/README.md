@@ -63,8 +63,8 @@
 | Vocalizer                      | [4pda](https://4pda.to/forum/index.php?showtopic=987292#apk)                                                                                                                                                                                | [Latest 3.8.2](https://4pda.to/forum/index.php?showtopic=987292&view=findpost&p=132720887) |
 | WhatsApp                       | [4pda](https://4pda.to/forum/index.php?showtopic=186375#Spoil-5125511-11)                                                                                                                                                                   |                                                                                            |
 | Wheres My Droid                | [mobilism](https://forum.mobilism.me/search.php?keywords=Wheres+My+Droid&sr=topics&sf=titleonly)                                                                                                                                            | Elite                                                                                      |
-| YouTube Music + MicroG-RE      | [GitHub](https://github.com/MANCrimSon/YouTube-ReVanced-Extended/releases) / [4pda](https://4pda.to/forum/index.php?act=findpost&pid=116484303&anchor=Spoil-116484303-5) + [GitHub](https://github.com/MorpheApp/MicroG-RE/releases/latest) | `youtube-music-morphe-v8.51.51-arm64-v8a.apk` + `microg-6.1.4.apk`                         |
-| YouTube + MicroG-RE            | [GitHub](https://github.com/MANCrimSon/YouTube-ReVanced-Extended/releases) / [4pda](https://4pda.to/forum/index.php?act=findpost&pid=115638129&anchor=Spoil-115638129-4) + [GitHub](https://github.com/MorpheApp/MicroG-RE/releases/latest) | `youtube-morphe-v20.51.39-all.apk` + `microg-6.1.4.apk`                                    |
+| YouTube Music + MicroG-RE      | [GitHub](https://github.com/MANCrimSon/YouTube-ReVanced-Extended/releases) / [4pda](https://4pda.to/forum/index.php?act=findpost&pid=116484303&anchor=Spoil-116484303-5) + [GitHub](https://github.com/MorpheApp/MicroG-RE/releases/latest) | `youtube-music-revanced-extended-v9.15.51-arm64-v8a.apk` + `microg-6.1.4.apk`              |
+| YouTube + MicroG-RE            | [GitHub](https://github.com/MANCrimSon/YouTube-ReVanced-Extended/releases) / [4pda](https://4pda.to/forum/index.php?act=findpost&pid=115638129&anchor=Spoil-115638129-4) + [GitHub](https://github.com/MorpheApp/MicroG-RE/releases/latest) | `youtube-revanced-extended-v20.51.39-all.apk` + `microg-6.1.4.apk`                         |
 | aRDP                           | [4pda](https://4pda.to/forum/index.php?showtopic=658880#entry39545784)                                                                                                                                                                      | Paid                                                                                       |
 | Flightradar24                  | [4pda](https://4pda.to/forum/index.php?showtopic=239024#Spoil-7558598-4)                                                                                                                                                                    |                                                                                            |
 
@@ -103,7 +103,8 @@
 | `Settings` -> `Search` -> `Manage alternative search engines`      | Disable all                                                                                            |
 | `Settings` -> `Search`                                             | Disable all except `Search browsing history`, `Search bookmarks`                                       |
 | `Settings` -> `Tabs`                                               | `List`                                                                                                 |
-| `Settings` -> `Tabs` -> `Move old tabs to inactive`                | Disable                                                                                                |
+|                                                                    | `Move old tabs to inactive` -> Off                                                                     |
+|                                                                    | `Privacy report` -> Off                                                                                |
 | `Settings` -> `Homepage`                                           | Disable all                                                                                            |
 | `Settings` -> `Homepage` -> `Opening screen`                       | `Last tab`                                                                                             |
 | `Settings` -> `Customize`                                          | `OLED`                                                                                                 |
@@ -163,23 +164,25 @@ Note 1: Issue with `App not supported`? Deactivate account by Settings -> Privac
 
 ### YouTube Settings
 
-| Location                                   | Action                                                                              |
-| ------------------------------------------ | ----------------------------------------------------------------------------------- |
-| Open `YouTube` app                         | `Action needed` -> `Continue` -> `Allow` -> `Sign in` -> `Add account` -> `Sign in` |
-| `Settings` -> `Morphe Settings` -> `Video` | `Disable DRC audio` -> On -> `Cancel`                                               |
+| Location                       | Action                                                                              |
+| ------------------------------ | ----------------------------------------------------------------------------------- |
+| Open `YouTube` app             | `Action needed` -> `Continue` -> `Allow` -> `Sign in` -> `Add account` -> `Sign in` |
+| `Settings` -> `RVX` -> `Video` | `Disable DRC audio` -> On -> `Cancel`                                               |
 
 ### YouTube Music Settings
 
-| Location                                  | Action                                                                              |
-| ----------------------------------------- | ----------------------------------------------------------------------------------- |
-| Open `YT Music` app                       | `Action needed` -> `Continue` -> `Allow` -> `Sign in` -> `Add account` -> `Sign in` |
-| `Settings` -> `Morphe` -> `Miscellaneous` | `Disable DRC audio` -> On -> `Cancel`                                               |
-| `Settings` -> `Data Saving`               | `Audio quality on mobile network` -> `Always High`                                  |
-|                                           | `Audio quality on Wi-Fi` -> `Always High`                                           |
-| `Settings` -> `Downloads & storage`       | `Audio quality` -> `High`                                                           |
-|                                           | `Video quality` -> `HD - 720p`                                                      |
+| Location                               | Action                                                                              |
+| -------------------------------------- | ----------------------------------------------------------------------------------- |
+| Open `YT Music` app                    | `Action needed` -> `Continue` -> `Allow` -> `Sign in` -> `Add account` -> `Sign in` |
+| `Settings` -> `RVX` -> `General`       | `Disable Cairo splash animation` -> On -> `Cancel`                                  |
+| `Settings` -> `RVX` -> `Account`       | `Hide terms container` -> On                                                        |
+| `Settings` -> `RVX` -> `Video`         | `Disable DRC audio` -> On -> `Cancel`                                               |
+| `Settings` -> `RVX` -> `Miscellaneous` | `Android VR sign in`                                                                |
+| `Settings` -> `Downloads & storage`    | `Audio quality` -> `High`                                                           |
+|                                        | `Video quality` -> `HD - 720p`                                                      |
+| Close the app                          |                                                                                     |
 
-Note 1: Playback stuck at 1:00? Force stop app, clear storage.
+Note 1: Playback stuck at 1:00? Spoof video stream to `Android VR`, stuck again? try a different option then, untill it's working.
 
 ### BYD Settings
 
@@ -426,49 +429,7 @@ Get-ChildItem "$env:USERPROFILE\Downloads" -Filter *.apk | ForEach-Object { & ad
 
 Note: You need [aapt2.exe](https://maven.google.com/web/index.html?q=com.android.tools.build#com.android.tools.build:aapt2), Download stable version, `jar` file for `windows` and extract it to get the `.exe` file and add to `PATH`.
 
-```powershell
-$downloads = [IO.Path]::Combine($env:USERPROFILE, 'Downloads')
-
-foreach ($apk in [IO.Directory]::EnumerateFiles($downloads, '*.apk')) {
-    Write-Host ''
-    Write-Host "APK: $([IO.Path]::GetFileName($apk))"
-
-    $badging = & aapt2.exe dump badging $apk 2>&1 | Out-String
-
-    if ($badging -notmatch "package: name='([^']+)' versionCode='(\d+)'") {
-        Write-Host 'Status: could not read apk info'
-        Write-Host $badging.Trim()
-        continue
-    }
-
-    $package = $Matches[1]
-    $apkVersionCode = [int64]$Matches[2]
-
-    Write-Host "Package: $package"
-    Write-Host "APK versionCode: $apkVersionCode"
-
-    $dump = & adb.exe shell dumpsys package $package 2>$null | Out-String
-
-    if ($dump -notmatch 'versionCode=(\d+)') {
-        Write-Host 'Status: not installed'
-        continue
-    }
-
-    $deviceVersionCode = [int64]$Matches[1]
-
-    Write-Host "Device versionCode: $deviceVersionCode"
-
-    if ($deviceVersionCode -lt $apkVersionCode) {
-        Write-Host 'Action: update'
-        $install = & adb.exe install -r $apk 2>&1 | Out-String
-        Write-Host $install.Trim()
-    }
-    else {
-        Write-Host 'Action: skip'
-    }
-}
-
-```
+Use `Update_APKs.ps`.
 
 ## Notes
 

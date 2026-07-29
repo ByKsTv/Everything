@@ -14,6 +14,8 @@
 - Do not use `Set-ItemProperty`, instead use `New-ItemProperty`.
 - Do not use `-like`, instead use `-match`.
 - Do not use `;`, instead use a new line.
+- Do not use `Write-Host`, instead use this template: `[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Starting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Program name'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()`.
+- Do not split `[Console]::` to new lines, instead use a one-liner as shown in the template above, do not use `| ForEach-Object { & $_ }` for this.
 - Do not use prompts (`Read-Host`).
 - Do not use `!`, instead use `-not`.
 - Use new line after `{`.
