@@ -1,18 +1,27 @@
 $MTU_URL = '1.1.1.1'
 $MTU_Initial = 1472
+$InterfaceAliases = (Get-NetIPConfiguration | Where-Object { $_.IPv4DefaultGateway }).InterfaceAlias
+
+$InterfaceAliases | ForEach-Object {
+	& netsh.exe interface ipv4 set subinterface "$_" mtu=1500 store=persistent
+	& netsh.exe interface ipv6 set subinterface "$_" mtu=1500 store=persistent
+}
+
 while ($true) {
-	if ((& ping -f -l $MTU_Initial $MTU_URL -n 1 | Out-String) -match 'Packet needs to be fragmented') {
+	if ((& ping.exe -f -l $MTU_Initial $MTU_URL -n 1 | Out-String) -match 'Packet needs to be fragmented') {
 		$MTU_Initial--
 	}
 	else {
 		break
 	}
 }
+
 $MTU_Final = $MTU_Initial + 28
-(Get-NetIPConfiguration | Where-Object { $_.IPv4DefaultGateway }).InterfaceAlias | ForEach-Object {
-	Write-Host "Setting MTU to $MTU_Final on $_"
-	netsh interface ipv4 set subinterface $_ mtu=$MTU_Final store=persistent
-	netsh interface ipv6 set subinterface $_ mtu=$MTU_Final store=persistent
+
+$InterfaceAliases | ForEach-Object {
+	[Console]::WriteLine("Setting MTU to $MTU_Final on $_")
+	& netsh.exe interface ipv4 set subinterface "$_" mtu=$MTU_Final store=persistent
+	& netsh.exe interface ipv6 set subinterface "$_" mtu=$MTU_Final store=persistent
 }
 
 # Settings: Network & Internet: All networks: Network discovery: Off

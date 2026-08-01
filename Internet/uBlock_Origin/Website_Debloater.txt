@@ -46,17 +46,17 @@ forum.mobilism.me##.welcome-bar
 pornolab.net###logo
 
 ! Hide "Customers who viewed this item also viewed" on product page on Amazon
-www.amazon.com###sims-simsContainer_feature_div_1
-www.amazon.com###sims-simsContainer_feature_div_0
+amazon.*###sims-simsContainer_feature_div_1
+amazon.*###sims-simsContainer_feature_div_0
 
 ! Hide Sponsored videos on "Product Videos" section of product page on Amazon
-www.amazon.com##.vse-sponsor-product.vse-product-item.a-section
+amazon.*##.vse-sponsor-product.vse-product-item.a-section
 
 ! Hide the top left notification below the shipping address saying "We're showing you items that ship to..." on Amazon
-www.amazon.com###nav-flyout-iss-anchor
+amazon.*###nav-flyout-iss-anchor
 
 ! Hide "Customers who bought this item also bought" on product page on Amazon
-www.amazon.com###sims-simsContainer_feature_div_2
+amazon.*###sims-simsContainer_feature_div_2
 
 ! Hide "More Like This" on nHentai
 nhentai.net###related-container
@@ -110,7 +110,7 @@ rutracker.org##tr.tCenter.row3 > td
 ev-database.org##.adslot_container
 
 ! Hide "Explore more items" and "Items you may like" sections below the results page on Amazon
-www.amazon.com##.copilot-secure-display
+amazon.*##.copilot-secure-display
 
 ! Show "Save to Watch later" and "Save to plailist" on YouTube
 www.youtube.com#@#tp-yt-paper-item:has(yt-icon):has(yt-formatted-string:has-text(Save))
@@ -119,7 +119,34 @@ www.youtube.com#@#tp-yt-paper-item:has(yt-icon):has(yt-formatted-string:has-text
 www.youtube.com#@#ytd-menu-service-item-download-renderer
 
 ! Hide header ad on Amazon
-www.amazon.com###desktop-dp-ilm_feature_div_0
+amazon.*###desktop-dp-ilm_feature_div_0
 
 ! Hide "Add X amount to use Y amount off coupon" below the product details on AliExpress
 aliexpress.com###fusionPageCard
+
+! Hide "More to love" on Overview account page
+aliexpress.*##.account-recommend
+
+! Hide "More to love" on Cart page
+aliexpress.*##.cart-recommend
+
+! Hide "Download the AliExpress app" on Header
+aliexpress.*##[class*="down-load-app--simpleMenuItem--"]
+
+! Hide footer 1/2
+aliexpress.*##.y2023.footer-copywrite
+
+! Hide footer 2/2
+aliexpress.*##._il_c_.y2023.site-footer
+
+! Hide suggestion button on cart page
+aliexpress.*##.cart-summary-suggestion
+
+! Hide "Your items" on cart page
+amazon.*###sc-secondary-list
+
+! Hide small text below cart items, disclaimer, below cart items
+amazon.*###sc-about
+
+! Hide "More to love" in refund page
+aliexpress.*##[class*="moreToLove--recommendWrap--"]

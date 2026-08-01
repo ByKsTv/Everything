@@ -115,6 +115,8 @@ pip install qrcode[pil]
 ffmpeg -ss 00:00 -to 00:00 -y -i input.opus -c copy output.opus
 ```
 
+Or use MiniCut.ps1
+
 ### Extract .WIM
 
 ```bash

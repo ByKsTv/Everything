@@ -14,6 +14,7 @@ if (Test-Path $Firefox_Profiles) {
             'https://addons.mozilla.org/firefox/downloads/latest/violentmonkey/latest.xpi'
             'https://addons.mozilla.org/firefox/downloads/latest/buster-captcha-solver/latest.xpi'
             'https://addons.mozilla.org/firefox/downloads/latest/the-camelizer-price-history-ch/latest.xpi'
+            'https://addons.mozilla.org/firefox/downloads/latest/youtube-no-translation/latest.xpi'
         )
         $ExtensionNumber = 1
         $ExtensionsList | ForEach-Object {
