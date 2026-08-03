@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<DisplayDriverUninstaller Version="18.0.7.6">
+<DisplayDriverUninstaller Version="18.1.5.6">
     <Settings>
         <SelectedLanguage>en-US</SelectedLanguage>
         <RemoveMonitors>True</RemoveMonitors>
@@ -13,7 +13,12 @@
         <RemoveGFE>True</RemoveGFE>
         <RemoveNVBROADCAST>True</RemoveNVBROADCAST>
         <RemoveNVCP>True</RemoveNVCP>
+        <RemoveNvidiaCache>True</RemoveNvidiaCache>
         <RemoveINTELCP>True</RemoveINTELCP>
+        <RemoveINTELIGS>True</RemoveINTELIGS>
+        <RemoveOneAPI>True</RemoveOneAPI>
+        <RemoveEnduranceGaming>True</RemoveEnduranceGaming>
+        <RemoveIntelNpu>False</RemoveIntelNpu>
         <RemoveAMDCP>True</RemoveAMDCP>
         <UseRoamingConfig>False</UseRoamingConfig>
         <CheckUpdates>True</CheckUpdates>
@@ -24,6 +29,10 @@
         <EnableSafeModeDialog>False</EnableSafeModeDialog>
         <PreventWinUpdate>False</PreventWinUpdate>
         <UsedBCD>False</UsedBCD>
+        <UseDarkTheme>True</UseDarkTheme>
         <KeepNVCPopt>False</KeepNVCPopt>
+        <RememberLastChoice>False</RememberLastChoice>
+        <LastSelectedGPUIndex>0</LastSelectedGPUIndex>
+        <LastSelectedTypeIndex>0</LastSelectedTypeIndex>
     </Settings>
 </DisplayDriverUninstaller>

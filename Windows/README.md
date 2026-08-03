@@ -6,7 +6,7 @@
 - [Installation](#installation)
 - [Software Selection](#software-selection)
 - [NVCleanstall](#nvcleanstall)
-- [NVIDIA Control Panel](#nvidia-control-panel)
+- [NVIDIA App](#nvidia-app)
 - [Sounds](#sounds)
 - [Printers](#printers)
 - [Reset Password to Windows 10 Local Account](#reset-password-to-windows-10-local-account)
@@ -90,9 +90,9 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 ### NVCleanstall
 
 1. Disconnect Network Cable (Or disable network adapter) -> Restart to Safe Mode (SHIFT+RESTART) -> `Troubleshoot` -> `Advanced options` -> `Startup Settings` -> `Restart` -> `Safe mode` (4) -> Open Display Driver Uninstaller -> `---Select device type---` -> `GPU` -> `Clean and restart`.
-1. Open NVCleanstall -> Connect Network Cable (Or enable network adapter) -> `Refresh` -> `Manually select a driver version` -> `Studio` -> `Next` -> `Recommended` -> `Next` -> `Use Previous Settings` -> `Next` -> `Install` -> Restart.
+1. Open NVCleanstall -> Connect Network Cable (Or enable network adapter) -> `Refresh` -> `Manually select a driver version` -> `Studio` -> `Next` -> `All` -> `Next` -> `Yes` -> `Use Previous Settings` -> `Next` -> `Install` -> Restart.
 
-### NVIDIA Control Panel
+### NVIDIA App
 
 1. PowerShell (Admin):
 
@@ -101,7 +101,20 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 
    ```
 
-1. `Display` -> `Change resolution` -> `Output color format` -> `YCbCr444` (TV) / `RGB` (Gaming) -> `Output dynamic range` -> `Limited` (TV) / `Full` (Gaming) -> `Output color depth` -> `12bpc`.
+| Location                        | Action                                                     |
+| ------------------------------- | ---------------------------------------------------------- |
+| `System` -> `Color` -> `NVIDIA` | `Output color format`-> `YCbCr444` (TV) / `RGB` (Gaming)   |
+|                                 | `Output dynamic range` -> `Limited` (TV) / `Full` (Gaming) |
+|                                 | `Output color depth` -> `12bpc`                            |
+|                                 | `Content Type` -> `Full-screen videos`                     |
+| `Settings` -> `Notifications`   | `Driver updates` -> Off                                    |
+|                                 | `Available rewards` -> Off                                 |
+| `Settings` -> `About`           | `Configuration, performance, and usage data` -> Off        |
+
+If you want extra performance and you have 25 minutes and idle PC try this:
+`System` -> `Performance`
+`Power maximum (%)` -> Max
+`Automatic Tuning` -> On
 
 ### Sounds
 

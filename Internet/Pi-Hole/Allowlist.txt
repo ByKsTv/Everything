@@ -41,3 +41,4 @@ s.youtube.com
 
 # This is required for the unblocking of the electricity app
 firebaseinstallations.googleapis.com
+firebaselogging-pa.googleapis.com

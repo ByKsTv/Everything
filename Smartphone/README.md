@@ -10,6 +10,7 @@
   - [BYD Settings](#byd-settings)
   - [Waze Settings](#waze-settings)
   - [Flightradar24 Settings](#flightradar24-settings)
+  - [Adobe Acrobat Settings](#adobe-acrobat-settings)
 - [Diagnose APKs](#diagnose-apks)
 - [Useful ADB Commands](#useful-adb-commands)
 - [What to backup](#what-to-backup)
@@ -164,10 +165,11 @@ Note 1: Issue with `App not supported`? Deactivate account by Settings -> Privac
 
 ### YouTube Settings
 
-| Location                       | Action                                                                              |
-| ------------------------------ | ----------------------------------------------------------------------------------- |
-| Open `YouTube` app             | `Action needed` -> `Continue` -> `Allow` -> `Sign in` -> `Add account` -> `Sign in` |
-| `Settings` -> `RVX` -> `Video` | `Disable DRC audio` -> On -> `Cancel`                                               |
+| Location                                                        | Action                                                                              |
+| --------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| Open `YouTube` app                                              | `Action needed` -> `Continue` -> `Allow` -> `Sign in` -> `Add account` -> `Sign in` |
+| `Settings` -> `RVX` -> `Video`                                  | `Disable DRC audio` -> On -> `Cancel`                                               |
+| `Settings` -> `RVX` -> `Miscellaneous` -> `Spoof video streams` | `Default client` -> `Android VR` -> `OK` -> `Android VR sign in`                    |
 
 ### YouTube Music Settings
 
@@ -177,19 +179,20 @@ Note 1: Issue with `App not supported`? Deactivate account by Settings -> Privac
 | `Settings` -> `RVX` -> `General`       | `Disable Cairo splash animation` -> On -> `Cancel`                                  |
 | `Settings` -> `RVX` -> `Account`       | `Hide terms container` -> On                                                        |
 | `Settings` -> `RVX` -> `Video`         | `Disable DRC audio` -> On -> `Cancel`                                               |
-| `Settings` -> `RVX` -> `Miscellaneous` | `Android VR sign in`                                                                |
+| `Settings` -> `RVX` -> `Miscellaneous` | `Default client` -> `Android VR` -> `Restart` -> `Android VR sign in`               |
 | `Settings` -> `Downloads & storage`    | `Audio quality` -> `High`                                                           |
 |                                        | `Video quality` -> `HD - 720p`                                                      |
 | Close the app                          |                                                                                     |
 
 Note 1: Playback stuck at 1:00? Spoof video stream to `Android VR`, stuck again? try a different option then, untill it's working.
+Note 2: After fresh install of YouTube Music don't forget to sort it on Android Auto.
 
 ### BYD Settings
 
-| Location                                                    | Action                         |
-| ----------------------------------------------------------- | ------------------------------ |
-| `My Account` -> `Settings` -> `Remote Control Verification` | `Biometric verification` -> On |
-| `My Account` -> `Settings`                                  | `Use vehicle position` -> On   |
+| Location                                                    | Action                                       |
+| ----------------------------------------------------------- | -------------------------------------------- |
+| `My Account` -> `Settings` -> `Remote Control Verification` | `Remote Control Verification` -> Off -> `Ok` |
+| `My Account` -> `Settings`                                  | `Use vehicle position` -> On                 |
 
 ### Waze Settings
 
@@ -226,6 +229,17 @@ Note 3: For sound, `Normal` is for hazards, anything other than that mutes hazar
 | `Settings` -> `Misc` | `ANALYTICS` -> Off                           |
 |                      | `CRASH REPORTING` -> Off                     |
 |                      | `PERFORMANCE MONITORING` -> Off              |
+
+## Adobe Acrobat Settings
+
+| Location                    | Action                                            |
+| --------------------------- | ------------------------------------------------- |
+| Open app                    | `Sign in with Adobe`                              |
+|                             | `Continue` -> `Continue`                          |
+| `Settings`                  | `Don't Show Again` -> `Dismiss`                   |
+| `Settings` -> `Preferences` | `Enable generative AI features in Acrobat` -> Off |
+|                             | `Send usage info` -> Off                          |
+|                             | `Send crash reports` -> `Never`                   |
 
 ## Diagnose APKs
 
@@ -274,6 +288,7 @@ Note 3: For sound, `Normal` is for hazards, anything other than that mutes hazar
 | Download [Basic Call Recorder](https://github.com/chenxiaolong/BCR/releases/latest)                                    |
 | Download [PlayIntegrityFork](https://github.com/osm0sis/PlayIntegrityFork/releases/latest)                             |
 | Download [LSPosed](https://github.com/JingMatrix/LSPosed/releases/latest)                                              |
+| Download [Google Play Store Adblock](https://github.com/Xposed-Modules-Repo/eu.hxreborn.gplayadblock)                  |
 | Download [Zygisk-Assistant](https://github.com/snake-4/Zygisk-Assistant/releases/latest)                               |
 | Download [TrickyStore](https://github.com/5ec1cff/TrickyStore/releases/latest)                                         |
 | Download [Tricky-Addon-Update-Target-List](https://github.com/KOWX712/Tricky-Addon-Update-Target-List/releases/latest) |

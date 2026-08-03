@@ -48,8 +48,6 @@ $settings = @(
         Value = '0'
     }
 
-    # Settings -> Connections -> Wi-Fi -> Intelligent Wi-Fi -> Detect suspicious networks -> Off
-
     [PSCustomObject]@{
         Name  = 'Settings -> Connections -> Wi-Fi Calling -> On'
         Table = 'system'
@@ -78,10 +76,6 @@ $settings = @(
         Value = '0'
     }
 
-    # Settings -> Connections -> Bluetooth -> Advanced settings -> Ringtone sync -> On
-
-    # Settings -> Connections -> NFC and contactless payments -> Off
-
     [PSCustomObject]@{
         Name  = 'Settings -> Connections -> Airplane mode -> Off'
         Table = 'global'
@@ -103,28 +97,12 @@ $settings = @(
         Value = '0'
     }
 
-    # Settings -> Connections -> Mobile networks -> Network mode -> LTE/3G/2G (auto connect)
-
-    # Settings -> Connections -> Mobile networks -> Network operators -> Select automatically -> On
-
-    # Settings -> Connections -> Data usage -> Data saver -> Off
-
     [PSCustomObject]@{
         Name  = 'Settings -> Connections -> Data usage -> Mobile data -> On'
         Table = 'global'
         Key   = 'mobile_data'
         Value = '1'
     }
-
-    # Settings -> Connections -> Data usage -> Billing cycle and data warning -> Start billing cycle on -> 1st day of each month
-
-    # Settings -> Connections -> Data usage -> Billing cycle and data warning -> Set data warning -> Off
-
-    # Settings -> Connections -> Data usage -> Billing cycle and data warning -> Set data limit -> Off
-
-    # Settings -> Connections -> Mobile Hotspot and Tethering -> Mobile Hotspot -> Off
-
-    # Settings -> Connections -> Mobile Hotspot and Tethering -> Bluetooth tethering -> Off
 
     [PSCustomObject]@{
         Name  = 'Settings -> Connections -> More connection settings -> Private DNS -> Off'
@@ -168,6 +146,13 @@ $settings = @(
     }
     
     [PSCustomObject]@{
+        Name  = 'Settings -> Advanced features -> Screenshots -> Screenshot format -> PNG'
+        Table = 'global'
+        Key   = 'smart_capture_screenshot_format'
+        Value = 'PNG'
+    }
+
+    [PSCustomObject]@{
         Name  = 'Settings -> Location -> Location services -> Wi-Fi scanning -> On'
         Table = 'global'
         Key   = 'wifi_scan_always_enabled'
@@ -181,7 +166,12 @@ $settings = @(
         Value = '1'
     }
 
-    # Settings -> Developer options -> Wi-Fi scan throttling -> On
+    [PSCustomObject]@{
+        Name  = 'Settings -> Developer options -> Disable adb authorization timeout -> On'
+        Table = 'global'
+        Key   = 'adb_allowed_connection_time'
+        Value = '0'
+    }
 
     [PSCustomObject]@{
         Name  = 'Settings -> Developer options -> Mobile data always active -> On'
