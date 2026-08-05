@@ -814,3 +814,7 @@ Get-Service -Name 'CDPUserSvc' | Stop-Service -Force
 Get-Service -Name 'CDPUserSvc' | Set-Service -StartupType Disabled
 Get-Service -Name 'CDPUserSvc_*' | Stop-Service -Force
 Remove-Item -Path "$env:LOCALAPPDATA\ConnectedDevicesPlatform" -Recurse -Force -ErrorAction SilentlyContinue
+
+# Stop Windows Health and Optimized Experiences
+Get-Service -Name 'whesvc' | Stop-Service -Force
+Get-Service -Name 'whesvc' | Set-Service -StartupType Disabled
