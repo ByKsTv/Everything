@@ -349,6 +349,11 @@ $List = @(
         Icon64  = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAHDYAQBw2AEAAAAAAAAAAAD///9A////y/////7//////////////////////////////////////////////////////////v///8v///9A////y//////////////////+/v//7t///tGp//3Bh//8w4f//NWp//7w3////v7/////////////////////y/////z/////////////////zaP//Ygi//t8A//6fQD/+IEA//eIA//2nCP/+cuH//758P////////////////z//////////////////////tCo//yCEP/6fQD/+IYH//eKBv/1igD/844A//KUA//2wGL//vnw///////////////////+/v//zqX//tOt///9+//91Kr//MKE//3duP/83rf/+cV6//OfG//wlwD/7p0D//bSh///////////////////7t///Ykk//yDEv/91q7////////////////////////////747n/8Kcb/+ygAP/usST//PTe/////////////tGp//x8A//6fQD//MSI//////////////////////////////////XPe//rpAD/6aoD//fjqf////////////3Bh//6fQD/+IYI//3euv/////////////////////////////////55rf/6qwH/+etAP/z2of////////////8w4f/+IEA//eLCP/837r/////////////////////////////////+ei4/+iwB//msQD/89yI/////////////dWp//eIA//1iwD/+cZ///////////////////////////////////PZhv/msQD/5bcD//bnqv////////////7w3//2nCX/844A//OgHf/75L3////////////////////////////35qv/5rsQ/+fEJP/799//////////////////+cuI//KUA//wlwD/8Kcd//bQfv/557r/+em6//Tah//3567///77//Xoqf/156T////+//////////////////758P/2wGP/7p0D/+yfAP/rpAH/6qwH/+iwCP/msQD/5rsS//bpq////////////////////////////P///////////vnw//fTif/usiT/6aoD/+etAP/msQD/5bcD/+bDIf/056P//////////////////////P///8v///////////////////7//PTf//fjqf/z2of/89yH//bnqP/79t7////9/////////////////////8v///9A////y/////7//////////////////////////////////////////////////////////v///8v///9AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
     },
     @{
+        Name    = 'scrcpy'
+        Tooltip = "Downloads and Installs the latest version of 'scrcpy'.`nAdds a scheduled task that will auto-update the software once windows starts.`nAdds the software to PATH."
+        Icon64  = 'AAABAAEAEBAAAAEAIAB4AgAAFgAAAIlQTkcNChoKAAAADUlIRFIAAAAQAAAAEAgGAAAAH/P/YQAAAAFzUkdCAK7OHOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACDUlEQVQ4T62Rz2uScRzHvzT1CbZGsEEHDzHKS7m2ihZC/Rmxyw57XKKPucehLbVk6tomde8UdEweZYZ1qUseGlMrIV3gI+Ox1NhOY4c6RA3e+34eH5hahx32gTd8eH9e7zfPD3YiY43KNutK+I71kf94Ija6aDPijA0GXJmh5SAGI77jidiAa92IMyb4ZzOnw14M3BNhnndCWJiDpU/k0Y0YgbPCgthd4FQsixLOPZExHPHA5BNh4uApz6wu2skbjrh1hlieyRjxToHJ78HF12FMbsRgcTsxGvfh/LOgrtGET/cmPsRgexMGsf8UCCEvTLKIS6Uorn9ehkNbg2Mn2RHfyaObmTPCA/4K/QXm+x6cfSjhaiWBm7uruNKIY0LriPap3TVcqyZ0xhzsewKLzL9BQMLY+xDm91+i/XsPN7QVjGsxXbST599PYSwfgiXIS+SuAuaaUYb4x7E347itJXG3/hx2Hrzc6Ih28uhmb8Vx5qkfbG7mqGBEljIXXkRxq5nE1PZjjNeX4Nhe7RF5dCOG2BHZe/QbK6q6/uvgL5p7O6j90FBtqNj6Vu8ReXQj5ufBH1TqtVdGnLGNfH5S/bIl1cpVsbz58W2t+hXl4qce6d5m6R0xxJZ4xoj3TqFQaLTbbaiq2qNWq4VisfjdwP4/6XR6IJVKTedyOYnv7m5ls1lJUZRpYgz8JIaxQyIhr5nSzf9zAAAAAElFTkSuQmCC'
+    },
+    @{
         Name    = 'SketchUp'
         Tooltip = "Downloads and Installs the user selected version of 'SketchUp' from 'nnmclub'.`nRequires 'qBittorrent' to be installed and added to PATH."
         Icon64  = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAADdyK3/6dzN/+nczf/p3M3/6dzN/+nczf/p3M3/6dzN/+nczf/p3M3/6dzN/+nczf/p3M3/6dzN/+nczf/dyK3/6dzN//fz8//38/P/9/Pz//fz8//38/P/9/Pz//fz8//38/P/9/Pz//fz8//38/P/9/Pz//fz8//38/P/6dzN/+nczf/38/P/9/Pz//fz8//38/P/9/Pz/9vEp/+/llv/xaBr/9nBof/38/L/9/Pz//fz8//38/P/9/Pz/+nczf/p3M3/9/Pz//fz8//38/P/6NnJ/7aGQP+eXwD/s4I6/7qOTv+eXwD/s4M7/+bWxP/38/P/9/Pz//fz8//p3M3/6dzN//fz8//38/P/1LmU/6BiBP+wfDD/w51l/7OCOv+6jk7/tIQ8/7KANv+fYAL/zq+D//fz8//38/P/6dzN/+nczf/38/P/7ODU/6hvG//Or4T/w5xk/59hBP+zgjr/uo5O/59hA//Cm2L/x6Nw/59gAv/p3M3/9/Pz/+nczf/p3M3/9/Pz/+3j2f/Wu5j/pGoR/6VrFP++lFf/s4I6/7qOTv+sdyf/n2EE/9K1jv+fYQP/172b//fz8//p3M3/6dzN//fz8//38/P/9fDu/9jAoP/Or4P/pWsU/7WFP/+6jk7/wJdd/6x2Jv/Mq3z/oWQJ/9a8mP/38/P/6dzN/+nczf/38/P/9/Pz/+LRu/+wfDD/n2ED/8KcZP/Or4P/pGoS/8CYXf+sdyf/y6t8/6FkCf/WvJj/9/Pz/+nczf/p3M3/9/Pz/93Irf+eYAH/tYU//9O3kf+wfTH/oGIE/8OdZv/Or4P/omYL/8uqe/+hZQn/1ryY//fz8//p3M3/6dzN//fz8//hz7j/0bSL/76UV/+fYAL/oGIE/6dvGv+sdyf/n2EE/8OcZf/PsIX/n2ED/9W7mP/38/P/6dzN/+nczf/38/P/9/Pz/8ilc/+fYQT/qXEd/9O3kf++lFf/vZJU/9O4kv+wfTL/n2ED/8OcZP/x6OL/9/Pz/+nczf/p3M3/9/Pz//fz8//38/P/6NrK/7aHQv+eXwD/soA3/7KBOP+eYAH/tYU+/+fYx//38/P/9/Pz//fz8//p3M3/6dzN//fz8//38/P/9/Pz//fz8//38/P/3cit/8CYXf+/llv/28Wo//fz8//38/P/9/Pz//fz8//38/P/6dzN/+nczf/38/P/9/Pz//fz8//38/P/9/Pz//fz8//38/P/9/Pz//fz8//38/P/9/Pz//fz8//38/P/9/Pz/+nczf/dyK3/6dzN/+nczf/p3M3/6dzN/+nczf/p3M3/6dzN/+nczf/p3M3/6dzN/+nczf/p3M3/6dzN/+nczf/dyK3/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
@@ -701,6 +706,11 @@ if (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue) {
     $CheckBoxes['RustDesk'].Enabled = $false
     $CheckBoxes['RustDesk'].Text += ' (Installed)'
 }
+$TaskName = 'scrcpy Updater'
+if (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue) {
+    $CheckBoxes['scrcpy'].Enabled = $false
+    $CheckBoxes['scrcpy'].Text += ' (Installed)'
+}
 if ($InstalledSoftware -match 'SketchUp') {
     $CheckBoxes['SketchUp'].Text += ' (Installed)'
 }
@@ -938,6 +948,9 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     }
     if ($CheckBoxes['RustDesk'].Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/RustDesk/Download.ps1')
+    }
+    if ($CheckBoxes['scrcpy'].Checked) {
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/scrcpy/Download.ps1')
     }
     if ($CheckBoxes['SketchUp'].Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/SketchUp/Download.ps1')

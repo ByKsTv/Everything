@@ -111,11 +111,6 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
 |                                 | `Available rewards` -> Off                                 |
 | `Settings` -> `About`           | `Configuration, performance, and usage data` -> Off        |
 
-If you want extra performance and you have 25 minutes and idle PC try this:
-`System` -> `Performance`
-`Power maximum (%)` -> Max
-`Automatic Tuning` -> On
-
 ### Sounds
 
 1. `Sounds`: `Playback`: Select Device: Set default.

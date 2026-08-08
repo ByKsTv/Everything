@@ -420,10 +420,10 @@ $settings = @(
     }
 
     [PSCustomObject]@{
-        Name  = 'Settings -> Developer options -> Mobile data always active -> Off'
+        Name  = 'Settings -> Developer options -> Mobile data always active -> On'
         Table = 'global'
         Key   = 'mobile_data_always_on'
-        Value = '0'
+        Value = '1'
     }
 
     [PSCustomObject]@{

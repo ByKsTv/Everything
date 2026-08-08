@@ -59,6 +59,7 @@ if (Test-Path $Firefox_Profiles) {
 
     $UserScripts_URLs = @(
         'https://adsbypasser.github.io/releases/adsbypasser.full.user.js'
+        # 'https://codeberg.org/gongchandang49/bypass-all-shortlinks-debloated/raw/branch/main/Bypass_All_Shortlinks.user.js'
         'https://raw.githubusercontent.com/ByKsTv/Everything/main/Websites/Scripts/AliExpress_ViewMore.user.js'
         'https://raw.githubusercontent.com/ByKsTv/Everything/main/Websites/Scripts/Amazon_CleanURL.user.js'
     )

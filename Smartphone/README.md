@@ -45,7 +45,8 @@
 | Friendly for Facebook          | [4pda](https://4pda.to/forum/index.php?showtopic=819152&view=findpost&p=60515623)                                                                                                                                                           | Premium by Balatan                                                                         |
 | Google Camera                  | [celsoazevedo](https://www.celsoazevedo.com/files/android/google-camera/links/)                                                                                                                                                             | Use official telegram groups instead                                                       |
 | HeliBoard                      | [GitHub](https://github.com/Helium314/HeliBoard/releases/latest) + [Dictionary](https://codeberg.org/Helium314/aosp-dictionaries)                                                                                                           | HeliBoard_version-release.apk                                                              |
-| Instagram                      | [4pda](https://4pda.to/forum/index.php?showtopic=326697#Spoil-12392478-7)                                                                                                                                                                   | InstaPro                                                                                   |
+| FUTO Keyboard                  | [Google Play](https://play.google.com/store/apps/details?id=org.futo.inputmethod.latin.playstore)                                                                                                                                           |                                                                                            |
+| Instagram                      | [4pda](https://4pda.to/forum/index.php?showtopic=326697#Spoil-12392478-7)                                                                                                                                                                   | Piko                                                                                       |
 | IronFox                        | [GitLab](https://gitlab.com/ironfox-oss/IronFox/-/releases)                                                                                                                                                                                 |                                                                                            |
 | Lockwatch                      | [4pda](https://4pda.to/forum/index.php?showtopic=677900#entry41610679)                                                                                                                                                                      | Premium by youarefinished                                                                  |
 | MacroDroid                     | [4pda](https://4pda.to/forum/index.php?act=findpost&pid=15401143)                                                                                                                                                                           | Pro by Balatan                                                                             |
@@ -189,10 +190,10 @@ Note 2: After fresh install of YouTube Music don't forget to sort it on Android 
 
 ### BYD Settings
 
-| Location                                                    | Action                                       |
-| ----------------------------------------------------------- | -------------------------------------------- |
-| `My Account` -> `Settings` -> `Remote Control Verification` | `Remote Control Verification` -> Off -> `Ok` |
-| `My Account` -> `Settings`                                  | `Use vehicle position` -> On                 |
+| Location                                                    | Action                         |
+| ----------------------------------------------------------- | ------------------------------ |
+| `My Account` -> `Settings` -> `Remote Control Verification` | `Biometric Verification` -> On |
+| `My Account` -> `Settings`                                  | `Use vehicle position` -> On   |
 
 ### Waze Settings
 
@@ -454,3 +455,4 @@ Use `Update_APKs.ps`.
 - Printing from phone requires additional app to be installed, if owns a HP printer download HP Print Service.
 - Disable Play Protect.
 - Developer options: Disable extended RAM option (that moves RAM to Storage, storage is slow).
+- You can use scrcpy to view and remote android device.
