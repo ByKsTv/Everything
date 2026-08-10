@@ -151,7 +151,7 @@
 |                                                                           | Enable `Announce phone calls`                                                                 |
 | `Settings` -> `Messaging`                                                 | `Make Truecaller default SMS app`                                                             |
 |                                                                           | `Spam protection for messages` -> `Low`                                                       |
-|                                                                           | `Manage preferences` -> Disable `Provide feedback on Message ID`                              |
+|                                                                           | `Manage preferences` -> Disable all                                                           |
 | `Settings` -> `Privacy Center`                                            | Disable `Availablity`, `Social graph`, `Verified business call logs`, `Ad Campaign Analytics` |
 |                                                                           | Enable `Search profiles privately`                                                            |
 | `Settings` -> `Privacy Center` -> `Control how ads appear to you`         | Disable `Show me relevant ads`, `Get deals and promotions`                                    |

@@ -123,6 +123,7 @@
 | Piracy  | [Website](https://www.reddit.com/r/Piracy/wiki/index)                                   |       |
 | Hacking | [Website](https://www.reddit.com/r/hacking/wiki/index)                                  |       |
 | GitHub  | [awesome-piracy](https://github.com/Shakil-Shahadat/awesome-piracy/blob/main/Readme.md) |       |
+| FMHY    | [Website](https://fmhy.net/beginners-guide)                                             |       |
 
 ## Other
 
