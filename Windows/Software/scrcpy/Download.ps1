@@ -41,7 +41,7 @@ if (-not (Test-Path $Destination) -or $InstalledVersion -notmatch $LatestVersion
             $env:Path = [Environment]::GetEnvironmentVariable('Path', 'Machine') + ';' + [Environment]::GetEnvironmentVariable('Path', 'User')
         }
         $SavePath = $Destination
-        $Argument = '--keyboard=uhid --video-bit-rate=100M --max-fps=60 --no-downsize-on-error --keep-active'
+        $Argument = '--keyboard=uhid --video-bit-rate=100M --max-fps=60 --no-downsize-on-error --keep-active --no-audio'
         $ShortcutPath = [IO.Path]::Combine([Environment]::GetFolderPath('Desktop'), 'scrcpy.lnk')
 
         if (-not (Test-Path -LiteralPath $ShortcutPath)) {

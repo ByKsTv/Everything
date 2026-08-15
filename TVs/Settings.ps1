@@ -1,3 +1,17 @@
+while ($true) {
+    $devices = & adb.exe devices 2>$null | Out-String
+
+    if ($devices -match '(?m)^.+\s+device\s*$') {
+        break
+    }
+
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Status: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write('Waiting for a connected device...'); [Console]::ResetColor(); [Console]::WriteLine()
+    Start-Sleep -Seconds 2
+}
+
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Status: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write('Device connected'); [Console]::ResetColor(); [Console]::WriteLine()
+
+
 Add-Type -AssemblyName System.Windows.Forms
 [Windows.Forms.Application]::EnableVisualStyles()
 

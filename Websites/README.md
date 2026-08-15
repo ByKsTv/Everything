@@ -130,3 +130,11 @@
 | Name            | Links                                                 | Notes |
 | --------------- | ----------------------------------------------------- | ----- |
 | RDP File Editor | [Website](https://kimmknight.github.io/rdpfileeditor) |       |
+
+## Network diagnostics
+
+| Name                    | Links                                              | Notes |
+| ----------------------- | -------------------------------------------------- | ----- |
+| Path MTU Discovery Test | [Website](http://pmtud.enslaves.us/)               |       |
+| TCP/IP Analyzer         | [Website](https://www.speedguide.net/analyzer.php) |       |
+| IP Leak                 | [Website](https://ipleak.net/)                     |       |

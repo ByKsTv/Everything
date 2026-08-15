@@ -1,6 +1,41 @@
-$downloads = [IO.Path]::Combine($env:USERPROFILE, 'Downloads')
+while ($true) {
+    $devices = & adb.exe devices 2>$null | Out-String
 
-foreach ($apk in [IO.Directory]::EnumerateFiles($downloads, '*.apk')) {
+    if ($devices -match '(?m)^.+\s+device\s*$') {
+        break
+    }
+
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Status: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write('Waiting for a connected device...'); [Console]::ResetColor(); [Console]::WriteLine()
+    Start-Sleep -Seconds 2
+}
+
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Status: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write('Device connected'); [Console]::ResetColor(); [Console]::WriteLine()
+
+Add-Type -AssemblyName PresentationFramework
+
+$dialog = New-Object Microsoft.Win32.OpenFileDialog
+$dialog.Title = 'Select the folder containing the APK files'
+$dialog.CheckFileExists = $false
+$dialog.CheckPathExists = $true
+$dialog.ValidateNames = $false
+$dialog.FileName = 'Select Folder'
+
+if ($dialog.ShowDialog() -ne $true) {
+    exit
+}
+
+$apkPath = [IO.Path]::GetDirectoryName($dialog.FileName)
+
+if (-not [IO.Directory]::Exists($apkPath)) {
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Status: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write('Selected directory does not exist'); [Console]::ResetColor(); [Console]::WriteLine()
+    exit
+}
+
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('APK directory: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$apkPath'"); [Console]::ResetColor(); [Console]::WriteLine()
+
+$apks = [IO.Directory]::EnumerateFiles($apkPath, '*.apk')
+
+foreach ($apk in $apks) {
     [Console]::WriteLine()
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('APK: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$([IO.Path]::GetFileName($apk))'"); [Console]::ResetColor(); [Console]::WriteLine()
 
@@ -31,7 +66,9 @@ foreach ($apk in [IO.Directory]::EnumerateFiles($downloads, '*.apk')) {
 
     if ($deviceVersionCode -lt $apkVersionCode -or $deviceVersionCode -eq 999999999 -or $package -match 'youtube') {
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Action: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write('Update'); [Console]::ResetColor(); [Console]::WriteLine()
+
         $install = & adb.exe install -r $apk 2>&1 | Out-String
+
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Yellow'; [Console]::Write($install.Trim()); [Console]::ResetColor(); [Console]::WriteLine()
     }
     else {

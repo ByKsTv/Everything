@@ -44,5 +44,6 @@
     "editor.wordWrap": "on",
     "telemetry.feedback.enabled": false,
     "telemetry.editStats.enabled": false,
-    "telemetry.telemetryLevel": "off"
+    "telemetry.telemetryLevel": "off",
+    "editor.formatOnSave": true
 }
