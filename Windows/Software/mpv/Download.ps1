@@ -63,7 +63,7 @@ if (-not (Test-Path -Path $ScriptsPath)) {
 }
 $ScriptsURLs = @(
     'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/scripts/browser-switch.lua',
-    'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/scripts/clipboard_monitor.lua',
+    'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/scripts/clipboard-url-loader/clipboard-url-loader.dll',
     # 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/scripts/toggle-reader.lua',
     'https://raw.githubusercontent.com/po5/celebi/master/celebi.lua',
     'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/scripts/hidecursor.lua',
@@ -93,6 +93,7 @@ if (-not (Test-Path -Path $ScriptOptsPath)) {
 $ScriptOptsURLs = @(
     'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/script-opts/celebi.conf',
     'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/script-opts/oled_screensaver.conf',
+    # 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/script-opts/clipboard-url-loader.conf',
     'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/script-opts/osc.conf'
     # 'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/script-opts/trackselect.conf'
 )

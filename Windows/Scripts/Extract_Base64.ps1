@@ -1,24 +1,13 @@
-Add-Type -AssemblyName System.Windows.Forms
-[Windows.Forms.Application]::EnableVisualStyles()
+param(
+    [Parameter(Mandatory)]
+    [string]$FileName
+)
 
-$Form = New-Object System.Windows.Forms.Form -Property @{
-    TopMost       = $true
-    StartPosition = 'CenterScreen'
-}
+$FileName = $FileName.Trim().Trim([char]'"')
 
-$FileDialog = New-Object System.Windows.Forms.OpenFileDialog -Property @{
-    FileName        = 'Select file'
-    Title           = 'Extract Base64'
-    Filter          = 'All Files (*.*)|*.*'
-    CheckFileExists = $false
-}
+$Base64Content = [Convert]::ToBase64String((Get-Content $FileName -Encoding Byte))
 
-if ($FileDialog.ShowDialog($Form) -eq [Windows.Forms.DialogResult]::OK) {
-    $FileName = $FileDialog.FileName
-    $Base64Content = [Convert]::ToBase64String((Get-Content $FileName -Encoding Byte))
+Write-Output "Selected File: $FileName"
+Write-Output "Base64 Content: $Base64Content"
 
-    Write-Output "Selected File: $FileName"
-    Write-Output "Base64 Content: $Base64Content"
-
-    $Base64Content | Clip
-}
+$Base64Content | Clip

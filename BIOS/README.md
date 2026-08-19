@@ -22,12 +22,8 @@
 
 ## Update BIOS
 
-1. Insert a USB drive.
-1. Format the USB drive as `FAT32`.
-   > Be careful, this will delete all data on the USB drive.
+1. Create a folder inside `C:\` drive with a easy to spot name such as `BIOS Updates`
 1. Move BIOS file to the USB.
-1. Safely Eject the USB.
-   > Taskbar -> USB Icon -> Right Click -> `Eject`.
 1. Boot to BIOS (PowerShell/CMD):
 
    ```bat

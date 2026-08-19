@@ -64,7 +64,7 @@ foreach ($apk in $apks) {
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Device versionCode: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$deviceVersionCode'"); [Console]::ResetColor(); [Console]::WriteLine()
 
-    if ($deviceVersionCode -lt $apkVersionCode -or $deviceVersionCode -eq 999999999 -or $package -match 'youtube') {
+    if ($deviceVersionCode -lt $apkVersionCode -or $deviceVersionCode -eq 999999999 -or $package -match 'youtube' -or $package -match 'wppenhacer') {
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Action: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write('Update'); [Console]::ResetColor(); [Console]::WriteLine()
 
         $install = & adb.exe install -r $apk 2>&1 | Out-String

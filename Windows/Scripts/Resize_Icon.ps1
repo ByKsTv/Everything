@@ -5,6 +5,8 @@ param(
     [string]$OutputIco = 'icon-16x16.ico'
 )
 
+$InputIco = $InputIco.Trim().Trim([char]'"')
+
 Add-Type -AssemblyName System.Drawing
 
 # Load source icon/image
