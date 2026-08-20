@@ -7,28 +7,30 @@ if (-not (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue)) 
     $TaskSettings = New-ScheduledTaskSettingsSet -Compatibility Win8
     Register-ScheduledTask -TaskName $TaskName -Action $TaskAction -Trigger $TaskTrigger -Principal $TaskPrincipal -Settings $TaskSettings -Force
 }
+$GitHub = Invoke-RestMethod -Uri 'https://api.github.com/repos/SubtitleEdit/subtitleedit/releases/latest'
+$LatestVersion = ($GitHub).tag_name.TrimStart('v')
 
-$InstalledVersion = (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\SubtitleEdit_is1' -ErrorAction SilentlyContinue).DisplayVersion
-$LatestVersion = Invoke-RestMethod -UseBasicParsing -Uri 'https://api.github.com/repos/SubtitleEdit/subtitleedit/releases/latest'
-$LatestVersionUnV = ($LatestVersion).tag_name.TrimStart('v')
+$regPaths = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*', 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*', 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*'
+$InstalledVersion = (Get-ItemProperty -Path $regPaths -ErrorAction SilentlyContinue | Where-Object { $_.DisplayName -match 'Subtitle\s?Edit' } | Select-Object -First 1).DisplayVersion
 
-if ($InstalledVersion) {
-    if ($InstalledVersion -notmatch '\.\d+\.\d+$') {
-        $InstalledVersion += '.0'
-    }
-    $installedVersionNormalized = [Version]$InstalledVersion
+$installedNormalized = if ($InstalledVersion) {
+    [Version](($InstalledVersion -split '\+')[0]) 
 }
 else {
-    $installedVersionNormalized = [Version]'0.0.0'
+    [Version]'0.0.0' 
 }
-$latestVersionNormalized = [Version]$LatestVersionUnV
+$latestNormalized = [Version]$LatestVersion
 
-if ($installedVersionNormalized -lt $latestVersionNormalized) {
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Subtitle Edit: Downloading'); [Console]::ResetColor(); [Console]::WriteLine()
-    (New-Object System.Net.WebClient).DownloadFile(($LatestVersion.assets | Where-Object { $_.name -match 'exe' }).browser_download_url, "$env:TEMP\SubtitleEditSetup.exe")
+if ($installedNormalized -lt $latestNormalized) {
+    $DDL = (($GitHub).assets | Where-Object { $_.Name -match 'exe' }).browser_download_url
+    $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
+    $SavePath = [IO.Path]::Combine($env:TEMP, $FileName)
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Subtitle Edit'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
+    (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
 
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Subtitle Edit: Installing'); [Console]::ResetColor(); [Console]::WriteLine()
-    Start-Process -FilePath "$env:TEMP\SubtitleEditSetup.exe" -ArgumentList '/verysilent' -Wait
+    $Argument = '/verysilent'
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Subtitle Edit'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
+    Start-Process $SavePath -ArgumentList $Argument -Wait
 
     $DesktopShortcut = "$($env:USERPROFILE)\Desktop\Subtitle Edit.lnk"
     if (Test-Path -Path $DesktopShortcut) {

@@ -357,10 +357,10 @@ $settings = @(
     }
     
     [PSCustomObject]@{
-        Name  = 'Settings -> Display -> Touch sensitivity -> On'
+        Name  = 'Settings -> Display -> Touch sensitivity -> Off'
         Table = 'system'
         Key   = 'auto_adjust_touch'
-        Value = '1'
+        Value = '0'
     }
 
     [PSCustomObject]@{
@@ -406,10 +406,24 @@ $settings = @(
     }
 
     [PSCustomObject]@{
+        Name  = 'Settings -> Advanced features -> Motions and gestures -> Life to wake -> Off'
+        Table = 'system'
+        Key   = 'lift_to_wake'
+        Value = '0'
+    }
+
+    [PSCustomObject]@{
         Name  = 'Settings -> Advanced features -> Screenshots -> Screenshot format -> PNG'
         Table = 'global'
         Key   = 'smart_capture_screenshot_format'
         Value = 'PNG'
+    }
+
+    [PSCustomObject]@{
+        Name  = 'Settings -> Advanced features -> Visibility enhancments -> Remove animations -> On'
+        Table = 'global'
+        Key   = 'remove_animations'
+        Value = '1'
     }
 
     [PSCustomObject]@{
