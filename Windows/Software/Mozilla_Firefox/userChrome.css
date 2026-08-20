@@ -74,7 +74,7 @@ panel {
 }
 
 /* Dim the inactive tabs on the tabs bar */
-.tabbrowser-tab:not([selected]):not([visuallyselected='true']) {
+.tabbrowser-tab:not([selected]) {
 	opacity: 0.5;
 }
 
