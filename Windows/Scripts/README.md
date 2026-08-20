@@ -132,3 +132,9 @@ DISM /Online /Cleanup-Image /RestoreHealth
 SFC /ScanNow
 
 ```
+
+## Extract .ico file
+
+```powershell
+[System.Drawing.Icon]::ExtractAssociatedIcon("C:\Path\to\your.exe").ToBitmap().Save("C:\Path\to\output.ico")
+```
