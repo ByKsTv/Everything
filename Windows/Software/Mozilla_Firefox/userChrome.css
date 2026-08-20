@@ -74,12 +74,12 @@ panel {
 }
 
 /* Dim the inactive tabs on the tabs bar */
-.tabbrowser-tab:not([selected='true']) {
+.tabbrowser-tab:not([selected]):not([visuallyselected='true']) {
 	opacity: 0.5;
 }
 
 /* Undim the inactive tabs on the tabs bar on hover */
-.tabbrowser-tab:not([selected='true']):hover {
+.tabbrowser-tab:not([selected]):hover {
 	opacity: 1;
 }
 
