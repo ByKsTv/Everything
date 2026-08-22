@@ -33,7 +33,7 @@ if (Test-Path $Firefox_Profiles) {
         New-ItemProperty -Path 'HKLM:\SOFTWARE\Mozilla\ManagedStorage\uBlock0@raymondhill.net' -Name '(default)' -Value $SavePath -PropertyType String -Force
         [IO.File]::WriteAllText($SavePath, '{"name": "uBlock0@raymondhill.net","description": "ignored","type": "storage","data": {"adminSettings": ' + (Get-Content $SavePath -Raw) + '}}')
         Start-Sleep -Milliseconds 1000
-    
+
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Starting browser'); [Console]::ResetColor(); [Console]::WriteLine()
         [Diagnostics.Process]::Start('firefox.exe') | Out-Null
 
@@ -42,7 +42,7 @@ if (Test-Path $Firefox_Profiles) {
             Start-Sleep -Milliseconds 1000
         }
         Start-Sleep -Milliseconds 20000
-        
+
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Mozilla Firefox Extensions: Adding option to set foreground'); [Console]::ResetColor(); [Console]::WriteLine()
         if (-not ([Management.Automation.PSTypeName]'SFW').Type) {
             Add-Type @'

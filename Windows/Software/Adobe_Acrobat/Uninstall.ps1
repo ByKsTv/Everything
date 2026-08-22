@@ -4,11 +4,9 @@ $apps = Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\
 foreach ($app in $apps) {
     if ($app.PSChildName -match '^\{[0-9A-Fa-f-]{36}\}$') {
         Start-Process -FilePath "$env:SystemRoot\System32\msiexec.exe" -ArgumentList '/x', $app.PSChildName, '/qn', '/norestart' -Wait
-    }
-    elseif ($app.UninstallString -match '\{[0-9A-Fa-f-]{36}\}') {
+    } elseif ($app.UninstallString -match '\{[0-9A-Fa-f-]{36}\}') {
         Start-Process -FilePath "$env:SystemRoot\System32\msiexec.exe" -ArgumentList '/x', $Matches[0], '/qn', '/norestart' -Wait
-    }
-    elseif ($app.QuietUninstallString) {
+    } elseif ($app.QuietUninstallString) {
         Start-Process -FilePath "$env:SystemRoot\System32\cmd.exe" -ArgumentList '/c', $app.QuietUninstallString -Wait
     }
 }

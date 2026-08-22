@@ -68,10 +68,9 @@ $Keyboard_Tags = @('af-ZA', 'am-ET', 'ar-SA', 'az-Latn-AZ', 'bg-BG', 'bn-IN', 'b
 $Keyboard_Map = @{}
 foreach ($Keyboard_Tag in $Keyboard_Tags) {
 	try {
-		$Keyboard_Map[[Globalization.CultureInfo]::GetCultureInfo($Keyboard_Tag).DisplayName] = $Keyboard_Tag 
-	}
-	catch {
-		$Keyboard_Map[$Keyboard_Tag] = $Keyboard_Tag 
+		$Keyboard_Map[[Globalization.CultureInfo]::GetCultureInfo($Keyboard_Tag).DisplayName] = $Keyboard_Tag
+	} catch {
+		$Keyboard_Map[$Keyboard_Tag] = $Keyboard_Tag
 	}
 }
 $Keyboard_Map.Keys | Sort-Object | ForEach-Object { $KeyboardSelection.Items.Add($_) | Out-Null }
@@ -157,9 +156,8 @@ $ComputerPasswordCheckBox.Add_Click(
 		$ComputerPasswordEnabled = $ComputerPasswordCheckBox.Checked
 		$ComputerPasswordTextBox.Enabled = $AutoLogonCheckBox.Enabled = $ComputerPasswordEnabled
 		$ComputerPasswordTextBox.Text = if ($ComputerPasswordEnabled) {
-			'' 
-		}
-		else {
+			''
+		} else {
 			'Computer Password'
 		}
 	}
@@ -199,8 +197,7 @@ $RemotePowershell.Add_Click(
 		$RemotePowershellIP.Enabled = $RemotePowershellEnabled
 		$RemotePowershellIP.Text = if ($RemotePowershellEnabled) {
 			''
-		}
-		else {
+		} else {
 			'Remote Powershell Trusted IP'
 		}
 	}
@@ -243,14 +240,14 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
 		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Time Zone: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write($TimeZoneSelection.SelectedItem); [Console]::ResetColor(); [Console]::WriteLine()
 		& tzutil.exe /s $TimeZoneSelection.SelectedItem
 	}
-		
+
 	if ($KeyboardSelection.SelectedItem -and $KeyboardSelection.Text -ne 'Select Keyboard') {
 		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Keyboard: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write($KeyboardSelection.SelectedItem); [Console]::ResetColor(); [Console]::WriteLine()
 		$LanguageList = Get-WinUserLanguageList
 		$LanguageList.Add($Keyboard_Map[$KeyboardSelection.SelectedItem])
 		Set-WinUserLanguageList -LanguageList $LanguageList -Force
 	}
-		
+
 	if ($RegionalFormatSelection.SelectedItem -and $RegionalFormatSelection.Text -ne 'Select Regional Format') {
 		$selectedDisplayName = $RegionalFormatSelection.SelectedItem
 		$RegionalFormatSelected = ($regionalFormatMapping | Where-Object { $_.DisplayName -eq $selectedDisplayName }).CultureCode
@@ -268,18 +265,16 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
 		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('PC Password: Adding'); [Console]::ResetColor(); [Console]::WriteLine()
 		Set-LocalUser -Name $env:USERNAME -Password (ConvertTo-SecureString $ComputerPasswordTextBox.Text -AsPlainText -Force)
 		New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'DefaultPassword' -Value $ComputerPasswordTextBox.Text -PropertyType String -Force
-	}
-	elseif ($ComputerPasswordCheckBox.Checked -eq $false) {
+	} elseif ($ComputerPasswordCheckBox.Checked -eq $false) {
 		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('PC Password: Removing'); [Console]::ResetColor(); [Console]::WriteLine()
 		Set-LocalUser -Name $env:username -Password ([securestring]::new())
 		New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'AutoAdminLogon' -Value '0' -PropertyType String -Force
 	}
-	
+
 	if ($AutoLogonCheckBox.Checked -eq $true) {
 		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Autologon: Enabling'); [Console]::ResetColor(); [Console]::WriteLine()
 		New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'AutoAdminLogon' -Value '1' -PropertyType String -Force
-	}
-	elseif ($AutoLogonCheckBox.Checked -eq $false) {
+	} elseif ($AutoLogonCheckBox.Checked -eq $false) {
 		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Autologon: Disabling'); [Console]::ResetColor(); [Console]::WriteLine()
 		New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'AutoAdminLogon' -Value '0' -PropertyType String -Force
 	}
@@ -288,8 +283,7 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
 		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Remote Desktop: Enabling'); [Console]::ResetColor(); [Console]::WriteLine()
 		New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name 'fDenyTSConnections' -Value 0 -Force
 		Enable-NetFirewallRule -DisplayGroup 'Remote Desktop'
-	}
-	elseif ($RemoteDesktop.Checked -eq $false) {
+	} elseif ($RemoteDesktop.Checked -eq $false) {
 		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Remote Desktop: Disabling'); [Console]::ResetColor(); [Console]::WriteLine()
 		New-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name 'fDenyTSConnections' -Value 1 -Force
 		Disable-NetFirewallRule -DisplayGroup 'Remote Desktop'
@@ -301,8 +295,7 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
 		Enable-PSRemoting -Force
 		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Remote PowerShell: Adding IP'); [Console]::ResetColor(); [Console]::WriteLine()
 		Set-Item 'wsman:\localhost\Client\TrustedHosts' -Value $RemotePowershellIP.Text -Force
-	}
-	elseif ($RemotePowershell.Checked -eq $false) {
+	} elseif ($RemotePowershell.Checked -eq $false) {
 		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Remote PowerShell: Disabling'); [Console]::ResetColor(); [Console]::WriteLine()
 		Disable-PSRemoting -Force
 		Remove-Item -Path 'WSMan:\Localhost\listener\listener*' -Recurse
@@ -316,7 +309,7 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
 	if ($MozillaFirefox.Checked -eq $true) {
 		Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/Download.ps1')
 	}
-	
+
 	if ($GoogleChrome.Checked -eq $true) {
 		Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Google_Chrome/Download.ps1')
 	}

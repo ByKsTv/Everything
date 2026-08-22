@@ -31,7 +31,7 @@ foreach ($mplsFile in $mplsFiles) {
     if (-not (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue)) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/MediaInfo/Download.ps1')
     }
-            
+
     $mediaInfoOutput = & MediaInfo.exe --Output=JSON "$mplsFilePath"
     if (-not $mediaInfoOutput) {
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('No output from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'MediaInfo'"); [Console]::WriteLine()
@@ -78,13 +78,11 @@ foreach ($mplsFile in $mplsFiles) {
 
                 $Start_With_Episode_Number++
                 $processed = $true
-            }
-            else {
+            } else {
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Files not found in '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ResetColor(); [Console]::WriteLine()
             }
         }
-    }
-    catch {
+    } catch {
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Failed to convert MediaInfo output to JSON or process the results for file '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$($mplsFile.FullName)'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' Output '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$mediaInfoOutput'"); [Console]::ResetColor(); [Console]::WriteLine()
 
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Error '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$_'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' Output '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$mediaInfoOutput'"); [Console]::ResetColor(); [Console]::WriteLine()

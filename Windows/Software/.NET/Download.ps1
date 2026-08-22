@@ -11,7 +11,7 @@ if (-not (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue)) 
 if (-not (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NET' -Name 'AllowAUOnServerOS' -ErrorAction SilentlyContinue)) {
 	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('.NET: Auto-Updates: Enabled'); [Console]::ResetColor(); [Console]::WriteLine()
 	if (-not (Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\.NET')) {
-		New-Item 'HKLM:\SOFTWARE\Microsoft\.NET' -Force 
+		New-Item 'HKLM:\SOFTWARE\Microsoft\.NET' -Force
 	}
 	New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NET' -Name 'AllowAUOnServerOS' -Value 1 -PropertyType DWord -Force
 }
@@ -57,7 +57,7 @@ foreach ($Version in $Versions) {
 		$UninstallNETToolArgument = "dotnet-core-uninstall remove $SDKInstalled --sdk --yes"
 		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Uninstalling '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft .NET SDK'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SDKInstalled'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$UninstallToolLocation'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$UninstallNETToolArgument'"); [Console]::ResetColor(); [Console]::WriteLine()
 		Start-Process $UninstallToolLocation -ArgumentList $UninstallNETToolArgument -Wait
-		
+
 		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Uninstalling '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'dotnet-core-uninstall'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'msiexec.exe'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$UninstallToolArgument'"); [Console]::ResetColor(); [Console]::WriteLine()
 		Start-Process msiexec.exe -ArgumentList $UninstallToolArgument -Wait
 	}

@@ -18,8 +18,7 @@ for ($i = 0; $i -lt $Language_Match.Count; $i++) {
     $startIndex = $match.Index + $match.Length
     if ($i + 1 -lt $Language_Match.Count) {
         $endIndex = $Language_Match[$i + 1].Index
-    }
-    else {
+    } else {
         $endIndex = $GraveSoft.Length
     }
     $languageContent = $GraveSoft.Substring($startIndex, $endIndex - $startIndex)
@@ -71,8 +70,7 @@ foreach ($language in $Language_Sections.Keys) {
                             $onlineLinkMatch = [regex]::Match($onlineX64Link, '\[.*?\]\((.*?)\)')
                             if ($onlineLinkMatch.Success) {
                                 $linkUrl = $onlineLinkMatch.Groups[1].Value
-                            }
-                            else {
+                            } else {
                                 $linkUrl = ''
                             }
 
@@ -82,8 +80,7 @@ foreach ($language in $Language_Sections.Keys) {
                                 OnlineX64Link = $linkUrl
                             }
                         }
-                    }
-                    else {
+                    } else {
                         # Break if the line does not start with '|'
                         break
                     }
@@ -234,8 +231,7 @@ $populateTabs = {
     if ($newTabControlWidth + 40 -lt $screenWidth) {
         $OfficeSelection_Tabs.Width = $newTabControlWidth
         $Form.Width = $OfficeSelection_Tabs.Width + 40  # Adjust form width accordingly
-    }
-    else {
+    } else {
         $OfficeSelection_Tabs.Width = $screenWidth - 40
         $Form.Width = $screenWidth
     }
@@ -293,7 +289,7 @@ $Form.Controls.AddRange(@($Language_Selection, $Ok, $Cancel))
 if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
 
     Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Microsoft_Office/Group_Policy_Templates.ps1')
-    
+
     if ($Scrubber.Checked) {
         if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Windows Script Host\Settings')) {
             New-Item -Path 'HKCU:\SOFTWARE\Microsoft\Windows Script Host\Settings' -Force
@@ -353,7 +349,7 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
 
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Office_Selected_ID'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' which includes '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Office_Selected_ID_Includes'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Office_Selected_ID_URL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Office_Selected_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
         (New-Object System.Net.WebClient).DownloadFile($Office_Selected_ID_URL, $Office_Selected_SavePath)
-            
+
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Office_Selected_ID'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' which includes '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Office_Selected_ID_Includes'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Office_Selected_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Process $Office_Selected_SavePath -Wait
     }

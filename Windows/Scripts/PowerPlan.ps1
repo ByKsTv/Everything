@@ -5,8 +5,7 @@ $PowerPlanHigh = & powercfg.exe -list | Select-String -Pattern 'High performance
 if ($PowerPlanUltimate) {
     $PowerPlanGUID = ($PowerPlanUltimate.Line -split 'GUID: ')[1].Trim().Split(' ')[0]
     & powercfg.exe /setactive $PowerPlanGUID
-}
-elseif ($PowerPlanHigh) {
+} elseif ($PowerPlanHigh) {
     $PowerPlanGUID = ($PowerPlanHigh.Line -split 'GUID: ')[1].Trim().Split(' ')[0]
     & powercfg.exe /setactive $PowerPlanGUID
 }
@@ -40,7 +39,7 @@ foreach ($item in $PowerCfg) {
 # Power Plan: Networking connectivity in Standby: Enable
 & powercfg.exe /SETACVALUEINDEX SCHEME_CURRENT fea3413e-7e05-4911-9a71-700331f1c294 f15576e8-98b7-4186-b944-eafa664402d9 1
 & powercfg.exe /SETDCVALUEINDEX SCHEME_CURRENT fea3413e-7e05-4911-9a71-700331f1c294 f15576e8-98b7-4186-b944-eafa664402d9 1
- 
+
 # Power Plan: Hard disk: AHCI Link Power Management - HIPM/DIPM: Active
 & powercfg.exe /SETACVALUEINDEX SCHEME_CURRENT 0012ee47-9041-4b5d-9b77-535fba8b1442 0b2d69d7-a2a1-449c-9680-f91c70521c60 0
 & powercfg.exe /SETDCVALUEINDEX SCHEME_CURRENT 0012ee47-9041-4b5d-9b77-535fba8b1442 0b2d69d7-a2a1-449c-9680-f91c70521c60 0
@@ -289,7 +288,7 @@ foreach ($item in $PowerCfg) {
 & powercfg.exe /SETACVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 4b92d758-5a24-4851-a470-815d78aee119 100
 & powercfg.exe /SETDCVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 4b92d758-5a24-4851-a470-815d78aee119 100
 
-# Power Plan: Processor power management: Processor performance core parking distribution threshold: 10% 
+# Power Plan: Processor power management: Processor performance core parking distribution threshold: 10%
 & powercfg.exe /SETACVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 4bdaf4e9-d103-46d7-a5f0-6280121616ef 10
 & powercfg.exe /SETDCVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 4bdaf4e9-d103-46d7-a5f0-6280121616ef 10
 
@@ -397,7 +396,7 @@ foreach ($item in $PowerCfg) {
 & powercfg.exe /SETACVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 9943e905-9a30-4ec1-9b99-44dd3b76f7a2 0
 & powercfg.exe /SETDCVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 9943e905-9a30-4ec1-9b99-44dd3b76f7a2 0
 
-# Power Plan: Processor power management: Processor performance level increase threshold for Processor Power Efficiency Class 1 processor count increase: 
+# Power Plan: Processor power management: Processor performance level increase threshold for Processor Power Efficiency Class 1 processor count increase:
 # & powercfg.exe /SETACVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 b000397d-9b0b-483d-98c9-692a6060cfbf 0
 # & powercfg.exe /SETDCVALUEINDEX SCHEME_CURRENT 54533251-82be-4824-96c1-47b60b740d00 b000397d-9b0b-483d-98c9-692a6060cfbf 0
 

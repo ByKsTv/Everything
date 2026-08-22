@@ -82,31 +82,30 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     $Argument = "--skip-dialog=true --add-stopped=false --save-path=$env:TEMP ""$($Magnet)"""
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
     Start-Process qBittorrent.exe -ArgumentList $Argument
-    
+
     while (-not ($TempDir = (Get-ChildItem $env:TEMP -Directory -Filter '*eM Client*' | Select-Object -First 1).FullName)) {
         Start-Sleep -Milliseconds 1000
     }
-    
+
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Adding '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$TempDir'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
     Add-MpPreference -ExclusionPath $TempDir
-    
+
     while (-not ($TempEXE = (Get-ChildItem $TempDir -Filter '*.exe' | Select-Object -First 1).FullName)) {
         Start-Sleep -Milliseconds 1000
     }
     do {
         Start-Sleep -Milliseconds 1000
     } until ((Get-Content $Log -ErrorAction SilentlyContinue) -match 'Torrent download finished. Torrent: .*eM Client*')
-    
+
     if ($Title -match 'KpoJIuK') {
         $Argument = '/S /I'
-    }
-    else {
+    } else {
         $Argument = '/VERYSILENT'
     }
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$TempEXE'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
     Unblock-File $TempEXE
     Start-Process $TempEXE -ArgumentList $Argument -Wait
-    
+
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Removing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$env:TEMP'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Defender Exclusions'"); [Console]::ResetColor(); [Console]::WriteLine()
     Remove-MpPreference -ExclusionPath $TempDir
 

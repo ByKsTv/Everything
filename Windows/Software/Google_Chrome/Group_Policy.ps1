@@ -20,7 +20,7 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'Privac
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'AIModeSettings' -Type DWORD -Value 1
 
 # Ignored because the policy is not set by a cloud source.
-# Computer Configuration: Administrative Templates: Google: Google Chrome: 
+# Computer Configuration: Administrative Templates: Google: Google Chrome:
 # Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Google\Chrome' -Name 'GenAiDefaultSettings' -Type DWORD -Value 2
 
 # Deprecated

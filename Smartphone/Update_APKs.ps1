@@ -70,8 +70,7 @@ foreach ($apk in $apks) {
         $install = & adb.exe install -r $apk 2>&1 | Out-String
 
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Yellow'; [Console]::Write($install.Trim()); [Console]::ResetColor(); [Console]::WriteLine()
-    }
-    else {
+    } else {
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Action: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write('Skip'); [Console]::ResetColor(); [Console]::WriteLine()
     }
 }

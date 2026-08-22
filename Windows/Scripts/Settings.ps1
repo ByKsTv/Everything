@@ -212,7 +212,7 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlo
 
 # Remote Desktop Connection: Never show pop-up upon ending session
 if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client')) {
-	New-Item 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client' -Force 
+	New-Item 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client' -Force
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Terminal Server Client' -Name 'ShowShutdownDialog' -Value 0 -PropertyType DWord -Force
 
@@ -467,14 +467,12 @@ New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows Script Host\Settings' -
 # Disable DNS-over-HTTPS for IPv4
 if (-not (Get-CimInstance -ClassName CIM_ComputerSystem).HypervisorPresent) {
 	$InterfaceGuids = @((Get-NetAdapter -Physical).InterfaceGuid)
-}
-else {
+} else {
 	$InterfaceGuids = @((Get-NetRoute -AddressFamily IPv4 | Where-Object -FilterScript { $_.DestinationPrefix -eq '0.0.0.0/0' } | Get-NetAdapter).InterfaceGuid)
 }
 if (-not (Get-CimInstance -ClassName CIM_ComputerSystem).HypervisorPresent) {
 	Get-NetAdapter -Physical | Get-NetIPInterface -AddressFamily IPv4 | Set-DnsClientServerAddress -ResetServerAddresses
-}
-else {
+} else {
 	Get-NetRoute | Where-Object -FilterScript { $_.DestinationPrefix -eq '0.0.0.0/0' } | Get-NetAdapter | Set-DnsClientServerAddress -ResetServerAddresses
 }
 foreach ($InterfaceGuid in $InterfaceGuids) {
@@ -727,7 +725,7 @@ foreach ($t in $targets) {
 	}
 }
 Get-Process -Name 'SearchApp', 'SearchHost' -ErrorAction SilentlyContinue |
-Stop-Process -Force -ErrorAction SilentlyContinue
+	Stop-Process -Force -ErrorAction SilentlyContinue
 
 # Don't promt to save pictures on Snipping Tool
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\TabletPC\Snipping Tool' -Name 'PromptToSave' -Value 0 -PropertyType DWord -Force

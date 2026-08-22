@@ -11,7 +11,7 @@ New-Item -Path $AnyDesk_LocalCFG -ItemType File -Value $AnyDesk_Settings -Force
 
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('AnyDesk: Optional Offer - Recommended by AnyDesk: Decline'); [Console]::ResetColor(); [Console]::WriteLine()
 if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Google\No Chrome Offer Until')) {
-    New-Item 'HKCU:\SOFTWARE\Google\No Chrome Offer Until' -Force 
+    New-Item 'HKCU:\SOFTWARE\Google\No Chrome Offer Until' -Force
 }
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Google\No Chrome Offer Until' -Name 'AnyDesk Software GmbH' -Value 30241008 -PropertyType DWord -Force
 

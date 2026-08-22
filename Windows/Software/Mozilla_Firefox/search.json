@@ -5,49 +5,78 @@
 			"id": "google",
 			"_name": "Google",
 			"_isConfigEngine": true,
-			"_metaData": { "hideOneOffButton": false, "order": 1 }
+			"_metaData": {
+				"hideOneOffButton": false,
+				"order": 1
+			}
 		},
 		{
 			"id": "bing",
 			"_name": "Bing",
 			"_isConfigEngine": true,
-			"_metaData": { "hideOneOffButton": true, "hidden": true, "order": 2 }
+			"_metaData": {
+				"hideOneOffButton": true,
+				"hidden": true,
+				"order": 2
+			}
 		},
 		{
 			"id": "ddg",
 			"_name": "DuckDuckGo",
 			"_isConfigEngine": true,
-			"_metaData": { "hideOneOffButton": true, "hidden": true, "order": 3 }
+			"_metaData": {
+				"hideOneOffButton": true,
+				"hidden": true,
+				"order": 3
+			}
 		},
 		{
 			"id": "ecosia",
 			"_name": "Ecosia",
 			"_isConfigEngine": true,
-			"_metaData": { "hideOneOffButton": true, "hidden": true, "order": 5 }
+			"_metaData": {
+				"hideOneOffButton": true,
+				"hidden": true,
+				"order": 5
+			}
 		},
 		{
 			"id": "perplexity",
 			"_name": "Perplexity",
 			"_isConfigEngine": true,
-			"_metaData": { "order": 8, "hidden": true, "alias": "" }
+			"_metaData": {
+				"order": 8,
+				"hidden": true,
+				"alias": ""
+			}
 		},
 		{
 			"id": "qwant",
 			"_name": "Qwant",
 			"_isConfigEngine": true,
-			"_metaData": { "hidden": true, "order": 6 }
+			"_metaData": {
+				"hidden": true,
+				"order": 6
+			}
 		},
 		{
 			"id": "wikipedia",
 			"_name": "Wikipedia (en)",
 			"_isConfigEngine": true,
-			"_metaData": { "hideOneOffButton": true, "hidden": true, "order": 7 }
+			"_metaData": {
+				"hideOneOffButton": true,
+				"hidden": true,
+				"order": 7
+			}
 		},
 		{
 			"id": "ebay-ch",
 			"_name": "eBay",
 			"_isConfigEngine": true,
-			"_metaData": { "hidden": true, "order": 4 }
+			"_metaData": {
+				"hidden": true,
+				"order": 4
+			}
 		}
 	],
 	"metaData": {

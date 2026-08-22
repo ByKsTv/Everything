@@ -10,8 +10,7 @@ $InterfaceAliases | ForEach-Object {
 while ($true) {
 	if ((& ping.exe -f -l $MTU_Initial $MTU_URL -n 1 | Out-String) -match 'Packet needs to be fragmented') {
 		$MTU_Initial--
-	}
-	else {
+	} else {
 		break
 	}
 }
@@ -128,7 +127,7 @@ Get-ChildItem 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfac
 	<#
 	Setting:
 	TCPNoDelay
-	
+
 	Description:
 	Disables Nagle's algorithm for TCP connections. Nagle's algorithm combines small outgoing messages and sends them all at once to reduce network congestion. Setting TCPNoDelay to 1 disables this behavior, sending packets immediately without waiting.
 
@@ -145,7 +144,7 @@ Get-ChildItem 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfac
 <#
 	Setting:
 	NetworkThrottlingIndex
-	
+
 	Description:
 	Controls the rate at which network packets are processed for multimedia applications. This setting is part of Windows' multimedia class scheduler, which can throttle network performance to prioritize audio and video smoothness.
 
@@ -161,7 +160,7 @@ New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multi
 <#
 	Setting:
 	SystemResponsiveness
-	
+
 	Description:
 	Determines the percentage of CPU resources reserved for system background tasks (like multimedia processing or background services) when multimedia tasks are running.
 
@@ -178,7 +177,7 @@ New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multi
 <#
 	Setting:
 	Size
-	
+
 	Description:
 	Controls the amount of system resources allocated to the Server service for file and print sharing over the network.
 
@@ -339,7 +338,7 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' 
     DWORD bytes. Typical: 262144 (256 KiB). Use your Bandwidth-Delay Product if known.
 
     Note:
-    Useful on high-BDP paths (long RTT / high Mbps). Windows autotuning still applies at TCP level; this only seeds Winsock’s defaults. Reboot required. Sources: smallvoid, ServerFault. 
+    Useful on high-BDP paths (long RTT / high Mbps). Windows autotuning still applies at TCP level; this only seeds Winsock’s defaults. Reboot required. Sources: smallvoid, ServerFault.
 #>
 # New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'DefaultSendWindow' -PropertyType DWord -Value 2621440 -Force
 
@@ -354,7 +353,7 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' 
     DWORD bytes. Typical: 262144 (256 KiB). Match your BDP if possible.
 
     Note:
-    Helps prevent application-level backpressure on high-rate streams. Reboot required. 
+    Helps prevent application-level backpressure on high-rate streams. Reboot required.
 #>
 # New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'DefaultReceiveWindow' -PropertyType DWord -Value 2621440 -Force
 
@@ -369,7 +368,7 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' 
     0 = ENABLE dynamic sizing (recommended); 1 = disable (legacy workaround).
 
     Note:
-    Keep at 0 for better scaling/throughput on modern Windows. 
+    Keep at 0 for better scaling/throughput on modern Windows.
 #>
 # New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'DynamicSendBufferDisable' -PropertyType DWord -Value 0 -Force
 
@@ -384,7 +383,7 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' 
     DWORD (undocumented). Do not set for performance.
 
     Note:
-    Leave unset (or remove). There’s no evidence this improves modern Windows performance and it can regress stability. 
+    Leave unset (or remove). There’s no evidence this improves modern Windows performance and it can regress stability.
 #>
 # New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'BufferAlignment' -PropertyType DWord -Value 1 -Force
 
@@ -399,7 +398,7 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' 
     DWORD (undocumented). Avoid setting.
 
     Note:
-    Leave unset (or remove). Seen in third-party scripts/malware; no credible perf data to support enabling it. 
+    Leave unset (or remove). Seen in third-party scripts/malware; no credible perf data to support enabling it.
 #>
 # New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'DoNotHoldNICBuffers' -PropertyType DWord -Value 1 -Force
 
@@ -414,7 +413,7 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' 
     0 = don’t disable (recommended); 1 = disable the fast path.
 
     Note:
-    Disabling can slow high-connection-rate servers. Keep 0/absent for performance. 
+    Disabling can slow high-connection-rate servers. Keep 0/absent for performance.
 #>
 # New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'DisableDirectAcceptEx' -PropertyType DWord -Value 1 -Force
 
@@ -429,7 +428,7 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' 
     0 = don’t disable (recommended); 1 = disable (can hurt throughput).
 
     Note:
-    Keep at 0/absent; disabling usually reduces receive efficiency. 
+    Keep at 0/absent; disabling usually reduces receive efficiency.
 #>
 # New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'DisableChainedReceive' -PropertyType DWord -Value 1 -Force
 
@@ -444,7 +443,7 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' 
     0 = keep security (recommended); 1 = disable (less secure).
 
     Note:
-    Setting 1 broadens raw socket access and is not a performance tweak. Keep 0. 
+    Setting 1 broadens raw socket access and is not a performance tweak. Keep 0.
 #>
 # New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'DisableRawSecurity' -PropertyType DWord -Value 1 -Force
 
@@ -459,7 +458,7 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' 
     0 = normal behavior (recommended generally); 1 = ignore PSH (lower latency workaround).
 
     Note:
-    Only consider 1 if you’re working around specific stacks that don’t set PSH and you see latency hiccups; otherwise 0 for efficiency. 
+    Only consider 1 if you’re working around specific stacks that don’t set PSH and you see latency hiccups; otherwise 0 for efficiency.
 #>
 # New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'IgnorePushBitOnReceives' -PropertyType DWord -Value 1 -Force
 
@@ -474,7 +473,7 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' 
     0 = normal FIN handling (recommended); 1 = ignore (not advised).
 
     Note:
-    Keep default; ignoring may confuse connection teardown and doesn’t help throughput. 
+    Keep default; ignoring may confuse connection teardown and doesn’t help throughput.
 #>
 # New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'IgnoreOrderlyRelease' -PropertyType DWord -Value 1 -Force
 
@@ -489,7 +488,7 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' 
     0 = allow reuse (recommended for many servers); 1 = disallow (hardening).
 
     Note:
-    For raw performance/scale, keep 0. Some hardened baselines set 1 for security; assess your workload. 
+    For raw performance/scale, keep 0. Some hardened baselines set 1 for security; assess your workload.
 #>
 # New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'DisableAddressSharing' -PropertyType DWord -Value 1 -Force
 
@@ -504,7 +503,7 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' 
     DWORD bytes. Default ~1024; recommended 1500.
 
     Note:
-    1500 (0x5DC) lines up with typical Ethernet MTU and shows good results in published tests. 
+    1500 (0x5DC) lines up with typical Ethernet MTU and shows good results in published tests.
 #>
 # New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\AFD\Parameters' -Name 'FastCopyReceiveThreshold' -PropertyType DWord -Value 1 -Force
 
@@ -920,10 +919,10 @@ $SettingsToChange = @(
 	<#
 	Setting:
 	ARP Offload
-	
+
 	Description:
 	Allows the network adapter to handle Address Resolution Protocol (ARP) requests without waking the computer.
-	
+
 	Values:
 	Enabled, Disabled
 
@@ -935,10 +934,10 @@ $SettingsToChange = @(
 	<#
 	Setting:
 	Adaptive Inter-Frame Spacing
-	
+
 	Description:
 	Dynamically adjusts the spacing between transmitted frames to reduce collisions and improve performance.
-	
+
 	Values:
 	Enabled, Disabled
 
@@ -950,10 +949,10 @@ $SettingsToChange = @(
 	<#
 	Setting:
 	DMA Coalescing
-	
+
 	Description:
 	Reduces power consumption by grouping DMA (Direct Memory Access) operations.
-	
+
 	Values:
 	Enabled, Disabled
 
@@ -965,10 +964,10 @@ $SettingsToChange = @(
 	<#
 	Setting:
 	ECMA
-	
+
 	Description:
 	Enables Energy Efficient Ethernet (EEE) as specified by the ECMA standard for lower power usage.
-	
+
 	Values:
 	Enabled, Disabled
 
@@ -981,10 +980,10 @@ $SettingsToChange = @(
 	<#
 	Setting:
 	Enable PME
-	
+
 	Description:
 	Allows the network adapter to generate a Power Management Event (PME) to wake the computer.
-	
+
 	Values:
 	Enabled, Disabled
 
@@ -996,10 +995,10 @@ $SettingsToChange = @(
 	<#
 	Setting:
 	Energy Efficient Ethernet
-	
+
 	Description:
 	Reduces power consumption when network traffic is low using IEEE 802.3az standard.
-	
+
 	Values:
 	Enabled, Disabled
 
@@ -1011,10 +1010,10 @@ $SettingsToChange = @(
 	<#
 	Setting:
 	Flow Control
-	
+
 	Description:
 	Manages data flow between computers to prevent packet loss during congestion.
-	
+
 	Values:
 	Enabled, Disabled, Rx & Tx Enabled, Rx Enabled, Tx Enabled
 
@@ -1026,10 +1025,10 @@ $SettingsToChange = @(
 	<#
 	Setting:
 	Gigabit Lite
-	
+
 	Description:
 	Allows the adapter to operate in a lower-power gigabit mode.
-	
+
 	Values:
 	Enabled, Disabled
 
@@ -1041,10 +1040,10 @@ $SettingsToChange = @(
 	<#
 	Setting:
 	Gigabit Master Slave Mode
-	
+
 	Description:
 	Manually sets the adapter as master or slave for gigabit connections.
-	
+
 	Values:
 	Auto, Master, Slave
 
@@ -1056,10 +1055,10 @@ $SettingsToChange = @(
 	<#
 	Setting:
 	Green Ethernet
-	
+
 	Description:
 	Adjusts power usage based on cable length and network activity.
-	
+
 	Values:
 	Enabled, Disabled
 
@@ -1796,15 +1795,15 @@ $SettingsToChange = @(
 	SSIdleTimeout
 
 	Description:
-	Specifies the maximum idle time, in seconds, before a network session is considered inactive 
-	and is automatically disconnected. This helps manage resources and enforce security by 
+	Specifies the maximum idle time, in seconds, before a network session is considered inactive
+	and is automatically disconnected. This helps manage resources and enforce security by
 	closing unused connections.
 
 	Values:
 	Any positive integer (typically in seconds). Common defaults range from 300 (5 minutes) to 1800 (30 minutes).
 
 	Note:
-	Set a lower value for security-sensitive environments to reduce exposure from idle connections. 
+	Set a lower value for security-sensitive environments to reduce exposure from idle connections.
 	Use a higher value if persistent connections are required for user convenience.
 #>
 	@{ DisplayName = 'SSIdleTimeout'; DisplayValues = @('60') }
@@ -1814,8 +1813,8 @@ $SettingsToChange = @(
 	AutoDetach
 
 	Description:
-	Determines whether a device will automatically detach from the host system when a 
-	USB reset or re-enumeration occurs. This is often used to allow firmware updates or 
+	Determines whether a device will automatically detach from the host system when a
+	USB reset or re-enumeration occurs. This is often used to allow firmware updates or
 	to reinitialize the device without manual unplugging.
 
 	Values:
@@ -1824,7 +1823,7 @@ $SettingsToChange = @(
 	Use EEPROM Setting - Device follows the configuration stored in its EEPROM.
 
 	Note:
-	Enabled can simplify firmware updates or recovery, but may cause brief connection loss. 
+	Enabled can simplify firmware updates or recovery, but may cause brief connection loss.
 	Use EEPROM Setting if the device’s built-in configuration should take precedence.
 #>
 	@{ DisplayName = 'AutoDetach'; DisplayValues = @('Use EEPROM Setting') }
@@ -1834,8 +1833,8 @@ $SettingsToChange = @(
 	Mask WakeUp Event Timer
 
 	Description:
-	Specifies the delay before the system responds to a wake-up event after entering a low-power state. 
-	This can help filter out unwanted or accidental wake-up triggers by ignoring events that occur 
+	Specifies the delay before the system responds to a wake-up event after entering a low-power state.
+	This can help filter out unwanted or accidental wake-up triggers by ignoring events that occur
 	too soon after sleep.
 
 	Values:
@@ -1849,7 +1848,7 @@ $SettingsToChange = @(
 	28 seconds - Ignores wake-up events for the first 28 seconds after sleep.
 
 	Note:
-	Use longer delays in environments prone to electrical noise or unintended wake signals. 
+	Use longer delays in environments prone to electrical noise or unintended wake signals.
 	Set to 0 seconds if you require the fastest possible wake-up response.
 #>
 	@{ DisplayName = 'Mask WakeUp Event Timer'; DisplayValues = @('0 second') }
@@ -1859,7 +1858,7 @@ $SettingsToChange = @(
 	Wake on Link Change
 
 	Description:
-	Allows the system to wake from a low-power state when a change in the network link status 
+	Allows the system to wake from a low-power state when a change in the network link status
 	is detected, such as a cable being plugged in, unplugged, or a network speed/duplex change.
 
 	Values:
@@ -1867,8 +1866,8 @@ $SettingsToChange = @(
 	Enabled - Any change in network link status will wake the system.
 
 	Note:
-	Enable for scenarios where immediate response to network link changes is required, 
-	such as network diagnostics or remote access readiness. Disable to prevent unintended 
+	Enable for scenarios where immediate response to network link changes is required,
+	such as network diagnostics or remote access readiness. Disable to prevent unintended
 	wake-ups caused by transient link fluctuations.
 #>
 	@{ DisplayName = 'Wake on link change'; DisplayValues = @('Disabled') }
@@ -1878,8 +1877,8 @@ $SettingsToChange = @(
 	WOL Link Power Saving
 
 	Description:
-	Controls whether the network adapter reduces link speed or power usage while the system 
-	is in a low-power state, while still allowing Wake-on-LAN (WOL) functionality. This helps 
+	Controls whether the network adapter reduces link speed or power usage while the system
+	is in a low-power state, while still allowing Wake-on-LAN (WOL) functionality. This helps
 	save energy without fully disabling network wake capabilities.
 
 	Values:
@@ -1887,7 +1886,7 @@ $SettingsToChange = @(
 	Enabled - Reduces link power consumption in low-power states while preserving WOL functionality.
 
 	Note:
-	Enable to conserve energy when the system is in sleep or standby, especially for battery-powered devices. 
+	Enable to conserve energy when the system is in sleep or standby, especially for battery-powered devices.
 	Disable if you require the fastest possible WOL response or if reduced link speed causes wake failures.
 #>
 	@{ DisplayName = 'WOL Link Power Saving'; DisplayValues = @('Disabled') }
@@ -2145,16 +2144,16 @@ $SettingsToChange = @(
 
 	# TODO
 	# Ethernet0: Locally Administered Address: Valid Values:
-	# Ethernet0: Maximum RSS Processor Number: Valid Values: 
-	# Ethernet0: Preferred NUMA node: Valid Values: 
-	# Ethernet0: RSS Base Processor Number: Valid Values: 
+	# Ethernet0: Maximum RSS Processor Number: Valid Values:
+	# Ethernet0: Preferred NUMA node: Valid Values:
+	# Ethernet0: RSS Base Processor Number: Valid Values:
 	# Ethernet: Network Address: Valid Values:
 	# Ethernet: VLAN ID: Valid Values:
 	# Local Area Connection: MAC Address: Valid Values:
 	# Local Area Connection: MTU: Valid Values:
 	# VMware Network Adapter VMnet1: VLAN ID: Valid Values:
-	# Ethernet 3: AutoDetachTimer: Valid Values: 
-	# Ethernet 3: NetworkAddress: Valid Values: 
+	# Ethernet 3: AutoDetachTimer: Valid Values:
+	# Ethernet 3: NetworkAddress: Valid Values:
 	# Wi-Fi: Sleep on WoWLAN Disconnect: Valid Values: Disabled, Enabled
 	# Wi-Fi: Packet Coalescing: Valid Values: Disabled, Enabled
 	# Wi-Fi: ARP offload for WoWLAN: Valid Values: Disabled, Enabled
@@ -2180,8 +2179,7 @@ $NetworkAdapters = Get-NetAdapter
 foreach ($Adapter in $NetworkAdapters) {
 	$AdvancedProperties = try {
 		Get-NetAdapterAdvancedProperty -Name $Adapter.Name -ErrorAction Stop
-	}
-	catch {
+	} catch {
 		Write-Host "Error retrieving properties for adapter: $($Adapter.Name)" -ForegroundColor Red
 		continue
 	}
@@ -2193,16 +2191,14 @@ foreach ($Adapter in $NetworkAdapters) {
 			Write-Host "$($Adapter.Name): $($Setting.DisplayName): Options: $($ValidValues -join ', ')"
 			$ValuesToApply = if ($ValidValues -and $ValidValues.Count -gt 0) {
 				$Setting.DisplayValues | Where-Object { $ValidValues -contains $_ }
-			}
-			else {
+			} else {
 				$Setting.DisplayValues
 			}
 			foreach ($Value in $ValuesToApply) {
 				try {
 					Write-Host "$($Adapter.Name): $($Setting.DisplayName): Applying Value: $Value" -ForegroundColor Green
 					Set-NetAdapterAdvancedProperty -Name $Adapter.Name -DisplayName $Setting.DisplayName -DisplayValue $Value -ErrorAction Stop
-				}
-				catch {
+				} catch {
 					Write-Host "Error applying value '$Value' for '$($Setting.DisplayName)' on '$($Adapter.Name)'" -ForegroundColor Red
 				}
 			}
@@ -2224,8 +2220,7 @@ if ($UnusedSettings.Count -gt 0) {
 	foreach ($Setting in $UnusedSettings) {
 		Write-Host "$($Setting.AdapterName): $($Setting.DisplayName): Valid Values: $($Setting.ValidValues)"
 	}
-}
-else {
+} else {
 	Write-Host 'No unused settings found.' -ForegroundColor Green
 }
 
@@ -2240,8 +2235,7 @@ $WakeOnLan_Popup = [Windows.Forms.MessageBox]::Show(
 if ($WakeOnLan_Popup -eq [Windows.Forms.DialogResult]::Yes) {
 	$PnPValue = 256
 	$pmStatus = 'Enabled'
-}
-else {
+} else {
 	$PnPValue = 24
 	$pmStatus = 'Disabled'
 }

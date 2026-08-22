@@ -15,8 +15,7 @@ $Bash = [IO.Path]::Combine($InstallPath, 'usr', 'bin', 'bash.exe')
 
 if ($env:PROCESSOR_ARCHITEW6432) {
     $Architecture = $env:PROCESSOR_ARCHITEW6432
-}
-else {
+} else {
     $Architecture = $env:PROCESSOR_ARCHITECTURE
 }
 
@@ -48,13 +47,13 @@ if (-not (Test-Path $Bash)) {
     $GitHubReleases = Invoke-RestMethod -Uri 'https://api.github.com/repos/msys2/msys2-installer/releases?per_page=100'
 
     $GitHub = $GitHubReleases |
-    Where-Object {
-        (-not $_.draft) -and
-        (-not $_.prerelease) -and
-        ($_.tag_name -match '^\d{4}-\d{2}-\d{2}$')
-    } |
-    Sort-Object -Property tag_name -Descending |
-    Select-Object -First 1
+        Where-Object {
+            (-not $_.draft) -and
+            (-not $_.prerelease) -and
+            ($_.tag_name -match '^\d{4}-\d{2}-\d{2}$')
+        } |
+        Sort-Object -Property tag_name -Descending |
+        Select-Object -First 1
 
     $LatestVersion = $GitHub.tag_name -replace '-', ''
 
@@ -120,8 +119,7 @@ if ($Updates.Count -gt 0) {
     if ($LASTEXITCODE -ne 0) {
         throw "MSYS2 update failed with exit code '$LASTEXITCODE'."
     }
-}
-else {
+} else {
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write("'MSYS2'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' is already up to date'); [Console]::ResetColor(); [Console]::WriteLine()
 }
 
@@ -140,8 +138,7 @@ if (-not (Test-Path $GccPath)) {
     if ($LASTEXITCODE -ne 0) {
         throw "Toolchain installation failed with exit code '$LASTEXITCODE'."
     }
-}
-else {
+} else {
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write("'gcc'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' is already installed'); [Console]::ResetColor(); [Console]::WriteLine()
 }
 
@@ -153,18 +150,16 @@ $OLD_PATH = [Environment]::GetEnvironmentVariable(
 
 if ([string]::IsNullOrWhiteSpace($OLD_PATH)) {
     $PathEntries = @()
-}
-else {
+} else {
     $PathEntries = $OLD_PATH.Split(';') |
-    Where-Object { -not [string]::IsNullOrWhiteSpace($_) } |
-    ForEach-Object { $_.Trim().TrimEnd('\') }
+        Where-Object { -not [string]::IsNullOrWhiteSpace($_) } |
+        ForEach-Object { $_.Trim().TrimEnd('\') }
 }
 
 if ($PathEntries -notcontains $EnvironmentPath.TrimEnd('\')) {
     if ([string]::IsNullOrWhiteSpace($OLD_PATH)) {
         $NEW_PATH = $EnvironmentPath
-    }
-    else {
+    } else {
         $NEW_PATH = "$($OLD_PATH.TrimEnd(';'));$EnvironmentPath"
     }
 

@@ -72,7 +72,7 @@ if (Select-String -Quiet -Path $IndexJS -Pattern 'betterdiscord') {
         if ($Content -match '\bfalse\b') {
             Get-Process -Name 'Discord' | Stop-Process
             $Content -replace '\bfalse\b', 'true' | Set-Content -Path $SettingSavePath
-        }    
+        }
     }
 }
 
@@ -85,7 +85,7 @@ if (-not (Select-String -Quiet -Path $IndexJS -Pattern 'betterdiscord')) {
             "$env:APPDATA\BetterDiscord\data",
             "$env:APPDATA\BetterDiscord\data\stable"
         )
-        
+
         foreach ($Folder in $Folders) {
             if (-not (Test-Path $Folder)) {
                 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Creating folder '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Folder'"); [Console]::ResetColor(); [Console]::WriteLine()
@@ -103,7 +103,7 @@ if (-not (Select-String -Quiet -Path $IndexJS -Pattern 'betterdiscord')) {
             [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ThemeFileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ThemeURL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ThemeSavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
             (New-Object Net.WebClient).DownloadFile($ThemeURL, $ThemeSavePath)
         }
-        
+
         $PluginsDir = [IO.Path]::Combine($env:APPDATA, 'BetterDiscord', 'plugins')
         $PluginsURLs = @(
             'https://raw.githubusercontent.com/rauenzi/BetterDiscordAddons/master/Plugins/DoNotTrack/DoNotTrack.plugin.js',

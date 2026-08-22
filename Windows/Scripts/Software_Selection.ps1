@@ -789,8 +789,7 @@ if ($InstalledSoftware -match 'Zoom') {
 $CheckBoxes['NVCleanstall'].Add_Click({
         if ($CheckBoxes['NVCleanstall'].Checked -eq $true) {
             $CheckBoxes['Display Driver Uninstaller'].Checked = $true
-        }
-        elseif ($CheckBoxes['NVCleanstall'].Checked -eq $false) {
+        } elseif ($CheckBoxes['NVCleanstall'].Checked -eq $false) {
             $CheckBoxes['Display Driver Uninstaller'].Checked = $false
         }
     })

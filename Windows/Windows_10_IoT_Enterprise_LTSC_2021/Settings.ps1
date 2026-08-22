@@ -113,7 +113,7 @@ New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Par
 # $svchostram = (Get-CimInstance -ClassName Win32_PhysicalMemory | Measure-Object -Property Capacity -Sum).Sum / 1kb
 # New-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control' -Name 'SvcHostSplitThresholdInKB' -PropertyType DWord -Value $svchostram -Force
 
-# UserFolders -ThreeDObjects Hide 
+# UserFolders -ThreeDObjects Hide
 if (-not (Test-Path -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag')) {
 	New-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag' -Force
 }
@@ -123,23 +123,23 @@ if (-not (Test-Path -Path 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentV
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag' -Name 'ThisPCPolicy' -PropertyType String -Value Hide -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{31C0DD25-9439-4F12-BF41-7FF4EDA38722}\PropertyBag' -Name 'ThisPCPolicy' -PropertyType String -Value Hide -Force
 
-# UserFolders Desktop  Hide 
+# UserFolders Desktop  Hide
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag' -Name 'ThisPCPolicy' -PropertyType String -Value Hide -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}\PropertyBag' -Name 'ThisPCPolicy' -PropertyType String -Value Hide -Force
-				
-# UserFolders Documents  Hide 
+
+# UserFolders Documents  Hide
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{f42ee2d3-909f-4907-8871-4c22fc0bf756}\PropertyBag' -Name 'ThisPCPolicy' -PropertyType String -Value Hide -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{f42ee2d3-909f-4907-8871-4c22fc0bf756}\PropertyBag' -Name 'ThisPCPolicy' -PropertyType String -Value Hide -Force
-			
-# UserFolders Downloads  Hide 
+
+# UserFolders Downloads  Hide
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{7d83ee9b-2244-4e70-b1f5-5393042af1e4}\PropertyBag' -Name 'ThisPCPolicy' -PropertyType String -Value Hide -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{7d83ee9b-2244-4e70-b1f5-5393042af1e4}\PropertyBag' -Name 'ThisPCPolicy' -PropertyType String -Value Hide -Force
-				
-# UserFolders Music  Hide  
+
+# UserFolders Music  Hide
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{a0c69a99-21c8-4671-8703-7934162fcf1d}\PropertyBag' -Name 'ThisPCPolicy' -PropertyType String -Value Hide -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{a0c69a99-21c8-4671-8703-7934162fcf1d}\PropertyBag' -Name 'ThisPCPolicy' -PropertyType String -Value Hide -Force
-			
-# UserFolders Pictures  Hide 
+
+# UserFolders Pictures  Hide
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{0ddd015d-b06c-45d5-8c4c-f59713854639}\PropertyBag' -Name 'ThisPCPolicy' -PropertyType String -Value Hide -Force
 New-ItemProperty -Path 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\FolderDescriptions\{0ddd015d-b06c-45d5-8c4c-f59713854639}\PropertyBag' -Name 'ThisPCPolicy' -PropertyType String -Value Hide -Force
 
@@ -174,7 +174,7 @@ Export-StartLayout -Path $Path -UseDesktopApplicationID
 $XML.LayoutModificationTemplate.DefaultLayoutOverride.StartLayoutCollection.StartLayout.Group | ForEach-Object { $_.ParentNode.RemoveChild($_) }
 $XML.Save($Path)
 New-Item -Path 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer' -Force
-New-ItemProperty 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer' -Name 'LockedStartLayout' -Type DWord -Value 1 -Force 
+New-ItemProperty 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer' -Name 'LockedStartLayout' -Type DWord -Value 1 -Force
 New-ItemProperty 'HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer' -Name 'StartLayoutFile' -Type ExpandString -Value $Path -Force
 Stop-Process -Name 'StartMenuExperienceHost' -Force -ErrorAction SilentlyContinue
 (New-Object -ComObject wscript.shell).SendKeys('^{ESC}')
@@ -219,14 +219,12 @@ Remove-Item -Path 'HKLM:\SOFTWARE\Classes\SystemFileAssociations\.tiff\Shell\3D 
 # Disable Windows Sandbox
 if ((Get-CimInstance -ClassName CIM_Processor).VirtualizationFirmwareEnabled) {
 	Disable-WindowsOptionalFeature -FeatureName 'Containers-DisposableClientVM' -Online -NoRestart
-}
-else {
+} else {
 	try {
 		if ((Get-CimInstance -ClassName CIM_ComputerSystem).HypervisorPresent) {
 			Disable-WindowsOptionalFeature -FeatureName 'Containers-DisposableClientVM' -Online -NoRestart
 		}
-	}
-	catch [Exception] {
+	} catch [Exception] {
 		Write-Error -Message $Localization.EnableHardwareVT -ErrorAction SilentlyContinue
 		Write-Error -Message ($Localization.RestartFunction -f $MyInvocation.Line.Trim()) -ErrorAction SilentlyContinue
 	}

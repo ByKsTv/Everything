@@ -67,8 +67,7 @@ while (-not $done) {
         $c.Response.OutputStream.Write($b, 0, $b.Length)
         $c.Response.OutputStream.Close()
         $done = $true
-    }
-    else {
+    } else {
         $c.Response.StatusCode = 404
         $c.Response.Close()
     }

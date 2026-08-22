@@ -14,10 +14,9 @@ $regPaths = 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*', 'HKLM
 $InstalledVersion = (Get-ItemProperty -Path $regPaths -ErrorAction SilentlyContinue | Where-Object { $_.DisplayName -match 'Subtitle\s?Edit' } | Select-Object -First 1).DisplayVersion
 
 $installedNormalized = if ($InstalledVersion) {
-    [Version](($InstalledVersion -split '\+')[0]) 
-}
-else {
-    [Version]'0.0.0' 
+    [Version](($InstalledVersion -split '\+')[0])
+} else {
+    [Version]'0.0.0'
 }
 $latestNormalized = [Version]$LatestVersion
 

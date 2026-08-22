@@ -68,7 +68,7 @@ $settings = @(
         Key   = 'wifi_call_enable1'
         Value = '1'
     }
- 
+
     [PSCustomObject]@{
         Name  = 'Settings -> Connections -> Wi-Fi Calling -> Calling Preference -> Wi-Fi preferred'
         Table = 'system'
@@ -82,7 +82,7 @@ $settings = @(
         Key   = 'bluetooth_on'
         Value = '0'
     }
- 
+
     [PSCustomObject]@{
         Name  = 'Settings -> Connections -> Bluetooth -> Advanced settings -> Music Share -> Off'
         Table = 'secure'
@@ -355,7 +355,7 @@ $settings = @(
         Key   = 'screen_off_pocket'
         Value = '0'
     }
-    
+
     [PSCustomObject]@{
         Name  = 'Settings -> Display -> Touch sensitivity -> Off'
         Table = 'system'
@@ -507,8 +507,7 @@ foreach ($setting in $settings) {
 
     if ($old -match '^(null)?$') {
         $oldDisplay = '<created>'
-    }
-    else {
+    } else {
         $oldDisplay = $old
     }
 

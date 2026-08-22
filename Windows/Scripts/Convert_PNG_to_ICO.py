@@ -1,5 +1,6 @@
-from PIL import Image  # type: ignore
 import os
+
+from PIL import Image  # type: ignore
 
 input_path = r"C:\Users\Test\Downloads\New folder\input.png"
 output_path = os.path.splitext(input_path)[0] + ".ico"

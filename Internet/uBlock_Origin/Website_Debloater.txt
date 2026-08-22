@@ -88,7 +88,7 @@ aliexpress.*##[class*="more-to-love-v2--wrap--"]
 ! Hide the badge icons from uploader name on 9GAG post
 9gag.com##.small.potz-badge--hoverable.potz-badge.creator__badge
 
-! Hide the badge icons from users comments on 9GAG post 
+! Hide the badge icons from users comments on 9GAG post
 9gag.com##span.small.potz-badge--hoverable.potz-badge
 
 ! Hide the ads in between results, cookies notice on the footer on KSP

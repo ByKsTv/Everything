@@ -47,7 +47,7 @@ if (($null -eq $InstalledVersion) -or ($InstalledVersion -notmatch $LatestVersio
     while (-not (Get-Process | Where-Object { $_.MainWindowTitle -eq $InstallerPopup } )) {
         Start-Sleep -Milliseconds 1000
     }
-    
+
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Waiting for window '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$InstallerPopup'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to close '); [Console]::ResetColor(); [Console]::WriteLine()
     while ((Get-Process | Where-Object { $_.MainWindowTitle -eq $InstallerPopup } )) {
         Start-Sleep -Milliseconds 1000
@@ -60,7 +60,7 @@ if (($null -eq $InstalledVersion) -or ($InstalledVersion -notmatch $LatestVersio
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Deleting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Discord'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' desktop shortcut from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DesktopShortcut'"); [Console]::ResetColor(); [Console]::WriteLine()
         Remove-Item -Path $DesktopShortcut
     }
-    
+
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Disabling Discord startup'); [Console]::ResetColor(); [Console]::WriteLine()
     if ($null -ne (Get-Item -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Run').GetValue('Discord')) {
         Remove-ItemProperty -Path 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Run' -Name 'Discord' -Force

@@ -94,7 +94,7 @@ $settings = @(
         Key   = 'location_mode'
         Value = '0'
     }
-    
+
     [PSCustomObject]@{
         Name  = 'Settings -> Privacy -> Microphone -> Microphone access on your remote -> Off'
         Table = 'global'
@@ -278,8 +278,7 @@ foreach ($setting in $settings) {
 
     if ($old -match '^(null)?$') {
         $oldDisplay = '<created>'
-    }
-    else {
+    } else {
         $oldDisplay = $old
     }
 
@@ -314,8 +313,7 @@ if ($PackageCheck -match "package:$([regex]::Escape($PKG))") {
 
     if (-not $IsWhitelisted) {
         adb shell "cmd deviceidle whitelist +$PKG"
-    }
-    else {
+    } else {
         Write-Host "Already whitelisted: $PKG"
     }
 
@@ -324,8 +322,7 @@ if ($PackageCheck -match "package:$([regex]::Escape($PKG))") {
     adb shell "cmd appops set --user 0 $PKG RUN_IN_BACKGROUND allow || true"
     adb shell "cmd appops set --user 0 $PKG RUN_ANY_IN_BACKGROUND allow || true"
     adb shell "cmd appops set --user 0 $PKG START_FOREGROUND allow || true"
-}
-else {
+} else {
     Write-Host "Package not found: $PKG"
 }
 
@@ -370,13 +367,11 @@ foreach ($package in $Packages) {
 
         if ($result -match 'Success') {
             Write-Host "Uninstalled successfully: $package" -ForegroundColor Green
-        }
-        else {
+        } else {
             Write-Host "Failed to uninstall: $package" -ForegroundColor Red
             Write-Host $result
         }
-    }
-    else {
+    } else {
         Write-Host "Package not found, skipping: $package" -ForegroundColor DarkGray
     }
 }

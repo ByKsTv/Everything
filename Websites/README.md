@@ -138,3 +138,12 @@
 | Path MTU Discovery Test | [Website](http://pmtud.enslaves.us/)               |       |
 | TCP/IP Analyzer         | [Website](https://www.speedguide.net/analyzer.php) |       |
 | IP Leak                 | [Website](https://ipleak.net/)                     |       |
+
+## Shopping
+
+| Name     | Links                                       | Notes                            |
+| -------- | ------------------------------------------- | -------------------------------- |
+| Salendar | [Website](https://salendar.com/aliexpress/) | Sale calendar                    |
+| Ali-Shop | [Website](https://en.ali-shop.net/sales)    | Detailed month-by-month calendar |
+| AliTools | [Website](https://alitools.io/en)           | Checking an individual product   |
+| AliPrice | [Website](https://www.aiprice.com/)         | Price-history tracker            |

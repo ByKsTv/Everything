@@ -66,11 +66,9 @@ foreach ($table in $tables) {
 
         if ($beforeHas -and $afterHas -and $before[$key] -ne $after[$key]) {
             Write-Host "$table $($key): $($before[$key]) -> $($after[$key])"
-        }
-        elseif (-not $beforeHas -and $afterHas) {
+        } elseif (-not $beforeHas -and $afterHas) {
             Write-Host "$table $($key): added -> $($after[$key])"
-        }
-        elseif ($beforeHas -and -not $afterHas) {
+        } elseif ($beforeHas -and -not $afterHas) {
             Write-Host "$table $($key): $($before[$key]) -> removed"
         }
     }

@@ -456,8 +456,7 @@ $Window.Add_Loaded({
             $script:PipeWriter.WriteLine('{"command":["set_property","pause",true]}')
 
             $Timer.Start()
-        }
-        catch {
+        } catch {
             if ($null -ne $script:Mpv) {
                 if ($script:Mpv.HasExited -eq $false) {
                     $script:Mpv.Kill()
@@ -475,8 +474,7 @@ $Timer.Add_Tick({
         while ($null -ne $script:ReadTask -and $script:ReadTask.IsCompleted -and $ReadCount -lt 200) {
             try {
                 $Line = $script:ReadTask.GetAwaiter().GetResult()
-            }
-            catch {
+            } catch {
                 $Line = $null
             }
 
@@ -488,8 +486,7 @@ $Timer.Add_Tick({
 
             try {
                 $Message = ConvertFrom-Json -InputObject $Line -ErrorAction Stop
-            }
-            catch {
+            } catch {
                 $Message = $null
             }
 
@@ -551,8 +548,7 @@ $Timer.Add_Tick({
                     if ($Message.name -eq 'pause' -and $null -ne $Message.data) {
                         if ([bool]$Message.data -eq $true) {
                             $PlayButton.Content = 'Play'
-                        }
-                        else {
+                        } else {
                             $PlayButton.Content = 'Pause'
                         }
                     }
@@ -560,8 +556,7 @@ $Timer.Add_Tick({
                     if ($Message.name -eq 'mute' -and $null -ne $Message.data) {
                         if ([bool]$Message.data -eq $true) {
                             $MuteButton.Content = 'Unmute'
-                        }
-                        else {
+                        } else {
                             $MuteButton.Content = 'Mute'
                         }
                     }
@@ -570,8 +565,7 @@ $Timer.Add_Tick({
 
             if ($script:Pipe.IsConnected -eq $true) {
                 $script:ReadTask = $script:PipeReader.ReadLineAsync()
-            }
-            else {
+            } else {
                 $script:ReadTask = $null
             }
 
@@ -925,8 +919,7 @@ $ExportButton.Add_Click({
 
             if ($AccurateValue -eq $true) {
                 & ffmpeg.exe -y -ss $StartValue -i $InputPath -t $LengthValue -c:v libx264 -preset medium -crf 18 -c:a aac -b:a 192k $OutputPath 2>$null
-            }
-            else {
+            } else {
                 & ffmpeg.exe -y -ss $StartValue -i $InputPath -t $LengthValue -c copy $OutputPath 2>$null
             }
 
@@ -956,8 +949,7 @@ $ExportTimer.Add_Tick({
                 if ($ExitCode -eq 0) {
                     $StatusText.Text = 'Finished'
                     [System.Windows.MessageBox]::Show('Video exported successfully.', 'MiniCut')
-                }
-                else {
+                } else {
                     $StatusText.Text = 'Export failed'
                     [System.Windows.MessageBox]::Show('ffmpeg could not export the video.', 'MiniCut')
                 }
@@ -978,8 +970,7 @@ $Window.Add_Closing({
         if ($null -ne $script:PipeWriter) {
             try {
                 $script:PipeWriter.WriteLine('{"command":["quit"]}')
-            }
-            catch {
+            } catch {
             }
         }
 

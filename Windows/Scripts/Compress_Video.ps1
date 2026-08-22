@@ -34,8 +34,7 @@ foreach ($ExecutableName in 'ffmpeg', 'ffprobe') {
 
 try {
     $ResolvedInputPath = (Resolve-Path -LiteralPath $InputFile -ErrorAction Stop).Path
-}
-catch {
+} catch {
     throw "Input file '$InputFile' was not found."
 }
 
@@ -66,9 +65,8 @@ if ($ProbeExitCode -ne 0) {
 
 try {
     $ProbeData = ($ProbeOutput -join [Environment]::NewLine) |
-    ConvertFrom-Json -ErrorAction Stop
-}
-catch {
+        ConvertFrom-Json -ErrorAction Stop
+} catch {
     throw "Could not parse ffprobe output: $($_.Exception.Message)"
 }
 
@@ -77,8 +75,7 @@ try {
         [string]$ProbeData.format.duration,
         [System.Globalization.CultureInfo]::InvariantCulture
     )
-}
-catch {
+} catch {
     throw 'Could not determine the video duration.'
 }
 
@@ -90,8 +87,7 @@ $HasAudio = $ProbeData.streams.codec_type -contains 'audio'
 
 if ($HasAudio) {
     $EffectiveAudioBitrateKbps = $AudioBitrateKbps
-}
-else {
+} else {
     $EffectiveAudioBitrateKbps = 0
 }
 
@@ -179,8 +175,7 @@ try {
     if ($LASTEXITCODE -ne 0) {
         throw "FFmpeg second pass failed with exit code $LASTEXITCODE."
     }
-}
-finally {
+} finally {
     Remove-Item -Path "$PassLogBase*" -Force -ErrorAction SilentlyContinue
 }
 

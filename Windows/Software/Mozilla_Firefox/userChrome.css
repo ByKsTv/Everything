@@ -2,92 +2,92 @@
 
 /* Remove the "Search tabs" button from the tabs toolbar */
 #alltabs-button {
-	#TabsToolbar & {
-		display: none;
-	}
+  #TabsToolbar & {
+    display: none;
+  }
 }
 
 /* Remove the spacer from the tabs toolbar */
 .titlebar-spacer {
-	display: none;
+  display: none;
 }
 
 /* Enlarge and align tab close button */
 .tab-close-button {
-	/* Increase the height to match the maximum height of hover */
-	height: 44px !important; /* It doesn't apply without `!important` */
-	/* Match the width to it's height since it's original size is 12x12 */
-	width: 44px !important; /* It doesn't apply without `!important` */
-	/* Align button button to the right */
-	margin-inline-end: -8px !important; /* It doesn't apply without `!important` */
-	/* Don't shrink when hover */
-	padding: 0 !important; /* It doesn't apply without `!important` */
+  /* Increase the height to match the maximum height of hover */
+  height: 44px !important; /* It doesn't apply without `!important` */
+  /* Match the width to it's height since it's original size is 12x12 */
+  width: 44px !important; /* It doesn't apply without `!important` */
+  /* Align button button to the right */
+  margin-inline-end: -8px !important; /* It doesn't apply without `!important` */
+  /* Don't shrink when hover */
+  padding: 0 !important; /* It doesn't apply without `!important` */
 }
 
 /* Highlight tab close button on hover */
 .tab-close-button:hover {
-	/* Set the background color to red to indicate warning */
-	background-color: red !important; /* It doesn't apply without `!important` */
-	/* Set the icon color to white */
-	color: white !important; /* It doesn't apply without `!important` */
+  /* Set the background color to red to indicate warning */
+  background-color: red !important; /* It doesn't apply without `!important` */
+  /* Set the icon color to white */
+  color: white !important; /* It doesn't apply without `!important` */
 }
 
 /* Highlight browser close button on hover */
 .titlebar-button {
-	@media not (prefers-contrast) {
-		&.titlebar-close:hover {
-			/* Set the background color to red to indicate warning */
-			background-color: red !important; /* It doesn't apply without `!important` */
-		}
-	}
+  @media not (prefers-contrast) {
+    &.titlebar-close:hover {
+      /* Set the background color to red to indicate warning */
+      background-color: red !important; /* It doesn't apply without `!important` */
+    }
+  }
 }
 
 /* Remove spacing between each item on context menus (right-click | folder from bookmark) */
 menupopup,
 panel {
-	--menuitem-padding: 0.1em 0em !important; /* It doesn't apply without `!important` */
+  --menuitem-padding: 0.1em 0em !important; /* It doesn't apply without `!important` */
 }
 
 /* Bookmarks items inside a folder */
 .toolbar-menupopup {
-	&,
-	& menupopup {
-		/* Set the background color of the panel to black */
-		--panel-background: black !important; /* It doesn't apply without `!important` */
-		/* Set the border color of the panel to white */
-		--panel-border-color: white !important; /* It doesn't apply without `!important` */
-		/* Remove spacing of the panel from border to the items */
-		--panel-padding: 2px !important; /* It doesn't apply without `!important` */
-	}
+  &,
+  & menupopup {
+    /* Set the background color of the panel to black */
+    --panel-background: black !important; /* It doesn't apply without `!important` */
+    /* Set the border color of the panel to white */
+    --panel-border-color: white !important; /* It doesn't apply without `!important` */
+    /* Remove spacing of the panel from border to the items */
+    --panel-padding: 2px !important; /* It doesn't apply without `!important` */
+  }
 }
 
 /* Set the background color of the title bar (tabs bar) to black */
 #navigator-toolbox {
-	background-color: black !important; /* It doesn't apply without `!important` */
+  background-color: black !important; /* It doesn't apply without `!important` */
 }
 
 /* Set the background color of the entire toolbar to black */
 .browser-toolbar {
-	background-color: black !important; /* It doesn't apply without `!important` */
-	/* Set the text inside to white */
-	color: white !important; /* It doesn't apply without `!important` */
+  background-color: black !important; /* It doesn't apply without `!important` */
+  /* Set the text inside to white */
+  color: white !important; /* It doesn't apply without `!important` */
 }
 
 /* Dim the inactive tabs on the tabs bar */
 .tabbrowser-tab:not([selected]) {
-	opacity: 0.5;
+  opacity: 0.5;
 }
 
 /* Undim the inactive tabs on the tabs bar on hover */
 .tabbrowser-tab:not([selected]):hover {
-	opacity: 1;
+  opacity: 1;
 }
 
 /* Compact spacing between each bookmark on bookmarks toolbar */
 #personal-toolbar-empty-description,
 toolbarbutton.bookmark-item:not(.subviewbutton) {
-	margin: 1px !important; /* It doesn't apply without `!important` */
-	padding: 1px !important; /* It doesn't apply without `!important` */
+  margin: 1px !important; /* It doesn't apply without `!important` */
+  padding: 1px !important; /* It doesn't apply without `!important` */
 }
 
 /* Compact spacing between each setting on settings context menu */
@@ -95,26 +95,26 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 panelview .toolbarbutton-1,
 .subviewbutton,
 .widget-overflow-list .toolbarbutton-1 {
-	margin: 1px !important; /* It doesn't apply without `!important` */
-	min-height: 0px !important; /* It doesn't apply without `!important` */
-	padding: 1px !important; /* It doesn't apply without `!important` */
+  margin: 1px !important; /* It doesn't apply without `!important` */
+  min-height: 0px !important; /* It doesn't apply without `!important` */
+  padding: 1px !important; /* It doesn't apply without `!important` */
 }
 
 /* Hide "Copy Clean Link (U)" from context menu if it's greyed out */
-#context-stripOnShareLink[disabled='true'],
-#context-stripOnShareLink[aria-disabled='true'],
+#context-stripOnShareLink[disabled="true"],
+#context-stripOnShareLink[aria-disabled="true"],
 #context-stripOnShareLink[hidden] {
-	visibility: collapse;
+  visibility: collapse;
 }
 
 /* Hide "Copy Link" from context menu if "Copy Clean Link (U)" is available */
 menupopup#contentAreaContextMenu:has(
-		#context-stripOnShareLink:not([disabled='true']):not(
-				[aria-disabled='true']
-			):not([hidden])
-	)
-	#context-copylink {
-	visibility: collapse;
+    #context-stripOnShareLink:not([disabled="true"]):not(
+        [aria-disabled="true"]
+      ):not([hidden])
+  )
+  #context-copylink {
+  visibility: collapse;
 }
 
 /* Hide "Open Link in New Window" from context menu */
@@ -137,7 +137,7 @@ menupopup#contentAreaContextMenu > #context-sendimage,
 menupopup#contentAreaContextMenu > #context-setDesktopBackground,
 /* Hide "Search Image with Google Lens" from context menu */
 menupopup#contentAreaContextMenu > #context-visual-search {
-	visibility: collapse;
+  visibility: collapse;
 }
 
 /* Settings > Help > About Firefox */
@@ -145,152 +145,152 @@ menupopup#contentAreaContextMenu > #context-visual-search {
 #clientBox,
 /* Footer box */
 #bottomBox {
-	/* Black background */
-	background: black !important; /* It doesn't apply without `!important` */
+  /* Black background */
+  background: black !important; /* It doesn't apply without `!important` */
 }
 
 /* Remove fade effects from status panel (URL Preview) */
 #statuspanel {
-	transition: none !important; /* It doesn't apply without `!important` */
+  transition: none !important; /* It doesn't apply without `!important` */
 }
 
 /* Remove fade effects from application menu */
 panel {
-	transition: none !important; /* It doesn't apply without `!important` */
+  transition: none !important; /* It doesn't apply without `!important` */
 }
 
 /* Style the status panel (URL Preview) */
 #statuspanel-label {
-	color: white !important; /* It doesn't apply without `!important` */
-	background-color: black !important; /* It doesn't apply without `!important` */
-	border-color: white !important; /* It doesn't apply without `!important` */
+  color: white !important; /* It doesn't apply without `!important` */
+  background-color: black !important; /* It doesn't apply without `!important` */
+  border-color: white !important; /* It doesn't apply without `!important` */
 }
 
 /* Remove "Add tab to taskbar" button from URL bar */
 #taskbar-tabs-button {
-	display: none;
+  display: none;
 }
 
 /* Remove "Enter Reader View" button from URL bar */
 #reader-mode-button {
-	display: none;
+  display: none;
 }
 
 /* Hide greyed out options from context menus */
-menupopup :is(menuitem, menu)[disabled='true'] {
-	display: none;
+menupopup :is(menuitem, menu)[disabled="true"] {
+  display: none;
 }
 
 /* Set the background color of "Edit Bookmark" to black */
 :root[dialogroot] {
-	--background-color-canvas: black !important; /* It doesn't apply without `!important` */
+  --background-color-canvas: black !important; /* It doesn't apply without `!important` */
 }
 
 /* Set the background color of "Edit Bookmark" table tags to black */
 #editBMPanel_tagsSelector {
-	background-color: black !important; /* It doesn't apply without `!important` */
+  background-color: black !important; /* It doesn't apply without `!important` */
 }
 
 /* Set the background color of the "Manage History" buttons on the header to black */
 #placesToolbar {
-	background-color: black !important; /* It doesn't apply without `!important` */
+  background-color: black !important; /* It doesn't apply without `!important` */
 }
 
 /* Set the background color of the "Manage History" left sidebar to black */
 #placesList {
-	background-color: black;
+  background-color: black;
 }
 
 /* Set the background color of the "Manage History" footer to black */
 #detailsPane {
-	background-color: black !important; /* It doesn't apply without `!important` */
+  background-color: black !important; /* It doesn't apply without `!important` */
 }
 
 /* Set the background color of the "Manage History" items to black */
 tree {
-	background-color: black !important; /* It doesn't apply without `!important` */
+  background-color: black !important; /* It doesn't apply without `!important` */
 }
 
 /* Set the background color of the "Manage History" search input to black */
 #input {
-	background-color: black;
+  background-color: black;
 }
 
 /* Set the background color of the "Manage History" items input to black */
-input:where(:not([type='radio' i], [type='checkbox' i], [type='range' i])),
+input:where(:not([type="radio" i], [type="checkbox" i], [type="range" i])),
 textarea {
-	background-color: black !important; /* It doesn't apply without `!important` */
+  background-color: black !important; /* It doesn't apply without `!important` */
 }
 
 /* Set the background color of the "Manage History" header colums to black */
 treecol,
 .tree-columnpicker-button {
-	background-color: black !important; /* It doesn't apply without `!important` */
+  background-color: black !important; /* It doesn't apply without `!important` */
 }
 
 /* Set the background color of the "Manage Downloads" items to black */
 #downloadsListBox {
-	background-color: black !important; /* It doesn't apply without `!important` */
+  background-color: black !important; /* It doesn't apply without `!important` */
 }
 
 /* Set the background color of the search results items on url bar to black */
 .urlbar-background {
-	background: black !important; /* It doesn't apply without `!important` */
+  background: black !important; /* It doesn't apply without `!important` */
 }
 
 /* Compact prefix label before url (firefox indicator) */
-#identity-box[pageproxystate='valid']:is(
-		.notSecureText,
-		.chromeUI,
-		.extensionPage
-	)
-	> .identity-box-button,
+#identity-box[pageproxystate="valid"]:is(
+    .notSecureText,
+    .chromeUI,
+    .extensionPage
+  )
+  > .identity-box-button,
 #urlbar-label-box {
-	padding-inline: 3px !important; /* It doesn't apply without `!important` */
+  padding-inline: 3px !important; /* It doesn't apply without `!important` */
 }
 
 /* Compact prefix label before url (search engine) */
 .searchmode-switcher {
-	margin-inline-end: 3px !important; /* It doesn't apply without `!important` */
-	padding-inline: 3px !important; /* It doesn't apply without `!important` */
+  margin-inline-end: 3px !important; /* It doesn't apply without `!important` */
+  padding-inline: 3px !important; /* It doesn't apply without `!important` */
 }
 
 /* Set the background color of the auto complete fill forms to black */
 .autocomplete-richlistbox {
-	background: black !important; /* It doesn't apply without `!important` */
+  background: black !important; /* It doesn't apply without `!important` */
 }
 
 /* Set the border color of buttons to white */
 button,
 select,
-input[type='color'],
+input[type="color"],
 menulist {
-	border-color: white !important; /* It doesn't apply without `!important` */
+  border-color: white !important; /* It doesn't apply without `!important` */
 }
 
 /* Set the border color of Permissions of current site to white */
-:is(menupopup, panel):where([type='arrow']) {
-	--panel-border-color: white !important; /* It doesn't apply without `!important` */
+:is(menupopup, panel):where([type="arrow"]) {
+  --panel-border-color: white !important; /* It doesn't apply without `!important` */
 }
 
 /* Set the border color of "Edit Bookmark" input text to white */
 :root[subdialog] {
-	input {
-		border-color: white !important; /* It doesn't apply without `!important` */
-	}
+  input {
+    border-color: white !important; /* It doesn't apply without `!important` */
+  }
 }
 
 /* Set the border color of Permissions buttons such as "Allow" and "Block" pop-ups of current site to white */
 #notification-popup button {
-	border: 1px solid white !important; /* It doesn't apply without `!important` */
+  border: 1px solid white !important; /* It doesn't apply without `!important` */
 }
 
 /* Set the border color of Permissions buttons such as "Store data in persistent storage" of current site to white */
 .permission-popup-permission-remove-button {
-	border: 1px solid white !important; /* It doesn't apply without `!important` */
+  border: 1px solid white !important; /* It doesn't apply without `!important` */
 }
 
 /* Set a border for Permissions buttons such as "Autoplay" of current site */
 #permission-popup-menulist {
-	border: 1px solid;
+  border: 1px solid;
 }

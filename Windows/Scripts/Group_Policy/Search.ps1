@@ -65,8 +65,7 @@ if ($UserDefined) {
 			if ((Get-Content $File.FullName -ErrorAction Stop) -match $UserDefined) {
 				Write-Host "Found '$UserDefined' in: $($File.FullName)" -ForegroundColor Green
 			}
-		}
-		catch {
+		} catch {
 			Write-Host "Error reading: $($File.FullName)" -ForegroundColor Red
 		}
 	}

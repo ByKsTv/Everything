@@ -10,10 +10,9 @@ if (-not (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue)) 
 
 $InstalledVersion = py.exe --version
 if ($InstalledVersion) {
-    $InstalledVersion = (python --version) -replace 'Python ', '' 
-}
-else {
-    $InstalledVersion = $null 
+    $InstalledVersion = (python --version) -replace 'Python ', ''
+} else {
+    $InstalledVersion = $null
 }
 $LatestVersion = (Invoke-RestMethod -Uri 'https://github.com/python/cpython/releases.atom').title -replace '^v' -notmatch '[a-z]' | Sort-Object { [version] $_ } -Descending | Select-Object -First 1
 
@@ -23,7 +22,7 @@ if (($null -eq $InstalledVersion) -or ($InstalledVersion -notmatch $LatestVersio
     $SavePath = [IO.Path]::Combine($env:TEMP, $FileName)
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Python'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
     (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
-    
+
     $Argument = '/silent InstallAllUsers=1 PrependPath=1 Include_test=0'
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Python'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
     Start-Process $SavePath -ArgumentList $Argument -Wait

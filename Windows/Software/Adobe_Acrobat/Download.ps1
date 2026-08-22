@@ -99,22 +99,22 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     $Values = @{}
 
     $Links = (Invoke-WebRequest -UseBasicParsing -Uri $TitleHREF).Links.Href |
-    Where-Object {
-        $null -ne $_
-    } |
-    ForEach-Object {
-        [Uri]::new(
-            [Uri]$TitleHREF,
-            [Net.WebUtility]::HtmlDecode($_)
-        ).AbsoluteUri
-    }
+        Where-Object {
+            $null -ne $_
+        } |
+        ForEach-Object {
+            [Uri]::new(
+                [Uri]$TitleHREF,
+                [Net.WebUtility]::HtmlDecode($_)
+            ).AbsoluteUri
+        }
 
     foreach ($Domain in $Domains) {
         $DomainURL = $Links |
-        Where-Object {
-            ([Uri]$_).Host -match "(^|\.)$([regex]::Escape($Domain))$"
-        } |
-        Select-Object -First 1
+            Where-Object {
+                ([Uri]$_).Host -match "(^|\.)$([regex]::Escape($Domain))$"
+            } |
+            Select-Object -First 1
 
         if ($null -eq $DomainURL) {
             throw "Domain not found: $Domain"
@@ -156,18 +156,18 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
         }
 
         $ForumCandidates += $TopicPage.Links.Href |
-        Where-Object {
-            $_ -match 'viewforum\.php\?[^"'']*f=\d+'
-        } |
-        ForEach-Object {
-            [Uri]::new(
-                [Uri]$TopicURL,
-                [Net.WebUtility]::HtmlDecode($_)
-            ).AbsoluteUri
-        }
+            Where-Object {
+                $_ -match 'viewforum\.php\?[^"'']*f=\d+'
+            } |
+            ForEach-Object {
+                [Uri]::new(
+                    [Uri]$TopicURL,
+                    [Net.WebUtility]::HtmlDecode($_)
+                ).AbsoluteUri
+            }
 
         $ForumCandidates = $ForumCandidates |
-        Select-Object -Unique
+            Select-Object -Unique
 
         $ForumURL = $null
         $Match = $null
@@ -181,17 +181,17 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
                 $ForumHTML,
                 '(?is)<(?<Tag>tr|li)\b[^>]*>.*?</\k<Tag>>'
             ) |
-            Where-Object {
-                $_.Value -match $TopicPattern
-            } |
-            Select-Object -First 1
+                Where-Object {
+                    $_.Value -match $TopicPattern
+                } |
+                Select-Object -First 1
 
             if ($null -eq $Row) {
                 $Row = $ForumHTML -split '\r?\n' |
-                Where-Object {
-                    $_ -match $TopicPattern
-                } |
-                Select-Object -First 1
+                    Where-Object {
+                        $_ -match $TopicPattern
+                    } |
+                    Select-Object -First 1
             }
 
             if ($null -ne $Row) {
@@ -239,7 +239,7 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Extracting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ISO'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Directory'"); [Console]::ResetColor(); [Console]::WriteLine()
     & 7z.exe x $ISO -o"$Directory" -y
-    
+
     $AutoPlayEXE = (Get-ChildItem -Path $Directory -Recurse -Filter 'autoplay.exe').FullName
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Title'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$AutoPlayEXE'"); [Console]::ResetColor(); [Console]::WriteLine()
 
@@ -250,10 +250,10 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
         Start-Sleep -Milliseconds 500
 
         $realProc = Get-Process -Name 'msiexec' -ErrorAction SilentlyContinue |
-        Where-Object {
-            $_.StartTime -ge $startTime -and $_.MainWindowHandle -ne 0
-        } |
-        Select-Object -First 1
+            Where-Object {
+                $_.StartTime -ge $startTime -and $_.MainWindowHandle -ne 0
+            } |
+            Select-Object -First 1
 
     } until ($realProc)
     Wait-Process -Id $realProc.Id

@@ -7,37 +7,37 @@
 // ==/UserScript==
 
 (function () {
-    'use strict';
+  "use strict";
 
-    function clickShowAllButton() {
-        const buttons = document.querySelectorAll('button.btn.btn-secondary');
+  function clickShowAllButton() {
+    const buttons = document.querySelectorAll("button.btn.btn-secondary");
 
-        for (const button of buttons) {
-            const text = button.textContent.replace(/\s+/g, ' ').trim();
-            if (text === 'Show all') {
-                console.log('Clicking "Show all" button...');
-                button.click();
-                return true;
-            }
-        }
-
-        return false;
+    for (const button of buttons) {
+      const text = button.textContent.replace(/\s+/g, " ").trim();
+      if (text === "Show all") {
+        console.log('Clicking "Show all" button...');
+        button.click();
+        return true;
+      }
     }
 
-    function waitForButton() {
-        if (clickShowAllButton()) return;
+    return false;
+  }
 
-        const observer = new MutationObserver(() => {
-            if (clickShowAllButton()) {
-                observer.disconnect();
-            }
-        });
+  function waitForButton() {
+    if (clickShowAllButton()) return;
 
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
-    }
+    const observer = new MutationObserver(() => {
+      if (clickShowAllButton()) {
+        observer.disconnect();
+      }
+    });
 
-    window.addEventListener('load', waitForButton);
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+  }
+
+  window.addEventListener("load", waitForButton);
 })();

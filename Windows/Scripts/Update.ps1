@@ -53,14 +53,13 @@ if (-not (Get-Process -Name 'NVCleanstall' -ErrorAction SilentlyContinue)) {
     for ($i = 0; $i -lt $updatesToDownload.Count; $i++) {
         $u = $updatesToDownload.Item($i)
         $status = if ($u.IsDownloaded) {
-            'READY' 
-        }
-        else {
-            'NOT DOWNLOADED' 
+            'READY'
+        } else {
+            'NOT DOWNLOADED'
         }
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write(('[{0}] ' -f $i)); [Console]::ForegroundColor = 'Yellow'; [Console]::Write(('{0} ' -f $u.Title)); [Console]::ForegroundColor = 'Cyan'; [Console]::Write(('--> {0}' -f $status)); [Console]::ResetColor(); [Console]::WriteLine()
         if ($u.IsDownloaded) {
-            $updatesToInstall.Add($u) | Out-Null 
+            $updatesToInstall.Add($u) | Out-Null
         }
     }
 
@@ -90,8 +89,7 @@ if (-not (Get-Process -Name 'NVCleanstall' -ErrorAction SilentlyContinue)) {
     if ($installResult.RebootRequired) {
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('A reboot is required to complete installation'); [Console]::ResetColor(); [Console]::WriteLine()
         Start-Sleep 60
-    }
-    else {
+    } else {
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('No reboot required'); [Console]::ResetColor(); [Console]::WriteLine()
     }
 

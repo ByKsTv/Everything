@@ -6,13 +6,11 @@
    > [OLD](https://code.visualstudio.com/docs/cpp/config-mingw)
 
 ```powershell
-New-Item -ItemType Directory -Force .\include\mpv | Out-Null
-
-Invoke-WebRequest `
-    -Uri "https://raw.githubusercontent.com/mpv-player/mpv/master/include/mpv/client.h" `
-    -OutFile ".\include\mpv\client.h"
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/mpv-player/mpv/master/include/mpv/client.h" -OutFile client.h
+New-Item -ItemType Directory -Force -Path mpv
+Move-Item client.h mpv\client.h
 ```
 
 ```bash
-gcc -std=c17 -O2 -Wall -Wextra -Wpedantic -Werror -I".\include" -shared -static-libgcc ".\clipboard-url-loader.c" -o ".\clipboard-url-loader.dll" -luser32
+gcc -std=c17 -O2 -Wall -Wextra -shared -static -I. -o clipboard-url-loader.dll clipboard-url-loader.c -luser32
 ```

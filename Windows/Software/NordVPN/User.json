@@ -20,7 +20,9 @@
 		"InternetKillSwitchInFullMode": true,
 		"LocalNetworkBlock": false,
 		"KillSwitch": false,
-		"SelectedAutoConnectTypes": ["off"],
+		"SelectedAutoConnectTypes": [
+			"off"
+		],
 		"CyberSec": false,
 		"UpdateChannel": "channel-23",
 		"UniqueUserAppId": "",

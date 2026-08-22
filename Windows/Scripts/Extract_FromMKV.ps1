@@ -187,8 +187,7 @@ function Invoke-Tool {
     $stdout = $stdoutTask.GetAwaiter().GetResult()
     $stderr = $stderrTask.GetAwaiter().GetResult()
     $exitCode = $process.ExitCode
-  }
-  finally {
+  } finally {
     $process.Dispose()
   }
 
@@ -303,28 +302,28 @@ function Get-SubtitleExtension {
 
   switch ($CodecId) {
     'S_TEXT/UTF8' {
-      return 'srt' 
+      return 'srt'
     }
     'S_TEXT/ASS' {
-      return 'ass' 
+      return 'ass'
     }
     'S_TEXT/SSA' {
-      return 'ssa' 
+      return 'ssa'
     }
     'S_TEXT/WEBVTT' {
-      return 'vtt' 
+      return 'vtt'
     }
     'D_WEBVTT/SUBTITLES' {
-      return 'vtt' 
+      return 'vtt'
     }
     'S_VOBSUB' {
-      return 'idx' 
+      return 'idx'
     }
     'S_HDMV/PGS' {
-      return 'sup' 
+      return 'sup'
     }
     default {
-      return $null 
+      return $null
     }
   }
 }
@@ -344,8 +343,7 @@ function Get-MatroskaIdentification {
 
   try {
     return $result.StdOut | ConvertFrom-Json
-  }
-  catch {
+  } catch {
     throw "mkvmerge returned invalid JSON for '$($File.FullName)': $($_.Exception.Message)"
   }
 }
@@ -399,8 +397,7 @@ function Export-AnimeToshoFileContents {
 
       if (Test-Path -LiteralPath $destination -PathType Leaf) {
         $created++
-      }
-      else {
+      } else {
         Write-Warning "Attachment $attachmentId was not created for '$($File.FullName)'."
       }
     }
@@ -458,11 +455,9 @@ function Export-AnimeToshoFileContents {
             $created++
           }
         }
-      }
-      elseif (Test-Path -LiteralPath $destination -PathType Leaf) {
+      } elseif (Test-Path -LiteralPath $destination -PathType Leaf) {
         $created++
-      }
-      else {
+      } else {
         Write-Warning "Subtitle track $trackNumber was not created for '$($File.FullName)'."
       }
     }
@@ -479,8 +474,7 @@ function Export-AnimeToshoFileContents {
       if ((Get-Item -LiteralPath $destination).Length -gt 0) {
         Write-Host "  metadata -> $metadataType.xml"
         $created++
-      }
-      else {
+      } else {
         Remove-Item -LiteralPath $destination -Force
       }
     }
@@ -494,10 +488,9 @@ $inputItem = Get-Item -LiteralPath $resolvedInput.Path
 
 if ($Mode -eq 'Auto') {
   $Mode = if ($inputItem.PSIsContainer) {
-    'Torrent' 
-  }
-  else {
-    'File' 
+    'Torrent'
+  } else {
+    'File'
   }
 }
 
@@ -517,8 +510,7 @@ if ($SevenZipPath) {
     throw "7-Zip executable not found: $SevenZipPath"
   }
   $sevenZip = (Resolve-Path -LiteralPath $SevenZipPath).Path
-}
-else {
+} else {
   $sevenZip = Resolve-Tool -Names @('7z.exe', '7zz.exe', '7za.exe', '7z', '7zz', '7za')
 }
 
@@ -531,13 +523,12 @@ if ($Mode -eq 'File') {
   $defaultArchiveName = '{0}_attachments.7z' -f [System.IO.Path]::GetFileNameWithoutExtension($sourceFiles[0].Name)
   $defaultArchiveDirectory = $sourceFiles[0].DirectoryName
   $sourceRoot = $sourceFiles[0].DirectoryName
-}
-else {
+} else {
   $sourceRoot = $inputItem.FullName
   $sourceFiles = @(
     Get-ChildItem -LiteralPath $sourceRoot -Recurse -File |
-    Where-Object { $script:SupportedMatroskaExtensions -contains $_.Extension.ToLowerInvariant() } |
-    Sort-Object FullName
+      Where-Object { $script:SupportedMatroskaExtensions -contains $_.Extension.ToLowerInvariant() } |
+      Sort-Object FullName
   )
 
   if ($sourceFiles.Count -eq 0) {
@@ -554,8 +545,7 @@ if ($OutputPath) {
   if ([System.IO.Path]::GetExtension($archivePath) -ne '.7z') {
     $archivePath += '.7z'
   }
-}
-else {
+} else {
   $archivePath = Join-Path $defaultArchiveDirectory $defaultArchiveName
 }
 
@@ -575,15 +565,14 @@ try {
       $relativeFilePath = Get-RelativePathCompat -BasePath $sourceRoot -TargetPath $file.FullName
       $safeParts = @(
         $relativeFilePath -split '[\\/]' |
-        ForEach-Object { ConvertTo-SafeWindowsName -Name $_ -Fallback '_' }
+          ForEach-Object { ConvertTo-SafeWindowsName -Name $_ -Fallback '_' }
       )
 
       $destinationRoot = $workingDirectory
       foreach ($part in $safeParts) {
         $destinationRoot = Join-Path $destinationRoot $part
       }
-    }
-    else {
+    } else {
       $destinationRoot = $workingDirectory
     }
 
@@ -624,12 +613,10 @@ try {
   }
 
   Write-Host "Done: $archivePath"
-}
-finally {
+} finally {
   if ($KeepWorkingDirectory) {
     Write-Host "Working directory kept at: $workingDirectory"
-  }
-  elseif (Test-Path -LiteralPath $workingDirectory) {
+  } elseif (Test-Path -LiteralPath $workingDirectory) {
     Remove-Item -LiteralPath $workingDirectory -Recurse -Force
   }
 }

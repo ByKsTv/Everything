@@ -73,8 +73,7 @@ $($Type):$($Value)`n
 
 	if ($Scope -eq 'Computer') {
 		$Path = "$env:TEMP\Computer.txt"
-	}
-	else {
+	} else {
 		$Path = "$env:TEMP\User.txt"
 	}
 

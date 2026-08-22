@@ -1,5 +1,5 @@
 QWidget {
-	background-color: black;
+  background-color: black;
 }
 
 QCheckBox::indicator:checked:hover,
@@ -33,7 +33,7 @@ QToolButton:hover,
 QToolButton:selected,
 QTreeView::item:hover,
 QTreeView::item:selected {
-	background-color: rgb(50, 50, 50);
+  background-color: rgb(50, 50, 50);
 }
 
 QCheckBox::indicator,
@@ -49,7 +49,7 @@ QScrollBar::vertical,
 QTableView,
 QTextEdit,
 QTreeView {
-	border: 1px solid rgb(80, 80, 80);
+  border: 1px solid rgb(80, 80, 80);
 }
 
 QCheckBox::indicator:checked,
@@ -58,21 +58,21 @@ QGroupBox::indicator:checked,
 QGroupBox::indicator:on,
 QRadioButton::indicator:checked,
 QRadioButton::indicator:on {
-	background-color: deepskyblue;
+  background-color: deepskyblue;
 }
 
 QProgressBar {
-	text-align: center;
-	background-color: rgb(50, 50, 50);
+  text-align: center;
+  background-color: rgb(50, 50, 50);
 }
 
 QScrollBar::add-line,
 QScrollBar::sub-line {
-	background: none;
-	border: none;
+  background: none;
+  border: none;
 }
 
 QScrollBar::handle:horizontal,
 QScrollBar::handle:vertical {
-	background-color: rgb(80, 80, 80);
+  background-color: rgb(80, 80, 80);
 }

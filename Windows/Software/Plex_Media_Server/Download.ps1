@@ -23,7 +23,7 @@ if (($null -eq $Installed) -or ($Installed -notmatch $PlexLatestVersion)) {
     # https://support.plex.tv/articles/201105343-advanced-hidden-server-settings/#toc-1
 
     if (-not (Test-Path -Path 'HKCU:\SOFTWARE\Plex, Inc.\Plex Media Server')) {
-        New-Item 'HKCU:\SOFTWARE\Plex, Inc.\Plex Media Server' -Force 
+        New-Item 'HKCU:\SOFTWARE\Plex, Inc.\Plex Media Server' -Force
 
         New-ItemProperty -Path 'HKCU:\SOFTWARE\Plex, Inc.\Plex Media Server' -Name 'AcceptedEULA' -Value 1 -PropertyType DWord -Force
 

@@ -1,6 +1,12 @@
 # Table Of Contents
 
+- [General](#general)
 - [PowerShell](#powershell)
+- [Python](#python)
+
+## General
+
+- Names should be descriptive. Avoid single-letter names.
 
 ## PowerShell
 
@@ -21,3 +27,7 @@
 - Use new line after `{`.
 - If running a standalone `.exe` cmdlet (i.e `powercfg` cmdlet), Use `&` prefix and `.exe` suffix.
 - Code as short as possible.
+
+## Python
+
+- Use [PEP 8 – Style Guide for Python Code](https://peps.python.org/pep-0008/)

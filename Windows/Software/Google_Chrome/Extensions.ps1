@@ -16,8 +16,7 @@ if ($InstalledSoftware -match 'Google Chrome') {
         if ($null -eq $registry) {
             $registry = [Microsoft.Win32.Registry]::LocalMachine.CreateSubKey($key_path, $true)
             $registry.SetValue('1', $_)
-        }
-        else {
+        } else {
             $values = $registry.GetValueNames().ForEach({ $registry.GetValue($_) })
             if ($_ -notin $values) {
                 $maximum = $registry.GetValueNames().Where({ $_ -match '\d' }) | Measure-Object -Maximum | Select-Object -expand maximum
@@ -71,7 +70,7 @@ if ($InstalledSoftware -match 'Google Chrome') {
     #         [SFW]::SetForegroundWindow((Get-Process | Where-Object { $_.mainWindowTitle -match 'Chrome' }).MainWindowHandle) | Out-Null
     #         (New-Object -ComObject wscript.shell).SendKeys('^{ENTER}')
     #     }
-    
+
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Google Chrome Extensions: Cleaning up'); [Console]::ResetColor(); [Console]::WriteLine()
     if (Test-Path -Path 'HKLM:\SOFTWARE\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy') {
         Remove-Item 'HKLM:\SOFTWARE\Policies\Google\Chrome\3rdparty\extensions\cjpalhdlnbpafiamejdnhcphjbkeiagm\policy' -Force

@@ -164,7 +164,7 @@ user_pref("media.suspend-background-video.enabled", false);
 // Avoid tab unloading on low memory
 user_pref("browser.tabs.unloadOnLowMemory", false);
 
-// Undo process priority downgrades 
+// Undo process priority downgrades
 user_pref("dom.ipc.processPriorityManager.enabled", false);
 user_pref("dom.ipc.processPriorityManager.backgroundUsesEcoQoS", false);
 
@@ -201,7 +201,7 @@ user_pref("browser.ml.enable", false);
 // turns off AI “Link previews.”
 user_pref("browser.ml.linkPreview.enabled", false);
 user_pref("browser.ml.linkPreview.optin", false);
-// disables AI “Smart tab groups.” 
+// disables AI “Smart tab groups.”
 user_pref("browser.tabs.groups.smart.enabled", false);
 // suppress badges/promo UI around the chatbot.
 user_pref("sidebar.notification.badge.aichat", false);
@@ -216,4 +216,7 @@ user_pref("browser.tabs.splitView.enabled", false);
 user_pref("browser.download.start_downloads_in_tmp_dir", false);
 
 // Custom UI
-user_pref("browser.uiCustomization.state", "{\"placements\":{\"widget-overflow-fixed-list\":[],\"nav-bar\":[\"back-button\",\"forward-button\",\"stop-reload-button\",\"customizableui-special-spring1\",\"vertical-spacer\",\"urlbar-container\",\"customizableui-special-spring2\",\"save-to-pocket-button\",\"downloads-button\",\"fxa-toolbar-menu-button\",\"unified-extensions-button\",\"ublock0_raymondhill_net-browser-action\"],\"toolbar-menubar\":[\"menubar-items\"],\"TabsToolbar\":[\"tabbrowser-tabs\",\"new-tab-button\",\"alltabs-button\"],\"vertical-tabs\":[],\"PersonalToolbar\":[\"personal-bookmarks\"],\"unified-extensions-area\":[]},\"seen\":[\"ublock0_raymondhill_net-browser-action\",\"developer-button\"],\"dirtyAreaCache\":[\"unified-extensions-area\",\"nav-bar\"],\"currentVersion\":22,\"newElementCount\":3}");
+user_pref(
+  "browser.uiCustomization.state",
+  '{"placements":{"widget-overflow-fixed-list":[],"nav-bar":["back-button","forward-button","stop-reload-button","customizableui-special-spring1","vertical-spacer","urlbar-container","customizableui-special-spring2","save-to-pocket-button","downloads-button","fxa-toolbar-menu-button","unified-extensions-button","ublock0_raymondhill_net-browser-action"],"toolbar-menubar":["menubar-items"],"TabsToolbar":["tabbrowser-tabs","new-tab-button","alltabs-button"],"vertical-tabs":[],"PersonalToolbar":["personal-bookmarks"],"unified-extensions-area":[]},"seen":["ublock0_raymondhill_net-browser-action","developer-button"],"dirtyAreaCache":["unified-extensions-area","nav-bar"],"currentVersion":22,"newElementCount":3}',
+);

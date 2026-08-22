@@ -167,10 +167,9 @@ $Form.Controls.Add($Form_Cancel)
 $CheckBox_DeleteFile.Add_Click({
         if ($CheckBox_DeleteFile.Checked -eq $true) {
             $CheckBox_AutoDeleteFile.Enabled = $true
-        }
-        elseif ($CheckBox_DeleteFile.Checked -eq $false) {
+        } elseif ($CheckBox_DeleteFile.Checked -eq $false) {
             $CheckBox_AutoDeleteFile.Enabled = $false
-        }   
+        }
     })
 
 $Form_OK.Add_Click({
@@ -189,7 +188,7 @@ $Form_OK.Add_Click({
             $SavePath = [IO.Path]::Combine($ScriptOptsPath, $FileName)
             [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' userscript settings '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
             (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
-        
+
             $DIR_sponsorblock = [IO.Path]::Combine($ScriptsPath, 'sponsorblock_shared')
             if (-not (Test-Path -Path $DIR_sponsorblock)) {
                 New-Item $DIR_sponsorblock -ItemType Directory -Force
@@ -199,13 +198,13 @@ $Form_OK.Add_Click({
             $SavePath = [IO.Path]::Combine($DIR_sponsorblock, $FileName)
             [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' userscript '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
             (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
-		
+
             $DDL = 'https://raw.githubusercontent.com/po5/mpv_sponsorblock/master/sponsorblock_shared/main.lua'
             $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
             $SavePath = [IO.Path]::Combine($DIR_sponsorblock, $FileName)
             [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'mpv'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' userscript '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
             (New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
-		
+
             $InstalledSoftware = (Get-Package).Name
             if (-not ($InstalledSoftware -match 'Python')) {
                 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Python/Download.ps1')

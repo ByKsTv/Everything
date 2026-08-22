@@ -1,49 +1,197 @@
 {
-    "[markdown]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "powershell.codeFormatting.autoCorrectAliases": true,
-    "powershell.codeFormatting.avoidSemicolonsAsLineTerminators": true,
-    "powershell.codeFormatting.trimWhitespaceAroundPipe": true,
-    "powershell.codeFormatting.useCorrectCasing": true,
-    "powershell.codeFormatting.whitespaceBetweenParameters": true,
-    "prettier.singleQuote": true,
-    "prettier.useTabs": true,
-    "[json]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[javascript]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
-    },
-    "git.confirmSync": false,
-    "[powershell]": {
-        "editor.defaultFormatter": "ms-vscode.powershell"
-    },
+    // ============================================================
+    // GENERAL CODE QUALITY
+    // ============================================================
+    "editor.formatOnSave": true,
+    // Clean files automatically.
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    // Always show whitespace-only changes in diffs.
     "diffEditor.ignoreTrimWhitespace": false,
-    "terminal.integrated.enableMultiLinePasteWarning": false,
-    "git.suggestSmartCommit": false,
-    "git.postCommitCommand": "sync",
-    "git.enableSmartCommit": true,
-    "powershell.codeFormatting.ignoreOneLineBlock": false,
+    // ============================================================
+    // PYTHON
+    //
+    // Standard:
+    //   - PEP 8 conventions
+    //   - Black formatting
+    //   - Ruff linting / import organization
+    // ============================================================
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.fixAll.ruff": "explicit",
+            "source.organizeImports.ruff": "explicit"
+        },
+        // Black's standard line length.
+        "editor.rulers": [
+            88
+        ],
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4
+    },
+    // Ruff's default rules already include important pycodestyle
+    // and Pyflakes checks. Add commonly accepted quality rules.
+    "ruff.lint.extendSelect": [
+        "I", // Import sorting
+        "UP", // Python syntax upgrades
+        "B" // flake8-bugbear correctness checks
+    ],
+    // ============================================================
+    // POWERSHELL
+    //
+    // Standard:
+    //   - PSScriptAnalyzer
+    //   - PowerShell community best practices
+    //   - OTBS formatting
+    //   - Full cmdlet names instead of aliases
+    // ============================================================
+    "[powershell]": {
+        "editor.defaultFormatter": "ms-vscode.powershell",
+        "editor.formatOnSave": true,
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4
+    },
+    // Enable PowerShell's official/community static analyzer.
+    "powershell.scriptAnalysis.enable": true,
+    // OTBS is a common PowerShell formatting convention:
+    //
+    // if ($condition) {
+    //     ...
+    // } else {
+    //     ...
+    // }
+    "powershell.codeFormatting.preset": "OTBS",
+    // Replace aliases such as:
+    //   dir  -> Get-ChildItem
+    //   ls   -> Get-ChildItem
+    //   cat  -> Get-Content
+    //
+    // This makes scripts clearer and follows PowerShell guidance.
+    "powershell.codeFormatting.autoCorrectAliases": true,
+    // Don't use unnecessary semicolons.
+    "powershell.codeFormatting.avoidSemicolonsAsLineTerminators": true,
+    // Correct PowerShell command casing.
+    //
+    // get-childitem -> Get-ChildItem
+    "powershell.codeFormatting.useCorrectCasing": true,
+    // Standard parameter spacing.
+    "powershell.codeFormatting.whitespaceBetweenParameters": true,
+    // Standard pipeline formatting.
+    "powershell.codeFormatting.trimWhitespaceAroundPipe": true,
+    "powershell.codeFormatting.pipelineIndentationStyle": "IncreaseIndentationForFirstPipeline",
+    // Prefer constant strings when possible.
     "powershell.codeFormatting.useConstantStrings": true,
-    "workbench.activityBar.location": "top",
-    "git.ignoreRebaseWarning": true,
-    "gitlens.launchpad.indicator.enabled": false,
-    "editor.minimap.size": "fill",
-    "editor.minimap.showSlider": "always",
-    "gitlens.views.commits.files.layout": "list",
+    // Format even one-line blocks consistently.
+    "powershell.codeFormatting.ignoreOneLineBlock": false,
+    // ============================================================
+    // C / C++
+    //
+    // Standards/tools:
+    //   - clang-format
+    //   - LLVM formatting fallback
+    //   - clang-tidy static analysis
+    //   - C++ Core Guidelines
+    // ============================================================
+    "[c][cpp]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools",
+        "editor.formatOnSave": true
+    },
+    // Always use clang-format rather than VS-specific formatting.
+    "C_Cpp.formatting": "clangFormat",
+    // First look for a project's .clang-format.
+    //
+    // This means repositories can define their own coding standard.
+    "C_Cpp.clang_format_style": "file",
+    // If there is no .clang-format, use LLVM's established style.
+    "C_Cpp.clang_format_fallbackStyle": "LLVM",
+    // ============================================================
+    // C / C++ STATIC ANALYSIS
+    // ============================================================
+    // clang-tidy performs much deeper analysis than formatting alone.
+    "C_Cpp.codeAnalysis.clangTidy.enabled": true,
+    "C_Cpp.codeAnalysis.runAutomatically": true,
+    "C_Cpp.codeAnalysis.clangTidy.checks.enabled": [
+        // C/C++ correctness problems.
+        "bugprone-*",
+        // Performance mistakes.
+        "performance-*",
+        // Cross-platform / portability problems.
+        "portability-*",
+        // C++ Core Guidelines.
+        "cppcoreguidelines-*"
+    ],
+    // Format code modified by clang-tidy fixes.
+    "C_Cpp.codeAnalysis.clangTidy.codeAction.formatFixes": true,
+    // ============================================================
+    // JAVASCRIPT / TYPESCRIPT
+    //
+    // Prettier is the formatting standard.
+    // ============================================================
+    "[javascript][javascriptreact][typescript][typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    // ============================================================
+    // HTML / CSS
+    // ============================================================
+    "[html][css][scss][less]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    // ============================================================
+    // JSON / JSONC
+    // ============================================================
+    "[json][jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features",
+        "editor.formatOnSave": true
+    },
+    // ============================================================
+    // MARKDOWN
+    // ============================================================
+    "[markdown]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "editor.wordWrap": "on",
+        // Markdown can use trailing spaces intentionally
+        // for hard line breaks.
+        "files.trimTrailingWhitespace": false
+    },
+    "[plaintext]": {
+        "editor.wordWrap": "on"
+    },
+    // ============================================================
+    // FILE TYPES
+    // ============================================================
+    "files.associations": {
+        "*.qss": "css"
+    },
+    // ============================================================
+    // GIT
+    // ============================================================
+    "git.autofetch": true,
+    "git.pruneOnFetch": true,
+    "git.suggestSmartCommit": false,
+    // ============================================================
+    // UI
+    // ============================================================
+    "workbench.colorTheme": "Saturated Dark Modern OLED",
     "workbench.startupEditor": "none",
-    "git.allowForcePush": true,
-    "[jsonc]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    "[css]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "diffEditor.maxComputationTime": 0,
-    "editor.wordWrap": "on",
-    "telemetry.feedback.enabled": false,
-    "telemetry.editStats.enabled": false,
+    "workbench.editor.highlightModifiedTabs": true,
+    // ============================================================
+    // GITLENS
+    // ============================================================
+    "gitlens.launchpad.indicator.enabled": false,
+    "gitlens.views.commits.files.layout": "list",
+    // ============================================================
+    // PRIVACY
+    // ============================================================
     "telemetry.telemetryLevel": "off",
-    "editor.formatOnSave": true
+    "telemetry.feedback.enabled": false,
+    // ============================================================
+    // OTHER
+    // ============================================================
+    "editor.minimap.size": "fill",
+    "editor.minimap.showSlider": "always"
 }

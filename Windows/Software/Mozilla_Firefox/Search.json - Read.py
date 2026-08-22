@@ -1,4 +1,5 @@
 from pathlib import Path
+
 import lz4.block  # type: ignore
 
 src = Path("search.json.mozlz4")

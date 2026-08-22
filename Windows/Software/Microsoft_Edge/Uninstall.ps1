@@ -13,7 +13,7 @@ if (($InstalledSoftware -match 'Microsoft Edge') -or (Get-Process | Where-Object
     $Process = 'MicrosoftEdgeUpdate', 'OneDrive', 'WidgetService', 'Widgets', 'msedge', 'msedgewebview2'
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Stopping '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft Edge'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' process '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Process'"); [Console]::ResetColor(); [Console]::WriteLine()
     $Process | ForEach-Object {
-        Stop-Process -Name $_ -Force -ErrorAction SilentlyContinue 
+        Stop-Process -Name $_ -Force -ErrorAction SilentlyContinue
     }
 
     $MicrosoftCopilot = Get-AppxPackage -AllUsers *Microsoft.Windows.Ai.Copilot.Provider*
@@ -65,22 +65,22 @@ if (($InstalledSoftware -match 'Microsoft Edge') -or (Get-Process | Where-Object
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Edge Uninstaller: Deleting EdgeUpdate'); [Console]::ResetColor(); [Console]::WriteLine()
     $global:REG = 'HKCU:\SOFTWARE', 'HKLM:\SOFTWARE', 'HKCU:\SOFTWARE\Policies', 'HKLM:\SOFTWARE\Policies', 'HKCU:\SOFTWARE\WOW6432Node', 'HKLM:\SOFTWARE\WOW6432Node', 'HKCU:\SOFTWARE\WOW6432Node\Policies', 'HKLM:\SOFTWARE\WOW6432Node\Policies'
     foreach ($location in $REG) {
-        Remove-Item "$location\Microsoft\EdgeUpdate" -Recurse -Force -ErrorAction SilentlyContinue 
+        Remove-Item "$location\Microsoft\EdgeUpdate" -Recurse -Force -ErrorAction SilentlyContinue
     }
 
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Edge Uninstaller: Uninstalling EdgeUpdate'); [Console]::ResetColor(); [Console]::WriteLine()
     foreach ($path in $edgeupdate) {
         if (Test-Path $path) {
-            Start-Process -Wait $path -Args '/unregsvc' | Out-Null 
+            Start-Process -Wait $path -Args '/unregsvc' | Out-Null
         }
         do {
-            Start-Sleep 3 
+            Start-Sleep 3
         } while ((Get-Process -Name 'setup', 'MicrosoftEdge*' -ErrorAction SilentlyContinue).Path -like '\Microsoft\Edge')
         if (Test-Path $path) {
-            Start-Process -Wait $path -Args '/uninstall' | Out-Null 
+            Start-Process -Wait $path -Args '/uninstall' | Out-Null
         }
         do {
-            Start-Sleep 3 
+            Start-Sleep 3
         } while ((Get-Process -Name 'setup', 'MicrosoftEdge*' -ErrorAction SilentlyContinue).Path -like '\Microsoft\Edge')
     }
 

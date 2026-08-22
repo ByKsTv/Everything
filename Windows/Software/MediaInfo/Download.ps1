@@ -19,14 +19,14 @@ if (($null -eq $InstalledVersion) -or ($InstalledVersion -notmatch $LatestVersio
 		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Mediainfo'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' custom settings from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$RemoteCFG'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$LocalCFG'"); [Console]::ResetColor(); [Console]::WriteLine()
 		(New-Object System.Net.WebClient).DownloadFile($RemoteCFG, $LocalCFG)
 	}
-	
+
 	$GUI_DDL = 'https:' + (((Invoke-WebRequest -UseBasicParsing -Uri 'https://mediaarea.net/en/MediaInfo/Download/Windows').Links | Where-Object { $_.outerHTML -match 'GUI' } | Select-Object -First 1).href)
 	$GUI_FileName = [IO.Path]::GetFileName(([URI]$GUI_DDL).AbsolutePath)
 	$GUI_SavePath = [IO.Path]::Combine($env:TEMP, $GUI_FileName)
 	$CLI_DDL = 'https:' + (((Invoke-WebRequest -UseBasicParsing -Uri 'https://mediaarea.net/en/MediaInfo/Download/Windows').Links | Where-Object { $_.outerHTML -match 'CLI' } | Select-Object -First 1).href)
 	$CLI_FileName = [IO.Path]::GetFileName(([URI]$CLI_DDL).AbsolutePath)
 	$CLI_SavePath = [IO.Path]::Combine($env:TEMP, $CLI_FileName)
-	
+
 	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Mediainfo GUI'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$GUI_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$GUI_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
 	(New-Object System.Net.WebClient).DownloadFile($GUI_DDL, $GUI_SavePath)
 	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Mediainfo CLI'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$CLI_DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$CLI_SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
@@ -40,7 +40,7 @@ if (($null -eq $InstalledVersion) -or ($InstalledVersion -notmatch $LatestVersio
 	$CLI_Destination = [IO.Path]::Combine($CLI_Destination, 'CLI')
 	[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Mediainfo CLI'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$CLI_SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$CLI_Destination'"); [Console]::ResetColor(); [Console]::WriteLine()
 	Expand-Archive -Path $CLI_SavePath -DestinationPath $CLI_Destination -Force
-	
+
 	$OLD_PATH = [Environment]::GetEnvironmentVariable('Path', [EnvironmentVariableTarget]::User)
 	if (-not ($OLD_PATH.Contains($CLI_Destination))) {
 		$NEW_PATH = "$OLD_PATH;$CLI_Destination"

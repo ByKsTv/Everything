@@ -23,7 +23,7 @@ if (Test-Path $Firefox_Profiles) {
         # Temporary disable firefox from running by renaming
         $FireFox_EXE = "$env:ProgramFiles\Mozilla Firefox\firefox.exe"
         Rename-Item -Path $FireFox_EXE -NewName 'firefox.bak'
-        
+
         $DDLs = @(
             'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/userChrome.css',
             'https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Mozilla_Firefox/userContent.css'
@@ -44,7 +44,7 @@ if (Test-Path $Firefox_Profiles) {
             'https://raw.githubusercontent.com/arkenfox/user.js/master/updater.bat',
             'https://raw.githubusercontent.com/arkenfox/user.js/master/prefsCleaner.bat',
             'https://raw.githubusercontent.com/arkenfox/user.js/master/user.js'
-        
+
         )
         foreach ($DDL in $DDLs) {
             $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
@@ -52,7 +52,7 @@ if (Test-Path $Firefox_Profiles) {
             [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
             (New-Object Net.WebClient).DownloadFile($DDL, $SavePath)
         }
-        
+
         $Files = @(
             [IO.Path]::Combine($Firefox_Profile, 'updater.bat')
             [IO.Path]::Combine($Firefox_Profile, 'prefsCleaner.bat')
@@ -78,7 +78,7 @@ if (Test-Path $Firefox_Profiles) {
                 Remove-Item $TelemetryDir -Force -Recurse
             }
         }
-    
+
         $CrashHelper = "$env:ProgramFiles\Mozilla Firefox\crashhelper.exe"
         if (Test-Path $CrashHelper) {
             [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Deleting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$CrashHelper'"); [Console]::ResetColor(); [Console]::WriteLine()

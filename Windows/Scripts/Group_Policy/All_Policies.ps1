@@ -304,7 +304,7 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsUpd
 # Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: Allow updates to be downloaded automatically over metered connections: Enabled
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate' -Name 'AllowAutoWindowsUpdateDownloadOverMeteredNetwork' -Type DWORD -Value 1
 
-# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: Manage end user experience: Configure Automatic Updats: Enabled: 
+# Group Policy: Computer Configuration: Administrative Templates: Windows Components: Windows Update: Manage end user experience: Configure Automatic Updats: Enabled:
 # 4 - Auto download and schedule the install
 Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU' -Name 'AUOptions' -Type DWORD -Value 4
 # Install during automatic maintenance: Enabled
