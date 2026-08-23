@@ -1,16 +1,16 @@
 /*
- * clipboard-url-loader.c — minimal native mpv C plugin (Windows)
+ * clipboard-url-loader.c — native mpv C plugin (Windows)
  *
- * While mpv is idle or at EOF, watches the clipboard purely by event
- * (AddClipboardFormatListener -> WM_CLIPBOARDUPDATE, no polling). A newly
- * copied http(s) URL is loaded with `loadfile <url> replace`, then mpv's
- * window is restored, raised, and given keyboard focus.
+ * While mpv is idle or at end-of-file, watches the clipboard by event
+ * (AddClipboardFormatListener -> WM_CLIPBOARDUPDATE, no polling). When an
+ * http(s) URL is copied, it's loaded with `loadfile <url> replace`, and the
+ * mpv window is restored, raised, and focused.
  *
- * Build (MSYS2 MinGW-w64, gcc). Requires mpv/client.h on the include path
- * (get it from
- * https://raw.githubusercontent.com/mpv-player/mpv/master/include/mpv/client.h,
- * saved as ./mpv/client.h next to this file, hence -I.):
- *   gcc -std=c17 -O2 -Wall -Wextra -shared -static -I. -o
+ * Build (MSYS2 MinGW-w64 gcc). Requires mpv/client.h on the include path:
+ *   https://raw.githubusercontent.com/mpv-player/mpv/master/include/mpv/client.h
+ *   save as ./mpv/client.h next to this file, hence -I.
+ *
+ * gcc -std=c17 -O2 -Wall -Wextra -shared -static -I. -o
  * clipboard-url-loader.dll clipboard-url-loader.c -luser32
  */
 
@@ -18,524 +18,502 @@
 #define NOMINMAX
 #include <windows.h>
 #define MPV_CPLUGIN_DYNAMIC_SYM
-#include <limits.h>
 #include <mpv/client.h>
 #include <stdarg.h>
 #include <stdbool.h>
-#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <wctype.h>
 
-#define CLIP_RETRY_ID 1
-#define FOCUS_RETRY_ID 2
-#define CLIP_RETRY_MS 20
-#define FOCUS_RETRY_MS 30
-#define MAX_RETRIES 15
-#define MAX_URL_CHARS 32768
+enum {
+  TIMER_CLIPBOARD_RETRY = 1,
+  TIMER_FOCUS_RETRY = 2,
+  RETRY_DELAY_MS = 25,
+  MAX_RETRY_ATTEMPTS = 15,
+  MAX_URL_CHARS = 32768,
+  LOG_BUFFER_SIZE = 1024,
+  WINDOW_CLASS_NAME_CHARS = 64,
+  MSG_SET_MONITORING = WM_APP + 1,
+  MSG_REQUEST_FOCUS = WM_APP + 2,
+  PROPERTY_ID_IDLE = 1,
+  PROPERTY_ID_EOF = 2,
+  LOAD_REQUEST_ID = 1,
+  HTTP_PREFIX_CHARS = 7,  /* strlen("http://") */
+  HTTPS_PREFIX_CHARS = 8, /* strlen("https://") */
+  ASCII_CONTROL_LIMIT = 0x20,
+  ASCII_DELETE = 0x7f,
+};
 
-#define WM_MONITOR (WM_APP + 1)
-#define WM_FOCUS (WM_APP + 2)
+/* Shared between mpv's plugin thread and the Win32 listener thread: mpv's
+ * C-plugin ABI gives no per-plugin context pointer to thread through, so
+ * this has to be mutable global state instead of locals owned by one side. */
+// NOLINTBEGIN(cppcoreguidelines-avoid-non-const-global-variables)
+static mpv_handle *g_mpv_handle;
+static PVOID volatile g_listener_window_handle;
+static volatile LONG g_quitting, g_should_monitor, g_focus_wanted;
+static HANDLE g_listener_thread, g_listener_ready_event;
+static DWORD g_listener_thread_id;
 
-enum { OBS_IDLE = 1, OBS_EOF = 2 };
-#define REQ_LOAD UINT64_C(1)
+/* Touched only from the listener thread. */
+static bool g_currently_monitoring;
+static DWORD g_last_clipboard_sequence;
+static UINT g_retry_attempts;
+static char *g_last_loaded_url; /* dedupe spurious re-renders (e.g. an app
+                                    exiting and force-flushing delayed-render
+                                    clipboard data with no real content
+                                    change) */
+// NOLINTEND(cppcoreguidelines-avoid-non-const-global-variables)
 
-static mpv_handle *g_mpv;
-static volatile LONG g_quit, g_want_monitor, g_want_focus;
-static PVOID volatile g_hwnd_atomic;
-static HANDLE g_thread, g_ready;
-static DWORD g_thread_id;
-
-/* listener-thread-only state */
-static bool armed;
-static DWORD last_seq, pending_seq;
-static UINT clip_retries, focus_retries;
-
-static HWND hwnd_get(void) {
-  return (HWND)InterlockedCompareExchangePointer(&g_hwnd_atomic, NULL, NULL);
-}
-static void hwnd_set(HWND h) { InterlockedExchangePointer(&g_hwnd_atomic, h); }
-static bool flagged(volatile LONG *v) {
-  return InterlockedCompareExchange(v, 0, 0) != 0;
-}
-
-static void logmsg(const char *fmt, ...) {
-  if (!g_mpv || flagged(&g_quit))
-    return; /* no mpv handle to log through yet/anymore */
-
-  char buf[1024];
-  int n = snprintf(buf, sizeof buf, "[clipboard-url-loader] ");
-  va_list ap;
-  va_start(ap, fmt);
-  vsnprintf(buf + n, sizeof buf - (size_t)n, fmt, ap);
-  va_end(ap);
-
-  const char *args[] = {"print-text", buf, NULL};
-  mpv_command_async(g_mpv, 0, args);
+static HWND get_listener_window(void) {
+  return (HWND)InterlockedCompareExchangePointer(&g_listener_window_handle,
+                                                 NULL, NULL);
 }
 
-static bool is_http(const wchar_t *s, size_t n) {
-  return (n > 7 && _wcsnicmp(s, L"http://", 7) == 0) ||
-         (n > 8 && _wcsnicmp(s, L"https://", 8) == 0);
+static void set_listener_window(HWND window) {
+  InterlockedExchangePointer(&g_listener_window_handle, window);
 }
 
-static char *wide_to_utf8(const wchar_t *s, size_t n) {
-  if (!n || n > (size_t)INT_MAX)
-    return NULL;
-  int need = WideCharToMultiByte(CP_UTF8, WC_ERR_INVALID_CHARS, s, (int)n, NULL,
-                                 0, NULL, NULL);
-  if (need <= 0)
-    return NULL;
-  char *out = malloc((size_t)need + 1);
-  if (!out)
-    return NULL;
-  if (WideCharToMultiByte(CP_UTF8, WC_ERR_INVALID_CHARS, s, (int)n, out, need,
-                          NULL, NULL) != need) {
-    free(out);
-    return NULL;
-  }
-  out[need] = '\0';
-  return out;
+static bool flag_is_set(volatile LONG *flag) {
+  return InterlockedCompareExchange(flag, 0, 0) != 0;
 }
 
-/* returns 1 = url in *out, 0 = not a url, -1 = clipboard busy */
-static int read_clipboard_url(HWND owner, char **out) {
-  *out = NULL;
+static void log_message(const char *format, ...) {
+  if (!g_mpv_handle || flag_is_set(&g_quitting))
+    return;
+
+  char message[LOG_BUFFER_SIZE];
+  int prefix_length =
+      snprintf(message, sizeof message, "[clipboard-url-loader] ");
+  if (prefix_length < 0 || (size_t)prefix_length >= sizeof message)
+    return;
+
+  va_list arguments; /* NOLINT(cppcoreguidelines-init-variables): va_start
+                        initializes it. */
+  va_start(arguments, format);
+  vsnprintf(message + prefix_length, sizeof message - (size_t)prefix_length,
+            format, arguments);
+  va_end(arguments);
+
+  const char *command[] = {"print-text", message, NULL};
+  mpv_command_async(g_mpv_handle, 0, command);
+}
+
+/* Extracts a trimmed http(s) URL from the clipboard. Returns 1 with
+ * *url_utf8_out set (caller frees it); 0 if the clipboard holds text that
+ * isn't a URL; -1 if the clipboard couldn't be opened (retry shortly);
+ * -2 if the clipboard doesn't hold text at all (e.g. an image was copied). */
+static int try_read_clipboard_url(HWND owner_window, char **url_utf8_out) {
+  *url_utf8_out = NULL;
   if (!IsClipboardFormatAvailable(CF_UNICODETEXT))
-    return 0;
-  if (!OpenClipboard(owner))
+    return -2;
+  if (!OpenClipboard(owner_window))
     return -1;
 
   int result = 0;
-  HGLOBAL h = (HGLOBAL)GetClipboardData(CF_UNICODETEXT);
-  if (h) {
-    SIZE_T bytes = GlobalSize(h);
-    const wchar_t *text = (bytes >= sizeof(wchar_t)) ? GlobalLock(h) : NULL;
-    if (text) {
-      size_t max = bytes / sizeof(wchar_t), n = 0;
-      while (n < max && text[n])
-        n++;
-      size_t a = 0, b = n;
-      while (a < b && iswspace((wint_t)text[a]))
-        a++;
-      while (b > a && iswspace((wint_t)text[b - 1]))
-        b--;
-      size_t len = b - a;
-      if (len && len <= MAX_URL_CHARS && is_http(text + a, len)) {
-        bool ok = true;
-        for (size_t i = a; i < b; i++) {
-          wchar_t c = text[i];
-          if (iswspace((wint_t)c) || c < 0x20 || c == 0x7f) {
-            ok = false;
-            break;
-          }
-        }
-        if (ok) {
-          *out = wide_to_utf8(text + a, len);
-          result = *out ? 1 : 0;
-        }
-      }
-      GlobalUnlock(h);
+  HGLOBAL clipboard_handle = (HGLOBAL)GetClipboardData(CF_UNICODETEXT);
+  wchar_t *clipboard_text =
+      clipboard_handle ? GlobalLock(clipboard_handle) : NULL;
+
+  if (clipboard_text) {
+    size_t length =
+        wcsnlen(clipboard_text, GlobalSize(clipboard_handle) / sizeof(wchar_t));
+    while (length && iswspace((wint_t)clipboard_text[length - 1]))
+      length--;
+    while (length && iswspace((wint_t)*clipboard_text)) {
+      clipboard_text++;
+      length--;
     }
+
+    bool looks_like_url =
+        length > 0 && length <= MAX_URL_CHARS &&
+        (_wcsnicmp(clipboard_text, L"http://", HTTP_PREFIX_CHARS) == 0 ||
+         _wcsnicmp(clipboard_text, L"https://", HTTPS_PREFIX_CHARS) == 0);
+    for (size_t i = 0; looks_like_url && i < length; i++)
+      if (iswspace((wint_t)clipboard_text[i]) ||
+          clipboard_text[i] < ASCII_CONTROL_LIMIT ||
+          clipboard_text[i] == ASCII_DELETE)
+        looks_like_url = false;
+
+    if (looks_like_url) {
+      int bytes_needed =
+          WideCharToMultiByte(CP_UTF8, WC_ERR_INVALID_CHARS, clipboard_text,
+                              (int)length, NULL, 0, NULL, NULL);
+      /* Freed by the caller (check_clipboard_now) once it's done with it. */
+      char *utf8_url =
+          bytes_needed > 0 ? malloc((size_t)bytes_needed + 1) : NULL;
+      if (utf8_url) {
+        WideCharToMultiByte(CP_UTF8, WC_ERR_INVALID_CHARS, clipboard_text,
+                            (int)length, utf8_url, bytes_needed, NULL, NULL);
+        utf8_url[bytes_needed] = '\0';
+        *url_utf8_out = utf8_url;
+        result = 1;
+      }
+    }
+    GlobalUnlock(clipboard_handle);
   }
+
   CloseClipboard();
   return result;
 }
 
-static void process_clipboard(
-    HWND hwnd); /* defined below; used by apply_monitor_state's race fix */
+static void apply_monitoring_state(HWND listener_window);
 
-static void apply_monitor_state(HWND hwnd, DWORD arm_seq) {
-  bool want = flagged(&g_want_monitor);
-  if (want == armed)
+static void check_clipboard_now(HWND listener_window) {
+  KillTimer(listener_window, TIMER_CLIPBOARD_RETRY);
+  if (flag_is_set(&g_quitting) || !g_currently_monitoring)
     return;
-  KillTimer(hwnd, CLIP_RETRY_ID);
-  clip_retries = 0;
-  if (want) {
-    armed = true;
-    DWORD now_seq = GetClipboardSequenceNumber();
-    if (now_seq == arm_seq) {
-      /* Nothing changed since we decided to arm: whatever's in the
-         clipboard now predates monitoring, so leave it alone. Any
-         later change will get a new sequence number and be caught
-         by on_clipboard_update()/process_clipboard() normally. */
-      last_seq = now_seq;
-    } else {
-      /* The clipboard changed while the arm request was crossing
-         threads (e.g. a URL copied right as EOF hit). That change's
-         WM_CLIPBOARDUPDATE was likely already delivered and dropped
-         because we weren't armed yet -- evaluate it now instead of
-         losing it. */
-      pending_seq = now_seq;
-      process_clipboard(hwnd);
-      last_seq = now_seq;
+
+  char *url = NULL;
+  switch (try_read_clipboard_url(listener_window, &url)) {
+  case 1: {
+    /* Some apps use delayed-render clipboard data and force a flush when
+     * they exit (e.g. Firefox closing while it still owns the clipboard).
+     * That produces a genuine WM_CLIPBOARDUPDATE / sequence-number bump
+     * with no actual change in content, which would otherwise cause us to
+     * reload the same URL. Guard against that by comparing to the last URL
+     * we actually loaded. */
+    if (g_last_loaded_url && strcmp(g_last_loaded_url, url) == 0) {
+      log_message("Clipboard changed but URL is unchanged; ignoring.");
+      free(url);
+      break;
     }
-    logmsg("Waiting for URL.");
-  } else {
-    armed = false;
-    logmsg("Stopped watching clipboard.");
+
+    log_message("Loading URL: %s.", url);
+    InterlockedExchange(&g_should_monitor, 0);
+    g_currently_monitoring = false;
+
+    const char *command[] = {"loadfile", url, "replace", NULL};
+    if (mpv_command_async(g_mpv_handle, LOAD_REQUEST_ID, command) < 0) {
+      InterlockedExchange(&g_should_monitor,
+                          1); /* queueing failed; keep watching */
+      apply_monitoring_state(listener_window);
+      free(url);
+    } else {
+      InterlockedExchange(&g_focus_wanted, 1);
+      free(g_last_loaded_url);
+      g_last_loaded_url = url; /* ownership transferred; freed on next
+                                   successful load or plugin shutdown */
+    }
+    break;
+  }
+  case -1:
+    if (++g_retry_attempts <= MAX_RETRY_ATTEMPTS)
+      SetTimer(listener_window, TIMER_CLIPBOARD_RETRY, RETRY_DELAY_MS, NULL);
+    break;
+  case -2:
+    log_message("Clipboard changed; no text was copied.");
+    break;
+  default:
+    log_message("Clipboard changed; not a URL.");
+    break;
   }
 }
 
-static void request_monitor(bool enable) {
-  LONG v = enable ? 1 : 0;
-  if (InterlockedExchange(&g_want_monitor, v) == v)
-    return;
-  HWND h = hwnd_get();
-  if (h)
-    PostMessageW(h, WM_MONITOR,
-                 (WPARAM)(enable ? GetClipboardSequenceNumber() : 0), 0);
-}
+/* mpv exposes no usable window handle on Windows ("window-id" is X11-only).
+ * Since this plugin runs inside mpv.exe's own process, EnumWindows()
+ * filtered to our process id reliably finds mpv's top-level window. */
+static BOOL CALLBACK match_own_toplevel_window(HWND candidate, LPARAM out_ptr) {
+  DWORD owning_process = 0;
+  GetWindowThreadProcessId(candidate, &owning_process);
+  if (owning_process != GetCurrentProcessId() || !IsWindowVisible(candidate) ||
+      GetWindow(candidate, GW_OWNER))
+    return TRUE; /* keep looking; also skips our own hidden listener window */
 
-/*
- * mpv has no usable "window-id" property on Windows (it's X11-only, see
- * mpv PR #10919), so we can't just ask mpv for its HWND. Since this plugin
- * is loaded into mpv.exe's own process, EnumWindows() filtered to our own
- * process id reliably finds mpv's top-level window instead.
- */
-static BOOL CALLBACK find_own_window(HWND h, LPARAM out) {
-  DWORD pid = 0;
-  GetWindowThreadProcessId(h, &pid);
-  if (pid != GetCurrentProcessId())
-    return TRUE;
-  if (!IsWindowVisible(h))
-    return TRUE; /* skips our own hidden listener window too */
-  if (GetWindow(h, GW_OWNER))
-    return TRUE; /* only top-level, unowned windows */
-  *(HWND *)out = h;
+  *(HWND *)out_ptr = candidate; // NOLINT(performance-no-int-to-ptr)
   return FALSE;
 }
 
-static HWND mpv_window(void) {
-  if (!g_mpv || flagged(&g_quit))
-    return NULL;
+static HWND find_mpv_window(void) {
   HWND found = NULL;
-  EnumWindows(find_own_window, (LPARAM)&found);
+  if (!flag_is_set(&g_quitting))
+    EnumWindows(match_own_toplevel_window, (LPARAM)&found);
   return found;
 }
 
-static bool try_focus(void) {
-  HWND target = mpv_window();
-  if (!target)
-    return false;
+/* Windows normally blocks a background process from stealing the
+ * foreground, so briefly attach our input queue to the foreground window's
+ * thread before calling SetForegroundWindow. */
+static bool try_focus_window(HWND target_window) {
+  DWORD this_thread = GetCurrentThreadId();
+  DWORD target_thread = GetWindowThreadProcessId(target_window, NULL);
+  HWND foreground_window = GetForegroundWindow();
+  DWORD foreground_thread =
+      foreground_window ? GetWindowThreadProcessId(foreground_window, NULL) : 0;
 
-  DWORD me = GetCurrentThreadId();
-  DWORD target_tid = GetWindowThreadProcessId(target, NULL);
+  bool attached_foreground =
+      foreground_thread && foreground_thread != this_thread &&
+      foreground_thread != target_thread &&
+      AttachThreadInput(this_thread, foreground_thread, TRUE);
+  bool attached_target = target_thread && target_thread != this_thread &&
+                         AttachThreadInput(this_thread, target_thread, TRUE);
 
-  HWND old_fg = GetForegroundWindow();
-  DWORD fg_tid = old_fg ? GetWindowThreadProcessId(old_fg, NULL) : 0;
-
-  /*
-   * Windows generally refuses to let a background process steal the
-   * foreground outright. The documented workaround is to attach our
-   * input queue to whichever thread currently *owns* the foreground
-   * (not just to our target) before calling SetForegroundWindow. This
-   * is why a fresh/newly-created mpv window focuses trivially but a
-   * reused one, with focus already sitting elsewhere, does not without
-   * this attach.
-   */
-  BOOL attached_fg = (fg_tid && fg_tid != me && fg_tid != target_tid)
-                         ? AttachThreadInput(me, fg_tid, TRUE)
-                         : FALSE;
-  BOOL attached_target = (target_tid && target_tid != me)
-                             ? AttachThreadInput(me, target_tid, TRUE)
-                             : FALSE;
-
-  if (IsIconic(target))
-    ShowWindowAsync(target, SW_RESTORE);
-  SetWindowPos(target, HWND_TOP, 0, 0, 0, 0,
+  if (IsIconic(target_window))
+    ShowWindowAsync(target_window, SW_RESTORE);
+  SetWindowPos(target_window, HWND_TOP, 0, 0, 0, 0,
                SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
-  SetForegroundWindow(target);
-  BringWindowToTop(target);
-  SetActiveWindow(target);
-  SetFocus(target);
-  SetForegroundWindow(target);
+  SetForegroundWindow(target_window);
+  BringWindowToTop(target_window);
+  SetActiveWindow(target_window);
+  SetFocus(target_window);
+  SetForegroundWindow(target_window);
 
   if (attached_target)
-    AttachThreadInput(me, target_tid, FALSE);
-  if (attached_fg)
-    AttachThreadInput(me, fg_tid, FALSE);
+    AttachThreadInput(this_thread, target_thread, FALSE);
+  if (attached_foreground)
+    AttachThreadInput(this_thread, foreground_thread, FALSE);
 
-  HWND fg = GetForegroundWindow();
-  return fg == target || GetAncestor(fg, GA_ROOT) == target;
+  HWND resulting_foreground = GetForegroundWindow();
+  return resulting_foreground == target_window ||
+         GetAncestor(resulting_foreground, GA_ROOT) == target_window;
 }
 
-static void process_focus(HWND hwnd, bool fresh) {
-  if (!flagged(&g_want_focus) || flagged(&g_quit)) {
-    KillTimer(hwnd, FOCUS_RETRY_ID);
-    focus_retries = 0;
+static void pursue_focus(HWND listener_window, bool is_fresh_request) {
+  if (!flag_is_set(&g_focus_wanted) || flag_is_set(&g_quitting)) {
+    KillTimer(listener_window, TIMER_FOCUS_RETRY);
     return;
   }
-  if (fresh) {
-    KillTimer(hwnd, FOCUS_RETRY_ID);
-    focus_retries = 0;
-    logmsg("Attempting to focus the mpv window.");
+  if (is_fresh_request) {
+    KillTimer(listener_window, TIMER_FOCUS_RETRY);
+    g_retry_attempts = 0;
+    log_message("Attempting to focus the mpv window.");
   }
 
-  if (try_focus()) {
-    InterlockedExchange(&g_want_focus, 0);
-    KillTimer(hwnd, FOCUS_RETRY_ID);
-    logmsg("Successfully focused the mpv window.");
-    return;
-  }
-  if (!mpv_window())
-    return; /* no HWND yet; wait for the next trigger, don't poll */
+  HWND target_window = find_mpv_window();
+  if (target_window && try_focus_window(target_window)) {
+    InterlockedExchange(&g_focus_wanted, 0);
+    KillTimer(listener_window, TIMER_FOCUS_RETRY);
+    log_message("Focused the mpv window.");
+  } else if (target_window && ++g_retry_attempts <= MAX_RETRY_ATTEMPTS) {
+    SetTimer(listener_window, TIMER_FOCUS_RETRY, RETRY_DELAY_MS, NULL);
+  } else if (target_window) {
+    InterlockedExchange(&g_focus_wanted, 0);
+    log_message("Giving up on focusing the mpv window.");
+  } /* else: no window yet; wait for the next trigger instead of polling */
+}
 
-  if (++focus_retries > MAX_RETRIES) {
-    InterlockedExchange(&g_want_focus, 0);
-    logmsg("Focus failed after %u attempts.", MAX_RETRIES + 1);
+static void apply_monitoring_state(HWND listener_window) {
+  bool should_monitor = flag_is_set(&g_should_monitor);
+  if (should_monitor == g_currently_monitoring)
     return;
+
+  KillTimer(listener_window, TIMER_CLIPBOARD_RETRY);
+  g_retry_attempts = 0;
+  g_currently_monitoring = should_monitor;
+
+  if (should_monitor) {
+    g_last_clipboard_sequence =
+        GetClipboardSequenceNumber(); /* ignore prior contents */
+    log_message("Watching clipboard for a URL.");
+  } else {
+    log_message("Stopped watching clipboard.");
   }
-  SetTimer(hwnd, FOCUS_RETRY_ID, FOCUS_RETRY_MS, NULL);
+}
+
+static void request_monitoring(bool enable) {
+  LONG value = enable ? 1 : 0;
+  if (InterlockedExchange(&g_should_monitor, value) == value)
+    return;
+  HWND listener_window = get_listener_window();
+  if (listener_window)
+    PostMessageW(listener_window, MSG_SET_MONITORING, 0, 0);
 }
 
 static void request_focus(void) {
-  HWND h = hwnd_get();
-  if (h)
-    PostMessageW(h, WM_FOCUS, 0, 0);
+  HWND listener_window = get_listener_window();
+  if (listener_window)
+    PostMessageW(listener_window, MSG_REQUEST_FOCUS, 0, 0);
 }
 
-static void queue_load(HWND hwnd, const char *url) {
-  logmsg("Loading URL: %s.", url);
-  InterlockedExchange(&g_want_monitor, 0);
-  apply_monitor_state(hwnd, 0); /* disarm: arm_seq is unused on this path */
-  InterlockedExchange(&g_want_focus, 1);
-
-  const char *args[] = {"loadfile", url, "replace", NULL};
-  if (mpv_command_async(g_mpv, REQ_LOAD, args) < 0) {
-    InterlockedExchange(&g_want_focus, 0);
-    InterlockedExchange(&g_want_monitor, 1);
-    apply_monitor_state(hwnd, GetClipboardSequenceNumber());
-    return;
-  }
-  /* Focus is requested once mpv actually confirms the load is under way
-     (COMMAND_REPLY/START_FILE/FILE_LOADED/VIDEO_RECONFIG in
-     mpv_open_cplugin), not here -- loading takes real time, so
-     attempting focus immediately would race ahead of it. */
-}
-
-static void process_clipboard(HWND hwnd) {
-  KillTimer(hwnd, CLIP_RETRY_ID);
-  if (flagged(&g_quit) || !armed)
-    return;
-
-  DWORD seq = GetClipboardSequenceNumber();
-  if (pending_seq && seq != pending_seq)
-    return; /* a newer change supersedes this one */
-
-  char *url;
-  int r = read_clipboard_url(hwnd, &url);
-
-  if (r == 1) {
-    queue_load(hwnd, url);
-    free(url);
-  } else if (r == 0) {
-    logmsg("Clipboard changed; ignored (not a URL).");
-  } else { /* busy */
-    if (++clip_retries > MAX_RETRIES)
-      return;
-    SetTimer(hwnd, CLIP_RETRY_ID, CLIP_RETRY_MS, NULL);
-  }
-}
-
-static void on_clipboard_update(HWND hwnd) {
-  DWORD seq = GetClipboardSequenceNumber();
-  if (seq == last_seq)
-    return;
-  last_seq = seq;
-  KillTimer(hwnd, CLIP_RETRY_ID);
-  if (!armed)
-    return;
-  pending_seq = seq;
-  clip_retries = 0;
-  process_clipboard(hwnd);
-}
-
-static LRESULT CALLBACK wnd_proc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp) {
-  switch (msg) {
-  case WM_CLIPBOARDUPDATE:
-    on_clipboard_update(hwnd);
+static LRESULT CALLBACK listener_window_proc(HWND window, UINT message,
+                                             WPARAM wparam, LPARAM lparam) {
+  switch (message) {
+  case WM_CLIPBOARDUPDATE: {
+    DWORD sequence = GetClipboardSequenceNumber();
+    if (sequence == g_last_clipboard_sequence)
+      return 0;
+    g_last_clipboard_sequence = sequence;
+    g_retry_attempts = 0;
+    if (g_currently_monitoring)
+      check_clipboard_now(window);
     return 0;
-  case WM_MONITOR:
-    apply_monitor_state(hwnd, (DWORD)wp);
+  }
+  case MSG_SET_MONITORING:
+    apply_monitoring_state(window);
     return 0;
-  case WM_FOCUS:
-    process_focus(hwnd, true);
+  case MSG_REQUEST_FOCUS:
+    pursue_focus(window, true);
     return 0;
   case WM_TIMER:
-    if (wp == CLIP_RETRY_ID) {
-      process_clipboard(hwnd);
-      return 0;
-    }
-    if (wp == FOCUS_RETRY_ID) {
-      process_focus(hwnd, false);
-      return 0;
-    }
-    break;
+    if (wparam == TIMER_CLIPBOARD_RETRY)
+      check_clipboard_now(window);
+    else if (wparam == TIMER_FOCUS_RETRY)
+      pursue_focus(window, false);
+    return 0;
   case WM_CLOSE:
-    RemoveClipboardFormatListener(hwnd);
-    DestroyWindow(hwnd);
+    RemoveClipboardFormatListener(window);
+    DestroyWindow(window);
     return 0;
   case WM_DESTROY:
     PostQuitMessage(0);
     return 0;
+  default:
+    return DefWindowProcW(window, message, wparam, lparam);
   }
-  return DefWindowProcW(hwnd, msg, wp, lp);
 }
 
-static DWORD WINAPI listener_main(void *unused) {
+static DWORD WINAPI listener_thread_main(void *unused) {
   (void)unused;
-  HINSTANCE inst = GetModuleHandleW(NULL);
-  wchar_t cls[64];
-  swprintf(cls, 64, L"mpv_clip_url_%lu", GetCurrentThreadId());
+  HINSTANCE instance = GetModuleHandleW(NULL);
+  wchar_t class_name[WINDOW_CLASS_NAME_CHARS];
+  swprintf(class_name, WINDOW_CLASS_NAME_CHARS, L"mpv_clip_url_%lu",
+           GetCurrentThreadId());
 
-  WNDCLASSW wc = {0};
-  wc.lpfnWndProc = wnd_proc;
-  wc.hInstance = inst;
-  wc.lpszClassName = cls;
-
-  HWND hwnd = NULL;
-  if (RegisterClassW(&wc)) {
-    hwnd = CreateWindowExW(0, cls, L"", 0, 0, 0, 0, 0, HWND_MESSAGE, NULL, inst,
-                           NULL);
-    if (hwnd && !AddClipboardFormatListener(hwnd)) {
-      DestroyWindow(hwnd);
-      hwnd = NULL;
+  WNDCLASSW window_class = {.lpfnWndProc = listener_window_proc,
+                            .hInstance = instance,
+                            .lpszClassName = class_name};
+  HWND window = NULL;
+  if (RegisterClassW(&window_class)) {
+    window = CreateWindowExW(0, class_name, L"", 0, 0, 0, 0, 0, HWND_MESSAGE,
+                             NULL, instance, NULL);
+    if (window && !AddClipboardFormatListener(window)) {
+      DestroyWindow(window);
+      window = NULL;
     }
   }
 
-  last_seq = GetClipboardSequenceNumber();
-  hwnd_set(hwnd);
-  SetEvent(g_ready);
-  if (!hwnd)
+  g_last_clipboard_sequence = GetClipboardSequenceNumber();
+  set_listener_window(window);
+  SetEvent(g_listener_ready_event);
+  if (!window)
     return 1;
 
-  logmsg("Listener started.");
-  apply_monitor_state(hwnd, GetClipboardSequenceNumber());
+  log_message("Listener started.");
+  apply_monitoring_state(window);
 
-  MSG msg;
-  while (GetMessageW(&msg, NULL, 0, 0) > 0) {
-    TranslateMessage(&msg);
-    DispatchMessageW(&msg);
+  MSG message;
+  while (GetMessageW(&message, NULL, 0, 0) > 0) {
+    TranslateMessage(&message);
+    DispatchMessageW(&message);
   }
 
-  if (IsWindow(hwnd)) {
-    RemoveClipboardFormatListener(hwnd);
-    DestroyWindow(hwnd);
+  if (IsWindow(window)) {
+    RemoveClipboardFormatListener(window);
+    DestroyWindow(window);
   }
-  hwnd_set(NULL);
-  UnregisterClassW(cls, inst);
+  set_listener_window(NULL);
+  UnregisterClassW(class_name, instance);
   return 0;
 }
 
 static bool start_listener(void) {
-  g_ready = CreateEventW(NULL, TRUE, FALSE, NULL);
-  if (!g_ready)
+  g_listener_ready_event = CreateEventW(NULL, TRUE, FALSE, NULL);
+  if (!g_listener_ready_event)
     return false;
-  g_thread = CreateThread(NULL, 0, listener_main, NULL, 0, &g_thread_id);
-  if (!g_thread) {
-    CloseHandle(g_ready);
-    g_ready = NULL;
+
+  g_listener_thread = CreateThread(NULL, 0, listener_thread_main, NULL, 0,
+                                   &g_listener_thread_id);
+  if (!g_listener_thread) {
+    CloseHandle(g_listener_ready_event);
+    g_listener_ready_event = NULL;
     return false;
   }
-  WaitForSingleObject(g_ready, INFINITE);
-  return hwnd_get() != NULL;
+
+  WaitForSingleObject(g_listener_ready_event, INFINITE);
+  if (get_listener_window())
+    return true;
+
+  WaitForSingleObject(g_listener_thread, INFINITE);
+  CloseHandle(g_listener_thread);
+  CloseHandle(g_listener_ready_event);
+  g_listener_thread = g_listener_ready_event = NULL;
+  g_listener_thread_id = 0;
+  return false;
 }
 
 static void stop_listener(void) {
-  InterlockedExchange(&g_quit, 1);
-  InterlockedExchange(&g_want_monitor, 0);
-  InterlockedExchange(&g_want_focus, 0);
+  InterlockedExchange(&g_quitting, 1);
+  InterlockedExchange(&g_should_monitor, 0);
+  InterlockedExchange(&g_focus_wanted, 0);
 
-  HWND h = hwnd_get();
-  if (h)
-    PostMessageW(h, WM_CLOSE, 0, 0);
-  else if (g_thread_id)
-    PostThreadMessageW(g_thread_id, WM_QUIT, 0, 0);
+  HWND listener_window = get_listener_window();
+  if (listener_window)
+    PostMessageW(listener_window, WM_CLOSE, 0, 0);
+  else if (g_listener_thread_id)
+    PostThreadMessageW(g_listener_thread_id, WM_QUIT, 0, 0);
 
-  if (g_thread) {
-    WaitForSingleObject(g_thread, INFINITE);
-    CloseHandle(g_thread);
-    g_thread = NULL;
+  if (g_listener_thread) {
+    WaitForSingleObject(g_listener_thread, INFINITE);
+    CloseHandle(g_listener_thread);
+    g_listener_thread = NULL;
   }
-  if (g_ready) {
-    CloseHandle(g_ready);
-    g_ready = NULL;
+  if (g_listener_ready_event) {
+    CloseHandle(g_listener_ready_event);
+    g_listener_ready_event = NULL;
   }
-}
-
-static void sync_monitor(bool idle, bool eof) {
-  request_monitor(!flagged(&g_quit) && (idle || eof));
+  g_listener_thread_id = 0;
 }
 
 MPV_EXPORT int mpv_open_cplugin(mpv_handle *handle) {
-  g_mpv = handle;
-  logmsg("Plugin loaded.");
+  g_mpv_handle = handle;
+  log_message("Plugin loaded.");
 
-  if (mpv_observe_property(handle, OBS_IDLE, "idle-active", MPV_FORMAT_FLAG) <
-          0 ||
-      mpv_observe_property(handle, OBS_EOF, "eof-reached", MPV_FORMAT_FLAG) <
-          0) {
-    g_mpv = NULL;
-    return -1;
-  }
-  if (!start_listener()) {
-    logmsg("Plugin initialization failed.");
-    g_mpv = NULL;
+  if (mpv_observe_property(handle, PROPERTY_ID_IDLE, "idle-active",
+                           MPV_FORMAT_FLAG) < 0 ||
+      mpv_observe_property(handle, PROPERTY_ID_EOF, "eof-reached",
+                           MPV_FORMAT_FLAG) < 0 ||
+      !start_listener()) {
+    log_message("Plugin initialization failed.");
+    g_mpv_handle = NULL;
     return -1;
   }
 
-  bool idle = false, eof = false;
-
+  bool is_idle = false, at_eof = false;
   for (;;) {
-    mpv_event *ev = mpv_wait_event(handle, -1);
-    switch (ev->event_id) {
+    mpv_event *event = mpv_wait_event(handle, -1);
+
+    switch (event->event_id) {
     case MPV_EVENT_PROPERTY_CHANGE: {
-      mpv_event_property *p = ev->data;
-      if (!p)
+      mpv_event_property *property = event->data;
+      if (!property || property->format != MPV_FORMAT_FLAG || !property->data)
         break;
-      if (ev->reply_userdata == OBS_IDLE) {
-        idle = p->format == MPV_FORMAT_FLAG && p->data && *(int *)p->data;
-        sync_monitor(idle, eof);
-      } else if (ev->reply_userdata == OBS_EOF) {
-        eof = p->format == MPV_FORMAT_FLAG && p->data && *(int *)p->data;
-        sync_monitor(idle, eof);
-      }
+      bool value = *(int *)property->data;
+      if (event->reply_userdata == PROPERTY_ID_IDLE)
+        is_idle = value;
+      else if (event->reply_userdata == PROPERTY_ID_EOF)
+        at_eof = value;
+      request_monitoring(!flag_is_set(&g_quitting) && (is_idle || at_eof));
       break;
     }
     case MPV_EVENT_COMMAND_REPLY:
-      if (ev->reply_userdata == REQ_LOAD) {
-        if (ev->error < 0) {
-          logmsg("Loadfile failed: %s.", mpv_error_string(ev->error));
-          InterlockedExchange(&g_want_focus, 0);
-          sync_monitor(idle, eof);
-        } else if (flagged(&g_want_focus)) {
-          request_focus();
-        }
+      if (event->reply_userdata != LOAD_REQUEST_ID)
+        break;
+      if (event->error < 0) {
+        log_message("Loadfile failed: %s.", mpv_error_string(event->error));
+        InterlockedExchange(&g_focus_wanted, 0);
+        request_monitoring(!flag_is_set(&g_quitting) && (is_idle || at_eof));
+      } else {
+        request_focus();
       }
       break;
     case MPV_EVENT_START_FILE:
-      idle = eof = false;
-      request_monitor(false);
-      if (flagged(&g_want_focus))
-        request_focus();
+      is_idle = at_eof = false;
+      request_monitoring(false);
       break;
     case MPV_EVENT_FILE_LOADED:
     case MPV_EVENT_VIDEO_RECONFIG:
-      if (flagged(&g_want_focus))
+      if (flag_is_set(&g_focus_wanted))
         request_focus();
       break;
     case MPV_EVENT_SHUTDOWN:
-      goto done;
+      log_message("Plugin shutting down.");
+      stop_listener();
+      free(g_last_loaded_url);
+      g_last_loaded_url = NULL;
+      g_mpv_handle = NULL; /* mpv owns the handle; do not mpv_destroy() it */
+      return 0;
     default:
       break;
     }
   }
-
-done:
-  logmsg("Plugin shutting down.");
-  stop_listener();
-  g_mpv = NULL; /* mpv owns the handle; do not mpv_destroy() it */
-  return 0;
 }

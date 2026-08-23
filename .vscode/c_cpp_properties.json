@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "name": "Windows Clang analysis",
+            "compilerPath": "C:/msys64/clang64/bin/clang.exe",
+            "intelliSenseMode": "windows-clang-x64",
+            "cStandard": "c17",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ]
+        }
+    ],
+    "version": 4
+}

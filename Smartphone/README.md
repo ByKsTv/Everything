@@ -58,9 +58,9 @@
 | Spotify                        | [4pda](https://4pda.to/forum/index.php?act=findpost&pid=8030514&anchor=Spoil-8030514-11)                                                                                                                                                    | [Mod] [Amoled] [Gold] [Old] by LITEAPKS                                                    |
 | StudyGe - World Geography Quiz | [4pda](https://4pda.to/forum/index.php?act=findpost&pid=119912812&anchor=Spoil-119912812-4)                                                                                                                                                 | Premium                                                                                    |
 | Symbolab: AI Math Photo Solver | [4pda](https://4pda.to/forum/index.php?showtopic=702296&view=findpost&p=44337245)                                                                                                                                                           |                                                                                            |
-| TickTick:To Do List & Calendar | [4pda](https://4pda.to/forum/index.php?showtopic=478412&view=findpost&p=23310127)                                                                                                                                                           | Pro by FurrEX                                                                              |
+| TickTick:To Do List & Calendar | [4pda](https://4pda.to/forum/index.php?showtopic=478412&view=findpost&p=23310127)                                                                                                                                                           | Pro by Balatan                                                                             |
 | TikTok                         | [4pda](https://4pda.to/forum/index.php?showtopic=1057582&view=findpost&p=88888432)                                                                                                                                                          | TikTokModCloud                                                                             |
-| Truecaller                     | [4pda](https://4pda.to/forum/index.php?showtopic=417409#Spoil-18455027-3)                                                                                                                                                                   | Premium by youarefinished                                                                  |
+| Truecaller                     | [4pda](https://4pda.to/forum/index.php?act=findpost&pid=18455027&anchor=Spoil-18455027-5)                                                                                                                                                   | (Stable) Gold by Balatan                                                                   |
 | UAD-ng                         | [GitHub](https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/releases/latest)                                                                                                                       | uad-ng-windows.exe                                                                         |
 | Vocalizer                      | [4pda](https://4pda.to/forum/index.php?showtopic=987292#apk)                                                                                                                                                                                | [Latest 3.8.2](https://4pda.to/forum/index.php?showtopic=987292&view=findpost&p=132720887) |
 | WhatsApp                       | [4pda](https://4pda.to/forum/index.php?showtopic=186375#Spoil-5125511-11)                                                                                                                                                                   |                                                                                            |
@@ -126,27 +126,25 @@
 
 ### Truecaller Reset
 
-| Location                       | Action                                       |
-| ------------------------------ | -------------------------------------------- |
-| `Settings` -> `Privacy Center` | `Deactivate my account`                      |
-| Mark the first 3 options       | `Yes, Continue`                              |
-| `Continue`                     | `Other reason` -> `Continue` -> `Deactivate` |
-| Uninstall app                  |                                              |
+| Location                       | Action                                               |
+| ------------------------------ | ---------------------------------------------------- |
+| `Settings` -> `Privacy Center` | `Deactivate my account`                              |
+| Mark the first 3 options       | `Yes, Continue`                                      |
+| `Continue`                     | `Other reason` -> `.....` `Continue` -> `Deactivate` |
+| Uninstall app                  |                                                      |
 
 ### Truecaller Settings
 
 | Location                                                                  | Action                                                                                        |
 | ------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `Get started`                                                             | `Do not show again` ->                                                                        |
+| `Get started`                                                             |                                                                                               |
 | `Set Truecaller as your default caller ID & spam app?` -> `Truecaller`    | `Set as default`                                                                              |
 | `CONTINUE`                                                                | `Allow` 4 times                                                                               |
 | `Fill in manually`                                                        | Only first and last name are required                                                         |
-| `Enhanced Search`                                                         | `Don't Allow`                                                                                 |
 | `Backup available`                                                        | `Skip` -> `Skip`                                                                              |
 | `Settings` -> `Calls`                                                     | `Disable battery optimization` -> `Allow`                                                     |
 |                                                                           | Enable `Hide for phonebook contacts`, `Hide for non-phonebook contacts`                       |
 |                                                                           | Enable `Identify numbers on other apps`                                                       |
-|                                                                           | `Receive Video Caller ID` -> `No one`                                                         |
 |                                                                           | Disable `Group calls in call history`, `Show frequently called contacts`                      |
 |                                                                           | Enable `Announce phone calls`                                                                 |
 | `Settings` -> `Messaging`                                                 | `Make Truecaller default SMS app`                                                             |
@@ -294,7 +292,7 @@ Note 3: For sound, `Normal` is for hazards, anything other than that mutes hazar
 | Download [TrickyStore](https://github.com/5ec1cff/TrickyStore/releases/latest)                                         |
 | Download [Tricky-Addon-Update-Target-List](https://github.com/KOWX712/Tricky-Addon-Update-Target-List/releases/latest) |
 | Download [WaEnhancer](https://github.com/Dev4Mod/WaEnhancer/releases/latest)                                           |
-| Download [Lucky Patcher](https://chelpus.com/download/LP_Downloader.apk)                                               |
+| Download [Lucky Patcher](https://www.luckypatchers.com/download/)                                                      |
 
 ### Process of Switching from Official ROM to Custom ROM
 
@@ -389,7 +387,7 @@ Note 3: For sound, `Normal` is for hazards, anything other than that mutes hazar
 | Download [LineageOS](https://download.lineageos.org/devices)                               |
 | Download [Google Apps](https://wiki.lineageos.org/gapps) matching `Mobile` and `ARM64`     |
 | Download [Magisk](https://github.com/topjohnwu/Magisk/releases/latest)                     |
-| Download [Lucky Patcher](https://chelpus.com/download/LP_Downloader.apk)                   |
+| Download [Lucky Patcher](https://www.luckypatchers.com/download/)                          |
 | Download [Basic Call Recorder](https://github.com/chenxiaolong/BCR/releases/latest)        |
 | Download [PlayIntegrityFork](https://github.com/osm0sis/PlayIntegrityFork/releases/latest) |
 

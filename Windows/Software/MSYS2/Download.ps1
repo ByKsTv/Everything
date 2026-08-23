@@ -23,7 +23,12 @@ switch ($Architecture.ToUpperInvariant()) {
     'AMD64' {
         $AssetArchitecture = 'x86_64'
         $EnvironmentPath = [IO.Path]::Combine($InstallPath, 'ucrt64', 'bin')
-        $ToolchainPackages = @('base-devel', 'mingw-w64-ucrt-x86_64-toolchain')
+        $ToolchainPackages = @(
+            'base-devel',
+            'mingw-w64-ucrt-x86_64-toolchain',
+            'mingw-w64-clang-x86_64-clang',
+            'mingw-w64-clang-x86_64-clang-tools-extra'
+        )
     }
 
     'ARM64' {
@@ -123,23 +128,18 @@ if ($Updates.Count -gt 0) {
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write("'MSYS2'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' is already up to date'); [Console]::ResetColor(); [Console]::WriteLine()
 }
 
-# Install the compiler toolchain (gcc, make, etc.) if it is not already present.
-# A base MSYS2 install only provides bash/pacman/core tools - it does not include a
-# compiler, which is why 'gcc --version' fails until these packages are installed.
-$GccPath = [IO.Path]::Combine($EnvironmentPath, 'gcc.exe')
+# =========================================================================
+# Install ALL packages listed in $ToolchainPackages (idempotently).
+# --needed ensures only missing packages are installed.
+# =========================================================================
+$ToolchainList = $ToolchainPackages -join ', '
 
-if (-not (Test-Path $GccPath)) {
-    $ToolchainList = $ToolchainPackages -join ', '
+[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Ensuring all required toolchain packages are installed: '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ToolchainList'"); [Console]::ResetColor(); [Console]::WriteLine()
 
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$ToolchainList'"); [Console]::ResetColor(); [Console]::WriteLine()
+& $Bash -lc "pacman -S --needed --noconfirm $($ToolchainPackages -join ' ')"
 
-    & $Bash -lc "pacman -S --needed --noconfirm $($ToolchainPackages -join ' ')"
-
-    if ($LASTEXITCODE -ne 0) {
-        throw "Toolchain installation failed with exit code '$LASTEXITCODE'."
-    }
-} else {
-    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write("'gcc'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' is already installed'); [Console]::ResetColor(); [Console]::WriteLine()
+if ($LASTEXITCODE -ne 0) {
+    throw "Toolchain installation failed with exit code '$LASTEXITCODE'."
 }
 
 # Add the native MSYS2 environment to the USER PATH.
@@ -185,6 +185,7 @@ $env:Path =
 )
 
 # Confirm the compiler is now reachable on PATH.
+$GccPath = [IO.Path]::Combine($EnvironmentPath, 'gcc.exe')
 if (-not (Test-Path $GccPath)) {
-    throw "Unable to find '$GccPath'."
+    throw "Unable to find '$GccPath' after installation."
 }

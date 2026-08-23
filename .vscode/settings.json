@@ -1,0 +1,4 @@
+{
+    "C_Cpp.codeAnalysis.clangTidy.enabled": true,
+    "C_Cpp.codeAnalysis.clangTidy.path": "C:/msys64/clang64/bin/clang-tidy.exe"
+}
