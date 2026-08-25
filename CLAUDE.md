@@ -48,6 +48,7 @@ Rules to apply when writing or reviewing PowerShell scripts.
 
 - Add `Set-StrictMode -Version Latest` near the top of scripts — turns typos (e.g. a misspelled variable name) into hard errors instead of silently evaluating to `$null`.
 - Wrap the script body in an outer `try { } catch { Write-Error $_; exit 1 }` so uncaught exceptions produce a clean message and a non-zero exit code (useful for automation/Task Scheduler) instead of a raw stack trace.
+- Set `$ErrorActionPreference = 'Stop'` near the top alongside `Set-StrictMode` — without it, non-terminating errors from cmdlets (as opposed to thrown .NET exceptions) won't be caught by an outer `try/catch`, so they'd be silently skipped instead of triggering the `catch` block and `exit 1`.
 
 ## Robustness
 
@@ -58,16 +59,15 @@ Rules to apply when writing or reviewing PowerShell scripts.
 - Set TLS explicitly (`[Net.ServicePointManager]::SecurityProtocol = Tls12`) when targeting older/locked-down Windows PowerShell 5.1 environments, where the default can be TLS 1.0.
 - Set an explicit `User-Agent` header on HTTP requests — some servers reject requests with missing/default .NET user-agents.
 - Fail fast with a clear message for known failure modes (e.g. not running elevated when installing to `Program Files`) instead of letting a downstream step fail confusingly.
+- Cast version strings to `[version]` before comparing (`-ge`, `-gt`, etc.) instead of comparing as plain strings — string comparison is lexicographic and gets ordering like `'1.9' -gt '1.10'` wrong.
+- Set an explicit `Timeout` on `HttpClient` (e.g. `$httpClient.Timeout = [TimeSpan]::FromSeconds(30)`) instead of relying on the 100-second default — fail fast on a hung connection rather than blocking a script for minutes.
+- Validate a downloaded payload is non-empty (e.g. check `$fileBytes.Length -gt 0` or a streamed byte counter `-gt 0`) before writing it to disk / treating the download as complete and running it — an empty or truncated download should fail loudly, not silently produce a broken installer.
+- `[Environment]::GetFolderPath([Environment+SpecialFolder]::ProgramFilesX86)` returns an empty string on a 32-bit OS (there's no separate x86 folder there) — if the script must also run on 32-bit Windows, fall back to `ProgramFiles` when the x86 path is empty.
 
-## Parsing/matching resilience
+## Progress reporting
 
-- Don't assume a fixed quote style in HTML/text parsing (e.g. match both `"` and `'` around attribute values) — minifiers/CMS changes can flip this silently.
-
-## UX / output
-
-- Don't hard-code console `BackgroundColor` — it overrides the user's terminal theme (light theme, transparency, etc.). Only set `ForegroundColor` unless a background is truly necessary.
-- Report outcomes explicitly (e.g. "already up to date", "installed successfully") rather than only logging on the action-taken path.
-
-## Reusability
-
-- Parameterize hard-coded values (URLs, names, paths) via `param()` blocks so the script can be reused for similar tasks without editing the body.
+- To show download progress, don't use `HttpClient.GetByteArrayAsync()` — it buffers the entire response in memory and returns only once complete, giving no opportunity to report interim progress. Instead call `GetAsync(uri, HttpCompletionOption.ResponseHeadersRead)`, read `Content.Headers.ContentLength`, then copy the response stream to the destination file manually in a buffered loop (e.g. 80 KB chunks via `Stream.Read`/`Stream.Write`), computing percent complete from bytes-read vs. `ContentLength` after each chunk.
+- Use `Write-Progress` (not a raw `[Console]::Write` loop) for progress bars — it's the standard PowerShell UI primitive, renders a native progress bar in the console/ISE, and is automatically suppressed in non-interactive hosts. This is a UI concern, not the kind of per-call overhead the "prefer .NET over cmdlets" performance rules are aimed at, so reaching for a cmdlet here is fine.
+- Only call `Write-Progress -PercentComplete` when the integer percent actually changes (track a `$lastPercent` variable) — calling it on every chunk read (which can be thousands of times per second for a large file) adds needless overhead and console flicker for no visible benefit.
+- `Content.Headers.ContentLength` can be `$null` (e.g. chunked transfer encoding, or a server that omits it) — guard for this and fall back to reporting a raw byte count instead of a percentage; don't assume it's always present.
+- Always call `Write-Progress -Completed` in a `finally` block once the download loop ends (success or failure) — otherwise a stale progress bar can linger in the console/host after the script moves on or errors out.

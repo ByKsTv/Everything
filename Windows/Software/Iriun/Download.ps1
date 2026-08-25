@@ -10,19 +10,24 @@ if (-not (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue)) 
 
 #Requires -RunAsAdministrator
 Set-StrictMode -Version Latest
+$ErrorActionPreference = 'Stop'
 
 $AppName = 'Iriun'
 $BaseUri = [Uri]'https://iriun.com/'
 $programFilesX86 = [Environment]::GetFolderPath([Environment+SpecialFolder]::ProgramFilesX86)
+if (-not $programFilesX86) {
+    # 32-bit OS has no separate x86 folder
+    $programFilesX86 = [Environment]::GetFolderPath([Environment+SpecialFolder]::ProgramFiles)
+}
 $UninstallerPath = [IO.Path]::Combine($programFilesX86, 'Iriun Webcam', 'uninstall.exe')
 
 function Write-Info {
     param([Parameter(ValueFromRemainingArguments)] [string[]]$Segments)
     for ($i = 0; $i -lt $Segments.Count; $i++) {
         [Console]::ForegroundColor = if ($i % 2 -eq 0) {
-            'Green' 
+            'Green'
         } else {
-            'Yellow' 
+            'Yellow'
         }
         [Console]::Write($Segments[$i])
     }
@@ -35,6 +40,7 @@ try {
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
     $httpClient = [Net.Http.HttpClient]::new()
+    $httpClient.Timeout = [TimeSpan]::FromSeconds(30)
     $httpClient.DefaultRequestHeaders.UserAgent.ParseAdd('Mozilla/5.0 (Windows NT 10.0; Win64; x64)')
 
     try {
@@ -48,19 +54,19 @@ try {
             }
         }
         if (-not $downloadHref) {
-            throw "No .exe download link found on $BaseUri." 
+            throw "No .exe download link found on $BaseUri."
         }
 
         $versionText = [regex]::Match($downloadHref, '[\d.]+(?=\.exe$)').Value
         if (-not $versionText) {
-            throw "Could not parse a version number from '$downloadHref'." 
+            throw "Could not parse a version number from '$downloadHref'."
         }
         [version]$latestVersion = $versionText
 
         [version]$installedVersion = if ([IO.File]::Exists($UninstallerPath)) {
             [Diagnostics.FileVersionInfo]::GetVersionInfo($UninstallerPath).ProductVersion
         } else {
-            '0.0' 
+            '0.0'
         }
 
         if ($installedVersion -ge $latestVersion) {
@@ -72,8 +78,53 @@ try {
         $savePath = [IO.Path]::Combine($env:TEMP, [IO.Path]::GetFileName($downloadUri.AbsolutePath))
 
         Write-Info 'Downloading ' "'$AppName'" ' version ' "'$latestVersion'" ' from ' "'$downloadUri'" ' to ' "'$savePath'"
-        $fileBytes = $httpClient.GetByteArrayAsync($downloadUri).GetAwaiter().GetResult()
-        [IO.File]::WriteAllBytes($savePath, $fileBytes)
+
+        # Stream the download with ResponseHeadersRead so we get a response as soon as
+        # headers arrive, then copy chunk-by-chunk so we can report progress. Using
+        # GetByteArrayAsync (as before) buffers the entire file in memory with no
+        # opportunity to report interim progress.
+        $response = $httpClient.GetAsync($downloadUri, [Net.Http.HttpCompletionOption]::ResponseHeadersRead).GetAwaiter().GetResult()
+        try {
+            $response.EnsureSuccessStatusCode() | Out-Null
+
+            $totalBytes = $response.Content.Headers.ContentLength
+            $sourceStream = $response.Content.ReadAsStreamAsync().GetAwaiter().GetResult()
+            $destStream = [IO.File]::Create($savePath)
+            try {
+                $buffer = [byte[]]::new(81920)
+                $totalRead = 0L
+                $lastPercent = -1
+                while (($bytesRead = $sourceStream.Read($buffer, 0, $buffer.Length)) -gt 0) {
+                    $destStream.Write($buffer, 0, $bytesRead)
+                    $totalRead += $bytesRead
+
+                    if ($totalBytes) {
+                        $percent = [int](($totalRead / $totalBytes) * 100)
+                        if ($percent -ne $lastPercent) {
+                            Write-Progress -Activity "Downloading $AppName $latestVersion" `
+                                -Status "$percent% ($totalRead of $totalBytes bytes)" `
+                                -PercentComplete $percent
+                            $lastPercent = $percent
+                        }
+                    } else {
+                        # Server didn't return Content-Length (e.g. chunked encoding) —
+                        # fall back to an indeterminate byte-count status.
+                        Write-Progress -Activity "Downloading $AppName $latestVersion" `
+                            -Status "$totalRead bytes downloaded"
+                    }
+                }
+            } finally {
+                $destStream.Dispose()
+                $sourceStream.Dispose()
+                Write-Progress -Activity "Downloading $AppName $latestVersion" -Completed
+            }
+        } finally {
+            $response.Dispose()
+        }
+
+        if ($totalRead -eq 0) {
+            throw "Downloaded file from '$downloadUri' is empty."
+        }
 
         $installArgs = '/S'
         Write-Info 'Installing ' "'$AppName'" ' from ' "'$savePath'" ' with ' "'$installArgs'"

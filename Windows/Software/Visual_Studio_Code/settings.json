@@ -193,5 +193,6 @@
     // OTHER
     // ============================================================
     "editor.minimap.size": "fill",
-    "editor.minimap.showSlider": "always"
+    "editor.minimap.showSlider": "always",
+    "git.confirmSync": false
 }
