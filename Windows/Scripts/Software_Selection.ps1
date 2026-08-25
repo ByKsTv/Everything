@@ -245,7 +245,7 @@ $List = @(
     },
     @{
         Name    = 'Iriun'
-        Tooltip = "Downloads and Installs 'Iriun'."
+        Tooltip = "Downloads and Installs the latest version of 'Iriun'.`nAdds a scheduled task that will auto-update the software once windows starts."
         Icon64  = 'AAABAAEAEBAAAAEAIAA/AwAAFgAAAIlQTkcNChoKAAAADUlIRFIAAAAQAAAAEAgGAAAAH/P/YQAAAAFzUkdCAK7OHOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAC1ElEQVQ4T3WTW0hUURSGFzpaVt7OaG9FZDd7SDQvM+OMoxlRjpFgCqaZlb5UapRQKj6kmdOFQgvCS6ioIVFK5ozlJYQoNXyJ9MWwcSxTkwp9sEad/ta5YPrggsWZ2fv/v7P3WusQqQ2ppI7+SGr9OP+2kZfWRqpgG/lG2oQdcTYhIM5GPjp5TdwTNZLWOMTPNCLBMEL+sSC/GNBGLdw2H0BG9k1YugYwMjohZfurfqSfL4OrP2s26WSt6BEMn/gETPOLZrMGfttNaLW8wVrx9HkvhG1HGKJhCHvUhq8igI8bBZWvHs2tPYp07Wh40gkXn0iIHgbYZcC6cJhSrigSOX7NzqPucQeKb9fNN7e8xu8/i8oOcCgpD7Q+XAEIkTbaoEFlfZuyDXy2TyP2WO4Hoq3HiSiIaM+pxPTC0emZWWn/QU0LAyK4BjoGiBVWG9HVOyhtOv8Cp7PNE2zcybkydFdLqiTCy54B+QreWgXAf6zd/RJg8vssdoWm1iqmVaE3nesUNdbuPjYbwF4GcL/F+5jLmyTA1MwcdoefqFM8q8IQny0BzBVNEOtGgl4poocGITGZXCiHBMnMNU+yPlC2LYeh9G7D3NKSE0HGMxDr9r8LghHkEY7C0moJ8G36Jw4nXR7iMqQQqUKJ9mZlXDCPLSw6UVT2iAsYxm9nzzJAHApv7q23Djn55Zic/gHHghMvOt7ifnWLw8pTOTo2hdyCCpCnVtbKg7QCIHBRVMEIjEhDfkklKqqeob2zD5buAdQ0WVB8px5hsVkg9/3cAf0qwLh4HBcvHbIu3oLDsYAlpxPv3g+huaVHms7+wWE4eU2MgpIqqMSXyZPIoyx+TD7R8A04ioe1bbhxrxHJZ6/hYGIe9PE5iDRlIybhEhLSi5B/vQbVjVZs2ZfM12CA8jGl8SANu/hHfZH66hokp1uwndaFcIbayZ2f4poLp6fGLmnZQ2rjyX/ZfvuQpYKhkAAAAABJRU5ErkJggg=='
     },
     @{
@@ -622,7 +622,8 @@ if ((Get-ChildItem -Path "$env:ProgramFiles\WindowsApps" -ErrorAction SilentlyCo
     $CheckBoxes['HyperX NGENUITY'].Enabled = $false
     $CheckBoxes['HyperX NGENUITY'].Text += ' (Installed)'
 }
-if ($InstalledSoftware -match 'Iriun Webcam') {
+$TaskName = 'Iriun Updater'
+if (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue) {
     $CheckBoxes['Iriun'].Enabled = $false
     $CheckBoxes['Iriun'].Text += ' (Installed)'
 }
