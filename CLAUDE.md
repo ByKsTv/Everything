@@ -2,7 +2,7 @@
 
 Rules to apply when writing or reviewing PowerShell scripts.
 
-> **Instruction to Claude:** Whenever the user asks for help with PowerShell code in a conversation, apply the rules below. If that conversation surfaces a new rule, correction, or gotcha (e.g. a bug, a better .NET equivalent, a parsing pitfall, a style preference the user states), add it to this file and provide the user an updated copy of this file alongside the updated code — even if the user doesn't explicitly ask for the rules file to be updated that time. Keep entries concise, sorted into the existing categories (or a new category if none fits), and avoid duplicating an existing rule.
+> **Instruction:** Whenever the user asks for help with PowerShell code in a conversation, apply the rules below. If that conversation surfaces a new rule, correction, or gotcha (e.g. a bug, a better .NET equivalent, a parsing pitfall, a style preference the user states), add it to this file and provide the user an updated copy of this file alongside the updated code — even if the user doesn't explicitly ask for the rules file to be updated that time. Keep entries concise, sorted into the existing categories (or a new category if none fits), and avoid duplicating an existing rule. Keep this file general-purpose — notes specific to one target application/site/installer belong as a comment in that script, not here.
 
 ## Performance — prefer .NET over cmdlets
 
@@ -14,13 +14,18 @@ Rules to apply when writing or reviewing PowerShell scripts.
 - Use `[Diagnostics.Process]::Start()` instead of `Start-Process` — bypasses cmdlet parameter binding.
 - Use `[regex]::Matches()` / `[regex]::Match()` instead of parsing objects (e.g. `.Links`) when a direct pattern match is available and cheaper.
 - Use `[Uri]::new(baseUri, relativeHref)` instead of string concatenation for building URLs — correctly resolves both relative and absolute links.
+- Use `[IO.Path]::Combine()` instead of `Join-Path` for file path concatenation — direct .NET API call, avoids the provider abstraction and is slightly faster.
+- Guard `Add-Type -AssemblyName ...` calls with a type-existence check (e.g. `if (-not ('Namespace.Type' -as [type])) { Add-Type ... }`) instead of calling `Add-Type` unconditionally — skips redundant assembly probing when the type is already loaded (e.g. running under PowerShell 7+, where libraries like `System.Net.Http` are core assemblies loaded by default).
+- Enable `AutomaticDecompression` (`[Net.DecompressionMethods]::GZip -bor Deflate`) on an explicit `HttpClientHandler` passed to `HttpClient` when downloading web content — reduces bytes transferred and speeds up requests/downloads when the server supports compressed responses.
+- Use `[IO.File]::AppendAllText(path, text)` instead of `Add-Content`/`Out-File -Append` for logging — a direct API call for a simple append, avoiding cmdlet overhead on a call site that may run many times per script execution.
 
 ## Minimalism / readability
 
-- Consolidate repeated blocks (e.g. multi-line `[Console]::Write` color sequences) into one small helper function instead of duplicating them.
+- Consolidate repeated blocks (e.g. multi-line `[Console]::Write` color sequences, or repeated `.GetAwaiter().GetResult()` calls) into one small helper function instead of duplicating them.
 - Use descriptive, full-word variable/function names (`$downloadUri`, `Write-Info`) over abbreviations.
 - Prefer camelCase local variables in scripts intended as internal/utility (adjust to house style if the target codebase differs) — main point is _consistency_, not the specific casing.
 - Don't introduce a cmdlet or object just to extract one property — reach for the direct API instead.
+- Pull magic numbers used more than once (buffer sizes, timeouts) into a named variable near the top of the script instead of repeating the literal.
 
 ## Parameter defaults (`param()` gotchas)
 
@@ -30,25 +35,40 @@ Rules to apply when writing or reviewing PowerShell scripts.
 - Never use `${env:ProgramFiles(x86)}`-style curly-brace env-var syntax inside a `param()` default value — the unescaped `(x86)` inside nested parentheses can cause a parse error. Use `[Environment]::GetFolderPath([Environment+SpecialFolder]::ProgramFilesX86)` instead — it's also more robust than depending on the env var being set.
 - Prefer `#Requires -RunAsAdministrator` at the top of the script over a manual `WindowsPrincipal`/`WindowsBuiltInRole` elevation check — it's shorter, self-documenting, and PowerShell enforces it before the script body runs at all.
 
+## Automatic variables — avoid shadowing
+
+- Never assign to automatic variables (`$matches`, `$args`, `$input`, `$_`, `$PSBoundParameters`, etc.). These are read-only in some contexts or have special meaning; assigning to them can break regex matching (`$matches`), argument handling (`$args`), pipeline iteration (`$_`), and other built-in behavior. If you need a variable to store match results, use a descriptive name like `$linkMatches` or `$regexMatches` instead.
+
 ## PowerShell 5.1 compatibility (target environment)
 
-- Load `System.Net.Http` explicitly with `Add-Type -AssemblyName System.Net.Http` before using `HttpClient`. Unlike PowerShell 7 (.NET Core, which auto-loads it as a core library), Windows PowerShell 5.1 runs on .NET Framework and does **not** load this assembly by default — `[Net.Http.HttpClient]::new()` will throw a type-not-found error without this line.
+- Load `System.Net.Http` explicitly with `Add-Type -AssemblyName System.Net.Http` before using `HttpClient`, but only when it isn't already loaded (see the guarded-`Add-Type` rule above). Unlike PowerShell 7 (.NET Core, which auto-loads it as a core library), Windows PowerShell 5.1 runs on .NET Framework and does **not** load this assembly by default — `[Net.Http.HttpClient]::new()` will throw a type-not-found error without this line.
 - `WebClient` is **not** marked obsolete on .NET Framework/PowerShell 5.1 — the `[Obsolete]`/`SYSLIB0014` attribute only applies starting in .NET 6+. Prefer `HttpClient` anyway when reusing a connection (e.g. already open from a prior request) or for forward-compatibility, but don't frame it as "avoiding a deprecation warning" in this environment — there isn't one.
-- Avoid PS7+-only syntax: no ternary operator (`condition ? a : b`), no null-coalescing (`??`, `??=`), no `$PSStyle`. Use `if/else` expressions instead (already the pattern used in this script).
+- Avoid PS7+-only syntax: no ternary operator (`condition ? a : b`), no null-coalescing (`??`, `??=`), no `$PSStyle`. Use `if/else` expressions instead.
 - Explicitly set `[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12` before making HTTPS calls — 5.1's default `SecurityProtocol` can still be pinned to older TLS versions on some systems, causing HTTPS requests to fail with no clear error.
+- Wrap any pipeline result (`... | ForEach-Object { ... } | Select-Object -Unique`, `Where-Object`, etc.) in `@(...)` before calling `.Count` on it — verified against a real failure: PowerShell 7+ gives every object a synthetic `.Count`/`.Length` of 1, but Windows PowerShell 5.1 does not, so a pipeline that happens to produce exactly one result unwraps to a bare scalar and `.Count` throws `"The property 'Count' cannot be found on this object"`. This only surfaces when the result count is exactly one, so it can pass testing against inputs with zero or multiple results and still fail in production the first time there's a single match.
 
 ## Composability (calling this script from another script)
 
 - Never dot-source (`. .\script.ps1`) a script that calls `exit` — dot-sourcing merges it into the caller's scope, so `exit` terminates the entire calling script/session, not just the called script.
 - Invoke scripts with `exit` statements via the call operator (`& .\script.ps1`) or by bare path (`.\script.ps1`) instead — this runs them in their own scope, so `exit` only ends that script and control returns cleanly to the caller.
 - After invoking, check `$LASTEXITCODE` in the parent to detect success/failure, rather than assuming the child always succeeded.
-- Wrapping a script's body in `try/catch` with explicit `exit 0`/`exit 1` (as this script does) is deliberate: it converts internal failures into a predictable, checkable exit code instead of letting an uncaught exception propagate in a way that depends on the caller's `$ErrorActionPreference`.
+- Wrapping a script's body in `try/catch` with explicit `exit 0`/`exit 1` is deliberate: it converts internal failures into a predictable, checkable exit code instead of letting an uncaught exception propagate in a way that depends on the caller's `$ErrorActionPreference`.
 
 ## Error handling
 
 - Add `Set-StrictMode -Version Latest` near the top of scripts — turns typos (e.g. a misspelled variable name) into hard errors instead of silently evaluating to `$null`.
 - Wrap the script body in an outer `try { } catch { Write-Error $_; exit 1 }` so uncaught exceptions produce a clean message and a non-zero exit code (useful for automation/Task Scheduler) instead of a raw stack trace.
 - Set `$ErrorActionPreference = 'Stop'` near the top alongside `Set-StrictMode` — without it, non-terminating errors from cmdlets (as opposed to thrown .NET exceptions) won't be caught by an outer `try/catch`, so they'd be silently skipped instead of triggering the `catch` block and `exit 1`.
+
+## Logging
+
+- For unattended, elevated, or automation-style scripts, write a persistent debug log to a per-app file (e.g. `$env:TEMP\<AppName>.txt`) so it can't collide with another script's log, and always **append** (`[IO.File]::AppendAllText`) rather than overwrite — a run's history should survive the next run, especially for diagnosing intermittent failures.
+- Timestamp every log line with a fixed, sortable format (e.g. `dd-MM-yyyy HH:mm:ss.fff`) so entries can be grepped/sorted and correlated with when a failure happened.
+- Mirror every console status message to the log file (e.g. have the console-writing helper also call the log-writing helper) rather than maintaining separate console and log text — this guarantees the log reflects exactly what was printed on-screen, with no risk of the two drifting apart.
+- On failure, log full exception diagnostics — exception type, message, category, `InvocationInfo.PositionMessage` (where it happened), `ScriptStackTrace`, and any chained `InnerException`s — not just `$_.Exception.Message`. A bare message is rarely enough to debug a failure after the fact once the console is gone.
+- Throttle high-frequency status updates (e.g. per-chunk download progress) before writing them to the log — log at fixed milestones (e.g. every 10%) instead of every update, even though the live console progress bar (`Write-Progress`) can still update far more often. An unthrottled log for a large download becomes too noisy to read.
+- Create the log's parent directory defensively before every write (e.g. `[IO.Directory]::CreateDirectory($dir)`) rather than assuming it exists — `CreateDirectory` is a no-op if the directory is already there, so this is safe to call unconditionally. `$env:TEMP` itself is always pre-created by Windows, so this guard is unnecessary there specifically, but keep it for any other log location.
+- Be aware that `$env:TEMP` is per-user and resolves relative to whichever account context the process is actually running under — for a script that requires elevation (`#Requires -RunAsAdministrator`), if it's ever launched in a way that elevates as a _different_ account than the one editing/expecting the log, `$env:TEMP` will point at that other account's temp folder, not the original user's. Worth a comment near the log path if this could plausibly cause "where did my log go" confusion.
 
 ## Robustness
 
@@ -58,11 +78,80 @@ Rules to apply when writing or reviewing PowerShell scripts.
 - Clean up temp files only after confirmed success, so a failed run leaves artifacts for debugging.
 - Set TLS explicitly (`[Net.ServicePointManager]::SecurityProtocol = Tls12`) when targeting older/locked-down Windows PowerShell 5.1 environments, where the default can be TLS 1.0.
 - Set an explicit `User-Agent` header on HTTP requests — some servers reject requests with missing/default .NET user-agents.
+- Set a custom `User-Agent` explicitly when calling GitHub's REST API via a raw `HttpClient` — unlike `Invoke-RestMethod`, which sets one automatically, `HttpClient` sends none by default, and GitHub's API rejects or rate-limits requests that arrive without one.
 - Fail fast with a clear message for known failure modes (e.g. not running elevated when installing to `Program Files`) instead of letting a downstream step fail confusingly.
 - Cast version strings to `[version]` before comparing (`-ge`, `-gt`, etc.) instead of comparing as plain strings — string comparison is lexicographic and gets ordering like `'1.9' -gt '1.10'` wrong.
 - Set an explicit `Timeout` on `HttpClient` (e.g. `$httpClient.Timeout = [TimeSpan]::FromSeconds(30)`) instead of relying on the 100-second default — fail fast on a hung connection rather than blocking a script for minutes.
-- Validate a downloaded payload is non-empty (e.g. check `$fileBytes.Length -gt 0` or a streamed byte counter `-gt 0`) before writing it to disk / treating the download as complete and running it — an empty or truncated download should fail loudly, not silently produce a broken installer.
+- Validate a downloaded payload is non-empty (e.g. check a streamed byte counter `-gt 0`) before writing it to disk / treating the download as complete and running it — an empty or truncated download should fail loudly, not silently produce a broken installer.
 - `[Environment]::GetFolderPath([Environment+SpecialFolder]::ProgramFilesX86)` returns an empty string on a 32-bit OS (there's no separate x86 folder there) — if the script must also run on 32-bit Windows, fall back to `ProgramFiles` when the x86 path is empty.
+- When a script's "already installed?" check only looks for one specific file (e.g. `bash.exe` inside the install root) rather than the whole install being intact, treat any existing install directory found in the "not installed" branch as stale/partial (e.g. left over from a prior failed run) and remove it before installing — many installers (QtIFW-based ones included) fail on a non-empty target directory rather than reconciling with what's already there. Don't assume a failed prior run left nothing behind.
+- If a resource is created via a constructor that accepts another disposable (e.g. `HttpClient.new($handler)`), check whether the outer object already disposes the inner one by default before adding a separate explicit `.Dispose()` call for it — a redundant dispose call is harmless but adds noise. (`HttpClient` disposes the handler it was constructed with unless told otherwise.)
+- When matching a file/asset by name from an external source (a release's asset list, a directory listing), match only on what's actually load-bearing (e.g. architecture + extension) rather than reconstructing the full expected filename (prefix + architecture + version + extension) — the exact naming format belongs to the upstream project and can change independently of your logic. An exact-match pattern silently breaks the moment they rename anything; a minimal pattern keeps matching as long as the load-bearing parts are still there. Still guard against zero matches (and, if plausible, multiple matches) with a clear error rather than silently picking `$null`.
+- To avoid a GitHub API rate limit entirely for a "get latest release" check, don't call `api.github.com`. Instead `HttpClient.GetAsync()` the `https://github.com/<owner>/<repo>/releases/latest` URL with `HttpClientHandler.AllowAutoRedirect = $false`, then read the `Location` response header and regex out the tag (`/releases/tag/(?<tag>[^/]+)$`). This 302-redirect endpoint isn't subject to the unauthenticated API's 60-requests/hour limit.
+- **The static `https://github.com/<owner>/<repo>/releases/tag/<tag>` page does NOT contain asset links in its raw HTML** — verified by fetching it directly: the "Assets" section ships as a bare "Loading" placeholder that GitHub's own client-side JS fills in after the page loads. Don't scrape this page for asset `href`s; the regex will silently match zero results.
+- To get release assets without the API, fetch `https://github.com/<owner>/<repo>/releases/expanded_assets/<tag>` instead — this is the actual partial-HTML endpoint GitHub's own JS calls to lazily render the Assets list, confirmed (by direct fetch) to return real asset filenames and `/releases/download/<tag>/<filename>` links as plain markup, no JS execution required. Use `[regex]::Matches()` on the response for asset `href`s, resolve each match to an absolute URI via `[Uri]::new(baseUri, href)`, and dedupe by resolved URI before erroring on zero/multiple matches — same asset-matching discipline as the API-based approach.
+- When matching a specific asset filename against an `expanded_assets` (or any scraped) asset list, a suffix-only pattern (e.g. `x86_64-pc-windows-msvc\.zip$`) is NOT load-bearing enough on its own — verified against real data, where a single release published `deno-`, `denort-`, and `libdenort-` variants that all share that suffix and all matched, triggering a false "multiple distinct matches" error. Anchor on the `/` immediately preceding the exact expected filename (e.g. `'/' + [regex]::Escape($ExpectedFileName)`) instead of a bare suffix fragment, so sibling assets with a shared suffix but different prefix are excluded.
+- Don't add a `$` end-of-string anchor to pin down the end of a filename match inside a larger scraped document (e.g. `href="(?<href>[^"]*filename\.zip$)"`) — `$` (without `RegexOptions.Multiline`) only matches the end of the _entire_ input string, not the end of the current attribute value, so it silently matches nothing when there's any content after that href in the document (which there always is, for anything but the very last link on the page). When the surrounding literal characters already close off the match (e.g. the literal closing `"` from an `href="..."` template), that's sufficient anchoring on its own — verified end-to-end: removing the `$` fixed a "no matching asset found" false negative that the `$` version produced on real data.
+- GitHub release asset download URLs follow a stable, predictable pattern (`https://github.com/<owner>/<repo>/releases/download/<tag>/<filename>`) that works without hitting the API — useful for a simpler (but less robust to filename changes) API-avoidance approach when you're willing to hardcode the expected filename instead of fetching `expanded_assets` for it.
+
+## Console output / coloring
+
+- Don't color console segments by their _position_ in a call (e.g. alternating `Green`/`Yellow` by even/odd argument index) — that only stays consistent if every call happens to start with the same segment type (static text vs. a dynamic value), and silently breaks the moment a call starts with a value instead. Color by _role_ instead.
+- Prefer _named_ placeholder roles (`{name}`, `{version}`, `{url}`, `{path}`) over numeric ones (`{0}`, `{1}`) in a status-message template, with each role mapped to its own color (e.g. name=Yellow, version=Magenta, url=Cyan, path=DarkCyan) and literal surrounding text in a separate color (e.g. Green). Numeric placeholders only distinguish "value vs. literal" as a single undifferentiated color; named roles let the reader tell a package name apart from a version apart from a URL at a glance, and callers pass a hashtable instead of a positionally-ordered array, so a reordered template can't silently mismatch its values.
+- When implementing named-role placeholders, have the helper's second parameter be a `[hashtable]` (`@{ name = ...; version = ... }`) rather than `ValueFromRemainingArguments` — the hashtable is what makes reordering safe; an ordered array of remaining args just reintroduces the same positional fragility the named-roles rule is meant to fix.
+- **Make the Values parameter optional with a default empty hashtable** (`[hashtable]$Values = @{}`) – this allows calling `Write-Status 'Plain message'` without any second argument when no placeholders are used, avoiding the need to remember `@{}` and preventing the error described above.
+- Have the status-writing helper itself wrap each value in single quotes (`'$value'`) rather than requiring callers to add the quotes in the string they pass in — keeps quoting consistent and removes a class of "forgot the quotes on this one call" mistakes.
+- When a script writes colored console output, set `[Console]::BackgroundColor` explicitly (not just `ForegroundColor`) before writing, so the output reads consistently regardless of the host's default background — don't leave it to whatever the terminal happens to default to.
+
+## Unicode & character encoding
+
+- **Avoid visually confusable Unicode characters in source code.** In strings, use plain ASCII punctuation (e.g., hyphen `-`, apostrophe `'`, quotation marks `"`) instead of their typographic/Unicode equivalents (`‑`, `—`, `‘`, `’`, `“`, `”`). Specifically avoid `U+2011` (non-breaking hyphen) and similar characters in string literals. Such characters can be hard to spot, cause editor warnings, and may be misinterpreted by tools that expect ASCII-only source. While they are often harmless inside string literals, they add noise and reduce readability. Stick to ASCII for all source code characters, reserving Unicode only for actual output or documentation where it's necessary.
+
+## Conciseness
+
+- Favor fewer lines when it doesn't cost clarity: one-line function signatures (`function Foo([string]$X, [int]$Y = 1) { ... }`) instead of multi-line `param()` blocks for ordinary functions (script-level `param()` keeps its own rules above), single-line `if (...) { throw "..." }` guard clauses instead of 4-line blocks, and simplified `Where-Object Name -eq $Value` instead of the scriptblock form (`Where-Object { $_.Name -eq $Value }`) where only one property comparison is needed.
+- Fold duplicated blocks into a loop instead of copy-pasting them (e.g. a "retry once" block that appears twice becomes `1..2 | ForEach-Object { ... }`).
+- Don't reach for line-shortening syntax that costs correctness or violates another rule to save lines — e.g. never use `??`/ternary to compact an `if/else` in a script that must stay PowerShell 5.1 compatible (see the 5.1 compatibility rules above). A shorter script that silently breaks on the target environment is not an improvement.
+- When condensing a multi-line object-construction-plus-configuration pattern (e.g. `New-Object` / `[Type]::new()` followed by several property assignments) into a single inline expression, double check every property that was being set on separate lines is still set — it's easy to fold the constructor call into the consuming call (`Foo([Type]::new(...))`) while quietly dropping a property assignment that had no home left to live in. If a property matters (e.g. `UseShellExecute` on a `ProcessStartInfo`), keep it as its own line even if the rest of the setup is inlined.
+
+## Formatting (whitespace and layout)
+
+- **Brace style**: Place opening braces on the same line as the declaration or statement (K&R style).
+  - Example: `function Write-Info {` or `if ($condition) {`
+  - This saves vertical space without hurting readability.
+- **Spacing**:
+  - Put a space after keywords (`if`, `foreach`, `switch`, `function`, etc.) before the opening parenthesis.
+  - Use a space between the closing parenthesis and the opening brace: `if ($x) {`.
+  - Put spaces around assignment operators (`=`, `+=`) and comparison operators (`-eq`, `-gt`, etc.).
+  - Add a space after commas in argument lists and parameter declarations.
+  - Do **not** put a space after the opening parenthesis or before the closing parenthesis in expressions.
+- **Indentation**: Use **4 spaces** per indent level. Do not use tabs.
+- **Line length**: Keep lines under **120 characters** when practical. Prefer not to break lines solely to reduce length; only break when it improves clarity (e.g., long method chains, complex conditionals).
+- **Blank lines**:
+  - Use a single blank line to separate top-level sections (e.g., between functions, between `#region` blocks, between major logical blocks in the main script).
+  - Avoid consecutive blank lines (more than one) – they waste space without adding clarity.
+  - Do not put blank lines inside a short function body unless there is a strong reason (e.g., separating a guard clause from the main logic).
+- **Statement grouping**: Where a block contains a single statement, keep it on one line (e.g., `if ($error) { exit 1 }`) unless it becomes too long; this reduces line count.
+- **Alignment**: Prefer alignment of related assignments or hashtable entries only when it genuinely improves readability (e.g., in a small set of configuration constants); otherwise, it creates unnecessary diff noise.
+
+## Architecture / structure
+
+- For a script with several sequential, purely single-use steps (fetch, compare, download, install, etc.) that will only ever be exercised by running the whole script end-to-end — not called or unit-tested independently — inline those steps as commented sections of the main script body instead of extracting each into its own function. Reserve function extraction for logic that's genuinely reused across multiple call sites (e.g. a retry wrapper, a console-writing helper) or that the user specifically wants independently testable.
+- **Use `#region` / `#endregion` blocks** to logically group major sections of a script (e.g. Configuration, Helpers, Main). The syntax is **`#region <name>`** and **`#endregion`** — no colon, no extra punctuation. This helps navigation in editors like VSCode: regions are collapsible and appear in the minimap, giving a quick visual overview of the script's structure. This is especially valuable for longer scripts.
+- Keep `#region` names to one or two words (e.g. `#region Setup`, `#region ResolveTag`), not a full descriptive sentence — editors like VSCode truncate/crop long region names in the collapsed view and the minimap, so a short label stays legible while a sentence-length one gets cut off.
+
+## Security
+
+- Verify a downloaded installer's Authenticode signature (`Get-AuthenticodeSignature`, check `.Status -eq 'Valid'`) before running it, especially when the script runs elevated (`#Requires -RunAsAdministrator`) and executes something it just pulled from the internet. `Get-AuthenticodeSignature` is a reasonable cmdlet exception to the "prefer .NET" rule — there's no lightweight direct .NET equivalent worth reaching for instead. This is a default recommendation, not an absolute — for a personal, small-scale automation script pulling from a source the user already trusts and controls (e.g. their own repo), the user may explicitly choose to skip verification for simplicity; respect that stated choice rather than re-adding the check unprompted.
+- When parsing a version-like string from an external source (a registry value, a filename) before casting to `[version]`, extract just the leading numeric portion with a regex (e.g. `^\d+(\.\d+){1,3}`) rather than casting the raw string directly — a stray suffix (`2.9.8-beta`, build metadata) will otherwise throw on the cast instead of failing gracefully.
+- **When verifying an Authenticode signature, keep the output minimal.** Just check `.Status -eq 'Valid'` and display a simple confirmation (e.g., "Signature verified: Valid") or throw on failure. Do not dump certificate details (subject, issuer, thumbprint, expiry, timestamp info) unless explicitly requested by the user – it adds noise for automated or routine use.
+
+## Scheduled tasks
+
+- For a scheduled task action that must launch `powershell.exe` with an inline script AND stay completely hidden (no visible window flash), the accepted working pattern for this kind of task is: `cmd.exe /C start /MIN powershell -WindowStyle Minimized -Command "<script text>"`, with the inline script itself using backtick-escaped `` `$ `` for variables that must NOT expand until the inner script runs (e.g. `` `$Host.UI.RawUI.WindowTitle ``) and backtick-escaped `` `" `` around the whole inner script so it survives `cmd.exe`'s own quoting. Don't replace this with `-EncodedCommand` (unreadable as a Base64 blob in Task Scheduler's UI) or with a separate bootstrap `.ps1` file called via `-File` (adds a file/indirection the user didn't ask for) — both were tried and explicitly rejected in favor of the plain inline `-Command` form. Keep the registration's `New-ScheduledTaskAction`/`Trigger`/`Principal`/`Settings` as separate named variables (not splatted into a hashtable) to match the same accepted style.
+- A network-availability wait loop (`while (!(Resolve-DnsName ...)) { Start-Sleep -Seconds 1 }`) with no timeout can be intentional, not a bug — e.g. an auto-updater that should simply keep waiting until network becomes available, however long that takes, rather than giving up and leaving the app un-updated for that run. Don't add a bounded timeout unprompted; the two behaviors (wait forever vs. give up after N seconds) are materially different, so follow the user's stated intent rather than defaulting to "always bound it."
+- A self-installing auto-updater can be one file: on every run it (1) registers itself as a scheduled task if the task doesn't exist yet, then (2) does its actual work. The task's action re-fetches and runs this same script from its remote source on every trigger, so the file is both the installer and the payload — don't split this into a separate registration script and a separate payload/launcher script unless asked to.
+- For a scheduled task that's meant to keep something updated in the background, `-AtLogOn` and `-AtStartup` are both legitimate trigger choices depending on what the user actually wants (run per-user-session vs. run once per boot regardless of who logs in) — confirm which one fits rather than assuming, and don't "upgrade" one to the other unprompted once the user has settled on a working version.
 
 ## Progress reporting
 
@@ -71,3 +160,11 @@ Rules to apply when writing or reviewing PowerShell scripts.
 - Only call `Write-Progress -PercentComplete` when the integer percent actually changes (track a `$lastPercent` variable) — calling it on every chunk read (which can be thousands of times per second for a large file) adds needless overhead and console flicker for no visible benefit.
 - `Content.Headers.ContentLength` can be `$null` (e.g. chunked transfer encoding, or a server that omits it) — guard for this and fall back to reporting a raw byte count instead of a percentage; don't assume it's always present.
 - Always call `Write-Progress -Completed` in a `finally` block once the download loop ends (success or failure) — otherwise a stale progress bar can linger in the console/host after the script moves on or errors out.
+- **When displaying download progress, include the current transfer speed (average bytes per second) in the status text.** Format the speed with appropriate units (e.g., `MB/s`, `KB/s`, `B/s`) for human readability. Update the progress at least once per second (even if the percentage hasn't changed) so the user sees a smooth real-time reading of the download rate.
+
+## Rethinking a script end-to-end (not just incremental cleanup)
+
+- When asked to rethink a script's logic from scratch, not just polish it, verify assumptions against the _actual_ target rather than reasoning generically about what "should" be more robust. For a site being scraped, actually fetch the real page and look at its structure before changing the parsing logic. For an installer's version-detection method, actually test what that specific installer does before choosing an approach — don't guess based on what installers _typically_ do.
+- A "more robust-looking" code path that hasn't been confirmed to work for the actual target isn't robustness, it's untested surface area. Once testing shows a code path never triggers for the real target, delete it rather than leaving it as a defensive fallback — dead code that can never succeed adds a false sense of safety, extra maintenance surface, and can shadow the fact that the real logic is only the fallback. Keep only the approach that's confirmed to actually work, minimized to that.
+- Prefer verifying a single detection/parsing approach actually works end-to-end (run it, read the real output) over stacking multiple speculative fallback layers upfront "just in case" — the latter looks thorough but often means most of the layers are guesses that were never exercised.
+- When loosening an exact-match pattern for robustness (see the asset-matching rule above), check the real data for sibling entries that would also match but mean something different (e.g. a project publishing both an interactive installer and a self-extracting archive as similarly-named `.exe` assets) — a pattern that's technically more flexible but silently matches the wrong sibling is not more robust, it just fails differently. Guard against that Count `-gt 1` case with an explicit error instead of quietly taking `-First 1`.

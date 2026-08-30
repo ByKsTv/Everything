@@ -164,24 +164,22 @@ Note 1: Issue with `App not supported`? Deactivate account by Settings -> Privac
 
 ### YouTube Settings
 
-| Location                                                        | Action                                                                              |
-| --------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| Open `YouTube` app                                              | `Action needed` -> `Continue` -> `Allow` -> `Sign in` -> `Add account` -> `Sign in` |
-| `Settings` -> `RVX` -> `Video`                                  | `Disable DRC audio` -> On -> `Cancel`                                               |
-| `Settings` -> `RVX` -> `Miscellaneous` -> `Spoof video streams` | `Default client` -> `Android VR` -> `OK` -> `Android VR sign in`                    |
+| Location                       | Action                                                                              |
+| ------------------------------ | ----------------------------------------------------------------------------------- |
+| Open `YouTube` app             | `Action needed` -> `Continue` -> `Allow` -> `Sign in` -> `Add account` -> `Sign in` |
+| `Settings` -> `RVX` -> `Video` | `Disable DRC audio` -> On -> `Cancel`                                               |
 
 ### YouTube Music Settings
 
-| Location                               | Action                                                                              |
-| -------------------------------------- | ----------------------------------------------------------------------------------- |
-| Open `YT Music` app                    | `Action needed` -> `Continue` -> `Allow` -> `Sign in` -> `Add account` -> `Sign in` |
-| `Settings` -> `RVX` -> `General`       | `Disable Cairo splash animation` -> On -> `Cancel`                                  |
-| `Settings` -> `RVX` -> `Account`       | `Hide terms container` -> On                                                        |
-| `Settings` -> `RVX` -> `Video`         | `Disable DRC audio` -> On -> `Cancel`                                               |
-| `Settings` -> `RVX` -> `Miscellaneous` | `Default client` -> `Android VR` -> `Restart` -> `Android VR sign in`               |
-| `Settings` -> `Downloads & storage`    | `Audio quality` -> `High`                                                           |
-|                                        | `Video quality` -> `HD - 720p`                                                      |
-| Close the app                          |                                                                                     |
+| Location                            | Action                                                                              |
+| ----------------------------------- | ----------------------------------------------------------------------------------- |
+| Open `YT Music` app                 | `Action needed` -> `Continue` -> `Allow` -> `Sign in` -> `Add account` -> `Sign in` |
+| `Settings` -> `RVX` -> `General`    | `Disable Cairo splash animation` -> On -> `Cancel`                                  |
+| `Settings` -> `RVX` -> `Account`    | `Hide terms container` -> On                                                        |
+| `Settings` -> `RVX` -> `Video`      | `Disable DRC audio` -> On -> `Cancel`                                               |
+| `Settings` -> `Downloads & storage` | `Audio quality` -> `High`                                                           |
+|                                     | `Video quality` -> `HD - 720p`                                                      |
+| Close the app                       |                                                                                     |
 
 Note 1: Playback stuck at 1:00? Spoof video stream to `Android VR`, stuck again? try a different option then, untill it's working.
 Note 2: After fresh install of YouTube Music don't forget to sort it on Android Auto.

@@ -3,6 +3,8 @@ param(
     [string]$TVShow_Path
 )
 
+$TVShow_Path = $TVShow_Path.Trim().Trim([char]'"')
+
 $Fonts_Path = [IO.Path]::Combine($TVShow_Path, 'Fonts')
 $Subs_Path = [IO.Path]::Combine($TVShow_Path, 'Subs')
 

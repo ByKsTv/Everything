@@ -289,6 +289,11 @@ $List = @(
         Icon64  = 'AAABAAEAEBAAAAAAIAAEAgAAFgAAAIlQTkcNChoKAAAADUlIRFIAAAAQAAAAEAgGAAAAH/P/YQAAActJREFUeJylk09rE0EYxn/vZP+kbksMRKQlioJSsAYq4l3BT1DQe7+HR7+KeLNfQNCLF2lBKNKDiNLaFInY/LPZ7M7O62G7SdYkJ+e0szPv732eZ2Zk59Uj5T+GNztRB5DzRASkWADVoo8gZgnAWzGIyatc6nA2LzK+YPzKZRMlG7t/AAriCYevTxj+jFGF24+vsb59FYCzT12+ve8gAqvXq2w9a6JWQWYUiMDZx3N6JyMAGnfWWH+Qrw1+xJx++A1A7cYK95830ZKCwqpO86yEhnDNn3wv2gMgk1MQ6H2OsUPFCwy98z/ESQJANQio1SNs4vBWhdpWtch6RoFC42EEQFjz+fqyzfd3vwC49aTBvRcbjHspAOkom5RNtKlTstTRORqwt7tP+6CLVASpCO2DLnu7+3SOBmSpQ93URikD4wmZVQbHo5LPpG9J+pbMar4nYTEAQEwO0gyKvERAKpQu0FIAqjirtHZucvfpBgBf3rY5fHM8JS4DqFPCyKfZalDfjAia+f/6ZkSz1SCM/JJ/mD3GIgdjqF4JGMcpNrF5l8AjrPrEFwnOuRJgzoJzjmH/AhGZvAubWtIkxZj5EOYzuFRRkimSv84F4y/+nLefrvGdOQAAAABJRU5ErkJggg=='
     },
     @{
+        Name    = 'MKVToolNix'
+        Tooltip = "Downloads and Installs the latest version of 'MKVToolNix'.`nAdds a scheduled task that will auto-update the software once windows starts.`nAdds the software to PATH."
+        Icon64  = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAADsAAAA7AAAAAAAAAAAAAAD///8AxsbGOsnJyVnJyclZycnJWcnJyVnJyclZxsbGWpmZmWmUlJRrv7+/XMnJyVnJyclZycnJWcrKyjr///8AyMjIRsjIyL/IyMi/yMjIv8jIyL/IyMi/sLCwxXt7e9OQkJDNlZWVzHt7e9O9vb3CyMjIv8jIyL/IyMi/ycnJR8jIyHPIyMi/yMjIv8jIyL/IyMi/qampx4GBgdLAwMDByMjIv8jIyL+0tLTEh4eH0MjIyL/IyMi/yMjIv8fHx3bIyMh0yMjIv8jIyL/IyMi/uLi4w35+ftPFxcXAyMjIv8jIyL/IyMi/yMjIv35+ftPGxsbAyMjIv8jIyL/Jycl3yMjIdMjIyL/Hx8e/vb29wnx8fNNUVFTqYVxb7IBlYet3VlHtgmtm3sG/v8KKiorPuLi4w8jIyL/IyMi/ycnJd62trX13d3fVe3t7025ubtdXV1fgdXZ1/7m7uf+vr6//x8XF/4pfV/9pQjr1iYeH0LW1tcTIyMi/yMjIv8nJyXd7e3uTq6urxsjIyL+BgYHSu7m5xKSIgv309PT/+/v7/93d3f+ekI3/WTQu/088Oe7AwMDByMjIv8jIyL/Jycl3v7+/d3V1ddWioqLJhISE0b+vrcyvh4D/////////////////6s/L/6JkWf9bPDf2dHR01q6ursbIyMi/ycnJd8jIyHTGxsbAbm5u12NjY9uxqqnKvXxx//fu7P//////9+3r/82Qhf+1cmb/gV9a7MXFxcB+fn7ToqKiycnJyXfIyMh0yMjIv5CQkM2oqKjHiIiI0K58c/HEfnL/xYR5/8R+cv+qbW//qGlj/p2RjtLIyMi/xsbGwHd3d9XJycl3yMjIdMjIyL+IiIjQvLy8wsjIyL/Gw8HCwJGI6MV/c/1bO3T/AwOY/wsKhP1lZXLbe3t71Hl5edSrq6vGycnJd8jIyHTIyMi/iIiI0Lu7u8LIyMi/yMjIv8jIyL/Jx8fAEhGO+gEByv8CAqj/Z2eZ2sjIyL/IyMi/yMjIv8nJyXfIyMh0yMjIv5WVlcytra3GyMjIv8jIyL/IyMi/yMjIv0NDieYDA5b/DQ2M+6Kis8nIyMi/yMjIv8jIyL/Jycl3ysrKc8jIyL+xsbHFioqKz8jIyL/IyMi/yMjIv7W1tcR7e3vUlZWozba2vcTIyMi/yMjIv8jIyL/IyMi/ycnJdsnJyVDIyMi/yMjIv4qKis+Tk5PNq6urxpOTk82AgIDSvLy8wsjIyL/IyMi/yMjIv8jIyL/IyMi/yMjIv8fHx1L///8CyMjIT8jIyHPIyMhzl5eXhYGBgY6cnJyDyMjIc8jIyHPIyMhzyMjIc8jIyHPIyMhzyMjIc8nJyVGqqqoDgAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=='
+    },
+    @{
         Name    = 'mpv'
         Tooltip = "Downloads and Installs the latest version of 'mpv', 'FFmpeg', 'yt-dlp'.`nAdds a scheduled task that will auto-update the software once windows starts.`nAdds the software to PATH."
         Icon64  = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABMLAAATCwAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAIAAAAFAAAACMAAAAtAAAAMwAAADMAAAAtAAAAIwAAABQAAAAIAAAAAQAAAAAAAAAAAAAAAAAAAAEAAAAKAAAAHSMAI0pLAEulVwBX3lsAW/hbAFv4VwBX3ksAS6UjACNKAAAAHQAAAAoAAAABAAAAAAAAAAAAAAAIAAAAHkAAQHxbAFv2XABc/1wAXP9cAFz/XABc/1wAXP9cAFz/WwBb9kAAQHwAAAAeAAAACAAAAAAAAAADAAAAFkEAQXtcAFz+XABc/1wAXP96NHr/l2WX/5Vklf94MXj/XABc/1wAXP9cAFz+QQBBegAAABYAAAADAAAACSgAKD1bAFv2XABc/2QOZP++pL7/4uLi/9/f3//d3d3/29vb/7Wbtf9jDGP/XABc/1sAW/YoACg9AAAACQAAABBOAE6gXABc/1wAXP/ApsD/5ubm/4FVgf/Px8//4ODg/93d3f/b29v/tJq0/1wAXP9cAFz/TgBOoAAAABAAAAAUWABY3VwAXP99Nn3/6+vr/+np6f9fHV//Wx5b/5p6mv/a2Nr/3d3d/9vb2/93MHf/XABc/1gAWN0AAAAUAAAAFVsAW/ZcAFz/n22f/+3t7f/r6+v/ayRr/2IdYv9YF1j/ZS5l/7ShtP/e3t7/lWKV/1wAXP9bAFv2AAAAFQAAABJcAFz7XABc/6BuoP/w8PD/7u7u/3QrdP9tJW3/Yx5j/2w0bP+4pbj/4ODg/5Zklv9cAFz/XABc+wAAABIAAAANWQBZ21wAXP9+N37/8vLy//Dw8P95L3n/djF2/6mHqf/i4OL/5eXl/+Li4v95MXn/XABc/1kAWdoAAAANAAAABlMAU5ZcAFz/XABc/8muyf/y8vL/nGqc/93U3f/s7Oz/6enp/+fn5/+9or3/XABc/1wAXP9TAFOVAAAABgAAAAI9AD0nWwBb9VwAXP9lDmX/yK3I//Ly8v/w8PD/7u7u/+zs7P/BpsH/ZA5k/1wAXP9bAFv1PQA9JwAAAAIAAAAAAAAABFAAUGFcAFz+XABc/1wAXP99NX3/n2yf/55rnv98M3z/XABc/1wAXP9cAFz+TwBPYAAAAAQAAAAAAAAAAAAAAAEAAAAFUQBRX1sAW/NcAFz/XABc/1wAXP9cAFz/XABc/1wAXP9bAFvzUQBRXwAAAAUAAAABAAAAAAAAAAAAAAAAAAAAAQAAAAM/AD8dVgBWjVoAWtNcAFz1XABc+1oAWtVWAFaNPwA/HQAAAAMAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAMAAAAFAAAABgAAAAYAAAAFAAAAAwAAAAEAAAAAAAAAAAAAAAAAAAAAwAMAAIABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIABAADAAwAA4AcAAA=='
@@ -445,7 +450,7 @@ $List = @(
     },
     @{
         Name    = 'Wireshark'
-        Tooltip = "Downloads and Installs the latest version of 'Wireshark'."
+        Tooltip = "Downloads and Installs the latest version of 'Wireshark'.`nAdds a scheduled task that will auto-update the software once windows starts."
         Icon64  = 'AAABAAEAEBAAAAAAAABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABdSjhjm39mjXlZP5B1VDmSdVU/lXJTP5ZuTTiWb1RFlm9XSpZrUkWWalNIlWhRR5NiST6RZVBHjmRQR4wQDAoi155oqvulV//5tX3/9a13//CodP/tqHv/6qiA/+OhfP/bmXX/2Zx+/9CTdf/Iim7/xIhu/7+Caf/Hl4PzOTg3FfLMqWflgSf/4Hsn/9+JRv/fklv/25Fg/9WJWv/Lekv/wW5B/7lnPv+1aET/rGA9/6tkRf+tbFD/07OmoAAAAADw4NIr6Y89++B2Hf/VXgD/z10J/8lXCf/CUAn/uUgF/7BBA/+nPAP/oDkF/5w7DP+cQRf/mUEa/9e+s14AAAAA8fP0A+qgXM/lhTL/2GUJ/9FeB//LVwf/xFEH/71MCP+2Rgf/rkEG/6Y9Bf+fOAT/mTIA/5s8D/zm2dMuAAAAAAAAAADtwJd66Is5/91xGP/UYAb/zlsI/8dVCP/CUAj/u0oH/7RFB/+tQQf/qD4G/6E2AP+qTyLr7uroEgAAAAAAAAAA8ObdHemTRfPjhDL/12MG/9JfCP/MWQj/xlMI/8FPCP+7Sgf/tUYH/7BDB/+pOQD/uGM22PHy8gYAAAAAAAAAAAAAAADrtoSU6Iw7/91xF//VYQb/0F0I/8tYCP/GUwj/wU8I/71MCP+5SQf/sz4A/8JtPs/y9fYBAAAAAAAAAAAAAAAA8OjgHOqWSuzmijv/2mcI/9VhCP/QXQj/zFgI/8dVCP/EUQj/wU8I/7xGAP/JcDzS8vT1AwAAAAAAAAAAAAAAAAAAAADtyqhk65RE/+OALP/ZZAX/1WIJ/9FeCP/NWwj/ylgI/8dVCP/ETgH/y2st4/Du7QwAAAAAAAAAAAAAAAAAAAAAAAAAAO22g53rlUb/4XUY/9plBf/XZAn/1GEJ/9FeCP/OXAj/zFcE/85hFPnt4tokAAAAAAAAAAAAAAAAAAAAAAAAAADx8fIH7bR9ruqOOv/hcxL/3GgG/9pnCf/XZAn/1WIJ/9NgCP/RWgL/6MeuWQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPHy8gbuv5KY7JVE/+R4Fv/fawX/3WoI/9tpCf/aZwn/2F4A/+KcYq8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPDZwlrvrW/a6YQl/+NuA//hbAT/4G0H/99qBP/gcxP37+DTLgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8fHxDvHZwmfurnK/6Yku8+d4D//mcQT/5GYA/+ypaq0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPHr5R/w2cJJ78ija+28jX7128FPAAAAwAAAwDIAAQAAAAEAAAABAACAASEhgAEAAMABAADAAcDS4AEAwPABTCzwAQQs+AEELP4AAAD/AAAA/+AEAA=='
     },
     @{
@@ -655,6 +660,11 @@ if ($InstalledSoftware -match 'Minecraft Launcher') {
     $CheckBoxes['Minecraft Launcher'].Enabled = $false
     $CheckBoxes['Minecraft Launcher'].Text += ' (Installed)'
 }
+$TaskName = 'MKVToolNix Updater'
+if (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue) {
+    $CheckBoxes['MKVToolNix'].Enabled = $false
+    $CheckBoxes['MKVToolNix'].Text += ' (Installed)'
+}
 if ($null -ne (Get-AppxPackage -Name 'Microsoft.WindowsStore')) {
     $CheckBoxes['Microsoft Store'].Enabled = $false
     $CheckBoxes['Microsoft Store'].Text += ' (Installed)'
@@ -778,7 +788,8 @@ if ($InstalledSoftware -match 'Windscribe') {
     $CheckBoxes['Windscribe'].Enabled = $false
     $CheckBoxes['Windscribe'].Text += ' (Installed)'
 }
-if ($InstalledSoftware -match 'Wireshark') {
+$TaskName = 'Wireshark Updater'
+if (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue) {
     $CheckBoxes['Wireshark'].Enabled = $false
     $CheckBoxes['Wireshark'].Text += ' (Installed)'
 }
@@ -931,6 +942,9 @@ if ($Form.ShowDialog() -eq [Windows.Forms.DialogResult]::OK) {
     }
     if ($CheckBoxes['Minecraft Launcher'].Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Minecraft_Launcher/Download.ps1')
+    }
+    if ($CheckBoxes['MKVToolNix'].Checked) {
+        Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/MKVToolNix/Download.ps1')
     }
     if ($CheckBoxes['mpv'].Checked) {
         Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/mpv/Download.ps1')

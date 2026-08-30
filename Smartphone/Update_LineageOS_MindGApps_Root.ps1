@@ -387,8 +387,44 @@ function Install-MindTheGappsZip {
 function Wait-ForFastbootDevice {
     Write-StepHeader -StepDescription 'Step 11: Reboot to bootloader (confirm fastboot detects device)'
 
-    Write-StatusLine -StatusMessage 'Rebooting device into bootloader mode...'
-    & $AdbExecutable reboot bootloader
+    # Right after a sideload install finishes, adb can briefly report "error: closed"
+    # if we send a command immediately - the transport hasn't settled yet. Rather than
+    # firing "adb reboot bootloader" once and giving up, wait for adb to show the
+    # device in a known state again, then retry the reboot command itself a few times
+    # before falling back to fastboot polling.
+    Write-StatusLine -StatusMessage 'Waiting for adb to detect the device after the MindTheGapps install...'
+    $adbSeenAfterInstall = $false
+    for ($secondsWaited = 0; $secondsWaited -lt 60; $secondsWaited += 2) {
+        $deviceListing = & $AdbExecutable devices 2>$null | Out-String
+        if ($deviceListing -match '(?m)^\S+\s+(device|recovery|sideload)\s*$') {
+            $adbSeenAfterInstall = $true
+            break
+        }
+        Start-Sleep -Seconds 2
+    }
+
+    if (-not $adbSeenAfterInstall) {
+        Write-StatusLine -StatusMessage 'adb has not seen the device reappear yet - will still try to reboot to bootloader.' -StatusColor 'Yellow'
+    }
+
+    $maxRebootAttempts = 5
+    $rebootSucceeded = $false
+    for ($attempt = 1; $attempt -le $maxRebootAttempts; $attempt++) {
+        Write-StatusLine -StatusMessage "Rebooting device into bootloader mode (attempt $attempt of $maxRebootAttempts)..."
+        $rebootOutput = & $AdbExecutable reboot bootloader 2>&1 | Out-String
+
+        if ($LASTEXITCODE -eq 0) {
+            $rebootSucceeded = $true
+            break
+        }
+
+        Write-StatusLine -StatusMessage "adb reboot bootloader did not succeed yet ($($rebootOutput.Trim())). Retrying shortly..." -StatusColor 'Yellow'
+        Start-Sleep -Seconds 3
+    }
+
+    if (-not $rebootSucceeded) {
+        Write-StatusLine -StatusMessage "adb reboot bootloader never returned success after $maxRebootAttempts attempts. Will keep polling fastboot anyway in case the device rebooted despite the reported error." -StatusColor 'Yellow'
+    }
 
     while ($true) {
         $fastbootDevices = & $FastbootExecutable devices 2>$null | Out-String
@@ -428,7 +464,7 @@ function Install-PatchedBootImage {
 }
 
 # ----------------------------------------------------------------------------
-# Step 14: Reboot to system
+# Step 13: Reboot to system
 # ----------------------------------------------------------------------------
 
 function Invoke-RebootToSystem {

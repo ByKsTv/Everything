@@ -50,6 +50,8 @@ param(
   [switch] $KeepWorkingDirectory
 )
 
+$Path = $Path.Trim().Trim([char]'"')
+
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
