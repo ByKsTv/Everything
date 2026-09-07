@@ -181,8 +181,7 @@ Note 1: Issue with `App not supported`? Deactivate account by Settings -> Privac
 |                                     | `Video quality` -> `HD - 720p`                                                      |
 | Close the app                       |                                                                                     |
 
-Note 1: Playback stuck at 1:00? Spoof video stream to `Android VR`, stuck again? try a different option then, untill it's working.
-Note 2: After fresh install of YouTube Music don't forget to sort it on Android Auto.
+Note: After fresh install of YouTube Music don't forget to sort it on Android Auto.
 
 ### BYD Settings
 
@@ -205,7 +204,6 @@ Note 2: After fresh install of YouTube Music don't forget to sort it on Android 
 |                                              | `Apply to car display` -> On                                |
 | `Settings` -> `Map display`                  | `Wazers` -> Off                                             |
 | `Settings` -> `Map display` -> `Speedometer` | `Show speed limit` -> `Always`                              |
-|                                              | `Speeding threshold` -> `10 km/h above limit`               |
 |                                              | `Alert on threshold` -> On                                  |
 |                                              | `Show on the map` -> Off                                    |
 | `Settings` -> `Navigation`                   | `Avoid toll roads` -> On                                    |

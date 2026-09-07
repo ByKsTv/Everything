@@ -108,6 +108,7 @@ Note 1: Local Dimming of High is causing noise levels on white.
 - Uses TizenOS instead of Android, so you can't sideload APKs.
 - Panning shot issue where the first frame of the panning shot will be stuck.
 - Can't turn off the bluethooth even if the TV is only used as a monitor.
+- For plex - go into Settings / Advanced and find Allow Insecure Connections. Set it to Always.
 - [Firmware Update Changelog](https://eu.community.samsung.com/t5/tv/tv-firmware-changelogs-on-german-community/td-p/1846870)
 
 ### LG

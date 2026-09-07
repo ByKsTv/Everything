@@ -94,6 +94,10 @@ Rules to apply when writing or reviewing PowerShell scripts.
 - Don't add a `$` end-of-string anchor to pin down the end of a filename match inside a larger scraped document (e.g. `href="(?<href>[^"]*filename\.zip$)"`) — `$` (without `RegexOptions.Multiline`) only matches the end of the _entire_ input string, not the end of the current attribute value, so it silently matches nothing when there's any content after that href in the document (which there always is, for anything but the very last link on the page). When the surrounding literal characters already close off the match (e.g. the literal closing `"` from an `href="..."` template), that's sufficient anchoring on its own — verified end-to-end: removing the `$` fixed a "no matching asset found" false negative that the `$` version produced on real data.
 - GitHub release asset download URLs follow a stable, predictable pattern (`https://github.com/<owner>/<repo>/releases/download/<tag>/<filename>`) that works without hitting the API — useful for a simpler (but less robust to filename changes) API-avoidance approach when you're willing to hardcode the expected filename instead of fetching `expanded_assets` for it.
 
+## String templating gotchas
+
+- PowerShell's `-replace` operator does NOT accept a scriptblock/delegate as the replacement, even though `[regex]::Replace()` does — `$string -replace $pattern, { ... }` silently treats the scriptblock as a literal string instead of invoking it per match. If you need per-match computed replacement text (e.g. a named-role template renderer producing a plain-text log line alongside colored console output), call `[regex]::Replace($template, $pattern, { param($m) ... })` directly instead of the `-replace` operator.
+
 ## Console output / coloring
 
 - Don't color console segments by their _position_ in a call (e.g. alternating `Green`/`Yellow` by even/odd argument index) — that only stays consistent if every call happens to start with the same segment type (static text vs. a dynamic value), and silently breaks the moment a call starts with a value instead. Color by _role_ instead.
@@ -105,7 +109,7 @@ Rules to apply when writing or reviewing PowerShell scripts.
 
 ## Unicode & character encoding
 
-- **Avoid visually confusable Unicode characters in source code.** In strings, use plain ASCII punctuation (e.g., hyphen `-`, apostrophe `'`, quotation marks `"`) instead of their typographic/Unicode equivalents (`‑`, `—`, `‘`, `’`, `“`, `”`). Specifically avoid `U+2011` (non-breaking hyphen) and similar characters in string literals. Such characters can be hard to spot, cause editor warnings, and may be misinterpreted by tools that expect ASCII-only source. While they are often harmless inside string literals, they add noise and reduce readability. Stick to ASCII for all source code characters, reserving Unicode only for actual output or documentation where it's necessary.
+- **Avoid visually confusable Unicode characters in source code.** In strings, use plain ASCII punctuation (e.g., hyphen `-`, apostrophe `'`, quotation marks `"`) instead of their typographic/Unicode equivalents (`‑`, `—`, `'`, `'`, `"`, `"`). Specifically avoid `U+2011` (non-breaking hyphen) and similar characters in string literals. Such characters can be hard to spot, cause editor warnings, and may be misinterpreted by tools that expect ASCII-only source. While they are often harmless inside string literals, they add noise and reduce readability. Stick to ASCII for all source code characters, reserving Unicode only for actual output or documentation where it's necessary.
 
 ## Conciseness
 

@@ -225,6 +225,7 @@ https://v.firebog.net/hosts/Prigent-Malware.txt
 https://v.firebog.net/hosts/RPiList-Malware.txt
 https://v.firebog.net/hosts/RPiList-Phishing.txt
 https://v.firebog.net/hosts/static/w3kbl.txt
+https://a.dove.isdumb.one/pihole.txt
 ```
 
 > More: <https://firebog.net/>, <https://filterlists.com/>
