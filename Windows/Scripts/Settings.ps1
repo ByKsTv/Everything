@@ -359,7 +359,6 @@ $AppsToRemove = @(
 	'Hello.Face',
 	'InternetExplorer',
 	'MathRecognizer',
-	'OpenSSH',
 	'QuickAssist',
 	'StepsRecorder',
 	'Wallpapers',
@@ -379,6 +378,18 @@ foreach ($App in $AppsToRemove) {
 		Remove-WindowsCapability -Online -Name $Capability.Name
 	}
 }
+
+# Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
+# $sshPath = 'C:\Windows\System32\OpenSSH'
+# $path = [Environment]::GetEnvironmentVariable('Path', 'Machine')
+
+# if (($path -split ';') -notcontains $sshPath) {
+#     [Environment]::SetEnvironmentVariable(
+#         'Path',
+#         "$path;$sshPath",
+#         'Machine'
+#     )
+# }
 
 # Add Windows Capabilities
 $AppsToInstall = @(

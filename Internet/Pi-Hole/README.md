@@ -16,8 +16,11 @@
 1. Enable `SSH`.
 1. Set `Locale`.
 1. Disable `Telemetry`.
-1. Download and Open [PuTTY](https://www.putty.org/).
-1. Login to Raspberry Pi IP.
+1. Login to Raspberry Pi IP:
+
+   ```bash
+   ssh Username@IP
+   ```
 
 1. Install Pi-Hole:
 
@@ -254,3 +257,10 @@ Domains Regex Blacklist (Optional):
 ^pixels?[-.]
 ^stat(s|istics)?[0-9]*[_.-]
 ```
+
+## Forgot password to Raspberry Pi
+
+1. Take out the microSD card and put it in a card reader connected to your Windows PC.
+1. Open `userconf.txt`.
+1. Replace the hashed password with `openssl passwd -6 YourNewPassword` (Replace `YourNewPassword`).
+1. `pi:$6$yourhashedstringhere` (`pi` is the username, replace `yourhashedstringhere`).

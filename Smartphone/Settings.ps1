@@ -21,13 +21,6 @@ $settings = @(
     }
 
     [PSCustomObject]@{
-        Name  = 'Phone -> Call settings -> Record calls -> Auto record calls -> On'
-        Table = 'system'
-        Key   = 'record_calls_automatically_on_off'
-        Value = '1'
-    }
-
-    [PSCustomObject]@{
         Name  = 'Play Store -> Play Protect -> Scan apps with Play Protect -> Off'
         Table = 'global'
         Key   = 'package_verifier_user_consent'
@@ -192,13 +185,6 @@ $settings = @(
         Name  = 'Settings -> Sounds and vibration -> Volume -> Media volume limit -> Off'
         Table = 'system'
         Key   = 'volumelimit_on'
-        Value = '0'
-    }
-
-    [PSCustomObject]@{
-        Name  = 'Settings -> Sounds and vibration -> System vibration -> Touch interactions -> Off'
-        Table = 'system'
-        Key   = 'haptic_feedback_enabled'
         Value = '0'
     }
 

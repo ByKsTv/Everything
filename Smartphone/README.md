@@ -175,6 +175,7 @@ Note 1: Issue with `App not supported`? Deactivate account by Settings -> Privac
 | ----------------------------------- | ----------------------------------------------------------------------------------- |
 | Open `YT Music` app                 | `Action needed` -> `Continue` -> `Allow` -> `Sign in` -> `Add account` -> `Sign in` |
 | `Settings` -> `RVX` -> `General`    | `Disable Cairo splash animation` -> On -> `Cancel`                                  |
+|                                     | `App theme` -> `Amoled Black` -> `CANCEL`                                           |
 | `Settings` -> `RVX` -> `Account`    | `Hide terms container` -> On                                                        |
 | `Settings` -> `RVX` -> `Video`      | `Disable DRC audio` -> On -> `Cancel`                                               |
 | `Settings` -> `Downloads & storage` | `Audio quality` -> `High`                                                           |
