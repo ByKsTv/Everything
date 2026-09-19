@@ -2,7 +2,7 @@
 
 ## Android TV
 
-1. Manually set up.
+1. Manually set up the Android TV, minimalist, English, no analytics or telemetry.
 1. `Settings` -> `System` -> `About` -> Click `Android TV OS Build` 7 times.
 1. `Settings` -> `System` -> `Developer options` -> `Wireless debugging` -> `Enabled` -> `Pair device with a pairing code`.
 1. `adb pair IP:PORT CODE` -> On TV go back -> `adb connect IP:PORT`.
@@ -14,11 +14,12 @@
 1. `ADD BUTTON` -> Netflix key -> `Button action type` -> `Usual action` -> `Single press` -> `NEXT TV` -> Go back
 1. `ADD BUTTON` -> Prime video key -> `Button action type` -> `Usual action` -> `Single press` -> `UniFi Protect` -> Go back
 1. `ADD BUTTON` -> YouTube Music key -> `Button action type` -> `Usual action` -> `Single press` -> `Spotify` -> Go back
-1. Home -> `Apps` -> `Reorder` from first to last: `UniFi Protect`, `NEXT TV`, `SmartTube`, `Spotify`, `Plex`, `Kan Box`, `12+`, `13+`, `Now14`, `i24NEWS`, `TV Bro`, `tvQuickActions Pro`
+1. Home -> `Apps` -> `Reorder` from first to last: `UniFi Protect`, `NEXT TV`, `SmartTube`, `Spotify`, `Plex`, `Kan Box`, `12+`, `13+`, `Now14`, `i24NEWS`, `TV Bro`, `tvQuickActions Pro`, `LaunchAPP`
 1. `Settings` -> `Accounts & Profiles` -> (Current User) -> `Apps only mode` -> On -> `Turn on`
 1. Open `UniFi Protect` -> Login using QR Code
 1. Open `NEXT TV` -> Login
 1. Open `Plex` -> [Link TV](https://www.plex.tv/link/)
+1. Play Store App `LaunchAPP` and set main app.
 1. `adb reboot`
 1. `adb kill-server`
 
@@ -59,7 +60,7 @@
 | Remote Control Test                   |                      | Left                       | Skip                               |
 | Ready To Use                          |                      | Left                       | Next                               |
 | Settings -> General -> System Manager | Language             | English                    |                                    |
-| Settings -> General -> System Manager | Auto Protection Time | Off                        |                                    |
+|                                       | Auto Protection Time | Off                        |                                    |
 | Source                                |                      | Switch to the current HDMI |                                    |
 | Source                                | Edit                 | Blu-ray player             |                                    |
 
@@ -69,15 +70,17 @@
 | ------------------------------------------------------------------ | ---------------------------- | -------------- | --------------------------------------------------------------------------------------- |
 | Settings -> Picture                                                | Picture Mode                 | FILMMAKER MODE |                                                                                         |
 | Settings -> Picture -> Expert Settings -> Picture Clarity Settings | Picture Clarity              | Custom         |                                                                                         |
-| Settings -> Picture -> Expert Settings -> Picture Clarity Settings | Blur Reduction               | 0              |                                                                                         |
-| Settings -> Picture -> Expert Settings -> Picture Clarity Settings | Judder Reduction             | 0              |                                                                                         |
+|                                                                    | Blur Reduction               | 0              |                                                                                         |
+|                                                                    | Judder Reduction             | 0              |                                                                                         |
 | Settings -> Picture -> Expert Settings                             | Local Dimming                | Standard       | Default value `Standard` clips white on `AVS HD 709` and flickering on black background |
+| Settings -> General -> Accessibility                               | High Contrast                | On             | Dark mode                                                                               |
+|                                                                    | Enlarge                      | On             |                                                                                         |
 | Settings -> General -> External Device Manager                     | Input Signal Plus            | Current HDMI   | Enables 4k60p                                                                           |
 | Settings -> General -> Eco Solution                                | Ambient Light Detection      | Off            |                                                                                         |
 | Settings -> General -> Smart Features                              | Autorun Smart Hub            | Off            |                                                                                         |
-| Settings -> General -> Smart Features                              | Autorun Last App             | Off            |                                                                                         |
-| Settings -> General -> Smart Features                              | Autorun Multi View Mirroring | Off            |                                                                                         |
-| Settings -> General -> Smart Features                              | Autorun Multi View Casting   | Off            |                                                                                         |
+|                                                                    | Autorun Last App             | Off            |                                                                                         |
+|                                                                    | Autorun Multi View Mirroring | Off            |                                                                                         |
+|                                                                    | Autorun Multi View Casting   | Off            |                                                                                         |
 
 Note 1: Local Dimming of High is causing noise levels on white.
 
@@ -87,8 +90,8 @@ Note 1: Local Dimming of High is causing noise levels on white.
 | ------------------------------------------------------------------ | ---------------- | -------- | ---------------- |
 |                                                                    |                  |          | Enable HDR       |
 | Settings -> Picture -> Expert Settings -> Picture Clarity Settings | Picture Clarity  | Custom   |                  |
-| Settings -> Picture -> Expert Settings -> Picture Clarity Settings | Blur Reduction   | 0        |                  |
-| Settings -> Picture -> Expert Settings -> Picture Clarity Settings | Judder Reduction | 0        |                  |
+|                                                                    | Blur Reduction   | 0        |                  |
+|                                                                    | Judder Reduction | 0        |                  |
 | Settings -> Picture -> Expert Settings                             | Local Dimming    | Standard | `Low` is too dim |
 |                                                                    |                  |          | Disable HDR      |
 
@@ -99,8 +102,8 @@ Note 1: Local Dimming of High is causing noise levels on white.
 | Settings                                                             | Game Mode         | On    | Enables Game Mode  |
 | Settings -> General -> External Device Manager -> Game Mode Settings | Surround Sound    | Off   |                    |
 | Settings -> Picture -> Expert Settings                               | Sharpness         | 0     |                    |
-| Settings -> Picture -> Expert Settings                               | Local Dimming     | Low   |                    |
-| Settings -> Picture -> Expert Settings                               | Contrast Enhancer | Off   |                    |
+|                                                                      | Local Dimming     | Low   |                    |
+|                                                                      | Contrast Enhancer | Off   |                    |
 | Settings                                                             | Game Mode         | Off   | Disables Game Mode |
 
 #### Samsung TV - Notes

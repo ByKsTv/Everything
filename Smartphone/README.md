@@ -160,6 +160,7 @@
 | `Homepage` -> `Inbox Cleaner`                                             |                                                                                               |
 | `Homepage` -> `Passcode lock`                                             |                                                                                               |
 
+Notification Categories -> Other -> Miscellaneous -> Off
 Note 1: Issue with `App not supported`? Deactivate account by Settings -> Privacy Center -> Deactivate my account, uninstall old mod, install new mod.
 
 ### YouTube Settings
@@ -210,7 +211,6 @@ Note: After fresh install of YouTube Music don't forget to sort it on Android Au
 | `Settings` -> `Navigation`                   | `Avoid toll roads` -> On                                    |
 | `Settings` -> `Vehicle details`              | If your car is electric -> `Electric vehicles`              |
 | `Settings` -> `Notifications`                | Disable `Allow push notifications` -> `Save`                |
-| `Settings` -> `Privacy`                      | `Go invisible` -> On                                        |
 
 Note 1: `Chuppito Mod` has a different app icon, OLED background for roads.
 Note 2: None of the mods seem to show up as an app on Android Auto, even with `Unknown sources` enabled, apperently you need to buy external Android Auto adapter.

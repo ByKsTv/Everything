@@ -290,10 +290,16 @@ foreach ($setting in $settings) {
     Write-Host "$($setting.Name) ($table $key): $oldDisplay -> $new"
 }
 
-$PKG = 'dev.vodik7.tvquickactions'
-
+$PKG = 'com.tv.launchapp'
 $PackageCheck = adb shell "pm list packages $PKG"
+if ($PackageCheck -match "package:$([regex]::Escape($PKG))") {
+    # Display over other apps
+    adb shell "pm grant $PKG android.permission.SYSTEM_ALERT_WINDOW 2>/dev/null || true"
+    adb shell "cmd appops set --user 0 $PKG SYSTEM_ALERT_WINDOW allow || appops set --user 0 $PKG android:system_alert_window allow"
+}
 
+$PKG = 'dev.vodik7.tvquickactions'
+$PackageCheck = adb shell "pm list packages $PKG"
 if ($PackageCheck -match "package:$([regex]::Escape($PKG))") {
 
     # Accessibility service / secure settings
@@ -349,7 +355,14 @@ $Packages = @(
     'com.mediatek.tv.oneworld.tvcenter', # Live TV. I guess it's for scanning channels.
     'com.mediatek.wwtv.mediaplayer', # MultiMediaPlayer. I guess it's not needed because there are better apps.
     'com.haier.emanual9603', # E-Manual.
-    'com.haier.launcher.haiermatrix' # Haier TV+. Seems like a wrapper app that opens other haier apps which are already installed.
+    'com.haier.launcher.haiermatrix', # Haier TV+. Seems like a wrapper app that opens other haier apps which are already installed.
+    'com.amazon.amazonvideo.livingroom', # Prime video https://play.google.com/store/apps/details?id=com.amazon.amazonvideo.livingroom&hl=en&gl=US
+    'com.mitv.tvhome.atv', # PatchWall Is it a spyware app? People recommend removing it.
+    'com.mitv.tvhome.michannel', # Mi Channel Same app like a PatchWall.
+    'com.mitv.tvhome.mitvplus',
+    'com.miui.tv.analytics' # Analytics. Weird analytics app with a lot random stuff found in resources.
+    # 'com.xiaomi.mitv.updateservice',
+    # 'com.mitv.tvhome.oemtab'
     # To restore you can use `adb shell cmd package install-existing com.google.android.tv.remote.service`
 )
 
