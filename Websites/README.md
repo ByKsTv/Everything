@@ -118,12 +118,13 @@
 
 ## Wiki
 
-| Name    | Links                                                                                   | Notes |
-| ------- | --------------------------------------------------------------------------------------- | ----- |
-| Piracy  | [Website](https://www.reddit.com/r/Piracy/wiki/index)                                   |       |
-| Hacking | [Website](https://www.reddit.com/r/hacking/wiki/index)                                  |       |
-| GitHub  | [awesome-piracy](https://github.com/Shakil-Shahadat/awesome-piracy/blob/main/Readme.md) |       |
-| FMHY    | [Website](https://fmhy.net/beginners-guide)                                             |       |
+| Name             | Links                                                                                   | Notes |
+| ---------------- | --------------------------------------------------------------------------------------- | ----- |
+| Piracy           | [Website](https://www.reddit.com/r/Piracy/wiki/index)                                   |       |
+| Hacking          | [Website](https://www.reddit.com/r/hacking/wiki/index)                                  |       |
+| GitHub           | [awesome-piracy](https://github.com/Shakil-Shahadat/awesome-piracy/blob/main/Readme.md) |       |
+| FMHY             | [Website](https://fmhy.net/beginners-guide)                                             |       |
+| EV Cars Database | [Website](https://ev-database.org/)                                                     |       |
 
 ## Other
 

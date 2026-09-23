@@ -173,3 +173,7 @@ Usernames, passwords, videos, photos, files, software, desktop layout, macros, m
    ```
 
 Source: <https://tools.mariusheier.com/cpudirect.html>
+
+### Notes
+
+- Do not save files on `Desktop`, some PCs with filled `Desktop` error out.

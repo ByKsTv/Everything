@@ -473,6 +473,28 @@ Set-Policy -Scope Computer -Path 'SOFTWARE\Policies\Microsoft\Windows\SettingSyn
 # Group Policy -> Computer Configuration -> Administrative Templates -> System -> Device Installation -> Prevent automatic download of applications associated with device metadata -> Enabled
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows\Device Metadata' -Name 'PreventDeviceMetadataFromNetwork' -Type DWORD -Value 1
 
+# Group Policy -> Computer Configuration -> Administrative Templates -> Windows Components -> Remote Desktop Services -> Remote Desktop Session Host -> Remote Session Environment -> Prioritize H.264/AVC 444 graphics mode for Remote Desktop Connections -> Enabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows NT\Terminal Services' -Name 'AVC444ModePreferred' -Type DWORD -Value 1
+
+# Group Policy -> Computer Configuration -> Administrative Templates -> Windows Components -> Remote Desktop Services -> Remote Desktop Session Host -> Remote Session Environment -> Configure image quality for RemoteFX Adaptive Graphics -> High
+# Using `Loseless` here would error with 0x112f.
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows NT\Terminal Services' -Name 'ImageQuality' -Type DWORD -Value 2
+
+# Group Policy -> Computer Configuration -> Administrative Templates -> Windows Components -> Remote Desktop Services -> Remote Desktop Session Host -> Remote Session Environment -> Configure H.264/AVC hardware encoding for Remote Desktop Connections -> Enabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows NT\Terminal Services' -Name 'AVCHardwareEncodePreferred' -Type DWORD -Value 1
+
+# Group Policy -> Computer Configuration -> Administrative Templates -> Windows Components -> Remote Desktop Services -> Remote Desktop Session Host -> Remote Session Environment -> Use hardware graphics adapters for all Remote Desktop Services sessions -> Enabled.
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows NT\Terminal Services' -Name 'bEnumerateHWBeforeSW' -Type DWORD -Value 1
+
+# Group Policy -> Computer Configuration -> Administrative Templates -> Windows Components -> Remote Desktop Services -> Remote Desktop Session Host -> Connections -> Select RDP transport protocols -> Use both UDP and TCP
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows NT\Terminal Services' -Name 'SelectTransport' -Type DWORD -Value 0
+
+# Group Policy -> Computer Configuration -> Administrative Templates -> Windows Components -> Remote Desktop Services -> Remote Desktop Session Host -> Remote Session Environment -> Use WDDM graphics display driver for Remote Desktop Connections -> Enabled
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows NT\Terminal Services' -Name 'fEnableWddmDriver' -Type DWORD -Value 1
+
+# Group Policy -> Computer Configuration -> Administrative Templates -> Windows Components -> Remote Desktop Services -> Remote Desktop Session Host -> Remote Session Environment -> Limit number of monitors -> 1
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows NT\Terminal Services' -Name 'MaxMonitors' -Type DWORD -Value 1
+
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Adobe_Acrobat/Group_Policy.ps1')
 
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/ByKsTv/Everything/main/Windows/Software/Google_Chrome/Group_Policy.ps1')

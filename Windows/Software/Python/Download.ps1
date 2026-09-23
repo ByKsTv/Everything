@@ -8,9 +8,9 @@ if (-not (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue)) 
     Register-ScheduledTask -TaskName $TaskName -Action $TaskAction -Trigger $TaskTrigger -Principal $TaskPrincipal -Settings $TaskSettings -Force
 }
 
-$InstalledVersion = py.exe --version
-if ($InstalledVersion) {
-    $InstalledVersion = (python --version) -replace 'Python ', ''
+$python = Get-Command python -ErrorAction SilentlyContinue
+if ($python) {
+    $InstalledVersion = (& python --version) -replace 'Python ', ''
 } else {
     $InstalledVersion = $null
 }

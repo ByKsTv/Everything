@@ -177,7 +177,7 @@ panel {
 }
 
 /* Hide greyed out options from context menus */
-menupopup :is(menuitem, menu)[disabled="true"] {
+menupopup :is(menuitem, menu):is([disabled]) {
   display: none;
 }
 

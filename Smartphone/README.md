@@ -161,6 +161,7 @@
 | `Homepage` -> `Passcode lock`                                             |                                                                                               |
 
 Notification Categories -> Other -> Miscellaneous -> Off
+Make sure the original phone app is set as the default phone app, not truecaller.
 Note 1: Issue with `App not supported`? Deactivate account by Settings -> Privacy Center -> Deactivate my account, uninstall old mod, install new mod.
 
 ### YouTube Settings
@@ -168,22 +169,29 @@ Note 1: Issue with `App not supported`? Deactivate account by Settings -> Privac
 | Location                       | Action                                                                              |
 | ------------------------------ | ----------------------------------------------------------------------------------- |
 | Open `YouTube` app             | `Action needed` -> `Continue` -> `Allow` -> `Sign in` -> `Add account` -> `Sign in` |
-| `Settings` -> `RVX` -> `Video` | `Disable DRC audio` -> On -> `Cancel`                                               |
+| `Settings` -> `RVX` -> `Video` | `Disable DRC audio` -> On -> `CANCEL`                                               |
 
 ### YouTube Music Settings
 
-| Location                            | Action                                                                              |
-| ----------------------------------- | ----------------------------------------------------------------------------------- |
-| Open `YT Music` app                 | `Action needed` -> `Continue` -> `Allow` -> `Sign in` -> `Add account` -> `Sign in` |
-| `Settings` -> `RVX` -> `General`    | `Disable Cairo splash animation` -> On -> `Cancel`                                  |
-|                                     | `App theme` -> `Amoled Black` -> `CANCEL`                                           |
-| `Settings` -> `RVX` -> `Account`    | `Hide terms container` -> On                                                        |
-| `Settings` -> `RVX` -> `Video`      | `Disable DRC audio` -> On -> `Cancel`                                               |
-| `Settings` -> `Downloads & storage` | `Audio quality` -> `High`                                                           |
-|                                     | `Video quality` -> `HD - 720p`                                                      |
-| Close the app                       |                                                                                     |
+| Location                                | Action                                                                              |
+| --------------------------------------- | ----------------------------------------------------------------------------------- |
+| Open `YT Music` app                     | `Action needed` -> `Continue` -> `Allow` -> `Sign in` -> `Add account` -> `Sign in` |
+| `Settings` -> `RVX` -> `General`        | `Disable Cairo splash animation` -> On -> `CANCEL`                                  |
+|                                         | `App theme` -> `Amoled Black` -> `CANCEL`                                           |
+|                                         | `Hide Samples shelf` -> On -> `CANCEL`                                              |
+|                                         | `Remove viewer discretion dialog` -> On                                             |
+| `Settings` -> `RVX` -> `Account`        | `Hide terms container` -> On                                                        |
+| `Settings` -> `RVX` -> `Action bar`     | `Hide disabled button` -> On -> `CANCEL`                                            |
+| `Settings` -> `RVX` -> `Navigation bar` | `Hide Samples button` - On -> `CANCEL`                                              |
+| `Settings` -> `RVX` -> `Video`          | `Disable DRC audio` -> On -> `CANCEL`                                               |
+| `Settings` -> `RVX` -> `Miscellaneous`  | `Change share sheet` - On -> `CANCEL`                                               |
+| `Settings` -> `Downloads & storage`     | `Audio quality` -> `High`                                                           |
+| `Settings` -> `Notifications`           | `Music recommendation notifications` -> Off                                         |
+|                                         | `Video quality` -> `HD - 720p`                                                      |
+| Close the app                           |                                                                                     |
 
-Note: After fresh install of YouTube Music don't forget to sort it on Android Auto.
+- Playback stops at 1:00? `Settings` -> `RVX` -> `Miscellaneous` -> `Spoof video streams`, find one that works, maybe `visionOS`.
+- After fresh install of YouTube Music don't forget to sort it on Android Auto.
 
 ### BYD Settings
 

@@ -138,3 +138,9 @@ SFC /ScanNow
 ```powershell
 [System.Drawing.Icon]::ExtractAssociatedIcon("C:\Path\to\your.exe").ToBitmap().Save("C:\Path\to\output.ico")
 ```
+
+### Convert Base64 to Text
+
+```powershell
+[Text.Encoding]::UTF8.GetString([Convert]::FromBase64String("code"))
+```

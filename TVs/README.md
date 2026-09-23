@@ -33,6 +33,7 @@
   - A Package on the `Recommended` list - Can't control TV from Google Home.
 
 - TCL has issues playing NEXT TV channels, zoom-in when selecting a channel, temporary fix is the toggle overscan picture settings, but when chagning to different channel this fix needs to be re-applaied.
+- You can try forcing HDMI CEC by `adb shell settings put global hdmi_control_volume_control_enabled 1`
 
 ### Samsung
 
@@ -113,6 +114,21 @@ Note 1: Local Dimming of High is causing noise levels on white.
 - Can't turn off the bluethooth even if the TV is only used as a monitor.
 - For plex - go into Settings / Advanced and find Allow Insecure Connections. Set it to Always.
 - [Firmware Update Changelog](https://eu.community.samsung.com/t5/tv/tv-firmware-changelogs-on-german-community/td-p/1846870)
+
+#### Samsung TV - Sideloading
+
+1. Apps -> Settings -> 12345 (remote with numbers/usb keyboard(not numpad)/smartthings app) -> Developer mode on, 192.168.1.X, hold the power button on the remote untill it restarts
+1. open [TizenBrewInstaller](https://github.com/reisxd/TizenBrewInstaller/releases/latest) the exe
+1. open [localhost](http://localhost:8091/ui/dist/index.html)
+1. connect to the tv ip 192.168.1.X
+1. click on "Install TizenBrew Installer", wait for it to finish, and then on "Install TizenBrew" and wait for it to finish
+1. Apps -> Settings -> 12345 (remote with numbers/usb keyboard(no numpad)/smartthings app) -> Developer mode on, 127.0.0.1, hold the power button on the remote untill it restarts
+1. Open "TizenBrew" on the TV, let it load and open tizentube and maybe set it to auto launch
+1. TizenTube Settings -> Video Player Settings -> Preferred Video Quality -> 2160p
+
+- You might need to agree to terms and conditions of tv again
+- You might need to login to your google account in order to prove you're not a bot in order to watch videos on tizentube
+- You'll have the original YouTUbe app, TizenBrew Installer app, TizenBrew (this is the one you use to open TizenTube)
 
 ### LG
 
