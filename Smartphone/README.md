@@ -160,7 +160,7 @@
 | `Homepage` -> `Inbox Cleaner`                                             |                                                                                               |
 | `Homepage` -> `Passcode lock`                                             |                                                                                               |
 
-Notification Categories -> Other -> Miscellaneous -> Off
+Notification Categories -> Other -> Miscellaneous, Who viewed me -> Off
 Make sure the original phone app is set as the default phone app, not truecaller.
 Note 1: Issue with `App not supported`? Deactivate account by Settings -> Privacy Center -> Deactivate my account, uninstall old mod, install new mod.
 

@@ -294,3 +294,16 @@ menulist {
 #permission-popup-menulist {
   border: 1px solid;
 }
+
+/* Make URL-bar text rendering more deterministic for pixel matching */
+#urlbar-input {
+  font-family: "Courier New", monospace !important;
+  font-size: 15px !important;
+
+  font-kerning: none !important;
+  font-variant-ligatures: none !important;
+  font-feature-settings:
+    "kern" 0,
+    "liga" 0,
+    "clig" 0 !important;
+}

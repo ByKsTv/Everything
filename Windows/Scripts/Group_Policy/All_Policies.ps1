@@ -480,8 +480,9 @@ Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows NT\Termina
 # Using `Loseless` here would error with 0x112f.
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows NT\Terminal Services' -Name 'ImageQuality' -Type DWORD -Value 2
 
-# Group Policy -> Computer Configuration -> Administrative Templates -> Windows Components -> Remote Desktop Services -> Remote Desktop Session Host -> Remote Session Environment -> Configure H.264/AVC hardware encoding for Remote Desktop Connections -> Enabled
-Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows NT\Terminal Services' -Name 'AVCHardwareEncodePreferred' -Type DWORD -Value 1
+# Group Policy -> Computer Configuration -> Administrative Templates -> Windows Components -> Remote Desktop Services -> Remote Desktop Session Host -> Remote Session Environment -> Configure H.264/AVC hardware encoding for Remote Desktop Connections -> Disabled
+# Testing `Disabled` to see if error `0x112f` continues.
+Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows NT\Terminal Services' -Name 'AVCHardwareEncodePreferred' -Type DWORD -Value 0
 
 # Group Policy -> Computer Configuration -> Administrative Templates -> Windows Components -> Remote Desktop Services -> Remote Desktop Session Host -> Remote Session Environment -> Use hardware graphics adapters for all Remote Desktop Services sessions -> Enabled.
 Set-Policy -Scope Computer -Path 'Software\Policies\Microsoft\Windows NT\Terminal Services' -Name 'bEnumerateHWBeforeSW' -Type DWORD -Value 1

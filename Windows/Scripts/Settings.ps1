@@ -827,3 +827,53 @@ Remove-Item -Path "$env:LOCALAPPDATA\ConnectedDevicesPlatform" -Recurse -Force -
 # Stop Windows Health and Optimized Experiences
 Get-Service -Name 'whesvc' | Stop-Service -Force
 Get-Service -Name 'whesvc' | Set-Service -StartupType Disabled
+
+# Set a custom settings for RDP sessions
+$file = Join-Path ([Environment]::GetFolderPath('MyDocuments')) 'Default.rdp'
+
+$settings = @(
+	# Start in full screen. 1=windowed, 2=full screen
+	'screen mode id:i:2'
+	# Session color depth. 8, 15, 16, 24 or 32
+	'session bpp:i:32'
+	# Skip network type auto-detection. 0=off, 1=on
+	'networkautodetect:i:0'
+	# Skip bandwidth auto-detection. 0=off, 1=on
+	'bandwidthautodetect:i:0'
+	# Fixed performance profile. 1=Modem, 2=Low-speed broadband, 3=Satellite, 4=High-speed broadband, 5=WAN, 6=LAN, 7=Auto-detect
+	'connection type:i:6'
+	# RDP bulk compression. 0=off, 1=on
+	'compression:i:1'
+	# Reconnect automatically after a network drop. 0=off, 1=on
+	'autoreconnection enabled:i:1'
+	# ClearType font smoothing (only applies if the server allows it). 0=off, 1=on
+	'allow font smoothing:i:1'
+	# Persistent bitmap cache on disk between sessions. 0=off, 1=on
+	'bitmapcachepersistenable:i:1'
+	# Disables show-contents-while-dragging, only the outline moves. 0=drag shows contents, 1=outline only
+	# I think that by settings this to 0 this produces artifacts when changing windows
+	'disable full window drag:i:1'
+	# Disables menu fade/slide animations. 0=animations on, 1=off
+	'disable menu anims:i:1'
+	# Session resolution follows the client window size. 0=fixed resolution, 1=dynamic
+	'dynamic resolution:i:0'
+	# Efficient multimedia streaming for video playback (RDP). 0=off, 1=on
+	'videoplaybackmode:i:1'
+	# Audio quality mode. 0=dynamic, 1=medium, 2=high
+	'audioqualitymode:i:0'
+	# Connect to the admin/console session (same as mstsc /admin). 0=off, 1=on
+	'administrative session:i:1'
+)
+
+if (-not (Test-Path $file)) {
+ New-Item $file -ItemType File -Force | Out-Null
+}
+$lines = @(Get-Content $file)
+
+foreach ($setting in $settings) {
+	$name = $setting.Substring(0, $setting.LastIndexOf(':'))
+	$lines = @($lines | Where-Object { $_ -notlike "${name}:*" }) + $setting
+}
+
+Set-Content $file $lines -Encoding Unicode -Force
+(Get-Item $file -Force).Attributes = 'Hidden'
