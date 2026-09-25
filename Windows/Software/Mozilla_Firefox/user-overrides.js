@@ -220,6 +220,9 @@ user_pref("gfx.webrender.quality.force-subpixel-aa-where-possible", false);
 user_pref("gfx.webrender.enable-subpixel-aa", false);
 user_pref("gfx.font_rendering.cleartype_params.cleartype_level", 0);
 
+// Strip HTTPS from URL
+user_pref("browser.urlbar.trimHttps", true);
+
 // Custom UI
 user_pref(
   "browser.uiCustomization.state",
