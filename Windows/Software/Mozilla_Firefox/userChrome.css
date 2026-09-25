@@ -297,7 +297,7 @@ menulist {
 
 /* Make URL-bar text rendering more deterministic for pixel matching */
 #urlbar-input {
-  font-family: "Courier New", monospace !important;
+  font-family: "Cascadia Mono", "Consolas", monospace !important;
   font-size: 15px !important;
 
   font-kerning: none !important;

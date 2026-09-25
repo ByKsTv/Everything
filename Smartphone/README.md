@@ -150,6 +150,7 @@
 | `Settings` -> `Messaging`                                                 | `Make Truecaller default SMS app`                                                             |
 |                                                                           | `Spam protection for messages` -> `Low`                                                       |
 |                                                                           | `Manage preferences` -> Disable all                                                           |
+|                                                                           | Disable `Smart notifications`, `Smart reminders`                                              |
 | `Settings` -> `Privacy Center`                                            | Disable `Availablity`, `Social graph`, `Verified business call logs`, `Ad Campaign Analytics` |
 |                                                                           | Enable `Search profiles privately`                                                            |
 | `Settings` -> `Privacy Center` -> `Control how ads appear to you`         | Disable `Show me relevant ads`, `Get deals and promotions`                                    |

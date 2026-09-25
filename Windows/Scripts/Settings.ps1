@@ -849,7 +849,8 @@ $settings = @(
 	# ClearType font smoothing (only applies if the server allows it). 0=off, 1=on
 	'allow font smoothing:i:1'
 	# Persistent bitmap cache on disk between sessions. 0=off, 1=on
-	'bitmapcachepersistenable:i:1'
+	# maybe setting this to one causes the error of 0x112f? testing
+	'bitmapcachepersistenable:i:0'
 	# Disables show-contents-while-dragging, only the outline moves. 0=drag shows contents, 1=outline only
 	# I think that by settings this to 0 this produces artifacts when changing windows
 	'disable full window drag:i:1'
