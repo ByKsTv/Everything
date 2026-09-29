@@ -223,6 +223,9 @@ user_pref("gfx.font_rendering.cleartype_params.cleartype_level", 0);
 // Strip HTTPS from URL
 user_pref("browser.urlbar.trimHttps", true);
 
+// Settings -> Appearance -> Window density -> Compact
+user_pref("browser.uidensity", 1);
+
 // Custom UI
 user_pref(
   "browser.uiCustomization.state",
