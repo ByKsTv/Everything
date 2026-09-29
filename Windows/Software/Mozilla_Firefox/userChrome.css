@@ -1,113 +1,547 @@
-/* Applies to Firefox UI */
+/* ==========================================================
+   OLED Firefox theme — userChrome.css
+   Near-black backgrounds, white text, square corners.
+   ========================================================== */
 
-/* Remove the "Search tabs" button from the tabs toolbar */
-#alltabs-button {
-  #TabsToolbar & {
-    display: none;
-  }
+/* ----------------------------------------------------------
+   Variables
+   ---------------------------------------------------------- */
+:root {
+  --oled-black: #010101; /* Pure #000 is ignored by some panels */
 }
 
-/* Remove the spacer from the tabs toolbar */
+/* ----------------------------------------------------------
+   Global: square corners
+   ---------------------------------------------------------- */
+:root {
+  --border-radius-small: 0 !important;
+  --border-radius-medium: 0 !important;
+  --border-radius-large: 0 !important;
+  --border-radius-xlarge: 0 !important;
+  --tab-border-radius: 0 !important;
+  --toolbarbutton-border-radius: 0 !important;
+  --panel-border-radius: 0 !important;
+  --arrowpanel-border-radius: 0 !important;
+  --urlbarView-item-border-radius: 0 !important;
+}
+
+.tab-background,
+.tabbrowser-tab,
+toolbarbutton,
+.subviewbutton,
+button,
+menupopup,
+panel,
+#urlbar-background,
+#urlbar,
+#urlbar-input-container,
+.urlbar-page-action,
+.searchmode-switcher,
+.identity-box-button,
+#urlbar-label-box,
+.urlbarView-row,
+.urlbarView-row-inner {
+  border-radius: 0 !important;
+}
+
+/* ----------------------------------------------------------
+   Shield (trust) panel — square corners + OLED colors
+   The toggle switch must stay a pill; everything else is square.
+   ---------------------------------------------------------- */
+#trustpanel-popup {
+  --panel-border-radius: 0 !important;
+  --arrowpanel-border-radius: 0 !important;
+  --panel-background: var(--oled-black) !important;
+  --panel-background-color: var(--oled-black) !important;
+  --panel-color: white !important;
+  --panel-border-color: white !important;
+  --arrowpanel-background: var(--oled-black) !important;
+  --arrowpanel-color: white !important;
+  --arrowpanel-border-color: white !important;
+  border-radius: 0 !important;
+}
+
+#trustpanel-popup::part(content),
+#trustpanel-popup .panel-arrowcontent {
+  background: var(--oled-black) !important;
+  border-radius: 0 !important;
+  color: white !important;
+}
+
+/* Toggle switch lives in the shadow DOM → target the exposed part */
+#trustpanel-toggle {
+  --toggle-border-radius: 100px !important;
+}
+#trustpanel-toggle::part(button) {
+  border-radius: 100px !important;
+}
+
+/* Footer buttons — give them back real padding (the global compact rule squished them) */
+#trustpanel-clear-cookies-button,
+#trustpanel-privacy-link {
+  padding-block: 6px !important;
+  padding-inline: 16px 12px !important;
+  min-height: 28px !important;
+  margin: 0 !important;
+}
+
+/* ----------------------------------------------------------
+   Toolbar buttons: white background, black icon on hover
+   (new tab, back/forward, reload, home, bookmark star, page actions…)
+   ---------------------------------------------------------- */
+#nav-bar toolbarbutton:not([disabled]):hover,
+#TabsToolbar toolbarbutton:not([disabled]):hover,
+#PersonalToolbar toolbarbutton:not([disabled]):hover,
+#nav-bar toolbarbutton:not([disabled]):hover > .toolbarbutton-icon,
+#nav-bar toolbarbutton:not([disabled]):hover > .toolbarbutton-badge-stack,
+#TabsToolbar toolbarbutton:not([disabled]):hover > .toolbarbutton-icon,
+#TabsToolbar toolbarbutton:not([disabled]):hover > .toolbarbutton-badge-stack,
+#nav-bar toolbarbutton:not([disabled]):hover > image,
+#TabsToolbar toolbarbutton:not([disabled]):hover > image,
+#PersonalToolbar toolbarbutton:not([disabled]):hover > image,
+#tabs-newtab-button:hover > .toolbarbutton-icon,
+#new-tab-button:hover > .toolbarbutton-icon,
+#urlbar .urlbar-page-action:hover,
+#urlbar .identity-box-button:hover,
+#urlbar #urlbar-label-box:hover,
+#star-button:hover,
+#star-button-box:hover {
+  background-color: white !important;
+  color: black !important;
+  fill: black !important;
+}
+
+/* ----------------------------------------------------------
+   Toolbars: black background
+   ---------------------------------------------------------- */
+#navigator-toolbox,
+.browser-toolbar {
+  background-color: black !important;
+  color: white !important;
+}
+
+/* ----------------------------------------------------------
+   Tabs
+   ---------------------------------------------------------- */
+/* Remove the "Search tabs" button and the spacer */
+#alltabs-button,
 .titlebar-spacer {
   display: none;
 }
 
-/* Enlarge and align tab close button */
-.tab-close-button {
-  /* Increase the height to match the maximum height of hover */
-  height: 44px !important; /* It doesn't apply without `!important` */
-  /* Match the width to it's height since it's original size is 12x12 */
-  width: 44px !important; /* It doesn't apply without `!important` */
-  /* Align button button to the right */
-  margin-inline-end: -8px !important; /* It doesn't apply without `!important` */
-  /* Don't shrink when hover */
-  padding: 0 !important; /* It doesn't apply without `!important` */
-}
-
-/* Highlight tab close button on hover */
-.tab-close-button:hover {
-  /* Set the background color to red to indicate warning */
-  background-color: red !important; /* It doesn't apply without `!important` */
-  /* Set the icon color to white */
-  color: white !important; /* It doesn't apply without `!important` */
-}
-
-/* Highlight browser close button on hover */
-.titlebar-button {
-  @media not (prefers-contrast) {
-    &.titlebar-close:hover {
-      /* Set the background color to red to indicate warning */
-      background-color: red !important; /* It doesn't apply without `!important` */
-    }
-  }
-}
-
-/* Remove spacing between each item on context menus (right-click | folder from bookmark) */
-menupopup,
-panel {
-  --menuitem-padding: 0.1em 0em !important; /* It doesn't apply without `!important` */
-}
-
-/* Bookmarks items inside a folder */
-.toolbar-menupopup {
-  &,
-  & menupopup {
-    /* Set the background color of the panel to black */
-    --panel-background: black !important; /* It doesn't apply without `!important` */
-    /* Set the border color of the panel to white */
-    --panel-border-color: white !important; /* It doesn't apply without `!important` */
-    /* Remove spacing of the panel from border to the items */
-    --panel-padding: 2px !important; /* It doesn't apply without `!important` */
-  }
-}
-
-/* Set the background color of the title bar (tabs bar) to black */
-#navigator-toolbox {
-  background-color: black !important; /* It doesn't apply without `!important` */
-}
-
-/* Set the background color of the entire toolbar to black */
-.browser-toolbar {
-  background-color: black !important; /* It doesn't apply without `!important` */
-  /* Set the text inside to white */
-  color: white !important; /* It doesn't apply without `!important` */
-}
-
-/* Dim the inactive tabs on the tabs bar */
+/* Inactive tabs: dim */
 .tabbrowser-tab:not([selected]) {
   opacity: 0.5;
 }
 
-/* Undim the inactive tabs on the tabs bar on hover */
+/* On hover: undim and invert to white bg + black text/icon */
 .tabbrowser-tab:not([selected]):hover {
   opacity: 1;
 }
 
-/* Compact spacing between each bookmark on bookmarks toolbar */
-#personal-toolbar-empty-description,
-toolbarbutton.bookmark-item:not(.subviewbutton) {
-  margin: 1px !important; /* It doesn't apply without `!important` */
-  padding: 1px !important; /* It doesn't apply without `!important` */
+.tabbrowser-tab:not([selected]):hover > .tab-stack > .tab-background {
+  background-color: white !important;
+  background-image: none !important;
 }
 
-/* Compact spacing between each setting on settings context menu */
+.tabbrowser-tab:not([selected]):hover .tab-label,
+.tabbrowser-tab:not([selected]):hover .tab-text,
+.tabbrowser-tab:not([selected]):hover .tab-close-button,
+.tabbrowser-tab:not([selected]):hover .tab-icon-image,
+.tabbrowser-tab:not([selected]):hover .tab-secondary-label {
+  color: black !important;
+  fill: black !important;
+}
+
+/* Close button: red warning on hover (applies to all tabs) */
+.tab-close-button {
+  height: 44px !important;
+  width: 44px !important;
+  margin-inline-end: -8px !important;
+  padding: 0 !important;
+}
+.tab-close-button:hover {
+  background-color: red !important;
+  color: white !important;
+}
+
+/* Window close button: red on hover */
+.titlebar-button {
+  @media not (prefers-contrast) {
+    &.titlebar-close:hover {
+      background-color: red !important;
+    }
+  }
+}
+
+/* ----------------------------------------------------------
+   Bookmarks toolbar: compact spacing + OLED hover
+   ---------------------------------------------------------- */
+#personal-toolbar-empty-description,
+toolbarbutton.bookmark-item:not(.subviewbutton) {
+  margin: 1px !important;
+  padding: 1px !important;
+}
+
+toolbarbutton.bookmark-item:not(.subviewbutton):hover {
+  background-color: white !important;
+  color: black !important;
+}
+
+/* ----------------------------------------------------------
+   Context menus: compact, OLED, high-contrast hover
+   ---------------------------------------------------------- */
+menupopup {
+  /* Compact spacing */
+  --menuitem-padding: 2px 6px !important;
+  --menuitem-margin: 0 !important;
+  --arrowpanel-menuitem-padding: 2px 6px !important;
+  --arrowpanel-menuitem-margin: 0 !important;
+  --panel-padding: 2px !important;
+  /* Kill Firefox's inner border and shadow margin (they produced a double border) */
+  --panel-border-color: transparent !important;
+  --panel-shadow-margin: 0px !important;
+  -moz-window-shadow: none !important;
+  /* Single visible border */
+  background-color: var(--oled-black) !important;
+  border: 1px solid white !important;
+  border-radius: 0 !important;
+  color: white !important;
+}
+
+menupopup > menuitem,
+menupopup > menu {
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding-block: 2px !important;
+  padding-inline: 6px !important;
+}
+
+menupopup > menuseparator {
+  margin-block: 1px !important;
+  padding-block: 0 !important;
+}
+
+/* Inner menu body: strip its border/radius so only the outer one shows */
+menupopup::part(content) {
+  background: var(--oled-black) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: white !important;
+}
+
+/* Menu items: transparent by default, white on hover */
+menupopup menuitem,
+menupopup menu,
+menupopup menucaption,
+menupopup menugroup {
+  background: transparent !important;
+  color: white !important;
+}
+
+menupopup :is(menuitem, menu):not([disabled]):is([_moz-menuactive], [open]) {
+  background: white !important;
+  color: black !important;
+}
+
+/* Bookmark folder popups */
+.toolbar-menupopup,
+.toolbar-menupopup menupopup {
+  --panel-background: black !important;
+  --panel-background-color: black !important;
+  --panel-border-color: transparent !important;
+  --panel-padding: 2px !important;
+}
+
+/* ----------------------------------------------------------
+   Panels & subviews: OLED colors + hover
+   ---------------------------------------------------------- */
+menupopup,
+panel {
+  --panel-background: var(--oled-black) !important;
+  --panel-background-color: var(--oled-black) !important;
+  --panel-color: white !important;
+  --arrowpanel-background: var(--oled-black) !important;
+  --arrowpanel-color: white !important;
+  --arrowpanel-border-color: white !important;
+}
+
+panel {
+  --panel-border-color: white !important;
+  transition: none !important; /* Disable fade */
+}
+
+/* Compact items inside subviews */
 .subview-subheader,
 panelview .toolbarbutton-1,
 .subviewbutton,
 .widget-overflow-list .toolbarbutton-1 {
-  margin: 1px !important; /* It doesn't apply without `!important` */
-  min-height: 0px !important; /* It doesn't apply without `!important` */
-  padding: 1px !important; /* It doesn't apply without `!important` */
+  margin: 1px !important;
+  min-height: 0px !important;
+  padding: 1px !important;
 }
 
-/* Hide "Copy Clean Link (U)" from context menu if it's greyed out */
+/* High-contrast hover inside subviews */
+panelview .subviewbutton:hover,
+panelview .toolbarbutton-1:hover,
+panelview toolbarbutton:hover {
+  background-color: white !important;
+  color: black !important;
+}
+
+/* ----------------------------------------------------------
+   URL bar
+   ---------------------------------------------------------- */
+/* Closed state: keep Firefox's default field background (square) */
+#urlbar:not([open]) > #urlbar-background {
+  background: var(--toolbar-field-background-color) !important;
+  border: 1px solid var(--toolbar-field-border-color, transparent) !important;
+  border-radius: 0 !important;
+}
+
+/* Text field: transparent so the background shows through; monospace font */
+#urlbar-input {
+  background-color: transparent !important;
+  font-family: "Cascadia Mono", "Consolas", monospace !important;
+  font-size: 15px !important;
+  font-kerning: none !important;
+  font-variant-ligatures: none !important;
+  font-feature-settings:
+    "kern" 0,
+    "liga" 0,
+    "clig" 0 !important;
+}
+
+/* Compact the identity / searchmode labels */
+#identity-box[pageproxystate="valid"]:is(
+    .notSecureText,
+    .chromeUI,
+    .extensionPage
+  )
+  > .identity-box-button,
+#urlbar-label-box,
+.searchmode-switcher {
+  padding-inline: 6px !important;
+}
+
+.searchmode-switcher {
+  margin-inline-end: 0 !important;
+}
+
+/* Open state: OLED background */
+#urlbar {
+  --toolbar-field-focus-background-color: var(--oled-black) !important;
+}
+
+#urlbar[open] > #urlbar-background {
+  background-color: var(--oled-black) !important;
+  border-color: white !important;
+}
+
+/* ----------------------------------------------------------
+   URL bar suggestions
+   ---------------------------------------------------------- */
+.urlbarView,
+.urlbarView-body-inner,
+#urlbar-results {
+  background-color: var(--oled-black) !important;
+  color: white !important;
+}
+
+.urlbarView {
+  --urlbarView-hover-background: white !important;
+  --urlbarView-highlight-background: white !important;
+  --urlbarView-highlight-color: black !important;
+}
+
+.urlbarView-row:hover,
+.urlbarView-row[selected] {
+  background-color: white !important;
+  color: black !important;
+}
+
+/* ----------------------------------------------------------
+   Findbar (Ctrl+F)
+   ---------------------------------------------------------- */
+findbar {
+  background-color: black !important;
+  border-top: 1px solid white !important;
+  color: white !important;
+}
+
+.findbar-textbox {
+  background-color: var(--oled-black) !important;
+  border: 1px solid white !important;
+  color: white !important;
+}
+
+/* ----------------------------------------------------------
+   Sidebar
+   ---------------------------------------------------------- */
+#sidebar-box,
+#sidebar-header,
+#sidebar {
+  background-color: black !important;
+  color: white !important;
+}
+
+#sidebar-header {
+  border-bottom: 1px solid white !important;
+}
+
+#sidebar treechildren::-moz-tree-row(hover) {
+  background-color: white !important;
+}
+
+#sidebar treechildren::-moz-tree-cell-text(hover) {
+  color: black !important;
+}
+
+/* ----------------------------------------------------------
+   Downloads panel
+   ---------------------------------------------------------- */
+#downloadsPanel,
+#downloadsPanel-mainView {
+  background-color: var(--oled-black) !important;
+  color: white !important;
+}
+
+/* ----------------------------------------------------------
+   History / Library / Downloads windows
+   ---------------------------------------------------------- */
+:root[dialogroot] {
+  --background-color-canvas: black !important;
+}
+
+#editBMPanel_tagsSelector,
+#placesToolbar,
+#detailsPane,
+tree,
+treecol,
+.tree-columnpicker-button,
+#downloadsListBox {
+  background-color: black !important;
+}
+
+#placesList,
+#input {
+  background-color: black;
+}
+
+/* Text inputs (excluding radios / checkboxes / ranges) */
+input:where(:not([type="radio" i], [type="checkbox" i], [type="range" i])),
+textarea {
+  background-color: black !important;
+}
+
+/* Tree rows: white highlight on hover / selection */
+treechildren::-moz-tree-row(hover),
+treechildren::-moz-tree-row(selected) {
+  background-color: white !important;
+}
+treechildren::-moz-tree-cell-text(hover),
+treechildren::-moz-tree-cell-text(selected) {
+  color: black !important;
+}
+
+/* ----------------------------------------------------------
+   Dialogs
+   ---------------------------------------------------------- */
+/* About Firefox */
+#clientBox,
+#bottomBox {
+  background: black !important;
+}
+
+/* Page Info (lock icon in URL bar) */
+#page-info {
+  background-color: black !important;
+  color: white !important;
+}
+
+/* Edit Bookmark input borders */
+:root[subdialog] input {
+  border-color: white !important;
+}
+
+/* Permission popup buttons */
+#notification-popup button,
+.permission-popup-permission-remove-button {
+  border: 1px solid white !important;
+}
+
+#permission-popup-menulist {
+  border: 1px solid;
+}
+
+/* Generic control borders */
+button,
+select,
+input[type="color"],
+menulist {
+  border-color: white !important;
+}
+
+/* ----------------------------------------------------------
+   Status panel (URL preview in bottom-left)
+   ---------------------------------------------------------- */
+#statuspanel-label {
+  background-color: black !important;
+  border-color: white !important;
+  color: white !important;
+}
+
+/* ----------------------------------------------------------
+   Search bar (separate from URL bar)
+   ---------------------------------------------------------- */
+#searchbar {
+  background-color: var(--oled-black) !important;
+  border: 1px solid white !important;
+  color: white !important;
+}
+
+#PopupSearchAutoComplete {
+  background-color: var(--oled-black) !important;
+  border: 1px solid white !important;
+  color: white !important;
+}
+
+.autocomplete-richlistbox {
+  background: black !important;
+}
+
+/* ----------------------------------------------------------
+   Notification bar
+   ---------------------------------------------------------- */
+.notificationbox-stack,
+notification-message {
+  background-color: var(--oled-black) !important;
+  color: white !important;
+}
+
+/* ----------------------------------------------------------
+   Hidden elements
+   ---------------------------------------------------------- */
+/* Remove "Add tab to taskbar" and "Enter Reader View" from the URL bar */
+#taskbar-tabs-button,
+#reader-mode-button {
+  display: none;
+}
+
+/* Hide greyed-out items in context menus */
+menupopup :is(menuitem, menu):is([disabled]) {
+  display: none;
+}
+
+/* Hide "Copy Clean Link" when greyed out */
 #context-stripOnShareLink[disabled="true"],
 #context-stripOnShareLink[aria-disabled="true"],
 #context-stripOnShareLink[hidden] {
   visibility: collapse;
 }
 
-/* Hide "Copy Link" from context menu if "Copy Clean Link (U)" is available */
+/* Hide "Copy Link" when "Copy Clean Link" is available */
 menupopup#contentAreaContextMenu:has(
     #context-stripOnShareLink:not([disabled="true"]):not(
         [aria-disabled="true"]
@@ -117,193 +551,23 @@ menupopup#contentAreaContextMenu:has(
   visibility: collapse;
 }
 
-/* Hide "Open Link in New Window" from context menu */
+/* Hide unwanted items from the page context menu */
 menupopup#contentAreaContextMenu > #context-openlink,
-/* Hide "Open Link in New Private Window" from context menu */
 menupopup#contentAreaContextMenu > #context-openlinkprivate,
-/* Hide "Open Link in New Container Tab" from context menu */
 menupopup#contentAreaContextMenu > #context-openlinkincontainertab,
-/* Hide "Bookmark Link…" from context menu */
 menupopup#contentAreaContextMenu > #context-bookmarklink,
-/* Hide "Save Link As…" from context menu */
 menupopup#contentAreaContextMenu > #context-savelink,
-/* Hide "Search in a Private Window" from context menu */
 menupopup#contentAreaContextMenu > #context-searchselect-private,
-/* Hide "Inspect Accessibility Properties" from context menu */
 menupopup#contentAreaContextMenu > #context-inspect-a11y,
-/* Hide "Email Image…" from context menu */
 menupopup#contentAreaContextMenu > #context-sendimage,
-/* Hide "Set Image as Desktop Background…" from context menu */
 menupopup#contentAreaContextMenu > #context-setDesktopBackground,
-/* Hide "Search Image with Google Lens" from context menu */
 menupopup#contentAreaContextMenu > #context-visual-search {
   visibility: collapse;
 }
 
-/* Settings > Help > About Firefox */
-/* Main box */
-#clientBox,
-/* Footer box */
-#bottomBox {
-  /* Black background */
-  background: black !important; /* It doesn't apply without `!important` */
-}
-
-/* Remove fade effects from status panel (URL Preview) */
-#statuspanel {
-  transition: none !important; /* It doesn't apply without `!important` */
-}
-
-/* Remove fade effects from application menu */
-panel {
-  transition: none !important; /* It doesn't apply without `!important` */
-}
-
-/* Style the status panel (URL Preview) */
-#statuspanel-label {
-  color: white !important; /* It doesn't apply without `!important` */
-  background-color: black !important; /* It doesn't apply without `!important` */
-  border-color: white !important; /* It doesn't apply without `!important` */
-}
-
-/* Remove "Add tab to taskbar" button from URL bar */
-#taskbar-tabs-button {
-  display: none;
-}
-
-/* Remove "Enter Reader View" button from URL bar */
-#reader-mode-button {
-  display: none;
-}
-
-/* Hide greyed out options from context menus */
-menupopup :is(menuitem, menu):is([disabled]) {
-  display: none;
-}
-
-/* Set the background color of "Edit Bookmark" to black */
-:root[dialogroot] {
-  --background-color-canvas: black !important; /* It doesn't apply without `!important` */
-}
-
-/* Set the background color of "Edit Bookmark" table tags to black */
-#editBMPanel_tagsSelector {
-  background-color: black !important; /* It doesn't apply without `!important` */
-}
-
-/* Set the background color of the "Manage History" buttons on the header to black */
-#placesToolbar {
-  background-color: black !important; /* It doesn't apply without `!important` */
-}
-
-/* Set the background color of the "Manage History" left sidebar to black */
-#placesList {
-  background-color: black;
-}
-
-/* Set the background color of the "Manage History" footer to black */
-#detailsPane {
-  background-color: black !important; /* It doesn't apply without `!important` */
-}
-
-/* Set the background color of the "Manage History" items to black */
-tree {
-  background-color: black !important; /* It doesn't apply without `!important` */
-}
-
-/* Set the background color of the "Manage History" search input to black */
-#input {
-  background-color: black;
-}
-
-/* Set the background color of the "Manage History" items input to black */
-input:where(:not([type="radio" i], [type="checkbox" i], [type="range" i])),
-textarea {
-  background-color: black !important; /* It doesn't apply without `!important` */
-}
-
-/* Set the background color of the "Manage History" header colums to black */
-treecol,
-.tree-columnpicker-button {
-  background-color: black !important; /* It doesn't apply without `!important` */
-}
-
-/* Set the background color of the "Manage Downloads" items to black */
-#downloadsListBox {
-  background-color: black !important; /* It doesn't apply without `!important` */
-}
-
-/* Set the background color of the search results items on url bar to black */
-.urlbar-background {
-  background: black !important; /* It doesn't apply without `!important` */
-}
-
-/* Compact prefix label before url (firefox indicator) */
-#identity-box[pageproxystate="valid"]:is(
-    .notSecureText,
-    .chromeUI,
-    .extensionPage
-  )
-  > .identity-box-button,
-#urlbar-label-box {
-  padding-inline: 3px !important; /* It doesn't apply without `!important` */
-}
-
-/* Compact prefix label before url (search engine) */
-.searchmode-switcher {
-  margin-inline-end: 3px !important; /* It doesn't apply without `!important` */
-  padding-inline: 3px !important; /* It doesn't apply without `!important` */
-}
-
-/* Set the background color of the auto complete fill forms to black */
-.autocomplete-richlistbox {
-  background: black !important; /* It doesn't apply without `!important` */
-}
-
-/* Set the border color of buttons to white */
-button,
-select,
-input[type="color"],
-menulist {
-  border-color: white !important; /* It doesn't apply without `!important` */
-}
-
-/* Set the border color of Permissions of current site to white */
-:is(menupopup, panel):where([type="arrow"]) {
-  --panel-border-color: white !important; /* It doesn't apply without `!important` */
-}
-
-/* Set the border color of "Edit Bookmark" input text to white */
-:root[subdialog] {
-  input {
-    border-color: white !important; /* It doesn't apply without `!important` */
-  }
-}
-
-/* Set the border color of Permissions buttons such as "Allow" and "Block" pop-ups of current site to white */
-#notification-popup button {
-  border: 1px solid white !important; /* It doesn't apply without `!important` */
-}
-
-/* Set the border color of Permissions buttons such as "Store data in persistent storage" of current site to white */
-.permission-popup-permission-remove-button {
-  border: 1px solid white !important; /* It doesn't apply without `!important` */
-}
-
-/* Set a border for Permissions buttons such as "Autoplay" of current site */
-#permission-popup-menulist {
-  border: 1px solid;
-}
-
-/* Make URL-bar text rendering more deterministic for pixel matching */
-#urlbar-input {
-  font-family: "Cascadia Mono", "Consolas", monospace !important;
-  font-size: 15px !important;
-
-  font-kerning: none !important;
-  font-variant-ligatures: none !important;
-  font-feature-settings:
-    "kern" 0,
-    "liga" 0,
-    "clig" 0 !important;
+/* Firefox View button */
+#firefox-view-button,
+#tabbrowser-tabbox[firefoxview] {
+  background-color: black !important;
+  color: white !important;
 }

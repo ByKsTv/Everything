@@ -60,7 +60,7 @@
 | Symbolab: AI Math Photo Solver | [4pda](https://4pda.to/forum/index.php?showtopic=702296&view=findpost&p=44337245)                                                                                                                                                           |                                                                                            |
 | TickTick:To Do List & Calendar | [4pda](https://4pda.to/forum/index.php?showtopic=478412&view=findpost&p=23310127)                                                                                                                                                           | Pro by Balatan                                                                             |
 | TikTok                         | [4pda](https://4pda.to/forum/index.php?showtopic=1057582&view=findpost&p=88888432)                                                                                                                                                          | TikTokModCloud                                                                             |
-| Truecaller                     | [4pda](https://4pda.to/forum/index.php?act=findpost&pid=18455027&anchor=Spoil-18455027-5)                                                                                                                                                   | (Stable) Gold by Balatan                                                                   |
+| Truecaller                     | [4pda](https://4pda.to/forum/index.php?showtopic=417409&view=findpost&p=18455027)                                                                                                                                                           | (Stable) Premium by youarefinished                                                         |
 | UAD-ng                         | [GitHub](https://github.com/Universal-Debloater-Alliance/universal-android-debloater-next-generation/releases/latest)                                                                                                                       | uad-ng-windows.exe                                                                         |
 | Vocalizer                      | [4pda](https://4pda.to/forum/index.php?showtopic=987292#apk)                                                                                                                                                                                | [Latest 3.8.2](https://4pda.to/forum/index.php?showtopic=987292&view=findpost&p=132720887) |
 | WhatsApp                       | [4pda](https://4pda.to/forum/index.php?showtopic=186375#Spoil-5125511-11)                                                                                                                                                                   |                                                                                            |
@@ -131,39 +131,37 @@
 | `Settings` -> `Privacy Center` | `Deactivate my account`                              |
 | Mark the first 3 options       | `Yes, Continue`                                      |
 | `Continue`                     | `Other reason` -> `.....` `Continue` -> `Deactivate` |
-| Uninstall app                  |                                                      |
+| Uninstall app                  | Install new mod                                      |
 
 ### Truecaller Settings
 
-| Location                                                                  | Action                                                                                        |
-| ------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `Get started`                                                             |                                                                                               |
-| `Set Truecaller as your default caller ID & spam app?` -> `Truecaller`    | `Set as default`                                                                              |
-| `CONTINUE`                                                                | `Allow` 4 times                                                                               |
-| `Fill in manually`                                                        | Only first and last name are required                                                         |
-| `Backup available`                                                        | `Skip` -> `Skip`                                                                              |
-| `Settings` -> `Calls`                                                     | `Disable battery optimization` -> `Allow`                                                     |
-|                                                                           | Enable `Hide for phonebook contacts`, `Hide for non-phonebook contacts`                       |
-|                                                                           | Enable `Identify numbers on other apps`                                                       |
-|                                                                           | Disable `Group calls in call history`, `Show frequently called contacts`                      |
-|                                                                           | Enable `Announce phone calls`                                                                 |
-| `Settings` -> `Messaging`                                                 | `Make Truecaller default SMS app`                                                             |
-|                                                                           | `Spam protection for messages` -> `Low`                                                       |
-|                                                                           | `Manage preferences` -> Disable all                                                           |
-|                                                                           | Disable `Smart notifications`, `Smart reminders`                                              |
-| `Settings` -> `Privacy Center`                                            | Disable `Availablity`, `Social graph`, `Verified business call logs`, `Ad Campaign Analytics` |
-|                                                                           | Enable `Search profiles privately`                                                            |
-| `Settings` -> `Privacy Center` -> `Control how ads appear to you`         | Disable `Show me relevant ads`, `Get deals and promotions`                                    |
-| `Settings` -> `Block`                                                     | `Level of protection` -> `Max`                                                                |
-|                                                                           | Enable `Notification for blocked messages`                                                    |
-| `Homepage` -> Hold `Messages` Tab to make it default when opening the app |                                                                                               |
-| `Homepage` -> `Messages`                                                  | Dismiss `Enable passcode`, `Introducing urgent messages`                                      |
-| `Homepage` -> `Inbox Cleaner`                                             |                                                                                               |
-| `Homepage` -> `Passcode lock`                                             |                                                                                               |
+| Location                                                                  | Action                                                                                           |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `Do not show again` -> `Cancel` -> `Get started`                          |                                                                                                  |
+| `Fill in manually`                                                        | Only first and last name are required                                                            |
+| `Backup available`                                                        | `Skip` -> `Skip`                                                                                 |
+| `Continue with premium`                                                   |                                                                                                  |
+| `Settings`                                                                | `Enable now` -> `Truecaller` -> `Set as default`                                                 |
+| `Settings` -> `Calls`                                                     | Enable `Hide for phonebook contacts`, `Hide for non-phonebook contacts`                          |
+|                                                                           | Enable `Identify numbers on other apps` -> `GO TO SETTINGS` -> `Truecaller` -> Enable -> `Allow` |
+|                                                                           | Disable `Group calls in call history`, `Show frequently called contacts`                         |
+|                                                                           | Enable `Announce phone calls`                                                                    |
+| `Settings` -> `Messaging`                                                 | `Make Truecaller default SMS app` -> `Truecaller` -> `Set as default`                            |
+|                                                                           | `Manage preferences` -> Disable all                                                              |
+|                                                                           | Disable `Smart notifications`, `Smart reminders`                                                 |
+| `Settings` -> `Privacy Center`                                            | Disable `Availablity`, `Social graph`, `Verified business call logs`, `Ad Campaign Analytics`    |
+|                                                                           | Enable `Search profiles privately`                                                               |
+| `Settings` -> `Privacy Center` -> `Control how ads appear to you`         | Disable `Show me relevant ads`, `Get deals and promotions`                                       |
+| `Settings` -> `Block`                                                     | Enable `Notification for blocked messages`                                                       |
+| `Homepage` -> Hold `Messages` Tab to make it default when opening the app |                                                                                                  |
+| `Homepage` -> `Messages`                                                  | Dismiss `Enable passcode`, `Introducing urgent messages`                                         |
+| `Homepage` -> `Inbox Cleaner`                                             |                                                                                                  |
+| `Homepage` -> `Passcode lock`                                             |                                                                                                  |
+| After you receive a notification from the app                             | `App info` -> `Notification Categories` -> `Other` -> Disable `Miscellaneous`, `Who viewed me`   |
 
-Notification Categories -> Other -> Miscellaneous, Who viewed me -> Off
-Make sure the original phone app is set as the default phone app, not truecaller.
-Note 1: Issue with `App not supported`? Deactivate account by Settings -> Privacy Center -> Deactivate my account, uninstall old mod, install new mod.
+- Make sure the original phone app is set as the default phone app, not truecaller.
+- Issue with `App not supported` - Use [Truecaller Reset](#truecaller-reset).
+- Mod `Gold by Balatan` has issues with registration, empty SMS messages and call logs, no Caller ID.
 
 ### YouTube Settings
 

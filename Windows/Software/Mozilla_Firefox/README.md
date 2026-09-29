@@ -60,6 +60,7 @@
 1. Enable `devtools.debugger.remote-enabled`.
 1. Press `Ctrl + Alt + Shift + I`.
 1. In Browser Toolbox, click the element picker (mouse pointer icon).
+1. (Optional) Change `ui.popup.disable_autohide` to `true`.
 
 ## Edit Search.json
 
