@@ -22,8 +22,9 @@
 
 ## Update BIOS
 
-1. Create a folder inside `C:\` drive with a easy to spot name such as `BIOS Updates`
-1. Move BIOS file to the USB.
+1. Create a folder inside `C:\` drive with a easy to spot name such as `BIOS Updates`.
+1. Extract the `.zip` file.
+1. Move the BIOS file (`.CAP`) to the `BIOS Updates` folder.
 1. Boot to BIOS (PowerShell/CMD):
 
    ```bat
@@ -36,7 +37,7 @@
    > Duration of BIOS Update is 8 minutes.
 
 1. Update BIOS Firmware.
-   > Asus motherboard: `Tool` -> `Asus EZ Flash 3 Utility` -> Select storage device -> Select BIOS file -> `Yes` -> `Yes` -> `Yes`.
+   > Asus motherboard: `Tool` -> `Asus EZ Flash 3 Utility` -> Select storage device (`fs1:\`) -> Select BIOS file -> `Yes` -> `Yes` -> `Yes`.
 1. Press `F1` to enter BIOS setup.
 1. Press `F5` to `Reset to Defaults`.
 

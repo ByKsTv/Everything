@@ -139,7 +139,7 @@
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
 | `Do not show again` -> `Cancel` -> `Get started`                          |                                                                                                  |
 | `Fill in manually`                                                        | Only first and last name are required                                                            |
-| `Backup available`                                                        | `Skip` -> `Skip`                                                                                 |
+| `Skip` -> `Skip`                                                          |                                                                                                  |
 | `Continue with premium`                                                   |                                                                                                  |
 | `Settings`                                                                | `Enable now` -> `Truecaller` -> `Set as default`                                                 |
 | `Settings` -> `Calls`                                                     | Enable `Hide for phonebook contacts`, `Hide for non-phonebook contacts`                          |

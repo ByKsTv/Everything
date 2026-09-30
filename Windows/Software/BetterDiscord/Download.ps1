@@ -25,7 +25,7 @@ if (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue) {
 
 $IndexJS = (Get-ChildItem -Path "$env:LOCALAPPDATA\Discord\app*\modules\discord_desktop_core*\discord_desktop_core" -Directory | Sort-Object -Descending | Select-Object -First 1 | Get-ChildItem -Filter 'index.js' -File).FullName
 if (Select-String -Quiet -Path $IndexJS -Pattern 'betterdiscord') {
-    $DDL = ((Invoke-RestMethod -Uri 'https://api.github.com/repos/BetterDiscord/BetterDiscord/releases/latest').assets).browser_download_url
+    $DDL = ((Invoke-RestMethod -Uri 'https://api.github.com/repos/BetterDiscord/BetterDiscord/releases/latest').assets | Where-Object { $_.name -eq 'betterdiscord.asar' }).browser_download_url
     $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
     $SavePath = [IO.Path]::Combine($env:APPDATA, 'BetterDiscord', 'data', $FileName)
     [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Updating '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()

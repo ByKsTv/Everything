@@ -35,7 +35,7 @@ $settings = @(
     @{ Name = 'Settings -> Connections -> Mobile networks -> VoLTE calls -> On'; Table = 'system'; Key = 'voicecall_type'; Value = '0' }
     @{ Name = 'Settings -> Connections -> Data usage -> Mobile data -> On'; Table = 'global'; Key = 'mobile_data'; Value = '1' }
     @{ Name = 'Settings -> Connections -> More connection settings -> Private DNS -> Off'; Table = 'global'; Key = 'private_dns_mode'; Value = 'off' }
-    @{ Name = 'Settings -> Modes and Routines -> Settings -> Show routines on Lock screen -> Off'; Table = 'system'; Key = 'add_info_com_samsung_android_app_routines#dashboard'; Value = '0' }
+    # @{ Name = 'Settings -> Modes and Routines -> Settings -> Show routines on Lock screen -> Off'; Table = 'system'; Key = 'add_info_com_samsung_android_app_routines#dashboard'; Value = '0' }
     @{ Name = 'Settings -> Sounds and vibration -> Sounds'; Table = 'global'; Key = 'mode_ringer'; Value = '2' }
     @{ Name = 'Settings -> Sounds and vibration -> Vibrate while ringing'; Table = 'system'; Key = 'vibrate_when_ringing'; Value = '1' }
     @{ Name = 'Settings -> Sounds and vibration -> System sounds -> Touch interactions -> Off'; Table = 'system'; Key = 'sound_effects_enabled'; Value = '0' }
