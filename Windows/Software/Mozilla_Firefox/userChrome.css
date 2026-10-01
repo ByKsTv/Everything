@@ -202,7 +202,10 @@ menupopup {
   --panel-border-color: transparent !important;
   --panel-shadow-margin: 0px !important;
   -moz-window-shadow: none !important;
-  /* Single visible border */
+  /* Kill any extra padding/margin the popup host carries */
+  padding: 0 !important;
+  margin: 0 !important;
+  /* Single visible border, drawn tight around the items */
   background-color: var(--oled-black) !important;
   border: 1px solid white !important;
   border-radius: 0 !important;
@@ -222,13 +225,15 @@ menupopup > menuseparator {
   padding-block: 0 !important;
 }
 
-/* Inner menu body: strip its border/radius so only the outer one shows */
+/* Inner menu body: strip its border/radius/padding so only the outer border shows */
 menupopup::part(content) {
   background: var(--oled-black) !important;
   border: none !important;
   border-radius: 0 !important;
   box-shadow: none !important;
   color: white !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 /* Menu items: transparent by default, white on hover */
@@ -245,13 +250,40 @@ menupopup :is(menuitem, menu):not([disabled]):is([_moz-menuactive], [open]) {
   color: black !important;
 }
 
-/* Bookmark folder popups */
+/* ----------------------------------------------------------
+   Bookmark folder popups — tight border, no extra padding
+   (the host popup and its ::part(content) both add padding
+   by default, which pushes the border past the menu items
+   and overlaps neighbouring bookmarks)
+   ---------------------------------------------------------- */
 .toolbar-menupopup,
-.toolbar-menupopup menupopup {
+.toolbar-menupopup menupopup,
+#bookmarksMenuPopup,
+#BMB_bookmarksPopup,
+#OtherBookmarksPopup,
+#bookmarksToolbarFolderPopup,
+#PlacesChevronPopup {
   --panel-background: black !important;
   --panel-background-color: black !important;
   --panel-border-color: transparent !important;
-  --panel-padding: 2px !important;
+  --panel-padding: 0px !important;
+  --panel-shadow-margin: 0px !important;
+  --menuitem-padding: 2px 6px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.toolbar-menupopup::part(content),
+.toolbar-menupopup menupopup::part(content),
+#bookmarksMenuPopup::part(content),
+#BMB_bookmarksPopup::part(content),
+#OtherBookmarksPopup::part(content),
+#bookmarksToolbarFolderPopup::part(content),
+#PlacesChevronPopup::part(content) {
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 /* ----------------------------------------------------------
@@ -359,6 +391,90 @@ panelview toolbarbutton:hover {
 .urlbarView-row[selected] {
   background-color: white !important;
   color: black !important;
+}
+
+/* ----------------------------------------------------------
+   Autofill popup (saved usernames / passwords / addresses / credit cards)
+   Triggered when focusing a login form field, address field, etc.
+   ---------------------------------------------------------- */
+#PopupAutoComplete,
+#PopupAutoCompleteRichResult,
+#PopupAutoComplete > richlistbox,
+#PopupAutoCompleteRichResult > richlistbox,
+.autocomplete-richlistbox,
+.autocomplete-richlistbox > richlistbox {
+  background-color: var(--oled-black) !important;
+  border: 1px solid white !important;
+  border-radius: 0 !important;
+  color: white !important;
+  --panel-background: var(--oled-black) !important;
+  --panel-border-color: white !important;
+  --panel-color: white !important;
+}
+
+/* Rich list items (one row per saved credential / suggestion) */
+#PopupAutoComplete richlistitem,
+#PopupAutoCompleteRichResult richlistitem,
+.autocomplete-richlistitem,
+richlistitem.autocomplete-richlistitem {
+  background-color: transparent !important;
+  color: white !important;
+}
+
+/* Text spans inside the row (title, subtitle, account name, URL, etc.) */
+#PopupAutoComplete .ac-title,
+#PopupAutoComplete .ac-subtitle,
+#PopupAutoComplete .ac-title-text,
+#PopupAutoComplete .ac-subtitle-text,
+#PopupAutoComplete .ac-site-icon,
+#PopupAutoComplete .ac-type-icon,
+#PopupAutoCompleteRichResult .ac-title,
+#PopupAutoCompleteRichResult .ac-subtitle,
+#PopupAutoCompleteRichResult .ac-title-text,
+#PopupAutoCompleteRichResult .ac-subtitle-text,
+#PopupAutoCompleteRichResult .ac-site-icon,
+#PopupAutoCompleteRichResult .ac-type-icon,
+.autocomplete-richlistitem .ac-title,
+.autocomplete-richlistitem .ac-subtitle,
+.autocomplete-richlistitem .ac-title-text,
+.autocomplete-richlistitem .ac-subtitle-text,
+.autocomplete-richlistitem .ac-site-icon,
+.autocomplete-richlistitem .ac-type-icon {
+  color: white !important;
+  fill: white !important;
+}
+
+/* Hover / keyboard selection: invert for readability */
+#PopupAutoComplete richlistitem:hover,
+#PopupAutoComplete richlistitem[selected],
+#PopupAutoCompleteRichResult richlistitem:hover,
+#PopupAutoCompleteRichResult richlistitem[selected],
+.autocomplete-richlistitem:hover,
+.autocomplete-richlistitem[selected] {
+  background-color: white !important;
+  color: black !important;
+}
+
+#PopupAutoComplete richlistitem:hover .ac-title,
+#PopupAutoComplete richlistitem:hover .ac-subtitle,
+#PopupAutoComplete richlistitem:hover .ac-title-text,
+#PopupAutoComplete richlistitem:hover .ac-subtitle-text,
+#PopupAutoComplete richlistitem[selected] .ac-title,
+#PopupAutoComplete richlistitem[selected] .ac-subtitle,
+#PopupAutoComplete richlistitem[selected] .ac-title-text,
+#PopupAutoComplete richlistitem[selected] .ac-subtitle-text,
+.autocomplete-richlistitem:hover .ac-title,
+.autocomplete-richlistitem:hover .ac-subtitle,
+.autocomplete-richlistitem[selected] .ac-title,
+.autocomplete-richlistitem[selected] .ac-subtitle {
+  color: black !important;
+  fill: black !important;
+}
+
+/* The "View Saved Logins" / footer link row */
+#PopupAutoComplete .autocomplete-richlistitem[anonid="footer"],
+#PopupAutoComplete .autocomplete-richlistitem:last-child {
+  color: white !important;
 }
 
 /* ----------------------------------------------------------
