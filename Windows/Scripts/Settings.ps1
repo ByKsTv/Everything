@@ -115,6 +115,10 @@ Get-NetFirewallRule -Group 'DiagTrack' | Set-NetFirewallRule -Enabled True -Acti
 Get-Service -Name 'WerSvc' | Stop-Service -Force
 Get-Service -Name 'WerSvc' | Set-Service -StartupType Disabled
 
+# Turn off SysMain
+Get-Service -Name 'SysMain' | Stop-Service -Force
+Get-Service -Name 'SysMain' | Set-Service -StartupType Disabled
+
 # Folder Options: View: Always show icons, never thumbnails: Disabled
 New-ItemProperty -Path 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced' -Name 'IconsOnly' -PropertyType DWord -Value 0 -Force
 

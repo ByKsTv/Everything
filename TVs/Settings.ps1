@@ -34,6 +34,7 @@ if ($powerInfo -match '(?:mScreenBrightnessSettingMaximum|mMaximumScreenBrightne
 }
 
 $settings = @(
+    # @{ Name = 'Language -> English (United States)'; Table = 'system'; Key = 'system_locales'; Value = 'en-US' }
     @{ Name = 'Display -> Backlight -> Maximum'; Table = 'system'; Key = 'screen_brightness'; Value = $maxBrightness }
     @{ Name = 'Network -> Scanning always available -> Off'; Table = 'global'; Key = 'wifi_scan_always_enabled'; Value = '0' }
     @{ Name = 'Privacy -> Location -> Off'; Table = 'secure'; Key = 'location_mode'; Value = '0' }
@@ -53,7 +54,6 @@ $settings = @(
     @{ Name = 'About -> Device name'; Table = 'global'; Key = 'device_name'; Value = $deviceName }
     @{ Name = 'Date & Time -> Automatic date & time -> Network'; Table = 'global'; Key = 'auto_time'; Value = '1' }
     @{ Name = 'Date & Time -> 24-hour format -> On'; Table = 'system'; Key = 'time_12_24'; Value = '24' }
-    @{ Name = 'Language -> English (United States)'; Table = 'system'; Key = 'system_locales'; Value = 'en-US' }
     @{ Name = 'Developer -> Window animation scale -> Off'; Table = 'global'; Key = 'window_animation_scale'; Value = '0' }
     @{ Name = 'Developer -> Transition animation scale -> Off'; Table = 'global'; Key = 'transition_animation_scale'; Value = '0' }
     @{ Name = 'Developer -> Animator duration scale -> Off'; Table = 'global'; Key = 'animator_duration_scale'; Value = '0' }
@@ -83,7 +83,11 @@ foreach ($setting in $settings) {
 # 5. Uninstall unwanted packages (restore with: adb shell cmd package install-existing <package>)
 $installedPackages = (adb shell pm list packages) -replace '^package:|\s+$', ''
 $appsToUninstall = @(
+    # @{ Name = 'YouTube'; Package = 'com.google.android.youtube.tv' }
+    # @{ Name = 'Netflix'; Package = 'com.netflix.ninja' }
+    @{ Name = 'Second Screen Setup Auth Bridge (Theres google apis used on first boot setup)'; Package = 'com.google.android.sss.authbridge' }
     @{ Name = 'AdServices (Privacy Sandbox, Android 13+)'; Package = 'com.android.adservices.api' }
+    @{ Name = 'Screensaver'; Package = 'com.google.android.backdrop' }
     @{ Name = 'FederatedCompute, learns from user data (Android 14+)'; Package = 'com.android.federatedcompute.services' }
     @{ Name = '"OK Google" detection'; Package = 'com.android.hotwordenrollment.okgoogle' }
     @{ Name = '"OK Google" detection'; Package = 'com.android.hotwordenrollment.xgoogle' }
@@ -94,12 +98,11 @@ $appsToUninstall = @(
     @{ Name = 'Sends crash reports to the Play Store'; Package = 'com.google.android.feedback' }
     @{ Name = 'First-time setup, safe to remove'; Package = 'com.google.android.onetimeinitializer' }
     @{ Name = 'Google Play Games'; Package = 'com.google.android.play.games' }
-    @{ Name = 'YouTube'; Package = 'com.google.android.youtube.tv' }
     @{ Name = 'YouTube Music'; Package = 'com.google.android.youtube.tvmusic' }
     @{ Name = 'Health Connect backup'; Package = 'com.android.health.connect.backuprestore' }
     @{ Name = 'Health Connect'; Package = 'com.android.healthconnect.controller' }
-    @{ Name = 'Netflix'; Package = 'com.netflix.ninja' }
     @{ Name = 'evo tv'; Package = 'ru.haier.evo' }
+    @{ Name = 'Stremio'; Package = 'com.stremio.one' }
     @{ Name = '"Local Apps" (Russian), in-app app store'; Package = 'com.haier.apps.evoSmart' }
     @{ Name = 'Live TV, used for scanning channels'; Package = 'com.mediatek.tv.oneworld.tvcenter' }
     @{ Name = 'MultiMediaPlayer, better apps exist'; Package = 'com.mediatek.wwtv.mediaplayer' }
@@ -110,8 +113,6 @@ $appsToUninstall = @(
     @{ Name = 'Mi Channel, same as PatchWall'; Package = 'com.mitv.tvhome.michannel' }
     @{ Name = 'Mi TV Plus'; Package = 'com.mitv.tvhome.mitvplus' }
     @{ Name = 'Analytics with a lot of random resources'; Package = 'com.miui.tv.analytics' }
-    # @{ Name = 'Xiaomi update service'; Package = 'com.xiaomi.mitv.updateservice' }
-    # @{ Name = 'Mi TV OEM tab'; Package = 'com.mitv.tvhome.oemtab' }
 )
 
 foreach ($app in $appsToUninstall) {
@@ -199,6 +200,7 @@ foreach ($pkg in $installedPackages) {
 #   adb shell settings get secure enabled_accessibility_services
 $accessibilityServices = @(
     'dev.vodik7.tvquickactions/dev.vodik7.tvquickactions.KeyAccessibilityService'   # TV Quick Actions
+    # 'com.arlosoft.macrodroid/com.arlosoft.macrodroid.triggers.services.MacroDroidAccessibilityServiceJellyBean' # MacroDroid
 )
 
 foreach ($service in $accessibilityServices) {

@@ -687,3 +687,158 @@ menupopup#contentAreaContextMenu > #context-visual-search {
   background-color: black !important;
   color: white !important;
 }
+
+/* ==========================================================
+   LAST-RESORT OVERRIDE for the native <select> dropdown
+   (phone country/prefix picker, date picker, etc. on web pages)
+   ==========================================================
+   All colors below are LITERAL values (not var(--oled-black))
+   because CSS custom properties do NOT resolve inside this
+   popup — it lives in a different document tree.
+   ========================================================== */
+
+/* ---- 1. OLED base colors for the closed control and items ---- */
+select,
+select *,
+select option,
+option,
+menulist,
+menulist * {
+  background-color: #010101 !important;
+  background-image: none !important;
+  color: white !important;
+  border-color: white !important;
+}
+
+select:hover,
+select:focus,
+menulist:hover,
+menulist:focus {
+  background-color: #010101 !important;
+  color: white !important;
+}
+
+/* ---- 2. Kill the white gaps between items.
+   The gaps come from the popup body itself, not from the items. ---- */
+select menupopup,
+menulist menupopup,
+#ContentSelectDropdown,
+#ContentSelectDropdownPopup,
+#ContentSelectDropdown > menupopup,
+menupopup[type="dropmarker"] {
+  background-color: #010101 !important;
+  background-image: none !important;
+  border-color: white !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+select menupopup::part(content),
+menulist menupopup::part(content),
+#ContentSelectDropdown::part(content),
+#ContentSelectDropdownPopup::part(content) {
+  background-color: #010101 !important;
+  background-image: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* ---- 3. Tighten row spacing (the black-box look came from
+   too much padding per item) ---- */
+select option,
+option,
+select menuitem,
+menulist menuitem,
+#ContentSelectDropdown menuitem {
+  padding: 3px 10px !important;
+  margin: 0 !important;
+  min-height: 0 !important;
+}
+
+/* ==========================================================
+   FINAL HOVER FIX — native <select> dropdown
+   ==========================================================
+   The native theme paints a system highlight over our white
+   background on hover, which is why the previous attempt
+   produced black text on a black background. The fix has
+   three parts:
+
+     1. Disable native appearance on the popup items, so the
+        OS theme cannot paint over our background-color.
+     2. Paint our own white background + black text on the
+        highlighted item (mouse hover, keyboard nav, selected).
+     3. Force any child of the highlighted item to be fully
+        transparent with black text/icon, so nothing underneath
+        can cover the white highlight.
+   ========================================================== */
+
+/* ---- 1. Disable native appearance on the popup items ---- */
+#ContentSelectDropdown menuitem,
+#ContentSelectDropdown menucaption,
+#ContentSelectDropdownPopup menuitem,
+#ContentSelectDropdownPopup menucaption,
+select menuitem,
+select menucaption,
+menulist menuitem,
+menulist menucaption {
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+/* ---- 2. Highlighted row: white background + black text ---- */
+#ContentSelectDropdown menuitem[_moz-menuactive="true"],
+#ContentSelectDropdown menuitem[selected="true"],
+#ContentSelectDropdown menuitem[checked="true"],
+#ContentSelectDropdown menucaption[_moz-menuactive="true"],
+#ContentSelectDropdown > menupopup > menuitem[_moz-menuactive="true"],
+#ContentSelectDropdown > menupopup > menuitem[selected="true"],
+#ContentSelectDropdown > menupopup > menucaption[_moz-menuactive="true"],
+#ContentSelectDropdownPopup menuitem[_moz-menuactive="true"],
+#ContentSelectDropdownPopup menuitem[selected="true"],
+select menuitem[_moz-menuactive="true"],
+select menuitem[selected="true"],
+menulist menuitem[_moz-menuactive="true"],
+menulist menuitem[selected="true"] {
+  background-color: white !important;
+  background-image: none !important;
+  color: black !important;
+  border-color: transparent !important;
+  border-radius: 0 !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+/* ---- 3. Children of the highlighted row: fully transparent
+   background so they cannot cover the white highlight, plus
+   black text/icon so the label is readable. ---- */
+#ContentSelectDropdown menuitem[_moz-menuactive="true"] *,
+#ContentSelectDropdown menuitem[selected="true"] *,
+#ContentSelectDropdown menucaption[_moz-menuactive="true"] *,
+#ContentSelectDropdown > menupopup > menuitem[_moz-menuactive="true"] *,
+#ContentSelectDropdown > menupopup > menuitem[selected="true"] *,
+#ContentSelectDropdownPopup menuitem[_moz-menuactive="true"] *,
+#ContentSelectDropdownPopup menuitem[selected="true"] *,
+select menuitem[_moz-menuactive="true"] *,
+select menuitem[selected="true"] *,
+menulist menuitem[_moz-menuactive="true"] *,
+menulist menuitem[selected="true"] * {
+  background-color: transparent !important;
+  background-image: none !important;
+  color: black !important;
+  fill: black !important;
+}
+
+/* Explicitly for labels — some Firefox builds style them separately */
+#ContentSelectDropdown menuitem[_moz-menuactive="true"] label,
+#ContentSelectDropdown menuitem[selected="true"] label,
+#ContentSelectDropdown menuitem[_moz-menuactive="true"] .menu-iconic-text,
+#ContentSelectDropdown menuitem[selected="true"] .menu-iconic-text,
+#ContentSelectDropdownPopup menuitem[_moz-menuactive="true"] label,
+#ContentSelectDropdownPopup menuitem[selected="true"] label {
+  background-color: transparent !important;
+  color: black !important;
+  fill: black !important;
+}

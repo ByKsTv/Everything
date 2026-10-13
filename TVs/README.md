@@ -4,17 +4,19 @@
 
 1. Manually set up the Android TV, minimalist, English, no analytics or telemetry.
 1. `Settings` -> `System` -> `About` -> Click `Android TV OS Build` 7 times.
-1. `Settings` -> `System` -> `Developer options` -> `Wireless debugging` -> `Enabled` -> `Pair device with a pairing code`.
-1. `adb pair IP:PORT CODE` -> On TV go back -> `adb connect IP:PORT`.
-1. Download [tvQuickActions](https://forum.mobilism.me/search.php?keywords=tvQuickActions&sr=topics&sf=titleonly), [SmartTube](https://github.com/yuliskov/SmartTube/releases/latest), [Spotify](https://4pda.to/forum/index.php?showtopic=248440#Spoil-8030514-11) (Android TV)
+1. `Settings` -> `System` -> `Developer options` -> `Wireless debugging` -> `Enabled` -> `Pair device with a pairing code` -> `adb pair IP:PORT CODE` -> On TV go back -> `adb connect IP:PORT`.
+1. (If TV doesn't have Wireless Debugging Option:) `Settings` -> `System` -> `Developer options` -> `USB Debugging` -> Enabled -> `adb connect IP` -> `Always allow from this computer` -> `ALLOW`.
+1. Once connected, use [scrcpy](https://github.com/Genymobile/scrcpy/releases/latest).
+1. Download [ADB Auto Enable](https://github.com/mouldybread/adb-auto-enable/releases/latest), [tvQuickActions](https://forum.mobilism.me/search.php?keywords=tvQuickActions&sr=topics&sf=titleonly), [SmartTube](https://github.com/yuliskov/SmartTube/releases/latest), [Spotify](https://4pda.to/forum/index.php?showtopic=248440#Spoil-8030514-11) (Android TV)
 1. Run `Get-ChildItem "$env:USERPROFILE\Downloads" -Filter *.apk | ForEach-Object { & adb.exe install $_.FullName }`
 1. Apply `Settings.ps1`.
+1. (If TV has Wireless Debugging Option:) `Settings` -> `Apps` -> `See all apps` -> `ADB Auto-Enable` -> `Open` -> `Settings` -> `System` -> `Developer options` -> `Wireless debugging` -> `Enabled` -> `Pair device with a pairing code` -> Using the PC visit [http://your-device-ip:9093] -> Enter the `Pairing Code` and `Pairing Port` from the TV into the WebUI -> `Pair Device` -> After `Pairing Status` changes to `✓ Paired` -> Click `🔀 Switch Target Port Now`.
 1. Open `tvQuickActions Pro` app -> `Continue` -> `Continue` -> `Continue` -> `Continue` -> `Continue` -> `Continue` -> `Agree`
 1. `Buttons & actions` -> `ADD BUTTON` -> YouTube key -> `Button action type` -> `Usual action` -> `Single press` -> `SmartTube` -> Go back
 1. `ADD BUTTON` -> Netflix key -> `Button action type` -> `Usual action` -> `Single press` -> `NEXT TV` -> Go back
 1. `ADD BUTTON` -> Prime video key -> `Button action type` -> `Usual action` -> `Single press` -> `UniFi Protect` -> Go back
 1. `ADD BUTTON` -> YouTube Music key -> `Button action type` -> `Usual action` -> `Single press` -> `Spotify` -> Go back
-1. Home -> `Apps` -> `Reorder` from first to last: `UniFi Protect`, `NEXT TV`, `SmartTube`, `Spotify`, `Plex`, `Kan Box`, `12+`, `13+`, `Now14`, `i24NEWS`, `TV Bro`, `tvQuickActions Pro`, `LaunchAPP`
+1. Home -> `Apps` -> `Reorder` from first to last: `UniFi Protect`, `NEXT TV`, `SmartTube`, `Spotify`, `Plex`, `Kan Box`, `12+`, `13+`, `Now14`, `i24NEWS`, `TV Bro`, `tvQuickActions Pro`, `LaunchAPP`.
 1. `Settings` -> `Accounts & Profiles` -> (Current User) -> `Apps only mode` -> On -> `Turn on`
 1. Open `UniFi Protect` -> Login using QR Code
 1. Open `NEXT TV` -> Login

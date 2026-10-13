@@ -152,13 +152,13 @@
 | `Settings` -> `Privacy Center`                                            | Disable `Availablity`, `Social graph`, `Verified business call logs`, `Ad Campaign Analytics`    |
 |                                                                           | Enable `Search profiles privately`                                                               |
 | `Settings` -> `Privacy Center` -> `Control how ads appear to you`         | Disable `Show me relevant ads`, `Get deals and promotions`                                       |
-| `Settings` -> `Block`                                                     | Enable `Notification for blocked messages`                                                       |
 | `Homepage` -> Hold `Messages` Tab to make it default when opening the app |                                                                                                  |
 | `Homepage` -> `Messages`                                                  | Dismiss `Enable passcode`, `Introducing urgent messages`                                         |
 | `Homepage` -> `Inbox Cleaner`                                             |                                                                                                  |
 | `Homepage` -> `Passcode lock`                                             |                                                                                                  |
 | After you receive a notification from the app                             | `App info` -> `Notification Categories` -> `Other` -> Disable `Miscellaneous`, `Who viewed me`   |
 
+- Testing `Notification for blocked messages` disabled (default) because I keep getting notification for each spam SMS.
 - Make sure the original phone app is set as the default phone app, not truecaller.
 - Issue with `App not supported` - Use [Truecaller Reset](#truecaller-reset).
 - Mod `Gold by Balatan` has issues with registration, empty SMS messages and call logs, no Caller ID.
