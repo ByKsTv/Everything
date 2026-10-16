@@ -215,6 +215,7 @@
 | `Settings` -> `Map display` -> `Speedometer` | `Show speed limit` -> `Always`                              |
 |                                              | `Alert on threshold` -> On                                  |
 |                                              | `Show on the map` -> Off                                    |
+| `Settings` -> `Voice and sound`              | `Spoken directions` -> `Only alerts`                        |
 | `Settings` -> `Navigation`                   | `Avoid toll roads` -> On                                    |
 | `Settings` -> `Vehicle details`              | If your car is electric -> `Electric vehicles`              |
 | `Settings` -> `Notifications`                | Disable `Allow push notifications` -> `Save`                |

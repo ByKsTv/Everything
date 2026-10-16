@@ -393,80 +393,217 @@ panelview toolbarbutton:hover {
   color: black !important;
 }
 
-/* ----------------------------------------------------------
-   Autofill popup (saved usernames / passwords / addresses / credit cards)
-   Triggered when focusing a login form field, address field, etc.
-   ---------------------------------------------------------- */
+/* ==========================================================
+   Autofill popup (saved usernames / passwords)
+   Triggered when focusing a login form field.
+   ==========================================================
+   Firefox reads the hover highlight from these internal CSS
+   variables, which are set on `.autocomplete-richlistbox`.
+
+   IMPORTANT: Recent Firefox versions (2024+) use
+   `--button-background-color-hover` for the hover state of
+   `.autocomplete-richlistitem`, NOT the older
+   `--autocomplete-popup-hover-background` variable. Setting
+   the wrong variable is why previous attempts silently did
+   nothing.
+   ========================================================== */
+
+/* ---- 1. Declare ALL possible variables at every level so they
+   cannot be shadowed by Firefox's defaults. Includes the new
+   `--button-background-color-hover` variable. ---- */
 #PopupAutoComplete,
 #PopupAutoCompleteRichResult,
 #PopupAutoComplete > richlistbox,
 #PopupAutoCompleteRichResult > richlistbox,
 .autocomplete-richlistbox,
 .autocomplete-richlistbox > richlistbox {
+  /* New Firefox versions (2024+) */
+  --button-background-color-hover: white !important;
+  --button-text-color-hover: black !important;
+  --button-background-color-active: white !important;
+  --button-text-color-active: black !important;
+  /* Older Firefox versions */
+  --autocomplete-popup-background: #010101 !important;
+  --autocomplete-popup-color: white !important;
+  --autocomplete-popup-highlight-background: white !important;
+  --autocomplete-popup-highlight-color: black !important;
+  /* Legacy / alternative names */
+  --panel-selection-background-color: white !important;
+  --panel-selection-color: black !important;
+  --panel-selection-outline: none !important;
+  --autocomplete-popup-selected-background-image: none !important;
+  --autocomplete-popup-selected-background-color: white !important;
+  --autocomplete-popup-selected-color: black !important;
+  --autocomplete-popup-hover-background-color: white !important;
+  --autocomplete-popup-hover-color: black !important;
+}
+
+/* ---- 2. Outer panel: the single visible border ---- */
+#PopupAutoComplete,
+#PopupAutoCompleteRichResult {
   background-color: var(--oled-black) !important;
   border: 1px solid white !important;
   border-radius: 0 !important;
   color: white !important;
+  padding: 0 !important;
+  margin: 0 !important;
   --panel-background: var(--oled-black) !important;
-  --panel-border-color: white !important;
+  --panel-background-color: var(--oled-black) !important;
+  --panel-border-color: transparent !important;
   --panel-color: white !important;
+  --panel-shadow-margin: 0px !important;
+  -moz-window-shadow: none !important;
 }
 
-/* Rich list items (one row per saved credential / suggestion) */
+#PopupAutoComplete::part(content),
+#PopupAutoCompleteRichResult::part(content) {
+  background: var(--oled-black) !important;
+  background-color: var(--oled-black) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: white !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* ---- 3. Inner richlistbox: NO border (was the source of the double border) ---- */
+#PopupAutoComplete > richlistbox,
+#PopupAutoCompleteRichResult > richlistbox,
+.autocomplete-richlistbox,
+.autocomplete-richlistbox > richlistbox,
+#PopupAutoComplete richlistbox,
+#PopupAutoCompleteRichResult richlistbox {
+  background-color: var(--oled-black) !important;
+  background-image: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: white !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* ---- 4. Kill native appearance on the popup chain ---- */
+#PopupAutoComplete,
+#PopupAutoCompleteRichResult,
+#PopupAutoComplete richlistbox,
+#PopupAutoCompleteRichResult richlistbox,
+#PopupAutoComplete richlistitem,
+#PopupAutoComplete richlistitem *,
+#PopupAutoCompleteRichResult richlistitem,
+#PopupAutoCompleteRichResult richlistitem *,
+.autocomplete-richlistitem,
+.autocomplete-richlistitem * {
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+/* ---- 5. Rows: transparent by default, white text spans ---- */
 #PopupAutoComplete richlistitem,
 #PopupAutoCompleteRichResult richlistitem,
 .autocomplete-richlistitem,
 richlistitem.autocomplete-richlistitem {
   background-color: transparent !important;
   color: white !important;
+  border: none !important;
+  border-radius: 0 !important;
 }
 
-/* Text spans inside the row (title, subtitle, account name, URL, etc.) */
 #PopupAutoComplete .ac-title,
 #PopupAutoComplete .ac-subtitle,
 #PopupAutoComplete .ac-title-text,
 #PopupAutoComplete .ac-subtitle-text,
+#PopupAutoComplete .ac-comment,
 #PopupAutoComplete .ac-site-icon,
 #PopupAutoComplete .ac-type-icon,
 #PopupAutoCompleteRichResult .ac-title,
 #PopupAutoCompleteRichResult .ac-subtitle,
 #PopupAutoCompleteRichResult .ac-title-text,
 #PopupAutoCompleteRichResult .ac-subtitle-text,
+#PopupAutoCompleteRichResult .ac-comment,
 #PopupAutoCompleteRichResult .ac-site-icon,
 #PopupAutoCompleteRichResult .ac-type-icon,
 .autocomplete-richlistitem .ac-title,
 .autocomplete-richlistitem .ac-subtitle,
 .autocomplete-richlistitem .ac-title-text,
 .autocomplete-richlistitem .ac-subtitle-text,
+.autocomplete-richlistitem .ac-comment,
 .autocomplete-richlistitem .ac-site-icon,
 .autocomplete-richlistitem .ac-type-icon {
   color: white !important;
   fill: white !important;
 }
 
-/* Hover / keyboard selection: invert for readability */
-#PopupAutoComplete richlistitem:hover,
+/* ---- 6. HIGHLIGHTED ROW — every attribute Firefox might use,
+   plus the CSS variable route. Every selector is scoped to a
+   row element, never the popup container. ---- */
+#PopupAutoComplete richlistitem[selected="true"],
 #PopupAutoComplete richlistitem[selected],
-#PopupAutoCompleteRichResult richlistitem:hover,
+#PopupAutoComplete richlistitem[current="true"],
+#PopupAutoComplete richlistitem[highlighted="true"],
+#PopupAutoComplete richlistitem[_moz-menuactive="true"],
+#PopupAutoComplete richlistitem[_moz-menuactive],
+#PopupAutoComplete richlistitem:hover,
+#PopupAutoCompleteRichResult richlistitem[selected="true"],
 #PopupAutoCompleteRichResult richlistitem[selected],
-.autocomplete-richlistitem:hover,
-.autocomplete-richlistitem[selected] {
+#PopupAutoCompleteRichResult richlistitem[current="true"],
+#PopupAutoCompleteRichResult richlistitem[_moz-menuactive="true"],
+#PopupAutoCompleteRichResult richlistitem:hover,
+.autocomplete-richlistitem[selected="true"],
+.autocomplete-richlistitem[selected],
+.autocomplete-richlistitem[_moz-menuactive="true"],
+.autocomplete-richlistitem:hover {
   background-color: white !important;
+  background-image: none !important;
   color: black !important;
+  border: none !important;
+  border-radius: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
+/* ---- 7. Children of the highlighted row: transparent background,
+   black text and icon, so nothing paints over our white highlight. ---- */
+#PopupAutoComplete richlistitem[selected="true"] *,
+#PopupAutoComplete richlistitem[selected] *,
+#PopupAutoComplete richlistitem[current="true"] *,
+#PopupAutoComplete richlistitem[_moz-menuactive="true"] *,
+#PopupAutoComplete richlistitem[_moz-menuactive] *,
+#PopupAutoComplete richlistitem:hover *,
+#PopupAutoCompleteRichResult richlistitem[selected="true"] *,
+#PopupAutoCompleteRichResult richlistitem[selected] *,
+#PopupAutoCompleteRichResult richlistitem[current="true"] *,
+#PopupAutoCompleteRichResult richlistitem[_moz-menuactive="true"] *,
+#PopupAutoCompleteRichResult richlistitem:hover *,
+.autocomplete-richlistitem[selected="true"] *,
+.autocomplete-richlistitem[selected] *,
+.autocomplete-richlistitem[_moz-menuactive="true"] *,
+.autocomplete-richlistitem:hover * {
+  background-color: transparent !important;
+  background-image: none !important;
+  color: black !important;
+  fill: black !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* ---- 8. Explicit labels inside the highlighted row ---- */
+#PopupAutoComplete richlistitem[selected="true"] .ac-title,
+#PopupAutoComplete richlistitem[selected="true"] .ac-subtitle,
+#PopupAutoComplete richlistitem[selected="true"] .ac-title-text,
+#PopupAutoComplete richlistitem[selected="true"] .ac-subtitle-text,
+#PopupAutoComplete richlistitem[selected="true"] .ac-comment,
 #PopupAutoComplete richlistitem:hover .ac-title,
 #PopupAutoComplete richlistitem:hover .ac-subtitle,
 #PopupAutoComplete richlistitem:hover .ac-title-text,
 #PopupAutoComplete richlistitem:hover .ac-subtitle-text,
-#PopupAutoComplete richlistitem[selected] .ac-title,
-#PopupAutoComplete richlistitem[selected] .ac-subtitle,
-#PopupAutoComplete richlistitem[selected] .ac-title-text,
-#PopupAutoComplete richlistitem[selected] .ac-subtitle-text,
-.autocomplete-richlistitem:hover .ac-title,
-.autocomplete-richlistitem:hover .ac-subtitle,
-.autocomplete-richlistitem[selected] .ac-title,
-.autocomplete-richlistitem[selected] .ac-subtitle {
+#PopupAutoComplete richlistitem:hover .ac-comment,
+#PopupAutoCompleteRichResult richlistitem:hover .ac-title,
+#PopupAutoCompleteRichResult richlistitem:hover .ac-subtitle,
+#PopupAutoCompleteRichResult richlistitem:hover .ac-title-text,
+#PopupAutoCompleteRichResult richlistitem:hover .ac-subtitle-text,
+#PopupAutoCompleteRichResult richlistitem:hover .ac-comment {
   color: black !important;
   fill: black !important;
 }
