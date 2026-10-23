@@ -123,6 +123,9 @@
 | `Settings` -> `Add-ons` -> `uBlock Origin` -> `Settings`           | [Restore from file](https://github.com/ByKsTv/Everything/blob/main/Internet/uBlock_Origin/Backup.json) |
 | `about:config` -> `media.autoplay.blocking_policy`                 | `0`                                                                                                    |
 | `about:config` -> `media.autoplay.default`                         | `1`                                                                                                    |
+| `dom.security.https_only_mode.upgrade_local`                       | False                                                                                                  |
+
+- `dom.security.https_only_mode.upgrade_local` = Disable HTTPS upgrades for local IP addresses, if it doesn't work try `dom.security.https_first_for_local_addresses`
 
 ### Truecaller Reset
 
