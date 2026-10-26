@@ -24,7 +24,7 @@ if (-not ($InstalledVersion)) {
 
 if (-not (Get-Process -Name 'qBittorrent' -ErrorAction SilentlyContinue)) {
     if (($null -eq $InstalledVersion) -or ($InstalledVersion -notmatch $LatestVersion)) {
-        $DDL = (($GitHub).assets | Where-Object { $_.Name -match '.exe' -and $_.Name -notmatch '.asc' -and $_.Name -notmatch 'lt' }).browser_download_url
+        $DDL = (($GitHub).assets | Where-Object { $_.Name -match '.exe' -and $_.Name -notmatch '.asc' -and $_.Name -match 'lt' }).browser_download_url
         $FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
         $SavePath = [IO.Path]::Combine($env:TEMP, $FileName)
         [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'qBittorrent'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$LatestVersion'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
