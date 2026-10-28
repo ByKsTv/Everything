@@ -804,6 +804,16 @@ menupopup#contentAreaContextMenu:has(
   visibility: collapse;
 }
 
+/* Hide "Copy" when "Copy Clean Link" is available on URL bar */
+menupopup:has(#strip-on-share:not([disabled]):not([hidden]))
+  :is(
+    #edit-contextmenu-copy,
+    menuitem[cmd="cmd_copy"],
+    menuitem[command="cmd_copy"]
+  ) {
+  display: none !important;
+}
+
 /* Hide unwanted items from the page context menu */
 menupopup#contentAreaContextMenu > #context-openlink,
 menupopup#contentAreaContextMenu > #context-openlinkprivate,

@@ -90,6 +90,9 @@ user_pref("datareporting.usage.uploadEnabled", false);
 user_pref("doh-rollout.disable-heuristics", true);
 user_pref("network.trr.mode", 5);
 
+// about:preferences#tabsBrowsing -> Tabs -> Interaction -> Drag tabs together to create tab groups -> Off
+user_pref("browser.tabs.dragDrop.createGroup.enabled", false);
+
 // Vertical tabs > Firefox tools > Tabs from other devices + History
 user_pref("sidebar.main.tools", "syncedtabs,history");
 
