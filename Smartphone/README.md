@@ -189,6 +189,7 @@
 | `Settings` -> `RVX` -> `Miscellaneous`  | `Change share sheet` - On -> `CANCEL`                                               |
 | `Settings` -> `Downloads & storage`     | `Audio quality` -> `High`                                                           |
 | `Settings` -> `Notifications`           | `Music recommendation notifications` -> Off                                         |
+|                                         | `New badges` -> Off                                                                 |
 |                                         | `Video quality` -> `HD - 720p`                                                      |
 | Close the app                           |                                                                                     |
 
@@ -197,10 +198,11 @@
 
 ### BYD Settings
 
-| Location                                                    | Action                         |
-| ----------------------------------------------------------- | ------------------------------ |
-| `My Account` -> `Settings` -> `Remote Control Verification` | `Biometric Verification` -> On |
-| `My Account` -> `Settings`                                  | `Use vehicle position` -> On   |
+| Location                                                    | Action                                         |
+| ----------------------------------------------------------- | ---------------------------------------------- |
+| `My Account` -> `Settings` -> `Remote Control Verification` | `Biometric Verification` -> On                 |
+| `My Account` -> `Settings`                                  | `Use vehicle position` -> On                   |
+| `My Account` -> `Account and Security`                      | `Log in Vehicle System while unlocking` -> Off |
 
 ### Waze Settings
 
@@ -216,6 +218,7 @@
 |                                              | `Apply to car display` -> On                                |
 | `Settings` -> `Map display`                  | `Wazers` -> Off                                             |
 | `Settings` -> `Map display` -> `Speedometer` | `Show speed limit` -> `Always`                              |
+|                                              | `Speeding threshold` -> `15 km/h above limit`               |
 |                                              | `Alert on threshold` -> On                                  |
 |                                              | `Show on the map` -> Off                                    |
 | `Settings` -> `Voice and sound`              | `Spoken directions` -> `Only alerts`                        |

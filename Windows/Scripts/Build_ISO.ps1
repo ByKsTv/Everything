@@ -23,3 +23,6 @@ if ($FileDialog.ShowDialog($Form) -eq [Windows.Forms.DialogResult]::OK) {
 
     Start-Process -FilePath "${env:ProgramFiles(x86)}\Windows Kits\10\Assessment and Deployment Kit\Deployment Tools\amd64\Oscdimg\oscdimg.exe" -ArgumentList "-m -o -u2 -udfver102 `"$SelectedFolder`" `"$SelectedFolder\ISO.iso`"" -NoNewWindow -Wait
 }
+
+# Example: If you want to rebuild the Win11 ISO
+# oscdimg -m -o -u2 -udfver102 -bootdata:2#p0,e,bC:\Win11ISO\boot\etfsboot.com#pEF,e,bC:\Win11ISO\efi\microsoft\boot\efisys.bin C:\Win11ISO C:\Win11_Auto.iso

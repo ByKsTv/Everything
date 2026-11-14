@@ -194,5 +194,6 @@
     // ============================================================
     "editor.minimap.size": "fit",
     "editor.minimap.showSlider": "always",
-    "git.confirmSync": false
+    "git.confirmSync": false,
+    "security.workspace.trust.enabled": false
 }
