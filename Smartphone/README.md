@@ -171,25 +171,22 @@
 | Location                       | Action                                                                              |
 | ------------------------------ | ----------------------------------------------------------------------------------- |
 | Open `YouTube` app             | `Action needed` -> `Continue` -> `Allow` -> `Sign in` -> `Add account` -> `Sign in` |
-| `Settings` -> `RVX` -> `Video` | `Disable DRC audio` -> On -> `CANCEL`                                               |
+| `Settings` -> `RVX` -> `Video` | `Disable DRC audio` -> On                                                           |
 
 ### YouTube Music Settings
 
 | Location                                | Action                                                                              |
 | --------------------------------------- | ----------------------------------------------------------------------------------- |
 | Open `YT Music` app                     | `Action needed` -> `Continue` -> `Allow` -> `Sign in` -> `Add account` -> `Sign in` |
-| `Settings` -> `RVX` -> `General`        | `Disable Cairo splash animation` -> On -> `CANCEL`                                  |
-|                                         | `App theme` -> `Amoled Black` -> `CANCEL`                                           |
-|                                         | `Hide Samples shelf` -> On -> `CANCEL`                                              |
+| `Settings` -> `RVX` -> `General`        | `Disable Cairo splash animation` -> On                                              |
+|                                         | `Hide Samples shelf` -> On                                                          |
 |                                         | `Remove viewer discretion dialog` -> On                                             |
 | `Settings` -> `RVX` -> `Account`        | `Hide terms container` -> On                                                        |
-| `Settings` -> `RVX` -> `Action bar`     | `Hide disabled button` -> On -> `CANCEL`                                            |
-| `Settings` -> `RVX` -> `Navigation bar` | `Hide Samples button` - On -> `CANCEL`                                              |
-| `Settings` -> `RVX` -> `Video`          | `Disable DRC audio` -> On -> `CANCEL`                                               |
-| `Settings` -> `RVX` -> `Miscellaneous`  | `Change share sheet` - On -> `CANCEL`                                               |
+| `Settings` -> `RVX` -> `Action bar`     | `Hide disabled button` -> On                                                        |
+| `Settings` -> `RVX` -> `Navigation bar` | `Hide Samples button` - On                                                          |
+| `Settings` -> `RVX` -> `Video`          | `Disable DRC audio` -> On                                                           |
+| `Settings` -> `RVX` -> `Miscellaneous`  | `Change share sheet` - On                                                           |
 | `Settings` -> `Downloads & storage`     | `Audio quality` -> `High`                                                           |
-| `Settings` -> `Notifications`           | `Music recommendation notifications` -> Off                                         |
-|                                         | `New badges` -> Off                                                                 |
 |                                         | `Video quality` -> `HD - 720p`                                                      |
 | Close the app                           |                                                                                     |
 
@@ -219,7 +216,7 @@
 | `Settings` -> `Map display`                  | `Wazers` -> Off                                             |
 | `Settings` -> `Map display` -> `Speedometer` | `Show speed limit` -> `Always`                              |
 |                                              | `Speeding threshold` -> `15 km/h above limit`               |
-|                                              | `Alert on threshold` -> On                                  |
+|                                              | `Alert on threshold` -> Off                                 |
 |                                              | `Show on the map` -> Off                                    |
 | `Settings` -> `Voice and sound`              | `Spoken directions` -> `Only alerts`                        |
 | `Settings` -> `Navigation`                   | `Avoid toll roads` -> On                                    |

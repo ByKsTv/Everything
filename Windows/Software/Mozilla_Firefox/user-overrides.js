@@ -229,6 +229,9 @@ user_pref("browser.urlbar.trimHttps", true);
 // Settings -> Appearance -> Window density -> Compact
 user_pref("browser.uidensity", 1);
 
+// Disable "Move Section to Mini Window" right-click context
+user_pref("browser.mini-window.enabled", false);
+
 // Custom UI
 user_pref(
   "browser.uiCustomization.state",
