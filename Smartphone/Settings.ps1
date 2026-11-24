@@ -86,6 +86,11 @@ $settings = @(
     @{ Name = 'Settings -> Developer options -> Transition animation scale -> Animation off'; Table = 'global'; Key = 'transition_animation_scale'; Value = '0' }
     @{ Name = 'Settings -> Developer options -> Animator duration scale -> Animation off'; Table = 'global'; Key = 'animator_duration_scale'; Value = '0' }
     @{ Name = 'Settings -> Developer options -> Force full GNSS measurements -> On'; Table = 'global'; Key = 'enable_gnss_raw_meas_full_tracking'; Value = '1' }
+    @{ Name = 'Settings -> Developer options -> Dont keep activities -> Off'; Table = 'global'; Key = 'always_finish_activities'; Value = '0' }
+    @{ Name = 'Settings -> Developer options -> Always show crash dialog -> Off'; Table = 'secure'; Key = 'show_first_crash_dialog_dev_option'; Value = '0' }
+    @{ Name = 'Settings -> Developer options -> Show background ANRs -> Off'; Table = 'secure'; Key = 'anr_show_background'; Value = '0' }
+    # Suspend execution for cached apps -> Disabled
+    adb shell device_config put activity_manager_native_boot use_freezer false
     @{ Name = 'Settings -> Battery and device care -> Memory -> RAM Plus -> Off'; Table = 'global'; Key = 'ram_expand_size'; Value = '0' }
 )
 
