@@ -16,49 +16,89 @@ if (-not (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NET' -Name 'AllowAUO
 	New-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\.NET' -Name 'AllowAUOnServerOS' -Value 1 -PropertyType DWord -Force
 }
 
-$Versions = @('8', '9', '10', '11')
+#Requires -RunAsAdministrator
+
+$ErrorActionPreference = 'Stop'
+$ProgressPreference = 'SilentlyContinue'
+
+$BaseURL = 'https://builds.dotnet.microsoft.com/dotnet/WindowsDesktop'
+$DNIM = "$env:TEMP\dnim-win-x64.exe"
+
+# Detect NordVPN
+$Installed = Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*',
+'HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*' -ErrorAction SilentlyContinue
+
+$NordVPN = [bool]($Installed.DisplayName -like 'NordVPN*')
+$Versions = @('10.0', '11.0')
+
+if ($NordVPN) {
+ $Versions += '8.0'
+}
+
+# Download DNIM if missing
+if (!(Test-Path $DNIM -PathType Leaf)) {
+	Write-Host 'Downloading DNIM' -ForegroundColor Green
+
+	$Page = Invoke-WebRequest 'https://www.microsoft.com/en-us/download/details.aspx?id=108827' -UseBasicParsing
+	$DDL = [regex]::Match($Page.Content.Replace('\/', '/'), 'https://download\.microsoft\.com/[^"''<>\s\\]+/dnim-win-x64\.exe').Value
+
+	if (!$DDL) {
+		throw 'DNIM download URL not found'
+	}
+
+	Invoke-WebRequest $DDL -OutFile $DNIM -UseBasicParsing
+}
+
+# Uninstall all SDKs
+Write-Host 'Uninstalling .NET SDKs' -ForegroundColor Green
+& $DNIM uninstall --accept-license --it sdk --include-bin-deployed-installs
+
+if ($LASTEXITCODE -ne 0) {
+ throw 'SDK removal failed'
+}
+
+# Install Desktop Runtimes
 foreach ($Version in $Versions) {
-	$VersionPattern = "$Version*"
-	$SDK = "Microsoft .NET SDK $VersionPattern"
-	$SDKInstalled = (Get-Package $SDK -ErrorAction SilentlyContinue | Where-Object { $_.ProviderName -eq 'Programs' }).Name -replace '.*?(\d+\.\d+\.\d+).*', '$1' | Sort-Object -Descending | Select-Object -First 1
-	$FullVersion = "$Version.0"
-	$ReleasesJsonURL = "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/$FullVersion/releases.json"
-	$ReleasesJson = Invoke-RestMethod $ReleasesJsonURL
-	$SDKLatest = $ReleasesJson.'latest-sdk'
-	$SupportPhase = $ReleasesJson.'eol-date'
-	$SupportPhaseDate = [DateTime]${SupportPhase}
-	$Today = Get-Date
-
-	if (($null -eq $SDKInstalled) -or ($SDKInstalled -ne $SDKLatest) -and ($SupportPhaseDate -gt $Today)) {
-		$DDL = (((($ReleasesJson).Releases | Select-Object -First 1).sdk).files | Where-Object { $_.name -match 'win-x64.exe' }).url
-		$FileName = [IO.Path]::GetFileName(([URI]$DDL).AbsolutePath)
-		$SavePath = [IO.Path]::Combine($env:TEMP, $FileName)
-		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft .NET SDK'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SDKLatest'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-		(New-Object System.Net.WebClient).DownloadFile($DDL, $SavePath)
-
-		$Argument = '/install /quiet /norestart'
-		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft .NET SDK'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SDKLatest'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
-		Start-Process $SavePath -ArgumentList $Argument -Wait
+	$Latest = if ($Version -eq '8.0') {
+		'8.0.34'
+	} else {
+		((Invoke-WebRequest "$BaseURL/$Version/latest.version" -UseBasicParsing).Content.Trim() -split '\s+')[-1]
 	}
 
-	if (($SupportPhaseDate -lt $Today) -and ($SDKInstalled)) {
-		$UninstallDDL = ((Invoke-RestMethod -Uri 'https://api.github.com/repos/dotnet/cli-lab/releases/latest').assets | Where-Object { $_.name -match '.msi' }).browser_download_url
-		$UninstallFileName = [IO.Path]::GetFileName(([URI]$UninstallDDL).AbsolutePath)
-		$UninstallSavePath = [IO.Path]::Combine($env:TEMP, $UninstallFileName)
-		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Downloading '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'dotnet-core-uninstall'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$UninstallDDL'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' to '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$UninstallSavePath'"); [Console]::ResetColor(); [Console]::WriteLine()
-		(New-Object System.Net.WebClient).DownloadFile($UninstallDDL, $UninstallSavePath)
-
-		$UninstallArgument = '/quiet /norestart'
-		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Installing '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'dotnet-core-uninstall'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$UninstallSavePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$UninstallArgument'"); [Console]::ResetColor(); [Console]::WriteLine()
-		Start-Process $UninstallSavePath -ArgumentList $UninstallArgument -Wait
-
-		$UninstallToolArgument = "/quiet /uninstall $UninstallSavePath"
-		$UninstallToolLocation = "${env:ProgramFiles(x86)}\dotnet-core-uninstall\dotnet-core-uninstall.exe"
-		$UninstallNETToolArgument = "dotnet-core-uninstall remove $SDKInstalled --sdk --yes"
-		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Uninstalling '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'Microsoft .NET SDK'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' version '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$SDKInstalled'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$UninstallToolLocation'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$UninstallNETToolArgument'"); [Console]::ResetColor(); [Console]::WriteLine()
-		Start-Process $UninstallToolLocation -ArgumentList $UninstallNETToolArgument -Wait
-
-		[Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Uninstalling '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'dotnet-core-uninstall'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' using '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'msiexec.exe'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$UninstallToolArgument'"); [Console]::ResetColor(); [Console]::WriteLine()
-		Start-Process msiexec.exe -ArgumentList $UninstallToolArgument -Wait
+	if ($Latest -notmatch '^\d+\.\d+\.\d+$') {
+		throw "Invalid runtime version: $Latest"
 	}
+
+	if (Test-Path "$env:ProgramFiles\dotnet\shared\Microsoft.WindowsDesktop.App\$Latest") {
+		continue
+	}
+
+	$FileName = "windowsdesktop-runtime-$Latest-win-x64.exe"
+	$SavePath = "$env:TEMP\$FileName"
+
+	Write-Host "Downloading .NET Desktop Runtime $Latest" -ForegroundColor Green
+	Invoke-WebRequest "$BaseURL/$Latest/$FileName" -OutFile $SavePath -UseBasicParsing
+
+	Write-Host "Installing .NET Desktop Runtime $Latest" -ForegroundColor Green
+	$Process = Start-Process $SavePath -ArgumentList '/install /quiet /norestart' -Wait -PassThru
+
+	if ($Process.ExitCode -notin 0, 3010) {
+		throw "Installation failed: $($Process.ExitCode)"
+	}
+
+	Remove-Item $SavePath -Force
+}
+
+# Uninstall end-of-life Desktop Runtimes
+$Arguments = @('uninstall', '--accept-license', '--it', 'desktopruntime', '--sp', 'eol')
+
+if ($NordVPN) {
+	Write-Host 'Preserving .NET Desktop Runtime 8.0.34 for NordVPN' -ForegroundColor Yellow
+	$Arguments += @('--klpv', '8.0')
+}
+
+& $DNIM @Arguments
+
+if ($LASTEXITCODE -ne 0) {
+ throw 'Runtime removal failed'
 }
