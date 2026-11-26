@@ -1,4 +1,7 @@
-[string]$RepoUrl = ''
+param(
+    [Parameter(Mandatory)]
+    [string]$RepoUrl
+)
 
 $DownloadsDir = Join-Path $HOME 'Downloads'
 

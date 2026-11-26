@@ -16,6 +16,7 @@ if (Test-Path $Firefox_Profiles) {
             'https://addons.mozilla.org/firefox/downloads/latest/the-camelizer-price-history-ch/latest.xpi'
             'https://addons.mozilla.org/firefox/downloads/latest/youtube-no-translation/latest.xpi'
             'https://addons.mozilla.org/firefox/downloads/latest/auto-on-video-controls/latest.xpi'
+            'https://addons.mozilla.org/firefox/downloads/latest/always-visible/latest.xpi'
         )
         $ExtensionNumber = 1
         $ExtensionsList | ForEach-Object {

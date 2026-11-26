@@ -158,14 +158,24 @@ user_pref("browser.preferences.experimental", false);
 // Enable Downloads Pop-up when finished downloading (for quick open downloaded files)
 user_pref("browser.download.alwaysOpenPanel", true);
 
-// Stop pausing media when the window is minimized
+// Disable Windows window occlusion tracking
 user_pref("widget.windows.window_occlusion_tracking.enabled", false);
 
-// Prevents Firefox from stopping video decoding ~10s after a tab goes background
+// Prevent background video decoder suspension
 user_pref("media.suspend-background-video.enabled", false);
 
-// Avoid tab unloading on low memory
+// Prevent unloading tabs under memory pressure
 user_pref("browser.tabs.unloadOnLowMemory", false);
+
+// Allow media to start in background tabs
+user_pref("media.block-autoplay-until-in-foreground", false);
+
+// Disable background JavaScript timer throttling
+user_pref("dom.timeout.enable_budget_timer_throttling", false);
+
+// Reduce background timer delays
+user_pref("dom.min_background_timeout_value", 4);
+user_pref("dom.min_background_timeout_value_without_budget_throttling", 4);
 
 // Undo process priority downgrades
 user_pref("dom.ipc.processPriorityManager.enabled", false);

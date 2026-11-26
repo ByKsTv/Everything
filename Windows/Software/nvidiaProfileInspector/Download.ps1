@@ -26,3 +26,9 @@ $Settings_FilePath = [IO.Path]::Combine($ExtractPath, $Settings_FileName)
 $Argument = '-silent'
 [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Running '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FileName'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$FilePath'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' with '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$Settings_FilePath $Argument'"); [Console]::ResetColor(); [Console]::WriteLine()
 Start-Process -FilePath $FilePath -ArgumentList $Settings_FilePath, $Argument -Wait
+
+$DesktopShortcut = "$env:PUBLIC\Desktop\NVIDIA App.lnk"
+if (Test-Path -Path $DesktopShortcut) {
+    [Console]::BackgroundColor = 'Black'; [Console]::ForegroundColor = 'Green'; [Console]::Write('Deleting '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'NVIDIA App'"); [Console]::ForegroundColor = 'Green'; [Console]::Write(' desktop shortcut from '); [Console]::ForegroundColor = 'Yellow'; [Console]::Write("'$DesktopShortcut'"); [Console]::ResetColor(); [Console]::WriteLine()
+    Remove-Item -Path $DesktopShortcut
+}
