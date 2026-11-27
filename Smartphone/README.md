@@ -184,7 +184,7 @@
 | `Settings` -> `RVX` -> `Account`        | `Hide terms container` -> On                                                        |
 | `Settings` -> `RVX` -> `Action bar`     | `Hide disabled button` -> On                                                        |
 | `Settings` -> `RVX` -> `Navigation bar` | `Hide Samples button` - On                                                          |
-| `Settings` -> `RVX` -> `Video`          | `Disable DRC audio` -> On                                                           |
+| `Settings` -> `RVX` -> `Video`          | `Prefer original audio stream` -> On                                                |
 | `Settings` -> `RVX` -> `Miscellaneous`  | `Change share sheet` - On                                                           |
 | `Settings` -> `Downloads & storage`     | `Audio quality` -> `High`                                                           |
 |                                         | `Video quality` -> `HD - 720p`                                                      |
