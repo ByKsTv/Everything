@@ -134,8 +134,8 @@ user_pref("media.autoplay.blocking_policy", 0);
 user_pref("media.autoplay.default", 0);
 user_pref("media.autoplay.allow-muted", true);
 
-user_pref("media.default_volume", "0.0");
-user_pref("media.volume_scale", "0.0");
+user_pref("media.default_volume", "1.0");
+user_pref("media.volume_scale", "1.0");
 
 // Maximize Window
 user_pref("privacy.resistFingerprinting", false);
